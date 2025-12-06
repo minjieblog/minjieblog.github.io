@@ -1,7 +1,7 @@
 #配置基本信息
-baseURL: "https://minjie.life/" # 主站的 URL
+baseURL: "https://minjieblog.github.io/" # 主站的 URL
 title: Minjie's Blog # 站点标题
-copyright: "[©2025 Minjie's Blog](https://minjie.life/)" # 网站的版权声明，通常显示在页脚
+copyright: "[©2025 Minjie's Blog](https://minjieblog.github.io/)" # 网站的版权声明，通常显示在页脚
 theme: PaperMod # 主题
 languageCode: zh-cn # 语言
 
@@ -16,28 +16,46 @@ pygmentsUseClasses: true
 defaultContentLanguage: zh # 顶部首先展示的语言界面
 defaultContentLanguageInSubdir: false # 是否要在地址栏加上默认的语言代码
 
-#个性化设置
 params:
-  # 搜索
-  fuseOpts:
-      isCaseSensitive: false # 是否大小写敏感
-      shouldSort: true # 是否排序
-      location: 0
-      distance: 1000
-      threshold: 0.4
-      minMatchCharLength: 0
-      # limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-      keys: ["title", "permalink", "summary", "content"]
-      includeMatches: true
+  # 启用代码复制按钮
+  ShowCodeCopyButtons: true
+  homeInfoParams:
+    enabled: true
+    Title: "欢迎来到 Minjie's Blog 👋"
+    Content: >
+      这里记录我的学习笔记、技术文章和生活感悟。
+      
+      选择一个入口开始探索吧！
+  
+  # 隐藏首页的文章列表
+  disableHome: false
+  # 显示目录
+  ShowToc: true
+  TocOpen: true  # 默认展开目录
+  TocSide: 'left'  # 或 'right'，但 PaperMod 默认在右侧
+  
+  # 社交链接（可选）
+  socialIcons:
+    - name: github
+      url: "https://github.com/yourusername"
+    - name: email
+      url: "mailto:your@email.com"
+ 
+  ShowPostSummary: true  # 显示文章摘要
+  assets:
+      favicon: "rose.png"
+      favicon16x16: "rose.png"
+      favicon32x32: "rose.png"
+      apple_touch_icon: "rose.png"
+      safari_pinned_tab: "rose.png"
 
-#设置评论
-params:
-  # 评论的设置
+  # 评论系统
+  enableGiscus: true
   giscus:
-    repo: "Minjie2003/sonnycalcr.github.io"
-    repoId: "xxxxxx"
+    repo: "minjieblog/minjieblog.github.io"
+    repoId: "R_kgDOQjMm6A"
     category: "Announcements"
-    categoryId: "xxxxx"
+    categoryId: "DIC_kwDOQjMm6M4Czb4B"
     mapping: "pathname"
     strict: "0"
     reactionsEnabled: "1"
@@ -48,10 +66,20 @@ params:
     lang: "zh-CN"
     crossorigin: "anonymous"
 
+  # 搜索
+  fuseOps:
+      isCaseSensitive: false
+      shouldSort: true
+      location: 0
+      distance: 1000
+      threshold: 0.4
+      minMatchCharLength: 0
+      keys: ["title", "permalink", "summary", "content"]
+      includeMatches: true
+  #默认启用
+  math: true
+
 #配置代码块的阴暗
-params:
-  assets:
-      disableHLJS: true
 markup:
   goldmark:
     renderer:
@@ -65,13 +93,7 @@ markup:
     # 这里设置 style 没用，得自己加 css
     # style: "github-dark"
     # style: monokai
-
-#设置图标
-params:
-  # 设置网站的标签页的图标，即 favicon
-  assets:
-      favicon: "favicon.ico"
-
+      
 #配置导航栏
 languages:
   zh:
@@ -101,12 +123,6 @@ languages:
         - name: 关于
           pageRef: about/
           weight: 21
-
-#配置分类和标签
-title = 'Hugo + PaperMod + Github Pages 搭建一个完善的个人博客(以 Windows11 为例)'
-date = 2024-08-04T03:25:53+08:00
-categories = ["通用技术"]
-tags = ["博客搭建", "Bilibili"]
 
 #配置搜索
 # https://github.com/adityatelange/hugo-PaperMod/wiki/Features#search-page
