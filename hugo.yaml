@@ -17,15 +17,23 @@ defaultContentLanguage: zh # 顶部首先展示的语言界面
 defaultContentLanguageInSubdir: false # 是否要在地址栏加上默认的语言代码
 
 params:
+  assets:
+      favicon: "rose.png"
+      favicon16x16: "rose.png"
+      favicon32x32: "rose.png"
+      apple_touch_icon: "rose.png"
+      safari_pinned_tab: "rose.png"
   # 启用代码复制按钮
   ShowCodeCopyButtons: true
   homeInfoParams:
     enabled: true
     Title: "欢迎来到 Minjie's Blog 👋"
     Content: >
-      这里记录我的学习笔记、技术文章和生活感悟。
-      
-      选择一个入口开始探索吧！
+        👋 Welcome to demo page of Hugo’s theme PaperMod!
+
+        PaperMod is designed to be clean and simple but fast and responsive theme with useful feature-set that enhances UX.
+        Feel free to show your support by giving us a star 🌟 on GitHub and sharing with your friends and social media .
+        PaperMod is based on theme Paper.
   
   # 隐藏首页的文章列表
   disableHome: false
@@ -37,17 +45,12 @@ params:
   # 社交链接（可选）
   socialIcons:
     - name: github
-      url: "https://github.com/yourusername"
+      url: "https://github.com/Minjie2003"
     - name: email
-      url: "mailto:your@email.com"
+      url: "mailto:zhongnagisa01@gmail.com"
  
   ShowPostSummary: true  # 显示文章摘要
-  assets:
-      favicon: "rose.png"
-      favicon16x16: "rose.png"
-      favicon32x32: "rose.png"
-      apple_touch_icon: "rose.png"
-      safari_pinned_tab: "rose.png"
+
 
   # 评论系统
   enableGiscus: true
@@ -62,7 +65,8 @@ params:
     emitMetadata: "0"
     inputPosition: "bottom"
     lightTheme: "light"
-    darkTheme: "white"
+    darkTheme: "transparent_dark"
+
     lang: "zh-CN"
     crossorigin: "anonymous"
 
@@ -87,11 +91,11 @@ markup:
   highlight:
     anchorLineNos: false # 不要给行号设置锚标
     codeFences: true # 代码围栏
-    noClasses: false # TODO: 不知道干啥的，暂时没必要了解，不影响展示
+    noClasses: true # TODO: 不知道干啥的，暂时没必要了解，不影响展示
     lineNos: false # 代码行
     lineNumbersInTable: false # 不要设置成 true，否则如果文章开头是代码的话，摘要会由一大堆数字(即代码行号)开头文章
     # 这里设置 style 没用，得自己加 css
-    # style: "github-dark"
+    style: "monokai"
     # style: monokai
       
 #配置导航栏

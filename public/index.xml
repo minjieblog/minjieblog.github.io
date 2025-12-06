@@ -7,39 +7,14 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sat, 06 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Dec 2025 17:43:45 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>http://localhost:1313/posts/test/</link>
-      <pubDate>Sat, 06 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/test/</guid>
-      <description>这是一篇测试文章的摘要</description>
-    </item>
-    <item>
-      <title>First</title>
-      <link>http://localhost:1313/posts/first/</link>
-      <pubDate>Fri, 05 Dec 2025 23:04:16 +0800</pubDate>
-      <guid>http://localhost:1313/posts/first/</guid>
-      <description>&lt;h1 id=&#34;markdown-渲染测试&#34;&gt;Markdown 渲染测试&lt;/h1&gt;
-&lt;h2 id=&#34;一些-latex-公式&#34;&gt;一些 LaTeX 公式&lt;/h2&gt;
-&lt;p&gt;行内公式：$a^2 + b^2 = c^2$&lt;br&gt;
-再来一个：$\int e^x dx = e^x + C$&lt;/p&gt;
-&lt;p&gt;块级公式：&lt;/p&gt;
-&lt;p&gt;$$
-E = mc^2
-$$&lt;/p&gt;
-&lt;p&gt;$$
-\frac{d}{dx} \left( x^2 + 3x \right) = 2x + 3
-$$&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;代码块测试&#34;&gt;代码块测试&lt;/h2&gt;
-&lt;h3 id=&#34;python&#34;&gt;Python&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello Markdown with LaTeX!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <title>Hugo 常用指令与 Markdown 配置指南</title>
+      <link>http://localhost:1313/posts/hugo-readme/</link>
+      <pubDate>Sat, 06 Dec 2025 17:43:45 +0800</pubDate>
+      <guid>http://localhost:1313/posts/hugo-readme/</guid>
+      <description>一份完整的 Hugo 和 Markdown 使用手册，包含常用命令、配置说明和最佳实践</description>
     </item>
     <item>
       <title>关于我</title>
