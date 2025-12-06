@@ -1,0 +1,119 @@
+
+/* 侧边栏目录 - 仅在大屏幕显示 */
+@media screen and (min-width: 1440px) {
+    .post-single .toc {
+        position: fixed !important;  /* 添加 !important */
+        left: max(2rem, calc((100vw - var(--main-width)) / 2 - 400px));  /* 使用 max 确保不超出左边界 */
+        top: 120px;
+        width: 320px;  /* 增加宽度 */
+        max-height: calc(100vh - 150px);
+        overflow-y: auto;
+        padding: 1rem;
+        background: var(--entry);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+    }
+    
+    .post-single .toc-container details {
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+    
+    .post-single .toc-container details summary {
+        cursor: pointer;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .post-single .toc nav {
+        font-size: 0.9rem;
+    }
+    
+    .post-single .toc nav ul {
+        padding-left: 0;
+    }
+    
+    .post-single .toc nav ul ul {
+        padding-left: 1rem;
+    }
+    
+    .post-single .toc nav li {
+        list-style: none;
+        margin: 0.3rem 0;
+    }
+    
+    .post-single .toc nav a {
+        display: block;
+        padding: 0.2rem 0;
+        color: var(--secondary);
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+    
+    .post-single .toc nav a:hover {
+        color: var(--primary);
+        padding-left: 0.5rem;
+    }
+}
+
+/* 中等屏幕：目录保持在文章顶部 */
+@media screen and (max-width: 1439px) {
+    .post-single .toc {
+        margin-bottom: 0rem;
+    }
+}
+
+/* 移动端：目录可折叠 */
+@media screen and (max-width: 767px) {
+    .post-single .toc {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: var(--code-bg);
+        border-left: 4px solid var(--primary);
+        border-radius: 4px;
+    }
+    
+    .post-single .toc details summary {
+        font-size: 1rem;
+        user-select: none;
+    }
+    
+    .post-single .toc details[open] summary {
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border);
+    }
+}
+
+/* 移动端相关文章优化 */
+@media screen and (max-width: 767px) {
+    .related-posts {
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+    
+    .related-posts h3 {
+        font-size: 1.1rem;
+    }
+    
+    .related-posts li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        padding: 0.8rem 0;
+    }
+}
+
+/* ========== 3. 首页间距优化 ========== */
+.home-info {
+    margin-bottom: 0rem !important;
+}
+
+.main .profile {
+    margin-bottom: 0rem !important;
+}
+
+.post-entry:first-of-type {
+    margin-top: 0rem !important;
+}
