@@ -59,12 +59,11 @@ jobs:
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
-          TZ: Asia/Shanghai  # 改为中国时区
+          TZ: Asia/Shanghai
         run: |
           hugo \
             --gc \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
-        # 注意：移除了 --minify，避免压缩破坏样式
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

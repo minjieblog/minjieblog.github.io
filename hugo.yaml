@@ -23,6 +23,7 @@ params:
       favicon32x32: "rose.png"
       apple_touch_icon: "rose.png"
       safari_pinned_tab: "rose.png"
+      disableFingerprinting: true  # 禁用 CSS 指纹，避免缓存问题
   # 启用代码复制按钮
   ShowCodeCopyButtons: true
   homeInfoParams:
@@ -64,8 +65,8 @@ params:
     reactionsEnabled: "1"
     emitMetadata: "0"
     inputPosition: "bottom"
-    lightTheme: "light"
-    darkTheme: "transparent_dark"
+    lightTheme: "nord_light"
+    darkTheme: "dark_dimmed"
 
     lang: "zh-CN"
     crossorigin: "anonymous"
@@ -91,13 +92,13 @@ markup:
   highlight:
     anchorLineNos: false # 不要给行号设置锚标
     codeFences: true # 代码围栏
-    noClasses: true # TODO: 不知道干啥的，暂时没必要了解，不影响展示
+    noClasses: false # TODO: 不知道干啥的，暂时没必要了解，不影响展示
     lineNos: false # 代码行
     lineNumbersInTable: false # 不要设置成 true，否则如果文章开头是代码的话，摘要会由一大堆数字(即代码行号)开头文章
     # 这里设置 style 没用，得自己加 css
     style: "monokai"
     # style: monokai
-      
+
 #配置导航栏
 languages:
   zh:
