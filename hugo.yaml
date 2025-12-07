@@ -18,23 +18,30 @@ defaultContentLanguageInSubdir: false # 是否要在地址栏加上默认的语�
 
 params:
   assets:
-      favicon: "rose.png"
-      favicon16x16: "rose.png"
-      favicon32x32: "rose.png"
-      apple_touch_icon: "rose.png"
-      safari_pinned_tab: "rose.png"
+      favicon: "code.png"
+      
+      favicon16x16: "code.png"
+      
+      favicon32x32: "code.png"
+      
+      apple_touch_icon: "code.png"
+      
+      safari_pinned_tab: "code.png"
+      
       disableFingerprinting: true  # 禁用 CSS 指纹，避免缓存问题
   # 启用代码复制按钮
   ShowCodeCopyButtons: true
   homeInfoParams:
     enabled: true
-    Title: "欢迎来到 Minjie's Blog 👋"
+    Title: "嗨，欢迎来到 Minjie 的个人空间 👋"
     Content: >
-        👋 Welcome to demo page of Hugo’s theme PaperMod!
-
-        PaperMod is designed to be clean and simple but fast and responsive theme with useful feature-set that enhances UX.
-        Feel free to show your support by giving us a star 🌟 on GitHub and sharing with your friends and social media .
-        PaperMod is based on theme Paper.
+        一个喜欢用代码解决问题的研究生，白天写 bug，晚上打游戏，偶尔思考一下人生。
+        
+        
+        这里会记录一些技术笔记、项目经验，也会聊聊游戏、音乐和历史。内容可能有点杂，但都是我真实的想法和经历。
+        
+        
+        欢迎你的到来，希望我们能在这里有些有趣的交流 ✨
   
   # 隐藏首页的文章列表
   disableHome: false

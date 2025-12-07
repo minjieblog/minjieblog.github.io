@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>官方文档 | Minjie&#39;s Blog</title>
+<title>数据结构 | Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/categories/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/">
+<link rel="canonical" href="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/code.png">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
@@ -18,8 +18,8 @@
 <link rel="mask-icon" href="http://localhost:1313/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/categories/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/index.xml" title="rss">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/categories/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 <noscript>
     <style>
         #theme-toggle,
@@ -175,20 +175,21 @@ code.has-jax {
 <main class="main"> 
 <header class="page-header">
   <h1>
-    官方文档
+    数据结构
   </h1>
 </header>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Hugo 常用指令与 Markdown 配置指南
+    <h2 class="entry-hint-parent">Java 集合使用与算法模板大全
     </h2>
   </header>
   <div class="entry-content">
-    <p>详细介绍 Hugo 常用指令、Markdown Front Matter 配置、基本语法和实用技巧的完整指南</p>
+    <p>📚 Part 1: Java 集合使用手册 1. List - 列表 ArrayList - 动态数组 // 初始化 List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); List&lt;String&gt; list2 = new ArrayList&lt;&gt;(Arrays.asList(&#34;a&#34;, &#34;b&#34;, &#34;c&#34;)); List&lt;Integer&gt; list3 = new ArrayList&lt;&gt;(100); // 指定初始容量 // 增 list.add(1); // 尾部添加 list.add(0, 10); // 指定位置添加 list.addAll(Arrays.asList(2,3,4)); // 批量添加 // 删 list.remove(0); // 删除指定索引 list.remove(Integer.valueOf(1)); // 删除指定元素 list.clear(); // 清空 // 改 list.set(0, 100); // 修改指定位置 // 查 int val = list.get(0); // 获取元素 int size = list.size(); // 获取大小 boolean empty = list.isEmpty(); // 是否为空 boolean contains = list.contains(1); // 是否包含 int index = list.indexOf(1); // 查找索引 // 遍历 for (int num : list) { System.out.println(num); } // 或使用迭代器 Iterator&lt;Integer&gt; it = list.iterator(); while (it.hasNext()) { System.out.println(it.next()); } LinkedList - 双向链表 LinkedList&lt;Integer&gt; list = new LinkedList&lt;&gt;(); // 头部操作 list.addFirst(1); list.removeFirst(); int first = list.getFirst(); // 尾部操作 list.addLast(2); list.removeLast(); int last = list.getLast(); // 作为队列使用 list.offer(3); // 入队 int head = list.poll(); // 出队 // 作为栈使用 list.push(4); // 入栈 int top = list.pop(); // 出栈 2. Set - 集合 HashSet - 无序不重复 // 初始化 Set&lt;Integer&gt; set = new HashSet&lt;&gt;(); Set&lt;String&gt; set2 = new HashSet&lt;&gt;(Arrays.asList(&#34;a&#34;, &#34;b&#34;, &#34;c&#34;)); // 增 set.add(1); set.addAll(Arrays.asList(2, 3, 4)); // 删 set.remove(1); set.clear(); // 查 boolean contains = set.contains(1); int size = set.size(); boolean empty = set.isEmpty(); // 遍历 for (int num : set) { System.out.println(num); } TreeSet - 有序集合（红黑树） TreeSet&lt;Integer&gt; set = new TreeSet&lt;&gt;(); // 基本操作同 HashSet set.add(3); set.add(1); set.add(2); System.out.println(set); // [1, 2, 3] 自动排序 // 特有方法 int first = set.first(); // 最小元素 int last = set.last(); // 最大元素 int lower = set.lower(2); // 小于 2 的最大元素 int higher = set.higher(2); // 大于 2 的最小元素 int floor = set.floor(2); // ≤ 2 的最大元素 int ceiling = set.ceiling(2); // ≥ 2 的最小元素 // 子集操作 SortedSet&lt;Integer&gt; subset = set.subSet(1, 3); // [1, 3) SortedSet&lt;Integer&gt; headSet = set.headSet(2); // &lt; 2 SortedSet&lt;Integer&gt; tailSet = set.tailSet(2); // &gt;= 2 LinkedHashSet - 保持插入顺序 Set&lt;Integer&gt; set = new LinkedHashSet&lt;&gt;(); set.add(3); set.add(1); set.add(2); System.out.println(set); // [3, 1, 2] 保持插入顺序 3. Map - 映射 HashMap - 键值对 // 初始化 Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;(); // 增/改 map.put(&#34;apple&#34;, 1); map.put(&#34;banana&#34;, 2); map.putIfAbsent(&#34;apple&#34;, 10); // 键不存在时才添加 // 删 map.remove(&#34;apple&#34;); map.clear(); // 查 int val = map.get(&#34;apple&#34;); int valOrDefault = map.getOrDefault(&#34;orange&#34;, 0); boolean hasKey = map.containsKey(&#34;apple&#34;); boolean hasValue = map.containsValue(1); int size = map.size(); // 遍历键值对 for (Map.Entry&lt;String, Integer&gt; entry : map.entrySet()) { String key = entry.getKey(); int value = entry.getValue(); } // 遍历键 for (String key : map.keySet()) { System.out.println(key); } // 遍历值 for (int value : map.values()) { System.out.println(value); } // Java 8&#43; 新方法 map.computeIfAbsent(&#34;cherry&#34;, k -&gt; 3); map.merge(&#34;apple&#34;, 1, Integer::sum); // 累加 TreeMap - 有序映射（红黑树） TreeMap&lt;Integer, String&gt; map = new TreeMap&lt;&gt;(); map.put(3, &#34;c&#34;); map.put(1, &#34;a&#34;); map.put(2, &#34;b&#34;); // 基本操作同 HashMap // 特有方法 int firstKey = map.firstKey(); int lastKey = map.lastKey(); Map.Entry&lt;Integer, String&gt; firstEntry = map.firstEntry(); Map.Entry&lt;Integer, String&gt; lastEntry = map.lastEntry(); int lowerKey = map.lowerKey(2); // &lt; 2 的最大键 int higherKey = map.higherKey(2); // &gt; 2 的最小键 int floorKey = map.floorKey(2); // &lt;= 2 的最大键 int ceilingKey = map.ceilingKey(2); // &gt;= 2 的最小键 LinkedHashMap - 保持插入顺序 Map&lt;String, Integer&gt; map = new LinkedHashMap&lt;&gt;(); map.put(&#34;c&#34;, 3); map.put(&#34;a&#34;, 1); map.put(&#34;b&#34;, 2); // 遍历时保持插入顺序: c, a, b 4. Queue - 队列 普通队列 Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;(); // 入队 queue.offer(1); queue.add(2); // 队列满时抛异常 // 出队 int head = queue.poll(); // 空时返回 null int head2 = queue.remove(); // 空时抛异常 // 查看队首 int peek = queue.peek(); // 空时返回 null int peek2 = queue.element(); // 空时抛异常 PriorityQueue - 优先队列（堆） // 小根堆（默认） PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;(); // 大根堆 PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;((a, b) -&gt; b - a); // 自定义对象 PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; a[0] - b[0]); minHeap.offer(3); minHeap.offer(1); minHeap.offer(2); while (!minHeap.isEmpty()) { System.out.println(minHeap.poll()); // 1, 2, 3 } Deque - 双端队列 Deque&lt;Integer&gt; deque = new ArrayDeque&lt;&gt;(); // 头部操作 deque.offerFirst(1); deque.pollFirst(); deque.peekFirst(); // 尾部操作 deque.offerLast(2); deque.pollLast(); deque.peekLast(); // 作为栈使用 deque.push(3); int top = deque.pop(); 5. Stack - 栈 Stack&lt;Integer&gt; stack = new Stack&lt;&gt;(); stack.push(1); // 入栈 int top = stack.pop(); // 出栈 int peek = stack.peek(); // 查看栈顶 boolean empty = stack.isEmpty(); int size = stack.size(); // 推荐使用 Deque 代替 Stack Deque&lt;Integer&gt; stack2 = new ArrayDeque&lt;&gt;(); 🧮 Part 2: 算法模板 1. 树的遍历 二叉树定义 class TreeNode { int val; TreeNode left; TreeNode right; TreeNode(int val) { this.val = val; } } DFS - 深度优先遍历 前序遍历（根-左-右）
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-12-06 17:43:45 +0800 CST'>2025年12月6日</span>&nbsp;·&nbsp;<span>4 分钟</span>&nbsp;·&nbsp;<span>Minjie</span></footer>
-  <a class="entry-link" aria-label="post link to Hugo 常用指令与 Markdown 配置指南" href="http://localhost:1313/posts/hugo-readme/"></a>
+  <footer class="entry-footer"><span title='2025-12-07 15:42:12 +0800 CST'>2025年12月7日</span></footer>
+  <a class="entry-link" aria-label="post link to Java 集合使用与算法模板大全" href="http://localhost:1313/posts/algorithm-with-java/"></a>
 </article>
     </main>
     

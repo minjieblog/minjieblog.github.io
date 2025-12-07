@@ -7,7 +7,7 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sat, 06 Dec 2025 17:43:45 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 07 Dec 2025 15:42:12 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo 常用指令与 Markdown 配置指南</title>
@@ -15,6 +15,13 @@
       <pubDate>Sat, 06 Dec 2025 17:43:45 +0800</pubDate>
       <guid>http://localhost:1313/posts/hugo-readme/</guid>
       <description>一份完整的 Hugo 和 Markdown 使用手册，包含常用命令、配置说明和最佳实践</description>
+    </item>
+    <item>
+      <title>Java 集合使用与算法模板大全</title>
+      <link>http://localhost:1313/posts/algorithm-with-java/</link>
+      <pubDate>Sun, 07 Dec 2025 15:42:12 +0800</pubDate>
+      <guid>http://localhost:1313/posts/algorithm-with-java/</guid>
+      <description>Java 集合框架完整使用手册 &#43; 常用算法模板</description>
     </item>
     <item>
       <title>关于我</title>
