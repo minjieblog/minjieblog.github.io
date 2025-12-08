@@ -1,10 +1,10 @@
 ---
-title: "Java 集合使用与算法模板大全"
-date: 2025-12-07T15:42:12+08:00
+title: "算法刷题必备：Java集合与算法模板"
+date: "2025-12-07T16:33:25+08:00"
 draft: false
 tags: ["Java", "算法", "数据结构", "LeetCode"]
 categories: ["技术笔记-J"]
-summary = '详细介绍java集合的使用,以及在刷算法题中需要使用到的一些板子'
+summary: "详细介绍java集合的使用,以及在刷算法题中需要使用到的一些板子"
 description: "Java 集合框架完整使用手册 + 常用算法模板"
 comments: true
 ---

@@ -7,12 +7,12 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 07 Dec 2025 15:42:12 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 07 Dec 2025 16:33:25 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Java 集合使用与算法模板大全</title>
+      <title>算法刷题必备：Java集合与算法模板</title>
       <link>http://localhost:1313/posts/algorithm-with-java/</link>
-      <pubDate>Sun, 07 Dec 2025 15:42:12 +0800</pubDate>
+      <pubDate>Sun, 07 Dec 2025 16:33:25 +0800</pubDate>
       <guid>http://localhost:1313/posts/algorithm-with-java/</guid>
       <description>Java 集合框架完整使用手册 &#43; 常用算法模板</description>
     </item>

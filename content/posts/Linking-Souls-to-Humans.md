@@ -1,12 +1,15 @@
 ---
 title: "zkBID: 区块链账户与Web 3.0去中心化身份"
 date: 2025-12-08T10:50:12+08:00
-categories: ['区块链']
 tags: ["blockchain", "web3", "zero-knowledge-proof", "decentralized-identity", "privacy"] 
 categories: ["区块链论文"] 
 author: "Taotao Wang et al." 
 conference: "WWW 2025" 
 draft: false
+summary: |
+  zkBID通过零知识证明和可链接环签名技术，首次实现了区块链账户的"可信匿名"：每个账户与真实用户一对一绑定（可信），但外界无法追踪具体对应关系（匿名）。系统采用三阶段IVAC流程，将人格凭证(PHC)通过零知识证明验证后绑定到种子公钥，再用环签名将种子公钥关联到灵魂账户。实验显示批处理可将验证成本降低85%，环大小灵活可调以平衡匿名性与效率。该方案为Web3提供了关键身份基础设施，可有效防止女巫攻击，支持去中心化社交、DAO治理、DeFi空投等场景。
+description: |
+  WWW 2025论文解读：zkBID是首个同时实现身份匿名性和可信性的Web 3.0去中心化身份系统。通过结合zkSNARK零知识证明和MLSAGS可链接环签名，在完全去中心化的前提下，将区块链灵魂账户与真实用户建立一对一可验证映射，同时保护用户隐私。本文详细解析了三阶段IVAC流程的技术设计、安全性证明、以太坊测试网性能评估，以及在社交网络、DAO治理、DeFi等场景的应用价值。
 ---
 
 ## 论文基本信息

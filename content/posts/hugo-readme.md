@@ -1,30 +1,22 @@
-+++
-title = 'Hugo 常用指令与 Markdown 配置指南'
-date = '2025-12-06T17:43:45+08:00'
-lastmod = '2025-12-06T17:43:45+08:00'
-draft = false
-
-tags = ['Hugo', 'Markdown', '博客', '教程']
-categories = ['文档介绍']
-
-summary = '详细介绍 Hugo 常用指令、Markdown Front Matter 配置、基本语法和实用技巧的完整指南'
-description = '一份完整的 Hugo 和 Markdown 使用手册，包含常用命令、配置说明和最佳实践'
-
-toc = true                    # 显示目录
-showToc = true               # 显示目录
-TocOpen = true              # 默认展开目录
-ShowReadingTime = true       # 显示阅读时间
-ShowBreadCrumbs = true       # 显示面包屑
-ShowPostNavLinks = true      # 显示文章导航
-
-author = 'Minjie'
-
-weight  = 10
-
-#提供评论
-comments = true
-
-+++
+---
+title: 'Hugo 常用指令与 Markdown 配置指南'
+date: '2025-12-06T17:43:45+08:00'
+lastmod: '2025-12-06T17:43:45+08:00'
+draft: false
+tags: ['Hugo', 'Markdown', '博客', '教程']
+categories: ['文档介绍']
+summary: '详细介绍 Hugo 常用指令、Markdown Front Matter 配置、基本语法和实用技巧的完整指南'
+description: '一份完整的 Hugo 和 Markdown 使用手册，包含常用命令、配置说明和最佳实践'
+toc: true                    # 显示目录
+showToc: true                # 显示目录
+TocOpen: true                # 默认展开目录
+ShowReadingTime: true        # 显示阅读时间
+ShowBreadCrumbs: true        # 显示面包屑
+ShowPostNavLinks: true       # 显示文章导航
+author: 'Minjie'
+weight: 10
+comments: true               # 提供评论
+---
 
 
 ## 一、Hugo 常用指令

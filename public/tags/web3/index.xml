@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Web3 on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/tags/web3/</link>
+    <description>Recent content in Web3 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Mon, 08 Dec 2025 10:50:12 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/web3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>zkBID: 区块链账户与Web 3.0去中心化身份</title>
+      <link>http://localhost:1313/posts/linking-souls-to-humans/</link>
+      <pubDate>Mon, 08 Dec 2025 10:50:12 +0800</pubDate>
+      <guid>http://localhost:1313/posts/linking-souls-to-humans/</guid>
+      <description>WWW 2025论文解读：zkBID是首个同时实现身份匿名性和可信性的Web 3.0去中心化身份系统。通过结合zkSNARK零知识证明和MLSAGS可链接环签名，在完全去中心化的前提下，将区块链灵魂账户与真实用户建立一对一可验证映射，同时保护用户隐私。本文详细解析了三阶段IVAC流程的技术设计、安全性证明、以太坊测试网性能评估，以及在社交网络、DAO治理、DeFi等场景的应用价值。
+</description>
+    </item>
+  </channel>
+</rss>
