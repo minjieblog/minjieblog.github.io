@@ -5,7 +5,7 @@ lastmod = '2025-12-06T17:43:45+08:00'
 draft = false
 
 tags = ['Hugo', 'Markdown', '博客', '教程']
-categories = ['官方文档', '技术指南']
+categories = ['文档介绍']
 
 summary = '详细介绍 Hugo 常用指令、Markdown Front Matter 配置、基本语法和实用技巧的完整指南'
 description = '一份完整的 Hugo 和 Markdown 使用手册，包含常用命令、配置说明和最佳实践'
