@@ -14,7 +14,6 @@ ShowReadingTime: true        # 显示阅读时间
 ShowBreadCrumbs: true        # 显示面包屑
 ShowPostNavLinks: true       # 显示文章导航
 author: 'Minjie'
-weight: 10
 comments: true               # 提供评论
 ---
 
