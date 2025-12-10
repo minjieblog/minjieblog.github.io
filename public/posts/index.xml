@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Wed, 10 Dec 2025 08:45:19 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Dec 2025 11:28:47 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常用命令行指令参考</title>
+      <link>http://localhost:1313/posts/command-reference/</link>
+      <pubDate>Wed, 10 Dec 2025 11:28:47 +0800</pubDate>
+      <guid>http://localhost:1313/posts/command-reference/</guid>
+      <description>一份完整的开发者命令行速查表，涵盖 Windows PowerShell、Linux/Unix 终端、Git 版本控制和 GitHub CLI 工具的常用指令、参数说明|和实际使用场景示例</description>
+    </item>
     <item>
       <title>MySQL 语句速查笔记</title>
       <link>http://localhost:1313/posts/mysql-cheatsheet/</link>

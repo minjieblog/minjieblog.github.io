@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>常用命令行指令参考 | Minjie&#39;s Blog</title>
+<meta name="keywords" content="命令行, PowerShell, Linux, Git, GitHub">
+<meta name="description" content="一份完整的开发者命令行速查表，涵盖 Windows PowerShell、Linux/Unix 终端、Git 版本控制和 GitHub CLI 工具的常用指令、参数说明|和实际使用场景示例">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/command-reference/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/posts/command-reference/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      常用命令行指令参考
+    </h1>
+    <div class="post-description">
+      一份完整的开发者命令行速查表，涵盖 Windows PowerShell、Linux/Unix 终端、Git 版本控制和 GitHub CLI 工具的常用指令、参数说明|和实际使用场景示例
+    </div>
+    <div class="post-meta"><span title='2025-12-10 11:28:47 +0800 CST'>2025年12月10日</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#windows-powershell-%e5%b8%b8%e7%94%a8%e6%8c%87%e4%bb%a4" aria-label="Windows PowerShell 常用指令">Windows PowerShell 常用指令</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%87%e4%bb%b6%e5%92%8c%e7%9b%ae%e5%bd%95%e6%93%8d%e4%bd%9c" aria-label="文件和目录操作">文件和目录操作</a></li>
+                <li>
+                    <a href="#%e6%96%87%e6%9c%ac%e5%a4%84%e7%90%86%e5%92%8c%e6%90%9c%e7%b4%a2" aria-label="文本处理和搜索">文本处理和搜索</a></li>
+                <li>
+                    <a href="#%e7%b3%bb%e7%bb%9f%e4%bf%a1%e6%81%af%e5%92%8c%e7%ae%a1%e7%90%86" aria-label="系统信息和管理">系统信息和管理</a></li>
+                <li>
+                    <a href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" aria-label="环境变量">环境变量</a></li>
+                <li>
+                    <a href="#%e7%bd%91%e7%bb%9c%e6%93%8d%e4%bd%9c" aria-label="网络操作">网络操作</a></li>
+                <li>
+                    <a href="#%e5%ae%9e%e7%94%a8%e5%91%bd%e4%bb%a4" aria-label="实用命令">实用命令</a></li></ul>
+                </li>
+                <li>
+                    <a href="#linux-terminal-%e5%b8%b8%e7%94%a8%e6%8c%87%e4%bb%a4" aria-label="Linux Terminal 常用指令">Linux Terminal 常用指令</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%87%e4%bb%b6%e5%92%8c%e7%9b%ae%e5%bd%95%e6%93%8d%e4%bd%9c-1" aria-label="文件和目录操作">文件和目录操作</a></li>
+                <li>
+                    <a href="#%e6%96%87%e4%bb%b6%e6%9f%a5%e7%9c%8b%e5%92%8c%e7%bc%96%e8%be%91" aria-label="文件查看和编辑">文件查看和编辑</a></li>
+                <li>
+                    <a href="#%e6%96%87%e4%bb%b6%e6%90%9c%e7%b4%a2%e5%92%8c%e6%9f%a5%e6%89%be" aria-label="文件搜索和查找">文件搜索和查找</a></li>
+                <li>
+                    <a href="#%e6%96%87%e4%bb%b6%e6%9d%83%e9%99%90" aria-label="文件权限">文件权限</a></li>
+                <li>
+                    <a href="#%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" aria-label="进程管理">进程管理</a></li>
+                <li>
+                    <a href="#%e7%a3%81%e7%9b%98%e5%92%8c%e5%ad%98%e5%82%a8" aria-label="磁盘和存储">磁盘和存储</a></li>
+                <li>
+                    <a href="#%e7%b3%bb%e7%bb%9f%e4%bf%a1%e6%81%af" aria-label="系统信息">系统信息</a></li>
+                <li>
+                    <a href="#%e7%bd%91%e7%bb%9c%e6%93%8d%e4%bd%9c-1" aria-label="网络操作">网络操作</a></li>
+                <li>
+                    <a href="#%e5%8e%8b%e7%bc%a9%e5%92%8c%e8%a7%a3%e5%8e%8b" aria-label="压缩和解压">压缩和解压</a></li>
+                <li>
+                    <a href="#%e6%96%87%e6%9c%ac%e5%a4%84%e7%90%86%e5%b7%a5%e5%85%b7" aria-label="文本处理工具">文本处理工具</a></li>
+                <li>
+                    <a href="#%e7%b3%bb%e7%bb%9f%e7%ae%a1%e7%90%86" aria-label="系统管理">系统管理</a></li>
+                <li>
+                    <a href="#%e5%ae%9e%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae" aria-label="实用快捷键">实用快捷键</a></li>
+                <li>
+                    <a href="#%e5%85%b6%e4%bb%96%e5%ae%9e%e7%94%a8%e5%91%bd%e4%bb%a4" aria-label="其他实用命令">其他实用命令</a></li></ul>
+                </li>
+                <li>
+                    <a href="#git-%e5%b8%b8%e7%94%a8%e6%8c%87%e4%bb%a4" aria-label="Git 常用指令">Git 常用指令</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%9d%e5%a7%8b%e5%8c%96%e5%92%8c%e9%85%8d%e7%bd%ae" aria-label="初始化和配置">初始化和配置</a></li>
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c" aria-label="基本操作">基本操作</a></li>
+                <li>
+                    <a href="#%e5%88%86%e6%94%af%e6%93%8d%e4%bd%9c" aria-label="分支操作">分支操作</a></li>
+                <li>
+                    <a href="#%e6%9f%a5%e7%9c%8b%e5%8e%86%e5%8f%b2" aria-label="查看历史">查看历史</a></li>
+                <li>
+                    <a href="#%e6%92%a4%e9%94%80%e5%92%8c%e5%9b%9e%e9%80%80" aria-label="撤销和回退">撤销和回退</a></li>
+                <li>
+                    <a href="#%e6%9a%82%e5%ad%98%e6%93%8d%e4%bd%9cstash" aria-label="暂存操作（Stash）">暂存操作（Stash）</a></li>
+                <li>
+                    <a href="#%e8%bf%9c%e7%a8%8b%e4%bb%93%e5%ba%93" aria-label="远程仓库">远程仓库</a></li>
+                <li>
+                    <a href="#%e6%a0%87%e7%ad%be%e6%93%8d%e4%bd%9c" aria-label="标签操作">标签操作</a></li>
+                <li>
+                    <a href="#%e9%ab%98%e7%ba%a7%e6%93%8d%e4%bd%9c" aria-label="高级操作">高级操作</a></li>
+                <li>
+                    <a href="#gitignore-%e9%85%8d%e7%bd%ae" aria-label=".gitignore 配置">.gitignore 配置</a></li></ul>
+                </li>
+                <li>
+                    <a href="#github-cli-%e5%b8%b8%e7%94%a8%e6%8c%87%e4%bb%a4" aria-label="GitHub CLI 常用指令">GitHub CLI 常用指令</a><ul>
+                        
+                <li>
+                    <a href="#%e8%ae%a4%e8%af%81" aria-label="认证">认证</a></li>
+                <li>
+                    <a href="#%e4%bb%93%e5%ba%93%e6%93%8d%e4%bd%9c" aria-label="仓库操作">仓库操作</a></li>
+                <li>
+                    <a href="#pull-request" aria-label="Pull Request">Pull Request</a></li>
+                <li>
+                    <a href="#issue" aria-label="Issue">Issue</a></li>
+                <li>
+                    <a href="#gist" aria-label="Gist">Gist</a></li>
+                <li>
+                    <a href="#release" aria-label="Release">Release</a></li>
+                <li>
+                    <a href="#github-actions" aria-label="GitHub Actions">GitHub Actions</a></li>
+                <li>
+                    <a href="#%e5%85%b6%e4%bb%96%e5%8a%9f%e8%83%bd" aria-label="其他功能">其他功能</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="windows-powershell-常用指令">Windows PowerShell 常用指令<a hidden class="anchor" aria-hidden="true" href="#windows-powershell-常用指令">#</a></h2>
+<h3 id="文件和目录操作">文件和目录操作<a hidden class="anchor" aria-hidden="true" href="#文件和目录操作">#</a></h3>
+<p><strong>列出目录内容</strong></p>
+<ul>
+<li><code>Get-ChildItem</code> / <code>ls</code> - 列出当前目录内容</li>
+<li><code>ls -Force</code> - 显示隐藏文件</li>
+<li><code>ls -Recurse</code> - 递归列出所有子目录</li>
+<li><code>ls | Sort-Object Length -Descending</code> - 按文件大小排序</li>
+</ul>
+<p><strong>切换目录</strong></p>
+<ul>
+<li><code>Set-Location &lt;路径&gt;</code> / <code>cd</code> - 切换目录</li>
+<li><code>cd ~</code> - 返回用户主目录</li>
+<li><code>cd ..</code> - 返回上级目录</li>
+<li><code>cd -</code> - 返回上一个目录</li>
+</ul>
+<p><strong>创建文件和目录</strong></p>
+<ul>
+<li><code>New-Item -ItemType Directory &lt;名称&gt;</code> / <code>mkdir</code> - 创建目录</li>
+<li><code>New-Item -ItemType File &lt;名称&gt;</code> / <code>ni</code> - 创建文件</li>
+</ul>
+<p><strong>复制、移动和删除</strong></p>
+<ul>
+<li>
+<p><code>Copy-Item &lt;源&gt; &lt;目标&gt;</code> 复制文件</p>
+</li>
+<li>
+<p><code>Move-Item &lt;源&gt; &lt;目标&gt;</code> / <code>mv</code> - 移动/重命名文件</p>
+</li>
+<li>
+<p><code>Remove-Item &lt;路径&gt; </code> 删除文件</p>
+</li>
+</ul>
+<p><strong>查看文件</strong></p>
+<ul>
+<li><code>Get-Content &lt;文件&gt;</code> / <code>cat</code> - 查看文件内容</li>
+<li><code>Get-Content &lt;文件&gt; -Tail 10</code> - 查看最后 10 行</li>
+<li><code>Get-Content &lt;文件&gt; -Wait</code> - 实时查看文件更新（类似 tail -f）</li>
+<li><code>Test-Path &lt;路径&gt;</code> - 检查路径是否存在</li>
+</ul>
+<hr>
+<h3 id="文本处理和搜索">文本处理和搜索<a hidden class="anchor" aria-hidden="true" href="#文本处理和搜索">#</a></h3>
+<ul>
+<li><code>Select-String &lt;模式&gt; &lt;文件&gt;</code> - 在文件中搜索文本（类似 grep）</li>
+<li><code>Select-String &quot;error&quot; *.log</code> - 在所有 log 文件中搜索</li>
+<li><code>ls -Recurse | Select-String &quot;TODO&quot;</code> - 递归搜索</li>
+<li><code>Out-File &lt;文件&gt;</code> - 输出重定向到文件</li>
+<li><code>Tee-Object &lt;文件&gt;</code> - 同时输出到控制台和文件</li>
+</ul>
+<hr>
+<h3 id="系统信息和管理">系统信息和管理<a hidden class="anchor" aria-hidden="true" href="#系统信息和管理">#</a></h3>
+<p><strong>进程管理</strong></p>
+<ul>
+<li><code>Get-Process</code> / <code>ps</code> - 查看进程列表</li>
+<li><code>Get-Process | Sort-Object CPU -Descending | Select-Object -First 5</code> - CPU 占用最高的 5 个进程</li>
+<li><code>Stop-Process -Name &lt;进程名&gt;</code> - 结束进程</li>
+</ul>
+<p><strong>服务管理</strong></p>
+<ul>
+<li><code>Get-Service</code> - 查看服务列表</li>
+<li><code>Get-Service | Where-Object {$_.Status -eq &quot;Running&quot;}</code> - 只显示运行中的服务</li>
+<li><code>Start-Service &lt;服务名&gt;</code> - 启动服务</li>
+<li><code>Stop-Service &lt;服务名&gt;</code> - 停止服务</li>
+</ul>
+<p><strong>系统信息</strong></p>
+<ul>
+<li><code>Get-ComputerInfo</code> - 查看计算机信息</li>
+<li><code>Get-NetIPAddress</code> - 查看网络配置</li>
+<li><code>Get-Disk</code> - 查看磁盘信息</li>
+<li><code>Get-Volume</code> - 查看卷信息</li>
+<li><code>systeminfo</code> - 显示详细系统信息</li>
+</ul>
+<hr>
+<h3 id="环境变量">环境变量<a hidden class="anchor" aria-hidden="true" href="#环境变量">#</a></h3>
+<ul>
+<li><code>$env:PATH</code> - 查看 PATH 环境变量</li>
+<li><code>$env:变量名 = &quot;值&quot;</code> - 设置临时环境变量</li>
+<li><code>[Environment]::SetEnvironmentVariable(&quot;变量名&quot;, &quot;值&quot;, &quot;User&quot;)</code> - 永久设置</li>
+</ul>
+<hr>
+<h3 id="网络操作">网络操作<a hidden class="anchor" aria-hidden="true" href="#网络操作">#</a></h3>
+<ul>
+<li><code>Test-Connection &lt;主机&gt;</code> / <code>ping</code> - 测试网络连接</li>
+<li><code>Invoke-WebRequest &lt;URL&gt;</code> / <code>curl</code> - 发送 HTTP 请求</li>
+<li><code>Invoke-WebRequest -Uri &lt;URL&gt; -OutFile &lt;文件&gt;</code> - 下载文件</li>
+<li><code>Get-NetTCPConnection</code> - 查看 TCP 连接</li>
+<li><code>ipconfig</code> - 查看 IP 配置</li>
+<li><code>ipconfig /flushdns</code> - 刷新 DNS 缓存</li>
+</ul>
+<hr>
+<h3 id="实用命令">实用命令<a hidden class="anchor" aria-hidden="true" href="#实用命令">#</a></h3>
+<ul>
+<li><code>Clear-Host</code> / <code>cls</code> - 清屏</li>
+<li><code>Get-History</code> / <code>history</code> - 查看命令历史</li>
+<li><code>Get-Help &lt;命令&gt;</code> - 获取帮助</li>
+<li><code>Get-Help &lt;命令&gt; -Examples</code> - 查看使用示例</li>
+<li><code>Get-Command</code> - 列出所有可用命令</li>
+<li><code>Get-Command *process*</code> - 搜索包含 process 的命令</li>
+<li><code>Get-Alias</code> - 查看所有别名</li>
+<li><code>Measure-Object</code> - 统计对象</li>
+<li><code>Start-Process &lt;程序&gt;</code> - 启动程序</li>
+<li><code>Get-Location</code> / <code>pwd</code> - 显示当前路径</li>
+</ul>
+<hr>
+<h2 id="linux-terminal-常用指令">Linux Terminal 常用指令<a hidden class="anchor" aria-hidden="true" href="#linux-terminal-常用指令">#</a></h2>
+<h3 id="文件和目录操作-1">文件和目录操作<a hidden class="anchor" aria-hidden="true" href="#文件和目录操作-1">#</a></h3>
+<p><strong>列出目录</strong></p>
+<ul>
+<li><code>ls</code> - 列出目录内容</li>
+<li><code>ls -l</code> - 长格式显示（详细信息）</li>
+<li><code>ls -a</code> - 显示隐藏文件</li>
+<li><code>ls -lh</code> - 人性化显示文件大小</li>
+<li><code>ls -lt</code> - 按修改时间排序</li>
+<li><code>ls -lS</code> - 按文件大小排序</li>
+<li><code>ls -R</code> - 递归列出所有子目录</li>
+</ul>
+<p><strong>切换目录</strong></p>
+<ul>
+<li><code>cd &lt;路径&gt;</code> - 切换目录</li>
+<li><code>cd</code> / <code>cd ~</code> - 返回主目录</li>
+<li><code>cd ..</code> - 返回上级目录</li>
+<li><code>cd -</code> - 返回上一个目录</li>
+<li><code>pwd</code> - 显示当前完整路径</li>
+</ul>
+<p><strong>创建</strong></p>
+<ul>
+<li><code>mkdir &lt;目录名&gt;</code> - 创建目录</li>
+<li><code>mkdir -p a/b/c</code> - 递归创建多级目录</li>
+<li><code>touch &lt;文件名&gt;</code> - 创建空文件或更新时间戳</li>
+</ul>
+<p><strong>复制、移动和删除</strong></p>
+<ul>
+<li><code>cp &lt;源&gt; &lt;目标&gt;</code> - 复制文件</li>
+<li><code>cp -r &lt;源目录&gt; &lt;目标&gt;</code> - 递归复制目录</li>
+<li><code>cp -i &lt;源&gt; &lt;目标&gt;</code> - 交互式复制（覆盖前询问）</li>
+<li><code>mv &lt;源&gt; &lt;目标&gt;</code> - 移动/重命名文件</li>
+<li><code>rm &lt;文件&gt;</code> - 删除文件</li>
+<li><code>rm -r &lt;目录&gt;</code> - 递归删除目录</li>
+<li><code>rm -f &lt;文件&gt;</code> - 强制删除</li>
+<li><code>rm -rf &lt;目录&gt;</code> - 强制递归删除（危险！）</li>
+<li><code>rm -i &lt;文件&gt;</code> - 交互式删除（推荐）</li>
+</ul>
+<p><strong>链接</strong></p>
+<ul>
+<li><code>ln -s &lt;源&gt; &lt;链接名&gt;</code> - 创建符号链接</li>
+<li><code>readlink -f &lt;链接&gt;</code> - 查看链接目标</li>
+</ul>
+<hr>
+<h3 id="文件查看和编辑">文件查看和编辑<a hidden class="anchor" aria-hidden="true" href="#文件查看和编辑">#</a></h3>
+<p><strong>查看文件</strong></p>
+<ul>
+<li><code>cat &lt;文件&gt;</code> - 显示文件内容</li>
+<li><code>cat -n &lt;文件&gt;</code> - 显示行号</li>
+<li><code>less &lt;文件&gt;</code> - 分页查看（可前后翻页）</li>
+<li><code>more &lt;文件&gt;</code> - 分页查看（只能向前）</li>
+<li><code>head &lt;文件&gt;</code> - 查看文件开头</li>
+<li><code>head -n 20 &lt;文件&gt;</code> - 查看前 20 行</li>
+<li><code>tail &lt;文件&gt;</code> - 查看文件末尾</li>
+<li><code>tail -n 20 &lt;文件&gt;</code> - 查看最后 20 行</li>
+<li><code>tail -f &lt;文件&gt;</code> - 实时查看文件更新</li>
+<li><code>tail -f &lt;文件&gt; | grep &quot;error&quot;</code> - 实时过滤查看</li>
+</ul>
+<p><strong>编辑文件</strong></p>
+<ul>
+<li><code>nano &lt;文件&gt;</code> - 简单文本编辑器</li>
+<li><code>vim &lt;文件&gt;</code> / <code>vi &lt;文件&gt;</code> - 强大的文本编辑器</li>
+</ul>
+<p><strong>统计文件</strong></p>
+<ul>
+<li><code>wc &lt;文件&gt;</code> - 统计文件</li>
+<li><code>wc -l &lt;文件&gt;</code> - 统计行数</li>
+<li><code>wc -w &lt;文件&gt;</code> - 统计单词数</li>
+<li><code>wc -c &lt;文件&gt;</code> - 统计字节数</li>
+</ul>
+<hr>
+<h3 id="文件搜索和查找">文件搜索和查找<a hidden class="anchor" aria-hidden="true" href="#文件搜索和查找">#</a></h3>
+<p><strong>find 命令</strong></p>
+<ul>
+<li><code>find &lt;路径&gt; -name &lt;名称&gt;</code> - 按名称查找</li>
+<li><code>find . -name &quot;*.txt&quot;</code> - 查找所有 txt 文件</li>
+<li><code>find . -type f -name &quot;*.log&quot;</code> - 查找文件（不含目录）</li>
+<li><code>find . -type d -name &quot;node_modules&quot;</code> - 查找目录</li>
+<li><code>find . -mtime -7</code> - 查找 7 天内修改的文件</li>
+<li><code>find . -size +100M</code> - 查找大于 100MB 的文件</li>
+<li><code>find . -name &quot;*.tmp&quot; -delete</code> - 查找并删除</li>
+</ul>
+<p><strong>grep 命令</strong></p>
+<ul>
+<li><code>grep &lt;模式&gt; &lt;文件&gt;</code> - 搜索文本</li>
+<li><code>grep -r &quot;TODO&quot; .</code> - 递归搜索当前目录</li>
+<li><code>grep -i &quot;error&quot; log.txt</code> - 忽略大小写</li>
+<li><code>grep -n &quot;function&quot; code.js</code> - 显示行号</li>
+<li><code>grep -v &quot;debug&quot; log.txt</code> - 反向匹配（不包含）</li>
+<li><code>grep -E &quot;error|warning&quot; log.txt</code> - 使用正则表达式</li>
+<li><code>grep -c &quot;error&quot; log.txt</code> - 统计匹配行数</li>
+</ul>
+<p><strong>其他查找工具</strong></p>
+<ul>
+<li><code>locate &lt;文件名&gt;</code> - 快速查找文件</li>
+<li><code>updatedb</code> - 更新 locate 数据库</li>
+<li><code>which &lt;命令&gt;</code> - 查找命令位置</li>
+<li><code>whereis &lt;程序&gt;</code> - 查找程序位置</li>
+</ul>
+<hr>
+<h3 id="文件权限">文件权限<a hidden class="anchor" aria-hidden="true" href="#文件权限">#</a></h3>
+<ul>
+<li><code>chmod &lt;权限&gt; &lt;文件&gt;</code> - 修改文件权限</li>
+<li><code>chmod 755 script.sh</code> - 数字方式（rwxr-xr-x）</li>
+<li><code>chmod +x script.sh</code> - 添加执行权限</li>
+<li><code>chmod -R 644 directory/</code> - 递归修改</li>
+<li><code>chown &lt;用户&gt;:&lt;组&gt; &lt;文件&gt;</code> - 修改所有者</li>
+<li><code>chgrp &lt;组&gt; &lt;文件&gt;</code> - 修改所属组</li>
+<li><code>umask</code> - 查看或设置默认权限掩码</li>
+</ul>
+<hr>
+<h3 id="进程管理">进程管理<a hidden class="anchor" aria-hidden="true" href="#进程管理">#</a></h3>
+<p><strong>查看进程</strong></p>
+<ul>
+<li><code>ps</code> - 查看进程</li>
+<li><code>ps aux</code> - 查看所有进程详细信息</li>
+<li><code>ps -ef</code> - 另一种格式</li>
+<li><code>ps aux | grep &lt;进程名&gt;</code> - 搜索特定进程</li>
+<li><code>top</code> - 实时查看系统资源（按 q 退出）</li>
+<li><code>htop</code> - 增强版 top</li>
+</ul>
+<p><strong>管理进程</strong></p>
+<ul>
+<li><code>kill &lt;PID&gt;</code> - 结束进程</li>
+<li><code>kill -9 &lt;PID&gt;</code> - 强制结束</li>
+<li><code>killall &lt;进程名&gt;</code> - 按名称结束进程</li>
+<li><code>pkill &lt;进程名&gt;</code> - 按模式匹配结束</li>
+<li><code>bg</code> - 将任务放到后台</li>
+<li><code>fg</code> - 将后台任务调到前台</li>
+<li><code>jobs</code> - 查看后台任务</li>
+<li><code>nohup &lt;命令&gt; &amp;</code> - 后台运行，不受终端关闭影响</li>
+</ul>
+<hr>
+<h3 id="磁盘和存储">磁盘和存储<a hidden class="anchor" aria-hidden="true" href="#磁盘和存储">#</a></h3>
+<ul>
+<li><code>df -h</code> - 查看磁盘使用情况</li>
+<li><code>du -sh &lt;目录&gt;</code> - 查看目录大小</li>
+<li><code>du -h --max-depth=1</code> - 查看各子目录大小</li>
+<li><code>du -sh * | sort -h</code> - 按大小排序</li>
+<li><code>free -h</code> - 查看内存使用</li>
+<li><code>lsblk</code> - 列出块设备</li>
+<li><code>mount</code> - 挂载文件系统</li>
+<li><code>umount</code> - 卸载文件系统</li>
+</ul>
+<hr>
+<h3 id="系统信息">系统信息<a hidden class="anchor" aria-hidden="true" href="#系统信息">#</a></h3>
+<ul>
+<li><code>uname -a</code> - 完整系统信息</li>
+<li><code>uname -r</code> - 内核版本</li>
+<li><code>hostname</code> - 主机名</li>
+<li><code>whoami</code> - 当前用户</li>
+<li><code>id</code> - 用户 ID 和组 ID</li>
+<li><code>uptime</code> - 系统运行时间和负载</li>
+<li><code>date</code> - 系统时间</li>
+<li><code>cal</code> - 日历</li>
+<li><code>lsb_release -a</code> - Linux 发行版信息（Ubuntu/Debian）</li>
+<li><code>cat /etc/os-release</code> - 系统版本信息</li>
+</ul>
+<hr>
+<h3 id="网络操作-1">网络操作<a hidden class="anchor" aria-hidden="true" href="#网络操作-1">#</a></h3>
+<p><strong>连接测试</strong></p>
+<ul>
+<li><code>ping &lt;地址&gt;</code> - 测试网络连接</li>
+<li><code>ping -c 4 google.com</code> - 发送 4 个包后停止</li>
+<li><code>traceroute &lt;地址&gt;</code> - 追踪路由路径</li>
+</ul>
+<p><strong>文件传输</strong></p>
+<ul>
+<li><code>curl &lt;URL&gt;</code> - 发送 HTTP 请求</li>
+<li><code>curl -O &lt;URL&gt;</code> - 下载文件（保持原文件名）</li>
+<li><code>curl -o &lt;文件名&gt; &lt;URL&gt;</code> - 下载并重命名</li>
+<li><code>curl -I &lt;URL&gt;</code> - 只获取 HTTP 头</li>
+<li><code>curl -X POST -d &quot;data&quot; &lt;URL&gt;</code> - 发送 POST 请求</li>
+<li><code>wget &lt;URL&gt;</code> - 下载文件</li>
+<li><code>wget -c &lt;URL&gt;</code> - 断点续传</li>
+</ul>
+<p><strong>远程连接</strong></p>
+<ul>
+<li><code>ssh &lt;用户&gt;@&lt;主机&gt;</code> - SSH 连接</li>
+<li><code>ssh -p &lt;端口&gt; &lt;用户&gt;@&lt;主机&gt;</code> - 指定端口</li>
+<li><code>scp &lt;源&gt; &lt;用户&gt;@&lt;主机&gt;:&lt;目标&gt;</code> - 安全复制文件</li>
+<li><code>scp -r &lt;目录&gt; &lt;用户&gt;@&lt;主机&gt;:&lt;目标&gt;</code> - 复制目录</li>
+</ul>
+<p><strong>网络信息</strong></p>
+<ul>
+<li><code>netstat -tuln</code> - 查看网络端口（传统）</li>
+<li><code>ss -tuln</code> - 查看网络端口（现代）</li>
+<li><code>ip addr</code> / <code>ifconfig</code> - 查看网络接口</li>
+<li><code>nslookup &lt;域名&gt;</code> - DNS 查询</li>
+<li><code>dig &lt;域名&gt;</code> - DNS 详细查询</li>
+</ul>
+<hr>
+<h3 id="压缩和解压">压缩和解压<a hidden class="anchor" aria-hidden="true" href="#压缩和解压">#</a></h3>
+<p><strong>tar 格式</strong></p>
+<ul>
+<li><code>tar -czf &lt;文件.tar.gz&gt; &lt;目录&gt;</code> - 压缩为 tar.gz</li>
+<li><code>tar -xzf &lt;文件.tar.gz&gt;</code> - 解压 tar.gz</li>
+<li><code>tar -xzf &lt;文件.tar.gz&gt; -C &lt;目标目录&gt;</code> - 解压到指定目录</li>
+<li><code>tar -tvf &lt;文件.tar.gz&gt;</code> - 查看压缩包内容</li>
+</ul>
+<p><strong>zip 格式</strong></p>
+<ul>
+<li><code>zip -r &lt;文件.zip&gt; &lt;目录&gt;</code> - 创建 zip 压缩包</li>
+<li><code>unzip &lt;文件.zip&gt;</code> - 解压 zip</li>
+<li><code>unzip &lt;文件.zip&gt; -d &lt;目标目录&gt;</code> - 解压到指定目录</li>
+</ul>
+<p><strong>gzip 格式</strong></p>
+<ul>
+<li><code>gzip &lt;文件&gt;</code> - 压缩为 .gz</li>
+<li><code>gunzip &lt;文件.gz&gt;</code> - 解压 .gz</li>
+</ul>
+<hr>
+<h3 id="文本处理工具">文本处理工具<a hidden class="anchor" aria-hidden="true" href="#文本处理工具">#</a></h3>
+<p><strong>sed（流编辑器）</strong></p>
+<ul>
+<li><code>sed 's/old/new/g' file.txt</code> - 替换文本</li>
+<li><code>sed -i 's/old/new/g' file.txt</code> - 直接修改文件</li>
+</ul>
+<p><strong>awk（文本处理）</strong></p>
+<ul>
+<li><code>awk '{print $1}' file.txt</code> - 打印第一列</li>
+<li><code>awk -F',' '{print $2}' file.csv</code> - 指定分隔符</li>
+</ul>
+<p><strong>排序和去重</strong></p>
+<ul>
+<li><code>sort &lt;文件&gt;</code> - 排序</li>
+<li><code>sort -r &lt;文件&gt;</code> - 反向排序</li>
+<li><code>sort -n &lt;文件&gt;</code> - 按数字排序</li>
+<li><code>uniq &lt;文件&gt;</code> - 去除重复行</li>
+<li><code>sort file.txt | uniq</code> - 配合使用</li>
+<li><code>uniq -c &lt;文件&gt;</code> - 统计重复次数</li>
+</ul>
+<p><strong>其他工具</strong></p>
+<ul>
+<li><code>cut -d',' -f1,3 file.csv</code> - 按分隔符提取列</li>
+<li><code>tr 'a-z' 'A-Z' &lt; file.txt</code> - 字符转换</li>
+</ul>
+<hr>
+<h3 id="系统管理">系统管理<a hidden class="anchor" aria-hidden="true" href="#系统管理">#</a></h3>
+<p><strong>用户管理</strong></p>
+<ul>
+<li><code>sudo &lt;命令&gt;</code> - 以管理员权限执行</li>
+<li><code>su</code> - 切换用户</li>
+<li><code>su -</code> - 切换到 root</li>
+<li><code>passwd</code> - 修改密码</li>
+<li><code>useradd &lt;用户名&gt;</code> - 创建用户</li>
+<li><code>userdel &lt;用户名&gt;</code> - 删除用户</li>
+<li><code>usermod -aG &lt;组&gt; &lt;用户&gt;</code> - 添加用户到组</li>
+</ul>
+<p><strong>服务管理（systemd）</strong></p>
+<ul>
+<li><code>systemctl start &lt;服务&gt;</code> - 启动服务</li>
+<li><code>systemctl stop &lt;服务&gt;</code> - 停止服务</li>
+<li><code>systemctl restart &lt;服务&gt;</code> - 重启服务</li>
+<li><code>systemctl status &lt;服务&gt;</code> - 查看状态</li>
+<li><code>systemctl enable &lt;服务&gt;</code> - 设置开机启动</li>
+<li><code>journalctl -u &lt;服务&gt;</code> - 查看服务日志</li>
+</ul>
+<hr>
+<h3 id="实用快捷键">实用快捷键<a hidden class="anchor" aria-hidden="true" href="#实用快捷键">#</a></h3>
+<ul>
+<li><strong>Ctrl + C</strong> - 终止当前命令</li>
+<li><strong>Ctrl + Z</strong> - 暂停当前命令</li>
+<li><strong>Ctrl + D</strong> - 退出终端</li>
+<li><strong>Ctrl + L</strong> - 清屏</li>
+<li><strong>Ctrl + A</strong> - 光标移到行首</li>
+<li><strong>Ctrl + E</strong> - 光标移到行尾</li>
+<li><strong>Ctrl + U</strong> - 删除光标前的内容</li>
+<li><strong>Ctrl + K</strong> - 删除光标后的内容</li>
+<li><strong>Ctrl + R</strong> - 搜索命令历史</li>
+<li><strong>Tab</strong> - 自动补全</li>
+<li><strong>!!</strong> - 执行上一条命令</li>
+<li><strong>!$</strong> - 上一条命令的最后一个参数</li>
+</ul>
+<hr>
+<h3 id="其他实用命令">其他实用命令<a hidden class="anchor" aria-hidden="true" href="#其他实用命令">#</a></h3>
+<ul>
+<li><code>clear</code> - 清屏</li>
+<li><code>history</code> - 查看命令历史</li>
+<li><code>history | grep &lt;关键词&gt;</code> - 搜索历史命令</li>
+<li><code>echo &lt;文本&gt;</code> - 输出文本</li>
+<li><code>echo &quot;text&quot; &gt; file.txt</code> - 覆盖写入</li>
+<li><code>echo &quot;text&quot; &gt;&gt; file.txt</code> - 追加写入</li>
+<li><code>alias &lt;别名&gt;='&lt;命令&gt;'</code> - 创建别名</li>
+<li><code>watch &lt;命令&gt;</code> - 定期执行命令</li>
+<li><code>watch -n 2 df -h</code> - 每 2 秒更新</li>
+<li><code>xargs</code> - 将标准输入转换为命令参数</li>
+<li><code>tee &lt;文件&gt;</code> - 同时输出到文件和标准输出</li>
+</ul>
+<hr>
+<h2 id="git-常用指令">Git 常用指令<a hidden class="anchor" aria-hidden="true" href="#git-常用指令">#</a></h2>
+<h3 id="初始化和配置">初始化和配置<a hidden class="anchor" aria-hidden="true" href="#初始化和配置">#</a></h3>
+<p><strong>初始化仓库</strong></p>
+<ul>
+<li><code>git init</code> - 初始化新仓库</li>
+<li><code>git clone &lt;URL&gt;</code> - 克隆远程仓库</li>
+<li><code>git clone &lt;URL&gt; &lt;目录名&gt;</code> - 克隆到指定目录</li>
+<li><code>git clone --depth 1 &lt;URL&gt;</code> - 浅克隆（只克隆最新提交）</li>
+<li><code>git clone -b &lt;分支名&gt; &lt;URL&gt;</code> - 克隆指定分支</li>
+</ul>
+<p><strong>配置 Git</strong></p>
+<ul>
+<li><code>git config --global user.name &quot;&lt;名字&gt;&quot;</code> - 设置用户名</li>
+<li><code>git config --global user.email &quot;&lt;邮箱&gt;&quot;</code> - 设置邮箱</li>
+<li><code>git config --list</code> - 查看所有配置</li>
+<li><code>git config --global core.editor &quot;vim&quot;</code> - 设置编辑器</li>
+<li><code>git config --global alias.st status</code> - 设置别名</li>
+</ul>
+<hr>
+<h3 id="基本操作">基本操作<a hidden class="anchor" aria-hidden="true" href="#基本操作">#</a></h3>
+<p><strong>查看状态</strong></p>
+<ul>
+<li><code>git status</code> - 查看工作区状态</li>
+<li><code>git status -s</code> - 简短格式</li>
+</ul>
+<p><strong>添加和提交</strong></p>
+<ul>
+<li><code>git add &lt;文件&gt;</code> - 添加文件到暂存区</li>
+<li><code>git add .</code> - 添加所有修改</li>
+<li><code>git add -A</code> - 添加所有变化（包括删除）</li>
+<li><code>git add -p</code> - 交互式添加</li>
+<li><code>git commit -m &quot;&lt;消息&gt;&quot;</code> - 提交</li>
+<li><code>git commit -am &quot;&lt;消息&gt;&quot;</code> - 添加并提交已跟踪文件</li>
+<li><code>git commit --amend</code> - 修改最后一次提交</li>
+<li><code>git commit --amend --no-edit</code> - 修改提交但不改消息</li>
+</ul>
+<p><strong>推送和拉取</strong></p>
+<ul>
+<li><code>git push</code> - 推送到远程</li>
+<li><code>git push origin &lt;分支名&gt;</code> - 推送指定分支</li>
+<li><code>git push -u origin &lt;分支名&gt;</code> - 推送并设置上游</li>
+<li><code>git push --force</code> / <code>git push -f</code> - 强制推送（危险！）</li>
+<li><code>git push --tags</code> - 推送标签</li>
+<li><code>git pull</code> - 拉取并合并</li>
+<li><code>git pull --rebase</code> - 使用 rebase 方式拉取</li>
+<li><code>git fetch</code> - 获取但不合并</li>
+<li><code>git fetch --all</code> - 获取所有远程分支</li>
+<li><code>git fetch --prune</code> - 获取并清理已删除的远程分支</li>
+</ul>
+<hr>
+<h3 id="分支操作">分支操作<a hidden class="anchor" aria-hidden="true" href="#分支操作">#</a></h3>
+<p><strong>查看分支</strong></p>
+<ul>
+<li><code>git branch</code> - 查看本地分支</li>
+<li><code>git branch -a</code> - 查看所有分支（包括远程）</li>
+<li><code>git branch -r</code> - 只查看远程分支</li>
+<li><code>git branch -v</code> - 查看分支及最后一次提交</li>
+</ul>
+<p><strong>创建和切换分支</strong></p>
+<ul>
+<li><code>git branch &lt;分支名&gt;</code> - 创建分支</li>
+<li><code>git checkout &lt;分支名&gt;</code> - 切换分支</li>
+<li><code>git checkout -b &lt;分支名&gt;</code> - 创建并切换</li>
+<li><code>git checkout -b &lt;分支名&gt; origin/&lt;分支名&gt;</code> - 从远程分支创建</li>
+<li><code>git switch &lt;分支名&gt;</code> - 切换分支（新语法）</li>
+<li><code>git switch -c &lt;分支名&gt;</code> - 创建并切换（新语法）</li>
+</ul>
+<p><strong>合并和删除分支</strong></p>
+<ul>
+<li><code>git merge &lt;分支名&gt;</code> - 合并分支</li>
+<li><code>git merge --no-ff &lt;分支名&gt;</code> - 非快进合并</li>
+<li><code>git merge --squash &lt;分支名&gt;</code> - 压缩合并</li>
+<li><code>git branch -d &lt;分支名&gt;</code> - 删除已合并分支</li>
+<li><code>git branch -D &lt;分支名&gt;</code> - 强制删除分支</li>
+<li><code>git branch -m &lt;旧名&gt; &lt;新名&gt;</code> - 重命名分支</li>
+<li><code>git push origin --delete &lt;分支名&gt;</code> - 删除远程分支</li>
+</ul>
+<hr>
+<h3 id="查看历史">查看历史<a hidden class="anchor" aria-hidden="true" href="#查看历史">#</a></h3>
+<p><strong>日志查看</strong></p>
+<ul>
+<li><code>git log</code> - 查看提交历史</li>
+<li><code>git log --oneline</code> - 每个提交一行</li>
+<li><code>git log --graph</code> - 图形化显示</li>
+<li><code>git log --oneline --graph --all</code> - 图形化显示所有分支</li>
+<li><code>git log -p</code> - 显示详细差异</li>
+<li><code>git log --author=&quot;&lt;作者&gt;&quot;</code> - 按作者筛选</li>
+<li><code>git log --since=&quot;2 weeks ago&quot;</code> - 按时间筛选</li>
+<li><code>git log --grep=&quot;&lt;关键词&gt;&quot;</code> - 搜索提交消息</li>
+<li><code>git log &lt;文件&gt;</code> - 查看文件历史</li>
+<li><code>git log --stat</code> - 显示文件统计</li>
+</ul>
+<p><strong>差异比较</strong></p>
+<ul>
+<li><code>git diff</code> - 查看未暂存的更改</li>
+<li><code>git diff --staged</code> / <code>git diff --cached</code> - 查看已暂存的更改</li>
+<li><code>git diff &lt;分支1&gt; &lt;分支2&gt;</code> - 比较分支</li>
+<li><code>git diff &lt;提交1&gt; &lt;提交2&gt;</code> - 比较提交</li>
+<li><code>git diff HEAD</code> - 比较工作区和最新提交</li>
+</ul>
+<p><strong>其他查看命令</strong></p>
+<ul>
+<li><code>git show &lt;提交&gt;</code> - 查看提交详情</li>
+<li><code>git show HEAD</code> - 查看最新提交</li>
+<li><code>git blame &lt;文件&gt;</code> - 查看每行的修改者</li>
+<li><code>git shortlog</code> - 按作者分组显示</li>
+</ul>
+<hr>
+<h3 id="撤销和回退">撤销和回退<a hidden class="anchor" aria-hidden="true" href="#撤销和回退">#</a></h3>
+<p><strong>撤销修改</strong></p>
+<ul>
+<li><code>git restore &lt;文件&gt;</code> - 撤销工作区修改（新语法）</li>
+<li><code>git restore --staged &lt;文件&gt;</code> - 取消暂存（新语法）</li>
+<li><code>git checkout -- &lt;文件&gt;</code> - 撤销修改（旧语法）</li>
+</ul>
+<p><strong>重置提交</strong></p>
+<ul>
+<li><code>git reset &lt;文件&gt;</code> - 取消暂存</li>
+<li><code>git reset HEAD~</code> - 撤销最后一次提交，保留更改</li>
+<li><code>git reset --soft HEAD~</code> - 撤销提交，更改在暂存区</li>
+<li><code>git reset --hard HEAD~</code> - 撤销提交并丢弃更改（危险！）</li>
+<li><code>git reset --hard &lt;提交&gt;</code> - 重置到指定提交</li>
+</ul>
+<p><strong>回退操作</strong></p>
+<ul>
+<li><code>git revert &lt;提交&gt;</code> - 创建新提交来撤销</li>
+<li><code>git revert HEAD</code> - 撤销最新提交</li>
+<li><code>git clean -fd</code> - 删除未跟踪的文件</li>
+<li><code>git clean -n</code> - 预览将要删除的文件</li>
+</ul>
+<hr>
+<h3 id="暂存操作stash">暂存操作（Stash）<a hidden class="anchor" aria-hidden="true" href="#暂存操作stash">#</a></h3>
+<ul>
+<li><code>git stash</code> - 暂存当前更改</li>
+<li><code>git stash save &quot;描述&quot;</code> - 暂存并添加描述</li>
+<li><code>git stash list</code> - 查看暂存列表</li>
+<li><code>git stash pop</code> - 恢复并删除最新暂存</li>
+<li><code>git stash apply</code> - 恢复但不删除暂存</li>
+<li><code>git stash apply stash@{0}</code> - 恢复指定暂存</li>
+<li><code>git stash drop</code> - 删除最新暂存</li>
+<li><code>git stash drop stash@{0}</code> - 删除指定暂存</li>
+<li><code>git stash clear</code> - 清空所有暂存</li>
+<li><code>git stash show</code> - 查看暂存内容</li>
+</ul>
+<hr>
+<h3 id="远程仓库">远程仓库<a hidden class="anchor" aria-hidden="true" href="#远程仓库">#</a></h3>
+<p><strong>查看远程</strong></p>
+<ul>
+<li><code>git remote</code> - 查看远程仓库</li>
+<li><code>git remote -v</code> - 查看详细信息</li>
+</ul>
+<p><strong>管理远程</strong></p>
+<ul>
+<li><code>git remote add &lt;名称&gt; &lt;URL&gt;</code> - 添加远程仓库</li>
+<li><code>git remote add origin &lt;URL&gt;</code> - 添加 origin</li>
+<li><code>git remote remove &lt;名称&gt;</code> - 删除远程仓库</li>
+<li><code>git remote rename &lt;旧名&gt; &lt;新名&gt;</code> - 重命名</li>
+<li><code>git remote set-url &lt;名称&gt; &lt;新URL&gt;</code> - 修改 URL</li>
+<li><code>git remote show &lt;名称&gt;</code> - 查看详细信息</li>
+<li><code>git remote prune origin</code> - 清理已删除的远程分支引用</li>
+</ul>
+<hr>
+<h3 id="标签操作">标签操作<a hidden class="anchor" aria-hidden="true" href="#标签操作">#</a></h3>
+<ul>
+<li><code>git tag</code> - 查看所有标签</li>
+<li><code>git tag &lt;标签名&gt;</code> - 创建轻量标签</li>
+<li><code>git tag -a &lt;标签名&gt; -m &quot;&lt;消息&gt;&quot;</code> - 创建带注释的标签</li>
+<li><code>git tag -d &lt;标签名&gt;</code> - 删除本地标签</li>
+<li><code>git push origin &lt;标签名&gt;</code> - 推送标签</li>
+<li><code>git push origin --tags</code> - 推送所有标签</li>
+<li><code>git push origin :refs/tags/&lt;标签名&gt;</code> - 删除远程标签</li>
+</ul>
+<hr>
+<h3 id="高级操作">高级操作<a hidden class="anchor" aria-hidden="true" href="#高级操作">#</a></h3>
+<p><strong>变基（Rebase）</strong></p>
+<ul>
+<li><code>git rebase &lt;分支&gt;</code> - 变基到指定分支</li>
+<li><code>git rebase -i HEAD~3</code> - 交互式变基最近 3 个提交</li>
+<li><code>git rebase --continue</code> - 解决冲突后继续</li>
+<li><code>git rebase --abort</code> - 取消变基</li>
+</ul>
+<p><strong>其他高级命令</strong></p>
+<ul>
+<li><code>git cherry-pick &lt;提交&gt;</code> - 将指定提交应用到当前分支</li>
+<li><code>git reflog</code> - 查看引用日志（恢复丢失的提交）</li>
+<li><code>git bisect start</code> - 开始二分查找问题提交</li>
+<li><code>git submodule add &lt;URL&gt;</code> - 添加子模块</li>
+<li><code>git submodule update --init</code> - 初始化并更新子模块</li>
+</ul>
+<hr>
+<h3 id="gitignore-配置">.gitignore 配置<a hidden class="anchor" aria-hidden="true" href="#gitignore-配置">#</a></h3>
+<p><code>New-Item -ItemType File .gitignore</code>创建 <code>.gitignore</code> 文件来忽略不需要跟踪的文件：</p>
+<pre tabindex="0"><code class="language-gitignore" data-lang="gitignore"># 忽略日志文件
+*.log
+
+# 忽略 node_modules 目录
+node_modules/
+
+# 忽略环境变量文件
+.env
+.env.local
+
+# 忽略构建输出
+dist/
+build/
+
+# 忽略操作系统文件
+.DS_Store
+Thumbs.db
+
+# 忽略 IDE 配置
+.vscode/
+.idea/
+</code></pre><hr>
+<h2 id="github-cli-常用指令">GitHub CLI 常用指令<a hidden class="anchor" aria-hidden="true" href="#github-cli-常用指令">#</a></h2>
+<h3 id="认证">认证<a hidden class="anchor" aria-hidden="true" href="#认证">#</a></h3>
+<ul>
+<li><code>gh auth login</code> - 登录 GitHub 账号</li>
+<li><code>gh auth status</code> - 查看认证状态</li>
+<li><code>gh auth logout</code> - 登出</li>
+<li><code>gh auth refresh</code> - 刷新令牌</li>
+<li><code>gh config set editor vim</code> - 设置编辑器</li>
+</ul>
+<hr>
+<h3 id="仓库操作">仓库操作<a hidden class="anchor" aria-hidden="true" href="#仓库操作">#</a></h3>
+<p><strong>创建和克隆</strong></p>
+<ul>
+<li><code>gh repo create</code> - 创建仓库</li>
+<li><code>gh repo create &lt;名称&gt;</code> - 创建指定名称的仓库</li>
+<li><code>gh repo create --public</code> - 创建公开仓库</li>
+<li><code>gh repo create --private</code> - 创建私有仓库</li>
+<li><code>gh repo create --clone</code> - 创建并克隆</li>
+<li><code>gh repo clone &lt;仓库&gt;</code> - 克隆仓库</li>
+<li><code>gh repo clone owner/repo</code> - 克隆指定仓库</li>
+</ul>
+<p><strong>查看和管理</strong></p>
+<ul>
+<li><code>gh repo view</code> - 查看仓库信息</li>
+<li><code>gh repo view --web</code> - 在浏览器中打开</li>
+<li><code>gh repo list</code> - 列出仓库</li>
+<li><code>gh repo list &lt;用户名&gt;</code> - 列出指定用户的仓库</li>
+<li><code>gh repo list --limit 50</code> - 限制显示数量</li>
+<li><code>gh repo fork</code> - Fork 仓库</li>
+<li><code>gh repo fork --clone</code> - Fork 并克隆</li>
+<li><code>gh repo delete &lt;仓库&gt;</code> - 删除仓库</li>
+<li><code>gh repo rename &lt;新名称&gt;</code> - 重命名仓库  or <code>gh repo rename owner/repo 新名字</code></li>
+<li><code>gh repo sync</code> - 同步 fork</li>
+</ul>
+<hr>
+<h3 id="pull-request">Pull Request<a hidden class="anchor" aria-hidden="true" href="#pull-request">#</a></h3>
+<p><strong>创建 PR</strong></p>
+<ul>
+<li><code>gh pr create</code> - 创建 PR</li>
+<li><code>gh pr create --title &quot;标题&quot; --body &quot;描述&quot;</code> - 指定标题和描述</li>
+<li><code>gh pr create --web</code> - 在浏览器中创建</li>
+<li><code>gh pr create --draft</code> - 创建草稿 PR</li>
+</ul>
+<p><strong>查看 PR</strong></p>
+<ul>
+<li><code>gh pr list</code> - 列出 PR</li>
+<li><code>gh pr list --state open</code> - 只显示开放的</li>
+<li><code>gh pr list --author &lt;用户名&gt;</code> - 按作者筛选</li>
+<li><code>gh pr list --label &lt;标签&gt;</code> - 按标签筛选</li>
+<li><code>gh pr view &lt;编号&gt;</code> - 查看详情</li>
+<li><code>gh pr view &lt;编号&gt; --web</code> - 在浏览器中查看</li>
+<li><code>gh pr view &lt;编号&gt; --comments</code> - 查看评论</li>
+</ul>
+<p><strong>操作 PR</strong></p>
+<ul>
+<li><code>gh pr checkout &lt;编号&gt;</code> - 检出 PR 分支</li>
+<li><code>gh pr diff &lt;编号&gt;</code> - 查看差异</li>
+<li><code>gh pr merge &lt;编号&gt;</code> - 合并 PR</li>
+<li><code>gh pr merge &lt;编号&gt; --squash</code> - 压缩合并</li>
+<li><code>gh pr merge &lt;编号&gt; --rebase</code> - 变基合并</li>
+<li><code>gh pr close &lt;编号&gt;</code> - 关闭 PR</li>
+<li><code>gh pr reopen &lt;编号&gt;</code> - 重新打开</li>
+<li><code>gh pr ready &lt;编号&gt;</code> - 标记为准备好</li>
+</ul>
+<p><strong>审查 PR</strong></p>
+<ul>
+<li><code>gh pr review &lt;编号&gt;</code> - 审查 PR</li>
+<li><code>gh pr review &lt;编号&gt; --approve</code> - 批准</li>
+<li><code>gh pr review &lt;编号&gt; --request-changes</code> - 请求更改</li>
+<li><code>gh pr review &lt;编号&gt; --comment</code> - 添加评论</li>
+<li><code>gh pr checks &lt;编号&gt;</code> - 查看 CI/CD 状态</li>
+</ul>
+<hr>
+<h3 id="issue">Issue<a hidden class="anchor" aria-hidden="true" href="#issue">#</a></h3>
+<p><strong>创建 Issue</strong></p>
+<ul>
+<li><code>gh issue create</code> - 创建 Issue</li>
+<li><code>gh issue create --title &quot;标题&quot; --body &quot;描述&quot;</code> - 指定内容</li>
+<li><code>gh issue create --web</code> - 在浏览器中创建</li>
+<li><code>gh issue create --label &quot;bug,help wanted&quot;</code> - 添加标签</li>
+</ul>
+<p><strong>查看 Issue</strong></p>
+<ul>
+<li><code>gh issue list</code> - 列出 Issues</li>
+<li><code>gh issue list --state open</code> - 只显示开放的</li>
+<li><code>gh issue list --assignee &lt;用户名&gt;</code> - 按指派人筛选</li>
+<li><code>gh issue list --label &lt;标签&gt;</code> - 按标签筛选</li>
+<li><code>gh issue list --author &lt;用户名&gt;</code> - 按作者筛选</li>
+<li><code>gh issue view &lt;编号&gt;</code> - 查看详情</li>
+<li><code>gh issue view &lt;编号&gt; --web</code> - 在浏览器中查看</li>
+</ul>
+<p><strong>操作 Issue</strong></p>
+<ul>
+<li><code>gh issue close &lt;编号&gt;</code> - 关闭 Issue</li>
+<li><code>gh issue close &lt;编号&gt; --comment &quot;已修复&quot;</code> - 关闭并评论</li>
+<li><code>gh issue reopen &lt;编号&gt;</code> - 重新打开</li>
+<li><code>gh issue edit &lt;编号&gt;</code> - 编辑 Issue</li>
+<li><code>gh issue edit &lt;编号&gt; --add-label &quot;bug&quot;</code> - 添加标签</li>
+<li><code>gh issue comment &lt;编号&gt;</code> - 添加评论</li>
+<li><code>gh issue status</code> - 查看状态</li>
+</ul>
+<hr>
+<h3 id="gist">Gist<a hidden class="anchor" aria-hidden="true" href="#gist">#</a></h3>
+<ul>
+<li><code>gh gist create &lt;文件&gt;</code> - 创建 Gist</li>
+<li><code>gh gist create --public &lt;文件&gt;</code> - 创建公开 Gist</li>
+<li><code>gh gist create --desc &quot;描述&quot; &lt;文件&gt;</code> - 添加描述</li>
+<li><code>gh gist list</code> - 列出 Gists</li>
+<li><code>gh gist view &lt;ID&gt;</code> - 查看 Gist</li>
+<li><code>gh gist view &lt;ID&gt; --web</code> - 在浏览器中查看</li>
+<li><code>gh gist edit &lt;ID&gt;</code> - 编辑 Gist</li>
+<li><code>gh gist delete &lt;ID&gt;</code> - 删除 Gist</li>
+<li><code>gh gist clone &lt;ID&gt;</code> - 克隆到本地</li>
+</ul>
+<hr>
+<h3 id="release">Release<a hidden class="anchor" aria-hidden="true" href="#release">#</a></h3>
+<p><strong>创建和查看</strong></p>
+<ul>
+<li><code>gh release create &lt;标签&gt;</code> - 创建 Release</li>
+<li><code>gh release create v1.0.0 --title &quot;版本 1.0.0&quot; --notes &quot;说明&quot;</code> - 指定内容</li>
+<li><code>gh release create v1.0.0 *.zip</code> - 附加文件</li>
+<li><code>gh release create v1.0.0 --draft</code> - 创建草稿</li>
+<li><code>gh release list</code> - 列出所有 Releases</li>
+<li><code>gh release view &lt;标签&gt;</code> - 查看详情</li>
+<li><code>gh release view &lt;标签&gt; --web</code> - 在浏览器中查看</li>
+</ul>
+<p><strong>下载和管理</strong></p>
+<ul>
+<li><code>gh release download &lt;标签&gt;</code> - 下载资源</li>
+<li><code>gh release download &lt;标签&gt; --pattern &quot;*.zip&quot;</code> - 下载匹配文件</li>
+<li><code>gh release delete &lt;标签&gt;</code> - 删除 Release</li>
+<li><code>gh release upload &lt;标签&gt; &lt;文件&gt;</code> - 上传文件</li>
+</ul>
+<hr>
+<h3 id="github-actions">GitHub Actions<a hidden class="anchor" aria-hidden="true" href="#github-actions">#</a></h3>
+<p><strong>工作流管理</strong></p>
+<ul>
+<li><code>gh workflow list</code> - 列出工作流</li>
+<li><code>gh workflow view &lt;工作流&gt;</code> - 查看详情</li>
+<li><code>gh workflow view &lt;工作流&gt; --web</code> - 在浏览器中查看</li>
+<li><code>gh workflow run &lt;工作流&gt;</code> - 触发工作流</li>
+<li><code>gh workflow run &lt;工作流&gt; --ref &lt;分支&gt;</code> - 在指定分支运行</li>
+</ul>
+<p><strong>运行管理</strong></p>
+<ul>
+<li><code>gh run list</code> - 列出运行记录</li>
+<li><code>gh run list --workflow &lt;工作流名&gt;</code> - 按工作流筛选</li>
+<li><code>gh run view &lt;运行ID&gt;</code> - 查看详情</li>
+<li><code>gh run view &lt;运行ID&gt; --log</code> - 查看日志</li>
+<li><code>gh run watch &lt;运行ID&gt;</code> - 实时查看状态</li>
+<li><code>gh run rerun &lt;运行ID&gt;</code> - 重新运行</li>
+<li><code>gh run cancel &lt;运行ID&gt;</code> - 取消运行</li>
+</ul>
+<hr>
+<h3 id="其他功能">其他功能<a hidden class="anchor" aria-hidden="true" href="#其他功能">#</a></h3>
+<p><strong>浏览和搜索</strong></p>
+<ul>
+<li><code>gh browse</code> - 在浏览器中打开仓库</li>
+<li><code>gh browse &lt;文件&gt;</code> - 打开指定文件</li>
+<li><code>gh browse --settings</code> - 打开设置</li>
+<li><code>gh search repos &lt;关键词&gt;</code> - 搜索仓库</li>
+<li><code>gh search repos --stars &quot;&gt;1000&quot;</code> - 按星标搜索</li>
+<li><code>gh search repos --language python</code> - 按语言搜索</li>
+<li><code>gh search issues &lt;关键词&gt;</code> - 搜索 Issues</li>
+<li><code>gh search prs &lt;关键词&gt;</code> - 搜索 PRs</li>
+</ul>
+<p><strong>API 和扩展</strong></p>
+<ul>
+<li><code>gh api &lt;端点&gt;</code> - 调用 GitHub API</li>
+<li><code>gh api user</code> - 获取用户信息</li>
+<li><code>gh alias set &lt;别名&gt; &lt;命令&gt;</code> - 创建别名</li>
+<li><code>gh extension install &lt;扩展&gt;</code> - 安装扩展</li>
+<li><code>gh extension list</code> - 列出扩展</li>
+</ul>
+<p><strong>标签和项目</strong></p>
+<ul>
+<li><code>gh label list</code> - 列出标签</li>
+<li><code>gh label create &lt;名称&gt;</code> - 创建标签</li>
+<li><code>gh project list</code> - 列出项目</li>
+<li><code>gh project view &lt;编号&gt;</code> - 查看项目</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a></li>
+      <li><a href="http://localhost:1313/tags/powershell/">PowerShell</a></li>
+      <li><a href="http://localhost:1313/tags/linux/">Linux</a></li>
+      <li><a href="http://localhost:1313/tags/git/">Git</a></li>
+      <li><a href="http://localhost:1313/tags/github/">GitHub</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
