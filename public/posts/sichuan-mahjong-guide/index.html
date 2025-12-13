@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>四川麻将指南 | Minjie&#39;s Blog</title>
+<meta name="keywords" content="麻将, 四川麻将, 棋牌游戏, 教程">
+<meta name="description" content="详细介绍四川麻将的规则、技巧和进阶策略，让你快速从新手成长为高手">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/sichuan-mahjong-guide/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/posts/sichuan-mahjong-guide/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      四川麻将指南
+    </h1>
+    <div class="post-description">
+      详细介绍四川麻将的规则、技巧和进阶策略，让你快速从新手成长为高手
+    </div>
+    <div class="post-meta"><span title='2025-12-13 12:16:13 +0800 CST'>2025年12月13日</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e5%9f%ba%e7%a1%80%e8%a7%84%e5%88%99%e5%85%a5%e9%97%a8" aria-label="一、基础规则入门">一、基础规则入门</a><ul>
+                        
+                <li>
+                    <a href="#11-%e7%89%8c%e9%9d%a2%e7%bb%84%e6%88%90" aria-label="1.1 牌面组成">1.1 牌面组成</a></li>
+                <li>
+                    <a href="#12-%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" aria-label="1.2 基本概念">1.2 基本概念</a></li>
+                <li>
+                    <a href="#13-%e8%83%a1%e7%89%8c%e5%9f%ba%e6%9c%ac%e5%9e%8b" aria-label="1.3 胡牌基本型">1.3 胡牌基本型</a></li>
+                <li>
+                    <a href="#14-%e6%b8%b8%e6%88%8f%e6%b5%81%e7%a8%8b" aria-label="1.4 游戏流程">1.4 游戏流程</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%8c%e5%9b%9b%e5%b7%9d%e9%ba%bb%e5%b0%86%e7%89%b9%e8%89%b2%e8%a7%84%e5%88%99" aria-label="二、四川麻将特色规则">二、四川麻将特色规则</a><ul>
+                        
+                <li>
+                    <a href="#21-%e7%bc%ba%e4%b8%80%e9%97%a8" aria-label="2.1 缺一门">2.1 缺一门</a></li>
+                <li>
+                    <a href="#22-%e6%9d%a0%e7%89%8c%e8%a7%84%e5%88%99" aria-label="2.2 杠牌规则">2.2 杠牌规则</a></li>
+                <li>
+                    <a href="#23-%e8%a1%80%e6%88%98%e5%88%b0%e5%ba%95" aria-label="2.3 血战到底">2.3 血战到底</a></li>
+                <li>
+                    <a href="#24-%e6%9f%a5%e5%8f%ab" aria-label="2.4 查叫">2.4 查叫</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%89%e7%95%aa%e5%9e%8b%e4%b8%8e%e8%ae%a1%e5%88%86" aria-label="三、番型与计分">三、番型与计分</a><ul>
+                        
+                <li>
+                    <a href="#31-%e5%9f%ba%e7%a1%80%e7%95%aa%e5%9e%8b" aria-label="3.1 基础番型">3.1 基础番型</a></li>
+                <li>
+                    <a href="#32-%e8%ae%a1%e5%88%86%e6%96%b9%e5%bc%8f" aria-label="3.2 计分方式">3.2 计分方式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%9b%9b%e8%bf%9b%e9%98%b6%e6%8a%80%e5%b7%a7" aria-label="四、进阶技巧">四、进阶技巧</a><ul>
+                        
+                <li>
+                    <a href="#41-%e5%ae%9a%e7%bc%ba%e7%ad%96%e7%95%a5" aria-label="4.1 定缺策略">4.1 定缺策略</a></li>
+                <li>
+                    <a href="#42-%e5%90%ac%e7%89%8c%e6%8a%80%e5%b7%a7" aria-label="4.2 听牌技巧">4.2 听牌技巧</a></li>
+                <li>
+                    <a href="#43-%e9%98%b2%e5%ae%88%e7%ad%96%e7%95%a5" aria-label="4.3 防守策略">4.3 防守策略</a></li>
+                <li>
+                    <a href="#44-%e5%81%9a%e5%a4%a7%e7%89%8c%e7%ad%96%e7%95%a5" aria-label="4.4 做大牌策略">4.4 做大牌策略</a></li>
+                <li>
+                    <a href="#45-%e5%bf%83%e7%90%86%e6%88%98%e6%9c%af" aria-label="4.5 心理战术">4.5 心理战术</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%94%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af%e4%b8%8e%e9%81%bf%e5%85%8d" aria-label="五、常见错误与避免">五、常见错误与避免</a><ul>
+                        
+                <li>
+                    <a href="#51-%e6%96%b0%e6%89%8b%e5%b8%b8%e7%8a%af%e9%94%99%e8%af%af" aria-label="5.1 新手常犯错误">5.1 新手常犯错误</a></li>
+                <li>
+                    <a href="#52-%e8%bf%9b%e9%98%b6%e5%b8%b8%e7%8a%af%e9%94%99%e8%af%af" aria-label="5.2 进阶常犯错误">5.2 进阶常犯错误</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%ad%e5%ae%9e%e6%88%98%e6%a1%88%e4%be%8b%e5%88%86%e6%9e%90" aria-label="六、实战案例分析">六、实战案例分析</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a1%88%e4%be%8b1%e5%ae%9a%e7%bc%ba%e9%80%89%e6%8b%a9" aria-label="案例1：定缺选择">案例1：定缺选择</a></li>
+                <li>
+                    <a href="#%e6%a1%88%e4%be%8b2%e5%90%ac%e7%89%8c%e9%80%89%e6%8b%a9" aria-label="案例2：听牌选择">案例2：听牌选择</a></li>
+                <li>
+                    <a href="#%e6%a1%88%e4%be%8b3%e8%a6%81%e4%b8%8d%e8%a6%81%e5%81%9a%e6%b8%85%e4%b8%80%e8%89%b2" aria-label="案例3：要不要做清一色">案例3：要不要做清一色</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%83%e7%bb%83%e4%b9%a0%e5%bb%ba%e8%ae%ae" aria-label="七、练习建议">七、练习建议</a><ul>
+                        
+                <li>
+                    <a href="#71-%e6%96%b0%e6%89%8b%e9%98%b6%e6%ae%b5" aria-label="7.1 新手阶段">7.1 新手阶段</a></li>
+                <li>
+                    <a href="#72-%e8%bf%9b%e9%98%b6%e9%98%b6%e6%ae%b5" aria-label="7.2 进阶阶段">7.2 进阶阶段</a></li>
+                <li>
+                    <a href="#73-%e6%8e%a8%e8%8d%90%e7%bb%83%e4%b9%a0%e6%96%b9%e5%bc%8f" aria-label="7.3 推荐练习方式">7.3 推荐练习方式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%ab%e6%80%bb%e7%bb%93" aria-label="八、总结">八、总结</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h2>
+<p>四川麻将，又称成都麻将或血战麻将，是中国最流行的麻将玩法之一。与传统麻将相比，四川麻将节奏快、变化多，充满了刺激性和趣味性。本文将带你从零开始，系统学习四川麻将的规则和技巧。</p>
+<h2 id="一基础规则入门">一、基础规则入门<a hidden class="anchor" aria-hidden="true" href="#一基础规则入门">#</a></h2>
+<h3 id="11-牌面组成">1.1 牌面组成<a hidden class="anchor" aria-hidden="true" href="#11-牌面组成">#</a></h3>
+<p>四川麻将使用108张牌，包括：</p>
+<ul>
+<li><strong>万子</strong>：一万到九万，各4张（36张）</li>
+<li><strong>条子</strong>：一条到九条，各4张（36张）</li>
+<li><strong>筒子</strong>：一筒到九筒，各4张（36张）</li>
+</ul>
+<p><strong>注意</strong>：四川麻将没有东南西北中发白这些字牌和花牌。</p>
+<h3 id="12-基本概念">1.2 基本概念<a hidden class="anchor" aria-hidden="true" href="#12-基本概念">#</a></h3>
+<p><strong>刻子</strong>：三张相同的牌（如：三张五万）
+<strong>顺子</strong>：三张连续的同花色牌（如：三四五条）
+<strong>对子</strong>：两张相同的牌（如：两张八筒）
+<strong>杠</strong>：四张相同的牌</p>
+<h3 id="13-胡牌基本型">1.3 胡牌基本型<a hidden class="anchor" aria-hidden="true" href="#13-胡牌基本型">#</a></h3>
+<p>标准胡牌牌型：<strong>3n+2</strong> 结构（n个刻子或顺子 + 1个对子）</p>
+<p>例如：</p>
+<ul>
+<li>一一一 + 二三四 + 五六七 + 八八八 + 九九（4组3张+1对）</li>
+</ul>
+<h3 id="14-游戏流程">1.4 游戏流程<a hidden class="anchor" aria-hidden="true" href="#14-游戏流程">#</a></h3>
+<ol>
+<li><strong>定庄</strong>：掷骰子决定庄家</li>
+<li><strong>配牌</strong>：每人抓13张牌，庄家多抓一张（14张）</li>
+<li><strong>出牌</strong>：庄家先出一张牌，其他玩家依次摸牌、出牌</li>
+<li><strong>胡牌</strong>：谁先凑齐胡牌牌型谁获胜</li>
+<li><strong>血战到底</strong>：已胡牌的玩家退出，剩余玩家继续游戏，直到3人胡牌或流局</li>
+</ol>
+<h2 id="二四川麻将特色规则">二、四川麻将特色规则<a hidden class="anchor" aria-hidden="true" href="#二四川麻将特色规则">#</a></h2>
+<h3 id="21-缺一门">2.1 缺一门<a hidden class="anchor" aria-hidden="true" href="#21-缺一门">#</a></h3>
+<p>四川麻将的核心规则：<strong>必须缺一门才能胡牌</strong></p>
+<p>也就是说，你的手牌中只能有两种花色（万、条、筒三选二）。</p>
+<p>例如：</p>
+<ul>
+<li>✅ 可以胡：万子+条子（缺筒）</li>
+<li>✅ 可以胡：万子+筒子（缺条）</li>
+<li>❌ 不能胡：万子+条子+筒子（三门齐全）</li>
+</ul>
+<h3 id="22-杠牌规则">2.2 杠牌规则<a hidden class="anchor" aria-hidden="true" href="#22-杠牌规则">#</a></h3>
+<p><strong>明杠</strong>：</p>
+<ul>
+<li>碰牌后，再摸到第四张，可以杠牌</li>
+<li>别人打出的牌，自己有三张，可以直接杠</li>
+</ul>
+<p><strong>暗杠</strong>：</p>
+<ul>
+<li>自己摸到四张相同的牌，可以暗杠</li>
+</ul>
+<p><strong>杠牌后</strong>：</p>
+<ul>
+<li>摸一张牌</li>
+<li>多算一番（底分×2）</li>
+<li>杠后可以继续杠或胡牌</li>
+</ul>
+<h3 id="23-血战到底">2.3 血战到底<a hidden class="anchor" aria-hidden="true" href="#23-血战到底">#</a></h3>
+<p>这是四川麻将最大的特色：</p>
+<ul>
+<li>第一个人胡牌后不结束游戏</li>
+<li>剩余三人继续打，直到有第二、第三个人胡牌</li>
+<li>最后没胡的人要赔给所有胡牌的人</li>
+<li>第一个胡牌的人可以继续胡（查叫）</li>
+</ul>
+<h3 id="24-查叫">2.4 查叫<a hidden class="anchor" aria-hidden="true" href="#24-查叫">#</a></h3>
+<p>游戏结束时，如果有人没胡牌：</p>
+<ul>
+<li>如果他<strong>已听牌</strong>（只差一张就能胡），他只赔给胡牌的人</li>
+<li>如果他<strong>未听牌</strong>（没有听牌），他要加倍赔偿</li>
+</ul>
+<h2 id="三番型与计分">三、番型与计分<a hidden class="anchor" aria-hidden="true" href="#三番型与计分">#</a></h2>
+<h3 id="31-基础番型">3.1 基础番型<a hidden class="anchor" aria-hidden="true" href="#31-基础番型">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>番型</th>
+          <th>番数</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>平胡</td>
+          <td>1番</td>
+          <td>基础胡牌</td>
+      </tr>
+      <tr>
+          <td>自摸</td>
+          <td>1番</td>
+          <td>自己摸牌胡</td>
+      </tr>
+      <tr>
+          <td>根（杠）</td>
+          <td>1番</td>
+          <td>每杠一次+1番</td>
+      </tr>
+      <tr>
+          <td>对对胡</td>
+          <td>2番</td>
+          <td>全是刻子+对子，没有顺子</td>
+      </tr>
+      <tr>
+          <td>清一色</td>
+          <td>4番</td>
+          <td>全部是一种花色</td>
+      </tr>
+      <tr>
+          <td>龙七对</td>
+          <td>4番</td>
+          <td>七个对子</td>
+      </tr>
+      <tr>
+          <td>天胡</td>
+          <td>封顶</td>
+          <td>庄家起手就胡</td>
+      </tr>
+      <tr>
+          <td>地胡</td>
+          <td>封顶</td>
+          <td>闲家第一轮胡</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="32-计分方式">3.2 计分方式<a hidden class="anchor" aria-hidden="true" href="#32-计分方式">#</a></h3>
+<p><strong>基础公式</strong>：底分 × 2^(番数)</p>
+<p>例如：</p>
+<ul>
+<li>底分1元，平胡（1番）= 1×2¹ = 2元</li>
+<li>底分1元，清一色（4番）= 1×2⁴ = 16元</li>
+<li>底分1元，清一色+对对胡（6番）= 1×2⁶ = 64元</li>
+</ul>
+<p><strong>封顶</strong>：很多地方设置封顶番数（如10番），防止输赢过大</p>
+<h2 id="四进阶技巧">四、进阶技巧<a hidden class="anchor" aria-hidden="true" href="#四进阶技巧">#</a></h2>
+<h3 id="41-定缺策略">4.1 定缺策略<a hidden class="anchor" aria-hidden="true" href="#41-定缺策略">#</a></h3>
+<p>游戏开始后，要快速决定缺哪一门：</p>
+<p><strong>判断依据</strong>：</p>
+<ol>
+<li><strong>数量最少的门</strong>：哪门牌少就缺哪门</li>
+<li><strong>孤张多的门</strong>：有很多不连续的孤张，这门不好组合</li>
+<li><strong>对子情况</strong>：如果某门有对子，考虑留下，可能组成刻子</li>
+</ol>
+<p><strong>例子</strong>：</p>
+<pre tabindex="0"><code>手牌：一万 三万 五万 六万 | 二条 七条 | 一筒 二筒 三筒 四筒 八筒 九筒
+分析：万子4张分散，条子2张，筒子6张且有顺子潜力
+建议：缺条子
+</code></pre><h3 id="42-听牌技巧">4.2 听牌技巧<a hidden class="anchor" aria-hidden="true" href="#42-听牌技巧">#</a></h3>
+<p><strong>多面听</strong>优于<strong>单钓</strong>：</p>
+<ul>
+<li>单钓：只有一种牌能胡（如：等一张五万）</li>
+<li>两面听：能胡两种牌（如：三四条，等二条或五条）</li>
+<li>多面听：能胡多种牌（如：卡张、边张、对子等组合）</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<pre tabindex="0"><code>手牌：一万 二万 | 三万 四万 | 五万 六万 | 七万 八万 | 九万
+拆牌选择：
+- 打九万：听二万和五万（两面）
+- 打一万：听三万和六万和九万（多面）
+建议打一万，听牌面更多
+</code></pre><h3 id="43-防守策略">4.3 防守策略<a hidden class="anchor" aria-hidden="true" href="#43-防守策略">#</a></h3>
+<p><strong>观察舍牌</strong>：</p>
+<ul>
+<li>对手打出的牌反映他要什么、不要什么</li>
+<li>如果对手大量打某一门，可能在做清一色</li>
+<li>如果对手突然不打某种牌，可能在攒那个牌</li>
+</ul>
+<p><strong>生张和熟张</strong>：</p>
+<ul>
+<li><strong>生张</strong>：桌面上没出现过的牌，危险度较高</li>
+<li><strong>熟张</strong>：已经有人打过的牌，相对安全</li>
+</ul>
+<p><strong>听牌信号</strong>：</p>
+<ul>
+<li>出牌犹豫</li>
+<li>打牌速度突然变化</li>
+<li>开始打生张或中张</li>
+</ul>
+<h3 id="44-做大牌策略">4.4 做大牌策略<a hidden class="anchor" aria-hidden="true" href="#44-做大牌策略">#</a></h3>
+<p><strong>什么时候做大牌</strong>：</p>
+<ol>
+<li>起手牌型好（比如某门很多，可以做清一色）</li>
+<li>当前领先或持平，可以冒险</li>
+<li>对手没有明显听牌迹象</li>
+</ol>
+<p><strong>做大牌风险</strong>：</p>
+<ul>
+<li>听牌较慢，容易被别人截胡</li>
+<li>如果未听牌查叫，要加倍赔偿</li>
+<li>建议新手以稳为主，先保证听牌</li>
+</ul>
+<h3 id="45-心理战术">4.5 心理战术<a hidden class="anchor" aria-hidden="true" href="#45-心理战术">#</a></h3>
+<p><strong>诱敌出牌</strong>：</p>
+<ul>
+<li>故意打出中张，引诱对手出你需要的牌</li>
+<li>注意节奏，不要过于明显</li>
+</ul>
+<p><strong>藏牌意图</strong>：</p>
+<ul>
+<li>不要急于碰牌或杠牌，暴露自己的牌型</li>
+<li>暗刻比明刻更有迷惑性</li>
+</ul>
+<p><strong>施压策略</strong>：</p>
+<ul>
+<li>快速出牌，给对手压力</li>
+<li>适当沉默，让对手摸不清你的意图</li>
+</ul>
+<h2 id="五常见错误与避免">五、常见错误与避免<a hidden class="anchor" aria-hidden="true" href="#五常见错误与避免">#</a></h2>
+<h3 id="51-新手常犯错误">5.1 新手常犯错误<a hidden class="anchor" aria-hidden="true" href="#51-新手常犯错误">#</a></h3>
+<ol>
+<li><strong>忘记缺门</strong>：手牌三门齐全还以为能胡</li>
+<li><strong>盲目做大牌</strong>：不顾牌型强行做清一色，最后未听牌</li>
+<li><strong>不会算番</strong>：不知道自己多少番，糊里糊涂胡牌</li>
+<li><strong>乱碰乱杠</strong>：过早暴露牌型，让对手防范</li>
+<li><strong>不看舍牌</strong>：只顾自己手牌，不观察对手</li>
+</ol>
+<h3 id="52-进阶常犯错误">5.2 进阶常犯错误<a hidden class="anchor" aria-hidden="true" href="#52-进阶常犯错误">#</a></h3>
+<ol>
+<li><strong>过度防守</strong>：太在意对手，错失自己的听牌机会</li>
+<li><strong>贪大求全</strong>：总想胡大牌，反而听牌慢</li>
+<li><strong>不会放弃</strong>：明知牌型不好还死撑，最后查叫</li>
+<li><strong>心态失衡</strong>：连续点炮后急躁，决策失误</li>
+</ol>
+<h2 id="六实战案例分析">六、实战案例分析<a hidden class="anchor" aria-hidden="true" href="#六实战案例分析">#</a></h2>
+<h3 id="案例1定缺选择">案例1：定缺选择<a hidden class="anchor" aria-hidden="true" href="#案例1定缺选择">#</a></h3>
+<p><strong>起手牌</strong>：</p>
+<pre tabindex="0"><code>二万 四万 六万 八万 九万
+一条 二条 三条
+五筒 六筒 七筒 八筒
+</code></pre><p><strong>分析</strong>：</p>
+<ul>
+<li>万子：5张但分散，不易组合</li>
+<li>条子：3张成顺，很好</li>
+<li>筒子：4张有两个顺子潜力</li>
+</ul>
+<p><strong>决策</strong>：缺万子，保留条筒两门</p>
+<h3 id="案例2听牌选择">案例2：听牌选择<a hidden class="anchor" aria-hidden="true" href="#案例2听牌选择">#</a></h3>
+<p><strong>当前牌型</strong>：</p>
+<pre tabindex="0"><code>二万 三万 四万 | 五万 六万 七万 | 一条 二条 三条 | 五筒 六筒 | 八筒 八筒
+</code></pre><p><strong>选择1</strong>：打五筒或六筒，听七筒（单钓）
+<strong>选择2</strong>：打八筒，听四筒或七筒（两面）</p>
+<p><strong>决策</strong>：选择2更优，两面听更容易胡牌</p>
+<h3 id="案例3要不要做清一色">案例3：要不要做清一色<a hidden class="anchor" aria-hidden="true" href="#案例3要不要做清一色">#</a></h3>
+<p><strong>当前牌型</strong>（已缺条）：</p>
+<pre tabindex="0"><code>一万 二万 三万 四万 五万 六万 | 二筒 五筒 七筒 | 八筒 八筒
+</code></pre><p><strong>分析</strong>：</p>
+<ul>
+<li>距离清一色还差3张筒子替换万子</li>
+<li>如果做清一色，需要拆掉现有的顺子</li>
+<li>当前可以快速听牌（1-2轮）</li>
+</ul>
+<p><strong>决策</strong>：不做清一色，保证快速听牌，除非后续摸牌特别好</p>
+<h2 id="七练习建议">七、练习建议<a hidden class="anchor" aria-hidden="true" href="#七练习建议">#</a></h2>
+<h3 id="71-新手阶段">7.1 新手阶段<a hidden class="anchor" aria-hidden="true" href="#71-新手阶段">#</a></h3>
+<ol>
+<li><strong>熟悉规则</strong>：先玩小局，熟悉缺门、血战等规则</li>
+<li><strong>记住番型</strong>：至少记住基础番型和分数</li>
+<li><strong>多观察</strong>：看别人怎么打，学习经验</li>
+<li><strong>求稳为主</strong>：不要急于做大牌，先学会稳定胡牌</li>
+</ol>
+<h3 id="72-进阶阶段">7.2 进阶阶段<a hidden class="anchor" aria-hidden="true" href="#72-进阶阶段">#</a></h3>
+<ol>
+<li><strong>提高速度</strong>：加快判断和决策速度</li>
+<li><strong>学习算牌</strong>：记住哪些牌出过，推测剩余牌</li>
+<li><strong>心理博弈</strong>：学会观察对手，做出针对性策略</li>
+<li><strong>复盘总结</strong>：每局结束后思考得失</li>
+</ol>
+<h3 id="73-推荐练习方式">7.3 推荐练习方式<a hidden class="anchor" aria-hidden="true" href="#73-推荐练习方式">#</a></h3>
+<ul>
+<li><strong>线上平台</strong>：在手机或电脑上玩四川麻将游戏，方便练习</li>
+<li><strong>观战学习</strong>：看高手直播或录像，学习思路</li>
+<li><strong>实战练习</strong>：找朋友线下对局，积累实战经验</li>
+<li><strong>理论学习</strong>：阅读麻将书籍或教程，系统提升</li>
+</ul>
+<h2 id="八总结">八、总结<a hidden class="anchor" aria-hidden="true" href="#八总结">#</a></h2>
+<p>四川麻将规则简单但策略丰富，从新手到高手需要：</p>
+<ol>
+<li><strong>扎实的基本功</strong>：熟练掌握规则和番型</li>
+<li><strong>灵活的战术</strong>：根据牌型和局势调整策略</li>
+<li><strong>敏锐的观察力</strong>：读懂对手意图，做出正确判断</li>
+<li><strong>稳定的心态</strong>：胜不骄败不馁，理性决策</li>
+</ol>
+<p>记住：麻将三分靠运气，七分靠技术。多练习、多思考，你一定能成为四川麻将高手！</p>
+<hr>
+<p><strong>祝你好运，胡牌多多！🀄</strong></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/%E9%BA%BB%E5%B0%86/">麻将</a></li>
+      <li><a href="http://localhost:1313/tags/%E5%9B%9B%E5%B7%9D%E9%BA%BB%E5%B0%86/">四川麻将</a></li>
+      <li><a href="http://localhost:1313/tags/%E6%A3%8B%E7%89%8C%E6%B8%B8%E6%88%8F/">棋牌游戏</a></li>
+      <li><a href="http://localhost:1313/tags/%E6%95%99%E7%A8%8B/">教程</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

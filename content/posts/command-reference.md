@@ -47,6 +47,12 @@ tags: ["命令行", "PowerShell", "Linux", "Git", "GitHub"]
 - `Get-Content <文件> -Wait` - 实时查看文件更新（类似 tail -f）
 - `Test-Path <路径>` - 检查路径是否存在
 
+**以默认方式打开文件或目录**
+
+- `start filename`打开当前目录下的指定文件
+- `code filename`使用vscode打开
+- `code .`使用vscode打开当前目录
+
 ------
 
 ### 文本处理和搜索
