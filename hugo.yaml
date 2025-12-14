@@ -17,6 +17,11 @@ defaultContentLanguage: zh # 顶部首先展示的语言界面
 defaultContentLanguageInSubdir: false # 是否要在地址栏加上默认的语言代码
 
 params:
+  #配置数学公式
+  math: true
+  katex: false   # ❗确保关闭
+
+  #配置图标
   assets:
       favicon: "code.png"
       
@@ -29,6 +34,8 @@ params:
       safari_pinned_tab: "code.png"
       
       disableFingerprinting: true  # 禁用 CSS 指纹，避免缓存问题
+
+      disableHLJS: true
   # 启用代码复制按钮
   ShowCodeCopyButtons: true
   homeInfoParams:
@@ -88,14 +95,22 @@ params:
       minMatchCharLength: 0
       keys: ["title", "permalink", "summary", "content"]
       includeMatches: true
-  #默认启用
-  math: true
 
 #配置代码块的阴暗
 markup:
   goldmark:
     renderer:
       unsafe: true # 可以 unsafe，有些 html 标签和样式可能需要
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - ['$$', '$$']
+            - ['\[', '\]']
+          inline:
+            - ['$', '$']
+            - ['\(', '\)']
   highlight:
     anchorLineNos: false # 不要给行号设置锚标
     codeFences: true # 代码围栏
