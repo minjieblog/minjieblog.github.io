@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>区块链 on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+    <description>Recent content in 区块链 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sun, 14 Dec 2025 19:37:05 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>区块链联邦学习综述：增强分布式网络中的信任与隐私</title>
+      <link>http://localhost:1313/posts/blockchain-federated-learning-survey/</link>
+      <pubDate>Sun, 14 Dec 2025 19:37:05 +0800</pubDate>
+      <guid>http://localhost:1313/posts/blockchain-federated-learning-survey/</guid>
+      <description>一篇关于区块链联邦学习（BCFL）的全面综述，探讨了如何通过结合区块链的安全特性和联邦学习的隐私保护能力，构建可信的分布式机器学习系统 
+</description>
+    </item>
+  </channel>
+</rss>

@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sat, 13 Dec 2025 20:26:19 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Dec 2025 19:37:05 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>区块链论文</title>
+      <link>http://localhost:1313/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%AE%BA%E6%96%87/</link>
+      <pubDate>Sun, 14 Dec 2025 19:37:05 +0800</pubDate>
+      <guid>http://localhost:1313/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%AE%BA%E6%96%87/</guid>
+      <description></description>
+    </item>
     <item>
       <title>研究生课程</title>
       <link>http://localhost:1313/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%AF%BE%E7%A8%8B/</link>
@@ -35,13 +42,6 @@
       <link>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
       <pubDate>Wed, 10 Dec 2025 08:45:19 +0800</pubDate>
       <guid>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>区块链论文</title>
-      <link>http://localhost:1313/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%AE%BA%E6%96%87/</link>
-      <pubDate>Mon, 08 Dec 2025 10:50:12 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%AE%BA%E6%96%87/</guid>
       <description></description>
     </item>
     <item>

@@ -7,8 +7,16 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sat, 13 Dec 2025 20:26:19 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Dec 2025 19:37:05 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>区块链联邦学习综述：增强分布式网络中的信任与隐私</title>
+      <link>http://localhost:1313/posts/blockchain-federated-learning-survey/</link>
+      <pubDate>Sun, 14 Dec 2025 19:37:05 +0800</pubDate>
+      <guid>http://localhost:1313/posts/blockchain-federated-learning-survey/</guid>
+      <description>一篇关于区块链联邦学习（BCFL）的全面综述，探讨了如何通过结合区块链的安全特性和联邦学习的隐私保护能力，构建可信的分布式机器学习系统 
+</description>
+    </item>
     <item>
       <title>机器学习习题集</title>
       <link>http://localhost:1313/posts/ml-exercise-set/</link>
