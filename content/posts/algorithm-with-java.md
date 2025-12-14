@@ -11,6 +11,150 @@ comments: true
 
 ## 📚 Part 1: Java 集合使用手册
 
+### 0.String - 不可变字符串
+
+```java
+// 初始化
+String s = "hello";
+String s2 = new String("world");
+String s3 = String.valueOf(123); // 数字转字符串
+
+// 基本属性
+int len = s.length();           // 长度
+boolean empty = s.isEmpty();    // 是否为空
+char ch = s.charAt(0);          // 获取字符
+
+// 查找
+int index = s.indexOf("ll");    // 查找子串位置
+int lastIndex = s.lastIndexOf("l"); // 最后出现位置
+boolean contains = s.contains("el"); // 是否包含
+
+// 截取
+String sub = s.substring(1, 4); // [1, 4) 截取
+String sub2 = s.substring(2);   // 从索引2到结尾
+
+// 替换
+String replaced = s.replace("l", "L"); // 替换所有
+String replaced2 = s.replaceFirst("l", "L"); // 替换第一个
+String replaced3 = s.replaceAll("[aeiou]", "*"); // 正则替换
+
+// 分割
+String[] parts = "a,b,c".split(","); // 按分隔符分割
+String[] parts2 = "a b  c".split("\\s+"); // 按空格分割
+
+// 拼接
+String joined = String.join(",", "a", "b", "c"); // "a,b,c"
+String concat = s.concat(" world"); // 拼接
+
+// 大小写
+String upper = s.toUpperCase();
+String lower = s.toUpperCase().toLowerCase();
+
+// 去空格
+String trimmed = "  hello  ".trim(); // 去两端空格
+String stripped = "  hello  ".strip(); // Java 11+
+
+// 比较
+boolean equals = s.equals("hello");
+boolean equalsIgnoreCase = s.equalsIgnoreCase("HELLO");
+int compare = s.compareTo("world"); // 字典序比较
+
+// 判断
+boolean startsWith = s.startsWith("he");
+boolean endsWith = s.endsWith("lo");
+
+// 转换
+char[] chars = s.toCharArray(); // 转字符数组
+byte[] bytes = s.getBytes();    // 转字节数组
+```
+
+#### StringBuilder - 可变字符串
+
+**使用场景：单线程环境下需要频繁修改字符串**
+
+```java
+// 初始化
+StringBuilder sb = new StringBuilder();
+StringBuilder sb2 = new StringBuilder("hello");
+StringBuilder sb3 = new StringBuilder(100); // 指定初始容量
+
+// 添加（拼接）
+sb.append("hello");         // 尾部添加
+sb.append(123);             // 添加数字
+sb.append('!');             // 添加字符
+sb.insert(0, "start ");     // 指定位置插入
+
+// 删除
+sb.delete(0, 5);            // 删除 [0, 5)
+sb.deleteCharAt(0);         // 删除指定位置
+sb.setLength(0);            // 清空（重置长度为0）
+
+// 修改
+sb.replace(0, 5, "world");  // 替换 [0, 5)
+sb.setCharAt(0, 'H');       // 修改指定位置字符
+
+// 反转
+sb.reverse();
+
+// 查询
+int len = sb.length();
+char ch = sb.charAt(0);
+String sub = sb.substring(0, 5);
+
+// 转换为 String
+String result = sb.toString();
+
+// 常见应用：循环拼接字符串
+StringBuilder result = new StringBuilder();
+for (int i = 0; i < 1000; i++) {
+    result.append(i).append(",");
+}
+// 比用 String + 拼接快得多！
+```
+
+#### StringBuffer - 可变字符串
+
+**使用场景：多线程环境下需要频繁修改字符串**
+
+```java
+// API 与 StringBuilder 完全相同
+StringBuffer sb = new StringBuffer();
+sb.append("hello");
+sb.append(" world");
+String result = sb.toString();
+
+// 区别：StringBuffer 的方法都是 synchronized 的
+// 多线程安全，但性能比 StringBuilder 差
+```
+
+#### 常用字符串操作技巧
+
+```java
+// 1. 字符串转数字
+int num = Integer.parseInt("123");
+long l = Long.parseLong("123");
+double d = Double.parseDouble("3.14");
+
+// 2. 数字转字符串
+String s1 = String.valueOf(123);
+String s2 = Integer.toString(123);
+String s3 = "" + 123; // 不推荐
+
+// 3. 字符串数组拼接
+String[] arr = {"a", "b", "c"};
+String joined = String.join(",", arr); // "a,b,c"
+
+// 4. 重复字符串（Java 11+）
+String repeated = "ab".repeat(3); // "ababab"
+
+// 5. 判断空字符串
+if (s != null && !s.isEmpty()) { }
+if (s != null && !s.isBlank()) { } // Java 11+，忽略空白字符
+
+// 6. 字符串格式化
+String formatted = String.format("Hello %s, you are %d years old", "Alice", 25);
+```
+
 ### 1. List - 列表
 
 #### ArrayList - 动态数组

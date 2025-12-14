@@ -700,7 +700,7 @@ SELECT LOCATE('World', 'Hello World');
 
 ### 13.2 日期时间函数
 
-```sql
+```mysql
 -- 获取当前时间
 SELECT NOW(), CURDATE(), CURTIME();
 SELECT CURRENT_TIMESTAMP(), CURRENT_DATE(), CURRENT_TIME();
@@ -710,9 +710,9 @@ SELECT DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s');
 SELECT DATE_FORMAT(NOW(), '%Y年%m月%d日');
 
 -- 日期计算
-SELECT DATE_ADD(NOW(), INTERVAL 1 DAY);
-SELECT DATE_SUB(NOW(), INTERVAL 1 MONTH);
-SELECT DATEDIFF('2024-12-31', '2024-01-01');
+SELECT date_add('2023-01-01', interval 1 day) 输出 '2023-01-02'
+SELECT date_sub('2023-01-01', interval 1 day) 输出 '2022-12-31'
+SELECT datediff('2023-02-01', '2023-01-01') 输出31
 
 -- 提取日期部分
 SELECT YEAR(NOW()), MONTH(NOW()), DAY(NOW());
@@ -722,6 +722,8 @@ SELECT HOUR(NOW()), MINUTE(NOW()), SECOND(NOW());
 SELECT UNIX_TIMESTAMP(NOW());
 SELECT FROM_UNIXTIME(1702195200);
 ```
+
+
 
 ### 13.3 数学和其他函数
 
