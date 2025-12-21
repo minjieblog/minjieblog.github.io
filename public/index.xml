@@ -7,14 +7,31 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Wed, 17 Dec 2025 21:01:53 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Dec 2025 15:54:37 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数学基础数学篇</title>
+      <link>http://localhost:1313/posts/mathematical-fundamentals-lecture/</link>
+      <pubDate>Sun, 21 Dec 2025 15:54:37 +0800</pubDate>
+      <guid>http://localhost:1313/posts/mathematical-fundamentals-lecture/</guid>
+      <description>这是一份待完成的笔记
+</description>
+    </item>
+    <item>
+      <title>数学基础算法篇</title>
+      <link>http://localhost:1313/posts/mathematical-algorithms-lecture/</link>
+      <pubDate>Sun, 21 Dec 2025 15:50:54 +0800</pubDate>
+      <guid>http://localhost:1313/posts/mathematical-algorithms-lecture/</guid>
+      <description>金老师主讲的研究生课程《数学基础算法篇》完整笔记，从算法分析基础开始，系统介绍相似度搜索、概率不等式、流式数据处理、分布式计算、哈希技术、优化算法、图算法等内容，理论与实践相结合，为解决大规模数据处理问题提供数学和算法基础。
+</description>
+    </item>
     <item>
       <title>黑马点评项目笔记</title>
       <link>http://localhost:1313/posts/hmdp/</link>
       <pubDate>Wed, 17 Dec 2025 21:01:53 +0800</pubDate>
       <guid>http://localhost:1313/posts/hmdp/</guid>
-      <description>&amp;#34;记录黑马点评项目的学习过程，包括 Redis 的多种应用场景、缓存穿透/击穿/雪崩解决方案、分布式锁实现、UV 统计、好友关注等功能的技术实现细节&amp;#34;
+      <description>
+&amp;#34;记录黑马点评项目的学习过程，包括 Redis 的多种应用场景、缓存穿透/击穿/雪崩解决方案、分布式锁实现、UV 统计、好友关注等功能的技术实现细节&amp;#34;
 </description>
     </item>
     <item>
