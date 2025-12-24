@@ -7,8 +7,16 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 14 Dec 2025 19:37:05 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Dec 2025 15:03:41 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web3.0 身份认证系统综述：中心化与去中心化方案对比分析</title>
+      <link>http://localhost:1313/posts/identity-management-systems-survey/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/posts/identity-management-systems-survey/</guid>
+      <description>&amp;#34;基于 Future Internet 2025 年发表的综述论文，系统分析传统中心化身份管理系统与新兴去中心化方案在可扩展性、安全性、可靠性、适应性和成本方面的对比，为 Web3.0 身份认证研究提供全面参考&amp;#34;
+</description>
+    </item>
     <item>
       <title>区块链联邦学习综述：增强分布式网络中的信任与隐私</title>
       <link>http://localhost:1313/posts/blockchain-federated-learning-survey/</link>

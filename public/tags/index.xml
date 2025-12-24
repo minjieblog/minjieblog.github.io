@@ -7,8 +7,57 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 21 Dec 2025 15:54:37 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Dec 2025 15:03:41 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DID</title>
+      <link>http://localhost:1313/tags/did/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/tags/did/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SSI</title>
+      <link>http://localhost:1313/tags/ssi/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/tags/ssi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web3.0</title>
+      <link>http://localhost:1313/tags/web3.0/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/tags/web3.0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>区块链</title>
+      <link>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>去中心化身份</title>
+      <link>http://localhost:1313/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E8%BA%AB%E4%BB%BD/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E8%BA%AB%E4%BB%BD/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>身份认证</title>
+      <link>http://localhost:1313/tags/%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>综述论文</title>
+      <link>http://localhost:1313/tags/%E7%BB%BC%E8%BF%B0%E8%AE%BA%E6%96%87/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E7%BB%BC%E8%BF%B0%E8%AE%BA%E6%96%87/</guid>
+      <description></description>
+    </item>
     <item>
       <title>高等数学</title>
       <link>http://localhost:1313/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/</link>
@@ -119,13 +168,6 @@
       <link>http://localhost:1313/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Sun, 14 Dec 2025 19:37:05 +0800</pubDate>
       <guid>http://localhost:1313/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>区块链</title>
-      <link>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
-      <pubDate>Sun, 14 Dec 2025 19:37:05 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
       <description></description>
     </item>
     <item>

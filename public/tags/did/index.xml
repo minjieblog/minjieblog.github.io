@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>DID on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/tags/did/</link>
+    <description>Recent content in DID on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Wed, 24 Dec 2025 15:03:41 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/did/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web3.0 身份认证系统综述：中心化与去中心化方案对比分析</title>
+      <link>http://localhost:1313/posts/identity-management-systems-survey/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/posts/identity-management-systems-survey/</guid>
+      <description>&amp;#34;基于 Future Internet 2025 年发表的综述论文，系统分析传统中心化身份管理系统与新兴去中心化方案在可扩展性、安全性、可靠性、适应性和成本方面的对比，为 Web3.0 身份认证研究提供全面参考&amp;#34;
+</description>
+    </item>
+  </channel>
+</rss>
