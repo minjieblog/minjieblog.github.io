@@ -11,25 +11,17 @@
     <atom:link href="http://localhost:1313/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%AE%BA%E6%96%87/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Web3.0 身份认证系统综述：中心化与去中心化方案对比分析</title>
-      <link>http://localhost:1313/posts/identity-management-systems-survey/</link>
+      <link>http://localhost:1313/posts/blockchain/identity-management-systems-survey/</link>
       <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
-      <guid>http://localhost:1313/posts/identity-management-systems-survey/</guid>
+      <guid>http://localhost:1313/posts/blockchain/identity-management-systems-survey/</guid>
       <description>&amp;#34;基于 Future Internet 2025 年发表的综述论文，系统分析传统中心化身份管理系统与新兴去中心化方案在可扩展性、安全性、可靠性、适应性和成本方面的对比，为 Web3.0 身份认证研究提供全面参考&amp;#34;
 </description>
     </item>
     <item>
-      <title>区块链联邦学习综述：增强分布式网络中的信任与隐私</title>
-      <link>http://localhost:1313/posts/blockchain-federated-learning-survey/</link>
-      <pubDate>Sun, 14 Dec 2025 19:37:05 +0800</pubDate>
-      <guid>http://localhost:1313/posts/blockchain-federated-learning-survey/</guid>
-      <description>一篇关于区块链联邦学习（BCFL）的全面综述，探讨了如何通过结合区块链的安全特性和联邦学习的隐私保护能力，构建可信的分布式机器学习系统 
-</description>
-    </item>
-    <item>
       <title>zkBID: 区块链账户与Web 3.0去中心化身份</title>
-      <link>http://localhost:1313/posts/linking-souls-to-humans/</link>
+      <link>http://localhost:1313/posts/blockchain/linking-souls-to-humans/</link>
       <pubDate>Mon, 08 Dec 2025 10:50:12 +0800</pubDate>
-      <guid>http://localhost:1313/posts/linking-souls-to-humans/</guid>
+      <guid>http://localhost:1313/posts/blockchain/linking-souls-to-humans/</guid>
       <description>WWW 2025论文解读：zkBID是首个同时实现身份匿名性和可信性的Web 3.0去中心化身份系统。通过结合zkSNARK零知识证明和MLSAGS可链接环签名，在完全去中心化的前提下，将区块链灵魂账户与真实用户建立一对一可验证映射，同时保护用户隐私。本文详细解析了三阶段IVAC流程的技术设计、安全性证明、以太坊测试网性能评估，以及在社交网络、DAO治理、DeFi等场景的应用价值。
 </description>
     </item>
