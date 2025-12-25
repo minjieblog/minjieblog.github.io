@@ -7,8 +7,24 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Mon, 08 Dec 2025 10:50:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 25 Dec 2025 03:52:02 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/blockchain/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>xRWA: 真实世界资产的跨链互操作性框架</title>
+      <link>http://localhost:1313/blockchain/xrwa-cross-chain-real-world-assets/</link>
+      <pubDate>Thu, 25 Dec 2025 03:52:02 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/xrwa-cross-chain-real-world-assets/</guid>
+      <description>2025年预印本论文解读:随着RWA代币化市场从2025年初的86亿美元激增至230亿美元(增长260%),Citibank预测2030年将达到4万亿美元规模。xRWA框架通过创新性地结合DID/VC身份管理、SPV跨链认证和无需关闭的跨链通道,首次系统性地解决了RWA在异构区块链间的互操作性挑战。本文详细解析了RWA复合凭证(RWA-CC)的四模块设计、SPV认证协议如何避免重复验证、跨链通道如何实现批量结算,以及在房地产、稳定币、私募信贷等场景的应用价值。
+</description>
+    </item>
+    <item>
+      <title>Web3.0 身份认证系统综述：中心化与去中心化方案对比分析</title>
+      <link>http://localhost:1313/blockchain/identity-management-systems-survey/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/identity-management-systems-survey/</guid>
+      <description>&amp;#34;基于 Future Internet 2025 年发表的综述论文，系统分析传统中心化身份管理系统与新兴去中心化方案在可扩展性、安全性、可靠性、适应性和成本方面的对比，为 Web3.0 身份认证研究提供全面参考&amp;#34;
+</description>
+    </item>
     <item>
       <title>zkBID: 区块链账户与Web 3.0去中心化身份</title>
       <link>http://localhost:1313/blockchain/linking-souls-to-humans/</link>

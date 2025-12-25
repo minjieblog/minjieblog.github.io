@@ -7,8 +7,17 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 07 Dec 2025 16:33:25 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 17 Dec 2025 21:01:53 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/java-notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>黑马点评项目笔记</title>
+      <link>http://localhost:1313/java-notes/hmdp/</link>
+      <pubDate>Wed, 17 Dec 2025 21:01:53 +0800</pubDate>
+      <guid>http://localhost:1313/java-notes/hmdp/</guid>
+      <description>
+&amp;#34;记录黑马点评项目的学习过程，包括 Redis 的多种应用场景、缓存穿透/击穿/雪崩解决方案、分布式锁实现、UV 统计、好友关注等功能的技术实现细节&amp;#34;
+</description>
+    </item>
     <item>
       <title>算法刷题必备：Java集合与算法模板</title>
       <link>http://localhost:1313/java-notes/algorithm-with-java/</link>

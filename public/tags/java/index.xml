@@ -11,9 +11,9 @@
     <atom:link href="http://localhost:1313/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>算法刷题必备：Java集合与算法模板</title>
-      <link>http://localhost:1313/posts/algorithm-with-java/</link>
+      <link>http://localhost:1313/java-notes/algorithm-with-java/</link>
       <pubDate>Sun, 07 Dec 2025 16:33:25 +0800</pubDate>
-      <guid>http://localhost:1313/posts/algorithm-with-java/</guid>
+      <guid>http://localhost:1313/java-notes/algorithm-with-java/</guid>
       <description>Java 集合框架完整使用手册 &#43; 常用算法模板</description>
     </item>
   </channel>

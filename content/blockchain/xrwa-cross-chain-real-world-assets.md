@@ -6,7 +6,6 @@ tags: ["blockchain", "cross-chain", "real-world-assets", "RWA", "DID", "verifiab
 categories: ["区块链论文"]
 author: "Yihao Guo et al."
 conference: "Preprint 2025"
-draft: false
 comments: true
 summary: |
   xRWA是首个专门针对真实世界资产(RWA)跨链场景设计的完整框架。通过整合去中心化身份标识(DID)、可验证凭证(VC)和简化支付验证(SPV),解决了RWA在多链部署中的冗余认证和低效结算问题。系统采用三层架构:资产识别与代币化、跨链认证协议、跨链交互通道。实验显示SPV验证复杂度为O(log n),跨链通道比HTLC节省超过99%的gas成本。该框架为RWA的万亿美元市场潜力提供了关键的跨链基础设施。

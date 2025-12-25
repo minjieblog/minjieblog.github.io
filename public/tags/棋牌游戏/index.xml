@@ -11,9 +11,9 @@
     <atom:link href="http://localhost:1313/tags/%E6%A3%8B%E7%89%8C%E6%B8%B8%E6%88%8F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>四川麻将指南</title>
-      <link>http://localhost:1313/posts/sichuan-mahjong-guide/</link>
+      <link>http://localhost:1313/game-guide/sichuan-mahjong-guide/</link>
       <pubDate>Sat, 13 Dec 2025 12:16:13 +0800</pubDate>
-      <guid>http://localhost:1313/posts/sichuan-mahjong-guide/</guid>
+      <guid>http://localhost:1313/game-guide/sichuan-mahjong-guide/</guid>
       <description>详细介绍四川麻将的规则、技巧和进阶策略，让你快速从新手成长为高手</description>
     </item>
   </channel>

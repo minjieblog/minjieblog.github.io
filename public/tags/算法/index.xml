@@ -11,17 +11,17 @@
     <atom:link href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数学基础算法篇</title>
-      <link>http://localhost:1313/posts/mathematical-algorithms-lecture/</link>
+      <link>http://localhost:1313/dase-course/mathematical-algorithms-lecture/</link>
       <pubDate>Sun, 21 Dec 2025 15:50:54 +0800</pubDate>
-      <guid>http://localhost:1313/posts/mathematical-algorithms-lecture/</guid>
+      <guid>http://localhost:1313/dase-course/mathematical-algorithms-lecture/</guid>
       <description>金老师主讲的研究生课程《数学基础算法篇》完整笔记，从算法分析基础开始，系统介绍相似度搜索、概率不等式、流式数据处理、分布式计算、哈希技术、优化算法、图算法等内容，理论与实践相结合，为解决大规模数据处理问题提供数学和算法基础。
 </description>
     </item>
     <item>
       <title>机器学习习题集</title>
-      <link>http://localhost:1313/posts/ml-exercise-set/</link>
+      <link>http://localhost:1313/dase-course/ml-exercise-set/</link>
       <pubDate>Sat, 13 Dec 2025 20:26:19 +0800</pubDate>
-      <guid>http://localhost:1313/posts/ml-exercise-set/</guid>
+      <guid>http://localhost:1313/dase-course/ml-exercise-set/</guid>
       <description>本习题集包含16道经典机器学习问题的完整数学推导，
 从梯度下降、交叉熵损失、最大似然估计，
 到核方法、支持向量机对偶问题、信息增益比计算，
@@ -32,9 +32,9 @@
     </item>
     <item>
       <title>算法刷题必备：Java集合与算法模板</title>
-      <link>http://localhost:1313/posts/algorithm-with-java/</link>
+      <link>http://localhost:1313/java-notes/algorithm-with-java/</link>
       <pubDate>Sun, 07 Dec 2025 16:33:25 +0800</pubDate>
-      <guid>http://localhost:1313/posts/algorithm-with-java/</guid>
+      <guid>http://localhost:1313/java-notes/algorithm-with-java/</guid>
       <description>Java 集合框架完整使用手册 &#43; 常用算法模板</description>
     </item>
   </channel>

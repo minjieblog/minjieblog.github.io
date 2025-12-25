@@ -16,5 +16,12 @@
       <guid>http://localhost:1313/doc-intro/command-reference/</guid>
       <description>一份完整的开发者命令行速查表，涵盖 Windows PowerShell、Linux/Unix 终端、Git 版本控制和 GitHub CLI 工具的常用指令、参数说明|和实际使用场景示例</description>
     </item>
+    <item>
+      <title>Hugo 常用指令与 Markdown 配置指南</title>
+      <link>http://localhost:1313/doc-intro/hugo-readme/</link>
+      <pubDate>Sat, 06 Dec 2025 17:43:45 +0800</pubDate>
+      <guid>http://localhost:1313/doc-intro/hugo-readme/</guid>
+      <description>一份完整的 Hugo 和 Markdown 使用手册，包含常用命令、配置说明和最佳实践</description>
+    </item>
   </channel>
 </rss>

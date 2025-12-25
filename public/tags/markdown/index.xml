@@ -11,9 +11,9 @@
     <atom:link href="http://localhost:1313/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo 常用指令与 Markdown 配置指南</title>
-      <link>http://localhost:1313/posts/hugo-readme/</link>
+      <link>http://localhost:1313/doc-intro/hugo-readme/</link>
       <pubDate>Sat, 06 Dec 2025 17:43:45 +0800</pubDate>
-      <guid>http://localhost:1313/posts/hugo-readme/</guid>
+      <guid>http://localhost:1313/doc-intro/hugo-readme/</guid>
       <description>一份完整的 Hugo 和 Markdown 使用手册，包含常用命令、配置说明和最佳实践</description>
     </item>
   </channel>

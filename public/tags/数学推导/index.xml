@@ -11,9 +11,9 @@
     <atom:link href="http://localhost:1313/tags/%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>机器学习习题集</title>
-      <link>http://localhost:1313/posts/ml-exercise-set/</link>
+      <link>http://localhost:1313/dase-course/ml-exercise-set/</link>
       <pubDate>Sat, 13 Dec 2025 20:26:19 +0800</pubDate>
-      <guid>http://localhost:1313/posts/ml-exercise-set/</guid>
+      <guid>http://localhost:1313/dase-course/ml-exercise-set/</guid>
       <description>本习题集包含16道经典机器学习问题的完整数学推导，
 从梯度下降、交叉熵损失、最大似然估计，
 到核方法、支持向量机对偶问题、信息增益比计算，
