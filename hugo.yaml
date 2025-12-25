@@ -17,6 +17,7 @@ defaultContentLanguage: zh # 顶部首先展示的语言界面
 defaultContentLanguageInSubdir: false # 是否要在地址栏加上默认的语言代码
 
 params:
+
   #配置数学公式
   math: true
   katex: false   # ❗确保关闭
@@ -65,7 +66,13 @@ params:
       url: "mailto:zhongnagisa01@gmail.com"
  
   ShowPostSummary: true  # 显示文章摘要
-
+  mainSections:
+  - blockchain
+  - dase-course
+  - database
+  - doc-intro
+  - game-guide
+  - java-notes
 
   # 评论系统
   enableGiscus: true

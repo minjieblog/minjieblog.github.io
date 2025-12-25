@@ -1,7 +1,6 @@
 ---
 title: 'Hugo 常用指令与 Markdown 配置指南'
 date: '2025-12-06T17:43:45+08:00'
-lastmod: '2025-12-06T17:43:45+08:00'
 draft: false
 tags: ['Hugo', 'Markdown', '博客', '教程']
 categories: ['文档介绍']

@@ -4,9 +4,10 @@ date: 2025-12-24T15:03:41+08:00
 draft: false
 tags: ["Web3.0", "区块链", "身份认证", "去中心化身份", "DID", "SSI", "综述论文"]
 categories: ["区块链论文"]
-summary: "深度解读 Web3.0 身份认证领域的最新综述论文，对比分析中心化（LDAP、SAML、OAuth）与去中心化（Hyperledger Indy、Sovrin、uPort）身份管理系统的优劣势"
+summary: |
+  深度解读 Web3.0 身份认证领域的最新综述论文，对比分析中心化（LDAP、SAML、OAuth）与去中心化（Hyperledger Indy、Sovrin、uPort）身份管理系统的优劣势
 description: |
-  "基于 Future Internet 2025 年发表的综述论文，系统分析传统中心化身份管理系统与新兴去中心化方案在可扩展性、安全性、可靠性、适应性和成本方面的对比，为 Web3.0 身份认证研究提供全面参考"
+  基于 Future Internet 2025 年发表的综述论文，系统分析传统中心化身份管理系统与新兴去中心化方案在可扩展性、安全性、可靠性、适应性和成本方面的对比，为 Web3.0 身份认证研究提供全面参考
 comments: true
 ---
 
@@ -577,6 +578,17 @@ AND ("scalability" OR "security" OR "feasibility")
 - Bitcoin 交易确认延迟（约10分钟）在实时验证场景下存在问题
 
 ---
+
+### 7.小结
+
+| 平台                 | 底层区块链       | 共识机制   | 核心特色                 | 主要优势                  | 主要局限                        |
+| -------------------- | ---------------- | ---------- | ------------------------ | ------------------------- | ------------------------------- |
+| **Hyperledger Indy** | 自有许可型链     | Plenum BFT | SSI专用,支持ZKP          | 隐私保护强,符合GDPR       | 扩展性受限,部署复杂             |
+| **Sovrin Network**   | Hyperledger Indy | RBFT       | 四层架构,SOV代币激励     | 治理完善,容错性高         | 依赖Steward,有中心化风险        |
+| **Blockstack**       | Bitcoin          | PoW        | BNS系统,Gaia去中心化存储 | 跨链迁移能力,动态定价     | 性能开销大,架构复杂             |
+| **uPort**            | Ethereum         | PoS/PoW    | 智能合约身份,移动优先    | 用户完全自控,恢复机制好   | 依赖Ethereum,交易费高           |
+| **EverID**           | 许可型Ethereum   | 许可型     | 生物识别,云端存储        | 生物识别方便,支持跨境金融 | 中心化,隐私保护较弱             |
+| **ShoCard**          | Bitcoin          | PoW        | 加密哈希,三阶段验证      | Bitcoin安全性高,用户自控  | 确认慢(约10分钟),依赖中央服务器 |
 
 ## 中心化 vs 去中心化：全面对比分析
 
