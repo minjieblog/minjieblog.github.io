@@ -7,8 +7,21 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 21 Dec 2025 15:54:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 29 Dec 2025 13:25:26 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数学基础——矩阵篇作业集</title>
+      <link>http://localhost:1313/dase-course/math-homework/</link>
+      <pubDate>Mon, 29 Dec 2025 13:25:26 +0800</pubDate>
+      <guid>http://localhost:1313/dase-course/math-homework/</guid>
+      <description>本作业集包含四次数学基础作业的完整解答，涵盖：
+矩阵范数理论、特征值与特征多项式、正交投影、
+LU分解、Cholesky分解、QR分解、SVD奇异值分解、
+最小二乘法、图像处理应用（旋转与压缩）、
+以及 kNN 分类器的实现。每道题目都配有详细的
+数学推导过程和部分编程实现代码。
+</description>
+    </item>
     <item>
       <title>数学基础数学篇</title>
       <link>http://localhost:1313/dase-course/mathematical-fundamentals-lecture/</link>
