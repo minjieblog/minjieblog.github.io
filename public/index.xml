@@ -68,12 +68,13 @@ LU分解、Cholesky分解、QR分解、SVD奇异值分解、
       <link>http://localhost:1313/dase-course/ml-exercise-set/</link>
       <pubDate>Sat, 13 Dec 2025 20:26:19 +0800</pubDate>
       <guid>http://localhost:1313/dase-course/ml-exercise-set/</guid>
-      <description>本习题集包含16道经典机器学习问题的完整数学推导，
-从梯度下降、交叉熵损失、最大似然估计，
-到核方法、支持向量机对偶问题、信息增益比计算，
-再到 XGBoost 的二阶泰勒展开。
-每道题目都配有详细的解题步骤和数学证明，
-帮助读者深入理解机器学习算法的理论基础。
+      <description>这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：
+基础理论（梯度下降、交叉熵损失、最大似然估计）、
+判别模型（Logistic回归、GDA、SVM对偶优化）、
+深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
+强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
+大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
+每道题配有完整数学证明和算法原理解析。 参考资料：[机器学习](https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025)
 </description>
     </item>
     <item>
