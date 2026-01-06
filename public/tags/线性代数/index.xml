@@ -22,13 +22,5 @@ LU分解、Cholesky分解、QR分解、SVD奇异值分解、
 数学推导过程和部分编程实现代码。
 </description>
     </item>
-    <item>
-      <title>数学基础数学篇</title>
-      <link>http://localhost:1313/dase-course/mathematical-fundamentals-lecture/</link>
-      <pubDate>Sun, 21 Dec 2025 15:54:37 +0800</pubDate>
-      <guid>http://localhost:1313/dase-course/mathematical-fundamentals-lecture/</guid>
-      <description>这是一份待完成的笔记
-</description>
-    </item>
   </channel>
 </rss>

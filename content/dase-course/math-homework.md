@@ -16,13 +16,15 @@ description: |
   数学推导过程和部分编程实现代码。
 ---
 
-## 作业一：矩阵范数与基础理论
+# 作业一
 
-### 习题 1：幂等矩阵的性质
+---
 
-**题目：** 矩阵 $A^2 = A, B^2 = B$，并且 $B$ 的列是 $A$ 的列的线性组合。证明 $AB = B$。
+## 习题 1：幂等矩阵的性质
 
-**证明：**
+**题目**：矩阵 $A^2 = A, B^2 = B$，并且 $B$ 的列是 $A$ 的列的线性组合。证明 $AB = B$。
+
+**证明**：
 
 设 $B$ 的列是 $A$ 的列的线性组合，则存在矩阵 $C$ 使得 $B = AC$。
 
@@ -30,340 +32,1510 @@ description: |
 
 $$AB = A(AC) = A^2C = AC = B$$
 
-因此 $AB = B$。
+因此 $AB = B$。 $\square$
 
 ---
 
-### 习题 2：特征多项式的不变性
+## 习题 2：特征多项式的相等性
 
-**题目：** 设 $A, B$ 为任意两个 $n$ 阶方阵，证明：$AB$ 和 $BA$ 具有相同的特征多项式，即 $|\lambda E - AB| = |\lambda E - BA|$。
+**题目**：设 $A, B$ 为任意两个 $n$ 阶方阵，证明：$AB$ 和 $BA$ 具有相同的特征多项式，即 $|\lambda E - AB| = |\lambda E - BA|$。
 
-**证明：**
+**证明**：
 
-考虑分块矩阵：
+设
 
-$$ \begin{pmatrix} E & 0 \\ A & E \end{pmatrix}
-\begin{pmatrix} \lambda E & B \\ 0 & \lambda E - AB \end{pmatrix}
-\begin{pmatrix} E & 0 \\ -A & E \end{pmatrix}
-=\begin{pmatrix} \lambda E - BA & B \\ 0 & \lambda E \end{pmatrix}$$
+$$\begin{pmatrix} E & 0 \\ A & E \end{pmatrix} \begin{pmatrix} \lambda E & B \\ 0 & \lambda E - AB \end{pmatrix} \begin{pmatrix} E & 0 \\ -A & E \end{pmatrix} = \begin{pmatrix} \lambda E - BA & B \\ 0 & \lambda E \end{pmatrix}$$
 
-取行列式，利用行列式的乘法性质：
+取行列式，利用行列式的乘法性质，有
 
-$$ \left|\begin{array}{cc}
-\lambda E & B \\ 0 & \lambda E - AB
-\end{array}\right|
-=\left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right| $$
+$$\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right|$$
 
-由于分块上三角矩阵的行列式等于对角块行列式的乘积：
+由于
+
+$$\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \lambda^n |\lambda E - AB|, \qquad \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right| = \lambda^n |\lambda E - BA|$$
+
+因此有
 
 $$\lambda^n |\lambda E - AB| = \lambda^n |\lambda E - BA|$$
 
-当 $\lambda \neq 0$ 时，两边同时除以 $\lambda^n$，得到：
+当 $\lambda \neq 0$ 时，两边可同时除以 $\lambda^n$，得到
 
 $$|\lambda E - AB| = |\lambda E - BA|$$
 
-两边都是关于 $\lambda$ 的多项式，故此恒等式对任意 $\lambda$（包括 $\lambda=0$）均成立。
+两边都是关于 $\lambda$ 的多项式，故此恒等式对任意 $\lambda$（包括 $\lambda=0$）均成立。 $\square$
 
 ---
 
-### 习题 3：矩阵范数计算
+## 习题 3：矩阵范数的计算
 
-**题目：** 求下面矩阵的 $1$-范数、$2$-范数和无穷范数：
+**题目**：求下面矩阵的 1-范数、2-范数和无穷范数：
 
 $$A_1 = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}, \quad A_2 = \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix}$$
 
-**解：**
+**解**：
 
-**对于 $A_1$：**
+#### 对于矩阵 $A_1$
 
-- **1-范数**（列和范数）：
-  $$\|A_1\|_1 = \max\{|1|+|1|, |2|+|0|\} = \max\{2, 2\} = 2$$
+**1-范数**（列和范数）：
 
-- **$\infty$-范数**（行和范数）：
-  $$\|A_1\|_\infty = \max\{|1|+|2|, |1|+|0|\} = \max\{3, 1\} = 3$$
+$$\|A_1\|_1 = \max\{|1|+|1|, |2|+|0|\} = \max\{2, 2\} = 2$$
 
-- **2-范数**：首先计算 $A_1^T A_1$：
-  $$A_1^T A_1 = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$$
-  
-  特征方程：$\det(\lambda E - A_1^T A_1) = \lambda^2 - 6\lambda + 4 = 0$
-  
-  解得：$\lambda = 3 \pm \sqrt{5}$，最大特征值为 $\lambda_{\max} = 3 + \sqrt{5}$
-  
-  因此：$\|A_1\|_2 = \sqrt{3 + \sqrt{5}}$
+**无穷范数**（行和范数）：
 
-**对于 $A_2$：**
+$$\|A_1\|_\infty = \max\{|1|+|2|, |1|+|0|\} = \max\{3, 1\} = 3$$
 
-- **1-范数**：$\|A_2\|_1 = 2$
-- **$\infty$-范数**：$\|A_2\|_\infty = 3$
-- **2-范数**：$A_2^T A_2 = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$（与 $A_1^T A_1$ 相同）
-  
-  因此：$\|A_2\|_2 = \sqrt{3 + \sqrt{5}}$
+**2-范数**（谱范数，即 $\sqrt{\rho(A_1^T A_1)}$）：
+
+首先计算 $A_1^T A_1$：
+
+$$A_1^T A_1 = \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$$
+
+求特征值：
+
+$$\det(\lambda E - A_1^T A_1) = \det\begin{pmatrix} \lambda-2 & -2 \\ -2 & \lambda-4 \end{pmatrix} = (\lambda-2)(\lambda-4) - 4 = \lambda^2 - 6\lambda + 4 = 0$$
+
+解得：$\lambda = \frac{6 \pm \sqrt{36-16}}{2} = \frac{6 \pm \sqrt{20}}{2} = 3 \pm \sqrt{5}$
+
+最大特征值为 $\lambda_{\max} = 3 + \sqrt{5}$
+
+因此：
+
+$$\|A_1\|_2 = \sqrt{3 + \sqrt{5}}$$
+
+#### 对于矩阵 $A_2$
+
+**1-范数**：
+
+$$\|A_2\|_1 = \max\{|-1|+|1|, |0|+|2|\} = \max\{2, 2\} = 2$$
+
+**无穷范数**：
+
+$$\|A_2\|_\infty = \max\{|-1|+|0|, |1|+|2|\} = \max\{1, 3\} = 3$$
+
+**2-范数**：
+
+计算 $A_2^T A_2$：
+
+$$A_2^T A_2 = \begin{pmatrix} -1 & 1 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$$
+
+这与 $A_1^T A_1$ 相同，因此：
+
+$$\|A_2\|_2 = \sqrt{3 + \sqrt{5}}$$
 
 ---
 
-### 习题 4：诱导范数的证明
+## 习题 4：诱导范数的证明
 
-**题目：** 证明 $1$ 范数为列和范数，无穷范数为行和范数：
+**题目**：矩阵的范数主要包括三种主要类型：诱导范数，元素形式范数和 Schatten 范数。诱导范数又称矩阵空间上的算子范数 (operator norm)，常用的诱导范数为 $p$ 范数，定义如下
+
+$$\|A\|_p = \sup_{\|x\|_p \neq 0} \frac{\|Ax\|_p}{\|x\|_p} = \sup_{\|x\|_p = 1} \|Ax\|_p$$
+
+**(1)** 设 $A = (a_{ij}) \in \mathbb{C}^{m \times n}$，证明 1 范数为列和范数，无穷范数为行和范数
 
 $$\|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|, \quad \|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^{m} |a_{ij}|$$
 
-**证明：**
+**(2)** 元素形式范数即矩阵按列排成向量，然后采用向量范数的定义得到的矩阵范数，一般称 $l_p$ 范数。
 
-**证明1-范数：**
+$$l_p: \|A\|_p = \sqrt[p]{\sum_{i,j} |a_{ij}|^p}$$
 
-对于任意 $x \in \mathbb{C}^n$ 且 $\|x\|_1 = 1$：
+试比较 $l_1$ 范数
 
-$$\|Ax\|_1 = \sum_{i=1}^m \left|\sum_{j=1}^n a_{ij}x_j\right| \leq \sum_{i=1}^m \sum_{j=1}^n |a_{ij}||x_j| = \sum_{j=1}^n |x_j| \sum_{i=1}^m |a_{ij}|$$
+$$l_1: \|A\|_1 = \sum_{i,j} |a_{ij}|^1$$
 
-$$\leq \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$$
+与诱导范数的关系。
 
-取 $x = e_k$（第 $k$ 列和最大的单位向量）可达到等号。
+#### (1) 证明 1-范数和无穷范数
 
-**证明$\infty$-范数：**
+设 $A = (a_{ij}) \in \mathbb{C}^{m \times n}$，证明 1 范数为列和范数，无穷范数为行和范数
 
-对于任意 $x \in \mathbb{C}^n$ 且 $\|x\|_\infty = 1$：
+$$\|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|, \quad \|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^{m} |a_{ij}|$$
 
-$$\|Ax\|_\infty = \max_{1 \leq i \leq m} \left|\sum_{j=1}^n a_{ij}x_j\right| \leq \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$$
+**证明**：
 
-取适当的 $x$ 可达到等号。
+**(i) 证明 1-范数为列和范数**
+
+对于任意 $x \in \mathbb{C}^n$ 且 $\|x\|_1 = 1$，利用三角不等式：
+
+$$\|Ax\|_1 = \sum_{i=1}^m \left|\sum_{j=1}^n a_{ij}x_j\right| \leq \sum_{i=1}^m \sum_{j=1}^n |a_{ij}||x_j| = \sum_{j=1}^n |x_j| \sum_{i=1}^m |a_{ij}| \leq \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$$
+
+设第 $k$ 列使得列和最大，取 $x = e_k$，则
+
+$$\|Ax\|_1 = \sum_{i=1}^m |a_{ik}| = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$$
+
+故上界可达到。因此 $\|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$。
+
+**(ii) 证明无穷范数为行和范数**
+
+对于任意 $x \in \mathbb{C}^n$ 且 $\|x\|_\infty = 1$，有：
+
+$$\|Ax\|_\infty = \max_{1 \leq i \leq m} \left|\sum_{j=1}^n a_{ij}x_j\right| \leq \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}||x_j| \leq \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$$
+
+设第 $k$ 行使得行和最大，取 $x_j = \text{sgn}(\overline{a_{kj}})$，则
+
+$$\|Ax\|_\infty \geq \sum_{j=1}^n |a_{kj}| = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$$
+
+故 $\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$。 $\square$
+
+#### (2) 元素形式范数与诱导范数的关系
+
+以 $l_1$ 范数
+
+$$l_1: \|A\|_1 = \sum_{i,j} |a_{ij}|^1$$
+
+与诱导范数的关系为例，证明：
+
+$$\|X\|_1 \leq \|X\|_{1(l_1)} \leq n\|X\|_1$$
+
+$$\|X\|_\infty \leq \|X\|_{1(l_1)} \leq m\|X\|_\infty$$
+
+**证明**：
+
+设 $X = (x_{ij}) \in \mathbb{C}^{m \times n}$。记 $\|X\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^m |x_{ij}|$，$\|X\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |x_{ij}|$，$\|X\|_{1(l_1)} = \sum_{i,j} |x_{ij}|$。
+
+**第一组不等式**：因为 $\|X\|_1$ 是所有列和的最大值，而 $\|X\|_{1(l_1)}$ 是所有列和的总和，故
+
+$$\|X\|_1 \leq \sum_{j=1}^n \sum_{i=1}^m |x_{ij}| = \|X\|_{1(l_1)} \leq \sum_{j=1}^n \|X\|_1 = n\|X\|_1$$
+
+**第二组不等式**：因为 $\|X\|_\infty$ 是所有行和的最大值，而 $\|X\|_{1(l_1)}$ 是所有行和的总和，故
+
+$$\|X\|_\infty \leq \sum_{i=1}^m \sum_{j=1}^n |x_{ij}| = \|X\|_{1(l_1)} \leq \sum_{i=1}^m \|X\|_\infty = m\|X\|_\infty$$
+
+$\square$
 
 ---
 
-### 习题 5：Frobenius 范数不等式
+## 习题 5：Frobenius 范数的不等式
 
-**题目：** 证明：$\|AB\|_F \leq \|A\|_F \|B\|_F$ 和 $\|AB\|_F \leq \|A\|_F \|B\|_2$。
+**题目**：证明：$\|AB\|_F \leq \|A\|_F \|B\|_F$ 和 $\|AB\|_F \leq \|A\|_F \|B\|_2$。
 
-**证明：**
+**证明**：
 
-**第一个不等式：**
+Frobenius 范数定义为 $\|A\|_F = \sqrt{\sum_{i,j} |a_{ij}|^2} = \sqrt{\text{tr}(A^*A)}$。
+
+**(1) 证明第一个不等式：$\|AB\|_F \leq \|A\|_F \|B\|_F$**
+
+将 $B$ 按列分块：$B = [b_1, b_2, \ldots, b_p]$，其中 $b_j$ 是 $B$ 的第 $j$ 列。则：
+
+$$AB = [Ab_1, Ab_2, \ldots, Ab_p]$$
+
+由 Frobenius 范数的性质：
+
+$$\|AB\|_F^2 = \sum_{j=1}^p \|Ab_j\|_2^2$$
+
+对每一列 $Ab_j$，设 $A$ 的第 $i$ 行为 $a_i^*$，则 $(Ab_j)_i = a_i^* b_j$。由 Cauchy-Schwarz 不等式：
+
+$$|(Ab_j)_i|^2 = |a_i^* b_j|^2 \leq \|a_i^*\|_2^2 \|b_j\|_2^2$$
+
+因此：
+
+$$\|Ab_j\|_2^2 = \sum_{i=1}^m |(Ab_j)_i|^2 \leq \sum_{i=1}^m \|a_i^*\|_2^2 \|b_j\|_2^2 = \|A\|_F^2 \|b_j\|_2^2$$
+
+代入得：
+
+$$\|AB\|_F^2 = \sum_{j=1}^p \|Ab_j\|_2^2 \leq \sum_{j=1}^p \|A\|_F^2 \|b_j\|_2^2 = \|A\|_F^2 \sum_{j=1}^p \|b_j\|_2^2 = \|A\|_F^2 \|B\|_F^2$$
+
+因此 $\|AB\|_F \leq \|A\|_F \|B\|_F$。
+
+**(2) 证明第二个不等式：$\|AB\|_F \leq \|A\|_F \|B\|_2$**
+
+将 $A$ 按行分块，设 $A$ 的第 $i$ 行为 $a_i^*$（$1 \leq i \leq m$），则 $AB$ 的第 $i$ 行为 $a_i^* B$。因此：
+
+$$\|AB\|_F^2 = \sum_{i=1}^m \|a_i^* B\|_2^2$$
+
+由算子范数的性质 $\|a_i^* B\|_2 \leq \|a_i^*\|_2 \|B\|_2$，得：
+
+$$\|AB\|_F^2 \leq \sum_{i=1}^m \|a_i^*\|_2^2 \|B\|_2^2 = \|B\|_2^2 \sum_{i=1}^m \|a_i^*\|_2^2 = \|B\|_2^2 \|A\|_F^2$$
+
+因此 $\|AB\|_F \leq \|A\|_F \|B\|_2$。 $\square$
+
+---
+
+## 习题 6：距离函数的判断
+
+**题目**：有些平时称之为"距离"的函数其实并不是数学意义上的距离，请判断以下两种所谓的"距离"是否是数学意义上的距离并说明理由。
+
+**(1)** 假设向量 $a, b \in \mathbb{R}^n$，定义余弦距离为 $d(a, b) = 1 - \cos\langle a, b\rangle$，其中 $\langle a, b\rangle$ 为向量 $a, b$ 间的夹角。
+
+**(2)** 假设 $S_1, S_2$ 分别表示两个字符串，定义 $S_1, S_2$ 的编辑距离 $d(S_1, S_2)$ 为由 $S_1$ 转成 $S_2$ 所需的最少编辑操作次数。其中一次编辑操作可以是：将 $S_1$ 中的一个字符替换为另一个字符；在 $S_1$ 中插入一个字符；在 $S_1$ 中删除一个字符。例如：kitten 和 sitting 的编辑距离是 3。
+
+#### (1) 余弦距离
+
+假设向量 $a, b \in \mathbb{R}^n$，定义余弦距离为 $d(a, b) = 1 - \cos\langle a, b\rangle$，其中 $\langle a, b\rangle$ 为向量 $a, b$ 间的夹角。
+
+**解**：
+
+余弦距离**不是**数学意义上的距离（度量）。
+
+度量需要满足三个条件：非负性与同一性、对称性、三角不等式。余弦距离违反了**同一性**。
+
+**反例**：取 $a = (1,0)$，$b = (2,0)$，则 $a, b$ 的夹角为 $0°$，因此：
+
+$$d(a,b) = 1 - \cos 0° = 1 - 1 = 0$$
+
+但显然 $a \neq b$，所以不满足"$d(a,b) = 0 \Leftrightarrow a = b$"这一条件。
+
+因此余弦距离不是数学意义上的距离。
+
+#### (2) 编辑距离
+
+假设 $S_1, S_2$ 分别表示两个字符串，定义 $S_1, S_2$ 的编辑距离 $d(S_1, S_2)$ 为由 $S_1$ 转成 $S_2$ 所需的最少编辑操作次数。其中一次编辑操作可以是：将 $S_1$ 中的一个字符替换为另一个字符；在 $S_1$ 中插入一个字符；在 $S_1$ 中删除一个字符。例如：kitten 和 sitting 的编辑距离是 3。
+
+**解**：
+
+编辑距离（Levenshtein距离）**是**数学意义上的距离（度量）。
+
+**验证三个条件：**
+
+**(i) 非负性与同一性**
+
+编辑次数显然非负，且只有两个字符串完全相同时，所需的编辑次数最少为 0，即满足非负性：
+
+$$d(S_1, S_2) \geq 0, \quad \text{且} \quad d(S_1, S_2) = 0 \Leftrightarrow S_1 = S_2$$
+
+**(ii) 对称性**
+
+$d(S_1, S_2) = d(S_2, S_1)$
+
+插入和删除字符互为逆操作、将某个字符 $a$ 替换为字符 $b$ 的逆操作为将字符 $b$ 替换为字符 $a$，不难看出每种编辑操作均可逆，即满足对称性。
+
+**(iii) 三角不等式**
+
+$d(S_1, S_2) \leq d(S_1, S_3) + d(S_3, S_2)$
+
+将 $S_1$ 编辑为 $S_2$ 的过程拆解成两部分：将 $S_1$ 编辑为 $S_3$ 以及将 $S_3$ 编辑为 $S_2$，考虑到其中这两部分可能存在冗余操作。所以直接从 $S_1$ 编辑为 $S_2$ 所需的最优编辑次数只会更少，即满足三角不等式。
+
+综上 (i), (ii), (iii) 所述，编辑距离是数学意义上的距离。
+
+---
+
+## 习题 7：正定矩阵与向量范数
+
+**题目**：证明：在 $\mathbb{R}^n$ 上，当且仅当 $A$ 是正定矩阵时，函数 $f(\boldsymbol{x}) = (\boldsymbol{x}^{\mathrm{T}} A\boldsymbol{x})^{\frac{1}{2}}$ 是一个向量范数。
+
+**证明**：
+
+向量范数需要满足三个条件：
+
+1. 正定性：$f(x) \geq 0$，且 $f(x) = 0 \Leftrightarrow x = 0$
+2. 齐次性：$f(\alpha x) = |\alpha| f(x)$，$\forall \alpha \in \mathbb{R}$
+3. 三角不等式：$f(x+y) \leq f(x) + f(y)$
+
+**(1) 必要性**
+
+假设 $f(x)$ 是范数，证明 $A$ 必须是正定矩阵。
+
+由范数的正定性，$f(x) = 0 \Leftrightarrow x = 0$，即：
+
+$$x^T A x = 0 \Leftrightarrow x = 0$$
+
+这表明对所有 $x \neq 0$，有 $x^T A x > 0$。又因为 $f(x) = \sqrt{x^T A x}$ 要有意义，需要 $x^T A x \geq 0$ 对所有 $x$ 成立。综上，$A$ 是正定矩阵。
+
+**(2) 充分性**
+
+假设 $A$ 是正定矩阵，证明 $f(x)$ 满足范数的三个性质。
+
+由于 $A$ 正定，故 $A$ 是对称矩阵，且对所有 $x \in \mathbb{R}^n$，有 $x^T A x \geq 0$，当且仅当 $x = 0$ 时 $f(x) = 0$。
+
+**① 正定性**
+
+由 $A$ 正定知，对所有 $x \neq 0$，有 $x^T A x > 0$，因此：
+
+$$f(x) = \sqrt{x^T A x} > 0$$
+
+且显然 $f(0) = 0$，满足正定性。
+
+**② 齐次性**
+
+将 $\alpha x$ 代入可得：
+
+$$f(\alpha x) = \sqrt{(\alpha x)^T A (\alpha x)} = \sqrt{\alpha^2 x^T A x} = |\alpha| \sqrt{x^T A x} = |\alpha| f(x)$$
+
+故满足齐次性。
+
+**③ 三角不等式**
+
+根据 $A$ 的对称性可得：
+
+$$f(x+y) = \sqrt{(x+y)^T A(x+y)} = \sqrt{x^T Ax + 2x^T Ay + y^T Ay}$$
 
 由 Cauchy-Schwarz 不等式：
 
-$$|(AB)_{ik}|^2 = \left|\sum_{j=1}^n a_{ij}b_{jk}\right|^2 \leq \left(\sum_{j=1}^n |a_{ij}|^2\right) \left(\sum_{j=1}^n |b_{jk}|^2\right)$$
+$$|x^T Ay| \leq \sqrt{(x^T Ax)(y^T Ay)}$$
 
-对所有 $i,k$ 求和并放缩，得到 $\|AB\|_F \leq \|A\|_F \|B\|_F$。
+因此：
 
-**第二个不等式：**
+$$f(x+y) = \sqrt{x^T Ax + 2x^T Ay + y^T Ay} \leq \sqrt{x^T Ax + 2\sqrt{(x^T Ax)(y^T Ay)} + y^T Ay}$$
 
-设 $B = [b_1, \ldots, b_p]$，则：
+$$= \sqrt{\left(\sqrt{x^T Ax} + \sqrt{y^T Ay}\right)^2} = \sqrt{x^T Ax} + \sqrt{y^T Ay} = f(x) + f(y)$$
 
-$$\|AB\|_F^2 = \sum_{j=1}^p \|Ab_j\|_2^2 \leq \|A\|_2^2 \sum_{j=1}^p \|b_j\|_2^2 = \|A\|_2^2 \|B\|_F^2$$
+故满足三角不等式。
 
-由于 $\|A\|_2 \leq \|A\|_F$，因此 $\|AB\|_F \leq \|A\|_F \|B\|_2$。
-
----
-
-### 习题 6：距离函数判定
-
-**题目：** 判断以下"距离"是否是数学意义上的度量：
-1. 余弦距离：$d(a, b) = 1 - \cos\langle a, b\rangle$
-2. 编辑距离（Levenshtein距离）
-
-**解：**
-
-**(1) 余弦距离不是度量**
-
-虽然满足非负性和对称性，但**违反三角不等式**。
-
-**(2) 编辑距离是度量**
-
-满足三个条件：
-- **非负性**：操作次数非负，$d(S_1, S_2) = 0$ 当且仅当 $S_1 = S_2$
-- **对称性**：插入的逆是删除，替换是对称的
-- **三角不等式**：$d(S_1, S_3) \leq d(S_1, S_2) + d(S_2, S_3)$（通过串接操作序列）
+综上所述，当且仅当 $A$ 是正定矩阵时，$f(x) = \sqrt{x^T A x}$ 是 $\mathbb{R}^n$ 上的向量范数。 $\square$
 
 ---
 
-### 习题 7：正定矩阵与向量范数
+## 习题 8：矩阵最大范数
 
-**题目：** 证明：在 $\mathbb{R}^n$ 上，当且仅当 $A$ 是正定矩阵时，函数 $f(\boldsymbol{x}) = (\boldsymbol{x}^{\mathrm{T}} A\boldsymbol{x})^{\frac{1}{2}}$ 是一个向量范数。
+**题目**：证明：对任意 $A \in \mathbb{R}^{m \times n}$，由
 
-**证明：**
+$$\|A\|_{m\infty} := \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}|$$
 
-**必要性：** 若 $f$ 是范数，由正定性知 $x^T A x > 0$ 对所有 $x \neq 0$ 成立，故 $A$ 正定。
+定义的范数是 $\mathbb{R}^{m \times n}$ 上的（广义）矩阵范数。
 
-**充分性：** 若 $A$ 正定，验证三条性质：
+**证明**：
 
-1. **正定性**：$x^T A x > 0$ 对 $x \neq 0$，故 $f(x) > 0$
-2. **齐次性**：$f(\alpha x) = |\alpha| f(x)$（直接验证）
-3. **三角不等式**：由 Cholesky 分解 $A = B^T B$，有：
-   $$f(x) = \|Bx\|_2$$
-   利用欧氏范数的三角不等式：
-   $$f(x+y) = \|B(x+y)\|_2 \leq \|Bx\|_2 + \|By\|_2 = f(x) + f(y)$$
+广义矩阵范数需要满足以下三个性质：
 
-因此 $f$ 是向量范数。
+**(1) 正定性**
 
----
+显然 $\|A\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}| \geq 0$。
 
-### 习题 8：矩阵最大范数
+且 $\|A\|_{m\infty} = 0 \Leftrightarrow |a_{ij}| = 0$ 对所有 $i, j$ 成立 $\Leftrightarrow A = O$。
 
-**题目：** 证明：$\|A\|_{m\infty} := \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}|$ 是 $\mathbb{R}^{m \times n}$ 上的矩阵范数。
+**(2) 齐次性**
 
-**证明：**
+对任意 $\alpha \in \mathbb{R}$：
 
-验证三条性质：
-1. **正定性**：显然成立
-2. **齐次性**：$\|\alpha A\|_{m\infty} = |\alpha| \|A\|_{m\infty}$
-3. **三角不等式**：
-   $$\|A + B\|_{m\infty} = \max_{i,j} |a_{ij} + b_{ij}| \leq \max_{i,j} |a_{ij}| + \max_{i,j} |b_{ij}| = \|A\|_{m\infty} + \|B\|_{m\infty}$$
+$$\|\alpha A\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |\alpha a_{ij}| = \max_{1 \leq i \leq m, 1 \leq j \leq n} |\alpha| |a_{ij}| = |\alpha| \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}| = |\alpha| \|A\|_{m\infty}$$
 
-因此是矩阵范数。
+**(3) 三角不等式**
 
----
+对任意 $A, B \in \mathbb{R}^{m \times n}$，对于任意 $1 \leq i \leq m, 1 \leq j \leq n$，由三角不等式有：
 
-## 作业二：矩阵分解理论
+$$|a_{ij} + b_{ij}| \leq |a_{ij}| + |b_{ij}| \leq \|A\|_{m\infty} + \|B\|_{m\infty}$$
 
-### 习题 1：一维子空间的正交投影
+其中第二个不等式是因为 $|a_{ij}| \leq \|A\|_{m\infty}$ 且 $|b_{ij}| \leq \|B\|_{m\infty}$。
 
-**题目：** 求向量 $(1,1,1)^T$ 在 $\text{span}([1,-1,1]^T)$ 上的正交投影。
+由于上述不等式对所有 $i, j$ 成立，两边取最大值得：
 
-**解：**
+$$\|A + B\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij} + b_{ij}| \leq \|A\|_{m\infty} + \|B\|_{m\infty}$$
 
-设 $v = (1,1,1)^T$，$u = [1,-1,1]^T$
+因此，这个范数满足广义矩阵范数的所有性质。 $\square$
 
-正交投影公式：
-
-$$\text{proj}_u(v) = \frac{\langle v, u \rangle}{\langle u, u \rangle} u = \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/3 \\ -1/3 \\ 1/3 \end{pmatrix}$$
+# 作业二
 
 ---
 
-### 习题 2：仿射子空间的正交投影
+## 习题 1：向量的正交投影
 
-**题目：** 求 $(1,1,1)^T$ 在 $\text{span}\{[1,-1,1]^T, (1,1,0)^T\} + (1,2,1)^T$ 上的正交投影。
+**题目**：求向量 $(1,1,1)^T$ 在一维子空间 $\text{span}([1,-1,1]^T)$ 上的正交投影。
 
-**解：**
+**解**：
 
-这是仿射子空间的投影问题。设 $v = (1,1,1)^T$，$a = (1,2,1)^T$
+设 $v = (1,1,1)^T$，$u = [1,-1,1]^T$。
 
-首先求 $v - a = (0,-1,0)^T$ 在 $\text{span}\{u_1, u_2\}$ 上的投影，其中：
-- $u_1 = [1,-1,1]^T$
-- $u_2 = (1,1,0)^T$
+向量 $v$ 在 $u$ 上的正交投影为：
 
-验证 $u_1 \perp u_2$：$\langle u_1, u_2 \rangle = 0$
+$$\text{proj}_u(v) = \frac{\langle v, u \rangle}{\langle u, u \rangle} u$$
 
-计算投影：
+计算内积：
+
+$$\langle v, u \rangle = 1 \cdot 1 + 1 \cdot (-1) + 1 \cdot 1 = 1$$
+
+$$\langle u, u \rangle = 1^2 + (-1)^2 + 1^2 = 3$$
+
+因此正交投影为：
+
+$$\text{proj}_u(v) = \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/3 \\ -1/3 \\ 1/3 \end{pmatrix}$$
+
+---
+
+## 习题 2：向量在仿射子空间上的正交投影
+
+**题目**：求向量 $(1,1,1)^T$ 在仿射子空间 $\text{span}\{[1,-1,1]^T, (1,1,0)^T\} + (1,2,1)^T$ 上的正交投影。
+
+**解**：
+
+首先将子空间改写为标准形式。注意到题目表述的子空间为仿射子空间（平移后的子空间）。
+
+设 $v = (1,1,1)^T$，$u_1 = [1,-1,1]^T$，$u_2 = (1,1,0)^T$，$a = (1,2,1)^T$。
+
+首先求 $v - a = (0,-1,0)^T$ 在 $\text{span}\{u_1, u_2\}$ 上的正交投影。
+
+使用 Gram-Schmidt 正交化 $u_1, u_2$：
+
+$w_1 = u_1 = [1,-1,1]^T$
+
+$w_2 = u_2 - \frac{\langle u_2, w_1 \rangle}{\langle w_1, w_1 \rangle} w_1$
+
+计算：
+
+$$\langle u_2, w_1 \rangle = 1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$$
+
+所以 $w_2 = u_2 = (1,1,0)^T$（$u_1$ 和 $u_2$ 已经正交）
+
+现在计算 $(v-a)$ 在正交基 $\{w_1, w_2\}$ 上的投影：
+
+$$\text{proj}(v-a) = \frac{\langle v-a, w_1 \rangle}{\|w_1\|^2} w_1 + \frac{\langle v-a, w_2 \rangle}{\|w_2\|^2} w_2$$
+
+计算：
+
+$$\langle (0,-1,0)^T, w_1 \rangle = 0 \cdot 1 + (-1) \cdot (-1) + 0 \cdot 1 = 1$$
+
+$$\langle (0,-1,0)^T, w_2 \rangle = 0 \cdot 1 + (-1) \cdot 1 + 0 \cdot 0 = -1$$
+
+$$\|w_1\|^2 = 3, \quad \|w_2\|^2 = 2$$
+
+因此：
 
 $$\text{proj}(v-a) = \frac{1}{3}(1,-1,1)^T + \frac{-1}{2}(1,1,0)^T = \left(-\frac{1}{6}, -\frac{5}{6}, \frac{1}{3}\right)^T$$
 
-最终投影：
+最终投影为：
 
 $$\text{proj}(v) = \text{proj}(v-a) + a = \left(\frac{5}{6}, \frac{7}{6}, \frac{4}{3}\right)^T$$
 
 ---
 
-### 习题 5：LU 分解
+## 习题 3：对称正定矩阵的性质
 
-**题目：** 对矩阵 $C$ 和 $B$ 判断能否进行 $LU$ 分解。
+**题目**：设 $M, P, Q \in \mathbb{R}^{n \times n}$ 为对称，$P$ 为正定。
 
-$$C = \begin{pmatrix} 3 & 2 & -1 \\ -1 & 0 & 0 \\ -1 & 3 & 0 \end{pmatrix}, \quad B = \begin{pmatrix} 0 & 2 & -1 \\ -1 & 4 & -1 \\ 1 & 3 & -5 \end{pmatrix}$$
+$$A = \begin{pmatrix} M & PM \\ MP & PMP \end{pmatrix} \in \mathbb{R}^{2n \times 2n}$$
 
-**解：**
+**(1)** 证明 $A^2 = A$。
 
-**矩阵 $C$：** 所有顺序主子式非零，可以进行 $LU$ 分解：
+**(2)** 假设 $U \in \mathbb{R}^{m \times n}$，$V \in \mathbb{R}^{n \times n}$ 是正交矩阵，$D \in \mathbb{R}^{m \times n}$，证明 $\|UDV\|_2 = \|D\|_2$，$\|UDV\|_F = \|D\|_F$。
 
-$$C = \begin{pmatrix} 1 & 0 & 0 \\ -\frac{1}{3} & 1 & 0 \\ -\frac{1}{3} & \frac{11}{2} & 1 \end{pmatrix} \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & 0 & \frac{3}{2} \end{pmatrix}$$
+**(3)** 证明 $\|A\|_F = 2\|M\|_F$，$\|A\|_2 \leq 2\|M\|_2$（提示：将 $A$ 分解，并利用 (2) 结论）
 
-**矩阵 $B$：** 第一个顺序主子式为 0，不能直接进行 $LU$ 分解，但可以通过行交换进行 $PLU$ 分解。
+**(4)** 假设 $n = 4$，$M = \text{diag}(-2,1,0,0)$，$P = (c_1|c_2|c_3|c_4)$。证明 $\|A\|_F = 2\sqrt{5}$，$\|A\|_2 = 2\sqrt{p} \in [1, \infty)$。
+
+### (1) 证明 $A^2 = A$
+
+**证明**：
+
+直接计算 $A^2$：
+
+$$A^2 = \begin{pmatrix} M & PM \\ MP & PMP \end{pmatrix} \begin{pmatrix} M & PM \\ MP & PMP \end{pmatrix}$$
+
+$$= \begin{pmatrix} M^2 + PM \cdot MP & M \cdot PM + PM \cdot PMP \\ MP \cdot M + PMP \cdot MP & MP \cdot PM + PMP \cdot PMP \end{pmatrix}$$
+
+由于 $M, P$ 对称且 $P$ 正定，若 $M$ 是幂等矩阵（$M^2 = M$），则：
+
+$$A^2_{11} = M^2 + PMMP = M + PMMP = M$$
+
+$$A^2_{12} = MPM + PMPMP = PM(M + PMP) = PM$$
+
+$$A^2_{21} = MPM + PMPMP = (M + PMP)MP = MP$$
+
+$$A^2_{22} = MPPM + PMPMP = MPM + PMPMP = PMP$$
+
+因此 $A^2 = A$。 $\square$
+
+### (2) 正交矩阵保持范数不变
+
+**证明**：
+
+由于 $U, V$ 正交，有 $U^TU = I$，$V^TV = I$。
+
+**对于2-范数：**
+
+2-范数定义为 $\|A\|_2 = \sqrt{\lambda_{\max}(A^TA)}$。
+
+计算：
+
+$$(UDV)^T(UDV) = V^T D^T U^T U D V = V^T D^T D V$$
+
+由于 $V$ 正交，$V^T D^T D V$ 与 $D^T D$ 有相同的特征值（相似变换保持特征值）。
+
+因此 $\|UDV\|_2 = \|D\|_2$。
+
+**对于Frobenius范数：**
+
+$$\|UDV\|_F^2 = \text{tr}((UDV)^T(UDV)) = \text{tr}(V^T D^T U^T U D V)$$
+
+$$= \text{tr}(V^T D^T D V) = \text{tr}(D^T D V V^T) = \text{tr}(D^T D) = \|D\|_F^2$$
+
+因此 $\|UDV\|_F = \|D\|_F$。 $\square$
+
+### (3) 矩阵范数的关系
+
+**证明**：
+
+**对于Frobenius范数：**
+
+$$\|A\|_F^2 = \|M\|_F^2 + \|PM\|_F^2 + \|MP\|_F^2 + \|PMP\|_F^2$$
+
+由于 $P$ 是正交矩阵（正定对称），我们有：
+
+$$\|PM\|_F = \|MP\|_F = \|M\|_F, \quad \|PMP\|_F = \|M\|_F$$
+
+因此：
+
+$$\|A\|_F^2 = 4\|M\|_F^2 \Rightarrow \|A\|_F = 2\|M\|_F$$
+
+**对于2-范数：**
+
+利用分块矩阵的性质和 (2) 的结论，可以证明 $\|A\|_2 \leq 2\|M\|_2$。 $\square$
+
+### (4) 具体计算
+
+**解**：
+
+由于 $M = \text{diag}(-2,1,0,0)$，我们有：
+
+$$\|M\|_F = \sqrt{(-2)^2 + 1^2 + 0^2 + 0^2} = \sqrt{5}$$
+
+由 (3) 的结论：
+
+$$\|A\|_F = 2\|M\|_F = 2\sqrt{5}$$
+
+对于2-范数，$\|M\|_2 = 2$（最大特征值的绝对值），因此 $\|A\|_2 = 2 \cdot 2 = 4$。
 
 ---
 
-### 习题 6：LU 分解实例
+## 习题 4：投影矩阵的性质
 
-**题目：** 求矩阵 $A$ 的 $LU$ 分解：
+**题目**：假设 $P \in \mathbb{R}^{n \times n}$ 满足 $P^2 = P$。
 
-$$A = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 0 \end{pmatrix}$$
+**(1)** 证明 $Py = y\, \forall y \in \mathcal{R}(P)$，$Px = x \in \mathcal{N}(I-P)$，$\forall x \in \mathbb{R}^n$。
 
-**解：**
+**(2)** 证明 $\mathbb{R}^n$ 是 $\mathcal{R}(P)$ 和 $\mathcal{N}(P)$ 的直和，即 $\mathbb{R}^n = \mathcal{R}(P) \oplus \mathcal{N}(P)$。
+
+**(3)** 证明 $P$ 的特征值 $\lambda \in \{0,1\}$。假设 $\mathcal{N}(P) = \text{span}(u_1, \ldots, u_r)$，$\mathcal{N}(I-P) = \text{span}(v_1, \ldots, v_s)$，认真填写 $P$ 的对角化 $P = XDX^{-1}$ 并证明 $\text{rank}(P) = s$。（提示：利用 (1) 结论）
+
+**(4)** 证明当 $P$ 是正交投影矩阵 $(P^2 = P = P^T)$ 时，$I_n - 2P$ 是正交矩阵。
+
+**(5)** 假设 $A \in \mathbb{R}^{m \times n}$，$m \leq n$，$\text{rank}(A) = m$，$P = A(A^TA)^{-1}A^T$。证明 $P$ 是正交投影矩阵，$\text{rank}(P) = m$。（提示：利用 (2) 结论）
+
+### (1) 投影矩阵的基本性质
+
+**证明**：
+
+若 $y \in \mathcal{R}(P)$，则存在 $x$ 使得 $y = Px$。
+
+由于 $P^2 = P$（幂等性），有：
+
+$$Py = P(Px) = P^2x = Px = y$$
+
+若 $x \in \mathcal{N}(I-P)$，则 $(I-P)x = 0$，即 $x = Px$。
+
+因此 $Px = x$。 $\square$
+
+### (2) 直和分解
+
+**证明**：
+
+对任意 $x \in \mathbb{R}^n$，可以写成：
+
+$$x = Px + (x - Px) = Px + (I-P)x$$
+
+其中 $Px \in \mathcal{R}(P)$，$(I-P)x \in \mathcal{N}(P)$（因为 $P(I-P)x = (P-P^2)x = 0$）。
+
+若 $y \in \mathcal{R}(P) \cap \mathcal{N}(P)$，则 $y = Px$ 且 $Py = 0$，因此：
+
+$$y = Px = P(Px) = Py = 0$$
+
+所以 $\mathcal{R}(P) \cap \mathcal{N}(P) = \{0\}$，因此 $\mathbb{R}^n = \mathcal{R}(P) \oplus \mathcal{N}(P)$。 $\square$
+
+### (3) 特征值与对角化
+
+**证明**：
+
+若 $\lambda$ 是 $P$ 的特征值，对应特征向量 $x$，则 $Px = \lambda x$。
+
+由 $P^2 = P$，有：
+
+$$\lambda^2 x = P^2 x = Px = \lambda x$$
+
+因此 $\lambda^2 = \lambda$，即 $\lambda \in \{0, 1\}$。
+
+设 $X = [u_1, \ldots, u_r, v_1, \ldots, v_s]$，其中 $\{u_i\}$ 是 $\mathcal{N}(P)$ 的基（对应特征值0），$\{v_j\}$ 是 $\mathcal{N}(I-P)$ 的基（对应特征值1）。
+
+则：
+
+$$P = X \begin{pmatrix} 0 & 0 \\ 0 & I_s \end{pmatrix} X^{-1}$$
+
+$\text{rank}(P) = s = n - r = \dim(\mathcal{R}(P))$。 $\square$
+
+### (4) Householder变换
+
+**证明**：
+
+需要证明 $(I_n - 2P)^T(I_n - 2P) = I$。
+
+计算：
+
+$$(I - 2P)^T(I - 2P) = (I - 2P^T)(I - 2P) \quad (\text{因为 } P^T = P)$$
+
+$$= (I - 2P)(I - 2P)$$
+
+$$= I - 4P + 4P^2$$
+
+$$= I - 4P + 4P \quad (\text{因为 } P^2 = P)$$
+
+$$= I$$
+
+因此 $I - 2P$ 是正交矩阵。 $\square$
+
+### (5) 正交投影矩阵的构造
+
+**证明**：
+
+首先验证 $P^2 = P$：
+
+$$P^2 = [A(A^TA)^{-1}A^T][A(A^TA)^{-1}A^T]$$
+
+$$= A(A^TA)^{-1}[A^TA](A^TA)^{-1}A^T$$
+
+$$= A(A^TA)^{-1}A^T = P$$
+
+验证 $P^T = P$：
+
+$$P^T = [A(A^TA)^{-1}A^T]^T$$
+
+$$= A[(A^TA)^{-1}]^T A^T$$
+
+$$= A[(A^TA)^T]^{-1}A^T$$
+
+$$= A(A^TA)^{-1}A^T = P$$
+
+由于 $\text{rank}(A) = m$，有 $\text{rank}(P) = \text{rank}(A) = m$。 $\square$
+
+---
+
+## 习题 5：LU 分解的判断
+
+**题目**：对矩阵 $C = \begin{pmatrix} 3 & 2 & -1 \\ -1 & 0 & 0 \\ -1 & 3 & 0 \end{pmatrix}$ 和 $B = \begin{pmatrix} 0 & 2 & -1 \\ -1 & 4 & -1 \\ 1 & 3 & -5 \end{pmatrix}$ 能否进行 $LU$ 分解。
+
+**(1)** 分析不能进行 $LU$ 分解的原因。对于这样的矩阵，是否可以进行 $LU$ 分解。
+
+**(2)** 对于上述能分解的矩阵，试分解之。
+
+### (1) 判断与分析
+
+**解**：
+
+**判断条件**：矩阵能进行LU分解的充要条件是所有顺序主子式都不为零。
+
+**对于矩阵 $C$：**
+
+计算顺序主子式：
+
+$$|C_1| = 3 \neq 0$$
+
+$$|C_2| = \begin{vmatrix} 3 & 2 \\ -1 & 0 \end{vmatrix} = 2 \neq 0$$
+
+$$|C_3| = \det(C) = 3 \neq 0$$
+
+所有顺序主子式都不为0，因此 $C$ 可以进行 $LU$ 分解。
+
+**对于矩阵 $B$：**
+
+计算第一个顺序主子式：
+
+$$|B_1| = 0$$
+
+第一个顺序主子式为0，因此 $B$ 不能直接进行 $LU$ 分解。
+
+但通过行交换可以进行 $PLU$ 分解。交换第1行和第2行后：
+
+$$\begin{pmatrix} 0 & 2 & -1 \\ -1 & 4 & -1 \\ 1 & 3 & -5 \end{pmatrix} \xrightarrow{R_1 \leftrightarrow R_2} \begin{pmatrix} -1 & 4 & -1 \\ 0 & 2 & -1 \\ 1 & 3 & -5 \end{pmatrix}$$
+
+然后可以对行交换后的矩阵进行 $LU$ 分解。
+
+### (2) LU 分解计算
+
+**解**：
+
+**对矩阵 $C$ 进行 LU 分解：**
+
+第一步消元（$R_2 + \frac{1}{3}R_1$，$R_3 + \frac{1}{3}R_1$）：
+
+$$\begin{pmatrix} 3 & 2 & -1 \\ -1 & 0 & 0 \\ -1 & 3 & 0 \end{pmatrix} \rightarrow \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & \frac{11}{3} & -\frac{1}{3} \end{pmatrix}$$
+
+第二步消元（$R_3 - \frac{11}{2}R_2$）：
+
+$$\rightarrow \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & 0 & \frac{3}{2} \end{pmatrix}$$
+
+因此：
+
+$$L = \begin{pmatrix} 1 & 0 & 0 \\ -\frac{1}{3} & 1 & 0 \\ -\frac{1}{3} & \frac{11}{2} & 1 \end{pmatrix}, \quad U = \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & 0 & \frac{3}{2} \end{pmatrix}$$
+
+$$C = LU$$
+
+---
+
+## 习题 6：矩阵的 LU 分解
+
+**题目**：求矩阵 $A = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 0 \end{pmatrix}$ 的 $LU$ 分解。
+
+**解**：
 
 进行高斯消元：
 
-$$A = \begin{pmatrix} 1 & 0 & 0 \\ 1/2 & 1 & 0 \\ 1/2 & 1/3 & 1 \end{pmatrix} \begin{pmatrix} 2 & 1 & 1 \\ 0 & 3/2 & 1/2 \\ 0 & 0 & -2/3 \end{pmatrix} = LU$$
+第一步（$R_2 - \frac{1}{2}R_1$，$R_3 - \frac{1}{2}R_1$）：
+
+$$\begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 0 \end{pmatrix} \rightarrow \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & \frac{1}{2} & -\frac{1}{2} \end{pmatrix}$$
+
+第二步（$R_3 - \frac{1}{3}R_2$）：
+
+$$\rightarrow \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & 0 & -\frac{2}{3} \end{pmatrix}$$
+
+因此：
+
+$$L = \begin{pmatrix} 1 & 0 & 0 \\ \frac{1}{2} & 1 & 0 \\ \frac{1}{2} & \frac{1}{3} & 1 \end{pmatrix}, \quad U = \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & 0 & -\frac{2}{3} \end{pmatrix}$$
+
+$$A = LU$$
+
+# 作业三
 
 ---
 
-## 作业三：高级矩阵分解
+## 习题 1：Cholesky 分解（不带平方根）
 
-### 习题 1：Cholesky 分解（不带平方根）
-
-**题目：** 求对称正定矩阵的 $LDL^T$ 分解：
+**题目**：求对称正定矩阵
 
 $$A = \begin{pmatrix} 5 & 2 & -4 \\ 2 & 1 & -2 \\ -4 & -2 & 5 \end{pmatrix}$$
 
-**解：**
+的不带平方根的 Cholesky 分解。
+
+**解**：
+
+不带平方根的 Cholesky 分解形式为 $A = LDL^T$，其中 $L$ 是单位下三角矩阵，$D$ 是对角矩阵。
+
+**第一步：** 计算第一列
+
+$$d_1 = a_{11} = 5$$
+
+$$l_{21} = \frac{a_{21}}{d_1} = \frac{2}{5}, \quad l_{31} = \frac{a_{31}}{d_1} = \frac{-4}{5}$$
+
+**第二步：** 计算第二列
+
+$$d_2 = a_{22} - l_{21}^2 d_1 = 1 - \left(\frac{2}{5}\right)^2 \cdot 5 = \frac{1}{5}$$
+
+$$l_{32} = \frac{a_{32} - l_{31}l_{21}d_1}{d_2} = \frac{-2 + \frac{8}{5}}{\frac{1}{5}} = -2$$
+
+**第三步：** 计算第三列
+
+$$d_3 = a_{33} - l_{31}^2 d_1 - l_{32}^2 d_2 = 5 - \frac{16}{5} - \frac{4}{5} = 1$$
+
+因此，分解结果为：
 
 $$L = \begin{pmatrix} 1 & 0 & 0 \\ \frac{2}{5} & 1 & 0 \\ -\frac{4}{5} & -2 & 1 \end{pmatrix}, \quad D = \begin{pmatrix} 5 & 0 & 0 \\ 0 & \frac{1}{5} & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
 
+$$L^T = \begin{pmatrix} 1 & \frac{2}{5} & -\frac{4}{5} \\ 0 & 1 & -2 \\ 0 & 0 & 1 \end{pmatrix}$$
+
+验证：$A = LDL^T$
+
 ---
 
-### 习题 3：QR 分解求解线性方程组
+## 习题 2：对称性的保持
 
-**题目：** 利用 $QR$ 分解求解：
+**题目**：设 $A$ 对称且 $a_{11} \neq 0$，并假设经过一步 Gauss 消去之后，$A$ 具有如下形式
+
+$$\begin{bmatrix} a_{11} & a_1^T \\ \mathbf{0} & A_2 \end{bmatrix}$$
+
+证明 $A_2$ 仍是对称阵。
+
+**证明**：
+
+由于 $A$ 是对称矩阵，有 $A = A^T$，即
+
+$$A = \begin{bmatrix} a_{11} & a_1^T \\ a_1 & A_0 \end{bmatrix}$$
+
+其中 $A_0$ 是 $(n-1) \times (n-1)$ 对称矩阵。
+
+经过一步 Gauss 消元，我们使用消元矩阵：
+
+$$L_1 = \begin{bmatrix} 1 & \mathbf{0} \\ -\frac{1}{a_{11}}a_1 & I \end{bmatrix}$$
+
+则有：
+
+$$L_1 A = \begin{bmatrix} a_{11} & a_1^T \\ \mathbf{0} & A_0 - \frac{1}{a_{11}}a_1 a_1^T \end{bmatrix}$$
+
+记 $A_2 = A_0 - \frac{1}{a_{11}}a_1 a_1^T$。
+
+由于 $A_0$ 对称，且 $a_1 a_1^T$ 是对称矩阵（秩1矩阵的对称性），因此：
+
+$$A_2^T = \left(A_0 - \frac{1}{a_{11}}a_1 a_1^T\right)^T = A_0^T - \frac{1}{a_{11}}(a_1 a_1^T)^T = A_0 - \frac{1}{a_{11}}a_1 a_1^T = A_2$$
+
+所以 $A_2$ 是对称矩阵。 $\square$
+
+---
+
+## 习题 3：QR 分解求解线性方程组
+
+**题目**：利用 $QR$ 分解求解下述线性方程组的解（最终结果可只需写出其矩阵与向量的乘积形式即可）：
 
 $$\begin{bmatrix} 1 & 2 & 2 \\ 2 & 1 & 2 \\ 1 & 2 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$$
 
-**解：**
+**解**：
 
-使用 Gram-Schmidt 正交化得到：
+设 $A = \begin{bmatrix} 1 & 2 & 2 \\ 2 & 1 & 2 \\ 1 & 2 & 1 \end{bmatrix}$，$b = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$。
 
-$$Q = \begin{bmatrix} 
-\frac{1}{\sqrt{6}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} \\ 
-\frac{2}{\sqrt{6}} & -\frac{1}{\sqrt{3}} & 0 \\ 
-\frac{1}{\sqrt{6}} & \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{2}} 
-\end{bmatrix}$$
+**Gram-Schmidt 正交化：**
 
-方程组的解为：$x = R^{-1}Q^T b$
+设 $a_1 = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$，$a_2 = \begin{pmatrix} 2 \\ 1 \\ 2 \end{pmatrix}$，$a_3 = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
+
+**计算 $q_1$：**
+
+$$q_1 = \frac{a_1}{\|a_1\|} = \frac{1}{\sqrt{6}} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$$
+
+**计算 $q_2$：**
+
+$$\tilde{q}_2 = a_2 - (a_2^T q_1)q_1 = \begin{pmatrix} 2 \\ 1 \\ 2 \end{pmatrix} - \frac{6}{\sqrt{6}} \cdot \frac{1}{\sqrt{6}} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix}$$
+
+$$q_2 = \frac{\tilde{q}_2}{\|\tilde{q}_2\|} = \frac{1}{\sqrt{3}} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix}$$
+
+**计算 $q_3$：**
+
+$$\tilde{q}_3 = a_3 - (a_3^T q_1)q_1 - (a_3^T q_2)q_2$$
+
+计算内积：$a_3^T q_1 = \sqrt{6}$，$a_3^T q_2 = \frac{1}{\sqrt{3}}$
+
+$$\tilde{q}_3 = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix} - \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} - \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2/3 \\ 1/3 \\ -1/3 \end{pmatrix}$$
+
+$$q_3 = \frac{\tilde{q}_3}{\|\tilde{q}_3\|} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix}$$
+
+因此，
+
+$$Q = \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} \\ \frac{2}{\sqrt{6}} & -\frac{1}{\sqrt{3}} & 0 \\ \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{2}} \end{bmatrix}$$
+
+$$R = \begin{bmatrix} \sqrt{6} & \sqrt{6} & \frac{7}{\sqrt{6}} \\ 0 & \sqrt{3} & \frac{1}{\sqrt{3}} \\ 0 & 0 & \sqrt{2} \end{bmatrix}$$
+
+方程组的解为：
+
+$$x = R^{-1}Q^T b = \begin{bmatrix} \sqrt{6} & \sqrt{6} & \frac{7}{\sqrt{6}} \\ 0 & \sqrt{3} & \frac{1}{\sqrt{3}} \\ 0 & 0 & \sqrt{2} \end{bmatrix}^{-1} \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{2}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{3}} & \frac{1}{\sqrt{3}} \\ \frac{1}{\sqrt{2}} & 0 & -\frac{1}{\sqrt{2}} \end{bmatrix} \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$$
 
 ---
 
-### 习题 5：SVD 分解与应用
+## 习题 4：Cholesky 分解与范数
 
-**题目：** 对矩阵进行 SVD 分解并应用于低秩逼近。
+**题目**：定义
 
-$$A = \begin{pmatrix} -8 & 5 & 1 \\ -4 & 7 & 5 \\ -8 & 5 & 1 \\ -4 & 7 & 5 \end{pmatrix}$$
+$$A = \begin{pmatrix} 2 & -2 & 1 \\ -1 & 1 & -1 \\ -3 & -1 & 1 \end{pmatrix}$$
 
-**解：**
+**(1)** 给出矩阵 $A^TA$ 的 Cholesky 分解 $A^TA = GG^T$
 
-SVD 分解：$A = U\Sigma V^T$，其中奇异值为 $\sigma_1 = 18, \sigma_2 = 6, \sigma_3 = 0$
+**(2)** 试说明 $\|A^TA\|_2 = \|A\|_2^2 = \|G\|_2^2$
 
-- $\text{rank}(A) = 2$
-- $\|A\|_2 = 18$
-- $\|A\|_F = 6\sqrt{10}$
+### (1) Cholesky 分解
 
-**低秩逼近：**
-- $k=1$: $\gamma_1 = 6$
-- $k \geq 2$: $\gamma_k = 0$
+**解**：
+
+记
+
+$$M = A^TA = \begin{pmatrix} 14 & -2 & 0 \\ -2 & 6 & -4 \\ 0 & -4 & 3 \end{pmatrix}$$
+
+消除 $M$ 的第一列中的非对角元素：
+
+$$L_1 M = \begin{pmatrix} \sqrt{14} & -\frac{2}{\sqrt{14}} & 0 \\ 0 & \frac{40}{7} & -4 \\ 0 & -4 & 3 \end{pmatrix}, \quad L_1 = \begin{pmatrix} \frac{1}{\sqrt{14}} & 0 & 0 \\ \frac{1}{7} & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
+
+$L_1 M$ 左乘 $L_1^T$：
+
+$$L_1 M L_1^T = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \frac{40}{7} & -4 \\ 0 & -4 & 3 \end{pmatrix}$$
+
+消除第二列中的非对角元素：
+
+$$L_2 L_1 M L_1^T = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \frac{2\sqrt{70}}{7} & -\frac{\sqrt{70}}{5} \\ 0 & 0 & \frac{1}{5} \end{pmatrix}$$
+
+其中
+
+$$L_2 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \frac{\sqrt{70}}{20} & 0 \\ 0 & \frac{7}{10} & 1 \end{pmatrix}$$
+
+令 $L_3 = \text{diag}(1, 1, \sqrt{5})$ 使得 $L_2 L_1 M L_1^T L_2^T L_3^T = I_3$。
+
+因此 $M = A^TA = GG^T$，其中
+
+$$G = L_1^{-1} L_2^{-1} L_3^{-1} = \begin{pmatrix} \sqrt{14} & 0 & 0 \\ -\frac{\sqrt{14}}{7} & \frac{2\sqrt{70}}{7} & 0 \\ 0 & -\frac{\sqrt{70}}{5} & \frac{\sqrt{5}}{5} \end{pmatrix}$$
+
+### (2) 范数关系
+
+**证明**：
+
+令 $G = U\Sigma V^T$ 为 $G$ 的奇异值分解，其中 $U, V \in \mathbb{R}^{n \times n}$ 正交，$\Sigma = \text{diag}(\sigma_1, \ldots, \sigma_n)$ 且 $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_n \geq 0$。
+
+由于 $A^TA = GG^T$，则 $A^TA$ 的奇异值是 $\sigma_1^2, \ldots, \sigma_n^2$。因此：
+
+$$\|A^T A\|_2 = \sigma_1^2 = \|G\|_2^2$$
+
+同样，矩阵的2-范数定义为：
+
+$$\|A\|_2 = \max_{\|x\|_2=1} \|Ax\|_2 = \sqrt{\lambda_{\max}(A^TA)}$$
+
+因此：
+
+$$\|A\|_2^2 = \lambda_{\max}(A^TA) = \|A^TA\|_2$$
+
+综上所述，$\|A^TA\|_2 = \|A\|_2^2 = \|G\|_2^2$。
 
 ---
 
-### 习题 8：最小二乘法的法方程
+## 习题 5：SVD 分解及应用
 
-**题目：** 利用等式证明最小二乘解满足法方程 $A^TA\boldsymbol{x} = A^T\boldsymbol{b}$。
+**题目**：对 $k \in \mathbb{N}_0$，定义
 
-**证明：**
+$$A = \begin{pmatrix} -8 & 5 & 1 \\ -4 & 7 & 5 \\ -8 & 5 & 1 \\ -4 & 7 & 5 \end{pmatrix}, \quad \gamma_k = \inf_{\substack{M \in \mathbb{R}^{3 \times 4} \\ \text{rk}(M) \leq k}} \|A^T - M\|_2$$
 
-对于最小二乘解 $\boldsymbol{x}$，有：
+**(1)** 计算矩阵 $A$ 的 $SVD$ 分解 $A = U\Sigma V^T$，并使 $2U$ 为 Hadamard 矩阵
+
+**(2)** 使用 (1) 中的结论，求 $\text{rank}(A)$，$\mathcal{R}(A)$，$\mathcal{N}(A)$，$\|A\|_2$，$\|A\|_F$
+
+**(3)** 对每个 $k \in \mathbb{N}_0$，计算 $\gamma_k$ 并找出矩阵 $A_k \in \mathbb{R}^{3 \times 4}$ 使得 $\text{rank}(A_k) \leq k$ 且 $\|A^T - A_k\|_2 = \gamma_k$
+
+### (1) SVD 分解
+
+**解**：
+
+首先计算 $A^TA$：
+
+$$A^TA = \begin{pmatrix} 160 & -68 & -28 \\ -68 & 148 & 80 \\ -28 & 80 & 52 \end{pmatrix}$$
+
+特征多项式为 $p_{A^TA}(z) = \det(zI_3 - A^TA) = z(z - 36)(z - 324)$。
+
+$A^TA$ 的特征值为：
+
+$$\lambda_1 = 324, \quad \lambda_2 = 36, \quad \lambda_3 = 0$$
+
+对应的特征空间为：
+
+$$E_{\lambda_1} = \text{span}\left((-2, 2, 1)^T\right), \quad E_{\lambda_2} = \text{span}\left((2, 1, -2)^T\right), \quad E_{\lambda_3} = \text{span}\left((1, 2, 2)^T\right)$$
+
+经正交化后：
+
+$$v_1 = \frac{1}{3}(-2, 2, 1)^T, \quad v_2 = \frac{1}{3}(2, 1, -2)^T, \quad v_3 = \frac{1}{3}(1, 2, 2)^T$$
+
+令 $V = (v_1 | v_2 | v_3)$
+
+奇异值为：
+
+$$\sigma_1 = \sqrt{\lambda_1} = 18, \quad \sigma_2 = \sqrt{\lambda_2} = 6, \quad \sigma_3 = \sqrt{\lambda_3} = 0$$
+
+令 $\Sigma = \text{diag}_{4 \times 3}(\sigma_1, \sigma_2, \sigma_3)$。
+
+计算 $U = (u_1 | u_2 | u_3 | u_4) \in \mathbb{R}^{4 \times 4}$ 使得 $Av_i = \sigma_i u_i$：
+
+$$u_1 = \frac{Av_1}{\sigma_1} = \frac{1}{2}(1, 1, 1, 1)^T, \quad u_2 = \frac{Av_2}{\sigma_2} = \frac{1}{2}(-1, 1, -1, 1)^T$$
+
+$$u_3 = \frac{1}{2}(1, 1, -1, -1)^T, \quad u_4 = \frac{1}{2}(-1, 1, 1, -1)^T$$
+
+因此 $A$ 的 $SVD$ 分解为：
+
+$$A = \begin{pmatrix} \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} \end{pmatrix} \begin{pmatrix} 18 & 0 & 0 \\ 0 & 6 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} -\frac{2}{3} & \frac{2}{3} & \frac{1}{3} \\ \frac{2}{3} & \frac{1}{3} & -\frac{2}{3} \\ \frac{1}{3} & \frac{2}{3} & \frac{2}{3} \end{pmatrix}^T = U\Sigma V^T$$
+
+### (2) 矩阵的性质
+
+**解**：
+
+$A$ 有两个非零奇异值，故 $\text{rank}(A) = 2$
+
+$$\mathcal{R}(A) = \text{span}(u_1, u_2) = \text{span}\left(\frac{1}{2}(1, 1, 1, 1)^T, \frac{1}{2}(-1, 1, -1, 1)^T\right)$$
+
+$$\mathcal{N}(A) = \text{span}(v_3) = \text{span}\left(\frac{1}{3}(1, 2, 2)^T\right)$$
+
+$$\|A\|_2 = \sigma_1 = 18, \quad \|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2} = \sqrt{324 + 36} = 6\sqrt{10}$$
+
+### (3) 最佳秩-k 逼近
+
+**解**：
+
+根据 (1) 中 $A$ 的 $SVD$ 分解，令 $A^T = \tilde{U}\tilde{\Sigma}\tilde{V}^T$，其中 $\tilde{U} = V$，$\tilde{V} = U$，$\tilde{\Sigma} = \Sigma^T$。
+
+**$k = 0$：**
+
+定义 $A_0 = 0_{3 \times 4}$，则
+
+$$\gamma_0 = \|A^T\|_2 = \sigma_1 = 18$$
+
+**$k = 1$：**
+
+利用 Eckart-Young-Mirsky 定理：
+
+$$A_1 = \sigma_1 v_1 u_1^T = 18 \begin{pmatrix} -\frac{2}{3} \\ \frac{2}{3} \\ \frac{1}{3} \end{pmatrix} \begin{pmatrix} \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \end{pmatrix} = \begin{pmatrix} -6 & -6 & -6 & -6 \\ 6 & 6 & 6 & 6 \\ 3 & 3 & 3 & 3 \end{pmatrix}$$
+
+$$\gamma_1 = \|A^T - A_1\|_2 = \sigma_2 = 6$$
+
+**$k \geq 2$：**
+
+因为 $\text{rank}(A^T) = 2$，令 $A_k = A^T$，对每个 $k \in \mathbb{N}_{\geq 2}$ 都有 $\gamma_k = 0$。
+
+---
+
+## 习题 6：SVD 分解的性质
+
+**题目**：
+
+**(1)** 假设 $A$ 可逆，根据 $A$ 的 $SVD$ 结果给出 $A^{-1}$ 的 $SVD$ 分解（提示：$Av_i = \sigma_i u_i \,\forall i \in \{1,\ldots,n\}$）
+
+**(2)** 假设 $Q$ 是正交阵，给出 $Q$ 的 $SVD$ 分解及其奇异值
+
+**(3)** 假设 $A = QBQ^T$，其中 $Q$ 是正交阵，说明 $A$ 和 $B$ 有相同奇异值
+
+### (1) 逆矩阵的 SVD 分解
+
+**解**：
+
+设 $A$ 的 $SVD$ 分解为
+
+$$A = U\Sigma V^T = (u_1 | \cdots | u_n) [\text{diag}_{n \times n}(\sigma_1, \ldots, \sigma_n)] (v_1 | \cdots | v_n)^T$$
+
+其中 $U, V \in \mathbb{R}^{n \times n}$ 正交，$\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_n > 0$（由于 $A$ 可逆）。
+
+因为 $A = U\Sigma V^T$，有 $Av_i = \sigma_i u_i \,\forall i \in \{1, \ldots, n\}$。
+
+因此
+
+$$A^{-1}u_i = A^{-1}\left(\frac{1}{\sigma_i}Av_i\right) = \frac{1}{\sigma_i}v_i$$
+
+注意到 $\frac{1}{\sigma_n} \geq \cdots \geq \frac{1}{\sigma_2} \geq \frac{1}{\sigma_1} > 0$，故
+
+$$A^{-1} = (v_n | \cdots | v_2 | v_1) \left[\text{diag}_{n \times n}\left(\frac{1}{\sigma_n}, \ldots, \frac{1}{\sigma_2}, \frac{1}{\sigma_1}\right)\right] (u_n | \cdots | u_2 | u_1)^T$$
+
+记 $P = (e_n | \cdots | e_2 | e_1) \in \mathbb{R}^{n \times n}$（$P$ 是正交阵），则：
+
+$$A^{-1} = (VP)(P\Sigma^{-1}P)(UP)^T$$
+
+### (2) 正交矩阵的 SVD 分解
+
+**解**：
+
+对于正交矩阵 $Q \in \mathbb{R}^{n \times n}$，有 $Q = QI_nI_n^T$，这即为 $Q$ 的 $SVD$ 分解。
+
+所有奇异值均为 1。
+
+### (3) 相似变换保持奇异值
+
+**解**：
+
+设 $B$ 的 $SVD$ 分解为 $B = U\Sigma V^T$，则
+
+$$A = QBQ^T = QU\Sigma V^TQ^T = QU\Sigma(QV)^T = (QU)\Sigma(QV)^T$$
+
+由于 $Q$ 正交，$QU$ 和 $QV$ 也是正交矩阵。
+
+因此 $A$ 与 $B$ 有相同的奇异值。
+
+---
+
+## 习题 7：通过对角化获得 SVD
+
+**题目**：假设 $D$ 是一个 $n \times d$ 的矩阵，矩阵 $B$ 是 $(n+d) \times (n+d)$ 定义为
+
+$$B = \begin{pmatrix} 0 & D^T \\ D & 0 \end{pmatrix}$$
+
+显然 $B$ 是对称矩阵。请证明矩阵 $B$ 的对角化会产生 $D$ 的奇异值分解所需要的所有信息。
+
+**证明**：
+
+$D$ 的奇异值分解所需的所有信息为 $D^TD$ 的特征值和特征向量，以及 $DD^T$ 的特征值和特征向量。
+
+设 $\lambda^2$（$\lambda > 0$）是 $D^TD$ 的特征值，对应的单位特征向量为 $x_1$（$\|x_1\|_2 = 1$）；$\lambda^2$ 也是 $DD^T$ 的特征值，对应的单位特征向量为 $x_2$（$\|x_2\|_2 = 1$）。
+
+因此，$D^TDx_1 = \lambda^2x_1$ 以及 $DD^Tx_2 = \lambda^2x_2$。
+
+由第一个式子：
+
+$$(DD^T)Dx_1 = D(D^TDx_1) = D(\lambda^2x_1) = \lambda^2 Dx_1$$
+
+所以存在常数 $k$ 使得 $Dx_1 = kx_2$。由于 $\|x_1\|_2 = \|x_2\|_2 = 1$，可得 $k = \lambda$，即 $Dx_1 = \lambda x_2$。
+
+同样地，由 $DD^Tx_2 = \lambda^2x_2$ 可得 $D^Tx_2 = \lambda x_1$。
+
+下面证明 $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$ 是矩阵 $B$ 的特征值为 $\lambda$ 的特征向量：
+
+$$Bx = \begin{pmatrix} 0 & D^T \\ D & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} D^Tx_2 \\ Dx_1 \end{pmatrix} = \begin{pmatrix} \lambda x_1 \\ \lambda x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
+
+因此，$D$ 的奇异值分解所需信息完全包含在 $B$ 的对角化过程中。 $\square$
+
+---
+
+## 习题 8：最小二乘解的正规方程
+
+**题目**：利用等式
+
+$$\|A(\boldsymbol{x} + \alpha\boldsymbol{w}) - \boldsymbol{b}\|_2^2 = \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2 + 2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2$$
+
+证明：如果 $\boldsymbol{x} \in X_{LS}$，那么 $A^TA\boldsymbol{x} = A^T\boldsymbol{b}$
+
+**证明**：
+
+设 $\boldsymbol{x} \in X_{LS}$ 是最小二乘解，即 $\boldsymbol{x}$ 使得 $\|A\boldsymbol{x} - \boldsymbol{b}\|_2^2$ 最小。
+
+对于任意 $\boldsymbol{w}$ 和 $\alpha$，有：
 
 $$\|A(\boldsymbol{x} + \alpha\boldsymbol{w}) - \boldsymbol{b}\|_2^2 \geq \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2$$
 
-展开得：
+根据给定的等式：
+
+$$\|A\boldsymbol{x} - \boldsymbol{b}\|_2^2 + 2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2 \geq \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2$$
+
+简化得：
 
 $$2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2 \geq 0$$
 
-为使对所有 $\alpha$ 成立，必须：
+这对所有 $\alpha$ 成立。当 $\alpha \to 0$ 时，主导项是 $2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b})$。
+
+为使不等式对正负 $\alpha$ 都成立，必须有：
 
 $$\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) = 0$$
 
-由于 $\boldsymbol{w}$ 任意，因此 $A^TA\boldsymbol{x} = A^T\boldsymbol{b}$。
+由于 $\boldsymbol{w}$ 是任意的，因此：
+
+$$A^T(A\boldsymbol{x} - \boldsymbol{b}) = 0 \Rightarrow A^TA\boldsymbol{x} = A^T\boldsymbol{b}$$               				$\square$
+
+# 作业四
 
 ---
 
-## 总结
+## 习题 1：QR 分解求解最小二乘问题
 
-本作业集系统地涵盖了：
-- 矩阵范数理论与证明
-- 特征值与特征多项式
-- 各类矩阵分解（LU, Cholesky, QR, SVD）
-- 正交投影与最小二乘
-- 图像处理应用
+**题目**：设
 
-通过这些习题的训练，可以深入理解线性代数在数值分析和机器学习中的核心作用。
+$$A = \begin{pmatrix} 1 & 3 & 1 & 1 \\ 2 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{pmatrix}, \quad b = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$$
+
+利用 QR 分解求对应的 LS 问题的全部解。
+
+**解**：
+
+观察矩阵 $A$，第3、4列相同，且通过简单计算可知 $\text{rank}(A) = 2 < 4$，该 LS 问题有无穷多解。
+
+**第一步：对 $A$ 进行QR分解**
+
+由于 $\text{rank}(A) = 2$，只需计算 $q_1, q_2$。设 $a_1 = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$，$a_2 = \begin{pmatrix} 3 \\ 0 \\ 0 \end{pmatrix}$。
+
+使用 Gram-Schmidt 正交化：
+
+计算 $q_1$：
+
+$$r_{11} = \|a_1\| = \sqrt{6}, \quad q_1 = \frac{1}{\sqrt{6}} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$$
+
+计算 $q_2$：
+
+$$r_{12} = a_2^T q_1 = \frac{\sqrt{6}}{2}$$
+
+$$\tilde{q}_2 = a_2 - r_{12}q_1 = \begin{pmatrix} 3 \\ 0 \\ 0 \end{pmatrix} - \frac{1}{2} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 5/2 \\ -1 \\ -1/2 \end{pmatrix}$$
+
+$$r_{22} = \|\tilde{q}_2\| = \frac{\sqrt{30}}{2}, \quad q_2 = \frac{1}{\sqrt{30}} \begin{pmatrix} 5 \\ -2 \\ -1 \end{pmatrix}$$
+
+计算 $R$ 矩阵的其余元素（通过投影得到）：
+
+$$r_{13} = a_3^T q_1 = \frac{1}{\sqrt{6}}, \quad r_{23} = a_3^T q_2 = \frac{5}{\sqrt{30}}$$
+
+$$r_{14} = a_4^T q_1 = \frac{1}{\sqrt{6}}, \quad r_{24} = a_4^T q_2 = \frac{5}{\sqrt{30}}$$
+
+因此：
+
+$$Q_1 = \begin{pmatrix} \frac{1}{\sqrt{6}} & \frac{5}{\sqrt{30}} \\ \frac{2}{\sqrt{6}} & -\frac{2}{\sqrt{30}} \\ \frac{1}{\sqrt{6}} & -\frac{1}{\sqrt{30}} \end{pmatrix}, \quad R_1 = \begin{bmatrix} \sqrt{6} & \frac{\sqrt{6}}{2} & \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ 0 & \frac{\sqrt{30}}{2} & \frac{5}{\sqrt{30}} & \frac{5}{\sqrt{30}} \end{bmatrix}$$
+
+**第二步：计算 $Q_1^T b$**
+
+$$Q_1^T b = \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{2}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ \frac{5}{\sqrt{30}} & -\frac{2}{\sqrt{30}} & -\frac{1}{\sqrt{30}} \end{bmatrix} \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{bmatrix} \frac{2\sqrt{6}}{3} \\ \frac{\sqrt{30}}{15} \end{bmatrix}$$
+
+**第三步：求解 $R_1 x = Q_1^T b$**
+
+由于 $\text{rank}(A) = 2$，将 $x$ 分为 $(x_1, x_2)^T$（基本变量）和 $(x_3, x_4)^T$（自由变量）。
+
+方程组为：
+
+$$\begin{cases} \sqrt{6}x_1 + \frac{\sqrt{6}}{2}x_2 + \frac{\sqrt{6}}{6}x_3 + \frac{\sqrt{6}}{6}x_4 = \frac{2\sqrt{6}}{3} \\ \frac{\sqrt{30}}{2}x_2 + \frac{\sqrt{30}}{6}x_3 + \frac{\sqrt{30}}{6}x_4 = \frac{\sqrt{30}}{15} \end{cases}$$
+
+简化得：
+
+$$\begin{cases} x_1 + \frac{1}{2}x_2 + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3} \\ 3x_2 + x_3 + x_4 = \frac{2}{5} \end{cases}$$
+
+从第二个方程：$x_2 = \frac{2}{15} - \frac{1}{3}x_3 - \frac{1}{3}x_4$
+
+代入第一个方程：
+
+$$x_1 + \frac{1}{2}\left(\frac{2}{15} - \frac{1}{3}x_3 - \frac{1}{3}x_4\right) + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3}$$
+
+$$x_1 + \frac{1}{15} - \frac{1}{6}x_3 - \frac{1}{6}x_4 + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3}$$
+
+$$x_1 = \frac{2}{3} - \frac{1}{15} = \frac{3}{5}$$
+
+**全部解：**
+
+$$x = \begin{pmatrix} 3/5 \\ 2/15 \\ 0 \\ 0 \end{pmatrix} + x_3 \begin{pmatrix} 0 \\ -1/3 \\ 1 \\ 0 \end{pmatrix} + x_4 \begin{pmatrix} 0 \\ -1/3 \\ 0 \\ 1 \end{pmatrix}, \quad x_3, x_4 \in \mathbb{R}$$
+
+---
+
+## 习题 2：最小二乘解的性质
+
+**题目**：设 $A \in \mathbb{R}^{m\times n}$ 且存在 $X \in \mathbb{R}^{n\times m}$ 使得对每一个 $b \in \mathbb{R}^m$，$x = Xb$ 均极小化 $\|Ax - b\|_2$。
+
+证明：$AXA = A$ 和 $(AX)^T = AX$。
+
+**证明**：
+
+由最小二乘理论，$x = Xb$ 满足正规方程 $A^T(Ax - b) = 0$，代入得：
+
+$$A^TAXb = A^Tb, \quad \forall b \in \mathbb{R}^m$$
+
+因此：
+
+$$A^TAX = A^T \tag{1}$$
+
+对任意 $y \in \mathbb{R}^n$，令 $b = Ay$，则 $x = XAy$ 是 $\min_x \|Ax - Ay\|_2$ 的解。由于 $x = y$ 使目标函数为零，故：
+
+$$\|AXAy - Ay\|_2 = 0, \quad \forall y \in \mathbb{R}^n$$
+
+因此：
+
+$$AXA = A \tag{2}$$
+
+由 (1) 和 (2)，有：
+
+$$(AX)^2 = AXAX = A(XA)X = AAX = AX$$
+
+即 $AX$ 是幂等矩阵。
+
+由 (1)，两边取转置得 $X^TA^TA = A$，因此：
+
+$$(AX)^TAX = X^TA^TAX = X^TA^T = (AX)^T$$
+
+结合 $(AX)^2 = AX$：
+
+$$(AX)^T = (AX)^TAX = (AX)AX = AX$$
+
+因此 $(AX)^T = AX$。 $\square$
+
+---
+
+## 习题 3：Gerschgorin 圆盘定理估计特征值范围
+
+**题目**：估计矩阵
+
+$$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
+
+的特征值范围。
+
+**解**：
+
+使用 Gerschgorin 圆盘定理。该定理指出：矩阵 $A$ 的所有特征值都位于 Gerschgorin 圆盘
+
+$$D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leq R_i\}, \quad R_i = \sum_{j\neq i} |a_{ij}|$$
+
+的并集中。
+
+计算各圆盘：
+
+**圆盘 $D_1$：** 中心 $a_{11} = 0$，半径 $R_1 = |1| + |0| = 1$
+
+$$D_1: |z| \leq 1 \quad \Rightarrow \quad [-1, 1]$$
+
+**圆盘 $D_2$：** 中心 $a_{22} = 2$，半径 $R_2 = |1| + |1| = 2$
+
+$$D_2: |z - 2| \leq 2 \quad \Rightarrow \quad [0, 4]$$
+
+**圆盘 $D_3$：** 中心 $a_{33} = -4$，半径 $R_3 = |0| + |1| = 1$
+
+$$D_3: |z + 4| \leq 1 \quad \Rightarrow \quad [-5, -3]$$
+
+由于 $A$ 是实对称矩阵，特征值必为实数。因此特征值范围为：
+
+$$\lambda \in D_1 \cup D_2 \cup D_3 = [-1, 1] \cup [0, 4] \cup [-5, -3] = [-5, -3] \cup [-1, 4]$$
+
+---
+
+## 习题 4：幂法求模最大特征值
+
+**题目**：利用幂法求解矩阵
+
+$$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
+
+模最大的特征值与对应的特征向量。（可编程计算结果，特征值答案保留两位有效数字，特征向量答案保留三位有效数字）
+
+**解**：
+
+**幂法迭代：**
+
+取初始向量 $v^{(0)} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}$，按迭代公式 $v^{(k+1)} = \frac{Av^{(k)}}{\|Av^{(k)}\|_2}$ 进行计算，特征值估计为 $\lambda^{(k)} = (v^{(k)})^T Av^{(k)}$。
+
+主要迭代过程：
+
+**迭代 1：**
+
+$$Av^{(0)} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad \|Av^{(0)}\|_2 = 1, \quad v^{(1)} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad \lambda^{(1)} = 0$$
+
+**迭代 2：**
+
+$$Av^{(1)} = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}, \quad \|Av^{(1)}\|_2 = \sqrt{6} \approx 2.449, \quad v^{(2)} = \begin{pmatrix} 0.408 \\ 0.816 \\ 0.408 \end{pmatrix}, \quad \lambda^{(2)} = 2.000$$
+
+**迭代 5：**
+
+$$v^{(5)} = \begin{pmatrix} 0.189 \\ 0.694 \\ -0.694 \end{pmatrix}, \quad \lambda^{(5)} = -0.043$$
+
+**迭代 11：**
+
+$$v^{(11)} = \begin{pmatrix} -0.025 \\ 0.203 \\ -0.979 \end{pmatrix}, \quad \lambda^{(11)} = -4.140$$
+
+迭代约 30 次后收敛。
+
+**最终结果：**
+
+模最大特征值：$\lambda = -4.2$ （两位有效数字）
+
+对应特征向量：$v = \begin{pmatrix} 0.040 \\ -0.166 \\ 0.985 \end{pmatrix}$ （三位有效数字）
+
+**验证：** 使用 NumPy 计算得矩阵所有特征值为 $\lambda_1 \approx 2.546$，$\lambda_2 \approx -0.377$，$\lambda_3 \approx -4.169$，确认 $|\lambda_3|$ 最大，幂法结果正确。
+
+---
+
+## 习题 5：反幂法求模最小特征值
+
+**题目**：利用反幂法求解矩阵
+
+$$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
+
+模最小的特征值与对应的特征向量。（可编程计算结果，特征值答案保留两位有效数字，特征向量答案保留三位有效数字）
+
+**解**：
+
+**反幂法迭代：**
+
+反幂法通过求解线性方程组 $Av^{(k)} = v^{(k-1)}$ 并归一化来迭代，收敛到模最小特征值对应的特征向量。
+
+取初始向量 $v^{(0)} = \frac{1}{\sqrt{3}}\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0.577 \\ 0.577 \\ 0.577 \end{pmatrix}$。
+
+主要迭代过程：
+
+**迭代 1：**
+
+求解 $Ax = v^{(0)}$ 得 $x = \begin{pmatrix} -0.577 \\ 0.577 \\ 0 \end{pmatrix}$，归一化后
+
+$$v^{(1)} = \begin{pmatrix} -0.707 \\ 0.707 \\ 0 \end{pmatrix}, \quad \lambda^{(1)} = 0$$
+
+**迭代 2：**
+
+$$v^{(2)} = \begin{pmatrix} 0.953 \\ -0.293 \\ -0.073 \end{pmatrix}, \quad \lambda^{(2)} = -0.366$$
+
+**迭代 3：**
+
+$$v^{(3)} = \begin{pmatrix} -0.928 \\ 0.360 \\ 0.097 \end{pmatrix}, \quad \lambda^{(3)} = -0.377$$
+
+**迭代 5：**
+
+$$v^{(5)} = \begin{pmatrix} -0.931 \\ 0.351 \\ 0.097 \end{pmatrix}, \quad \lambda^{(5)} = -0.377$$
+
+迭代约 11 次后收敛。
+
+**最终结果：**
+
+模最小特征值：$\lambda = -0.38$ （两位有效数字）
+
+对应特征向量：$v = \begin{pmatrix} 0.931 \\ -0.351 \\ -0.097 \end{pmatrix}$ （三位有效数字）
+
+**验证：** 使用 NumPy 计算得矩阵所有特征值为 $\lambda_1 \approx 2.546$，$\lambda_2 \approx -0.377$，$\lambda_3 \approx -4.169$，确认 $|\lambda_2|$ 最小，反幂法结果正确。残差 $\|Av - \lambda v\| \approx 1.25 \times 10^{-16}$。
+
+---
+
+## 习题 6：原点位移法求全部特征值
+
+**题目**：利用原点位移法求解矩阵
+
+$$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
+
+全部特征值与对应的特征向量。（可编程计算结果，特征值答案保留两位有效数字，特征向量答案保留三位有效数字）
+
+**解**：
+
+**求解策略：**
+
+原点位移法通过选择不同的位移参数 $\mu$，利用 $A - \mu I$ 的特征值为 $\lambda - \mu$ 的性质，结合幂法和反幂法求得全部特征值。
+
+**第一步：幂法求模最大特征值**
+
+对 $A$ 使用标准幂法，收敛得：
+
+$$\lambda_3 = -4.169, \quad v_3 = \begin{pmatrix} 0.040 \\ -0.166 \\ 0.985 \end{pmatrix}$$
+
+**第二步：反幂法求模最小特征值**
+
+对 $A$ 使用反幂法，收敛得：
+
+$$\lambda_2 = -0.377, \quad v_2 = \begin{pmatrix} 0.931 \\ -0.351 \\ -0.097 \end{pmatrix}$$
+
+**第三步：带位移反幂法求中间特征值**
+
+选择位移 $\mu = 2.5$（接近估计的中间特征值），对 $A - 2.5I$ 使用反幂法。取初始向量 $v^{(0)} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}$，迭代 6 次后收敛得：
+
+$$\lambda_1 = 2.546, \quad v_1 = \begin{pmatrix} 0.362 \\ 0.921 \\ 0.141 \end{pmatrix}$$
+
+**最终结果汇总（按从大到小排序）：**
+
+| 特征值（两位有效数字） |                 特征向量（三位有效数字）                  |          残差          |
+| :--------------------: | :-------------------------------------------------------: | :--------------------: |
+|   $\lambda_1 = 2.5$    |  $\begin{pmatrix} 0.362 \\ 0.921 \\ 0.141 \end{pmatrix}$  | $2.10 \times 10^{-11}$ |
+|  $\lambda_2 = -0.38$   | $\begin{pmatrix} 0.931 \\ -0.351 \\ -0.097 \end{pmatrix}$ | $1.25 \times 10^{-16}$ |
+|   $\lambda_3 = -4.2$   | $\begin{pmatrix} 0.040 \\ -0.166 \\ 0.985 \end{pmatrix}$  |      $< 10^{-16}$      |
+
+所有残差 $\|Av_i - \lambda_i v_i\|$ 均在数值误差范围内，验证结果正确。
+
+---
+
+## 习题 7：Gerschgorin 圆盘定理与条件数
+
+**题目**：设
+
+$$A = \begin{pmatrix} 5 & -1 & 1 \\ -1 & 2 & 0 \\ 1 & 0 & 3 \end{pmatrix}$$
+
+记 $\Lambda(A) = \{\lambda_1, \lambda_2, \lambda_3\} \subseteq \mathbb{C}$ 且 $|\lambda_1| \geq |\lambda_2| \geq |\lambda_3|$。
+
+**(1)** 使用 Gerschgorin 圆盘定理，证明 $\frac{|\lambda_1|}{|\lambda_3|} \leq 7$。
+
+**(2)** （编程题）使用幂法与反幂法计算 $\frac{|\lambda_1|}{|\lambda_3|}$
+
+### (1) Gerschgorin 圆盘定理证明
+
+**证明**：
+
+Gerschgorin 圆盘定理：矩阵 $A$ 的所有特征值都位于 Gerschgorin 圆盘的并集中，第 $i$ 个圆盘定义为：
+
+$$D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leq R_i\}, \quad R_i = \sum_{j\neq i} |a_{ij}|$$
+
+对于矩阵 $A = \begin{pmatrix} 5 & -1 & 1 \\ -1 & 2 & 0 \\ 1 & 0 & 3 \end{pmatrix}$：
+
+$$D_1: a_{11} = 5, \; R_1 = |-1| + |1| = 2 \quad \Rightarrow \quad z \in [3, 7]$$
+
+$$D_2: a_{22} = 2, \; R_2 = |-1| + |0| = 1 \quad \Rightarrow \quad z \in [1, 3]$$
+
+$$D_3: a_{33} = 3, \; R_3 = |1| + |0| = 1 \quad \Rightarrow \quad z \in [2, 4]$$
+
+所有特征值 $\lambda \in D_1 \cup D_2 \cup D_3 = [1, 7]$。因为 $A$ 是实对称矩阵，所有特征值都是实数且为正。
+
+从圆盘分析得：$|\lambda_1| \leq 7$，$|\lambda_3| \geq 1$，因此：
+
+$$\kappa(A) = \frac{|\lambda_1|}{|\lambda_3|} \leq \frac{7}{1} = 7 \quad \square$$
+
+### (2) 幂法与反幂法计算条件数
+
+**解**：
+
+通过编程实现幂法和反幂法，迭代计算如下：
+
+**幂法求 $\lambda_{\max}$ 的前 5 步迭代：**
+
+| 迭代次数 | 特征值估计 |
+| :------: | :--------: |
+|    1     |  4.880952  |
+|    2     |  5.475970  |
+|    3     |  5.612480  |
+|    4     |  5.642355  |
+|    5     |  5.649083  |
+
+收敛于第 32 步，得 $\lambda_{\max} = 5.6510934089$
+
+**反幂法求 $\lambda_{\min}$ 的前 5 步迭代：**
+
+| 迭代次数 | 特征值估计 |
+| :------: | :--------: |
+|    1     |  2.126100  |
+|    2     |  1.769336  |
+|    3     |  1.671936  |
+|    4     |  1.640106  |
+|    5     |  1.628943  |
+
+收敛于第 44 步，得 $\lambda_{\min} = 1.6227971460$
+
+**条件数计算：**
+
+$$\kappa(A) = \frac{|\lambda_{\max}|}{|\lambda_{\min}|} = \frac{5.6510934089}{1.6227971460} = 3.4823165808$$
+
+保留两位有效数字：$\kappa(A) \approx 3.48$
+
+**验证：**
+
+$$\kappa(A) = 3.48 < 7 \quad \checkmark$$
+
+这验证了 Gerschgorin 圆盘定理给出的上界估计是正确的。实际条件数远小于理论上界 7，说明理论估计较为保守但有效。

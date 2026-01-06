@@ -23,14 +23,6 @@ LU分解、Cholesky分解、QR分解、SVD奇异值分解、
 </description>
     </item>
     <item>
-      <title>数学基础数学篇</title>
-      <link>http://localhost:1313/dase-course/mathematical-fundamentals-lecture/</link>
-      <pubDate>Sun, 21 Dec 2025 15:54:37 +0800</pubDate>
-      <guid>http://localhost:1313/dase-course/mathematical-fundamentals-lecture/</guid>
-      <description>这是一份待完成的笔记
-</description>
-    </item>
-    <item>
       <title>数学基础算法篇</title>
       <link>http://localhost:1313/dase-course/mathematical-algorithms-lecture/</link>
       <pubDate>Sun, 21 Dec 2025 15:50:54 +0800</pubDate>
