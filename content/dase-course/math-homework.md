@@ -1539,3 +1539,821 @@ $$\kappa(A) = \frac{|\lambda_{\max}|}{|\lambda_{\min}|} = \frac{5.6510934089}{1.
 $$\kappa(A) = 3.48 < 7 \quad \checkmark$$
 
 这验证了 Gerschgorin 圆盘定理给出的上界估计是正确的。实际条件数远小于理论上界 7，说明理论估计较为保守但有效。
+
+# 作业五
+
+---
+
+## 习题 1：梯度计算
+
+**题目**：构建模型使得预测值与真实值的误差最小常用向量 2-范数度量，求解模型过程中需要计算梯度，求梯度：
+
+**(1)** $f(A) = \frac{1}{2}\|Ax + b - y\|_2^2$，求 $\frac{\partial f}{\partial A}$
+
+**(2)** $f(x) = \frac{1}{2}\|Ax + b - y\|_2^2$，求 $\frac{\partial f}{\partial x}$
+
+其中 $A \in \mathbb{R}^{m\times n}$，$x \in \mathbb{R}^n$，$b, y \in \mathbb{R}^m$
+
+**解**：
+
+**(1) 关于 $A$ 的梯度**
+
+展开目标函数：
+
+$$f(A) = \frac{1}{2}\|Ax + b - y\|_2^2 = \frac{1}{2}(Ax + b - y)^T(Ax + b - y)$$
+
+$$= \frac{1}{2}(x^TA^TAx + 2(b-y)^TAx + (b-y)^T(b-y))$$
+
+由于 $(b-y)^T(b-y)$ 是常数，对 $A$ 求导后为零：
+
+$$\frac{\partial f}{\partial A} = \frac{\partial}{\partial A}\frac{1}{2}(x^TA^TAx + 2(b-y)^TAx)$$
+
+利用矩阵求导公式：
+- $\frac{\partial x^TA^TAx}{\partial A} = 2Axx^T$
+- $\frac{\partial (b-y)^TAx}{\partial A} = (b-y)x^T$
+
+因此：
+
+$$\boxed{\frac{\partial f}{\partial A} = Axx^T + (b-y)x^T}$$
+
+**(2) 关于 $x$ 的梯度**
+
+同样展开目标函数，对 $x$ 求导：
+
+$$\frac{\partial f}{\partial x} = \frac{\partial}{\partial x}\frac{1}{2}(x^TA^TAx + 2(b-y)^TAx + (b-y)^T(b-y))$$
+
+利用矩阵求导公式：
+- $\frac{\partial x^TA^TAx}{\partial x} = 2A^TAx$
+- $\frac{\partial (b-y)^TAx}{\partial x} = A^T(b-y)$
+
+因此：
+
+$$\boxed{\frac{\partial f}{\partial x} = A^TAx + A^T(b-y)}$$
+
+---
+
+## 习题 2：二次型的梯度
+
+**题目**：二次型是数据分析中常用函数，求 $\frac{\partial x^TAx}{\partial x}$，$\frac{\partial x^TAx}{\partial A}$，其中 $A \in \mathbb{R}^{m\times m}$，$x \in \mathbb{R}^m$
+
+**解**：
+
+**(1) 关于 $x$ 的梯度**
+
+对于二次型 $x^TAx$，利用矩阵微分的性质：
+
+$$d(x^TAx) = (dx)^TAx + x^TAdx = x^TA^Tdx + x^TAdx = x^T(A + A^T)dx$$
+
+因此：
+
+$$\boxed{\frac{\partial x^TAx}{\partial x} = (A + A^T)x}$$
+
+**注**：当 $A$ 为对称矩阵时，$\frac{\partial x^TAx}{\partial x} = 2Ax$
+
+**(2) 关于 $A$ 的梯度**
+
+对于二次型 $x^TAx = \sum_{i,j} x_i A_{ij} x_j$，对 $A_{ij}$ 求偏导：
+
+$$\frac{\partial x^TAx}{\partial A_{ij}} = x_ix_j$$
+
+因此，梯度矩阵的第 $(i,j)$ 元素为 $x_ix_j$，即：
+
+$$\boxed{\frac{\partial x^TAx}{\partial A} = xx^T}$$
+
+---
+
+## 习题 3：迹微分法求梯度
+
+**题目**：利用迹微分法求解 $\frac{\partial \text{tr}(W^{-1})}{\partial W}$，其中 $W \in \mathbb{R}^{m\times m}$
+
+**解**：
+
+首先计算 $W^{-1}$ 的微分。由恒等式 $WW^{-1} = I$，两边取微分：
+
+$$d(WW^{-1}) = dW \cdot W^{-1} + W \cdot dW^{-1} = dI = 0$$
+
+因此：
+
+$$W \cdot dW^{-1} = -dW \cdot W^{-1}$$
+
+两边左乘 $W^{-1}$：
+
+$$dW^{-1} = -W^{-1}dW \cdot W^{-1}$$
+
+现在计算迹的微分：
+
+$$d\,\text{tr}(W^{-1}) = \text{tr}(dW^{-1}) = \text{tr}(-W^{-1}dW \cdot W^{-1})$$
+
+利用迹的循环性质 $\text{tr}(ABC) = \text{tr}(CAB)$：
+
+$$d\,\text{tr}(W^{-1}) = \text{tr}(-(W^{-1})^2dW) = \text{tr}(-(W^{-T})^2 dW)$$
+
+因此：
+
+$$\boxed{\frac{\partial \text{tr}(W^{-1})}{\partial W} = -(W^{-T})^2 = -(W^{-1})^T(W^{-1})^T}$$
+
+---
+
+## 习题 4：Softmax 函数的梯度
+
+**题目**：$(\exp(z))_i = \exp(z_i)$，$(\log(z))_i = \log(z_i)$，$f(z) = \frac{\exp(z)}{\mathbf{1}^T\exp(z)}$ 称为 softmax 函数，如果 $q = f(z)$，$J = -p^T\log(q)$，其中 $p, q, z \in \mathbb{R}^n$，并且 $\mathbf{1}^Tp = 1$，
+
+**(1)** 证明：$\frac{\partial J}{\partial z} = q - p$
+
+**(2)** 若 $z = Wx$，其中 $W \in \mathbb{R}^{n\times m}$，$x \in \mathbb{R}^m$，$\frac{\partial J}{\partial W} = (q - p)x^T$ 是否成立。
+
+**解**：
+
+**(1) 证明关于 $z$ 的梯度**
+
+将损失函数展开：
+
+$$J = -p^T\log(q) = -p^T\log\left(\frac{\exp(z)}{\mathbf{1}^T\exp(z)}\right)$$
+
+$$= -p^T\log(\exp(z)) + p^T\log(\mathbf{1}^T\exp(z))\mathbf{1}$$
+
+$$= -p^Tz + p^T\mathbf{1}\log(\mathbf{1}^T\exp(z))$$
+
+由于 $p^T\mathbf{1} = 1$（概率分布的归一化条件）：
+
+$$J = -p^Tz + \log(\mathbf{1}^T\exp(z))$$
+
+对 $z$ 求导：
+
+$$\frac{\partial J}{\partial z} = -p + \frac{\partial \log(\mathbf{1}^T\exp(z))}{\partial z}$$
+
+$$= -p + \frac{1}{\mathbf{1}^T\exp(z)} \cdot \frac{\partial (\mathbf{1}^T\exp(z))}{\partial z}$$
+
+$$= -p + \frac{\exp(z)}{\mathbf{1}^T\exp(z)}$$
+
+$$= -p + q$$
+
+因此：
+
+$$\boxed{\frac{\partial J}{\partial z} = q - p}$$
+
+**(2) 证明关于 $W$ 的梯度**
+
+利用链式法则和迹微分法：
+
+$$dJ = d\,\text{tr}(J) = \text{tr}(dJ)$$
+
+由 $z = Wx$，有 $dz = dW \cdot x$，因此：
+
+$$dJ = \text{tr}\left[\left(\frac{\partial J}{\partial z}\right)^T dz\right] = \text{tr}[(q-p)^T dW \cdot x]$$
+
+利用迹的性质 $\text{tr}(ABC) = \text{tr}(CAB)$：
+
+$$dJ = \text{tr}[x(q-p)^T dW]$$
+
+因此：
+
+$$\boxed{\frac{\partial J}{\partial W} = (q-p)x^T \quad \text{成立}}$$
+
+---
+
+## 习题 5：多元正态分布的极大似然估计
+
+**题目**：以下内容是利用极大似然估计求解多元正态分布模型的关键步骤：
+
+$$L = -\frac{Nd}{2}\ln(2\pi) - \frac{N}{2}\ln|\Sigma| - \frac{1}{2}\sum_{t=1}^N (x_t - \mu)^T\Sigma^{-1}(x_t - \mu)$$
+
+$L$ 是对数似然，$N$ 为样本数，$d$ 为样本维数，$\Sigma \in \mathbb{R}^{d\times d}$ 为协方差矩阵，$\mu \in \mathbb{R}^d$ 为期望向量。
+
+**(1)** 求 $\frac{\partial L}{\partial \mu}$
+
+**(2)** 当 $\mu = \frac{1}{N}\sum_{t=1}^N x_t$ 时，求 $\frac{\partial L}{\partial \Sigma}$，并求使 $\frac{\partial L}{\partial \Sigma} = 0$ 成立的 $\Sigma$。
+
+**解**：
+
+**(1) 关于 $\mu$ 的梯度**
+
+对数似然中只有第三项与 $\mu$ 相关：
+
+$$\frac{\partial L}{\partial \mu} = \frac{\partial}{\partial \mu}\left[-\frac{1}{2}\sum_{t=1}^N (x_t - \mu)^T\Sigma^{-1}(x_t - \mu)\right]$$
+
+对每一项求导：
+
+$$\frac{\partial}{\partial \mu}(x_t - \mu)^T\Sigma^{-1}(x_t - \mu) = -2\Sigma^{-1}(x_t - \mu)$$
+
+因此：
+
+$$\boxed{\frac{\partial L}{\partial \mu} = \sum_{t=1}^N \Sigma^{-1}(x_t - \mu)}$$
+
+令 $\frac{\partial L}{\partial \mu} = 0$，得 $\mu = \frac{1}{N}\sum_{t=1}^N x_t$（样本均值）。
+
+**(2) 关于 $\Sigma$ 的梯度**
+
+使用迹微分法，将对数似然写成迹的形式：
+
+$$dL = d\left[-\frac{N}{2}\ln|\Sigma|\right] - d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right]$$
+
+**第一项：**
+
+$$d\left[-\frac{N}{2}\ln|\Sigma|\right] = -\frac{N}{2}d[\ln|\Sigma|] = -\frac{N}{2}\text{tr}[\Sigma^{-1}d\Sigma]$$
+
+**第二项：**
+
+$$d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right] = \frac{1}{2}d\,\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}\right]$$
+
+$$= \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T d(\Sigma^{-1})\right]$$
+
+利用 $d\Sigma^{-1} = -\Sigma^{-1}(d\Sigma)\Sigma^{-1}$：
+
+$$= \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T(-\Sigma^{-1}d\Sigma \cdot \Sigma^{-1})\right]$$
+
+$$= -\frac{1}{2}\text{tr}\left[\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}d\Sigma\right]$$
+
+综合两项：
+
+$$dL = \text{tr}\left[\left(-\frac{N}{2}\Sigma^{-1} + \frac{1}{2}\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}\right)d\Sigma\right]$$
+
+因此：
+
+$$\boxed{\frac{\partial L}{\partial \Sigma} = -\frac{N}{2}\Sigma^{-1} + \frac{1}{2}\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}}$$
+
+令 $\frac{\partial L}{\partial \Sigma} = 0$：
+
+$$N\Sigma^{-1} = \Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}$$
+
+两边左乘 $\Sigma$，右乘 $\Sigma$：
+
+$$N\Sigma = \sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T$$
+
+因此：
+
+$$\boxed{\Sigma = \frac{1}{N}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T}$$
+
+这就是样本协方差矩阵的极大似然估计。
+
+---
+
+## 习题 6：互信息的化简
+
+**题目**：（互信息）假设 $X_1 \to X_2 \to X_3 \to \cdots \to X_n$ 是一个马尔科夫链，即
+
+$$p(x_1, x_2, \ldots, x_n) = p(x_1)p(x_2|x_1)\cdots p(x_n|x_{n-1})$$
+
+试化简 $I(X_1; X_2, \ldots, X_n)$
+
+**解**：
+
+互信息定义为：
+
+$$I(X_1; X_2, \ldots, X_n) = H(X_1) - H(X_1 | X_2, \ldots, X_n)$$
+
+利用条件熵的性质：
+
+$$= H(X_1) - [H(X_1, X_2, \ldots, X_n) - H(X_2, \ldots, X_n)]$$
+
+对于马尔科夫链，联合熵可以分解为：
+
+$$H(X_1, X_2, \ldots, X_n) = \sum_{i=1}^n H(X_i|X_{i-1},\ldots,X_1)$$
+
+其中 $H(X_1|X_0,\ldots) = H(X_1)$。由马尔科夫性质：
+
+$$H(X_i|X_{i-1},\ldots,X_1) = H(X_i|X_{i-1})$$
+
+类似地：
+
+$$H(X_2, \ldots, X_n) = \sum_{i=2}^n H(X_i|X_{i-1},\ldots,X_2)$$
+
+代入得：
+
+$$I(X_1; X_2, \ldots, X_n) = H(X_1) - \left[\left(H(X_1) + \sum_{i=2}^n H(X_i|X_{i-1})\right) - \left(H(X_2) + \sum_{i=3}^n H(X_i|X_{i-1})\right)\right]$$
+
+$$= H(X_1) - H(X_1) - H(X_2|X_1) + H(X_2)$$
+
+$$= H(X_2) - H(X_2|X_1)$$
+
+$$= I(X_1; X_2)$$
+
+因此：
+
+$$\boxed{I(X_1; X_2, \ldots, X_n) = I(X_1; X_2)}$$
+
+**结论**：在马尔科夫链中，$X_1$ 与序列 $(X_2, \ldots, X_n)$ 的互信息等于 $X_1$ 与 $X_2$ 的互信息，这体现了马尔科夫性质。
+
+---
+
+## 习题 7：KL 散度与最大似然估计
+
+**题目**：（通过 KL 散度理解 MLE）假设 $x_1, \ldots, x_n$ 来自密度为 $p(x)$ 的分布 $P$，试说明如果采用具有密度函数 $q_\theta(x)$ 的分布族 $Q_\theta$ 来计算 MLE，那么 MLE 将试图找到在 KL 散度意义上最接近真实分布 $P$ 的分布 $Q_\theta$。
+
+即证明：
+
+$$\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\min_\theta D_{KL}(P \| Q_\theta)$$
+
+**证明**：
+
+从最大似然估计出发：
+
+$$\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\max_\theta \sum_{i=1}^n \log q_\theta(x_i)$$
+
+$$\Leftrightarrow \arg\min_\theta -\frac{1}{n}\sum_{i=1}^n \log q_\theta(x_i)$$
+
+当样本量 $n \to \infty$ 时，根据大数定律：
+
+$$-\frac{1}{n}\sum_{i=1}^n \log q_\theta(x_i) \xrightarrow{P} -\mathbb{E}_P[\log q_\theta(x)]$$
+
+$$= -\int p(x)\log q_\theta(x)dx$$
+
+这正是**交叉熵** $H(P, Q_\theta)$ 的定义。因此：
+
+$$\arg\min_\theta -\mathbb{E}_P[\log q_\theta(x)] \Leftrightarrow \arg\min_\theta H(P, Q_\theta)$$
+
+由于真实分布 $P$ 的熵 $H(P)$ 是常数（不依赖于 $\theta$）：
+
+$$\arg\min_\theta H(P, Q_\theta) \Leftrightarrow \arg\min_\theta [H(P, Q_\theta) - H(P)]$$
+
+而 KL 散度定义为：
+
+$$D_{KL}(P \| Q_\theta) = \int p(x)\log \frac{p(x)}{q_\theta(x)}dx$$
+
+$$= \int p(x)\log p(x)dx - \int p(x)\log q_\theta(x)dx$$
+
+$$= H(P) + H(P, Q_\theta)$$
+
+等价于：
+
+$$H(P, Q_\theta) - H(P) = -\int p(x)\log q_\theta(x)dx + \int p(x)\log p(x)dx = D_{KL}(P \| Q_\theta)$$
+
+因此：
+
+$$\boxed{\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\min_\theta D_{KL}(P \| Q_\theta)}$$
+
+**结论**：从优化模型参数的角度来说，最小化负对数似然、交叉熵（多分类问题）和 KL 散度这三种方式是等价的。MLE 实际上是在寻找与真实分布 KL 散度最小的模型分布。
+
+# 作业六
+
+---
+
+## 习题 1：贝叶斯推断求后验分布
+
+**题目**：假设总体 $X \sim N(\mu, \sigma^2)$（$\sigma^2$ 已知），$X_1, X_2, \ldots, X_n$ 为来自总体 $X$ 的样本，由过去的经验和知识，我们可以确定 $\mu$ 的取值比较集中在 $\mu_0$ 附近，离 $\mu_0$ 越远，$\mu$ 取值的可能性越小，于是我们假定 $\mu$ 的先验分布为正态分布
+
+$$\pi(\mu) = \frac{1}{\sqrt{2\pi\sigma_\mu^2}} \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right] \quad (\mu_0, \sigma_\mu \text{ 已知})$$
+
+求 $\mu$ 的后验概率分布。
+
+**解**：
+
+根据贝叶斯定理，后验分布正比于似然函数与先验分布的乘积。
+
+**似然函数：**
+
+给定 $\mu$，样本 $x_1, \ldots, x_n$ 的联合密度函数为：
+
+$$q(x | \mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(x_i - \mu)^2\right]$$
+
+$$= \frac{1}{\sigma^n(2\pi)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right]$$
+
+**后验密度函数：**
+
+$$h(\mu | x) = \frac{q(x | \mu) \cdot \pi(\mu)}{f_x(x)} \propto q(x | \mu) \cdot \pi(\mu)$$
+
+$$\propto \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right] \cdot \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right]$$
+
+合并指数项：
+
+$$h(\mu | x) \propto \exp\left[-\frac{1}{2}\left(\frac{\sum_{i=1}^n(x_i - \mu)^2}{\sigma^2} + \frac{(\mu - \mu_0)^2}{\sigma_\mu^2}\right)\right]$$
+
+展开平方项：
+
+$$\sum_{i=1}^n(x_i - \mu)^2 = \sum_{i=1}^n x_i^2 - 2\mu\sum_{i=1}^n x_i + n\mu^2 = n(\mu - \bar{x})^2 + \text{常数}$$
+
+因此指数项中关于 $\mu$ 的部分为：
+
+$$-\frac{1}{2}\left[\frac{n}{\sigma^2}(\mu - \bar{x})^2 + \frac{1}{\sigma_\mu^2}(\mu - \mu_0)^2\right]$$
+
+$$= -\frac{1}{2}\left[\left(\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}\right)\mu^2 - 2\mu\left(\frac{n\bar{x}}{\sigma^2} + \frac{\mu_0}{\sigma_\mu^2}\right) + \text{常数}\right]$$
+
+配方得：
+
+$$h(\mu | x) \propto \exp\left[-\frac{(\mu - t)^2}{2\eta^2}\right]$$
+
+其中：
+
+$$t = \frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \quad \eta^2 = \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}$$
+
+因此，后验分布为：
+
+$$\boxed{\mu | x \sim N\left(\frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}\right)}$$
+
+**解释**：后验均值是样本均值和先验均值的加权平均，权重由各自的精度（方差的倒数）决定。
+
+---
+
+## 习题 2：Gauss 累积分布函数的对数凹性
+
+**题目**：证明：Gauss 概率密度函数的累积分布函数
+
+$$\Phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-u^2/2}du$$
+
+是对数-凹函数，即 $\log(\Phi(x))$ 是凹函数。
+
+**证明**：
+
+要证明 $\log(\Phi(x))$ 是凹函数，需要证明其二阶导数非正，即：
+
+$$\frac{d^2}{dx^2}\log(\Phi(x)) \leq 0$$
+
+等价于证明：
+
+$$\Phi(x)\Phi''(x) \leq [\Phi'(x)]^2$$
+
+**计算导数：**
+
+$$\Phi'(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$
+
+$$\Phi''(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}(-x) = -x\Phi'(x)$$
+
+$$[\Phi'(x)]^2 = \frac{1}{2\pi}e^{-x^2}$$
+
+**情况 1：$x \geq 0$**
+
+当 $x \geq 0$ 时，$\Phi''(x) = -x\Phi'(x) \leq 0$，而 $\Phi(x) > 0$，$[\Phi'(x)]^2 \geq 0$，因此：
+
+$$\Phi(x)\Phi''(x) \leq 0 \leq [\Phi'(x)]^2$$
+
+**情况 2：$x < 0$**
+
+当 $x < 0$ 时，需要证明：
+
+$$\Phi(x) \cdot (-x) \leq \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$
+
+即：
+
+$$\int_{-\infty}^x e^{-u^2/2}du \leq \frac{e^{-x^2/2}}{-x}$$
+
+由于 $\frac{u^2}{2}$ 是凸函数，对任意 $u < x < 0$，有：
+
+$$\frac{u^2}{2} \geq \frac{x^2}{2} + (u-x)x = xu - \frac{x^2}{2}$$
+
+因此：
+
+$$e^{-u^2/2} \leq e^{-xu + x^2/2}$$
+
+积分得：
+
+$$\int_{-\infty}^x e^{-u^2/2}du \leq \int_{-\infty}^x e^{x^2/2-xu}du$$
+
+$$= e^{x^2/2} \int_{-\infty}^x e^{-xu}du = e^{x^2/2} \cdot \frac{e^{-xu}}{-x}\bigg|_{u=-\infty}^x$$
+
+$$= e^{x^2/2} \cdot \frac{e^{-x^2}}{-x} = \frac{e^{-x^2/2}}{-x}$$
+
+因此 $\Phi(x)\Phi''(x) \leq [\Phi'(x)]^2$ 对 $x < 0$ 也成立。
+
+综上所述，$\Phi(x)$ 是对数凹函数。 $\square$
+
+---
+
+## 习题 3：共轭函数的计算
+
+**题目**：计算函数 $f(x)$ 的共轭函数，以及共轭函数的定义域。
+
+**(1)** $f(x) = -\log x$
+
+**(2)** $f(x) = e^x$
+
+**解**：
+
+共轭函数定义为：
+
+$$f^*(y) = \sup_x (xy - f(x))$$
+
+### (1) $f(x) = -\log x$
+
+定义域 $\text{dom}(f) = \{x|x > 0\}$。
+
+对于给定的 $y$，求 $g(x) = xy + \log x$ 的上确界。
+
+求导：$g'(x) = y + \frac{1}{x}$
+
+- 当 $y \geq 0$ 时，$g'(x) > 0$ 恒成立，函数单调递增，无上界
+- 当 $y < 0$ 时，令 $g'(x) = 0$ 得 $x = -\frac{1}{y}$
+
+此时：
+
+$$g\left(-\frac{1}{y}\right) = -\frac{1}{y} \cdot y + \log\left(-\frac{1}{y}\right) = -1 - \log(-y)$$
+
+因此：
+
+$$\boxed{f^*(y) = \begin{cases} -\log(-y) - 1, & y < 0 \\ +\infty, & y \geq 0 \end{cases}}$$
+
+定义域：$\text{dom}(f^*) = \{y | y < 0\}$
+
+### (2) $f(x) = e^x$
+
+定义域 $\text{dom}(f) = \mathbb{R}$。
+
+对于给定的 $y$，求 $g(x) = xy - e^x$ 的上确界。
+
+求导：$g'(x) = y - e^x$
+
+- 当 $y \leq 0$ 时，$g'(x) < 0$ 恒成立，函数单调递减，无上界（趋于 $-\infty$ 时）
+- 当 $y > 0$ 时，令 $g'(x) = 0$ 得 $x = \log y$
+
+此时：
+
+$$g(\log y) = y\log y - e^{\log y} = y\log y - y$$
+
+- 当 $y = 0$ 时：$f^*(0) = \sup_x(-e^x) = 0$（当 $x \to -\infty$ 时）
+
+因此：
+
+$$\boxed{f^*(y) = \begin{cases} y\log y - y, & y > 0 \\ 0, & y = 0 \\ +\infty, & y < 0 \end{cases}}$$
+
+定义域：$\text{dom}(f^*) = \{y | y \geq 0\}$（规定 $0\log 0 = 0$）
+
+---
+
+## 习题 4：KKT 条件的应用
+
+**题目**：写出下述非线性规划的 KKT 条件并求解
+
+**(1)** $\max f(x) = (x - 3)^2$ subject to $1 \leq x \leq 5$
+
+**(2)** $\min f(x) = (x - 3)^2$ subject to $1 \leq x \leq 5$
+
+**解**：
+
+### (1) 最大化问题
+
+将最大化问题转化为最小化问题：
+
+$$\begin{cases} \text{minimize} \quad -f(x) = -(x-3)^2 \\ g_1(x) = 1 - x \leq 0 \\ g_2(x) = x - 5 \leq 0 \end{cases}$$
+
+**梯度：**
+
+$$\nabla_x[-f(x)] = -2(x-3), \quad \nabla_x g_1(x) = -1, \quad \nabla_x g_2(x) = 1$$
+
+**KKT 条件：**
+
+$$\begin{cases} -2(x^* - 3) - v_1^* + v_2^* = 0 & \text{(稳定性)} \\ v_1^*(1 - x^*) = 0 & \text{(互补松弛性)} \\ v_2^*(x^* - 5) = 0 & \text{(互补松弛性)} \\ v_1^* \geq 0, \quad v_2^* \geq 0 & \text{(对偶可行性)} \\ 1 \leq x^* \leq 5 & \text{(原始可行性)} \end{cases}$$
+
+**情况分析：**
+
+**情况 i：** $v_1^* = 0, v_2^* = 0$
+
+由稳定性条件：$-2(x^* - 3) = 0$，得 $x^* = 3$
+
+此时 $f(x^*) = 0$
+
+**情况 ii：** $v_1^* > 0, v_2^* = 0$
+
+由互补松弛性：$x^* = 1$
+
+由稳定性条件：$-2(1-3) - v_1^* = 0$，得 $v_1^* = 4 > 0$ ✓
+
+此时 $f(x^*) = 4$
+
+**情况 iii：** $v_1^* = 0, v_2^* > 0$
+
+由互补松弛性：$x^* = 5$
+
+由稳定性条件：$-2(5-3) + v_2^* = 0$，得 $v_2^* = 4 > 0$ ✓
+
+此时 $f(x^*) = 4$
+
+**情况 iv：** $v_1^* > 0, v_2^* > 0$
+
+由互补松弛性：$x^* = 1$ 且 $x^* = 5$，矛盾
+
+**结论：** 
+
+$$\boxed{x^* = 1 \text{ 或 } x^* = 5, \quad \max f(x) = 4}$$
+
+### (2) 最小化问题
+
+$$\begin{cases} \text{minimize} \quad f(x) = (x-3)^2 \\ g_1(x) = 1 - x \leq 0 \\ g_2(x) = x - 5 \leq 0 \end{cases}$$
+
+**梯度：**
+
+$$\nabla_x f(x) = 2(x-3)$$
+
+**KKT 条件：**
+
+$$\begin{cases} 2(x^* - 3) - v_1^* + v_2^* = 0 \\ v_1^*(1 - x^*) = 0 \\ v_2^*(x^* - 5) = 0 \\ v_1^* \geq 0, \quad v_2^* \geq 0 \\ 1 \leq x^* \leq 5 \end{cases}$$
+
+**情况分析：**
+
+**情况 i：** $v_1^* = 0, v_2^* = 0$
+
+由稳定性条件：$2(x^* - 3) = 0$，得 $x^* = 3$
+
+此时 $f(x^*) = 0$ ✓
+
+**情况 ii：** $v_1^* > 0, v_2^* = 0$
+
+$x^* = 1$，$2(1-3) - v_1^* = 0$，得 $v_1^* = -4 < 0$ ✗
+
+**情况 iii：** $v_1^* = 0, v_2^* > 0$
+
+$x^* = 5$，$2(5-3) + v_2^* = 0$，得 $v_2^* = -4 < 0$ ✗
+
+**结论：**
+
+$$\boxed{x^* = 3, \quad \min f(x) = 0}$$
+
+---
+
+## 习题 5：Lagrange 乘子法证明矩阵 2-范数
+
+**题目**：用 Lagrange 乘子法证明：矩阵 $A \in \mathbb{R}^{m\times n}$ 的 2-范数
+
+$$\|A\|_2 = \max_{\|x\|_2 = 1, x \in \mathbb{R}^n} \|Ax\|_2$$
+
+的平方是 $A^TA$ 的最大特征值。
+
+**证明**：
+
+优化问题为：
+
+$$\text{maximize} \quad f(x) = \|Ax\|_2^2 = x^TA^TAx \quad \text{subject to} \quad x^Tx = 1$$
+
+**Lagrange 函数：**
+
+$$L(x, \lambda) = x^TA^TAx - \lambda(x^Tx - 1)$$
+
+**求梯度并令其为零：**
+
+$$\frac{\partial L}{\partial x} = 2A^TAx - 2\lambda x = 0$$
+
+因此：
+
+$$A^TAx = \lambda x$$
+
+这说明在极值点 $x^*$ 处，$x^*$ 是 $A^TA$ 的特征向量，$\lambda$ 是对应的特征值。
+
+**目标函数值：**
+
+$$f(x^*) = (x^*)^TA^TAx^* = (x^*)^T\lambda x^* = \lambda(x^*)^Tx^* = \lambda$$
+
+由于我们求的是最大值，因此：
+
+$$\|A\|_2^2 = \max_{\|x\|_2=1} x^TA^TAx = \lambda_{\max}(A^TA)$$
+
+即：
+
+$$\boxed{\|A\|_2 = \sqrt{\lambda_{\max}(A^TA)}}$$
+
+$\square$
+
+---
+
+## 习题 6：欠定方程的最小二范数解
+
+**题目**：用 Lagrange 乘子法求欠定方程 $Ax = b$ 的最小二范数解，其中 $A \in \mathbb{R}^{m\times n}$，$m \leq n$，$\text{rank}(A) = m$
+
+**解**：
+
+优化问题为：
+
+$$\text{minimize} \quad f(x) = \frac{1}{2}\|x\|_2^2 = \frac{1}{2}x^Tx \quad \text{subject to} \quad Ax = b$$
+
+**Lagrange 函数：**
+
+$$L(x, \lambda) = \frac{1}{2}x^Tx - \lambda^T(Ax - b)$$
+
+**求梯度并令其为零：**
+
+$$\frac{\partial L}{\partial x} = x - A^T\lambda = 0$$
+
+因此：
+
+$$x = A^T\lambda$$
+
+**代入约束条件：**
+
+$$Ax = b \Rightarrow A(A^T\lambda) = b$$
+
+$$AA^T\lambda = b$$
+
+由于 $\text{rank}(A) = m$，矩阵 $AA^T \in \mathbb{R}^{m \times m}$ 是满秩的，因此可逆：
+
+$$\lambda = (AA^T)^{-1}b$$
+
+**最小二范数解：**
+
+$$\boxed{x^* = A^T(AA^T)^{-1}b}$$
+
+**验证：** 
+- $Ax^* = AA^T(AA^T)^{-1}b = b$ ✓（满足约束）
+- 可以证明这是所有满足 $Ax = b$ 的解中范数最小的
+
+---
+
+## 习题 7：最速下降法
+
+**题目**：用最速下降法和精确线搜索计算
+
+$$\min f(x) = x_1^2 + x_2^2 + x_3^2$$
+
+初始点 $x^{(0)} = (2, 2, 1)^T$。当 $|f(x^{(n+1)}) - f(x^{(n)})| < 0.001$ 时迭代终止。
+
+**解**：
+
+目标函数 $f(x) = x^Tx$，梯度 $\nabla f(x) = 2x$。
+
+**精确线搜索：**
+
+最速下降方向为 $d^{(k)} = -\nabla f(x^{(k)}) = -2x^{(k)}$
+
+在该方向上最小化 $f(x^{(k)} + \lambda d^{(k)})$：
+
+$$f(x^{(k)} + \lambda d^{(k)}) = (x^{(k)} - 2\lambda x^{(k)})^T(x^{(k)} - 2\lambda x^{(k)})$$
+
+$$= (1 - 2\lambda)^2 (x^{(k)})^Tx^{(k)}$$
+
+对 $\lambda$ 求导并令其为零：
+
+$$\frac{d}{d\lambda}[(1-2\lambda)^2 (x^{(k)})^Tx^{(k)}] = 2(1-2\lambda)(-2)(x^{(k)})^Tx^{(k)} = 0$$
+
+得 $\lambda^* = \frac{1}{2}$
+
+**迭代过程：**
+
+$$x^{(1)} = x^{(0)} + \frac{1}{2}(-2x^{(0)}) = x^{(0)} - x^{(0)} = 0$$
+
+$$f(x^{(1)}) = 0$$
+
+$$x^{(2)} = x^{(1)} - x^{(1)} = 0$$
+
+$$|f(x^{(1)}) - f(x^{(0)})| = |0 - 9| = 9 > 0.001$$
+
+$$|f(x^{(2)}) - f(x^{(1)})| = |0 - 0| = 0 < 0.001$$
+
+迭代终止。
+
+**结论：**
+
+$$\boxed{x^* = (0, 0, 0)^T, \quad f_{\min} = 0}$$
+
+算法一步即收敛到最优解，这是因为目标函数是简单的二次型，且 Hessian 矩阵为单位矩阵的倍数。
+
+---
+
+## 习题 8：DFP 法求二次函数极小点
+
+**题目**：试用 DFP 法计算下述二次函数的极小点
+
+$$\min f(x) = 3x_1^2 + x_2^2 - 2x_1x_2 - 4x_1$$
+
+**解**：
+
+选择初始点 $x^{(0)} = (-2, 4)^T$，初始 Hessian 逆近似 $H^{(0)} = I$。
+
+**梯度：**
+
+$$\nabla f(x) = \begin{pmatrix} 6x_1 - 2x_2 - 4 \\ 2x_2 - 2x_1 \end{pmatrix}$$
+
+### 第一次迭代
+
+$$\nabla f(x^{(0)}) = \begin{pmatrix} 6(-2) - 2(4) - 4 \\ 2(4) - 2(-2) \end{pmatrix} = \begin{pmatrix} -24 \\ 12 \end{pmatrix}$$
+
+**搜索方向：**
+
+$$p^{(0)} = -H^{(0)}\nabla f(x^{(0)}) = -I \begin{pmatrix} -24 \\ 12 \end{pmatrix} = \begin{pmatrix} 24 \\ -12 \end{pmatrix}$$
+
+**精确线搜索：** 求 $\lambda_0 = \arg\min_\lambda f(x^{(0)} + \lambda p^{(0)})$
+
+$$f(x^{(0)} + \lambda p^{(0)}) = 3(-2+24\lambda)^2 + (4-12\lambda)^2 - 2(-2+24\lambda)(4-12\lambda) - 4(-2+24\lambda)$$
+
+对 $\lambda$ 求导并令其为零，得：
+
+$$\lambda_0 = \frac{5}{34}$$
+
+**更新：**
+
+$$x^{(1)} = x^{(0)} + \lambda_0 p^{(0)} = \begin{pmatrix} -2 \\ 4 \end{pmatrix} + \frac{5}{34}\begin{pmatrix} 24 \\ -12 \end{pmatrix} = \begin{pmatrix} \frac{26}{17} \\ \frac{38}{17} \end{pmatrix}$$
+
+$$\nabla f(x^{(1)}) = \begin{pmatrix} \frac{12}{17} \\ \frac{24}{17} \end{pmatrix}$$
+
+**DFP 更新公式：**
+
+$$\Delta x^{(0)} = x^{(1)} - x^{(0)} = \begin{pmatrix} \frac{60}{17} \\ -\frac{30}{17} \end{pmatrix}$$
+
+$$\Delta g^{(0)} = \nabla f(x^{(1)}) - \nabla f(x^{(0)}) = \begin{pmatrix} \frac{420}{17} \\ -\frac{180}{17} \end{pmatrix}$$
+
+$$H^{(1)} = H^{(0)} + \frac{\Delta x^{(0)}(\Delta x^{(0)})^T}{(\Delta g^{(0)})^T\Delta x^{(0)}} - \frac{H^{(0)}\Delta g^{(0)}(\Delta g^{(0)})^TH^{(0)}}{(\Delta g^{(0)})^TH^{(0)}\Delta g^{(0)}}$$
+
+计算后得：
+
+$$H^{(1)} = I + \frac{1}{1800}\begin{pmatrix} 3600 & -1800 \\ -1800 & 900 \end{pmatrix} - \frac{1}{226800}\begin{pmatrix} 176400 & -75600 \\ -75600 & 32400 \end{pmatrix}$$
+
+### 第二次迭代
+
+$$p^{(1)} = -H^{(1)}\nabla f(x^{(1)}) = -\begin{pmatrix} \frac{18}{29} \\ \frac{42}{29} \end{pmatrix}$$
+
+精确线搜索得 $\lambda_1 = \frac{29}{34}$
+
+$$x^{(2)} = x^{(1)} + \lambda_1 p^{(1)} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+
+$$\nabla f(x^{(2)}) = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
+
+**结论：**
+
+$$\boxed{x^* = (1, 1)^T \text{ 为极小点}}$$
+
+DFP 法对于 $n$ 维二次函数，最多需要 $n$ 步即可收敛到精确解（具有二次终止性）。
