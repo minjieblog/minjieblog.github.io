@@ -1135,33 +1135,39 @@ Reflexion 引入了语言化的自我反思机制，使 Agent 能够从试错中
 </code></pre><p><strong>➡️ 体现的反应性</strong>：Agent 能够快速识别环境反馈（错误信息、失败信号），生成针对性的策略调整，实时适应新情况。</p>
 <hr>
 <h3 id="3-社会性-sociality">3. 社会性 (Sociality)<a hidden class="anchor" aria-hidden="true" href="#3-社会性-sociality">#</a></h3>
-<p><strong>性质解释</strong>
-AI Agent 能够与其他 Agent 进行协作、竞争或沟通，在多智能体环境中通过合作完成单个 Agent 无法完成的复杂任务。</p>
+<p><strong>性质解释</strong></p>
+<p>AI Agent 能够与其他 Agent 进行协作、竞争或沟通，在多智能体环境中通过合作完成单个 Agent 无法完成的复杂任务。</p>
 <p><strong>代表性技术：QMIX</strong></p>
 <ul>
-<li><strong>会议：ICML 2018</strong></li>
-<li>**论文：**Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (Rashid et al.)</li>
+<li><strong>会议：</strong> ICML 2018</li>
+<li><strong>论文：</strong> Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (Rashid et al.)</li>
 </ul>
-<p><strong>核心原理</strong>
-QMIX 通过单调价值函数分解解决多智能体协作中的信用分配问题：</p>
-<ol>
-<li>集中训练-分散执行 (CTDE) 范式
+<p><strong>核心原理</strong></p>
+<p>QMIX 通过单调价值函数分解解决多智能体协作中的信用分配问题：</p>
+<p><strong>1. 集中训练-分散执行 (CTDE) 范式</strong></p>
 <ul>
-<li><strong>训练阶段</strong>: 可访问全局状态 ss s 和所有 Agent 的观测</li>
-<li><strong>执行阶段</strong>: 每个 Agent 仅基于局部观测 oio_i oi 独立决策</li>
+<li><strong>训练阶段</strong>：可访问全局状态 $s$ 和所有 Agent 的观测</li>
+<li><strong>执行阶段</strong>：每个 Agent 仅基于局部观测 $o_i$ 独立决策</li>
 </ul>
-</li>
-<li><strong>单调价值函数分解</strong>
-将全局 Q 函数分解为各 Agent 局部 Q 函数的单调组合：  $$Q_{tot}(s, \mathbf{a}) = f_{\text{mix}}(Q_1(o_1, a_1), \ldots, Q_n(o_n, a_n); s) 约束条件（单调性）：  $$\frac{\partial Q_{tot}}{\partial Q_i} \geq 0, \quad \forall i 这保证了：局部贪婪动作（argmax QiQ_i Qi​）的组合等于全局最优动作</li>
-<li>混合网络 (Mixing Network)
+<p><strong>2. 单调价值函数分解</strong></p>
+<p>将全局 Q 函数分解为各 Agent 局部 Q 函数的单调组合：</p>
+$$
+Q_{\text{tot}}(s, \mathbf{a}) = f_{\text{mix}}(Q_1(o_1, a_1), \ldots, Q_n(o_n, a_n); s)
+$$<p>约束条件（单调性）：</p>
+$$
+\frac{\partial Q_{\text{tot}}}{\partial Q_i} \geq 0, \quad \forall i
+$$<p>这保证了：局部贪婪动作（$\arg\max Q_i$）的组合等于全局最优动作。</p>
+<p><strong>3. 混合网络 (Mixing Network)</strong></p>
 <ul>
-<li>使用超网络 (hypernetwork) 根据全局状态 ss s 生成混合网络的权重</li>
+<li>使用超网络 (hypernetwork) 根据全局状态 $s$ 生成混合网络的权重</li>
 <li>权重非负性通过绝对值函数保证单调性</li>
-<li>网络结构：Agent Networks→Mixing Network→Qtot\text{Agent Networks} \rightarrow \text{Mixing Network} \rightarrow Q_{tot} Agent Networks→Mixing Network→Qtot</li>
+<li>网络结构：</li>
 </ul>
-</li>
-</ol>
-<p><strong>➡️ 体现的社会性</strong>：多个 Agent 无需显式通信即可通过学习形成隐式协作策略，共同最大化团队奖励，展现涌现的群体智能。</p>
+$$
+\text{Agent Networks} \rightarrow \text{Mixing Network} \rightarrow Q_{\text{tot}}
+$$<p><strong>➡️ 体现的社会性</strong></p>
+<p>多个 Agent 无需显式通信即可通过学习形成隐式协作策略，共同最大化团队奖励，展现涌现的群体智能。</p>
+<hr>
 
 
   </div>

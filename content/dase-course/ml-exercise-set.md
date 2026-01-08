@@ -1314,24 +1314,51 @@ $$a^* = \arg\max_a [r(s,a) + \gamma v(s')]$$
 ### 3. 社会性 (Sociality)
 
 **性质解释**
- AI Agent 能够与其他 Agent 进行协作、竞争或沟通，在多智能体环境中通过合作完成单个 Agent 无法完成的复杂任务。
+
+AI Agent 能够与其他 Agent 进行协作、竞争或沟通，在多智能体环境中通过合作完成单个 Agent 无法完成的复杂任务。
 
 **代表性技术：QMIX**
 
-- **会议：ICML 2018**
-- **论文：**Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (Rashid et al.)
+- **会议：** ICML 2018
+- **论文：** Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (Rashid et al.)
 
 **核心原理**
- QMIX 通过单调价值函数分解解决多智能体协作中的信用分配问题：
 
-1. 集中训练-分散执行 (CTDE) 范式
-   - **训练阶段**: 可访问全局状态 ss s 和所有 Agent 的观测
-   - **执行阶段**: 每个 Agent 仅基于局部观测 oio_i oi 独立决策
-2. **单调价值函数分解**
-    将全局 Q 函数分解为各 Agent 局部 Q 函数的单调组合：  $$Q_{tot}(s, \mathbf{a}) = f_{\text{mix}}(Q_1(o_1, a_1), \ldots, Q_n(o_n, a_n); s) 约束条件（单调性）：  $$\frac{\partial Q_{tot}}{\partial Q_i} \geq 0, \quad \forall i 这保证了：局部贪婪动作（argmax QiQ_i Qi​）的组合等于全局最优动作
-3. 混合网络 (Mixing Network)
-   - 使用超网络 (hypernetwork) 根据全局状态 ss s 生成混合网络的权重
-   - 权重非负性通过绝对值函数保证单调性
-   - 网络结构：Agent Networks→Mixing Network→Qtot\text{Agent Networks} \rightarrow \text{Mixing Network} \rightarrow Q_{tot} Agent Networks→Mixing Network→Qtot
+QMIX 通过单调价值函数分解解决多智能体协作中的信用分配问题：
 
-**➡️ 体现的社会性**：多个 Agent 无需显式通信即可通过学习形成隐式协作策略，共同最大化团队奖励，展现涌现的群体智能。
+**1. 集中训练-分散执行 (CTDE) 范式**
+
+- **训练阶段**：可访问全局状态 $s$ 和所有 Agent 的观测
+- **执行阶段**：每个 Agent 仅基于局部观测 $o_i$ 独立决策
+
+**2. 单调价值函数分解**
+
+将全局 Q 函数分解为各 Agent 局部 Q 函数的单调组合：
+
+$$
+Q_{\text{tot}}(s, \mathbf{a}) = f_{\text{mix}}(Q_1(o_1, a_1), \ldots, Q_n(o_n, a_n); s)
+$$
+
+约束条件（单调性）：
+
+$$
+\frac{\partial Q_{\text{tot}}}{\partial Q_i} \geq 0, \quad \forall i
+$$
+
+这保证了：局部贪婪动作（$\arg\max Q_i$）的组合等于全局最优动作。
+
+**3. 混合网络 (Mixing Network)**
+
+- 使用超网络 (hypernetwork) 根据全局状态 $s$ 生成混合网络的权重
+- 权重非负性通过绝对值函数保证单调性
+- 网络结构：
+
+$$
+\text{Agent Networks} \rightarrow \text{Mixing Network} \rightarrow Q_{\text{tot}}
+$$
+
+**➡️ 体现的社会性**
+
+多个 Agent 无需显式通信即可通过学习形成隐式协作策略，共同最大化团队奖励，展现涌现的群体智能。
+
+---
