@@ -128,79 +128,82 @@ $$\|A_2\|_2 = \sqrt{3 + \sqrt{5}}$$
 
 **题目**：矩阵的范数主要包括三种主要类型：诱导范数，元素形式范数和 Schatten 范数。诱导范数又称矩阵空间上的算子范数 (operator norm)，常用的诱导范数为 $p$ 范数，定义如下
 
-$$\|A\|_p = \sup_{\|x\|_p \neq 0} \frac{\|Ax\|_p}{\|x\|_p} = \sup_{\|x\|_p = 1} \|Ax\|_p$$
-
+$$
+\|A\|_p = \sup_{\|x\|_p \neq 0} \frac{\|Ax\|_p}{\|x\|_p} = \sup_{\|x\|_p = 1} \|Ax\|_p
+$$
 **(1)** 设 $A = (a_{ij}) \in \mathbb{C}^{m \times n}$，证明 1 范数为列和范数，无穷范数为行和范数
+$$
+\|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|, \quad \|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^{m} |a_{ij}|
+$$
+元素形式范数即矩阵按列排成向量，然后采用向量范数的定义得到的矩阵范数，一般称 $l_p$ 范数。
 
-$$\|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|, \quad \|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^{m} |a_{ij}|$$
-
-**(2)** 元素形式范数即矩阵按列排成向量，然后采用向量范数的定义得到的矩阵范数，一般称 $l_p$ 范数。
-
-$$l_p: \|A\|_p = \sqrt[p]{\sum_{i,j} |a_{ij}|^p}$$
-
-试比较 $l_1$ 范数
-
-$$l_1: \|A\|_1 = \sum_{i,j} |a_{ij}|^1$$
-
+$$
+l_p: \|A\|_p = \sqrt[p]{\sum_{i,j} |a_{ij}|^p}
+$$
+**(2)** 试比较 $l_1$ 范数
+$$
+l_1: \|A\|_1 = \sum_{i,j} |a_{ij}|^1
+$$
 与诱导范数的关系。
 
 #### (1) 证明 1-范数和无穷范数
 
 设 $A = (a_{ij}) \in \mathbb{C}^{m \times n}$，证明 1 范数为列和范数，无穷范数为行和范数
 
-$$\|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|, \quad \|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^{m} |a_{ij}|$$
-
+$$
+\|A\|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|, \quad \|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^{m} |a_{ij}|
+$$
 **证明**：
+$$
+对于A = (a_1,...a_n)来说
+$$
+
 
 **(i) 证明 1-范数为列和范数**
 
 对于任意 $x \in \mathbb{C}^n$ 且 $\|x\|_1 = 1$，利用三角不等式：
 
-$$\|Ax\|_1 = \sum_{i=1}^m \left|\sum_{j=1}^n a_{ij}x_j\right| \leq \sum_{i=1}^m \sum_{j=1}^n |a_{ij}||x_j| = \sum_{j=1}^n |x_j| \sum_{i=1}^m |a_{ij}| \leq \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$$
-
+$$
+\|Ax\|_1 = \sum_{i=1}^m \left|\sum_{j=1}^n a_{ij}x_j\right| \leq \sum_{j=1}^n |x_j| \sum_{i=1}^m |a_{ij}| \leq \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|
+$$
 设第 $k$ 列使得列和最大，取 $x = e_k$，则
 
-$$\|Ax\|_1 = \sum_{i=1}^m |a_{ik}| = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$$
-
+$$
+\|Ax\|_1 = \sum_{i=1}^m |a_{ik}| = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|
+$$
 故上界可达到。因此 $\|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$。
 
 **(ii) 证明无穷范数为行和范数**
 
 对于任意 $x \in \mathbb{C}^n$ 且 $\|x\|_\infty = 1$，有：
 
-$$\|Ax\|_\infty = \max_{1 \leq i \leq m} \left|\sum_{j=1}^n a_{ij}x_j\right| \leq \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}||x_j| \leq \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$$
-
-设第 $k$ 行使得行和最大，取 $x_j = \text{sgn}(\overline{a_{kj}})$，则
-
-$$\|Ax\|_\infty \geq \sum_{j=1}^n |a_{kj}| = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$$
-
+$$
+\|Ax\|_\infty = \max_{1 \leq i \leq m} \left|\sum_{j=1}^n a_{ij}x_j\right| \leq \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}||x_j| \leq \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|
+$$
+设第 $k$ 行使得行和最大，取 $
+x_j =
+\begin{cases}
+\dfrac{\overline{a_{kj}}}{|a_{kj}|}, & a_{kj} \neq 0,\\[6pt]
+0, & a_{kj} = 0.
+\end{cases}
+$，则
+$$
+\|Ax\|_\infty \leq \sum_{j=1}^n |a_{kj}| = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|
+$$
 故 $\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$。 $\square$
 
 #### (2) 元素形式范数与诱导范数的关系
 
-以 $l_1$ 范数
+以 $l_1$ 范数与$1$范数，无穷范数为例，有
 
-$$l_1: \|A\|_1 = \sum_{i,j} |a_{ij}|^1$$
+$$
+\|X\|_1 \le \|X\|_{1(l_1)} \le n\|X\|_1
+$$
 
-与诱导范数的关系为例，证明：
+$$
+\|X\|_\infty \le \|X\|_{1(l_1)} \le m\|X\|_\infty
+$$
 
-$$\|X\|_1 \leq \|X\|_{1(l_1)} \leq n\|X\|_1$$
-
-$$\|X\|_\infty \leq \|X\|_{1(l_1)} \leq m\|X\|_\infty$$
-
-**证明**：
-
-设 $X = (x_{ij}) \in \mathbb{C}^{m \times n}$。记 $\|X\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^m |x_{ij}|$，$\|X\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |x_{ij}|$，$\|X\|_{1(l_1)} = \sum_{i,j} |x_{ij}|$。
-
-**第一组不等式**：因为 $\|X\|_1$ 是所有列和的最大值，而 $\|X\|_{1(l_1)}$ 是所有列和的总和，故
-
-$$\|X\|_1 \leq \sum_{j=1}^n \sum_{i=1}^m |x_{ij}| = \|X\|_{1(l_1)} \leq \sum_{j=1}^n \|X\|_1 = n\|X\|_1$$
-
-**第二组不等式**：因为 $\|X\|_\infty$ 是所有行和的最大值，而 $\|X\|_{1(l_1)}$ 是所有行和的总和，故
-
-$$\|X\|_\infty \leq \sum_{i=1}^m \sum_{j=1}^n |x_{ij}| = \|X\|_{1(l_1)} \leq \sum_{i=1}^m \|X\|_\infty = m\|X\|_\infty$$
-
-$\square$
 
 ---
 
@@ -210,42 +213,50 @@ $\square$
 
 **证明**：
 
-Frobenius 范数定义为 $\|A\|_F = \sqrt{\sum_{i,j} |a_{ij}|^2} = \sqrt{\text{tr}(A^*A)}$。
+Frobenius 范数定义为 $\|A\|_F = \sqrt{\sum_{i,j} |a_{ij}|^2} =\|(a_{11},…,a_{mn})\|_2= \sqrt{\text{tr}(A^*A)}$
 
 **(1) 证明第一个不等式：$\|AB\|_F \leq \|A\|_F \|B\|_F$**
 
 将 $B$ 按列分块：$B = [b_1, b_2, \ldots, b_p]$，其中 $b_j$ 是 $B$ 的第 $j$ 列。则：
 
-$$AB = [Ab_1, Ab_2, \ldots, Ab_p]$$
-
+$$
+AB = [Ab_1, Ab_2, \ldots, Ab_p]​
+$$
 由 Frobenius 范数的性质：
 
-$$\|AB\|_F^2 = \sum_{j=1}^p \|Ab_j\|_2^2$$
+$$
+\|AB\|_F^2 = \sum_{j=1}^p \|Ab_j\|_2^2
+$$
 
-对每一列 $Ab_j$，设 $A$ 的第 $i$ 行为 $a_i^*$，则 $(Ab_j)_i = a_i^* b_j$。由 Cauchy-Schwarz 不等式：
 
-$$|(Ab_j)_i|^2 = |a_i^* b_j|^2 \leq \|a_i^*\|_2^2 \|b_j\|_2^2$$
+对每一列 $Ab_j$，设 $A$ 的第 $i$ 行为 $a_i^*$，则 $(Ab_j)_i = a_i^* b_j$。由 **柯西-施瓦茨不等式**
 
+$$
+|(Ab_j)_i|^2 = |a_i^* b_j|^2 \leq \|a_i^*\|_2^2 \|b_j\|_2^2​
+$$
 因此：
 
-$$\|Ab_j\|_2^2 = \sum_{i=1}^m |(Ab_j)_i|^2 \leq \sum_{i=1}^m \|a_i^*\|_2^2 \|b_j\|_2^2 = \|A\|_F^2 \|b_j\|_2^2$$
-
+$$
+\|Ab_j\|_2^2 = \sum_{i=1}^m |(Ab_j)_i|^2 \leq \sum_{i=1}^m \|a_i^*\|_2^2 \|b_j\|_2^2 = \|A\|_F^2 \|b_j\|_2^2​
+$$
 代入得：
-
-$$\|AB\|_F^2 = \sum_{j=1}^p \|Ab_j\|_2^2 \leq \sum_{j=1}^p \|A\|_F^2 \|b_j\|_2^2 = \|A\|_F^2 \sum_{j=1}^p \|b_j\|_2^2 = \|A\|_F^2 \|B\|_F^2$$
-
+$$
+\|AB\|_F^2 = \sum_{j=1}^p \|Ab_j\|_2^2 \leq \sum_{j=1}^p \|A\|_F^2 \|b_j\|_2^2 = \|A\|_F^2 \sum_{j=1}^p \|b_j\|_2^2 = \|A\|_F^2 \|B\|_F^2​
+$$
 因此 $\|AB\|_F \leq \|A\|_F \|B\|_F$。
 
 **(2) 证明第二个不等式：$\|AB\|_F \leq \|A\|_F \|B\|_2$**
 
 将 $A$ 按行分块，设 $A$ 的第 $i$ 行为 $a_i^*$（$1 \leq i \leq m$），则 $AB$ 的第 $i$ 行为 $a_i^* B$。因此：
 
-$$\|AB\|_F^2 = \sum_{i=1}^m \|a_i^* B\|_2^2$$
-
+$$
+\|AB\|_F^2 = \sum_{i=1}^m \|a_i^* B\|_2^2
+$$
 由算子范数的性质 $\|a_i^* B\|_2 \leq \|a_i^*\|_2 \|B\|_2$，得：
 
-$$\|AB\|_F^2 \leq \sum_{i=1}^m \|a_i^*\|_2^2 \|B\|_2^2 = \|B\|_2^2 \sum_{i=1}^m \|a_i^*\|_2^2 = \|B\|_2^2 \|A\|_F^2$$
-
+$$
+\|AB\|_F^2 \leq \sum_{i=1}^m \|a_i^*\|_2^2 \|B\|_2^2 = \|B\|_2^2 \sum_{i=1}^m \|a_i^*\|_2^2 = \|B\|_2^2 \|A\|_F^2
+$$
 因此 $\|AB\|_F \leq \|A\|_F \|B\|_2$。 $\square$
 
 ---
@@ -269,9 +280,9 @@ $$\|AB\|_F^2 \leq \sum_{i=1}^m \|a_i^*\|_2^2 \|B\|_2^2 = \|B\|_2^2 \sum_{i=1}^m 
 度量需要满足三个条件：非负性与同一性、对称性、三角不等式。余弦距离违反了**同一性**。
 
 **反例**：取 $a = (1,0)$，$b = (2,0)$，则 $a, b$ 的夹角为 $0°$，因此：
-
-$$d(a,b) = 1 - \cos 0° = 1 - 1 = 0$$
-
+$$
+d(a,b) = 1 - \cos 0° = 1 - 1 = 0
+$$
 但显然 $a \neq b$，所以不满足"$d(a,b) = 0 \Leftrightarrow a = b$"这一条件。
 
 因此余弦距离不是数学意义上的距离。
@@ -296,13 +307,13 @@ $$d(S_1, S_2) \geq 0, \quad \text{且} \quad d(S_1, S_2) = 0 \Leftrightarrow S_1
 
 $d(S_1, S_2) = d(S_2, S_1)$
 
-插入和删除字符互为逆操作、将某个字符 $a$ 替换为字符 $b$ 的逆操作为将字符 $b$ 替换为字符 $a$，不难看出每种编辑操作均可逆，即满足对称性。
+插入和删除字符**互为逆操作**、将某个字符 $a$ 替换为字符 $b$ 的逆操作为将字符 $b$ 替换为字符 $a$，不难看出每种编辑操作均可逆，即满足对称性。
 
 **(iii) 三角不等式**
 
 $d(S_1, S_2) \leq d(S_1, S_3) + d(S_3, S_2)$
 
-将 $S_1$ 编辑为 $S_2$ 的过程拆解成两部分：将 $S_1$ 编辑为 $S_3$ 以及将 $S_3$ 编辑为 $S_2$，考虑到其中这两部分可能存在冗余操作。所以直接从 $S_1$ 编辑为 $S_2$ 所需的最优编辑次数只会更少，即满足三角不等式。
+将 $S_1$ 编辑为 $S_2$ 的过程拆解成两部分：将 $S_1$ 编辑为 $S_3$ 以及将 $S_3$ 编辑为 $S_2$，考虑到其中这两部分可能存在**冗余操作**。所以直接从 $S_1$ 编辑为 $S_2$ 所需的最优编辑次数只会更少，即满足三角不等式。
 
 综上 (i), (ii), (iii) 所述，编辑距离是数学意义上的距离。
 
@@ -326,8 +337,9 @@ $d(S_1, S_2) \leq d(S_1, S_3) + d(S_3, S_2)$
 
 由范数的正定性，$f(x) = 0 \Leftrightarrow x = 0$，即：
 
-$$x^T A x = 0 \Leftrightarrow x = 0$$
-
+$$
+x^T A x = 0 \Leftrightarrow x = 0
+$$
 这表明对所有 $x \neq 0$，有 $x^T A x > 0$。又因为 $f(x) = \sqrt{x^T A x}$ 要有意义，需要 $x^T A x \geq 0$ 对所有 $x$ 成立。综上，$A$ 是正定矩阵。
 
 **(2) 充分性**
@@ -340,16 +352,18 @@ $$x^T A x = 0 \Leftrightarrow x = 0$$
 
 由 $A$ 正定知，对所有 $x \neq 0$，有 $x^T A x > 0$，因此：
 
-$$f(x) = \sqrt{x^T A x} > 0$$
-
+$$
+f(x) = \sqrt{x^T A x} > 0
+$$
 且显然 $f(0) = 0$，满足正定性。
 
 **② 齐次性**
 
 将 $\alpha x$ 代入可得：
 
-$$f(\alpha x) = \sqrt{(\alpha x)^T A (\alpha x)} = \sqrt{\alpha^2 x^T A x} = |\alpha| \sqrt{x^T A x} = |\alpha| f(x)$$
-
+$$
+f(\alpha x) = \sqrt{(\alpha x)^T A (\alpha x)} = \sqrt{\alpha^2 x^T A x} = |\alpha| \sqrt{x^T A x} = |\alpha| f(x)​
+$$
 故满足齐次性。
 
 **③ 三角不等式**
@@ -358,15 +372,20 @@ $$f(\alpha x) = \sqrt{(\alpha x)^T A (\alpha x)} = \sqrt{\alpha^2 x^T A x} = |\a
 
 $$f(x+y) = \sqrt{(x+y)^T A(x+y)} = \sqrt{x^T Ax + 2x^T Ay + y^T Ay}$$
 
-由 Cauchy-Schwarz 不等式：
+由 **柯西-施瓦茨不等式** 不等式：
 
-$$|x^T Ay| \leq \sqrt{(x^T Ax)(y^T Ay)}$$
-
+$$
+|x^T Ay| \leq \sqrt{(x^T Ax)(y^T Ay)}
+$$
 因此：
 
-$$f(x+y) = \sqrt{x^T Ax + 2x^T Ay + y^T Ay} \leq \sqrt{x^T Ax + 2\sqrt{(x^T Ax)(y^T Ay)} + y^T Ay}$$
+$$
+f(x+y) = \sqrt{x^T Ax + 2x^T Ay + y^T Ay} \leq \sqrt{x^T Ax + 2\sqrt{(x^T Ax)(y^T Ay)} + y^T Ay}
+$$
 
-$$= \sqrt{\left(\sqrt{x^T Ax} + \sqrt{y^T Ay}\right)^2} = \sqrt{x^T Ax} + \sqrt{y^T Ay} = f(x) + f(y)$$
+$$
+= \sqrt{\left(\sqrt{x^T Ax} + \sqrt{y^T Ay}\right)^2} = \sqrt{x^T Ax} + \sqrt{y^T Ay} = f(x) + f(y)
+$$
 
 故满足三角不等式。
 
@@ -378,39 +397,69 @@ $$= \sqrt{\left(\sqrt{x^T Ax} + \sqrt{y^T Ay}\right)^2} = \sqrt{x^T Ax} + \sqrt{
 
 **题目**：证明：对任意 $A \in \mathbb{R}^{m \times n}$，由
 
-$$\|A\|_{m\infty} := \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}|$$
+$$
+\|A\|_{m\infty} := \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}|
+$$
 
 定义的范数是 $\mathbb{R}^{m \times n}$ 上的（广义）矩阵范数。
+
+---
 
 **证明**：
 
 广义矩阵范数需要满足以下三个性质：
 
-**(1) 正定性**
+### (1) 正定性
 
-显然 $\|A\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}| \geq 0$。
+显然：
 
-且 $\|A\|_{m\infty} = 0 \Leftrightarrow |a_{ij}| = 0$ 对所有 $i, j$ 成立 $\Leftrightarrow A = O$。
+$$
+\|A\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}| \geq 0
+$$
 
-**(2) 齐次性**
+且：
+
+$$
+\|A\|_{m\infty} = 0 \Leftrightarrow |a_{ij}| = 0 \text{ 对所有 } i, j \text{ 成立} \Leftrightarrow A = O
+$$
+
+### (2) 齐次性
 
 对任意 $\alpha \in \mathbb{R}$：
 
-$$\|\alpha A\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |\alpha a_{ij}| = \max_{1 \leq i \leq m, 1 \leq j \leq n} |\alpha| |a_{ij}| = |\alpha| \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}| = |\alpha| \|A\|_{m\infty}$$
+$$
+\|\alpha A\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |\alpha a_{ij}|
+$$
 
-**(3) 三角不等式**
+$$
+= \max_{1 \leq i \leq m, 1 \leq j \leq n} |\alpha| |a_{ij}|
+$$
+
+$$
+= |\alpha| \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij}|
+$$
+
+$$
+= |\alpha| \|A\|_{m\infty}
+$$
+
+### (3) 三角不等式
 
 对任意 $A, B \in \mathbb{R}^{m \times n}$，对于任意 $1 \leq i \leq m, 1 \leq j \leq n$，由三角不等式有：
 
-$$|a_{ij} + b_{ij}| \leq |a_{ij}| + |b_{ij}| \leq \|A\|_{m\infty} + \|B\|_{m\infty}$$
+$$
+|a_{ij} + b_{ij}| \leq |a_{ij}| + |b_{ij}| \leq \|A\|_{m\infty} + \|B\|_{m\infty}
+$$
 
 其中第二个不等式是因为 $|a_{ij}| \leq \|A\|_{m\infty}$ 且 $|b_{ij}| \leq \|B\|_{m\infty}$。
 
 由于上述不等式对所有 $i, j$ 成立，两边取最大值得：
 
-$$\|A + B\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij} + b_{ij}| \leq \|A\|_{m\infty} + \|B\|_{m\infty}$$
+$$
+\|A + B\|_{m\infty} = \max_{1 \leq i \leq m, 1 \leq j \leq n} |a_{ij} + b_{ij}| \leq \|A\|_{m\infty} + \|B\|_{m\infty}
+$$
 
-因此，这个范数满足广义矩阵范数的所有性质。 $\square$
+因此，这个范数满足广义矩阵范数的所有性质。$\square$
 
 # 作业二
 
@@ -452,37 +501,45 @@ $$\text{proj}_u(v) = \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \b
 
 首先求 $v - a = (0,-1,0)^T$ 在 $\text{span}\{u_1, u_2\}$ 上的正交投影。
 
-使用 Gram-Schmidt 正交化 $u_1, u_2$：
+正交化 $u_1, u_2$，由于$（u_1,u_2)=0$，故
 
-$w_1 = u_1 = [1,-1,1]^T$
+$$
+w_1 = u_1 = [1,-1,1]^T
+$$
 
-$w_2 = u_2 - \frac{\langle u_2, w_1 \rangle}{\langle w_1, w_1 \rangle} w_1$
-
-计算：
-
-$$\langle u_2, w_1 \rangle = 1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$$
-
-所以 $w_2 = u_2 = (1,1,0)^T$（$u_1$ 和 $u_2$ 已经正交）
+$$
+w_2 = u_2 = (1,1,0)^T
+$$
 
 现在计算 $(v-a)$ 在正交基 $\{w_1, w_2\}$ 上的投影：
 
-$$\text{proj}(v-a) = \frac{\langle v-a, w_1 \rangle}{\|w_1\|^2} w_1 + \frac{\langle v-a, w_2 \rangle}{\|w_2\|^2} w_2$$
-
+$$
+\text{proj}(v-a) = \frac{\langle v-a, w_1 \rangle}{\|w_1\|^2} w_1 + \frac{\langle v-a, w_2 \rangle}{\|w_2\|^2} w_2​
+$$
 计算：
 
-$$\langle (0,-1,0)^T, w_1 \rangle = 0 \cdot 1 + (-1) \cdot (-1) + 0 \cdot 1 = 1$$
+$$
+\langle (0,-1,0)^T, w_1 \rangle = 0 \cdot 1 + (-1) \cdot (-1) + 0 \cdot 1 = 1
+$$
 
-$$\langle (0,-1,0)^T, w_2 \rangle = 0 \cdot 1 + (-1) \cdot 1 + 0 \cdot 0 = -1$$
+$$
+\langle (0,-1,0)^T, w_2 \rangle = 0 \cdot 1 + (-1) \cdot 1 + 0 \cdot 0 = -1
+$$
 
-$$\|w_1\|^2 = 3, \quad \|w_2\|^2 = 2$$
+$$
+\|w_1\|^2 = 3, \quad \|w_2\|^2 = 2
+$$
 
 因此：
 
-$$\text{proj}(v-a) = \frac{1}{3}(1,-1,1)^T + \frac{-1}{2}(1,1,0)^T = \left(-\frac{1}{6}, -\frac{5}{6}, \frac{1}{3}\right)^T$$
-
+$$
+\text{proj}(v-a) = \frac{1}{3}(1,-1,1)^T + \frac{-1}{2}(1,1,0)^T = \left(-\frac{1}{6}, -\frac{5}{6}, \frac{1}{3}\right)^T
+$$
 最终投影为：
 
-$$\text{proj}(v) = \text{proj}(v-a) + a = \left(\frac{5}{6}, \frac{7}{6}, \frac{4}{3}\right)^T$$
+$$
+\text{proj}(v) = \text{proj}(v-a) + a = \left(\frac{5}{6}, \frac{7}{6}, \frac{4}{3}\right)^T
+$$
 
 ---
 
@@ -490,97 +547,189 @@ $$\text{proj}(v) = \text{proj}(v-a) + a = \left(\frac{5}{6}, \frac{7}{6}, \frac{
 
 **题目**：设 $M, P, Q \in \mathbb{R}^{n \times n}$ 为对称，$P$ 为正定。
 
-$$A = \begin{pmatrix} M & PM \\ MP & PMP \end{pmatrix} \in \mathbb{R}^{2n \times 2n}$$
+$$
+A = \begin{pmatrix} M & PM \\ MP & PMP \end{pmatrix} \in \mathbb{R}^{2n \times 2n}
+$$
 
-**(1)** 证明 $A^2 = A$。
+**(1)** 证明 $A^T = A$。
 
 **(2)** 假设 $U \in \mathbb{R}^{m \times n}$，$V \in \mathbb{R}^{n \times n}$ 是正交矩阵，$D \in \mathbb{R}^{m \times n}$，证明 $\|UDV\|_2 = \|D\|_2$，$\|UDV\|_F = \|D\|_F$。
 
 **(3)** 证明 $\|A\|_F = 2\|M\|_F$，$\|A\|_2 \leq 2\|M\|_2$（提示：将 $A$ 分解，并利用 (2) 结论）
 
-**(4)** 假设 $n = 4$，$M = \text{diag}(-2,1,0,0)$，$P = (c_1|c_2|c_3|c_4)$。证明 $\|A\|_F = 2\sqrt{5}$，$\|A\|_2 = 2\sqrt{p} \in [1, \infty)$。
+**(4)** 假设 $n = 4$，$M = \text{diag}_{4 \times 4}(-2,1,0,0)$，$P = (c_1|c_2|c_3|c_4)$。证明 $\|A\|_F = 2\sqrt{5}$，$\|A\|_p = 2, \forall p \in [1, \infty]$
 
-### (1) 证明 $A^2 = A$
+---
+
+### (1) 证明 $A^T = A$
 
 **证明**：
 
-直接计算 $A^2$：
+直接计算 $A^T$：
 
-$$A^2 = \begin{pmatrix} M & PM \\ MP & PMP \end{pmatrix} \begin{pmatrix} M & PM \\ MP & PMP \end{pmatrix}$$
+$$
+A^T = \begin{pmatrix} M^T & (MP)^T \\ (PM)^T & (PMP)^T \end{pmatrix} = \begin{pmatrix} M^T & P^TM^T \\ M^TP^T & P^TM^TP^T \end{pmatrix}
+$$
 
-$$= \begin{pmatrix} M^2 + PM \cdot MP & M \cdot PM + PM \cdot PMP \\ MP \cdot M + PMP \cdot MP & MP \cdot PM + PMP \cdot PMP \end{pmatrix}$$
+由于 $M^T = M$，$P^T = P$（对称性），有：
 
-由于 $M, P$ 对称且 $P$ 正定，若 $M$ 是幂等矩阵（$M^2 = M$），则：
+$$
+A^T = \begin{pmatrix} M & PM \\ MP & PMP \end{pmatrix} = A
+$$
 
-$$A^2_{11} = M^2 + PMMP = M + PMMP = M$$
+因此 $A$ 是对称矩阵。$\square$
 
-$$A^2_{12} = MPM + PMPMP = PM(M + PMP) = PM$$
-
-$$A^2_{21} = MPM + PMPMP = (M + PMP)MP = MP$$
-
-$$A^2_{22} = MPPM + PMPMP = MPM + PMPMP = PMP$$
-
-因此 $A^2 = A$。 $\square$
+---
 
 ### (2) 正交矩阵保持范数不变
 
 **证明**：
 
-由于 $U, V$ 正交，有 $U^TU = I$，$V^TV = I$。
+**对于2-范数**：
 
-**对于2-范数：**
+先证 $\|UD\|_2 = \|D\|_2$：
 
-2-范数定义为 $\|A\|_2 = \sqrt{\lambda_{\max}(A^TA)}$。
+$$
+\|UD\|_2 = \sqrt{\lambda_{\max}(D^TU^TUD)} = \sqrt{\lambda_{\max}(D^TD)} = \|D\|_2
+$$
 
-计算：
+再证 $\|DV\|_2 = \|D\|_2$：
 
-$$(UDV)^T(UDV) = V^T D^T U^T U D V = V^T D^T D V$$
+由于 $\|Vx\|_2 = \sqrt{x^TV^TVx} = \sqrt{x^Tx} = \|x\|_2$
 
-由于 $V$ 正交，$V^T D^T D V$ 与 $D^T D$ 有相同的特征值（相似变换保持特征值）。
+因此：
 
-因此 $\|UDV\|_2 = \|D\|_2$。
+$$
+\|DV\|_2 = \sup_{\|x\|_2=1} \|DVx\|_2 = \sup_{\|Vx\|_2=1} \|D(Vx)\|_2 = \sup_{\|y\|_2=1} \|Dy\|_2 = \|D\|_2
+$$
 
-**对于Frobenius范数：**
+结合两者得 $\|UDV\|_2 = \|D\|_2$。
 
-$$\|UDV\|_F^2 = \text{tr}((UDV)^T(UDV)) = \text{tr}(V^T D^T U^T U D V)$$
+**对于Frobenius范数**：
 
-$$= \text{tr}(V^T D^T D V) = \text{tr}(D^T D V V^T) = \text{tr}(D^T D) = \|D\|_F^2$$
+$$
+\|UDV\|_F^2 = \text{tr}((UDV)^T(UDV)) = \text{tr}(V^TD^TU^TUDV)
+$$
 
-因此 $\|UDV\|_F = \|D\|_F$。 $\square$
+$$
+= \text{tr}(V^TD^TDV) = \text{tr}(D^TDVV^T) = \text{tr}(D^TD) = \|D\|_F^2
+$$
+
+因此 $\|UDV\|_F = \|D\|_F$。$\square$
+
+---
 
 ### (3) 矩阵范数的关系
 
 **证明**：
 
-**对于Frobenius范数：**
+**对于Frobenius范数**：
 
-$$\|A\|_F^2 = \|M\|_F^2 + \|PM\|_F^2 + \|MP\|_F^2 + \|PMP\|_F^2$$
+将 $A$ 写成分块形式：
 
-由于 $P$ 是正交矩阵（正定对称），我们有：
+$$
+\|A\|_F = \left\|\begin{pmatrix} M & M \\ M & M \end{pmatrix}\right\|_F = \left\|\begin{pmatrix} I \\ I \end{pmatrix} M \begin{pmatrix} I & I \end{pmatrix}\right\|_F
+$$
 
-$$\|PM\|_F = \|MP\|_F = \|M\|_F, \quad \|PMP\|_F = \|M\|_F$$
+$$
+= \sqrt{\text{tr}\left(\begin{pmatrix} I \\ I \end{pmatrix} M \begin{pmatrix} I & I \end{pmatrix} \begin{pmatrix} I \\ I \end{pmatrix} M \begin{pmatrix} I & I \end{pmatrix}\right)}
+$$
 
-因此：
+$$
+= \sqrt{2\text{tr}\left(M \begin{pmatrix} I & I \end{pmatrix} \begin{pmatrix} I \\ I \end{pmatrix} M\right)}
+$$
 
-$$\|A\|_F^2 = 4\|M\|_F^2 \Rightarrow \|A\|_F = 2\|M\|_F$$
+$$
+= 2\sqrt{\text{tr}(M^2)} = 2\|M\|_F
+$$
 
-**对于2-范数：**
+**另一种直接计算方法**：
 
-利用分块矩阵的性质和 (2) 的结论，可以证明 $\|A\|_2 \leq 2\|M\|_2$。 $\square$
+$$
+\|A\|_F^2 = \|M\|_F^2 + \|MP\|_F^2 + \|PM\|_F^2 + \|PMP\|_F^2 = 4\|M\|_F^2
+$$
+
+**对于2-范数**：
+
+对任意 $w = \begin{pmatrix} x \\ y \end{pmatrix}$，其中 $\|w\|_2^2 = \|x\|_2^2 + \|y\|_2^2 = 1$：
+
+$$
+\|Aw\|_2^2 = \left\|\begin{pmatrix} Mx + PMy \\ MPx + PMPy \end{pmatrix}\right\|_2^2
+$$
+
+$$
+= \|Mx + PMy\|_2^2 + \|MPx + PMPy\|_2^2
+$$
+
+$$
+\leq (\|Mx\|_2 + \|PMy\|_2)^2 + (\|MPx\|_2 + \|PMPy\|_2)^2
+$$
+
+$$
+\leq 2\|Mx\|_2^2 + 2\|PMy\|_2^2 + 2\|MPx\|_2^2 + 2\|PMPy\|_2^2
+$$
+
+$$
+\leq 2\|M\|_2^2\|x\|_2^2 + 2\|PM\|_2^2\|y\|_2^2 + 2\|MP\|_2^2\|x\|_2^2 + 2\|PMP\|_2^2\|y\|_2^2
+$$
+
+$$
+= 2\|M\|_2^2\|x\|_2^2 + 2\|M\|_2^2\|y\|_2^2 + 2\|M\|_2^2\|x\|_2^2 + 2\|M\|_2^2\|y\|_2^2
+$$
+
+$$
+= 4\|M\|_2^2(\|x\|_2^2 + \|y\|_2^2)
+$$
+
+$$
+= 4\|M\|_2^2\|w\|_2^2
+$$
+
+因此 $\|A\|_2 \leq 2\|M\|_2$。$\square$
+
+---
 
 ### (4) 具体计算
 
 **解**：
 
-由于 $M = \text{diag}(-2,1,0,0)$，我们有：
+给定 $M = \text{diag}(-2, 1, 0, 0)$，$P$ 为正交矩阵。
 
-$$\|M\|_F = \sqrt{(-2)^2 + 1^2 + 0^2 + 0^2} = \sqrt{5}$$
+计算 $\|M\|_F$：
+
+$$
+\|M\|_F = \sqrt{(-2)^2 + 1^2 + 0^2 + 0^2} = \sqrt{5}
+$$
 
 由 (3) 的结论：
 
-$$\|A\|_F = 2\|M\|_F = 2\sqrt{5}$$
+$$
+\|A\|_F = 2\|M\|_F = 2\sqrt{5}
+$$
 
-对于2-范数，$\|M\|_2 = 2$（最大特征值的绝对值），因此 $\|A\|_2 = 2 \cdot 2 = 4$。
+对于 $p$-范数，观察 $A$ 的结构。以 $Ax$ 为例，其中 $x = (x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8)^T$：
+
+$$
+Ax = (-2x_1, x_2, x_6, -2x_5, -2x_4, x_3, x_7, -2x_8)^T
+$$
+
+$$
+\|Ax\|_p^p = |-2x_1|^p + |x_2|^p + |x_6|^p + |-2x_5|^p + |-2x_4|^p + |x_3|^p + |x_7|^p + |-2x_8|^p
+$$
+
+$$
+= 2^p|x_1|^p + |x_2|^p + |x_3|^p + 2^p|x_4|^p + 2^p|x_5|^p + |x_6|^p + |x_7|^p + 2^p|x_8|^p
+$$
+
+$$
+\leq 2^p(|x_1|^p + |x_2|^p + |x_3|^p + |x_4|^p + |x_5|^p + |x_6|^p + |x_7|^p + |x_8|^p)
+$$
+
+$$
+= 2^p\|x\|_p^p
+$$
+
+因此 $\|A\|_p = \sup_{\|x\|_p=1} \|Ax\|_p = 2$，对所有 $p \in [1, \infty]$ 成立。(即如果一个变换只将某些维度倍乘并交换顺序，不作维度间相加的操作，那矩阵范数即最大拉伸倍数)
 
 ---
 
@@ -588,15 +737,19 @@ $$\|A\|_F = 2\|M\|_F = 2\sqrt{5}$$
 
 **题目**：假设 $P \in \mathbb{R}^{n \times n}$ 满足 $P^2 = P$。
 
-**(1)** 证明 $Py = y\, \forall y \in \mathcal{R}(P)$，$Px = x \in \mathcal{N}(I-P)$，$\forall x \in \mathbb{R}^n$。
+**(1)** 证明 $Py = y, \forall y \in \mathcal{R}(P)$，$Px - x \in \mathcal{N}(P), \forall x \in \mathbb{R}^n$。
 
-**(2)** 证明 $\mathbb{R}^n$ 是 $\mathcal{R}(P)$ 和 $\mathcal{N}(P)$ 的直和，即 $\mathbb{R}^n = \mathcal{R}(P) \oplus \mathcal{N}(P)$。
+（即证明投影 $P$ 沿着零空间 $\mathcal{N}(P)$ 投影到列空间 $\mathcal{R}(P)$）
 
-**(3)** 证明 $P$ 的特征值 $\lambda \in \{0,1\}$。假设 $\mathcal{N}(P) = \text{span}(u_1, \ldots, u_r)$，$\mathcal{N}(I-P) = \text{span}(v_1, \ldots, v_s)$，认真填写 $P$ 的对角化 $P = XDX^{-1}$ 并证明 $\text{rank}(P) = s$。（提示：利用 (1) 结论）
+**(2)** 证明 $P$ 的特征值 $\lambda \in \{0,1\}$。假设 $\mathcal{R}(P) = \text{span}(u_1, \ldots, u_r)$，$\mathcal{N}(P) = \text{span}(v_{r+1}, \ldots, v_n)$，找到 $P$ 的对角化 $P = XDX^{-1}$ 并证明 $\text{tr}(P) = \text{rank}(P)$。（提示：利用 (1) 结论）
+
+**(3)** 证明当 $P \neq I_n$ 时，$\det(P) = 0$
 
 **(4)** 证明当 $P$ 是正交投影矩阵 $(P^2 = P = P^T)$ 时，$I_n - 2P$ 是正交矩阵。
 
 **(5)** 假设 $A \in \mathbb{R}^{m \times n}$，$m \leq n$，$\text{rank}(A) = m$，$P = A(A^TA)^{-1}A^T$。证明 $P$ 是正交投影矩阵，$\text{rank}(P) = m$。（提示：利用 (2) 结论）
+
+---
 
 ### (1) 投影矩阵的基本性质
 
@@ -606,67 +759,109 @@ $$\|A\|_F = 2\|M\|_F = 2\sqrt{5}$$
 
 由于 $P^2 = P$（幂等性），有：
 
-$$Py = P(Px) = P^2x = Px = y$$
+$$
+Py = P(Px) = P^2x = Px = y
+$$
 
-若 $x \in \mathcal{N}(I-P)$，则 $(I-P)x = 0$，即 $x = Px$。
+对任意 $x \in \mathbb{R}^n$，考虑 $Px - x$：
 
-因此 $Px = x$。 $\square$
+$$
+P(Px - x) = P^2x - Px = Px - Px = 0
+$$
 
-### (2) 直和分解
+因此 $Px - x \in \mathcal{N}(P)$。$\square$
 
-**证明**：
+---
 
-对任意 $x \in \mathbb{R}^n$，可以写成：
-
-$$x = Px + (x - Px) = Px + (I-P)x$$
-
-其中 $Px \in \mathcal{R}(P)$，$(I-P)x \in \mathcal{N}(P)$（因为 $P(I-P)x = (P-P^2)x = 0$）。
-
-若 $y \in \mathcal{R}(P) \cap \mathcal{N}(P)$，则 $y = Px$ 且 $Py = 0$，因此：
-
-$$y = Px = P(Px) = Py = 0$$
-
-所以 $\mathcal{R}(P) \cap \mathcal{N}(P) = \{0\}$，因此 $\mathbb{R}^n = \mathcal{R}(P) \oplus \mathcal{N}(P)$。 $\square$
-
-### (3) 特征值与对角化
+### (2) 特征值与对角化
 
 **证明**：
 
-若 $\lambda$ 是 $P$ 的特征值，对应特征向量 $x$，则 $Px = \lambda x$。
+**特征值只能是 0 或 1**：
+
+若 $\lambda$ 是 $P$ 的特征值，对应特征向量 $x \neq 0$，则 $Px = \lambda x$。
 
 由 $P^2 = P$，有：
 
-$$\lambda^2 x = P^2 x = Px = \lambda x$$
+$$
+\lambda^2 x = P^2x = Px = \lambda x
+$$
 
-因此 $\lambda^2 = \lambda$，即 $\lambda \in \{0, 1\}$。
+因此 $\lambda^2 = \lambda$，即 $\lambda(\lambda - 1) = 0$，所以 $\lambda \in \{0, 1\}$。
 
-设 $X = [u_1, \ldots, u_r, v_1, \ldots, v_s]$，其中 $\{u_i\}$ 是 $\mathcal{N}(P)$ 的基（对应特征值0），$\{v_j\}$ 是 $\mathcal{N}(I-P)$ 的基（对应特征值1）。
+**对角化**：
 
-则：
+由 (1) 可知：
+- 对 $u_i \in \mathcal{R}(P)$（$i = 1, \ldots, r$），有 $Pu_i = u_i$（特征值为1）
+- 对 $v_j \in \mathcal{N}(P)$（$j = r+1, \ldots, n$），有 $Pv_j = 0$（特征值为0）
 
-$$P = X \begin{pmatrix} 0 & 0 \\ 0 & I_s \end{pmatrix} X^{-1}$$
+令：
 
-$\text{rank}(P) = s = n - r = \dim(\mathcal{R}(P))$。 $\square$
+$$
+X = (u_1 | \cdots | u_r | v_{r+1} | \cdots | v_n) \in \mathbb{R}^{n \times n}
+$$
 
-### (4) Householder变换
+$$
+D = \text{diag}_{n \times n}(\underbrace{1, \ldots, 1}_{r \text{ 个}}, \underbrace{0, \ldots, 0}_{n-r \text{ 个}}) \in \mathbb{R}^{n \times n}
+$$
+
+则 $P = XDX^{-1}$。
+
+**证明 $\text{tr}(P) = \text{rank}(P)$**：
+
+$$
+\text{tr}(P) = \text{tr}(XDX^{-1}) = \text{tr}(DX^{-1}X) = \text{tr}(D) = r = \text{rank}(P)
+$$
+
+（注：也可理解为 SVD 分解 $P = UDV^T$，其中 $U \in \mathcal{R}(P)$，$V \in \mathcal{N}(P)$）$\square$
+
+---
+
+### (3) 行列式为零
+
+**证明**（反证法）：
+
+假设 $\det(P) \neq 0$，则 $P$ 可逆。
+
+由于 $P^2 = P$，两边同时左乘 $P^{-1}$：
+
+$$
+P^{-1}P^2 = P^{-1}P
+$$
+
+$$
+P = I_n
+$$
+
+这与 $P \neq I_n$ 矛盾。因此当 $P \neq I_n$ 时，$\det(P) = 0$。$\square$
+
+---
+
+### (4) Householder 变换
 
 **证明**：
 
-需要证明 $(I_n - 2P)^T(I_n - 2P) = I$。
+需要证明 $(I_n - 2P)^T(I_n - 2P) = I_n$。
 
-计算：
+由于 $P$ 是正交投影，$P^2 = P = P^T$。令 $Q := I_n - 2P$，则：
 
-$$(I - 2P)^T(I - 2P) = (I - 2P^T)(I - 2P) \quad (\text{因为 } P^T = P)$$
+$$
+Q^T = (I_n - 2P)^T = I_n - 2P^T = I_n - 2P = Q
+$$
 
-$$= (I - 2P)(I - 2P)$$
+$$
+Q^2 = (I_n - 2P)^2 = I_n - 4P + 4P^2 = I_n - 4P + 4P = I_n
+$$
 
-$$= I - 4P + 4P^2$$
+因此：
 
-$$= I - 4P + 4P \quad (\text{因为 } P^2 = P)$$
+$$
+Q^TQ = Q^2 = I_n
+$$
 
-$$= I$$
+即 $I_n - 2P$ 是正交矩阵。$\square$
 
-因此 $I - 2P$ 是正交矩阵。 $\square$
+---
 
 ### (5) 正交投影矩阵的构造
 
@@ -674,23 +869,31 @@ $$= I$$
 
 首先验证 $P^2 = P$：
 
-$$P^2 = [A(A^TA)^{-1}A^T][A(A^TA)^{-1}A^T]$$
+$$
+P^2 = [A(A^TA)^{-1}A^T][A(A^TA)^{-1}A^T]= A(A^TA)^{-1}[A^TA](A^TA)^{-1}A^T
+$$
 
-$$= A(A^TA)^{-1}[A^TA](A^TA)^{-1}A^T$$
-
-$$= A(A^TA)^{-1}A^T = P$$
+$$
+= A(A^TA)^{-1}A^T = P
+$$
 
 验证 $P^T = P$：
 
-$$P^T = [A(A^TA)^{-1}A^T]^T$$
+$$
+P^T = [A(A^TA)^{-1}A^T]^T= A[(A^TA)^{-1}]^TA^T
+$$
 
-$$= A[(A^TA)^{-1}]^T A^T$$
+$$
+= A[(A^TA)^T]^{-1}A^T= A(A^TA)^{-1}A^T = P
+$$
 
-$$= A[(A^TA)^T]^{-1}A^T$$
+因此 $P$ 是正交投影矩阵。
 
-$$= A(A^TA)^{-1}A^T = P$$
+由 (2) 的结论：
 
-由于 $\text{rank}(A) = m$，有 $\text{rank}(P) = \text{rank}(A) = m$。 $\square$
+$$
+\text{rank}(P) = \text{tr}(P) = \text{tr}(A(A^TA)^{-1}A^T) = \text{tr}((A^TA)^{-1}A^TA) = \text{tr}(I_m) = m
+$$
 
 ---
 
@@ -722,16 +925,13 @@ $$|C_3| = \det(C) = 3 \neq 0$$
 
 **对于矩阵 $B$：**
 
-计算第一个顺序主子式：
-
-$$|B_1| = 0$$
-
-第一个顺序主子式为0，因此 $B$ 不能直接进行 $LU$ 分解。
+计算第一个顺序主子式：$|B_1| = 0$，第一个顺序主子式为0，因此 $B$ 不能直接进行 $LU$ 分解。
 
 但通过行交换可以进行 $PLU$ 分解。交换第1行和第2行后：
 
-$$\begin{pmatrix} 0 & 2 & -1 \\ -1 & 4 & -1 \\ 1 & 3 & -5 \end{pmatrix} \xrightarrow{R_1 \leftrightarrow R_2} \begin{pmatrix} -1 & 4 & -1 \\ 0 & 2 & -1 \\ 1 & 3 & -5 \end{pmatrix}$$
-
+$$
+\begin{pmatrix} 0 & 2 & -1 \\ -1 & 4 & -1 \\ 1 & 3 & -5 \end{pmatrix} \xrightarrow{R_1 \leftrightarrow R_2} \begin{pmatrix} -1 & 4 & -1 \\ 0 & 2 & -1 \\ 1 & 3 & -5 \end{pmatrix}
+$$
 然后可以对行交换后的矩阵进行 $LU$ 分解。
 
 ### (2) LU 分解计算
@@ -742,17 +942,23 @@ $$\begin{pmatrix} 0 & 2 & -1 \\ -1 & 4 & -1 \\ 1 & 3 & -5 \end{pmatrix} \xrighta
 
 第一步消元（$R_2 + \frac{1}{3}R_1$，$R_3 + \frac{1}{3}R_1$）：
 
-$$\begin{pmatrix} 3 & 2 & -1 \\ -1 & 0 & 0 \\ -1 & 3 & 0 \end{pmatrix} \rightarrow \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & \frac{11}{3} & -\frac{1}{3} \end{pmatrix}$$
-
+$$
+\begin{pmatrix} 3 & 2 & -1 \\ -1 & 0 & 0 \\ -1 & 3 & 0 \end{pmatrix} \rightarrow \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & \frac{11}{3} & -\frac{1}{3} \end{pmatrix}
+$$
 第二步消元（$R_3 - \frac{11}{2}R_2$）：
 
-$$\rightarrow \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & 0 & \frac{3}{2} \end{pmatrix}$$
-
+$$
+\rightarrow \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & 0 & \frac{3}{2} \end{pmatrix}​
+$$
 因此：
 
-$$L = \begin{pmatrix} 1 & 0 & 0 \\ -\frac{1}{3} & 1 & 0 \\ -\frac{1}{3} & \frac{11}{2} & 1 \end{pmatrix}, \quad U = \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & 0 & \frac{3}{2} \end{pmatrix}$$
+$$
+L = \begin{pmatrix} 1 & 0 & 0 \\ -\frac{1}{3} & 1 & 0 \\ -\frac{1}{3} & \frac{11}{2} & 1 \end{pmatrix}, \quad U = \begin{pmatrix} 3 & 2 & -1 \\ 0 & \frac{2}{3} & -\frac{1}{3} \\ 0 & 0 & \frac{3}{2} \end{pmatrix}
+$$
 
-$$C = LU$$
+$$
+C = LU
+$$
 
 ---
 
@@ -766,17 +972,23 @@ $$C = LU$$
 
 第一步（$R_2 - \frac{1}{2}R_1$，$R_3 - \frac{1}{2}R_1$）：
 
-$$\begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 0 \end{pmatrix} \rightarrow \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & \frac{1}{2} & -\frac{1}{2} \end{pmatrix}$$
-
+$$
+\begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 0 \end{pmatrix} \rightarrow \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & \frac{1}{2} & -\frac{1}{2} \end{pmatrix}
+$$
 第二步（$R_3 - \frac{1}{3}R_2$）：
 
-$$\rightarrow \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & 0 & -\frac{2}{3} \end{pmatrix}$$
-
+$$
+\rightarrow \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & 0 & -\frac{2}{3} \end{pmatrix}
+$$
 因此：
 
-$$L = \begin{pmatrix} 1 & 0 & 0 \\ \frac{1}{2} & 1 & 0 \\ \frac{1}{2} & \frac{1}{3} & 1 \end{pmatrix}, \quad U = \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & 0 & -\frac{2}{3} \end{pmatrix}$$
+$$
+L = \begin{pmatrix} 1 & 0 & 0 \\ \frac{1}{2} & 1 & 0 \\ \frac{1}{2} & \frac{1}{3} & 1 \end{pmatrix}, \quad U = \begin{pmatrix} 2 & 1 & 1 \\ 0 & \frac{3}{2} & \frac{1}{2} \\ 0 & 0 & -\frac{2}{3} \end{pmatrix}
+$$
 
-$$A = LU$$
+$$
+A = LU
+$$
 
 # 作业三
 
@@ -784,11 +996,7 @@ $$A = LU$$
 
 ## 习题 1：Cholesky 分解（不带平方根）
 
-**题目**：求对称正定矩阵
-
-$$A = \begin{pmatrix} 5 & 2 & -4 \\ 2 & 1 & -2 \\ -4 & -2 & 5 \end{pmatrix}$$
-
-的不带平方根的 Cholesky 分解。
+**题目**：求对称正定矩阵$A = \begin{pmatrix} 5 & 2 & -4 \\ 2 & 1 & -2 \\ -4 & -2 & 5 \end{pmatrix}$的不带平方根的 Cholesky 分解。
 
 **解**：
 
@@ -796,26 +1004,24 @@ $$A = \begin{pmatrix} 5 & 2 & -4 \\ 2 & 1 & -2 \\ -4 & -2 & 5 \end{pmatrix}$$
 
 **第一步：** 计算第一列
 
-$$d_1 = a_{11} = 5$$
+$$
+d_1 = a_{11} = 5\quad\quad  l_{21} = \frac{a_{21}}{d_1} = \frac{2}{5}\quad \quad l_{31} = \frac{a_{31}}{d_1} = \frac{-4}{5}
+$$
 
-$$l_{21} = \frac{a_{21}}{d_1} = \frac{2}{5}, \quad l_{31} = \frac{a_{31}}{d_1} = \frac{-4}{5}$$
 
 **第二步：** 计算第二列
-
-$$d_2 = a_{22} - l_{21}^2 d_1 = 1 - \left(\frac{2}{5}\right)^2 \cdot 5 = \frac{1}{5}$$
-
-$$l_{32} = \frac{a_{32} - l_{31}l_{21}d_1}{d_2} = \frac{-2 + \frac{8}{5}}{\frac{1}{5}} = -2$$
-
+$$
+d_2 = a_{22} - l_{21}^2 d_1 = 1 - \left(\frac{2}{5}\right)^2 \cdot 5 = \frac{1}{5}\quad\quad\quad l_{32} = \frac{a_{32} - l_{31}l_{21}d_1}{d_2} = \frac{-2 + \frac{8}{5}}{\frac{1}{5}} = -2
+$$
 **第三步：** 计算第三列
-
-$$d_3 = a_{33} - l_{31}^2 d_1 - l_{32}^2 d_2 = 5 - \frac{16}{5} - \frac{4}{5} = 1$$
-
+$$
+d_3 = a_{33} - l_{31}^2 d_1 - l_{32}^2 d_2 = 5 - \frac{16}{5} - \frac{4}{5} = 1
+$$
 因此，分解结果为：
 
-$$L = \begin{pmatrix} 1 & 0 & 0 \\ \frac{2}{5} & 1 & 0 \\ -\frac{4}{5} & -2 & 1 \end{pmatrix}, \quad D = \begin{pmatrix} 5 & 0 & 0 \\ 0 & \frac{1}{5} & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
-
-$$L^T = \begin{pmatrix} 1 & \frac{2}{5} & -\frac{4}{5} \\ 0 & 1 & -2 \\ 0 & 0 & 1 \end{pmatrix}$$
-
+$$
+L = \begin{pmatrix} 1 & 0 & 0 \\ \frac{2}{5} & 1 & 0 \\ -\frac{4}{5} & -2 & 1 \end{pmatrix}, \quad D = \begin{pmatrix} 5 & 0 & 0 \\ 0 & \frac{1}{5} & 0 \\ 0 & 0 & 1 \end{pmatrix}, \quad L^T = \begin{pmatrix} 1 & \frac{2}{5} & -\frac{4}{5} \\ 0 & 1 & -2 \\ 0 & 0 & 1 \end{pmatrix}
+$$
 验证：$A = LDL^T$
 
 ---
@@ -823,80 +1029,68 @@ $$L^T = \begin{pmatrix} 1 & \frac{2}{5} & -\frac{4}{5} \\ 0 & 1 & -2 \\ 0 & 0 & 
 ## 习题 2：对称性的保持
 
 **题目**：设 $A$ 对称且 $a_{11} \neq 0$，并假设经过一步 Gauss 消去之后，$A$ 具有如下形式
-
-$$\begin{bmatrix} a_{11} & a_1^T \\ \mathbf{0} & A_2 \end{bmatrix}$$
-
+$$
+\begin{bmatrix} a_{11} & a_1^T \\ \mathbf{0} & A_2 \end{bmatrix}
+$$
 证明 $A_2$ 仍是对称阵。
 
 **证明**：
 
-由于 $A$ 是对称矩阵，有 $A = A^T$，即
+由于 $A$ 是对称矩阵，有 $A = A^T$，记矩阵$A$和高斯变换矩阵分别为
 
-$$A = \begin{bmatrix} a_{11} & a_1^T \\ a_1 & A_0 \end{bmatrix}$$
+$$
+G = \begin{bmatrix} 1 & 0^T \\ l_1 & I \end{bmatrix},\quad  A = \begin{bmatrix} a_{11} & a_1^T \\ a_1 & A_1 \end{bmatrix}
+$$
+则
+$$
+GA =\begin{bmatrix} a_{11} & a_1^T \\ -a_{11}l_1+a_1 & -l_1a_1^T+A_1 \end{bmatrix}
+$$
 
-其中 $A_0$ 是 $(n-1) \times (n-1)$ 对称矩阵。
 
 经过一步 Gauss 消元，我们使用消元矩阵：
 
-$$L_1 = \begin{bmatrix} 1 & \mathbf{0} \\ -\frac{1}{a_{11}}a_1 & I \end{bmatrix}$$
-
+$$
+L_1 = \begin{bmatrix} 1 & \mathbf{0} \\ -\frac{1}{a_{11}}a_1 & I \end{bmatrix}
+$$
 则有：
 
-$$L_1 A = \begin{bmatrix} a_{11} & a_1^T \\ \mathbf{0} & A_0 - \frac{1}{a_{11}}a_1 a_1^T \end{bmatrix}$$
+$$
+L_1 A = \begin{bmatrix} a_{11} & a_1^T \\ \mathbf{0} & A_0 - \frac{1}{a_{11}}a_1 a_1^T \end{bmatrix}
+$$
+记 $A_2 = A_0 - \frac{1}{a_{11}}a_1 a_1^T$。由于 $A_0$ 对称，且 $a_1 a_1^T$ 是对称矩阵（秩1矩阵的对称性），因此：
 
-记 $A_2 = A_0 - \frac{1}{a_{11}}a_1 a_1^T$。
-
-由于 $A_0$ 对称，且 $a_1 a_1^T$ 是对称矩阵（秩1矩阵的对称性），因此：
-
-$$A_2^T = \left(A_0 - \frac{1}{a_{11}}a_1 a_1^T\right)^T = A_0^T - \frac{1}{a_{11}}(a_1 a_1^T)^T = A_0 - \frac{1}{a_{11}}a_1 a_1^T = A_2$$
-
+$$
+A_2^T = \left(A_0 - \frac{1}{a_{11}}a_1 a_1^T\right)^T = A_0^T - \frac{1}{a_{11}}(a_1 a_1^T)^T = A_0 - \frac{1}{a_{11}}a_1 a_1^T = A_2
+$$
 所以 $A_2$ 是对称矩阵。 $\square$
 
 ---
 
 ## 习题 3：QR 分解求解线性方程组
 
+好的，我只调整数学公式的居中问题，保持你原有的格式结构：
+
 **题目**：利用 $QR$ 分解求解下述线性方程组的解（最终结果可只需写出其矩阵与向量的乘积形式即可）：
 
-$$\begin{bmatrix} 1 & 2 & 2 \\ 2 & 1 & 2 \\ 1 & 2 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$$
+$$
+\begin{bmatrix} 1 & 2 & 2 \\ 2 & 1 & 2 \\ 1 & 2 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+$$
 
 **解**：
 
 设 $A = \begin{bmatrix} 1 & 2 & 2 \\ 2 & 1 & 2 \\ 1 & 2 & 1 \end{bmatrix}$，$b = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$。
 
-**Gram-Schmidt 正交化：**
+对矩阵 $A$ 的列向量 $a_1 = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$，$a_2 = \begin{pmatrix} 2 \\ 1 \\ 2 \end{pmatrix}$，$a_3 = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$ 进行 Gram-Schmidt 正交化，得到正交矩阵 $Q$ 和上三角矩阵 $R$：
 
-设 $a_1 = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$，$a_2 = \begin{pmatrix} 2 \\ 1 \\ 2 \end{pmatrix}$，$a_3 = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
+$$
+Q = \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} \\ \frac{2}{\sqrt{6}} & -\frac{1}{\sqrt{3}} & 0 \\ \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{2}} \end{bmatrix}, \quad R = \begin{bmatrix} \sqrt{6} & \sqrt{6} & \frac{7}{\sqrt{6}} \\ 0 & \sqrt{3} & \frac{1}{\sqrt{3}} \\ 0 & 0 & \sqrt{2} \end{bmatrix}
+$$
 
-**计算 $q_1$：**
+因此，方程组的解为：
 
-$$q_1 = \frac{a_1}{\|a_1\|} = \frac{1}{\sqrt{6}} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$$
-
-**计算 $q_2$：**
-
-$$\tilde{q}_2 = a_2 - (a_2^T q_1)q_1 = \begin{pmatrix} 2 \\ 1 \\ 2 \end{pmatrix} - \frac{6}{\sqrt{6}} \cdot \frac{1}{\sqrt{6}} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix}$$
-
-$$q_2 = \frac{\tilde{q}_2}{\|\tilde{q}_2\|} = \frac{1}{\sqrt{3}} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix}$$
-
-**计算 $q_3$：**
-
-$$\tilde{q}_3 = a_3 - (a_3^T q_1)q_1 - (a_3^T q_2)q_2$$
-
-计算内积：$a_3^T q_1 = \sqrt{6}$，$a_3^T q_2 = \frac{1}{\sqrt{3}}$
-
-$$\tilde{q}_3 = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix} - \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} - \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2/3 \\ 1/3 \\ -1/3 \end{pmatrix}$$
-
-$$q_3 = \frac{\tilde{q}_3}{\|\tilde{q}_3\|} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix}$$
-
-因此，
-
-$$Q = \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} \\ \frac{2}{\sqrt{6}} & -\frac{1}{\sqrt{3}} & 0 \\ \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{2}} \end{bmatrix}$$
-
-$$R = \begin{bmatrix} \sqrt{6} & \sqrt{6} & \frac{7}{\sqrt{6}} \\ 0 & \sqrt{3} & \frac{1}{\sqrt{3}} \\ 0 & 0 & \sqrt{2} \end{bmatrix}$$
-
-方程组的解为：
-
-$$x = R^{-1}Q^T b = \begin{bmatrix} \sqrt{6} & \sqrt{6} & \frac{7}{\sqrt{6}} \\ 0 & \sqrt{3} & \frac{1}{\sqrt{3}} \\ 0 & 0 & \sqrt{2} \end{bmatrix}^{-1} \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{2}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{3}} & \frac{1}{\sqrt{3}} \\ \frac{1}{\sqrt{2}} & 0 & -\frac{1}{\sqrt{2}} \end{bmatrix} \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$$
+$$
+x = R^{-1}Q^T b = \begin{bmatrix} \sqrt{6} & \sqrt{6} & \frac{7}{\sqrt{6}} \\ 0 & \sqrt{3} & \frac{1}{\sqrt{3}} \\ 0 & 0 & \sqrt{2} \end{bmatrix}^{-1} \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{2}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{3}} & \frac{1}{\sqrt{3}} \\ \frac{1}{\sqrt{2}} & 0 & -\frac{1}{\sqrt{2}} \end{bmatrix} \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+$$
 
 ---
 
@@ -904,41 +1098,51 @@ $$x = R^{-1}Q^T b = \begin{bmatrix} \sqrt{6} & \sqrt{6} & \frac{7}{\sqrt{6}} \\ 
 
 **题目**：定义
 
-$$A = \begin{pmatrix} 2 & -2 & 1 \\ -1 & 1 & -1 \\ -3 & -1 & 1 \end{pmatrix}$$
+$$
+A = \begin{pmatrix} 2 & -2 & 1 \\ -1 & 1 & -1 \\ -3 & -1 & 1 \end{pmatrix}
+$$
 
 **(1)** 给出矩阵 $A^TA$ 的 Cholesky 分解 $A^TA = GG^T$
 
 **(2)** 试说明 $\|A^TA\|_2 = \|A\|_2^2 = \|G\|_2^2$
 
+---
+
 ### (1) Cholesky 分解
 
 **解**：
 
-记
+对矩阵 $M = A^TA = \begin{pmatrix} 14 & -2 & 0 \\ -2 & 6 & -4 \\ 0 & -4 & 3 \end{pmatrix}$ 进行 Cholesky 分解 $M = GG^T$，其中 $G$ 是下三角矩阵。
 
-$$M = A^TA = \begin{pmatrix} 14 & -2 & 0 \\ -2 & 6 & -4 \\ 0 & -4 & 3 \end{pmatrix}$$
+**第一步：** 计算第一列
 
-消除 $M$ 的第一列中的非对角元素：
+$$
+g_{11} = \sqrt{m_{11}} = \sqrt{14} \quad\quad g_{21} = \frac{m_{21}}{g_{11}} = \frac{-2}{\sqrt{14}} = -\frac{\sqrt{14}}{7} \quad\quad g_{31} = \frac{m_{31}}{g_{11}} = 0
+$$
 
-$$L_1 M = \begin{pmatrix} \sqrt{14} & -\frac{2}{\sqrt{14}} & 0 \\ 0 & \frac{40}{7} & -4 \\ 0 & -4 & 3 \end{pmatrix}, \quad L_1 = \begin{pmatrix} \frac{1}{\sqrt{14}} & 0 & 0 \\ \frac{1}{7} & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
+**第二步：** 计算第二列
 
-$L_1 M$ 左乘 $L_1^T$：
+$$
+g_{22} = \sqrt{m_{22} - g_{21}^2} = \sqrt{6 - \frac{2}{7}} = \sqrt{\frac{40}{7}} = \frac{2\sqrt{70}}{7}
+$$
 
-$$L_1 M L_1^T = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \frac{40}{7} & -4 \\ 0 & -4 & 3 \end{pmatrix}$$
+$$
+g_{32} = \frac{m_{32} - g_{31}g_{21}}{g_{22}} = \frac{-4}{\frac{2\sqrt{70}}{7}} = -\frac{14}{2\sqrt{70}} = -\frac{\sqrt{70}}{5}
+$$
 
-消除第二列中的非对角元素：
+**第三步：** 计算第三列
 
-$$L_2 L_1 M L_1^T = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \frac{2\sqrt{70}}{7} & -\frac{\sqrt{70}}{5} \\ 0 & 0 & \frac{1}{5} \end{pmatrix}$$
+$$
+g_{33} = \sqrt{m_{33} - g_{31}^2 - g_{32}^2} = \sqrt{3 - 0 - \frac{14}{5}} = \sqrt{\frac{1}{5}} = \frac{\sqrt{5}}{5}
+$$
 
-其中
+因此，分解结果为：
 
-$$L_2 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \frac{\sqrt{70}}{20} & 0 \\ 0 & \frac{7}{10} & 1 \end{pmatrix}$$
+$$
+G = \begin{pmatrix} \sqrt{14} & 0 & 0 \\ -\frac{\sqrt{14}}{7} & \frac{2\sqrt{70}}{7} & 0 \\ 0 & -\frac{\sqrt{70}}{5} & \frac{\sqrt{5}}{5} \end{pmatrix}, \quad G^T = \begin{pmatrix} \sqrt{14} & -\frac{\sqrt{14}}{7} & 0 \\ 0 & \frac{2\sqrt{70}}{7} & -\frac{\sqrt{70}}{5} \\ 0 & 0 & \frac{\sqrt{5}}{5} \end{pmatrix}
+$$
 
-令 $L_3 = \text{diag}(1, 1, \sqrt{5})$ 使得 $L_2 L_1 M L_1^T L_2^T L_3^T = I_3$。
-
-因此 $M = A^TA = GG^T$，其中
-
-$$G = L_1^{-1} L_2^{-1} L_3^{-1} = \begin{pmatrix} \sqrt{14} & 0 & 0 \\ -\frac{\sqrt{14}}{7} & \frac{2\sqrt{70}}{7} & 0 \\ 0 & -\frac{\sqrt{70}}{5} & \frac{\sqrt{5}}{5} \end{pmatrix}$$
+**验证：$A^TA = GG^T$**
 
 ### (2) 范数关系
 
@@ -948,15 +1152,21 @@ $$G = L_1^{-1} L_2^{-1} L_3^{-1} = \begin{pmatrix} \sqrt{14} & 0 & 0 \\ -\frac{\
 
 由于 $A^TA = GG^T$，则 $A^TA$ 的奇异值是 $\sigma_1^2, \ldots, \sigma_n^2$。因此：
 
-$$\|A^T A\|_2 = \sigma_1^2 = \|G\|_2^2$$
+$$
+\|A^T A\|_2 = \sigma_1^2 = \|G\|_2^2
+$$
 
 同样，矩阵的2-范数定义为：
 
-$$\|A\|_2 = \max_{\|x\|_2=1} \|Ax\|_2 = \sqrt{\lambda_{\max}(A^TA)}$$
+$$
+\|A\|_2 = \max_{\|x\|_2=1} \|Ax\|_2 = \sqrt{\lambda_{\max}(A^TA)}
+$$
 
 因此：
 
-$$\|A\|_2^2 = \lambda_{\max}(A^TA) = \|A^TA\|_2$$
+$$
+\|A\|_2^2 = \lambda_{\max}(A^TA) = \|A^TA\|_2
+$$
 
 综上所述，$\|A^TA\|_2 = \|A\|_2^2 = \|G\|_2^2$。
 
@@ -966,7 +1176,9 @@ $$\|A\|_2^2 = \lambda_{\max}(A^TA) = \|A^TA\|_2$$
 
 **题目**：对 $k \in \mathbb{N}_0$，定义
 
-$$A = \begin{pmatrix} -8 & 5 & 1 \\ -4 & 7 & 5 \\ -8 & 5 & 1 \\ -4 & 7 & 5 \end{pmatrix}, \quad \gamma_k = \inf_{\substack{M \in \mathbb{R}^{3 \times 4} \\ \text{rk}(M) \leq k}} \|A^T - M\|_2$$
+$$
+A = \begin{pmatrix} -8 & 5 & 1 \\ -4 & 7 & 5 \\ -8 & 5 & 1 \\ -4 & 7 & 5 \end{pmatrix}, \quad \gamma_k = \inf_{\substack{M \in \mathbb{R}^{3 \times 4} \\ \text{rk}(M) \leq k}} \|A^T - M\|_2
+$$
 
 **(1)** 计算矩阵 $A$ 的 $SVD$ 分解 $A = U\Sigma V^T$，并使 $2U$ 为 Hadamard 矩阵
 
@@ -974,57 +1186,85 @@ $$A = \begin{pmatrix} -8 & 5 & 1 \\ -4 & 7 & 5 \\ -8 & 5 & 1 \\ -4 & 7 & 5 \end{
 
 **(3)** 对每个 $k \in \mathbb{N}_0$，计算 $\gamma_k$ 并找出矩阵 $A_k \in \mathbb{R}^{3 \times 4}$ 使得 $\text{rank}(A_k) \leq k$ 且 $\|A^T - A_k\|_2 = \gamma_k$
 
+---
+
 ### (1) SVD 分解
 
 **解**：
 
 首先计算 $A^TA$：
 
-$$A^TA = \begin{pmatrix} 160 & -68 & -28 \\ -68 & 148 & 80 \\ -28 & 80 & 52 \end{pmatrix}$$
+$$
+A^TA = \begin{pmatrix} 160 & -68 & -28 \\ -68 & 148 & 80 \\ -28 & 80 & 52 \end{pmatrix}
+$$
 
-特征多项式为 $p_{A^TA}(z) = \det(zI_3 - A^TA) = z(z - 36)(z - 324)$。
+特征多项式为 $p_{A^TA}(z) = \det(\lambda I  - A^TA) = \lambda(\lambda - 36)(\lambda - 324)$。
 
 $A^TA$ 的特征值为：
 
-$$\lambda_1 = 324, \quad \lambda_2 = 36, \quad \lambda_3 = 0$$
+$$
+\lambda_1 = 324, \quad \lambda_2 = 36, \quad \lambda_3 = 0
+$$
 
 对应的特征空间为：
 
-$$E_{\lambda_1} = \text{span}\left((-2, 2, 1)^T\right), \quad E_{\lambda_2} = \text{span}\left((2, 1, -2)^T\right), \quad E_{\lambda_3} = \text{span}\left((1, 2, 2)^T\right)$$
+$$
+E_{\lambda_1} = \text{span}\left((-2, 2, 1)^T\right), \quad E_{\lambda_2} = \text{span}\left((2, 1, -2)^T\right), \quad E_{\lambda_3} = \text{span}\left((1, 2, 2)^T\right)
+$$
 
 经正交化后：
 
-$$v_1 = \frac{1}{3}(-2, 2, 1)^T, \quad v_2 = \frac{1}{3}(2, 1, -2)^T, \quad v_3 = \frac{1}{3}(1, 2, 2)^T$$
+$$
+v_1 = \frac{1}{3}(-2, 2, 1)^T, \quad v_2 = \frac{1}{3}(2, 1, -2)^T, \quad v_3 = \frac{1}{3}(1, 2, 2)^T
+$$
 
-令 $V = (v_1 | v_2 | v_3)$
+令 $V = (v_1 | v_2 | v_3)$。
 
 奇异值为：
 
-$$\sigma_1 = \sqrt{\lambda_1} = 18, \quad \sigma_2 = \sqrt{\lambda_2} = 6, \quad \sigma_3 = \sqrt{\lambda_3} = 0$$
+$$
+\sigma_1 = \sqrt{\lambda_1} = 18, \quad \sigma_2 = \sqrt{\lambda_2} = 6, \quad \sigma_3 = \sqrt{\lambda_3} = 0
+$$
 
 令 $\Sigma = \text{diag}_{4 \times 3}(\sigma_1, \sigma_2, \sigma_3)$。
 
 计算 $U = (u_1 | u_2 | u_3 | u_4) \in \mathbb{R}^{4 \times 4}$ 使得 $Av_i = \sigma_i u_i$：
 
-$$u_1 = \frac{Av_1}{\sigma_1} = \frac{1}{2}(1, 1, 1, 1)^T, \quad u_2 = \frac{Av_2}{\sigma_2} = \frac{1}{2}(-1, 1, -1, 1)^T$$
+$$
+u_1 = \frac{Av_1}{\sigma_1} = \frac{1}{2}(1, 1, 1, 1)^T, \quad u_2 = \frac{Av_2}{\sigma_2} = \frac{1}{2}(-1, 1, -1, 1)^T
+$$
 
-$$u_3 = \frac{1}{2}(1, 1, -1, -1)^T, \quad u_4 = \frac{1}{2}(-1, 1, 1, -1)^T$$
+$$
+u_3 = \frac{1}{2}(1, 1, -1, -1)^T, \quad u_4 = \frac{1}{2}(-1, 1, 1, -1)^T
+$$
 
 因此 $A$ 的 $SVD$ 分解为：
 
-$$A = \begin{pmatrix} \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} \end{pmatrix} \begin{pmatrix} 18 & 0 & 0 \\ 0 & 6 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} -\frac{2}{3} & \frac{2}{3} & \frac{1}{3} \\ \frac{2}{3} & \frac{1}{3} & -\frac{2}{3} \\ \frac{1}{3} & \frac{2}{3} & \frac{2}{3} \end{pmatrix}^T = U\Sigma V^T$$
+$$
+A = \begin{pmatrix} \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} \end{pmatrix} \begin{pmatrix} 18 & 0 & 0 \\ 0 & 6 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} -\frac{2}{3} & \frac{2}{3} & \frac{1}{3} \\ \frac{2}{3} & \frac{1}{3} & -\frac{2}{3} \\ \frac{1}{3} & \frac{2}{3} & \frac{2}{3} \end{pmatrix}^T = U\Sigma V^T
+$$
+
+---
 
 ### (2) 矩阵的性质
 
 **解**：
 
-$A$ 有两个非零奇异值，故 $\text{rank}(A) = 2$
+$A$ 有两个非零奇异值，故 $\text{rank}(A) = 2$。
 
-$$\mathcal{R}(A) = \text{span}(u_1, u_2) = \text{span}\left(\frac{1}{2}(1, 1, 1, 1)^T, \frac{1}{2}(-1, 1, -1, 1)^T\right)$$
+$$
+\mathcal{R}(A) = \text{span}(u_1, u_2) = \text{span}\left(\frac{1}{2}(1, 1, 1, 1)^T, \frac{1}{2}(-1, 1, -1, 1)^T\right)
+$$
 
-$$\mathcal{N}(A) = \text{span}(v_3) = \text{span}\left(\frac{1}{3}(1, 2, 2)^T\right)$$
+$$
+\mathcal{N}(A) = \text{span}(v_3) = \text{span}\left(\frac{1}{3}(1, 2, 2)^T\right)
+$$
 
-$$\|A\|_2 = \sigma_1 = 18, \quad \|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2} = \sqrt{324 + 36} = 6\sqrt{10}$$
+$$
+\|A\|_2 = \sigma_1 = 18, \quad \|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2} = \sqrt{324 + 36} = 6\sqrt{10}
+$$
+
+---
 
 ### (3) 最佳秩-k 逼近
 
@@ -1036,15 +1276,21 @@ $$\|A\|_2 = \sigma_1 = 18, \quad \|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2} = \sqr
 
 定义 $A_0 = 0_{3 \times 4}$，则
 
-$$\gamma_0 = \|A^T\|_2 = \sigma_1 = 18$$
+$$
+\gamma_0 = \|A^T\|_2 = \sigma_1 = 18
+$$
 
 **$k = 1$：**
 
 利用 Eckart-Young-Mirsky 定理：
 
-$$A_1 = \sigma_1 v_1 u_1^T = 18 \begin{pmatrix} -\frac{2}{3} \\ \frac{2}{3} \\ \frac{1}{3} \end{pmatrix} \begin{pmatrix} \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \end{pmatrix} = \begin{pmatrix} -6 & -6 & -6 & -6 \\ 6 & 6 & 6 & 6 \\ 3 & 3 & 3 & 3 \end{pmatrix}$$
+$$
+A_1 = \sigma_1 v_1 u_1^T = 18 \begin{pmatrix} -\frac{2}{3} \\ \frac{2}{3} \\ \frac{1}{3} \end{pmatrix} \begin{pmatrix} \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \end{pmatrix} = \begin{pmatrix} -6 & -6 & -6 & -6 \\ 6 & 6 & 6 & 6 \\ 3 & 3 & 3 & 3 \end{pmatrix}
+$$
 
-$$\gamma_1 = \|A^T - A_1\|_2 = \sigma_2 = 6$$
+$$
+\gamma_1 = \|A^T - A_1\|_2 = \sigma_2 = 6
+$$
 
 **$k \geq 2$：**
 
@@ -1068,31 +1314,34 @@ $$\gamma_1 = \|A^T - A_1\|_2 = \sigma_2 = 6$$
 
 设 $A$ 的 $SVD$ 分解为
 
-$$A = U\Sigma V^T = (u_1 | \cdots | u_n) [\text{diag}_{n \times n}(\sigma_1, \ldots, \sigma_n)] (v_1 | \cdots | v_n)^T$$
-
+$$
+A = U\Sigma V^T = (u_1 | \cdots | u_n) [\text{diag}_{n \times n}(\sigma_1, \ldots, \sigma_n)] (v_1 | \cdots | v_n)^T
+$$
 其中 $U, V \in \mathbb{R}^{n \times n}$ 正交，$\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_n > 0$（由于 $A$ 可逆）。
 
 因为 $A = U\Sigma V^T$，有 $Av_i = \sigma_i u_i \,\forall i \in \{1, \ldots, n\}$。
 
 因此
 
-$$A^{-1}u_i = A^{-1}\left(\frac{1}{\sigma_i}Av_i\right) = \frac{1}{\sigma_i}v_i$$
-
+$$
+A^{-1}u_i = A^{-1}\left(\frac{1}{\sigma_i}Av_i\right) = \frac{1}{\sigma_i}v_i
+$$
 注意到 $\frac{1}{\sigma_n} \geq \cdots \geq \frac{1}{\sigma_2} \geq \frac{1}{\sigma_1} > 0$，故
 
-$$A^{-1} = (v_n | \cdots | v_2 | v_1) \left[\text{diag}_{n \times n}\left(\frac{1}{\sigma_n}, \ldots, \frac{1}{\sigma_2}, \frac{1}{\sigma_1}\right)\right] (u_n | \cdots | u_2 | u_1)^T$$
-
+$$
+A^{-1} = (v_n | \cdots | v_2 | v_1) \left[\text{diag}_{n \times n}\left(\frac{1}{\sigma_n}, \ldots, \frac{1}{\sigma_2}, \frac{1}{\sigma_1}\right)\right] (u_n | \cdots | u_2 | u_1)^T
+$$
 记 $P = (e_n | \cdots | e_2 | e_1) \in \mathbb{R}^{n \times n}$（$P$ 是正交阵），则：
 
-$$A^{-1} = (VP)(P\Sigma^{-1}P)(UP)^T$$
+$$
+A^{-1} = (VP)(P\Sigma^{-1}P)(UP)^T
+$$
 
 ### (2) 正交矩阵的 SVD 分解
 
 **解**：
 
-对于正交矩阵 $Q \in \mathbb{R}^{n \times n}$，有 $Q = QI_nI_n^T$，这即为 $Q$ 的 $SVD$ 分解。
-
-所有奇异值均为 1。
+对于正交矩阵 $Q \in \mathbb{R}^{n \times n}$，有 $Q = QI_nI_n^T$，这即为 $Q$ 的 $SVD$ 分解。所有奇异值均为 1。
 
 ### (3) 相似变换保持奇异值
 
@@ -1100,41 +1349,42 @@ $$A^{-1} = (VP)(P\Sigma^{-1}P)(UP)^T$$
 
 设 $B$ 的 $SVD$ 分解为 $B = U\Sigma V^T$，则
 
-$$A = QBQ^T = QU\Sigma V^TQ^T = QU\Sigma(QV)^T = (QU)\Sigma(QV)^T$$
-
-由于 $Q$ 正交，$QU$ 和 $QV$ 也是正交矩阵。
-
-因此 $A$ 与 $B$ 有相同的奇异值。
+$$
+A = QBQ^T = QU\Sigma V^TQ^T = QU\Sigma(QV)^T = (QU)\Sigma(QV)^T
+$$
+由于 $Q$ 正交，$QU$ 和 $QV$ 也是正交矩阵，因此 $A$ 与 $B$ 有相同的奇异值。
 
 ---
 
 ## 习题 7：通过对角化获得 SVD
 
 **题目**：假设 $D$ 是一个 $n \times d$ 的矩阵，矩阵 $B$ 是 $(n+d) \times (n+d)$ 定义为
-
-$$B = \begin{pmatrix} 0 & D^T \\ D & 0 \end{pmatrix}$$
-
+$$
+B = \begin{pmatrix} 0 & D^T \\ D & 0 \end{pmatrix}
+$$
 显然 $B$ 是对称矩阵。请证明矩阵 $B$ 的对角化会产生 $D$ 的奇异值分解所需要的所有信息。
 
 **证明**：
 
 $D$ 的奇异值分解所需的所有信息为 $D^TD$ 的特征值和特征向量，以及 $DD^T$ 的特征值和特征向量。
 
-设 $\lambda^2$（$\lambda > 0$）是 $D^TD$ 的特征值，对应的单位特征向量为 $x_1$（$\|x_1\|_2 = 1$）；$\lambda^2$ 也是 $DD^T$ 的特征值，对应的单位特征向量为 $x_2$（$\|x_2\|_2 = 1$）。
-
-因此，$D^TDx_1 = \lambda^2x_1$ 以及 $DD^Tx_2 = \lambda^2x_2$。
+设 $\lambda^2$（$\lambda > 0$）是 $D^TD$ 的特征值，对应的单位特征向量为 $x_1$（$\|x_1\|_2 = 1$）；$\lambda^2$ 也是 $DD^T$ 的特征值，对应的单位特征向量为 $x_2$（$\|x_2\|_2 = 1$）。因此，$D^TDx_1 = \lambda^2x_1$ 以及 $DD^Tx_2 = \lambda^2x_2$。
 
 由第一个式子：
 
-$$(DD^T)Dx_1 = D(D^TDx_1) = D(\lambda^2x_1) = \lambda^2 Dx_1$$
-
+$$
+(DD^T)Dx_1 = D(D^TDx_1) = D(\lambda^2x_1) = \lambda^2 Dx_1
+$$
 所以存在常数 $k$ 使得 $Dx_1 = kx_2$。由于 $\|x_1\|_2 = \|x_2\|_2 = 1$，可得 $k = \lambda$，即 $Dx_1 = \lambda x_2$。
 
 同样地，由 $DD^Tx_2 = \lambda^2x_2$ 可得 $D^Tx_2 = \lambda x_1$。
 
 下面证明 $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$ 是矩阵 $B$ 的特征值为 $\lambda$ 的特征向量：
 
-$$Bx = \begin{pmatrix} 0 & D^T \\ D & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} D^Tx_2 \\ Dx_1 \end{pmatrix} = \begin{pmatrix} \lambda x_1 \\ \lambda x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
+$$
+Bx = \begin{pmatrix} 0 & D^T \\ D & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} D^Tx_2 \\ Dx_1 \end{pmatrix} = \begin{pmatrix} \lambda x_1 \\ \lambda x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+$$
+
 
 因此，$D$ 的奇异值分解所需信息完全包含在 $B$ 的对角化过程中。 $\square$
 
@@ -1144,7 +1394,9 @@ $$Bx = \begin{pmatrix} 0 & D^T \\ D & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2
 
 **题目**：利用等式
 
-$$\|A(\boldsymbol{x} + \alpha\boldsymbol{w}) - \boldsymbol{b}\|_2^2 = \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2 + 2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2$$
+$$
+\|A(\boldsymbol{x} + \alpha\boldsymbol{w}) - \boldsymbol{b}\|_2^2 = \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2 + 2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2
+$$
 
 证明：如果 $\boldsymbol{x} \in X_{LS}$，那么 $A^TA\boldsymbol{x} = A^T\boldsymbol{b}$
 
@@ -1154,35 +1406,49 @@ $$\|A(\boldsymbol{x} + \alpha\boldsymbol{w}) - \boldsymbol{b}\|_2^2 = \|A\boldsy
 
 对于任意 $\boldsymbol{w}$ 和 $\alpha$，有：
 
-$$\|A(\boldsymbol{x} + \alpha\boldsymbol{w}) - \boldsymbol{b}\|_2^2 \geq \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2$$
+$$
+\|A(\boldsymbol{x} + \alpha\boldsymbol{w}) - \boldsymbol{b}\|_2^2 \geq \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2
+$$
 
 根据给定的等式：
 
-$$\|A\boldsymbol{x} - \boldsymbol{b}\|_2^2 + 2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2 \geq \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2$$
+$$
+\|A\boldsymbol{x} - \boldsymbol{b}\|_2^2 + 2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2 \geq \|A\boldsymbol{x} - \boldsymbol{b}\|_2^2
+$$
 
 简化得：
 
-$$2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2 \geq 0$$
+$$
+2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) + \alpha^2\|A\boldsymbol{w}\|_2^2 \geq 0
+$$
 
 这对所有 $\alpha$ 成立。当 $\alpha \to 0$ 时，主导项是 $2\alpha\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b})$。
 
 为使不等式对正负 $\alpha$ 都成立，必须有：
 
-$$\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) = 0$$
+$$
+\boldsymbol{w}^TA^T(A\boldsymbol{x} - \boldsymbol{b}) = 0
+$$
 
-由于 $\boldsymbol{w}$ 是任意的，因此：
+由于 $\boldsymbol{w}$ 是任意的,因此：
 
-$$A^T(A\boldsymbol{x} - \boldsymbol{b}) = 0 \Rightarrow A^TA\boldsymbol{x} = A^T\boldsymbol{b}$$               				$\square$
+$$
+A^T(A\boldsymbol{x} - \boldsymbol{b}) = 0 \quad \Rightarrow \quad A^TA\boldsymbol{x} = A^T\boldsymbol{b}
+$$
 
-# 作业四
+$\square$
 
 ---
+
+# 作业四
 
 ## 习题 1：QR 分解求解最小二乘问题
 
 **题目**：设
 
-$$A = \begin{pmatrix} 1 & 3 & 1 & 1 \\ 2 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{pmatrix}, \quad b = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$$
+$$
+A = \begin{pmatrix} 1 & 3 & 1 & 1 \\ 2 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{pmatrix}, \quad b = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}
+$$
 
 利用 QR 分解求对应的 LS 问题的全部解。
 
@@ -1190,7 +1456,7 @@ $$A = \begin{pmatrix} 1 & 3 & 1 & 1 \\ 2 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{pmatr
 
 观察矩阵 $A$，第3、4列相同，且通过简单计算可知 $\text{rank}(A) = 2 < 4$，该 LS 问题有无穷多解。
 
-**第一步：对 $A$ 进行QR分解**
+**第一步：对 $A$ 进行 QR 分解**
 
 由于 $\text{rank}(A) = 2$，只需计算 $q_1, q_2$。设 $a_1 = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$，$a_2 = \begin{pmatrix} 3 \\ 0 \\ 0 \end{pmatrix}$。
 
@@ -1198,29 +1464,45 @@ $$A = \begin{pmatrix} 1 & 3 & 1 & 1 \\ 2 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{pmatr
 
 计算 $q_1$：
 
-$$r_{11} = \|a_1\| = \sqrt{6}, \quad q_1 = \frac{1}{\sqrt{6}} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}$$
+$$
+r_{11} = \|a_1\| = \sqrt{6}, \quad q_1 = \frac{1}{\sqrt{6}} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}
+$$
 
 计算 $q_2$：
 
-$$r_{12} = a_2^T q_1 = \frac{\sqrt{6}}{2}$$
+$$
+r_{12} = a_2^T q_1 = \frac{\sqrt{6}}{2}
+$$
 
-$$\tilde{q}_2 = a_2 - r_{12}q_1 = \begin{pmatrix} 3 \\ 0 \\ 0 \end{pmatrix} - \frac{1}{2} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 5/2 \\ -1 \\ -1/2 \end{pmatrix}$$
+$$
+\tilde{q}_2 = a_2 - r_{12}q_1 = \begin{pmatrix} 3 \\ 0 \\ 0 \end{pmatrix} - \frac{1}{2} \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 5/2 \\ -1 \\ -1/2 \end{pmatrix}
+$$
 
-$$r_{22} = \|\tilde{q}_2\| = \frac{\sqrt{30}}{2}, \quad q_2 = \frac{1}{\sqrt{30}} \begin{pmatrix} 5 \\ -2 \\ -1 \end{pmatrix}$$
+$$
+r_{22} = \|\tilde{q}_2\| = \frac{\sqrt{30}}{2}, \quad q_2 = \frac{1}{\sqrt{30}} \begin{pmatrix} 5 \\ -2 \\ -1 \end{pmatrix}
+$$
 
 计算 $R$ 矩阵的其余元素（通过投影得到）：
 
-$$r_{13} = a_3^T q_1 = \frac{1}{\sqrt{6}}, \quad r_{23} = a_3^T q_2 = \frac{5}{\sqrt{30}}$$
+$$
+r_{13} = a_3^T q_1 = \frac{1}{\sqrt{6}}, \quad r_{23} = a_3^T q_2 = \frac{5}{\sqrt{30}}
+$$
 
-$$r_{14} = a_4^T q_1 = \frac{1}{\sqrt{6}}, \quad r_{24} = a_4^T q_2 = \frac{5}{\sqrt{30}}$$
+$$
+r_{14} = a_4^T q_1 = \frac{1}{\sqrt{6}}, \quad r_{24} = a_4^T q_2 = \frac{5}{\sqrt{30}}
+$$
 
 因此：
 
-$$Q_1 = \begin{pmatrix} \frac{1}{\sqrt{6}} & \frac{5}{\sqrt{30}} \\ \frac{2}{\sqrt{6}} & -\frac{2}{\sqrt{30}} \\ \frac{1}{\sqrt{6}} & -\frac{1}{\sqrt{30}} \end{pmatrix}, \quad R_1 = \begin{bmatrix} \sqrt{6} & \frac{\sqrt{6}}{2} & \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ 0 & \frac{\sqrt{30}}{2} & \frac{5}{\sqrt{30}} & \frac{5}{\sqrt{30}} \end{bmatrix}$$
+$$
+Q_1 = \begin{pmatrix} \frac{1}{\sqrt{6}} & \frac{5}{\sqrt{30}} \\ \frac{2}{\sqrt{6}} & -\frac{2}{\sqrt{30}} \\ \frac{1}{\sqrt{6}} & -\frac{1}{\sqrt{30}} \end{pmatrix}, \quad R_1 = \begin{bmatrix} \sqrt{6} & \frac{\sqrt{6}}{2} & \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ 0 & \frac{\sqrt{30}}{2} & \frac{5}{\sqrt{30}} & \frac{5}{\sqrt{30}} \end{bmatrix}
+$$
 
 **第二步：计算 $Q_1^T b$**
 
-$$Q_1^T b = \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{2}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ \frac{5}{\sqrt{30}} & -\frac{2}{\sqrt{30}} & -\frac{1}{\sqrt{30}} \end{bmatrix} \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{bmatrix} \frac{2\sqrt{6}}{3} \\ \frac{\sqrt{30}}{15} \end{bmatrix}$$
+$$
+Q_1^T b = \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{2}{\sqrt{6}} & \frac{1}{\sqrt{6}} \\ \frac{5}{\sqrt{30}} & -\frac{2}{\sqrt{30}} & -\frac{1}{\sqrt{30}} \end{bmatrix} \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{bmatrix} \frac{2\sqrt{6}}{3} \\ \frac{\sqrt{30}}{15} \end{bmatrix}
+$$
 
 **第三步：求解 $R_1 x = Q_1^T b$**
 
@@ -1228,25 +1510,47 @@ $$Q_1^T b = \begin{bmatrix} \frac{1}{\sqrt{6}} & \frac{2}{\sqrt{6}} & \frac{1}{\
 
 方程组为：
 
-$$\begin{cases} \sqrt{6}x_1 + \frac{\sqrt{6}}{2}x_2 + \frac{\sqrt{6}}{6}x_3 + \frac{\sqrt{6}}{6}x_4 = \frac{2\sqrt{6}}{3} \\ \frac{\sqrt{30}}{2}x_2 + \frac{\sqrt{30}}{6}x_3 + \frac{\sqrt{30}}{6}x_4 = \frac{\sqrt{30}}{15} \end{cases}$$
+$$
+\begin{cases}
+\sqrt{6}x_1 + \frac{\sqrt{6}}{2}x_2 + \frac{\sqrt{6}}{6}x_3 + \frac{\sqrt{6}}{6}x_4 = \frac{2\sqrt{6}}{3} \\
+\frac{\sqrt{30}}{2}x_2 + \frac{\sqrt{30}}{6}x_3 + \frac{\sqrt{30}}{6}x_4 = \frac{\sqrt{30}}{15}
+\end{cases}
+$$
 
 简化得：
 
-$$\begin{cases} x_1 + \frac{1}{2}x_2 + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3} \\ 3x_2 + x_3 + x_4 = \frac{2}{5} \end{cases}$$
+$$
+\begin{cases}
+x_1 + \frac{1}{2}x_2 + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3} \\
+3x_2 + x_3 + x_4 = \frac{2}{5}
+\end{cases}
+$$
 
-从第二个方程：$x_2 = \frac{2}{15} - \frac{1}{3}x_3 - \frac{1}{3}x_4$
+从第二个方程：
+
+$$
+x_2 = \frac{2}{15} - \frac{1}{3}x_3 - \frac{1}{3}x_4
+$$
 
 代入第一个方程：
 
-$$x_1 + \frac{1}{2}\left(\frac{2}{15} - \frac{1}{3}x_3 - \frac{1}{3}x_4\right) + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3}$$
+$$
+x_1 + \frac{1}{2}\left(\frac{2}{15} - \frac{1}{3}x_3 - \frac{1}{3}x_4\right) + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3}
+$$
 
-$$x_1 + \frac{1}{15} - \frac{1}{6}x_3 - \frac{1}{6}x_4 + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3}$$
+$$
+x_1 + \frac{1}{15} - \frac{1}{6}x_3 - \frac{1}{6}x_4 + \frac{1}{6}x_3 + \frac{1}{6}x_4 = \frac{2}{3}
+$$
 
-$$x_1 = \frac{2}{3} - \frac{1}{15} = \frac{3}{5}$$
+$$
+x_1 = \frac{2}{3} - \frac{1}{15} = \frac{3}{5}
+$$
 
 **全部解：**
 
-$$x = \begin{pmatrix} 3/5 \\ 2/15 \\ 0 \\ 0 \end{pmatrix} + x_3 \begin{pmatrix} 0 \\ -1/3 \\ 1 \\ 0 \end{pmatrix} + x_4 \begin{pmatrix} 0 \\ -1/3 \\ 0 \\ 1 \end{pmatrix}, \quad x_3, x_4 \in \mathbb{R}$$
+$$
+x = \begin{pmatrix} 3/5 \\ 2/15 \\ 0 \\ 0 \end{pmatrix} + x_3 \begin{pmatrix} 0 \\ -1/3 \\ 1 \\ 0 \end{pmatrix} + x_4 \begin{pmatrix} 0 \\ -1/3 \\ 0 \\ 1 \end{pmatrix}, \quad x_3, x_4 \in \mathbb{R}
+$$
 
 ---
 
@@ -1260,35 +1564,51 @@ $$x = \begin{pmatrix} 3/5 \\ 2/15 \\ 0 \\ 0 \end{pmatrix} + x_3 \begin{pmatrix} 
 
 由最小二乘理论，$x = Xb$ 满足正规方程 $A^T(Ax - b) = 0$，代入得：
 
-$$A^TAXb = A^Tb, \quad \forall b \in \mathbb{R}^m$$
+$$
+A^TAXb = A^Tb, \quad \forall b \in \mathbb{R}^m
+$$
 
 因此：
 
-$$A^TAX = A^T \tag{1}$$
+$$
+A^TAX = A^T \tag{1}
+$$
 
 对任意 $y \in \mathbb{R}^n$，令 $b = Ay$，则 $x = XAy$ 是 $\min_x \|Ax - Ay\|_2$ 的解。由于 $x = y$ 使目标函数为零，故：
 
-$$\|AXAy - Ay\|_2 = 0, \quad \forall y \in \mathbb{R}^n$$
+$$
+\|AXAy - Ay\|_2 = 0, \quad \forall y \in \mathbb{R}^n
+$$
 
 因此：
 
-$$AXA = A \tag{2}$$
+$$
+AXA = A \tag{2}
+$$
 
 由 (1) 和 (2)，有：
 
-$$(AX)^2 = AXAX = A(XA)X = AAX = AX$$
+$$
+(AX)^2 = AXAX = A(XA)X = AAX = AX
+$$
 
 即 $AX$ 是幂等矩阵。
 
 由 (1)，两边取转置得 $X^TA^TA = A$，因此：
 
-$$(AX)^TAX = X^TA^TAX = X^TA^T = (AX)^T$$
+$$
+(AX)^TAX = X^TA^TAX = X^TA^T = (AX)^T
+$$
 
 结合 $(AX)^2 = AX$：
 
-$$(AX)^T = (AX)^TAX = (AX)AX = AX$$
+$$
+(AX)^T = (AX)^TAX = (AX)AX = AX
+$$
 
-因此 $(AX)^T = AX$。 $\square$
+因此 $(AX)^T = AX$。
+
+$\square$
 
 ---
 
@@ -1296,7 +1616,9 @@ $$(AX)^T = (AX)^TAX = (AX)AX = AX$$
 
 **题目**：估计矩阵
 
-$$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
+$$
+A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}
+$$
 
 的特征值范围。
 
@@ -1304,7 +1626,9 @@ $$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
 
 使用 Gerschgorin 圆盘定理。该定理指出：矩阵 $A$ 的所有特征值都位于 Gerschgorin 圆盘
 
-$$D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leq R_i\}, \quad R_i = \sum_{j\neq i} |a_{ij}|$$
+$$
+D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leq R_i\}, \quad R_i = \sum_{j\neq i} |a_{ij}|
+$$
 
 的并集中。
 
@@ -1312,19 +1636,27 @@ $$D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leq R_i\}, \quad R_i = \sum_{j\neq i}
 
 **圆盘 $D_1$：** 中心 $a_{11} = 0$，半径 $R_1 = |1| + |0| = 1$
 
-$$D_1: |z| \leq 1 \quad \Rightarrow \quad [-1, 1]$$
+$$
+D_1: |z| \leq 1 \quad \Rightarrow \quad [-1, 1]
+$$
 
 **圆盘 $D_2$：** 中心 $a_{22} = 2$，半径 $R_2 = |1| + |1| = 2$
 
-$$D_2: |z - 2| \leq 2 \quad \Rightarrow \quad [0, 4]$$
+$$
+D_2: |z - 2| \leq 2 \quad \Rightarrow \quad [0, 4]
+$$
 
 **圆盘 $D_3$：** 中心 $a_{33} = -4$，半径 $R_3 = |0| + |1| = 1$
 
-$$D_3: |z + 4| \leq 1 \quad \Rightarrow \quad [-5, -3]$$
+$$
+D_3: |z + 4| \leq 1 \quad \Rightarrow \quad [-5, -3]
+$$
 
 由于 $A$ 是实对称矩阵，特征值必为实数。因此特征值范围为：
 
-$$\lambda \in D_1 \cup D_2 \cup D_3 = [-1, 1] \cup [0, 4] \cup [-5, -3] = [-5, -3] \cup [-1, 4]$$
+$$
+\lambda \in D_1 \cup D_2 \cup D_3 = [-1, 1] \cup [0, 4] \cup [-5, -3] = [-5, -3] \cup [-1, 4]
+$$
 
 ---
 
@@ -1332,7 +1664,9 @@ $$\lambda \in D_1 \cup D_2 \cup D_3 = [-1, 1] \cup [0, 4] \cup [-5, -3] = [-5, -
 
 **题目**：利用幂法求解矩阵
 
-$$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
+$$
+A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}
+$$
 
 模最大的特征值与对应的特征向量。（可编程计算结果，特征值答案保留两位有效数字，特征向量答案保留三位有效数字）
 
@@ -1346,19 +1680,27 @@ $$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
 
 **迭代 1：**
 
-$$Av^{(0)} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad \|Av^{(0)}\|_2 = 1, \quad v^{(1)} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad \lambda^{(1)} = 0$$
+$$
+Av^{(0)} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad \|Av^{(0)}\|_2 = 1, \quad v^{(1)} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad \lambda^{(1)} = 0
+$$
 
 **迭代 2：**
 
-$$Av^{(1)} = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}, \quad \|Av^{(1)}\|_2 = \sqrt{6} \approx 2.449, \quad v^{(2)} = \begin{pmatrix} 0.408 \\ 0.816 \\ 0.408 \end{pmatrix}, \quad \lambda^{(2)} = 2.000$$
+$$
+Av^{(1)} = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}, \quad \|Av^{(1)}\|_2 = \sqrt{6} \approx 2.449, \quad v^{(2)} = \begin{pmatrix} 0.408 \\ 0.816 \\ 0.408 \end{pmatrix}, \quad \lambda^{(2)} = 2.000
+$$
 
 **迭代 5：**
 
-$$v^{(5)} = \begin{pmatrix} 0.189 \\ 0.694 \\ -0.694 \end{pmatrix}, \quad \lambda^{(5)} = -0.043$$
+$$
+v^{(5)} = \begin{pmatrix} 0.189 \\ 0.694 \\ -0.694 \end{pmatrix}, \quad \lambda^{(5)} = -0.043
+$$
 
 **迭代 11：**
 
-$$v^{(11)} = \begin{pmatrix} -0.025 \\ 0.203 \\ -0.979 \end{pmatrix}, \quad \lambda^{(11)} = -4.140$$
+$$
+v^{(11)} = \begin{pmatrix} -0.025 \\ 0.203 \\ -0.979 \end{pmatrix}, \quad \lambda^{(11)} = -4.140
+$$
 
 迭代约 30 次后收敛。
 
@@ -1376,7 +1718,9 @@ $$v^{(11)} = \begin{pmatrix} -0.025 \\ 0.203 \\ -0.979 \end{pmatrix}, \quad \lam
 
 **题目**：利用反幂法求解矩阵
 
-$$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
+$$
+A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}
+$$
 
 模最小的特征值与对应的特征向量。（可编程计算结果，特征值答案保留两位有效数字，特征向量答案保留三位有效数字）
 
@@ -1394,19 +1738,27 @@ $$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
 
 求解 $Ax = v^{(0)}$ 得 $x = \begin{pmatrix} -0.577 \\ 0.577 \\ 0 \end{pmatrix}$，归一化后
 
-$$v^{(1)} = \begin{pmatrix} -0.707 \\ 0.707 \\ 0 \end{pmatrix}, \quad \lambda^{(1)} = 0$$
+$$
+v^{(1)} = \begin{pmatrix} -0.707 \\ 0.707 \\ 0 \end{pmatrix}, \quad \lambda^{(1)} = 0
+$$
 
 **迭代 2：**
 
-$$v^{(2)} = \begin{pmatrix} 0.953 \\ -0.293 \\ -0.073 \end{pmatrix}, \quad \lambda^{(2)} = -0.366$$
+$$
+v^{(2)} = \begin{pmatrix} 0.953 \\ -0.293 \\ -0.073 \end{pmatrix}, \quad \lambda^{(2)} = -0.366
+$$
 
 **迭代 3：**
 
-$$v^{(3)} = \begin{pmatrix} -0.928 \\ 0.360 \\ 0.097 \end{pmatrix}, \quad \lambda^{(3)} = -0.377$$
+$$
+v^{(3)} = \begin{pmatrix} -0.928 \\ 0.360 \\ 0.097 \end{pmatrix}, \quad \lambda^{(3)} = -0.377
+$$
 
 **迭代 5：**
 
-$$v^{(5)} = \begin{pmatrix} -0.931 \\ 0.351 \\ 0.097 \end{pmatrix}, \quad \lambda^{(5)} = -0.377$$
+$$
+v^{(5)} = \begin{pmatrix} -0.931 \\ 0.351 \\ 0.097 \end{pmatrix}, \quad \lambda^{(5)} = -0.377
+$$
 
 迭代约 11 次后收敛。
 
@@ -1424,7 +1776,9 @@ $$v^{(5)} = \begin{pmatrix} -0.931 \\ 0.351 \\ 0.097 \end{pmatrix}, \quad \lambd
 
 **题目**：利用原点位移法求解矩阵
 
-$$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
+$$
+A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}
+$$
 
 全部特征值与对应的特征向量。（可编程计算结果，特征值答案保留两位有效数字，特征向量答案保留三位有效数字）
 
@@ -1438,27 +1792,33 @@ $$A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & -4 \end{pmatrix}$$
 
 对 $A$ 使用标准幂法，收敛得：
 
-$$\lambda_3 = -4.169, \quad v_3 = \begin{pmatrix} 0.040 \\ -0.166 \\ 0.985 \end{pmatrix}$$
+$$
+\lambda_3 = -4.169, \quad v_3 = \begin{pmatrix} 0.040 \\ -0.166 \\ 0.985 \end{pmatrix}
+$$
 
 **第二步：反幂法求模最小特征值**
 
 对 $A$ 使用反幂法，收敛得：
 
-$$\lambda_2 = -0.377, \quad v_2 = \begin{pmatrix} 0.931 \\ -0.351 \\ -0.097 \end{pmatrix}$$
+$$
+\lambda_2 = -0.377, \quad v_2 = \begin{pmatrix} 0.931 \\ -0.351 \\ -0.097 \end{pmatrix}
+$$
 
 **第三步：带位移反幂法求中间特征值**
 
 选择位移 $\mu = 2.5$（接近估计的中间特征值），对 $A - 2.5I$ 使用反幂法。取初始向量 $v^{(0)} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}$，迭代 6 次后收敛得：
 
-$$\lambda_1 = 2.546, \quad v_1 = \begin{pmatrix} 0.362 \\ 0.921 \\ 0.141 \end{pmatrix}$$
+$$
+\lambda_1 = 2.546, \quad v_1 = \begin{pmatrix} 0.362 \\ 0.921 \\ 0.141 \end{pmatrix}
+$$
 
 **最终结果汇总（按从大到小排序）：**
 
-| 特征值（两位有效数字） |                 特征向量（三位有效数字）                  |          残差          |
-| :--------------------: | :-------------------------------------------------------: | :--------------------: |
-|   $\lambda_1 = 2.5$    |  $\begin{pmatrix} 0.362 \\ 0.921 \\ 0.141 \end{pmatrix}$  | $2.10 \times 10^{-11}$ |
-|  $\lambda_2 = -0.38$   | $\begin{pmatrix} 0.931 \\ -0.351 \\ -0.097 \end{pmatrix}$ | $1.25 \times 10^{-16}$ |
-|   $\lambda_3 = -4.2$   | $\begin{pmatrix} 0.040 \\ -0.166 \\ 0.985 \end{pmatrix}$  |      $< 10^{-16}$      |
+| 特征值（两位有效数字） | 特征向量（三位有效数字） | 残差 |
+|:---:|:---:|:---:|
+| $\lambda_1 = 2.5$ | $\begin{pmatrix} 0.362 \\ 0.921 \\ 0.141 \end{pmatrix}$ | $2.10 \times 10^{-11}$ |
+| $\lambda_2 = -0.38$ | $\begin{pmatrix} 0.931 \\ -0.351 \\ -0.097 \end{pmatrix}$ | $1.25 \times 10^{-16}$ |
+| $\lambda_3 = -4.2$ | $\begin{pmatrix} 0.040 \\ -0.166 \\ 0.985 \end{pmatrix}$ | $< 10^{-16}$ |
 
 所有残差 $\|Av_i - \lambda_i v_i\|$ 均在数值误差范围内，验证结果正确。
 
@@ -1468,7 +1828,9 @@ $$\lambda_1 = 2.546, \quad v_1 = \begin{pmatrix} 0.362 \\ 0.921 \\ 0.141 \end{pm
 
 **题目**：设
 
-$$A = \begin{pmatrix} 5 & -1 & 1 \\ -1 & 2 & 0 \\ 1 & 0 & 3 \end{pmatrix}$$
+$$
+A = \begin{pmatrix} 5 & -1 & 1 \\ -1 & 2 & 0 \\ 1 & 0 & 3 \end{pmatrix}
+$$
 
 记 $\Lambda(A) = \{\lambda_1, \lambda_2, \lambda_3\} \subseteq \mathbb{C}$ 且 $|\lambda_1| \geq |\lambda_2| \geq |\lambda_3|$。
 
@@ -1482,21 +1844,33 @@ $$A = \begin{pmatrix} 5 & -1 & 1 \\ -1 & 2 & 0 \\ 1 & 0 & 3 \end{pmatrix}$$
 
 Gerschgorin 圆盘定理：矩阵 $A$ 的所有特征值都位于 Gerschgorin 圆盘的并集中，第 $i$ 个圆盘定义为：
 
-$$D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leq R_i\}, \quad R_i = \sum_{j\neq i} |a_{ij}|$$
+$$
+D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leq R_i\}, \quad R_i = \sum_{j\neq i} |a_{ij}|
+$$
 
 对于矩阵 $A = \begin{pmatrix} 5 & -1 & 1 \\ -1 & 2 & 0 \\ 1 & 0 & 3 \end{pmatrix}$：
 
-$$D_1: a_{11} = 5, \; R_1 = |-1| + |1| = 2 \quad \Rightarrow \quad z \in [3, 7]$$
+$$
+D_1: a_{11} = 5, \; R_1 = |-1| + |1| = 2 \quad \Rightarrow \quad z \in [3, 7]
+$$
 
-$$D_2: a_{22} = 2, \; R_2 = |-1| + |0| = 1 \quad \Rightarrow \quad z \in [1, 3]$$
+$$
+D_2: a_{22} = 2, \; R_2 = |-1| + |0| = 1 \quad \Rightarrow \quad z \in [1, 3]
+$$
 
-$$D_3: a_{33} = 3, \; R_3 = |1| + |0| = 1 \quad \Rightarrow \quad z \in [2, 4]$$
+$$
+D_3: a_{33} = 3, \; R_3 = |1| + |0| = 1 \quad \Rightarrow \quad z \in [2, 4]
+$$
 
 所有特征值 $\lambda \in D_1 \cup D_2 \cup D_3 = [1, 7]$。因为 $A$ 是实对称矩阵，所有特征值都是实数且为正。
 
 从圆盘分析得：$|\lambda_1| \leq 7$，$|\lambda_3| \geq 1$，因此：
 
-$$\kappa(A) = \frac{|\lambda_1|}{|\lambda_3|} \leq \frac{7}{1} = 7 \quad \square$$
+$$
+\kappa(A) = \frac{|\lambda_1|}{|\lambda_3|} \leq \frac{7}{1} = 7
+$$
+
+$\square$
 
 ### (2) 幂法与反幂法计算条件数
 
@@ -1507,36 +1881,40 @@ $$\kappa(A) = \frac{|\lambda_1|}{|\lambda_3|} \leq \frac{7}{1} = 7 \quad \square
 **幂法求 $\lambda_{\max}$ 的前 5 步迭代：**
 
 | 迭代次数 | 特征值估计 |
-| :------: | :--------: |
-|    1     |  4.880952  |
-|    2     |  5.475970  |
-|    3     |  5.612480  |
-|    4     |  5.642355  |
-|    5     |  5.649083  |
+|:---:|:---:|
+| 1 | 4.880952 |
+| 2 | 5.475970 |
+| 3 | 5.612480 |
+| 4 | 5.642355 |
+| 5 | 5.649083 |
 
 收敛于第 32 步，得 $\lambda_{\max} = 5.6510934089$
 
 **反幂法求 $\lambda_{\min}$ 的前 5 步迭代：**
 
 | 迭代次数 | 特征值估计 |
-| :------: | :--------: |
-|    1     |  2.126100  |
-|    2     |  1.769336  |
-|    3     |  1.671936  |
-|    4     |  1.640106  |
-|    5     |  1.628943  |
+|:---:|:---:|
+| 1 | 2.126100 |
+| 2 | 1.769336 |
+| 3 | 1.671936 |
+| 4 | 1.640106 |
+| 5 | 1.628943 |
 
 收敛于第 44 步，得 $\lambda_{\min} = 1.6227971460$
 
 **条件数计算：**
 
-$$\kappa(A) = \frac{|\lambda_{\max}|}{|\lambda_{\min}|} = \frac{5.6510934089}{1.6227971460} = 3.4823165808$$
+$$
+\kappa(A) = \frac{|\lambda_{\max}|}{|\lambda_{\min}|} = \frac{5.6510934089}{1.6227971460} = 3.4823165808
+$$
 
 保留两位有效数字：$\kappa(A) \approx 3.48$
 
 **验证：**
 
-$$\kappa(A) = 3.48 < 7 \quad \checkmark$$
+$$
+\kappa(A) = 3.48 < 7 \quad \checkmark
+$$
 
 这验证了 Gerschgorin 圆盘定理给出的上界估计是正确的。实际条件数远小于理论上界 7，说明理论估计较为保守但有效。
 
@@ -1560,13 +1938,19 @@ $$\kappa(A) = 3.48 < 7 \quad \checkmark$$
 
 展开目标函数：
 
-$$f(A) = \frac{1}{2}\|Ax + b - y\|_2^2 = \frac{1}{2}(Ax + b - y)^T(Ax + b - y)$$
+$$
+f(A) = \frac{1}{2}\|Ax + b - y\|_2^2 = \frac{1}{2}(Ax + b - y)^T(Ax + b - y)
+$$
 
-$$= \frac{1}{2}(x^TA^TAx + 2(b-y)^TAx + (b-y)^T(b-y))$$
+$$
+= \frac{1}{2}(x^TA^TAx + 2(b-y)^TAx + (b-y)^T(b-y))
+$$
 
 由于 $(b-y)^T(b-y)$ 是常数，对 $A$ 求导后为零：
 
-$$\frac{\partial f}{\partial A} = \frac{\partial}{\partial A}\frac{1}{2}(x^TA^TAx + 2(b-y)^TAx)$$
+$$
+\frac{\partial f}{\partial A} = \frac{\partial}{\partial A}\frac{1}{2}(x^TA^TAx + 2(b-y)^TAx)
+$$
 
 利用矩阵求导公式：
 - $\frac{\partial x^TA^TAx}{\partial A} = 2Axx^T$
@@ -1574,13 +1958,17 @@ $$\frac{\partial f}{\partial A} = \frac{\partial}{\partial A}\frac{1}{2}(x^TA^TA
 
 因此：
 
-$$\boxed{\frac{\partial f}{\partial A} = Axx^T + (b-y)x^T}$$
+$$
+\frac{\partial f}{\partial A} = Axx^T + (b-y)x^T
+$$
 
 **(2) 关于 $x$ 的梯度**
 
 同样展开目标函数，对 $x$ 求导：
 
-$$\frac{\partial f}{\partial x} = \frac{\partial}{\partial x}\frac{1}{2}(x^TA^TAx + 2(b-y)^TAx + (b-y)^T(b-y))$$
+$$
+\frac{\partial f}{\partial x} = \frac{\partial}{\partial x}\frac{1}{2}(x^TA^TAx + 2(b-y)^TAx + (b-y)^T(b-y))
+$$
 
 利用矩阵求导公式：
 - $\frac{\partial x^TA^TAx}{\partial x} = 2A^TAx$
@@ -1588,7 +1976,9 @@ $$\frac{\partial f}{\partial x} = \frac{\partial}{\partial x}\frac{1}{2}(x^TA^TA
 
 因此：
 
-$$\boxed{\frac{\partial f}{\partial x} = A^TAx + A^T(b-y)}$$
+$$
+\frac{\partial f}{\partial x} = A^TAx + A^T(b-y)
+$$
 
 ---
 
@@ -1602,11 +1992,15 @@ $$\boxed{\frac{\partial f}{\partial x} = A^TAx + A^T(b-y)}$$
 
 对于二次型 $x^TAx$，利用矩阵微分的性质：
 
-$$d(x^TAx) = (dx)^TAx + x^TAdx = x^TA^Tdx + x^TAdx = x^T(A + A^T)dx$$
+$$
+d(x^TAx) = (dx)^TAx + x^TAdx = x^TA^Tdx + x^TAdx = x^T(A + A^T)dx
+$$
 
 因此：
 
-$$\boxed{\frac{\partial x^TAx}{\partial x} = (A + A^T)x}$$
+$$
+\frac{\partial x^TAx}{\partial x} = (A + A^T)x
+$$
 
 **注**：当 $A$ 为对称矩阵时，$\frac{\partial x^TAx}{\partial x} = 2Ax$
 
@@ -1614,11 +2008,15 @@ $$\boxed{\frac{\partial x^TAx}{\partial x} = (A + A^T)x}$$
 
 对于二次型 $x^TAx = \sum_{i,j} x_i A_{ij} x_j$，对 $A_{ij}$ 求偏导：
 
-$$\frac{\partial x^TAx}{\partial A_{ij}} = x_ix_j$$
+$$
+\frac{\partial x^TAx}{\partial A_{ij}} = x_ix_j
+$$
 
 因此，梯度矩阵的第 $(i,j)$ 元素为 $x_ix_j$，即：
 
-$$\boxed{\frac{\partial x^TAx}{\partial A} = xx^T}$$
+$$
+\frac{\partial x^TAx}{\partial A} = xx^T
+$$
 
 ---
 
@@ -1630,27 +2028,39 @@ $$\boxed{\frac{\partial x^TAx}{\partial A} = xx^T}$$
 
 首先计算 $W^{-1}$ 的微分。由恒等式 $WW^{-1} = I$，两边取微分：
 
-$$d(WW^{-1}) = dW \cdot W^{-1} + W \cdot dW^{-1} = dI = 0$$
+$$
+d(WW^{-1}) = dW \cdot W^{-1} + W \cdot dW^{-1} = dI = 0
+$$
 
 因此：
 
-$$W \cdot dW^{-1} = -dW \cdot W^{-1}$$
+$$
+W \cdot dW^{-1} = -dW \cdot W^{-1}
+$$
 
 两边左乘 $W^{-1}$：
 
-$$dW^{-1} = -W^{-1}dW \cdot W^{-1}$$
+$$
+dW^{-1} = -W^{-1}dW \cdot W^{-1}
+$$
 
 现在计算迹的微分：
 
-$$d\,\text{tr}(W^{-1}) = \text{tr}(dW^{-1}) = \text{tr}(-W^{-1}dW \cdot W^{-1})$$
+$$
+d\,\text{tr}(W^{-1}) = \text{tr}(dW^{-1}) = \text{tr}(-W^{-1}dW \cdot W^{-1})
+$$
 
 利用迹的循环性质 $\text{tr}(ABC) = \text{tr}(CAB)$：
 
-$$d\,\text{tr}(W^{-1}) = \text{tr}(-(W^{-1})^2dW) = \text{tr}(-(W^{-T})^2 dW)$$
+$$
+d\,\text{tr}(W^{-1}) = \text{tr}(-(W^{-1})^2dW) = \text{tr}(-(W^{-T})^2 dW)
+$$
 
 因此：
 
-$$\boxed{\frac{\partial \text{tr}(W^{-1})}{\partial W} = -(W^{-T})^2 = -(W^{-1})^T(W^{-1})^T}$$
+$$
+\frac{\partial \text{tr}(W^{-1})}{\partial W} = -(W^{-T})^2
+$$
 
 ---
 
@@ -1664,51 +2074,69 @@ $$\boxed{\frac{\partial \text{tr}(W^{-1})}{\partial W} = -(W^{-T})^2 = -(W^{-1})
 
 **解**：
 
-**(1) 证明关于 $z$ 的梯度**
+### (1) 证明关于 $z$ 的梯度
 
 将损失函数展开：
 
-$$J = -p^T\log(q) = -p^T\log\left(\frac{\exp(z)}{\mathbf{1}^T\exp(z)}\right)$$
+$$
+J = -p^T\log(q) = -p^T\log\left(\frac{\exp(z)}{\mathbf{1}^T\exp(z)}\right)
+$$
 
-$$= -p^T\log(\exp(z)) + p^T\log(\mathbf{1}^T\exp(z))\mathbf{1}$$
+$$
+= -p^T\log(\exp(z)) + p^T\log(\mathbf{1}^T\exp(z))\mathbf{1}
+$$
 
-$$= -p^Tz + p^T\mathbf{1}\log(\mathbf{1}^T\exp(z))$$
+$$
+= -p^Tz + p^T\mathbf{1}\log(\mathbf{1}^T\exp(z))
+$$
 
 由于 $p^T\mathbf{1} = 1$（概率分布的归一化条件）：
 
-$$J = -p^Tz + \log(\mathbf{1}^T\exp(z))$$
+$$
+J = -p^Tz + \log(\mathbf{1}^T\exp(z))
+$$
 
 对 $z$ 求导：
 
-$$\frac{\partial J}{\partial z} = -p + \frac{\partial \log(\mathbf{1}^T\exp(z))}{\partial z}$$
+$$
+\frac{\partial J}{\partial z} = -p + \frac{\partial \log(\mathbf{1}^T\exp(z))}{\partial z}= -p + \frac{1}{\mathbf{1}^T\exp(z)} \cdot \frac{\partial (\mathbf{1}^T\exp(z))}{\partial z}
+$$
 
-$$= -p + \frac{1}{\mathbf{1}^T\exp(z)} \cdot \frac{\partial (\mathbf{1}^T\exp(z))}{\partial z}$$
-
-$$= -p + \frac{\exp(z)}{\mathbf{1}^T\exp(z)}$$
-
-$$= -p + q$$
+$$
+= -p + \frac{\exp(z)}{\mathbf{1}^T\exp(z)}= -p + q
+$$
 
 因此：
 
-$$\boxed{\frac{\partial J}{\partial z} = q - p}$$
+$$
+\frac{\partial J}{\partial z} = q - p
+$$
 
-**(2) 证明关于 $W$ 的梯度**
+### (2) 证明关于 $W$ 的梯度
 
 利用链式法则和迹微分法：
 
-$$dJ = d\,\text{tr}(J) = \text{tr}(dJ)$$
+$$
+dJ = d\,\text{tr}(J) = \text{tr}(dJ)
+$$
 
 由 $z = Wx$，有 $dz = dW \cdot x$，因此：
 
-$$dJ = \text{tr}\left[\left(\frac{\partial J}{\partial z}\right)^T dz\right] = \text{tr}[(q-p)^T dW \cdot x]$$
+$$
+dJ = \text{tr}\left[\left(\frac{\partial J}{\partial z}\right)^T dz\right] = \text{tr}[(q-p)^T dW \cdot x]
+$$
 
 利用迹的性质 $\text{tr}(ABC) = \text{tr}(CAB)$：
 
-$$dJ = \text{tr}[x(q-p)^T dW]$$
+$$
+dJ = \text{tr}[x(q-p)^T dW]
+$$
 
 因此：
 
-$$\boxed{\frac{\partial J}{\partial W} = (q-p)x^T \quad \text{成立}}$$
+$$
+\frac{\partial J}{\partial W} = (q-p)x^T \quad \text{成立}
+$$
 
 ---
 
@@ -1716,7 +2144,9 @@ $$\boxed{\frac{\partial J}{\partial W} = (q-p)x^T \quad \text{成立}}$$
 
 **题目**：以下内容是利用极大似然估计求解多元正态分布模型的关键步骤：
 
-$$L = -\frac{Nd}{2}\ln(2\pi) - \frac{N}{2}\ln|\Sigma| - \frac{1}{2}\sum_{t=1}^N (x_t - \mu)^T\Sigma^{-1}(x_t - \mu)$$
+$$
+L = -\frac{Nd}{2}\ln(2\pi) - \frac{N}{2}\ln|\Sigma| - \frac{1}{2}\sum_{t=1}^N (x_t - \mu)^T\Sigma^{-1}(x_t - \mu)
+$$
 
 $L$ 是对数似然，$N$ 为样本数，$d$ 为样本维数，$\Sigma \in \mathbb{R}^{d\times d}$ 为协方差矩阵，$\mu \in \mathbb{R}^d$ 为期望向量。
 
@@ -1726,63 +2156,91 @@ $L$ 是对数似然，$N$ 为样本数，$d$ 为样本维数，$\Sigma \in \math
 
 **解**：
 
-**(1) 关于 $\mu$ 的梯度**
+### (1) 关于 $\mu$ 的梯度
 
 对数似然中只有第三项与 $\mu$ 相关：
 
-$$\frac{\partial L}{\partial \mu} = \frac{\partial}{\partial \mu}\left[-\frac{1}{2}\sum_{t=1}^N (x_t - \mu)^T\Sigma^{-1}(x_t - \mu)\right]$$
+$$
+\frac{\partial L}{\partial \mu} = \frac{\partial}{\partial \mu}\left[-\frac{1}{2}\sum_{t=1}^N (x_t - \mu)^T\Sigma^{-1}(x_t - \mu)\right]
+$$
 
 对每一项求导：
 
-$$\frac{\partial}{\partial \mu}(x_t - \mu)^T\Sigma^{-1}(x_t - \mu) = -2\Sigma^{-1}(x_t - \mu)$$
+$$
+\frac{\partial}{\partial \mu}(x_t - \mu)^T\Sigma^{-1}(x_t - \mu) = -2\Sigma^{-1}(x_t - \mu)
+$$
 
 因此：
 
-$$\boxed{\frac{\partial L}{\partial \mu} = \sum_{t=1}^N \Sigma^{-1}(x_t - \mu)}$$
+$$
+\frac{\partial L}{\partial \mu} = \sum_{t=1}^N \Sigma^{-1}(x_t - \mu)
+$$
 
 令 $\frac{\partial L}{\partial \mu} = 0$，得 $\mu = \frac{1}{N}\sum_{t=1}^N x_t$（样本均值）。
 
-**(2) 关于 $\Sigma$ 的梯度**
+### (2) 关于 $\Sigma$ 的梯度
 
 使用迹微分法，将对数似然写成迹的形式：
 
-$$dL = d\left[-\frac{N}{2}\ln|\Sigma|\right] - d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right]$$
+$$
+dL = d\left[-\frac{N}{2}\ln|\Sigma|\right] - d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right]
+$$
 
 **第一项：**
 
-$$d\left[-\frac{N}{2}\ln|\Sigma|\right] = -\frac{N}{2}d[\ln|\Sigma|] = -\frac{N}{2}\text{tr}[\Sigma^{-1}d\Sigma]$$
+$$
+d\left[-\frac{N}{2}\ln|\Sigma|\right] = -\frac{N}{2}d[\ln|\Sigma|] = -\frac{N}{2}\text{tr}[\Sigma^{-1}d\Sigma]
+$$
 
 **第二项：**
 
-$$d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right] = \frac{1}{2}d\,\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}\right]$$
+$$
+d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right] = \frac{1}{2}d\,\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}\right]
+$$
 
-$$= \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T d(\Sigma^{-1})\right]$$
+$$
+= \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T d(\Sigma^{-1})\right]
+$$
 
 利用 $d\Sigma^{-1} = -\Sigma^{-1}(d\Sigma)\Sigma^{-1}$：
 
-$$= \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T(-\Sigma^{-1}d\Sigma \cdot \Sigma^{-1})\right]$$
+$$
+= \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T(-\Sigma^{-1}d\Sigma \cdot \Sigma^{-1})\right]
+$$
 
-$$= -\frac{1}{2}\text{tr}\left[\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}d\Sigma\right]$$
+$$
+= -\frac{1}{2}\text{tr}\left[\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}d\Sigma\right]
+$$
 
 综合两项：
 
-$$dL = \text{tr}\left[\left(-\frac{N}{2}\Sigma^{-1} + \frac{1}{2}\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}\right)d\Sigma\right]$$
+$$
+dL = \text{tr}\left[\left(-\frac{N}{2}\Sigma^{-1} + \frac{1}{2}\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}\right)d\Sigma\right]
+$$
 
 因此：
 
-$$\boxed{\frac{\partial L}{\partial \Sigma} = -\frac{N}{2}\Sigma^{-1} + \frac{1}{2}\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}}$$
+$$
+\frac{\partial L}{\partial \Sigma} = -\frac{N}{2}\Sigma^{-1} + \frac{1}{2}\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}
+$$
 
 令 $\frac{\partial L}{\partial \Sigma} = 0$：
 
-$$N\Sigma^{-1} = \Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}$$
+$$
+N\Sigma^{-1} = \Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}
+$$
 
 两边左乘 $\Sigma$，右乘 $\Sigma$：
 
-$$N\Sigma = \sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T$$
+$$
+N\Sigma = \sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T
+$$
 
 因此：
 
-$$\boxed{\Sigma = \frac{1}{N}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T}$$
+$$
+\Sigma = \frac{1}{N}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T
+$$
 
 这就是样本协方差矩阵的极大似然估计。
 
@@ -1792,7 +2250,9 @@ $$\boxed{\Sigma = \frac{1}{N}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T}$$
 
 **题目**：（互信息）假设 $X_1 \to X_2 \to X_3 \to \cdots \to X_n$ 是一个马尔科夫链，即
 
-$$p(x_1, x_2, \ldots, x_n) = p(x_1)p(x_2|x_1)\cdots p(x_n|x_{n-1})$$
+$$
+p(x_1, x_2, \ldots, x_n) = p(x_1)p(x_2|x_1)\cdots p(x_n|x_{n-1})
+$$
 
 试化简 $I(X_1; X_2, \ldots, X_n)$
 
@@ -1800,37 +2260,57 @@ $$p(x_1, x_2, \ldots, x_n) = p(x_1)p(x_2|x_1)\cdots p(x_n|x_{n-1})$$
 
 互信息定义为：
 
-$$I(X_1; X_2, \ldots, X_n) = H(X_1) - H(X_1 | X_2, \ldots, X_n)$$
+$$
+I(X_1; X_2, \ldots, X_n) = H(X_1) - H(X_1 | X_2, \ldots, X_n)
+$$
 
 利用条件熵的性质：
 
-$$= H(X_1) - [H(X_1, X_2, \ldots, X_n) - H(X_2, \ldots, X_n)]$$
+$$
+= H(X_1) - [H(X_1, X_2, \ldots, X_n) - H(X_2, \ldots, X_n)]
+$$
 
 对于马尔科夫链，联合熵可以分解为：
 
-$$H(X_1, X_2, \ldots, X_n) = \sum_{i=1}^n H(X_i|X_{i-1},\ldots,X_1)$$
+$$
+H(X_1, X_2, \ldots, X_n) = \sum_{i=1}^n H(X_i|X_{i-1},\ldots,X_1)
+$$
 
 其中 $H(X_1|X_0,\ldots) = H(X_1)$。由马尔科夫性质：
 
-$$H(X_i|X_{i-1},\ldots,X_1) = H(X_i|X_{i-1})$$
+$$
+H(X_i|X_{i-1},\ldots,X_1) = H(X_i|X_{i-1})
+$$
 
 类似地：
 
-$$H(X_2, \ldots, X_n) = \sum_{i=2}^n H(X_i|X_{i-1},\ldots,X_2)$$
+$$
+H(X_2, \ldots, X_n) = \sum_{i=2}^n H(X_i|X_{i-1},\ldots,X_2)
+$$
 
 代入得：
 
-$$I(X_1; X_2, \ldots, X_n) = H(X_1) - \left[\left(H(X_1) + \sum_{i=2}^n H(X_i|X_{i-1})\right) - \left(H(X_2) + \sum_{i=3}^n H(X_i|X_{i-1})\right)\right]$$
+$$
+I(X_1; X_2, \ldots, X_n) = H(X_1) - \left[\left(H(X_1) + \sum_{i=2}^n H(X_i|X_{i-1})\right) - \left(H(X_2) + \sum_{i=3}^n H(X_i|X_{i-1})\right)\right]
+$$
 
-$$= H(X_1) - H(X_1) - H(X_2|X_1) + H(X_2)$$
+$$
+= H(X_1) - H(X_1) - H(X_2|X_1) + H(X_2)
+$$
 
-$$= H(X_2) - H(X_2|X_1)$$
+$$
+= H(X_2) - H(X_2|X_1)
+$$
 
-$$= I(X_1; X_2)$$
+$$
+= I(X_1; X_2)
+$$
 
 因此：
 
-$$\boxed{I(X_1; X_2, \ldots, X_n) = I(X_1; X_2)}$$
+$$
+I(X_1; X_2, \ldots, X_n) = I(X_1; X_2)
+$$
 
 **结论**：在马尔科夫链中，$X_1$ 与序列 $(X_2, \ldots, X_n)$ 的互信息等于 $X_1$ 与 $X_2$ 的互信息，这体现了马尔科夫性质。
 
@@ -1842,45 +2322,69 @@ $$\boxed{I(X_1; X_2, \ldots, X_n) = I(X_1; X_2)}$$
 
 即证明：
 
-$$\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\min_\theta D_{KL}(P \| Q_\theta)$$
+$$
+\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\min_\theta D_{KL}(P \| Q_\theta)
+$$
 
 **证明**：
 
 从最大似然估计出发：
 
-$$\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\max_\theta \sum_{i=1}^n \log q_\theta(x_i)$$
+$$
+\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\max_\theta \sum_{i=1}^n \log q_\theta(x_i)
+$$
 
-$$\Leftrightarrow \arg\min_\theta -\frac{1}{n}\sum_{i=1}^n \log q_\theta(x_i)$$
+$$
+\Leftrightarrow \arg\min_\theta -\frac{1}{n}\sum_{i=1}^n \log q_\theta(x_i)
+$$
 
 当样本量 $n \to \infty$ 时，根据大数定律：
 
-$$-\frac{1}{n}\sum_{i=1}^n \log q_\theta(x_i) \xrightarrow{P} -\mathbb{E}_P[\log q_\theta(x)]$$
+$$
+-\frac{1}{n}\sum_{i=1}^n \log q_\theta(x_i) \xrightarrow{P} -\mathbb{E}_P[\log q_\theta(x)]
+$$
 
-$$= -\int p(x)\log q_\theta(x)dx$$
+$$
+= -\int p(x)\log q_\theta(x)dx
+$$
 
 这正是**交叉熵** $H(P, Q_\theta)$ 的定义。因此：
 
-$$\arg\min_\theta -\mathbb{E}_P[\log q_\theta(x)] \Leftrightarrow \arg\min_\theta H(P, Q_\theta)$$
+$$
+\arg\min_\theta -\mathbb{E}_P[\log q_\theta(x)] \Leftrightarrow \arg\min_\theta H(P, Q_\theta)
+$$
 
 由于真实分布 $P$ 的熵 $H(P)$ 是常数（不依赖于 $\theta$）：
 
-$$\arg\min_\theta H(P, Q_\theta) \Leftrightarrow \arg\min_\theta [H(P, Q_\theta) - H(P)]$$
+$$
+\arg\min_\theta H(P, Q_\theta) \Leftrightarrow \arg\min_\theta [H(P, Q_\theta) - H(P)]
+$$
 
 而 KL 散度定义为：
 
-$$D_{KL}(P \| Q_\theta) = \int p(x)\log \frac{p(x)}{q_\theta(x)}dx$$
+$$
+D_{KL}(P \| Q_\theta) = \int p(x)\log \frac{p(x)}{q_\theta(x)}dx
+$$
 
-$$= \int p(x)\log p(x)dx - \int p(x)\log q_\theta(x)dx$$
+$$
+= \int p(x)\log p(x)dx - \int p(x)\log q_\theta(x)dx
+$$
 
-$$= H(P) + H(P, Q_\theta)$$
+$$
+= H(P) + H(P, Q_\theta)
+$$
 
 等价于：
 
-$$H(P, Q_\theta) - H(P) = -\int p(x)\log q_\theta(x)dx + \int p(x)\log p(x)dx = D_{KL}(P \| Q_\theta)$$
+$$
+H(P, Q_\theta) - H(P) = -\int p(x)\log q_\theta(x)dx + \int p(x)\log p(x)dx = D_{KL}(P \| Q_\theta)
+$$
 
 因此：
 
-$$\boxed{\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\min_\theta D_{KL}(P \| Q_\theta)}$$
+$$
+\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\min_\theta D_{KL}(P \| Q_\theta)
+$$
 
 **结论**：从优化模型参数的角度来说，最小化负对数似然、交叉熵（多分类问题）和 KL 散度这三种方式是等价的。MLE 实际上是在寻找与真实分布 KL 散度最小的模型分布。
 
@@ -1892,7 +2396,9 @@ $$\boxed{\arg\max_\theta \prod_{i=1}^n q_\theta(x_i) \Leftrightarrow \arg\min_\t
 
 **题目**：假设总体 $X \sim N(\mu, \sigma^2)$（$\sigma^2$ 已知），$X_1, X_2, \ldots, X_n$ 为来自总体 $X$ 的样本，由过去的经验和知识，我们可以确定 $\mu$ 的取值比较集中在 $\mu_0$ 附近，离 $\mu_0$ 越远，$\mu$ 取值的可能性越小，于是我们假定 $\mu$ 的先验分布为正态分布
 
-$$\pi(\mu) = \frac{1}{\sqrt{2\pi\sigma_\mu^2}} \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right] \quad (\mu_0, \sigma_\mu \text{ 已知})$$
+$$
+\pi(\mu) = \frac{1}{\sqrt{2\pi\sigma_\mu^2}} \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right] \quad (\mu_0, \sigma_\mu \text{ 已知})
+$$
 
 求 $\mu$ 的后验概率分布。
 
@@ -1904,41 +2410,55 @@ $$\pi(\mu) = \frac{1}{\sqrt{2\pi\sigma_\mu^2}} \exp\left[-\frac{1}{2\sigma_\mu^2
 
 给定 $\mu$，样本 $x_1, \ldots, x_n$ 的联合密度函数为：
 
-$$q(x | \mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(x_i - \mu)^2\right]$$
-
-$$= \frac{1}{\sigma^n(2\pi)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right]$$
+$$
+q(x | \mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(x_i - \mu)^2\right]= \frac{1}{\sigma^n(2\pi)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right]
+$$
 
 **后验密度函数：**
 
-$$h(\mu | x) = \frac{q(x | \mu) \cdot \pi(\mu)}{f_x(x)} \propto q(x | \mu) \cdot \pi(\mu)$$
+$$
+h(\mu | x) = \frac{q(x | \mu) \cdot \pi(\mu)}{f_x(x)} \propto q(x | \mu) \cdot \pi(\mu)
+$$
 
-$$\propto \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right] \cdot \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right]$$
+$$
+\propto \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right] \cdot \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right]
+$$
 
 合并指数项：
 
-$$h(\mu | x) \propto \exp\left[-\frac{1}{2}\left(\frac{\sum_{i=1}^n(x_i - \mu)^2}{\sigma^2} + \frac{(\mu - \mu_0)^2}{\sigma_\mu^2}\right)\right]$$
+$$
+h(\mu | x) \propto \exp\left[-\frac{1}{2}\left(\frac{\sum_{i=1}^n(x_i - \mu)^2}{\sigma^2} + \frac{(\mu - \mu_0)^2}{\sigma_\mu^2}\right)\right]
+$$
 
 展开平方项：
 
-$$\sum_{i=1}^n(x_i - \mu)^2 = \sum_{i=1}^n x_i^2 - 2\mu\sum_{i=1}^n x_i + n\mu^2 = n(\mu - \bar{x})^2 + \text{常数}$$
+$$
+\sum_{i=1}^n(x_i - \mu)^2 = \sum_{i=1}^n x_i^2 - 2\mu\sum_{i=1}^n x_i + n\mu^2 = n(\mu - \bar{x})^2 + \text{常数}
+$$
 
 因此指数项中关于 $\mu$ 的部分为：
 
-$$-\frac{1}{2}\left[\frac{n}{\sigma^2}(\mu - \bar{x})^2 + \frac{1}{\sigma_\mu^2}(\mu - \mu_0)^2\right]$$
+$$
+-\frac{1}{2}\left[\frac{n}{\sigma^2}(\mu - \bar{x})^2 + \frac{1}{\sigma_\mu^2}(\mu - \mu_0)^2\right]
+$$
 
-$$= -\frac{1}{2}\left[\left(\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}\right)\mu^2 - 2\mu\left(\frac{n\bar{x}}{\sigma^2} + \frac{\mu_0}{\sigma_\mu^2}\right) + \text{常数}\right]$$
+$$
+= -\frac{1}{2}\left[\left(\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}\right)\mu^2 - 2\mu\left(\frac{n\bar{x}}{\sigma^2} + \frac{\mu_0}{\sigma_\mu^2}\right) + \text{常数}\right]
+$$
 
 配方得：
 
-$$h(\mu | x) \propto \exp\left[-\frac{(\mu - t)^2}{2\eta^2}\right]$$
+$$
+h(\mu | x) \propto \exp\left[-\frac{(\mu - t)^2}{2\eta^2}\right]
+$$
 
-其中：
-
-$$t = \frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \quad \eta^2 = \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}$$
+其中：$$t = \frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \quad \eta^2 = \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}$$
 
 因此，后验分布为：
 
-$$\boxed{\mu | x \sim N\left(\frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}\right)}$$
+$$
+\mu | x \sim N\left(\frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}\right)
+$$
 
 **解释**：后验均值是样本均值和先验均值的加权平均，权重由各自的精度（方差的倒数）决定。
 
@@ -1948,7 +2468,9 @@ $$\boxed{\mu | x \sim N\left(\frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\
 
 **题目**：证明：Gauss 概率密度函数的累积分布函数
 
-$$\Phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-u^2/2}du$$
+$$
+\Phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-u^2/2}du
+$$
 
 是对数-凹函数，即 $\log(\Phi(x))$ 是凹函数。
 
@@ -1956,55 +2478,81 @@ $$\Phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-u^2/2}du$$
 
 要证明 $\log(\Phi(x))$ 是凹函数，需要证明其二阶导数非正，即：
 
-$$\frac{d^2}{dx^2}\log(\Phi(x)) \leq 0$$
+$$
+\frac{d^2}{dx^2}\log(\Phi(x)) \leq 0
+$$
 
 等价于证明：
 
-$$\Phi(x)\Phi''(x) \leq [\Phi'(x)]^2$$
+$$
+\Phi(x)\Phi''(x) \leq [\Phi'(x)]^2
+$$
 
 **计算导数：**
 
-$$\Phi'(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$
+$$
+\Phi'(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}
+$$
 
-$$\Phi''(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}(-x) = -x\Phi'(x)$$
+$$
+\Phi''(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}(-x) = -x\Phi'(x)
+$$
 
-$$[\Phi'(x)]^2 = \frac{1}{2\pi}e^{-x^2}$$
+$$
+[\Phi'(x)]^2 = \frac{1}{2\pi}e^{-x^2}
+$$
 
 **情况 1：$x \geq 0$**
 
 当 $x \geq 0$ 时，$\Phi''(x) = -x\Phi'(x) \leq 0$，而 $\Phi(x) > 0$，$[\Phi'(x)]^2 \geq 0$，因此：
 
-$$\Phi(x)\Phi''(x) \leq 0 \leq [\Phi'(x)]^2$$
+$$
+\Phi(x)\Phi''(x) \leq 0 \leq [\Phi'(x)]^2
+$$
 
 **情况 2：$x < 0$**
 
 当 $x < 0$ 时，需要证明：
 
-$$\Phi(x) \cdot (-x) \leq \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$
+$$
+\Phi(x) \cdot (-x) \leq \frac{1}{\sqrt{2\pi}}e^{-x^2/2}
+$$
 
 即：
 
-$$\int_{-\infty}^x e^{-u^2/2}du \leq \frac{e^{-x^2/2}}{-x}$$
+$$
+\int_{-\infty}^x e^{-u^2/2}du \leq \frac{e^{-x^2/2}}{-x}
+$$
 
 由于 $\frac{u^2}{2}$ 是凸函数，对任意 $u < x < 0$，有：
 
-$$\frac{u^2}{2} \geq \frac{x^2}{2} + (u-x)x = xu - \frac{x^2}{2}$$
+$$
+\frac{u^2}{2} \geq \frac{x^2}{2} + (u-x)x = xu - \frac{x^2}{2}
+$$
 
 因此：
 
-$$e^{-u^2/2} \leq e^{-xu + x^2/2}$$
+$$
+e^{-u^2/2} \leq e^{-xu + x^2/2}
+$$
 
 积分得：
 
-$$\int_{-\infty}^x e^{-u^2/2}du \leq \int_{-\infty}^x e^{x^2/2-xu}du$$
+$$
+\int_{-\infty}^x e^{-u^2/2}du \leq \int_{-\infty}^x e^{x^2/2-xu}du
+$$
 
-$$= e^{x^2/2} \int_{-\infty}^x e^{-xu}du = e^{x^2/2} \cdot \frac{e^{-xu}}{-x}\bigg|_{u=-\infty}^x$$
+$$
+= e^{x^2/2} \int_{-\infty}^x e^{-xu}du = e^{x^2/2} \cdot \frac{e^{-xu}}{-x}\bigg|_{u=-\infty}^x
+$$
 
-$$= e^{x^2/2} \cdot \frac{e^{-x^2}}{-x} = \frac{e^{-x^2/2}}{-x}$$
+$$
+= e^{x^2/2} \cdot \frac{e^{-x^2}}{-x} = \frac{e^{-x^2/2}}{-x}
+$$
 
 因此 $\Phi(x)\Phi''(x) \leq [\Phi'(x)]^2$ 对 $x < 0$ 也成立。
 
-综上所述，$\Phi(x)$ 是对数凹函数。 $\square$
+综上所述，$\Phi(x)$ 是对数凹函数。
 
 ---
 
@@ -2020,7 +2568,9 @@ $$= e^{x^2/2} \cdot \frac{e^{-x^2}}{-x} = \frac{e^{-x^2/2}}{-x}$$
 
 共轭函数定义为：
 
-$$f^*(y) = \sup_x (xy - f(x))$$
+$$
+f^*(y) = \sup_x (xy - f(x))
+$$
 
 ### (1) $f(x) = -\log x$
 
@@ -2035,11 +2585,15 @@ $$f^*(y) = \sup_x (xy - f(x))$$
 
 此时：
 
-$$g\left(-\frac{1}{y}\right) = -\frac{1}{y} \cdot y + \log\left(-\frac{1}{y}\right) = -1 - \log(-y)$$
+$$
+g\left(-\frac{1}{y}\right) = -\frac{1}{y} \cdot y + \log\left(-\frac{1}{y}\right) = -1 - \log(-y)
+$$
 
 因此：
 
-$$\boxed{f^*(y) = \begin{cases} -\log(-y) - 1, & y < 0 \\ +\infty, & y \geq 0 \end{cases}}$$
+$$
+f^*(y) = \begin{cases} -\log(-y) - 1, & y < 0 \\ +\infty, & y \geq 0 \end{cases}
+$$
 
 定义域：$\text{dom}(f^*) = \{y | y < 0\}$
 
@@ -2056,13 +2610,17 @@ $$\boxed{f^*(y) = \begin{cases} -\log(-y) - 1, & y < 0 \\ +\infty, & y \geq 0 \e
 
 此时：
 
-$$g(\log y) = y\log y - e^{\log y} = y\log y - y$$
+$$
+g(\log y) = y\log y - e^{\log y} = y\log y - y
+$$
 
 - 当 $y = 0$ 时：$f^*(0) = \sup_x(-e^x) = 0$（当 $x \to -\infty$ 时）
 
 因此：
 
-$$\boxed{f^*(y) = \begin{cases} y\log y - y, & y > 0 \\ 0, & y = 0 \\ +\infty, & y < 0 \end{cases}}$$
+$$
+f^*(y) = \begin{cases} y\log y - y, & y > 0 \\ 0, & y = 0 \\ +\infty, & y < 0 \end{cases}
+$$
 
 定义域：$\text{dom}(f^*) = \{y | y \geq 0\}$（规定 $0\log 0 = 0$）
 
@@ -2082,15 +2640,31 @@ $$\boxed{f^*(y) = \begin{cases} y\log y - y, & y > 0 \\ 0, & y = 0 \\ +\infty, &
 
 将最大化问题转化为最小化问题：
 
-$$\begin{cases} \text{minimize} \quad -f(x) = -(x-3)^2 \\ g_1(x) = 1 - x \leq 0 \\ g_2(x) = x - 5 \leq 0 \end{cases}$$
+$$
+\begin{cases} 
+\text{minimize} \quad -f(x) = -(x-3)^2 \\ 
+g_1(x) = 1 - x \leq 0 \\ 
+g_2(x) = x - 5 \leq 0 
+\end{cases}
+$$
 
 **梯度：**
 
-$$\nabla_x[-f(x)] = -2(x-3), \quad \nabla_x g_1(x) = -1, \quad \nabla_x g_2(x) = 1$$
+$$
+\nabla_x[-f(x)] = -2(x-3), \quad \nabla_x g_1(x) = -1, \quad \nabla_x g_2(x) = 1
+$$
 
 **KKT 条件：**
 
-$$\begin{cases} -2(x^* - 3) - v_1^* + v_2^* = 0 & \text{(稳定性)} \\ v_1^*(1 - x^*) = 0 & \text{(互补松弛性)} \\ v_2^*(x^* - 5) = 0 & \text{(互补松弛性)} \\ v_1^* \geq 0, \quad v_2^* \geq 0 & \text{(对偶可行性)} \\ 1 \leq x^* \leq 5 & \text{(原始可行性)} \end{cases}$$
+$$
+\begin{cases} 
+-2(x^* - 3) - v_1^* + v_2^* = 0 & \text{(稳定性)} \\ 
+v_1^*(1 - x^*) = 0 & \text{(互补松弛性)} \\ 
+v_2^*(x^* - 5) = 0 & \text{(互补松弛性)} \\ 
+v_1^* \geq 0, \quad v_2^* \geq 0 & \text{(对偶可行性)} \\ 
+1 \leq x^* \leq 5 & \text{(原始可行性)} 
+\end{cases}
+$$
 
 **情况分析：**
 
@@ -2122,19 +2696,37 @@ $$\begin{cases} -2(x^* - 3) - v_1^* + v_2^* = 0 & \text{(稳定性)} \\ v_1^*(1 
 
 **结论：** 
 
-$$\boxed{x^* = 1 \text{ 或 } x^* = 5, \quad \max f(x) = 4}$$
+$$
+x^* = 1 \text{ 或 } x^* = 5, \quad \max f(x) = 4
+$$
 
 ### (2) 最小化问题
 
-$$\begin{cases} \text{minimize} \quad f(x) = (x-3)^2 \\ g_1(x) = 1 - x \leq 0 \\ g_2(x) = x - 5 \leq 0 \end{cases}$$
+$$
+\begin{cases} 
+\text{minimize} \quad f(x) = (x-3)^2 \\ 
+g_1(x) = 1 - x \leq 0 \\ 
+g_2(x) = x - 5 \leq 0 
+\end{cases}
+$$
 
 **梯度：**
 
-$$\nabla_x f(x) = 2(x-3)$$
+$$
+\nabla_x f(x) = 2(x-3)
+$$
 
 **KKT 条件：**
 
-$$\begin{cases} 2(x^* - 3) - v_1^* + v_2^* = 0 \\ v_1^*(1 - x^*) = 0 \\ v_2^*(x^* - 5) = 0 \\ v_1^* \geq 0, \quad v_2^* \geq 0 \\ 1 \leq x^* \leq 5 \end{cases}$$
+$$
+\begin{cases} 
+2(x^* - 3) - v_1^* + v_2^* = 0 \\ 
+v_1^*(1 - x^*) = 0 \\ 
+v_2^*(x^* - 5) = 0 \\ 
+v_1^* \geq 0, \quad v_2^* \geq 0 \\ 
+1 \leq x^* \leq 5 
+\end{cases}
+$$
 
 **情况分析：**
 
@@ -2154,7 +2746,9 @@ $x^* = 5$，$2(5-3) + v_2^* = 0$，得 $v_2^* = -4 < 0$ ✗
 
 **结论：**
 
-$$\boxed{x^* = 3, \quad \min f(x) = 0}$$
+$$
+x^* = 3, \quad \min f(x) = 0
+$$
 
 ---
 
@@ -2162,7 +2756,9 @@ $$\boxed{x^* = 3, \quad \min f(x) = 0}$$
 
 **题目**：用 Lagrange 乘子法证明：矩阵 $A \in \mathbb{R}^{m\times n}$ 的 2-范数
 
-$$\|A\|_2 = \max_{\|x\|_2 = 1, x \in \mathbb{R}^n} \|Ax\|_2$$
+$$
+\|A\|_2 = \max_{\|x\|_2 = 1, x \in \mathbb{R}^n} \|Ax\|_2
+$$
 
 的平方是 $A^TA$ 的最大特征值。
 
@@ -2170,33 +2766,47 @@ $$\|A\|_2 = \max_{\|x\|_2 = 1, x \in \mathbb{R}^n} \|Ax\|_2$$
 
 优化问题为：
 
-$$\text{maximize} \quad f(x) = \|Ax\|_2^2 = x^TA^TAx \quad \text{subject to} \quad x^Tx = 1$$
+$$
+\text{maximize} \quad f(x) = \|Ax\|_2^2 = x^TA^TAx \quad \text{subject to} \quad x^Tx = 1
+$$
 
 **Lagrange 函数：**
 
-$$L(x, \lambda) = x^TA^TAx - \lambda(x^Tx - 1)$$
+$$
+L(x, \lambda) = x^TA^TAx - \lambda(x^Tx - 1)
+$$
 
 **求梯度并令其为零：**
 
-$$\frac{\partial L}{\partial x} = 2A^TAx - 2\lambda x = 0$$
+$$
+\frac{\partial L}{\partial x} = 2A^TAx - 2\lambda x = 0
+$$
 
 因此：
 
-$$A^TAx = \lambda x$$
+$$
+A^TAx = \lambda x
+$$
 
 这说明在极值点 $x^*$ 处，$x^*$ 是 $A^TA$ 的特征向量，$\lambda$ 是对应的特征值。
 
 **目标函数值：**
 
-$$f(x^*) = (x^*)^TA^TAx^* = (x^*)^T\lambda x^* = \lambda(x^*)^Tx^* = \lambda$$
+$$
+f(x^*) = (x^*)^TA^TAx^* = (x^*)^T\lambda x^* = \lambda(x^*)^Tx^* = \lambda
+$$
 
 由于我们求的是最大值，因此：
 
-$$\|A\|_2^2 = \max_{\|x\|_2=1} x^TA^TAx = \lambda_{\max}(A^TA)$$
+$$
+\|A\|_2^2 = \max_{\|x\|_2=1} x^TA^TAx = \lambda_{\max}(A^TA)
+$$
 
 即：
 
-$$\boxed{\|A\|_2 = \sqrt{\lambda_{\max}(A^TA)}}$$
+$$
+\|A\|_2 = \sqrt{\lambda_{\max}(A^TA)}
+$$
 
 $\square$
 
@@ -2210,33 +2820,49 @@ $\square$
 
 优化问题为：
 
-$$\text{minimize} \quad f(x) = \frac{1}{2}\|x\|_2^2 = \frac{1}{2}x^Tx \quad \text{subject to} \quad Ax = b$$
+$$
+\text{minimize} \quad f(x) = \frac{1}{2}\|x\|_2^2 = \frac{1}{2}x^Tx \quad \text{subject to} \quad Ax = b
+$$
 
 **Lagrange 函数：**
 
-$$L(x, \lambda) = \frac{1}{2}x^Tx - \lambda^T(Ax - b)$$
+$$
+L(x, \lambda) = \frac{1}{2}x^Tx - \lambda^T(Ax - b)
+$$
 
 **求梯度并令其为零：**
 
-$$\frac{\partial L}{\partial x} = x - A^T\lambda = 0$$
+$$
+\frac{\partial L}{\partial x} = x - A^T\lambda = 0
+$$
 
 因此：
 
-$$x = A^T\lambda$$
+$$
+x = A^T\lambda
+$$
 
 **代入约束条件：**
 
-$$Ax = b \Rightarrow A(A^T\lambda) = b$$
+$$
+Ax = b \Rightarrow A(A^T\lambda) = b
+$$
 
-$$AA^T\lambda = b$$
+$$
+AA^T\lambda = b
+$$
 
 由于 $\text{rank}(A) = m$，矩阵 $AA^T \in \mathbb{R}^{m \times m}$ 是满秩的，因此可逆：
 
-$$\lambda = (AA^T)^{-1}b$$
+$$
+\lambda = (AA^T)^{-1}b
+$$
 
 **最小二范数解：**
 
-$$\boxed{x^* = A^T(AA^T)^{-1}b}$$
+$$
+x^* = A^T(AA^T)^{-1}b
+$$
 
 **验证：** 
 - $Ax^* = AA^T(AA^T)^{-1}b = b$ ✓（满足约束）
@@ -2248,7 +2874,9 @@ $$\boxed{x^* = A^T(AA^T)^{-1}b}$$
 
 **题目**：用最速下降法和精确线搜索计算
 
-$$\min f(x) = x_1^2 + x_2^2 + x_3^2$$
+$$
+\min f(x) = x_1^2 + x_2^2 + x_3^2
+$$
 
 初始点 $x^{(0)} = (2, 2, 1)^T$。当 $|f(x^{(n+1)}) - f(x^{(n)})| < 0.001$ 时迭代终止。
 
@@ -2262,33 +2890,51 @@ $$\min f(x) = x_1^2 + x_2^2 + x_3^2$$
 
 在该方向上最小化 $f(x^{(k)} + \lambda d^{(k)})$：
 
-$$f(x^{(k)} + \lambda d^{(k)}) = (x^{(k)} - 2\lambda x^{(k)})^T(x^{(k)} - 2\lambda x^{(k)})$$
+$$
+f(x^{(k)} + \lambda d^{(k)}) = (x^{(k)} - 2\lambda x^{(k)})^T(x^{(k)} - 2\lambda x^{(k)})
+$$
 
-$$= (1 - 2\lambda)^2 (x^{(k)})^Tx^{(k)}$$
+$$
+= (1 - 2\lambda)^2 (x^{(k)})^Tx^{(k)}
+$$
 
 对 $\lambda$ 求导并令其为零：
 
-$$\frac{d}{d\lambda}[(1-2\lambda)^2 (x^{(k)})^Tx^{(k)}] = 2(1-2\lambda)(-2)(x^{(k)})^Tx^{(k)} = 0$$
+$$
+\frac{d}{d\lambda}[(1-2\lambda)^2 (x^{(k)})^Tx^{(k)}] = 2(1-2\lambda)(-2)(x^{(k)})^Tx^{(k)} = 0
+$$
 
 得 $\lambda^* = \frac{1}{2}$
 
 **迭代过程：**
 
-$$x^{(1)} = x^{(0)} + \frac{1}{2}(-2x^{(0)}) = x^{(0)} - x^{(0)} = 0$$
+$$
+x^{(1)} = x^{(0)} + \frac{1}{2}(-2x^{(0)}) = x^{(0)} - x^{(0)} = 0
+$$
 
-$$f(x^{(1)}) = 0$$
+$$
+f(x^{(1)}) = 0
+$$
 
-$$x^{(2)} = x^{(1)} - x^{(1)} = 0$$
+$$
+x^{(2)} = x^{(1)} - x^{(1)} = 0
+$$
 
-$$|f(x^{(1)}) - f(x^{(0)})| = |0 - 9| = 9 > 0.001$$
+$$
+|f(x^{(1)}) - f(x^{(0)})| = |0 - 9| = 9 > 0.001
+$$
 
-$$|f(x^{(2)}) - f(x^{(1)})| = |0 - 0| = 0 < 0.001$$
+$$
+|f(x^{(2)}) - f(x^{(1)})| = |0 - 0| = 0 < 0.001
+$$
 
 迭代终止。
 
 **结论：**
 
-$$\boxed{x^* = (0, 0, 0)^T, \quad f_{\min} = 0}$$
+$$
+x^* = (0, 0, 0)^T, \quad f_{\min} = 0
+$$
 
 算法一步即收敛到最优解，这是因为目标函数是简单的二次型，且 Hessian 矩阵为单位矩阵的倍数。
 
@@ -2298,7 +2944,9 @@ $$\boxed{x^* = (0, 0, 0)^T, \quad f_{\min} = 0}$$
 
 **题目**：试用 DFP 法计算下述二次函数的极小点
 
-$$\min f(x) = 3x_1^2 + x_2^2 - 2x_1x_2 - 4x_1$$
+$$
+\min f(x) = 3x_1^2 + x_2^2 - 2x_1x_2 - 4x_1
+$$
 
 **解**：
 
@@ -2306,54 +2954,84 @@ $$\min f(x) = 3x_1^2 + x_2^2 - 2x_1x_2 - 4x_1$$
 
 **梯度：**
 
-$$\nabla f(x) = \begin{pmatrix} 6x_1 - 2x_2 - 4 \\ 2x_2 - 2x_1 \end{pmatrix}$$
+$$
+\nabla f(x) = \begin{pmatrix} 6x_1 - 2x_2 - 4 \\ 2x_2 - 2x_1 \end{pmatrix}
+$$
 
 ### 第一次迭代
 
-$$\nabla f(x^{(0)}) = \begin{pmatrix} 6(-2) - 2(4) - 4 \\ 2(4) - 2(-2) \end{pmatrix} = \begin{pmatrix} -24 \\ 12 \end{pmatrix}$$
+$$
+\nabla f(x^{(0)}) = \begin{pmatrix} 6(-2) - 2(4) - 4 \\ 2(4) - 2(-2) \end{pmatrix} = \begin{pmatrix} -24 \\ 12 \end{pmatrix}
+$$
 
 **搜索方向：**
 
-$$p^{(0)} = -H^{(0)}\nabla f(x^{(0)}) = -I \begin{pmatrix} -24 \\ 12 \end{pmatrix} = \begin{pmatrix} 24 \\ -12 \end{pmatrix}$$
+$$
+p^{(0)} = -H^{(0)}\nabla f(x^{(0)}) = -I \begin{pmatrix} -24 \\ 12 \end{pmatrix} = \begin{pmatrix} 24 \\ -12 \end{pmatrix}
+$$
 
 **精确线搜索：** 求 $\lambda_0 = \arg\min_\lambda f(x^{(0)} + \lambda p^{(0)})$
 
-$$f(x^{(0)} + \lambda p^{(0)}) = 3(-2+24\lambda)^2 + (4-12\lambda)^2 - 2(-2+24\lambda)(4-12\lambda) - 4(-2+24\lambda)$$
+$$
+f(x^{(0)} + \lambda p^{(0)}) = 3(-2+24\lambda)^2 + (4-12\lambda)^2 - 2(-2+24\lambda)(4-12\lambda) - 4(-2+24\lambda)
+$$
 
 对 $\lambda$ 求导并令其为零，得：
 
-$$\lambda_0 = \frac{5}{34}$$
+$$
+\lambda_0 = \frac{5}{34}
+$$
 
 **更新：**
 
-$$x^{(1)} = x^{(0)} + \lambda_0 p^{(0)} = \begin{pmatrix} -2 \\ 4 \end{pmatrix} + \frac{5}{34}\begin{pmatrix} 24 \\ -12 \end{pmatrix} = \begin{pmatrix} \frac{26}{17} \\ \frac{38}{17} \end{pmatrix}$$
+$$
+x^{(1)} = x^{(0)} + \lambda_0 p^{(0)} = \begin{pmatrix} -2 \\ 4 \end{pmatrix} + \frac{5}{34}\begin{pmatrix} 24 \\ -12 \end{pmatrix} = \begin{pmatrix} \frac{26}{17} \\ \frac{38}{17} \end{pmatrix}
+$$
 
-$$\nabla f(x^{(1)}) = \begin{pmatrix} \frac{12}{17} \\ \frac{24}{17} \end{pmatrix}$$
+$$
+\nabla f(x^{(1)}) = \begin{pmatrix} \frac{12}{17} \\ \frac{24}{17} \end{pmatrix}
+$$
 
 **DFP 更新公式：**
 
-$$\Delta x^{(0)} = x^{(1)} - x^{(0)} = \begin{pmatrix} \frac{60}{17} \\ -\frac{30}{17} \end{pmatrix}$$
+$$
+\Delta x^{(0)} = x^{(1)} - x^{(0)} = \begin{pmatrix} \frac{60}{17} \\ -\frac{30}{17} \end{pmatrix}
+$$
 
-$$\Delta g^{(0)} = \nabla f(x^{(1)}) - \nabla f(x^{(0)}) = \begin{pmatrix} \frac{420}{17} \\ -\frac{180}{17} \end{pmatrix}$$
+$$
+\Delta g^{(0)} = \nabla f(x^{(1)}) - \nabla f(x^{(0)}) = \begin{pmatrix} \frac{420}{17} \\ -\frac{180}{17} \end{pmatrix}
+$$
 
-$$H^{(1)} = H^{(0)} + \frac{\Delta x^{(0)}(\Delta x^{(0)})^T}{(\Delta g^{(0)})^T\Delta x^{(0)}} - \frac{H^{(0)}\Delta g^{(0)}(\Delta g^{(0)})^TH^{(0)}}{(\Delta g^{(0)})^TH^{(0)}\Delta g^{(0)}}$$
+$$
+H^{(1)} = H^{(0)} + \frac{\Delta x^{(0)}(\Delta x^{(0)})^T}{(\Delta g^{(0)})^T\Delta x^{(0)}} - \frac{H^{(0)}\Delta g^{(0)}(\Delta g^{(0)})^TH^{(0)}}{(\Delta g^{(0)})^TH^{(0)}\Delta g^{(0)}}
+$$
 
 计算后得：
 
-$$H^{(1)} = I + \frac{1}{1800}\begin{pmatrix} 3600 & -1800 \\ -1800 & 900 \end{pmatrix} - \frac{1}{226800}\begin{pmatrix} 176400 & -75600 \\ -75600 & 32400 \end{pmatrix}$$
+$$
+H^{(1)} = I + \frac{1}{1800}\begin{pmatrix} 3600 & -1800 \\ -1800 & 900 \end{pmatrix} - \frac{1}{226800}\begin{pmatrix} 176400 & -75600 \\ -75600 & 32400 \end{pmatrix}
+$$
 
 ### 第二次迭代
 
-$$p^{(1)} = -H^{(1)}\nabla f(x^{(1)}) = -\begin{pmatrix} \frac{18}{29} \\ \frac{42}{29} \end{pmatrix}$$
+$$
+p^{(1)} = -H^{(1)}\nabla f(x^{(1)}) = -\begin{pmatrix} \frac{18}{29} \\ \frac{42}{29} \end{pmatrix}
+$$
 
 精确线搜索得 $\lambda_1 = \frac{29}{34}$
 
-$$x^{(2)} = x^{(1)} + \lambda_1 p^{(1)} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+$$
+x^{(2)} = x^{(1)} + \lambda_1 p^{(1)} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+$$
 
-$$\nabla f(x^{(2)}) = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
+$$
+\nabla f(x^{(2)}) = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+$$
 
 **结论：**
 
-$$\boxed{x^* = (1, 1)^T \text{ 为极小点}}$$
+$$
+x^* = (1, 1)^T \text{ 为极小点}
+$$
 
 DFP 法对于 $n$ 维二次函数，最多需要 $n$ 步即可收敛到精确解（具有二次终止性）。
