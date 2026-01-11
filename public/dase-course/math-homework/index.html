@@ -449,37 +449,64 @@ LU分解、Cholesky分解、QR分解、SVD奇异值分解、
 <p><strong>证明</strong>：</p>
 <p>设 $B$ 的列是 $A$ 的列的线性组合，则存在矩阵 $C$ 使得 $B = AC$。</p>
 <p>现在计算 $AB$，由于 $A^2 = A$：</p>
-$$AB = A(AC) = A^2C = AC = B$$<p>因此 $AB = B$。 $\square$</p>
+$$
+AB = A(AC) = A^2C = AC = B
+$$<p>
+因此 $AB = B$。 $\square$</p>
 <hr>
 <h2 id="习题-2特征多项式的相等性">习题 2：特征多项式的相等性<a hidden class="anchor" aria-hidden="true" href="#习题-2特征多项式的相等性">#</a></h2>
 <p><strong>题目</strong>：设 $A, B$ 为任意两个 $n$ 阶方阵，证明：$AB$ 和 $BA$ 具有相同的特征多项式，即 $|\lambda E - AB| = |\lambda E - BA|$。</p>
 <p><strong>证明</strong>：</p>
 <p>设</p>
-$$\begin{pmatrix} E & 0 \\ A & E \end{pmatrix} \begin{pmatrix} \lambda E & B \\ 0 & \lambda E - AB \end{pmatrix} \begin{pmatrix} E & 0 \\ -A & E \end{pmatrix} = \begin{pmatrix} \lambda E - BA & B \\ 0 & \lambda E \end{pmatrix}$$<p>取行列式，利用行列式的乘法性质，有</p>
-$$\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right|$$<p>由于</p>
-$$\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \lambda^n |\lambda E - AB|, \qquad \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right| = \lambda^n |\lambda E - BA|$$<p>因此有</p>
-$$\lambda^n |\lambda E - AB| = \lambda^n |\lambda E - BA|$$<p>当 $\lambda \neq 0$ 时，两边可同时除以 $\lambda^n$，得到</p>
-$$|\lambda E - AB| = |\lambda E - BA|$$<p>两边都是关于 $\lambda$ 的多项式，故此恒等式对任意 $\lambda$（包括 $\lambda=0$）均成立。 $\square$</p>
+$$
+\begin{pmatrix} E & 0 \\ A & E \end{pmatrix} \begin{pmatrix} \lambda E & B \\ 0 & \lambda E - AB \end{pmatrix} \begin{pmatrix} E & 0 \\ -A & E \end{pmatrix} = \begin{pmatrix} \lambda E - BA & B \\ 0 & \lambda E \end{pmatrix}
+$$<p>
+取行列式，利用行列式的乘法性质，有</p>
+$$
+\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right|
+$$<p>
+由于</p>
+$$
+\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \lambda^n |\lambda E - AB|, \qquad \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right| = \lambda^n |\lambda E - BA|
+$$<p>
+因此有$\lambda^n |\lambda E - AB| = \lambda^n |\lambda E - BA|$</p>
+<p>当 $\lambda \neq 0$ 时，两边可同时除以 $\lambda^n$，得到</p>
+$$
+|\lambda E - AB| = |\lambda E - BA|
+$$<p>
+两边都是关于 $\lambda$ 的多项式，故此恒等式对任意 $\lambda$（包括 $\lambda=0$）均成立。 $\square$</p>
 <hr>
 <h2 id="习题-3矩阵范数的计算">习题 3：矩阵范数的计算<a hidden class="anchor" aria-hidden="true" href="#习题-3矩阵范数的计算">#</a></h2>
 <p><strong>题目</strong>：求下面矩阵的 1-范数、2-范数和无穷范数：</p>
-$$A_1 = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}, \quad A_2 = \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix}$$<p><strong>解</strong>：</p>
+$$
+A_1 = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}, \quad A_2 = \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix}
+$$<p>
+<strong>解</strong>：</p>
 <h4 id="对于矩阵">对于矩阵 $A_1$<a hidden class="anchor" aria-hidden="true" href="#对于矩阵">#</a></h4>
 <p><strong>1-范数</strong>（列和范数）：</p>
 $$\|A_1\|_1 = \max\{|1|+|1|, |2|+|0|\} = \max\{2, 2\} = 2$$<p><strong>无穷范数</strong>（行和范数）：</p>
 $$\|A_1\|_\infty = \max\{|1|+|2|, |1|+|0|\} = \max\{3, 1\} = 3$$<p><strong>2-范数</strong>（谱范数，即 $\sqrt{\rho(A_1^T A_1)}$）：</p>
 <p>首先计算 $A_1^T A_1$：</p>
-$$A_1^T A_1 = \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$$<p>求特征值：</p>
-$$\det(\lambda E - A_1^T A_1) = \det\begin{pmatrix} \lambda-2 & -2 \\ -2 & \lambda-4 \end{pmatrix} = (\lambda-2)(\lambda-4) - 4 = \lambda^2 - 6\lambda + 4 = 0$$<p>解得：$\lambda = \frac{6 \pm \sqrt{36-16}}{2} = \frac{6 \pm \sqrt{20}}{2} = 3 \pm \sqrt{5}$</p>
+$$
+A_1^T A_1 = \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}
+$$<p>
+求特征值：</p>
+$$
+\det(\lambda E - A_1^T A_1) = \det\begin{pmatrix} \lambda-2 & -2 \\ -2 & \lambda-4 \end{pmatrix} = (\lambda-2)(\lambda-4) - 4 = \lambda^2 - 6\lambda + 4 = 0
+$$<p>
+解得：$\lambda = \frac{6 \pm \sqrt{36-16}}{2} = \frac{6 \pm \sqrt{20}}{2} = 3 \pm \sqrt{5}$</p>
 <p>最大特征值为 $\lambda_{\max} = 3 + \sqrt{5}$</p>
-<p>因此：</p>
-$$\|A_1\|_2 = \sqrt{3 + \sqrt{5}}$$<h4 id="对于矩阵-1">对于矩阵 $A_2$<a hidden class="anchor" aria-hidden="true" href="#对于矩阵-1">#</a></h4>
+<p>因此：$\|A_1\|_2 = \sqrt{3 + \sqrt{5}}$</p>
+<h4 id="对于矩阵-1">对于矩阵 $A_2$<a hidden class="anchor" aria-hidden="true" href="#对于矩阵-1">#</a></h4>
 <p><strong>1-范数</strong>：</p>
 $$\|A_2\|_1 = \max\{|-1|+|1|, |0|+|2|\} = \max\{2, 2\} = 2$$<p><strong>无穷范数</strong>：</p>
 $$\|A_2\|_\infty = \max\{|-1|+|0|, |1|+|2|\} = \max\{1, 3\} = 3$$<p><strong>2-范数</strong>：</p>
 <p>计算 $A_2^T A_2$：</p>
-$$A_2^T A_2 = \begin{pmatrix} -1 & 1 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$$<p>这与 $A_1^T A_1$ 相同，因此：</p>
-$$\|A_2\|_2 = \sqrt{3 + \sqrt{5}}$$<hr>
+$$
+A_2^T A_2 = \begin{pmatrix} -1 & 1 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}
+$$<p>
+这与 $A_1^T A_1$ 相同，因此：$\|A_2\|_2 = \sqrt{3 + \sqrt{5}}$</p>
+<hr>
 <h2 id="习题-4诱导范数的证明">习题 4：诱导范数的证明<a hidden class="anchor" aria-hidden="true" href="#习题-4诱导范数的证明">#</a></h2>
 <p><strong>题目</strong>：矩阵的范数主要包括三种主要类型：诱导范数，元素形式范数和 Schatten 范数。诱导范数又称矩阵空间上的算子范数 (operator norm)，常用的诱导范数为 $p$ 范数，定义如下</p>
 $$
@@ -603,12 +630,20 @@ $$<p>
 <p><strong>验证三个条件：</strong></p>
 <p><strong>(i) 非负性与同一性</strong></p>
 <p>编辑次数显然非负，且只有两个字符串完全相同时，所需的编辑次数最少为 0，即满足非负性：</p>
-$$d(S_1, S_2) \geq 0, \quad \text{且} \quad d(S_1, S_2) = 0 \Leftrightarrow S_1 = S_2$$<p><strong>(ii) 对称性</strong></p>
-<p>$d(S_1, S_2) = d(S_2, S_1)$</p>
-<p>插入和删除字符<strong>互为逆操作</strong>、将某个字符 $a$ 替换为字符 $b$ 的逆操作为将字符 $b$ 替换为字符 $a$，不难看出每种编辑操作均可逆，即满足对称性。</p>
+$$
+d(S_1, S_2) \geq 0, \quad \text{且} \quad d(S_1, S_2) = 0 \Leftrightarrow S_1 = S_2
+$$<p>
+<strong>(ii) 对称性</strong>
+</p>
+$$
+d(S_1, S_2) = d(S_2, S_1)
+$$<p>
+插入和删除字符<strong>互为逆操作</strong>、将某个字符 $a$ 替换为字符 $b$ 的逆操作为将字符 $b$ 替换为字符 $a$，不难看出每种编辑操作均可逆，即满足对称性。</p>
 <p><strong>(iii) 三角不等式</strong></p>
-<p>$d(S_1, S_2) \leq d(S_1, S_3) + d(S_3, S_2)$</p>
-<p>将 $S_1$ 编辑为 $S_2$ 的过程拆解成两部分：将 $S_1$ 编辑为 $S_3$ 以及将 $S_3$ 编辑为 $S_2$，考虑到其中这两部分可能存在<strong>冗余操作</strong>。所以直接从 $S_1$ 编辑为 $S_2$ 所需的最优编辑次数只会更少，即满足三角不等式。</p>
+$$
+d(S_1, S_2) \leq d(S_1, S_3) + d(S_3, S_2)​
+$$<p>
+将 $S_1$ 编辑为 $S_2$ 的过程拆解成两部分：将 $S_1$ 编辑为 $S_3$ 以及将 $S_3$ 编辑为 $S_2$，考虑到其中这两部分可能存在<strong>冗余操作</strong>。所以直接从 $S_1$ 编辑为 $S_2$ 所需的最优编辑次数只会更少，即满足三角不等式。</p>
 <p>综上 (i), (ii), (iii) 所述，编辑距离是数学意义上的距离。</p>
 <hr>
 <h2 id="习题-7正定矩阵与向量范数">习题 7：正定矩阵与向量范数<a hidden class="anchor" aria-hidden="true" href="#习题-7正定矩阵与向量范数">#</a></h2>
@@ -697,9 +732,18 @@ $$<p>因此，这个范数满足广义矩阵范数的所有性质。$\square$</p
 <p><strong>解</strong>：</p>
 <p>设 $v = (1,1,1)^T$，$u = [1,-1,1]^T$。</p>
 <p>向量 $v$ 在 $u$ 上的正交投影为：</p>
-$$\text{proj}_u(v) = \frac{\langle v, u \rangle}{\langle u, u \rangle} u$$<p>计算内积：</p>
-$$\langle v, u \rangle = 1 \cdot 1 + 1 \cdot (-1) + 1 \cdot 1 = 1$$$$\langle u, u \rangle = 1^2 + (-1)^2 + 1^2 = 3$$<p>因此正交投影为：</p>
-$$\text{proj}_u(v) = \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/3 \\ -1/3 \\ 1/3 \end{pmatrix}$$<hr>
+$$
+\text{proj}_u(v) = \frac{\langle v, u \rangle}{\langle u, u \rangle} u
+$$<p>
+计算内积：</p>
+$$
+\langle v, u \rangle = 1 \cdot 1 + 1 \cdot (-1) + 1 \cdot 1 = 1
+$$$$
+\langle u, u \rangle = 1^2 + (-1)^2 + 1^2 = 3
+$$<p>因此正交投影为：</p>
+$$
+\text{proj}_u(v) = \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/3 \\ -1/3 \\ 1/3 \end{pmatrix}
+$$<hr>
 <h2 id="习题-2向量在仿射子空间上的正交投影">习题 2：向量在仿射子空间上的正交投影<a hidden class="anchor" aria-hidden="true" href="#习题-2向量在仿射子空间上的正交投影">#</a></h2>
 <p><strong>题目</strong>：求向量 $(1,1,1)^T$ 在仿射子空间 $\text{span}\{[1,-1,1]^T, (1,1,0)^T\} + (1,2,1)^T$ 上的正交投影。</p>
 <p><strong>解</strong>：</p>
@@ -919,7 +963,10 @@ $$<hr>
 <p><strong>判断条件</strong>：矩阵能进行LU分解的充要条件是所有顺序主子式都不为零。</p>
 <p><strong>对于矩阵 $C$：</strong></p>
 <p>计算顺序主子式：</p>
-$$|C_1| = 3 \neq 0$$$$|C_2| = \begin{vmatrix} 3 & 2 \\ -1 & 0 \end{vmatrix} = 2 \neq 0$$$$|C_3| = \det(C) = 3 \neq 0$$<p>所有顺序主子式都不为0，因此 $C$ 可以进行 $LU$ 分解。</p>
+$$
+|C_1| = 3 \neq 0 \quad\quad|C_2| = \begin{vmatrix} 3 & 2 \\ -1 & 0 \end{vmatrix} = 2 \neq 0 \quad\quad|C_3| = \det(C) = 3 \neq 0
+$$<p>
+所有顺序主子式都不为0，因此 $C$ 可以进行 $LU$ 分解。</p>
 <p><strong>对于矩阵 $B$：</strong></p>
 <p>计算第一个顺序主子式：$|B_1| = 0$，第一个顺序主子式为0，因此 $B$ 不能直接进行 $LU$ 分解。</p>
 <p>但通过行交换可以进行 $PLU$ 分解。交换第1行和第2行后：</p>
@@ -1589,23 +1636,18 @@ $$
 $$<hr>
 <h2 id="习题-3迹微分法求梯度">习题 3：迹微分法求梯度<a hidden class="anchor" aria-hidden="true" href="#习题-3迹微分法求梯度">#</a></h2>
 <p><strong>题目</strong>：利用迹微分法求解 $\frac{\partial \text{tr}(W^{-1})}{\partial W}$，其中 $W \in \mathbb{R}^{m\times m}$</p>
-<p><strong>解</strong>：</p>
+<p><strong>解：</strong></p>
 <p>首先计算 $W^{-1}$ 的微分。由恒等式 $WW^{-1} = I$，两边取微分：</p>
 $$
-d(WW^{-1}) = dW \cdot W^{-1} + W \cdot dW^{-1} = dI = 0
-$$<p>因此：</p>
-$$
+0 = dI = d(WW^{-1}) = dW \cdot W^{-1} + W \cdot dW^{-1}
+$$$$
 W \cdot dW^{-1} = -dW \cdot W^{-1}
-$$<p>两边左乘 $W^{-1}$：</p>
-$$
+$$$$
 dW^{-1} = -W^{-1}dW \cdot W^{-1}
-$$<p>现在计算迹的微分：</p>
+$$<p>所以</p>
 $$
-d\,\text{tr}(W^{-1}) = \text{tr}(dW^{-1}) = \text{tr}(-W^{-1}dW \cdot W^{-1})
-$$<p>利用迹的循环性质 $\text{tr}(ABC) = \text{tr}(CAB)$：</p>
-$$
-d\,\text{tr}(W^{-1}) = \text{tr}(-(W^{-1})^2dW) = \text{tr}(-(W^{-T})^2 dW)
-$$<p>因此：</p>
+d\text{tr}(W^{-1}) = \text{tr}(dW^{-1}) = \text{tr}(-W^{-1}dW W^{-1}) = \text{tr}(-(W^{-1})^2dW)
+$$<p>即</p>
 $$
 \frac{\partial \text{tr}(W^{-1})}{\partial W} = -(W^{-T})^2
 $$<hr>
@@ -1665,21 +1707,20 @@ $$
 $$<p>因此：</p>
 $$
 \frac{\partial L}{\partial \mu} = \sum_{t=1}^N \Sigma^{-1}(x_t - \mu)
-$$<p>令 $\frac{\partial L}{\partial \mu} = 0$，得 $\mu = \frac{1}{N}\sum_{t=1}^N x_t$（样本均值）。</p>
-<h3 id="2-关于--的梯度">(2) 关于 $\Sigma$ 的梯度<a hidden class="anchor" aria-hidden="true" href="#2-关于--的梯度">#</a></h3>
+$$<h3 id="2-关于--的梯度">(2) 关于 $\Sigma$ 的梯度<a hidden class="anchor" aria-hidden="true" href="#2-关于--的梯度">#</a></h3>
 <p>使用迹微分法，将对数似然写成迹的形式：</p>
 $$
 dL = d\left[-\frac{N}{2}\ln|\Sigma|\right] - d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right]
 $$<p><strong>第一项：</strong></p>
 $$
 d\left[-\frac{N}{2}\ln|\Sigma|\right] = -\frac{N}{2}d[\ln|\Sigma|] = -\frac{N}{2}\text{tr}[\Sigma^{-1}d\Sigma]
-$$<p><strong>第二项：</strong></p>
+$$<p><strong>第二项：</strong>
+</p>
 $$
 d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right] = \frac{1}{2}d\,\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}\right]
 $$$$
 = \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T d(\Sigma^{-1})\right]
-$$<p>利用 $d\Sigma^{-1} = -\Sigma^{-1}(d\Sigma)\Sigma^{-1}$：</p>
-$$
+$$$$
 = \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T(-\Sigma^{-1}d\Sigma \cdot \Sigma^{-1})\right]
 $$$$
 = -\frac{1}{2}\text{tr}\left[\Sigma^{-1}\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}d\Sigma\right]
@@ -1774,41 +1815,36 @@ $$<p><strong>结论</strong>：从优化模型参数的角度来说，最小化�
 <h1 id="作业六">作业六<a hidden class="anchor" aria-hidden="true" href="#作业六">#</a></h1>
 <hr>
 <h2 id="习题-1贝叶斯推断求后验分布">习题 1：贝叶斯推断求后验分布<a hidden class="anchor" aria-hidden="true" href="#习题-1贝叶斯推断求后验分布">#</a></h2>
-<p><strong>题目</strong>：假设总体 $X \sim N(\mu, \sigma^2)$（$\sigma^2$ 已知），$X_1, X_2, \ldots, X_n$ 为来自总体 $X$ 的样本，由过去的经验和知识，我们可以确定 $\mu$ 的取值比较集中在 $\mu_0$ 附近，离 $\mu_0$ 越远，$\mu$ 取值的可能性越小，于是我们假定 $\mu$ 的先验分布为正态分布</p>
+<p><strong>题目</strong>：假设总体 $X \sim N(\mu, \sigma^2)$（$\sigma^2$ 已知），$X_1, X_2, \ldots, X_n$ 为来自总体 $X$ 的样本，由过去的经验和知识，我们可以确定 $\mu$ 的取值比较集中在 $\mu_0$ 附近，离 $\mu_0$ 越远，$\mu$ 取值的可能性越小，于是我们假定 $\mu$ 的先验分布为正态分布
+</p>
 $$
 \pi(\mu) = \frac{1}{\sqrt{2\pi\sigma_\mu^2}} \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right] \quad (\mu_0, \sigma_\mu \text{ 已知})
-$$<p>求 $\mu$ 的后验概率分布。</p>
+$$<p>
+求 $\mu$ 的后验概率分布。</p>
 <p><strong>解</strong>：</p>
-<p>根据贝叶斯定理，后验分布正比于似然函数与先验分布的乘积。</p>
-<p><strong>似然函数：</strong></p>
-<p>给定 $\mu$，样本 $x_1, \ldots, x_n$ 的联合密度函数为：</p>
+<p><strong>似然函数：</strong>
+</p>
 $$
-q(x | \mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(x_i - \mu)^2\right]= \frac{1}{\sigma^n(2\pi)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right]
-$$<p><strong>后验密度函数：</strong></p>
+q(\mathbf{x} | \mu) = \frac{1}{\sigma^n (2\pi)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x_i - \mu)^2\right]
+$$<p><strong>于是后验密度函数为：</strong>
+</p>
 $$
-h(\mu | x) = \frac{q(x | \mu) \cdot \pi(\mu)}{f_x(x)} \propto q(x | \mu) \cdot \pi(\mu)
+h(\mu | \mathbf{x}) = \frac{q(\mathbf{x}|\mu) \cdot \pi(\mu)}{f_{\mathbf{x}}(\mathbf{x})} = \frac{q(\mathbf{x}|\mu) \cdot \pi(\mu)}{\int_{-\infty}^{+\infty} q(\mathbf{x}|\mu) \cdot \pi(\mu)d\mu}
 $$$$
-\propto \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right] \cdot \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right]
-$$<p>合并指数项：</p>
+\propto \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x_i - \mu)^2\right] \cdot \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right]
+$$<p><strong>化简得：</strong>
+</p>
 $$
-h(\mu | x) \propto \exp\left[-\frac{1}{2}\left(\frac{\sum_{i=1}^n(x_i - \mu)^2}{\sigma^2} + \frac{(\mu - \mu_0)^2}{\sigma_\mu^2}\right)\right]
-$$<p>展开平方项：</p>
+h(\mu | \mathbf{x}) \propto \exp\left[-\frac{(\mu - t)^2}{2\eta^2}\right]
+$$<p><strong>其中：</strong>
+</p>
 $$
-\sum_{i=1}^n(x_i - \mu)^2 = \sum_{i=1}^n x_i^2 - 2\mu\sum_{i=1}^n x_i + n\mu^2 = n(\mu - \bar{x})^2 + \text{常数}
-$$<p>因此指数项中关于 $\mu$ 的部分为：</p>
+t = \frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \quad \eta^2 = \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}
+$$<p><strong>于是：</strong>
+</p>
 $$
--\frac{1}{2}\left[\frac{n}{\sigma^2}(\mu - \bar{x})^2 + \frac{1}{\sigma_\mu^2}(\mu - \mu_0)^2\right]
-$$$$
-= -\frac{1}{2}\left[\left(\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}\right)\mu^2 - 2\mu\left(\frac{n\bar{x}}{\sigma^2} + \frac{\mu_0}{\sigma_\mu^2}\right) + \text{常数}\right]
-$$<p>配方得：</p>
-$$
-h(\mu | x) \propto \exp\left[-\frac{(\mu - t)^2}{2\eta^2}\right]
-$$<p>其中：</p>
-$$t = \frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \quad \eta^2 = \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}$$<p>因此，后验分布为：</p>
-$$
-\mu | x \sim N\left(\frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}\right)
-$$<p><strong>解释</strong>：后验均值是样本均值和先验均值的加权平均，权重由各自的精度（方差的倒数）决定。</p>
-<hr>
+\mu | \mathbf{x} \sim N\left(\frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}\right)
+$$<hr>
 <h2 id="习题-2gauss-累积分布函数的对数凹性">习题 2：Gauss 累积分布函数的对数凹性<a hidden class="anchor" aria-hidden="true" href="#习题-2gauss-累积分布函数的对数凹性">#</a></h2>
 <p><strong>题目</strong>：证明：Gauss 概率密度函数的累积分布函数</p>
 $$
@@ -1899,9 +1935,19 @@ $$<p>定义域：$\text{dom}(f^*) = \{y | y \geq 0\}$（规定 $0\log 0 = 0$）<
 <hr>
 <h2 id="习题-4kkt-条件的应用">习题 4：KKT 条件的应用<a hidden class="anchor" aria-hidden="true" href="#习题-4kkt-条件的应用">#</a></h2>
 <p><strong>题目</strong>：写出下述非线性规划的 KKT 条件并求解</p>
-<p><strong>(1)</strong> $\max f(x) = (x - 3)^2$ subject to $1 \leq x \leq 5$</p>
-<p><strong>(2)</strong> $\min f(x) = (x - 3)^2$ subject to $1 \leq x \leq 5$</p>
-<p><strong>解</strong>：</p>
+<p><strong>(1)</strong>
+</p>
+$$
+\max f(x) = (x - 3)^2
+$$$$
+\text{subject to}  \quad 1 \leq x \leq 5
+$$<p><strong>(2)</strong>
+</p>
+$$
+\min f(x) = (x - 3)^2
+$$$$
+\text{subject to} \quad 1 \leq x \leq 5
+$$<p><strong>解</strong>：</p>
 <h3 id="1-最大化问题">(1) 最大化问题<a hidden class="anchor" aria-hidden="true" href="#1-最大化问题">#</a></h3>
 <p>将最大化问题转化为最小化问题：</p>
 $$
@@ -1913,30 +1959,24 @@ g_2(x) = x - 5 \leq 0
 $$<p><strong>梯度：</strong></p>
 $$
 \nabla_x[-f(x)] = -2(x-3), \quad \nabla_x g_1(x) = -1, \quad \nabla_x g_2(x) = 1
-$$<p><strong>KKT 条件：</strong></p>
+$$<p>将约束引入广义Lagrange乘子$v_1$,$v_2$,有KKT 条件
+</p>
 $$
 \begin{cases} 
 -2(x^* - 3) - v_1^* + v_2^* = 0 & \text{(稳定性)} \\ 
 v_1^*(1 - x^*) = 0 & \text{(互补松弛性)} \\ 
 v_2^*(x^* - 5) = 0 & \text{(互补松弛性)} \\ 
-v_1^* \geq 0, \quad v_2^* \geq 0 & \text{(对偶可行性)} \\ 
-1 \leq x^* \leq 5 & \text{(原始可行性)} 
+v_1^* \geq 0, \quad v_2^* \geq 0 & \text{(对偶可行性)} 
 \end{cases}
 $$<p><strong>情况分析：</strong></p>
-<p><strong>情况 i：</strong> $v_1^* = 0, v_2^* = 0$</p>
-<p>由稳定性条件：$-2(x^* - 3) = 0$，得 $x^* = 3$</p>
-<p>此时 $f(x^*) = 0$</p>
-<p><strong>情况 ii：</strong> $v_1^* > 0, v_2^* = 0$</p>
-<p>由互补松弛性：$x^* = 1$</p>
-<p>由稳定性条件：$-2(1-3) - v_1^* = 0$，得 $v_1^* = 4 > 0$ ✓</p>
+<p><strong>情况 i：</strong> $v_1^* = 0, v_2^* = 0$ 由稳定性条件：$-2(x^* - 3) = 0$，得 $x^* = 3$，此时 $f(x^*) = 0$</p>
+<p><strong>情况 ii：</strong> $v_1^* > 0, v_2^* = 0$，由互补松弛性：$x^* = 1$，由稳定性条件：$-2(1-3) - v_1^* = 0$，得 $v_1^* = 4 > 0$ ✓</p>
 <p>此时 $f(x^*) = 4$</p>
-<p><strong>情况 iii：</strong> $v_1^* = 0, v_2^* > 0$</p>
-<p>由互补松弛性：$x^* = 5$</p>
-<p>由稳定性条件：$-2(5-3) + v_2^* = 0$，得 $v_2^* = 4 > 0$ ✓</p>
+<p><strong>情况 iii：</strong> $v_1^* = 0, v_2^* > 0$，由互补松弛性：$x^* = 5$，由稳定性条件：$-2(5-3) + v_2^* = 0$，得 $v_2^* = 4 > 0$ ✓</p>
 <p>此时 $f(x^*) = 4$</p>
-<p><strong>情况 iv：</strong> $v_1^* > 0, v_2^* > 0$</p>
-<p>由互补松弛性：$x^* = 1$ 且 $x^* = 5$，矛盾</p>
-<p><strong>结论：</strong></p>
+<p><strong>情况 iv：</strong> $v_1^* > 0, v_2^* > 0$，由互补松弛性：$x^* = 1$ 且 $x^* = 5$，矛盾</p>
+<p><strong>结论：</strong>
+</p>
 $$
 x^* = 1 \text{ 或 } x^* = 5, \quad \max f(x) = 4
 $$<h3 id="2-最小化问题">(2) 最小化问题<a hidden class="anchor" aria-hidden="true" href="#2-最小化问题">#</a></h3>
@@ -1955,17 +1995,13 @@ $$
 2(x^* - 3) - v_1^* + v_2^* = 0 \\ 
 v_1^*(1 - x^*) = 0 \\ 
 v_2^*(x^* - 5) = 0 \\ 
-v_1^* \geq 0, \quad v_2^* \geq 0 \\ 
-1 \leq x^* \leq 5 
+v_1^* \geq 0, \quad v_2^* \geq 0 
 \end{cases}
 $$<p><strong>情况分析：</strong></p>
-<p><strong>情况 i：</strong> $v_1^* = 0, v_2^* = 0$</p>
-<p>由稳定性条件：$2(x^* - 3) = 0$，得 $x^* = 3$</p>
-<p>此时 $f(x^*) = 0$ ✓</p>
-<p><strong>情况 ii：</strong> $v_1^* > 0, v_2^* = 0$</p>
-<p>$x^* = 1$，$2(1-3) - v_1^* = 0$，得 $v_1^* = -4 < 0$ ✗</p>
-<p><strong>情况 iii：</strong> $v_1^* = 0, v_2^* > 0$</p>
-<p>$x^* = 5$，$2(5-3) + v_2^* = 0$，得 $v_2^* = -4 < 0$ ✗</p>
+<p><strong>情况 i：</strong> $v_1^* = 0, v_2^* = 0$，由稳定性条件：$2(x^* - 3) = 0$，得 $x^* = 3$，此时 $f(x^*) = 0$ ✓</p>
+<p><strong>情况 ii：</strong> $v_1^* > 0, v_2^* = 0$，$x^* = 1$，$2(1-3) - v_1^* = 0$，得 $v_1^* = -4 < 0$ ✗</p>
+<p><strong>情况 iii：</strong> $v_1^* = 0, v_2^* > 0$，$x^* = 5$，$2(5-3) + v_2^* = 0$，得 $v_2^* = -4 < 0$ ✗</p>
+<p><strong>情况 iv：</strong> $v_1^* > 0, v_2^* > 0$，由互补松弛性：$x^* = 1$ 且 $x^* = 5$，矛盾</p>
 <p><strong>结论：</strong></p>
 $$
 x^* = 3, \quad \min f(x) = 0
@@ -1978,11 +2014,15 @@ $$<p>的平方是 $A^TA$ 的最大特征值。</p>
 <p><strong>证明</strong>：</p>
 <p>优化问题为：</p>
 $$
-\text{maximize} \quad f(x) = \|Ax\|_2^2 = x^TA^TAx \quad \text{subject to} \quad x^Tx = 1
-$$<p><strong>Lagrange 函数：</strong></p>
+\text{maximize} \quad f(x) = \|Ax\|_2^2 = x^TA^TAx 
+$$$$
+\quad \text{subject to} \quad x^Tx = 1
+$$<p><strong>Lagrange 函数：</strong>
+</p>
 $$
 L(x, \lambda) = x^TA^TAx - \lambda(x^Tx - 1)
-$$<p><strong>求梯度并令其为零：</strong></p>
+$$<p><strong>求梯度并令其为零：</strong>
+</p>
 $$
 \frac{\partial L}{\partial x} = 2A^TAx - 2\lambda x = 0
 $$<p>因此：</p>
@@ -2005,11 +2045,15 @@ $$<p>$\square$</p>
 <p><strong>解</strong>：</p>
 <p>优化问题为：</p>
 $$
-\text{minimize} \quad f(x) = \frac{1}{2}\|x\|_2^2 = \frac{1}{2}x^Tx \quad \text{subject to} \quad Ax = b
-$$<p><strong>Lagrange 函数：</strong></p>
+\text{minimize} \quad f(x) = \frac{1}{2}\|x\|_2^2 = \frac{1}{2}x^Tx 
+$$$$
+\text{subject to} \quad Ax = b
+$$<p><strong>Lagrange 函数：</strong>
+</p>
 $$
 L(x, \lambda) = \frac{1}{2}x^Tx - \lambda^T(Ax - b)
-$$<p><strong>求梯度并令其为零：</strong></p>
+$$<p><strong>求梯度并令其为零：</strong>
+</p>
 $$
 \frac{\partial L}{\partial x} = x - A^T\lambda = 0
 $$<p>因此：</p>
@@ -2023,17 +2067,14 @@ AA^T\lambda = b
 $$<p>由于 $\text{rank}(A) = m$，矩阵 $AA^T \in \mathbb{R}^{m \times m}$ 是满秩的，因此可逆：</p>
 $$
 \lambda = (AA^T)^{-1}b
-$$<p><strong>最小二范数解：</strong></p>
+$$<p><strong>最小二范数解：</strong>
+</p>
 $$
 x^* = A^T(AA^T)^{-1}b
-$$<p><strong>验证：</strong></p>
-<ul>
-<li>$Ax^* = AA^T(AA^T)^{-1}b = b$ ✓（满足约束）</li>
-<li>可以证明这是所有满足 $Ax = b$ 的解中范数最小的</li>
-</ul>
-<hr>
+$$<hr>
 <h2 id="习题-7最速下降法">习题 7：最速下降法<a hidden class="anchor" aria-hidden="true" href="#习题-7最速下降法">#</a></h2>
-<p><strong>题目</strong>：用最速下降法和精确线搜索计算</p>
+<p><strong>题目</strong>：用最速下降法和精确线搜索计算
+</p>
 $$
 \min f(x) = x_1^2 + x_2^2 + x_3^2
 $$<p>初始点 $x^{(0)} = (2, 2, 1)^T$。当 $|f(x^{(n+1)}) - f(x^{(n)})| < 0.001$ 时迭代终止。</p>
@@ -2051,22 +2092,28 @@ $$
 \frac{d}{d\lambda}[(1-2\lambda)^2 (x^{(k)})^Tx^{(k)}] = 2(1-2\lambda)(-2)(x^{(k)})^Tx^{(k)} = 0
 $$<p>得 $\lambda^* = \frac{1}{2}$</p>
 <p><strong>迭代过程：</strong></p>
+<p>所以，
+</p>
 $$
-x^{(1)} = x^{(0)} + \frac{1}{2}(-2x^{(0)}) = x^{(0)} - x^{(0)} = 0
-$$$$
+x^{(1)} = x^{(0)} - \frac{1}{2}\nabla_x f(x^{(0)}) = (0,0,0)^T
+$$<p>
+</p>
+$$
 f(x^{(1)}) = 0
-$$$$
-x^{(2)} = x^{(1)} - x^{(1)} = 0
-$$$$
-|f(x^{(1)}) - f(x^{(0)})| = |0 - 9| = 9 > 0.001
-$$$$
-|f(x^{(2)}) - f(x^{(1)})| = |0 - 0| = 0 < 0.001
-$$<p>迭代终止。</p>
-<p><strong>结论：</strong></p>
+$$<p>
+</p>
+$$
+x^{(2)} = x^{(1)} - \frac{1}{2}\nabla_x f(x^{(1)}) = (0,0,0)^T
+$$<p>
+</p>
+$$
+f(x^{(2)}) = 0
+$$<p>同理可得，$f(x^{(n)}) = 0(n > 0)$，因此当 $|(f(x^{(n+1)}) - f(x^{(n)}))| = 0 < 0.001$ 时，迭代终止。</p>
+<p><strong>结论：</strong>
+</p>
 $$
 x^* = (0, 0, 0)^T, \quad f_{\min} = 0
 $$<p>算法一步即收敛到最优解，这是因为目标函数是简单的二次型，且 Hessian 矩阵为单位矩阵的倍数。</p>
-<hr>
 <h2 id="习题-8dfp-法求二次函数极小点">习题 8：DFP 法求二次函数极小点<a hidden class="anchor" aria-hidden="true" href="#习题-8dfp-法求二次函数极小点">#</a></h2>
 <p><strong>题目</strong>：试用 DFP 法计算下述二次函数的极小点</p>
 $$
@@ -2115,7 +2162,7 @@ $$<p><strong>结论：</strong></p>
 $$
 x^* = (1, 1)^T \text{ 为极小点}
 $$<p>DFP 法对于 $n$ 维二次函数，最多需要 $n$ 步即可收敛到精确解（具有二次终止性）。</p>
-
+<pre tabindex="0"><code></code></pre>
 
   </div>
 

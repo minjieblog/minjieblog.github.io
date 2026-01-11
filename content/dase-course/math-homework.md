@@ -30,8 +30,9 @@ description: |
 
 现在计算 $AB$，由于 $A^2 = A$：
 
-$$AB = A(AC) = A^2C = AC = B$$
-
+$$
+AB = A(AC) = A^2C = AC = B
+$$
 因此 $AB = B$。 $\square$
 
 ---
@@ -44,24 +45,26 @@ $$AB = A(AC) = A^2C = AC = B$$
 
 设
 
-$$\begin{pmatrix} E & 0 \\ A & E \end{pmatrix} \begin{pmatrix} \lambda E & B \\ 0 & \lambda E - AB \end{pmatrix} \begin{pmatrix} E & 0 \\ -A & E \end{pmatrix} = \begin{pmatrix} \lambda E - BA & B \\ 0 & \lambda E \end{pmatrix}$$
-
+$$
+\begin{pmatrix} E & 0 \\ A & E \end{pmatrix} \begin{pmatrix} \lambda E & B \\ 0 & \lambda E - AB \end{pmatrix} \begin{pmatrix} E & 0 \\ -A & E \end{pmatrix} = \begin{pmatrix} \lambda E - BA & B \\ 0 & \lambda E \end{pmatrix}
+$$
 取行列式，利用行列式的乘法性质，有
 
-$$\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right|$$
-
+$$
+\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right|
+$$
 由于
 
-$$\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \lambda^n |\lambda E - AB|, \qquad \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right| = \lambda^n |\lambda E - BA|$$
-
-因此有
-
-$$\lambda^n |\lambda E - AB| = \lambda^n |\lambda E - BA|$$
+$$
+\left|\begin{array}{cc} \lambda E & B \\ 0 & \lambda E - AB \end{array}\right| = \lambda^n |\lambda E - AB|, \qquad \left|\begin{array}{cc} \lambda E - BA & B \\ 0 & \lambda E \end{array}\right| = \lambda^n |\lambda E - BA|
+$$
+因此有$\lambda^n |\lambda E - AB| = \lambda^n |\lambda E - BA|$
 
 当 $\lambda \neq 0$ 时，两边可同时除以 $\lambda^n$，得到
 
-$$|\lambda E - AB| = |\lambda E - BA|$$
-
+$$
+|\lambda E - AB| = |\lambda E - BA|
+$$
 两边都是关于 $\lambda$ 的多项式，故此恒等式对任意 $\lambda$（包括 $\lambda=0$）均成立。 $\square$
 
 ---
@@ -70,8 +73,9 @@ $$|\lambda E - AB| = |\lambda E - BA|$$
 
 **题目**：求下面矩阵的 1-范数、2-范数和无穷范数：
 
-$$A_1 = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}, \quad A_2 = \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix}$$
-
+$$
+A_1 = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}, \quad A_2 = \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix}
+$$
 **解**：
 
 #### 对于矩阵 $A_1$
@@ -88,19 +92,19 @@ $$\|A_1\|_\infty = \max\{|1|+|2|, |1|+|0|\} = \max\{3, 1\} = 3$$
 
 首先计算 $A_1^T A_1$：
 
-$$A_1^T A_1 = \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$$
-
+$$
+A_1^T A_1 = \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}
+$$
 求特征值：
 
-$$\det(\lambda E - A_1^T A_1) = \det\begin{pmatrix} \lambda-2 & -2 \\ -2 & \lambda-4 \end{pmatrix} = (\lambda-2)(\lambda-4) - 4 = \lambda^2 - 6\lambda + 4 = 0$$
-
+$$
+\det(\lambda E - A_1^T A_1) = \det\begin{pmatrix} \lambda-2 & -2 \\ -2 & \lambda-4 \end{pmatrix} = (\lambda-2)(\lambda-4) - 4 = \lambda^2 - 6\lambda + 4 = 0
+$$
 解得：$\lambda = \frac{6 \pm \sqrt{36-16}}{2} = \frac{6 \pm \sqrt{20}}{2} = 3 \pm \sqrt{5}$
 
 最大特征值为 $\lambda_{\max} = 3 + \sqrt{5}$
 
-因此：
-
-$$\|A_1\|_2 = \sqrt{3 + \sqrt{5}}$$
+因此：$\|A_1\|_2 = \sqrt{3 + \sqrt{5}}$
 
 #### 对于矩阵 $A_2$
 
@@ -116,11 +120,10 @@ $$\|A_2\|_\infty = \max\{|-1|+|0|, |1|+|2|\} = \max\{1, 3\} = 3$$
 
 计算 $A_2^T A_2$：
 
-$$A_2^T A_2 = \begin{pmatrix} -1 & 1 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$$
-
-这与 $A_1^T A_1$ 相同，因此：
-
-$$\|A_2\|_2 = \sqrt{3 + \sqrt{5}}$$
+$$
+A_2^T A_2 = \begin{pmatrix} -1 & 1 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}
+$$
+这与 $A_1^T A_1$ 相同，因此：$\|A_2\|_2 = \sqrt{3 + \sqrt{5}}$
 
 ---
 
@@ -301,18 +304,20 @@ $$
 
 编辑次数显然非负，且只有两个字符串完全相同时，所需的编辑次数最少为 0，即满足非负性：
 
-$$d(S_1, S_2) \geq 0, \quad \text{且} \quad d(S_1, S_2) = 0 \Leftrightarrow S_1 = S_2$$
-
+$$
+d(S_1, S_2) \geq 0, \quad \text{且} \quad d(S_1, S_2) = 0 \Leftrightarrow S_1 = S_2
+$$
 **(ii) 对称性**
-
-$d(S_1, S_2) = d(S_2, S_1)$
-
+$$
+d(S_1, S_2) = d(S_2, S_1)
+$$
 插入和删除字符**互为逆操作**、将某个字符 $a$ 替换为字符 $b$ 的逆操作为将字符 $b$ 替换为字符 $a$，不难看出每种编辑操作均可逆，即满足对称性。
 
 **(iii) 三角不等式**
 
-$d(S_1, S_2) \leq d(S_1, S_3) + d(S_3, S_2)$
-
+$$
+d(S_1, S_2) \leq d(S_1, S_3) + d(S_3, S_2)​
+$$
 将 $S_1$ 编辑为 $S_2$ 的过程拆解成两部分：将 $S_1$ 编辑为 $S_3$ 以及将 $S_3$ 编辑为 $S_2$，考虑到其中这两部分可能存在**冗余操作**。所以直接从 $S_1$ 编辑为 $S_2$ 所需的最优编辑次数只会更少，即满足三角不等式。
 
 综上 (i), (ii), (iii) 所述，编辑距离是数学意义上的距离。
@@ -475,17 +480,24 @@ $$
 
 向量 $v$ 在 $u$ 上的正交投影为：
 
-$$\text{proj}_u(v) = \frac{\langle v, u \rangle}{\langle u, u \rangle} u$$
-
+$$
+\text{proj}_u(v) = \frac{\langle v, u \rangle}{\langle u, u \rangle} u
+$$
 计算内积：
 
-$$\langle v, u \rangle = 1 \cdot 1 + 1 \cdot (-1) + 1 \cdot 1 = 1$$
+$$
+\langle v, u \rangle = 1 \cdot 1 + 1 \cdot (-1) + 1 \cdot 1 = 1
+$$
 
-$$\langle u, u \rangle = 1^2 + (-1)^2 + 1^2 = 3$$
+$$
+\langle u, u \rangle = 1^2 + (-1)^2 + 1^2 = 3
+$$
 
 因此正交投影为：
 
-$$\text{proj}_u(v) = \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/3 \\ -1/3 \\ 1/3 \end{pmatrix}$$
+$$
+\text{proj}_u(v) = \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/3 \\ -1/3 \\ 1/3 \end{pmatrix}
+$$
 
 ---
 
@@ -915,12 +927,9 @@ $$
 
 计算顺序主子式：
 
-$$|C_1| = 3 \neq 0$$
-
-$$|C_2| = \begin{vmatrix} 3 & 2 \\ -1 & 0 \end{vmatrix} = 2 \neq 0$$
-
-$$|C_3| = \det(C) = 3 \neq 0$$
-
+$$
+|C_1| = 3 \neq 0 \quad\quad|C_2| = \begin{vmatrix} 3 & 2 \\ -1 & 0 \end{vmatrix} = 2 \neq 0 \quad\quad|C_3| = \det(C) = 3 \neq 0
+$$
 所有顺序主子式都不为0，因此 $C$ 可以进行 $LU$ 分解。
 
 **对于矩阵 $B$：**
@@ -2024,39 +2033,29 @@ $$
 
 **题目**：利用迹微分法求解 $\frac{\partial \text{tr}(W^{-1})}{\partial W}$，其中 $W \in \mathbb{R}^{m\times m}$
 
-**解**：
+**解：**
 
 首先计算 $W^{-1}$ 的微分。由恒等式 $WW^{-1} = I$，两边取微分：
 
 $$
-d(WW^{-1}) = dW \cdot W^{-1} + W \cdot dW^{-1} = dI = 0
+0 = dI = d(WW^{-1}) = dW \cdot W^{-1} + W \cdot dW^{-1}
 $$
-
-因此：
 
 $$
 W \cdot dW^{-1} = -dW \cdot W^{-1}
 $$
 
-两边左乘 $W^{-1}$：
-
 $$
 dW^{-1} = -W^{-1}dW \cdot W^{-1}
 $$
 
-现在计算迹的微分：
+所以
 
 $$
-d\,\text{tr}(W^{-1}) = \text{tr}(dW^{-1}) = \text{tr}(-W^{-1}dW \cdot W^{-1})
+d\text{tr}(W^{-1}) = \text{tr}(dW^{-1}) = \text{tr}(-W^{-1}dW W^{-1}) = \text{tr}(-(W^{-1})^2dW)
 $$
 
-利用迹的循环性质 $\text{tr}(ABC) = \text{tr}(CAB)$：
-
-$$
-d\,\text{tr}(W^{-1}) = \text{tr}(-(W^{-1})^2dW) = \text{tr}(-(W^{-T})^2 dW)
-$$
-
-因此：
+即
 
 $$
 \frac{\partial \text{tr}(W^{-1})}{\partial W} = -(W^{-T})^2
@@ -2176,8 +2175,6 @@ $$
 \frac{\partial L}{\partial \mu} = \sum_{t=1}^N \Sigma^{-1}(x_t - \mu)
 $$
 
-令 $\frac{\partial L}{\partial \mu} = 0$，得 $\mu = \frac{1}{N}\sum_{t=1}^N x_t$（样本均值）。
-
 ### (2) 关于 $\Sigma$ 的梯度
 
 使用迹微分法，将对数似然写成迹的形式：
@@ -2193,7 +2190,6 @@ d\left[-\frac{N}{2}\ln|\Sigma|\right] = -\frac{N}{2}d[\ln|\Sigma|] = -\frac{N}{2
 $$
 
 **第二项：**
-
 $$
 d\left[\frac{1}{2}\sum_{t=1}^N (x_t-\mu)^T\Sigma^{-1}(x_t-\mu)\right] = \frac{1}{2}d\,\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T\Sigma^{-1}\right]
 $$
@@ -2201,8 +2197,6 @@ $$
 $$
 = \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T d(\Sigma^{-1})\right]
 $$
-
-利用 $d\Sigma^{-1} = -\Sigma^{-1}(d\Sigma)\Sigma^{-1}$：
 
 $$
 = \frac{1}{2}\text{tr}\left[\sum_{t=1}^N (x_t-\mu)(x_t-\mu)^T(-\Sigma^{-1}d\Sigma \cdot \Sigma^{-1})\right]
@@ -2393,74 +2387,42 @@ $$
 ---
 
 ## 习题 1：贝叶斯推断求后验分布
-
 **题目**：假设总体 $X \sim N(\mu, \sigma^2)$（$\sigma^2$ 已知），$X_1, X_2, \ldots, X_n$ 为来自总体 $X$ 的样本，由过去的经验和知识，我们可以确定 $\mu$ 的取值比较集中在 $\mu_0$ 附近，离 $\mu_0$ 越远，$\mu$ 取值的可能性越小，于是我们假定 $\mu$ 的先验分布为正态分布
-
 $$
 \pi(\mu) = \frac{1}{\sqrt{2\pi\sigma_\mu^2}} \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right] \quad (\mu_0, \sigma_\mu \text{ 已知})
 $$
-
 求 $\mu$ 的后验概率分布。
 
 **解**：
 
-根据贝叶斯定理，后验分布正比于似然函数与先验分布的乘积。
-
 **似然函数：**
-
-给定 $\mu$，样本 $x_1, \ldots, x_n$ 的联合密度函数为：
-
 $$
-q(x | \mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[-\frac{1}{2\sigma^2}(x_i - \mu)^2\right]= \frac{1}{\sigma^n(2\pi)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right]
+q(\mathbf{x} | \mu) = \frac{1}{\sigma^n (2\pi)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x_i - \mu)^2\right]
 $$
 
-**后验密度函数：**
-
+**于是后验密度函数为：**
 $$
-h(\mu | x) = \frac{q(x | \mu) \cdot \pi(\mu)}{f_x(x)} \propto q(x | \mu) \cdot \pi(\mu)
+h(\mu | \mathbf{x}) = \frac{q(\mathbf{x}|\mu) \cdot \pi(\mu)}{f_{\mathbf{x}}(\mathbf{x})} = \frac{q(\mathbf{x}|\mu) \cdot \pi(\mu)}{\int_{-\infty}^{+\infty} q(\mathbf{x}|\mu) \cdot \pi(\mu)d\mu}
 $$
 
 $$
-\propto \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right] \cdot \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right]
+\propto \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x_i - \mu)^2\right] \cdot \exp\left[-\frac{1}{2\sigma_\mu^2}(\mu - \mu_0)^2\right]
 $$
 
-合并指数项：
-
+**化简得：** 
 $$
-h(\mu | x) \propto \exp\left[-\frac{1}{2}\left(\frac{\sum_{i=1}^n(x_i - \mu)^2}{\sigma^2} + \frac{(\mu - \mu_0)^2}{\sigma_\mu^2}\right)\right]
-$$
-
-展开平方项：
-
-$$
-\sum_{i=1}^n(x_i - \mu)^2 = \sum_{i=1}^n x_i^2 - 2\mu\sum_{i=1}^n x_i + n\mu^2 = n(\mu - \bar{x})^2 + \text{常数}
+h(\mu | \mathbf{x}) \propto \exp\left[-\frac{(\mu - t)^2}{2\eta^2}\right]
 $$
 
-因此指数项中关于 $\mu$ 的部分为：
-
+**其中：**
 $$
--\frac{1}{2}\left[\frac{n}{\sigma^2}(\mu - \bar{x})^2 + \frac{1}{\sigma_\mu^2}(\mu - \mu_0)^2\right]
-$$
-
-$$
-= -\frac{1}{2}\left[\left(\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}\right)\mu^2 - 2\mu\left(\frac{n\bar{x}}{\sigma^2} + \frac{\mu_0}{\sigma_\mu^2}\right) + \text{常数}\right]
+t = \frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \quad \eta^2 = \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}
 $$
 
-配方得：
-
+**于是：**
 $$
-h(\mu | x) \propto \exp\left[-\frac{(\mu - t)^2}{2\eta^2}\right]
+\mu | \mathbf{x} \sim N\left(\frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}\right)
 $$
-
-其中：$$t = \frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \quad \eta^2 = \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}$$
-
-因此，后验分布为：
-
-$$
-\mu | x \sim N\left(\frac{\frac{n}{\sigma^2}\bar{x} + \frac{1}{\sigma_\mu^2}\mu_0}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}, \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\sigma_\mu^2}}\right)
-$$
-
-**解释**：后验均值是样本均值和先验均值的加权平均，权重由各自的精度（方差的倒数）决定。
 
 ---
 
@@ -2630,9 +2592,25 @@ $$
 
 **题目**：写出下述非线性规划的 KKT 条件并求解
 
-**(1)** $\max f(x) = (x - 3)^2$ subject to $1 \leq x \leq 5$
+**(1)** 
+$$
+\max f(x) = (x - 3)^2
+$$
 
-**(2)** $\min f(x) = (x - 3)^2$ subject to $1 \leq x \leq 5$
+$$
+\text{subject to}  \quad 1 \leq x \leq 5
+$$
+
+
+
+**(2)** 
+$$
+\min f(x) = (x - 3)^2
+$$
+
+$$
+\text{subject to} \quad 1 \leq x \leq 5
+$$
 
 **解**：
 
@@ -2654,48 +2632,31 @@ $$
 \nabla_x[-f(x)] = -2(x-3), \quad \nabla_x g_1(x) = -1, \quad \nabla_x g_2(x) = 1
 $$
 
-**KKT 条件：**
-
+将约束引入广义Lagrange乘子$v_1$,$v_2$,有KKT 条件
 $$
 \begin{cases} 
 -2(x^* - 3) - v_1^* + v_2^* = 0 & \text{(稳定性)} \\ 
 v_1^*(1 - x^*) = 0 & \text{(互补松弛性)} \\ 
 v_2^*(x^* - 5) = 0 & \text{(互补松弛性)} \\ 
-v_1^* \geq 0, \quad v_2^* \geq 0 & \text{(对偶可行性)} \\ 
-1 \leq x^* \leq 5 & \text{(原始可行性)} 
+v_1^* \geq 0, \quad v_2^* \geq 0 & \text{(对偶可行性)} 
 \end{cases}
 $$
 
 **情况分析：**
 
-**情况 i：** $v_1^* = 0, v_2^* = 0$
+**情况 i：** $v_1^* = 0, v_2^* = 0$ 由稳定性条件：$-2(x^* - 3) = 0$，得 $x^* = 3$，此时 $f(x^*) = 0$
 
-由稳定性条件：$-2(x^* - 3) = 0$，得 $x^* = 3$
-
-此时 $f(x^*) = 0$
-
-**情况 ii：** $v_1^* > 0, v_2^* = 0$
-
-由互补松弛性：$x^* = 1$
-
-由稳定性条件：$-2(1-3) - v_1^* = 0$，得 $v_1^* = 4 > 0$ ✓
+**情况 ii：** $v_1^* > 0, v_2^* = 0$，由互补松弛性：$x^* = 1$，由稳定性条件：$-2(1-3) - v_1^* = 0$，得 $v_1^* = 4 > 0$ ✓
 
 此时 $f(x^*) = 4$
 
-**情况 iii：** $v_1^* = 0, v_2^* > 0$
-
-由互补松弛性：$x^* = 5$
-
-由稳定性条件：$-2(5-3) + v_2^* = 0$，得 $v_2^* = 4 > 0$ ✓
+**情况 iii：** $v_1^* = 0, v_2^* > 0$，由互补松弛性：$x^* = 5$，由稳定性条件：$-2(5-3) + v_2^* = 0$，得 $v_2^* = 4 > 0$ ✓
 
 此时 $f(x^*) = 4$
 
-**情况 iv：** $v_1^* > 0, v_2^* > 0$
-
-由互补松弛性：$x^* = 1$ 且 $x^* = 5$，矛盾
+**情况 iv：** $v_1^* > 0, v_2^* > 0$，由互补松弛性：$x^* = 1$ 且 $x^* = 5$，矛盾
 
 **结论：** 
-
 $$
 x^* = 1 \text{ 或 } x^* = 5, \quad \max f(x) = 4
 $$
@@ -2723,26 +2684,19 @@ $$
 2(x^* - 3) - v_1^* + v_2^* = 0 \\ 
 v_1^*(1 - x^*) = 0 \\ 
 v_2^*(x^* - 5) = 0 \\ 
-v_1^* \geq 0, \quad v_2^* \geq 0 \\ 
-1 \leq x^* \leq 5 
+v_1^* \geq 0, \quad v_2^* \geq 0 
 \end{cases}
 $$
 
 **情况分析：**
 
-**情况 i：** $v_1^* = 0, v_2^* = 0$
+**情况 i：** $v_1^* = 0, v_2^* = 0$，由稳定性条件：$2(x^* - 3) = 0$，得 $x^* = 3$，此时 $f(x^*) = 0$ ✓
 
-由稳定性条件：$2(x^* - 3) = 0$，得 $x^* = 3$
+**情况 ii：** $v_1^* > 0, v_2^* = 0$，$x^* = 1$，$2(1-3) - v_1^* = 0$，得 $v_1^* = -4 < 0$ ✗
 
-此时 $f(x^*) = 0$ ✓
+**情况 iii：** $v_1^* = 0, v_2^* > 0$，$x^* = 5$，$2(5-3) + v_2^* = 0$，得 $v_2^* = -4 < 0$ ✗
 
-**情况 ii：** $v_1^* > 0, v_2^* = 0$
-
-$x^* = 1$，$2(1-3) - v_1^* = 0$，得 $v_1^* = -4 < 0$ ✗
-
-**情况 iii：** $v_1^* = 0, v_2^* > 0$
-
-$x^* = 5$，$2(5-3) + v_2^* = 0$，得 $v_2^* = -4 < 0$ ✗
+**情况 iv：** $v_1^* > 0, v_2^* > 0$，由互补松弛性：$x^* = 1$ 且 $x^* = 5$，矛盾
 
 **结论：**
 
@@ -2767,17 +2721,19 @@ $$
 优化问题为：
 
 $$
-\text{maximize} \quad f(x) = \|Ax\|_2^2 = x^TA^TAx \quad \text{subject to} \quad x^Tx = 1
+\text{maximize} \quad f(x) = \|Ax\|_2^2 = x^TA^TAx 
+$$
+
+$$
+\quad \text{subject to} \quad x^Tx = 1
 $$
 
 **Lagrange 函数：**
-
 $$
 L(x, \lambda) = x^TA^TAx - \lambda(x^Tx - 1)
 $$
 
 **求梯度并令其为零：**
-
 $$
 \frac{\partial L}{\partial x} = 2A^TAx - 2\lambda x = 0
 $$
@@ -2821,17 +2777,19 @@ $\square$
 优化问题为：
 
 $$
-\text{minimize} \quad f(x) = \frac{1}{2}\|x\|_2^2 = \frac{1}{2}x^Tx \quad \text{subject to} \quad Ax = b
+\text{minimize} \quad f(x) = \frac{1}{2}\|x\|_2^2 = \frac{1}{2}x^Tx 
+$$
+
+$$
+\text{subject to} \quad Ax = b
 $$
 
 **Lagrange 函数：**
-
 $$
 L(x, \lambda) = \frac{1}{2}x^Tx - \lambda^T(Ax - b)
 $$
 
 **求梯度并令其为零：**
-
 $$
 \frac{\partial L}{\partial x} = x - A^T\lambda = 0
 $$
@@ -2859,21 +2817,15 @@ $$
 $$
 
 **最小二范数解：**
-
 $$
 x^* = A^T(AA^T)^{-1}b
 $$
-
-**验证：** 
-- $Ax^* = AA^T(AA^T)^{-1}b = b$ ✓（满足约束）
-- 可以证明这是所有满足 $Ax = b$ 的解中范数最小的
 
 ---
 
 ## 习题 7：最速下降法
 
 **题目**：用最速下降法和精确线搜索计算
-
 $$
 \min f(x) = x_1^2 + x_2^2 + x_3^2
 $$
@@ -2908,37 +2860,29 @@ $$
 
 **迭代过程：**
 
+所以，
 $$
-x^{(1)} = x^{(0)} + \frac{1}{2}(-2x^{(0)}) = x^{(0)} - x^{(0)} = 0
+x^{(1)} = x^{(0)} - \frac{1}{2}\nabla_x f(x^{(0)}) = (0,0,0)^T
 $$
-
 $$
 f(x^{(1)}) = 0
 $$
-
 $$
-x^{(2)} = x^{(1)} - x^{(1)} = 0
+x^{(2)} = x^{(1)} - \frac{1}{2}\nabla_x f(x^{(1)}) = (0,0,0)^T
 $$
-
 $$
-|f(x^{(1)}) - f(x^{(0)})| = |0 - 9| = 9 > 0.001
+f(x^{(2)}) = 0
 $$
 
-$$
-|f(x^{(2)}) - f(x^{(1)})| = |0 - 0| = 0 < 0.001
-$$
-
-迭代终止。
+同理可得，$f(x^{(n)}) = 0(n > 0)$，因此当 $|(f(x^{(n+1)}) - f(x^{(n)}))| = 0 < 0.001$ 时，迭代终止。
 
 **结论：**
-
 $$
 x^* = (0, 0, 0)^T, \quad f_{\min} = 0
 $$
 
 算法一步即收敛到最优解，这是因为目标函数是简单的二次型，且 Hessian 矩阵为单位矩阵的倍数。
 
----
 
 ## 习题 8：DFP 法求二次函数极小点
 
@@ -3035,3 +2979,7 @@ x^* = (1, 1)^T \text{ 为极小点}
 $$
 
 DFP 法对于 $n$ 维二次函数，最多需要 $n$ 步即可收敛到精确解（具有二次终止性）。
+
+```
+
+```
