@@ -28,7 +28,7 @@
 深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
 强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
 大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
-每道题配有完整数学证明和算法原理解析。 参考资料：[机器学习](https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025)
+每道题配有完整数学证明和算法原理解析。 
 </description>
     </item>
     <item>

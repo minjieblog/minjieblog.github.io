@@ -13,9 +13,13 @@ description: |
   深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
   强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
   大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
-  每道题配有完整数学证明和算法原理解析。 参考资料：[机器学习](https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025)
+  每道题配有完整数学证明和算法原理解析。 
 comments: true
 ---
+
+参考资料：[机器学习](https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025)
+
+# 机器学习基础（30%）
 
 ## 第一题：线性回归梯度下降
 
@@ -25,7 +29,7 @@ $$\theta := \theta + \alpha \sum_{i=1}^{n} (y^{(i)} - h_\theta(x^{(i)})) x^{(i)}
 
 **解：**
 
-最小二乘损失函数为：
+最小二乘损失函 数为：
 
 $$J(\theta) = \frac{1}{2}\sum_{i=1}^{n}(h_\theta(x^{(i)}) - y^{(i)})^2 = \frac{1}{2}\sum_{i=1}^{n}(\theta^\top x^{(i)} - y^{(i)})^2$$
 
@@ -73,8 +77,9 @@ $$\begin{aligned} \frac{\partial l_{ce}(t,y)}{\partial t_i} &= -\frac{\partial t
 
 假设误差 $\epsilon^{(i)} = y^{(i)} - \theta^\top x^{(i)}$ 服从独立同分布的高斯分布 $\mathcal{N}(0, \sigma^2)$，即：
 
-$$p(\epsilon^{(i)}) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(\epsilon^{(i)})^2}{2\sigma^2}\right)$$
-
+$$
+p(\epsilon^{(i)}) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(\epsilon^{(i)})^2}{2\sigma^2}\right)
+$$
 因此：
 
 $$p(y^{(i)} | x^{(i)}; \theta) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y^{(i)} - \theta^\top x^{(i)})^2}{2\sigma^2}\right)$$
@@ -309,6 +314,8 @@ $$p(y=1|x) = \frac{1}{1+e^{-\theta^\top x - \theta_0}} = \frac{1}{1+e^{-\tilde{\
 这正是Logistic回归的形式（其中 $\tilde{x}$ 包含截距项）。
 
 ------
+
+# 机器学习进阶（20%）
 
 ## 第十题：Kernel Method分析
 
@@ -667,6 +674,8 @@ $w_j^* = -\frac{G_j}{H_j + \lambda} = -\frac{\sum_{i \in \mathcal{I}*j}g_i}{\sum
 $\tilde{\mathcal{L}}^{(t)} = -\frac{1}{2}\sum_{j=1}^{T}\frac{G_j^2}{H_j + \lambda} + \gamma T$
 
 这个公式用于评估树结构的质量，指导分裂决策。
+
+# 语言模型 & GPUs（40%）
 
 ## 第十七题 KV Cache 计算
 
@@ -1037,6 +1046,8 @@ $$\text{OI}_{\text{BF16}} = \frac{312 \text{ TFLOPS}}{2 \text{ TB/s}} = \frac{31
 
 ------
 
+# 	强化学习 & Agents（10%+10）
+
 ## 第二十五题 ε-greedy 多臂老虎机问题
 
 **题目：** 考虑一多臂老虎机问题（K=10），3 个 ε-greedy 策略下每一时刻可以获得的平均 reward 下图所示。已知该问题中随机以及最有策略下可获得 reward 的期望分别为 1 与 1.55，则：
@@ -1238,7 +1249,7 @@ $$a^* = \arg\max_a [r(s,a) + \gamma v(s')]$$
 
 具体每个格子的最优动作需要根据其邻居的 value 值计算得出，选择使 $r + \gamma v(s')$ 最大的方向。
 
-## <u>第二十八题 AI Agent 特性解释</u>
+## <u>第二十八题 AI Agent 特性解释</u> （附加题 10分）
 
 **题目：** AI Agent 是一类能够感知环境、自主决策并采取行动以实现特定目标的智能系统，并具备自主性、反应性、主动性、社会性以及进化性。请选择其中 3 种性质进行解释，并分别举例一种代表性技术（正式发表于 NeurIPS、ICLR、ICML）介绍其原理。（该题必考）
 

@@ -13,7 +13,7 @@
 深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
 强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
 大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
-每道题配有完整数学证明和算法原理解析。 参考资料：[机器学习](https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025)
+每道题配有完整数学证明和算法原理解析。 
 ">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/dase-course/ml-exercise-set/">
@@ -193,7 +193,7 @@ code.has-jax {
 深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
 强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
 大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
-每道题配有完整数学证明和算法原理解析。 参考资料：[机器学习](https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025)
+每道题配有完整数学证明和算法原理解析。 
 
     </div>
     <div class="post-meta"><span title='2025-12-13 20:26:19 +0800 CST'>2025年12月13日</span>
@@ -206,6 +206,9 @@ code.has-jax {
         </summary>
 
         <div class="inner"><ul>
+                <li>
+                    <a href="#%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e5%9f%ba%e7%a1%8030" aria-label="机器学习基础（30%）">机器学习基础（30%）</a><ul>
+                        
                 <li>
                     <a href="#%e7%ac%ac%e4%b8%80%e9%a2%98%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d" aria-label="第一题：线性回归梯度下降">第一题：线性回归梯度下降</a></li>
                 <li>
@@ -223,7 +226,11 @@ code.has-jax {
                 <li>
                     <a href="#%e7%ac%ac%e5%85%ab%e9%a2%98%e9%ab%98%e6%96%af%e5%88%a4%e5%88%ab%e5%88%86%e6%9e%90%e7%9a%84mle" aria-label="第八题：高斯判别分析的MLE">第八题：高斯判别分析的MLE</a></li>
                 <li>
-                    <a href="#%e7%ac%ac%e4%b9%9d%e9%a2%98gda%e5%8f%af%e8%bd%ac%e5%8c%96%e4%b8%balogistic%e5%9b%9e%e5%bd%92" aria-label="第九题：GDA可转化为Logistic回归">第九题：GDA可转化为Logistic回归</a></li>
+                    <a href="#%e7%ac%ac%e4%b9%9d%e9%a2%98gda%e5%8f%af%e8%bd%ac%e5%8c%96%e4%b8%balogistic%e5%9b%9e%e5%bd%92" aria-label="第九题：GDA可转化为Logistic回归">第九题：GDA可转化为Logistic回归</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e8%bf%9b%e9%98%b620" aria-label="机器学习进阶（20%）">机器学习进阶（20%）</a><ul>
+                        
                 <li>
                     <a href="#%e7%ac%ac%e5%8d%81%e9%a2%98kernel-method%e5%88%86%e6%9e%90" aria-label="第十题：Kernel Method分析">第十题：Kernel Method分析</a></li>
                 <li>
@@ -255,7 +262,11 @@ code.has-jax {
                     <a href="#%e4%ba%8c%e9%98%b6%e6%b3%b0%e5%8b%92%e5%b1%95%e5%bc%80" aria-label="二阶泰勒展开">二阶泰勒展开</a></li>
                 <li>
                     <a href="#%e6%8e%a8%e5%af%bc%e5%8f%b6%e5%ad%90%e6%9d%83%e9%87%8d" aria-label="推导叶子权重 $w_j^*$">推导叶子权重 $w_j^*$</a></li></ul>
+                </li></ul>
                 </li>
+                <li>
+                    <a href="#%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b--gpus40" aria-label="语言模型 &amp; GPUs（40%）">语言模型 &amp; GPUs（40%）</a><ul>
+                        
                 <li>
                     <a href="#%e7%ac%ac%e5%8d%81%e4%b8%83%e9%a2%98-kv-cache-%e8%ae%a1%e7%ae%97" aria-label="第十七题 KV Cache 计算">第十七题 KV Cache 计算</a><ul>
                         
@@ -327,7 +338,11 @@ code.has-jax {
                     <a href="#bf16-tensorcore" aria-label="BF16 TensorCore">BF16 TensorCore</a></li>
                 <li>
                     <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a></li></ul>
+                </li></ul>
                 </li>
+                <li>
+                    <a href="#%e5%bc%ba%e5%8c%96%e5%ad%a6%e4%b9%a0--agents1010" aria-label="强化学习 &amp; Agents（10%&#43;10）">强化学习 &amp; Agents（10%+10）</a><ul>
+                        
                 <li>
                     <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e4%ba%94%e9%a2%98-%ce%b5-greedy-%e5%a4%9a%e8%87%82%e8%80%81%e8%99%8e%e6%9c%ba%e9%97%ae%e9%a2%98" aria-label="第二十五题 ε-greedy 多臂老虎机问题">第二十五题 ε-greedy 多臂老虎机问题</a><ul>
                         
@@ -363,7 +378,7 @@ code.has-jax {
                     <a href="#%e6%9c%80%e4%bc%98%e7%ad%96%e7%95%a5%e6%80%bb%e7%bb%93" aria-label="最优策略总结">最优策略总结</a></li></ul>
                 </li>
                 <li>
-                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e5%85%ab%e9%a2%98-ai-agent-%e7%89%b9%e6%80%a7%e8%a7%a3%e9%87%8a" aria-label="第二十八题 AI Agent 特性解释">第二十八题 AI Agent 特性解释</a><ul>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e5%85%ab%e9%a2%98-ai-agent-%e7%89%b9%e6%80%a7%e8%a7%a3%e9%87%8a-%e9%99%84%e5%8a%a0%e9%a2%98-10%e5%88%86" aria-label="第二十八题 AI Agent 特性解释 （附加题 10分）">第二十八题 AI Agent 特性解释 （附加题 10分）</a><ul>
                         
                 <li>
                     <a href="#1-%e8%87%aa%e4%b8%bb%e6%80%a7-autonomy" aria-label="1. 自主性 (Autonomy)">1. 自主性 (Autonomy)</a></li>
@@ -375,14 +390,18 @@ code.has-jax {
             </ul>
             </li>
             </ul>
+            </li>
+            </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><h2 id="第一题线性回归梯度下降">第一题：线性回归梯度下降<a hidden class="anchor" aria-hidden="true" href="#第一题线性回归梯度下降">#</a></h2>
+  <div class="post-content"><p>参考资料：<a href="https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025">机器学习</a></p>
+<h1 id="机器学习基础30">机器学习基础（30%）<a hidden class="anchor" aria-hidden="true" href="#机器学习基础30">#</a></h1>
+<h2 id="第一题线性回归梯度下降">第一题：线性回归梯度下降<a hidden class="anchor" aria-hidden="true" href="#第一题线性回归梯度下降">#</a></h2>
 <p><strong>题目：</strong> 对线性模型 $h_\theta(x) = \theta^\top x$，给定训练集 $\{(x^{(i)}, y^{(i)})\}$，推导其向量形式的最小二乘损失梯度下降更新公式为：</p>
 $$\theta := \theta + \alpha \sum_{i=1}^{n} (y^{(i)} - h_\theta(x^{(i)})) x^{(i)}$$<p><strong>解：</strong></p>
-<p>最小二乘损失函数为：</p>
+<p>最小二乘损失函 数为：</p>
 $$J(\theta) = \frac{1}{2}\sum_{i=1}^{n}(h_\theta(x^{(i)}) - y^{(i)})^2 = \frac{1}{2}\sum_{i=1}^{n}(\theta^\top x^{(i)} - y^{(i)})^2$$<p>对 $\theta$ 求梯度：</p>
 $$\begin{aligned} \nabla_\theta J(\theta) &= \sum_{i=1}^{n}(\theta^\top x^{(i)} - y^{(i)}) \cdot x^{(i)} \\ &= \sum_{i=1}^{n}(h_\theta(x^{(i)}) - y^{(i)}) x^{(i)} \end{aligned}$$<p>梯度下降更新规则为 $\theta := \theta - \alpha \nabla_\theta J(\theta)$，因此：</p>
 $$\theta := \theta - \alpha \sum_{i=1}^{n}(h_\theta(x^{(i)}) - y^{(i)}) x^{(i)} = \theta + \alpha \sum_{i=1}^{n}(y^{(i)} - h_\theta(x^{(i)})) x^{(i)}$$<hr>
@@ -399,7 +418,10 @@ $$\begin{aligned} \frac{\partial l_{ce}(t,y)}{\partial t_i} &= -\frac{\partial t
 <p><strong>题目：</strong> 证明在高斯差异假定下，对线性模型 $h_\theta(x) = \theta^\top x$，最大化参数似然 $L(\theta)$ 等价于最小化二乘损失 $\sum_{i=1}^{n}(y^{(i)} - \theta^\top x^{(i)})^2$。</p>
 <p><strong>解：</strong></p>
 <p>假设误差 $\epsilon^{(i)} = y^{(i)} - \theta^\top x^{(i)}$ 服从独立同分布的高斯分布 $\mathcal{N}(0, \sigma^2)$，即：</p>
-$$p(\epsilon^{(i)}) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(\epsilon^{(i)})^2}{2\sigma^2}\right)$$<p>因此：</p>
+$$
+p(\epsilon^{(i)}) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(\epsilon^{(i)})^2}{2\sigma^2}\right)
+$$<p>
+因此：</p>
 $$p(y^{(i)} | x^{(i)}; \theta) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y^{(i)} - \theta^\top x^{(i)})^2}{2\sigma^2}\right)$$<p>似然函数为：</p>
 $$\begin{aligned} L(\theta) &= \prod_{i=1}^{n} p(y^{(i)} | x^{(i)}; \theta) \\ &= \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y^{(i)} - \theta^\top x^{(i)})^2}{2\sigma^2}\right) \end{aligned}$$<p>对数似然为：</p>
 $$\begin{aligned} \log L(\theta) &= \sum_{i=1}^{n}\left[\log\frac{1}{\sqrt{2\pi}\sigma} - \frac{(y^{(i)} - \theta^\top x^{(i)})^2}{2\sigma^2}\right] \\ &= n\log\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2}\sum_{i=1}^{n}(y^{(i)} - \theta^\top x^{(i)})^2 \end{aligned}$$<p>最大化 $\log L(\theta)$ 等价于最小化 $\sum_{i=1}^{n}(y^{(i)} - \theta^\top x^{(i)})^2$。</p>
@@ -499,6 +521,7 @@ $$\begin{aligned} \log r(x) &= -\frac{1}{2}x^\top\Sigma^{-1}x + x^\top\Sigma^{-1
 $$\theta = \Sigma^{-1}(\mu_1 - \mu_0), \quad \theta_0 = \frac{1}{2}(\mu_0^\top\Sigma^{-1}\mu_0 - \mu_1^\top\Sigma^{-1}\mu_1) + \log\frac{\phi}{1-\phi}$$<p>因此：</p>
 $$p(y=1|x) = \frac{1}{1+e^{-\theta^\top x - \theta_0}} = \frac{1}{1+e^{-\tilde{\theta}^\top \tilde{x}}}$$<p>这正是Logistic回归的形式（其中 $\tilde{x}$ 包含截距项）。</p>
 <hr>
+<h1 id="机器学习进阶20">机器学习进阶（20%）<a hidden class="anchor" aria-hidden="true" href="#机器学习进阶20">#</a></h1>
 <h2 id="第十题kernel-method分析">第十题：Kernel Method分析<a hidden class="anchor" aria-hidden="true" href="#第十题kernel-method分析">#</a></h2>
 <p><strong>题目：</strong> Kernel method中，若Kernel function $K(x,z) = (x^\top z + c)^2$，推导对应的feature mapping $\phi$，并讨论对于 $n$ 个样本一轮SGD，使用Kernel method和在feature map上的计算效率优化比。</p>
 <p>提示：</p>
@@ -715,6 +738,7 @@ $$ \text{Gain\_ratio}(\text{信贷}) = 0.233 $$<h3 id="总结信息增益比排�
 <p>这就是叶子节点的最优权重。将其代入损失函数，得到：</p>
 <p>$\tilde{\mathcal{L}}^{(t)} = -\frac{1}{2}\sum_{j=1}^{T}\frac{G_j^2}{H_j + \lambda} + \gamma T$</p>
 <p>这个公式用于评估树结构的质量，指导分裂决策。</p>
+<h1 id="语言模型--gpus40">语言模型 &amp; GPUs（40%）<a hidden class="anchor" aria-hidden="true" href="#语言模型--gpus40">#</a></h1>
 <h2 id="第十七题-kv-cache-计算">第十七题 KV Cache 计算<a hidden class="anchor" aria-hidden="true" href="#第十七题-kv-cache-计算">#</a></h2>
 <p><strong>题目：</strong> 假设我们要在一台服务器上对一个采用多头注意力（MHA）的 Transformer 模型进行推理。模型参数如下：隐藏层维度 $d = 4096$，层数 $L = 32$，注意力头数 $h = 32$，采用 FP16 半精度存储（每个元素占 2 Bytes）。</p>
 <ol>
@@ -942,6 +966,7 @@ $$\text{OI}_{\text{BF16}} = \frac{312 \text{ TFLOPS}}{2 \text{ TB/s}} = \frac{31
 </ul>
 <p>这解释了为什么使用 TensorCore 进行矩阵乘法（OI 通常为 $O(N)$，其中 $N$ 是矩阵维度）更容易达到计算瓶颈，而 LayerNorm/RMSNorm（OI ≈ 1）始终是 Memory-bounded。</p>
 <hr>
+<h1 id="强化学习--agents1010">强化学习 &amp; Agents（10%+10）<a hidden class="anchor" aria-hidden="true" href="#强化学习--agents1010">#</a></h1>
 <h2 id="第二十五题-ε-greedy-多臂老虎机问题">第二十五题 ε-greedy 多臂老虎机问题<a hidden class="anchor" aria-hidden="true" href="#第二十五题-ε-greedy-多臂老虎机问题">#</a></h2>
 <p><strong>题目：</strong> 考虑一多臂老虎机问题（K=10），3 个 ε-greedy 策略下每一时刻可以获得的平均 reward 下图所示。已知该问题中随机以及最有策略下可获得 reward 的期望分别为 1 与 1.55，则：</p>
 <ol>
@@ -1064,7 +1089,7 @@ $$Q(B, a) = 5 + 0.9 \times 19.4 = 22.46$$<p>所有动作等价。</p>
 <li><strong>第5行（顶部）</strong>：向 B&rsquo; 或向左</li>
 </ul>
 <p>具体每个格子的最优动作需要根据其邻居的 value 值计算得出，选择使 $r + \gamma v(s')$ 最大的方向。</p>
-<h2 id="第二十八题-ai-agent-特性解释"><u>第二十八题 AI Agent 特性解释</u><a hidden class="anchor" aria-hidden="true" href="#第二十八题-ai-agent-特性解释">#</a></h2>
+<h2 id="第二十八题-ai-agent-特性解释-附加题-10分"><u>第二十八题 AI Agent 特性解释</u> （附加题 10分）<a hidden class="anchor" aria-hidden="true" href="#第二十八题-ai-agent-特性解释-附加题-10分">#</a></h2>
 <p><strong>题目：</strong> AI Agent 是一类能够感知环境、自主决策并采取行动以实现特定目标的智能系统，并具备自主性、反应性、主动性、社会性以及进化性。请选择其中 3 种性质进行解释，并分别举例一种代表性技术（正式发表于 NeurIPS、ICLR、ICML）介绍其原理。（该题必考）</p>
 <p>解：</p>
 <h3 id="1-自主性-autonomy">1. 自主性 (Autonomy)<a hidden class="anchor" aria-hidden="true" href="#1-自主性-autonomy">#</a></h3>
