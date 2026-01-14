@@ -541,10 +541,6 @@ $\alpha_2^{\text{new, unc}} = \alpha_2^{\text{old}} + \frac{y^{(2)}(E_1 - E_2)}{
 
 $\alpha_2^{\text{new}} = \begin{cases} H & \text{if } \alpha_2^{\text{new, unc}} > H \\ \alpha_2^{\text{new, unc}} & \text{if } L \leq \alpha_2^{\text{new, unc}} \leq H \\ L & \text{if } \alpha_2^{\text{new, unc}} < L \end{cases}$
 
-然后通过约束更新 $\alpha_1$：
-
-$\alpha_1^{\text{new}} = \alpha_1^{\text{old}} + y^{(1)}y^{(2)}(\alpha_2^{\text{old}} - \alpha_2^{\text{new}})$
-
 ------
 
 ## 第十五题：信息增益比计算
@@ -931,39 +927,37 @@ $$o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right)W_O^k = \sum_{j=0}
 
 注意：可用 Non-Linearity-Map 算子表示 element-wise gating 机制，即 $$Y' = Y \odot \sigma(XW_\theta) = \text{Non-Linearity-Map}(Y)$$
 
-**解：**
+**解答：**
 
-根据图示，Gated Attention 在不同位置应用门控机制：
+你说得对！我理解了，题目要求使用 Non-Linearity-Map 算子来简洁地表示门控机制，而不需要展开 $\odot \sigma(XW_\theta)$ 的具体形式。让我重新写：
 
-**G1（Most Effective）：在 Concat 之后应用门控**
+## 第二十题 Gated Attention 的 Output 计算
 
-在多头注意力拼接后、Dense Layer 之前对聚合表示进行门控：
+**解答：**
 
-$$H_i = \sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k$$
+**G1：在聚合后的结果上进行门控（Post-Aggregation Gating）**
 
-$$o_i^k = \left[H_i \odot \sigma(H_i W_{g1})\right] W_O^k$$
+首先计算标准的注意力聚合结果： $$ H_i^k = \sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k $$
 
-**作用**：对整体的注意力输出进行调制，控制信息流向后续层。
+对聚合结果应用门控后再进行输出投影： 
+$$
+o_i^k = \text{Non-Linearity-Map}(H_i^k) \cdot W_O^k = \text{Non-Linearity-Map}\left(\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right) W_O^k
+$$
+**G2：在Value上进行门控（Value Gating）**
 
-**G2：在 Value Layer 输出上应用门控**
+对每个位置的Value表示先应用门控，再进行注意力聚合：
+$$
+o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot \text{Non-Linearity-Map}(X_j W_V^k)\right) W_O^k
+$$
+**G3：在Query上进行门控（Query Gating）**
 
-对每个位置的 Value 表示单独进行门控：
+对Query表示应用门控，影响注意力权重的计算： $$ \tilde{Q}_i^k = \text{Non-Linearity-Map}(X_i W_Q^k) $$
 
-$$o_i^k = \sum_{j=0}^{i} S_{ij}^k \cdot \left[X_j W_V^k \odot \sigma(X_j W_{g2})\right] W_O^k$$
+注意力权重为： $$ S_{ij}^k = \text{softmax}_j\left(\frac{\tilde{Q}_i^k \cdot (X_j W_K^k)^T}{\sqrt{d_k}}\right) $$
 
-**作用**：选择性地保留或抑制不同位置的 Value 信息。
+最终输出为： $$ o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right) W_O^k $$
 
-**G3：在 Key Layer 上应用门控**
-
-对 Key 进行门控，影响注意力权重的计算：
-
-$$\tilde{K}_j = X_j W_K^k \odot \sigma(X_j W_{g3})$$
-
-$$S_{ij}^k = \text{softmax}_j\left(\frac{Q_i \tilde{K}_j^\top}{\sqrt{d_k}}\right)$$
-
-$$o_i^k = \sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k \cdot W_O^k$$
-
-**作用**：调制注意力分布，控制哪些位置应该被关注。
+其中 $S_{ij}^k$ 依赖于门控后的Query。
 
 ------
 
