@@ -577,22 +577,17 @@ $\alpha_1^{\text{new}} = \alpha_1^{\text{old}} + y^{(1)}y^{(2)}(\alpha_2^{\text{
   $$H(D_3) = -\frac{1}{5}\log_2\frac{1}{5} - \frac{4}{5}\log_2\frac{4}{5} = 0.722$$
 
 **条件熵**
+
 - **公式：**
   $$H(D|\text{年龄}) = \sum_{i=1}^{3} \frac{|D_i|}{|D|} H(D_i)$$
-- **计算：**
+  
+- **计算：** 
   $$
-  \begin{aligned}
-  H(D\mid\text{年龄})
-  &= \frac{5}{15} \times 0.971
-   + \frac{5}{15} \times 0.971
-   + \frac{5}{15} \times 0.722 \\[4pt]
-  &= \frac{1}{3}(0.971 + 0.971 + 0.722) \\[4pt]
-  &= \frac{2.664}{3} \\[4pt]
-  &= 0.888
-  \end{aligned}
+  H(D \mid \text{年龄}) = \frac{5}{15}\times 0.971 + \frac{5}{15}\times 0.971 + \frac{5}{15}\times 0.722 = \frac{1}{3}(0.971 + 0.971 + 0.722) = \frac{2.664}{3} = 0.888
   $$
 
 **信息增益**
+
 - **公式：**
   $$\text{Gain}(\text{年龄}) = H(D) - H(D|\text{年龄})$$
 - **计算：**

@@ -585,140 +585,6 @@ $$ \text{s.t.} \quad y^{(i)}(w^\top x^{(i)} + b) \geq 1, \quad i=1,\ldots,n $$<p
 <hr>
 <h2 id="第十五题信息增益比计算">第十五题：信息增益比计算<a hidden class="anchor" aria-hidden="true" href="#第十五题信息增益比计算">#</a></h2>
 <p><strong>题目：</strong> 计算给定数据集中四个特征的信息增益比。可保留log项，统一底数为2。</p>
-<table>
-  <thead>
-      <tr>
-          <th>ID</th>
-          <th>年龄</th>
-          <th>有工作</th>
-          <th>有房</th>
-          <th>信贷</th>
-          <th>类别</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>青年</td>
-          <td>否</td>
-          <td>否</td>
-          <td>一般</td>
-          <td>否</td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>青年</td>
-          <td>否</td>
-          <td>否</td>
-          <td>好</td>
-          <td>否</td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>青年</td>
-          <td>是</td>
-          <td>否</td>
-          <td>好</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>青年</td>
-          <td>是</td>
-          <td>是</td>
-          <td>一般</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>5</td>
-          <td>青年</td>
-          <td>否</td>
-          <td>否</td>
-          <td>一般</td>
-          <td>否</td>
-      </tr>
-      <tr>
-          <td>6</td>
-          <td>中年</td>
-          <td>否</td>
-          <td>否</td>
-          <td>一般</td>
-          <td>否</td>
-      </tr>
-      <tr>
-          <td>7</td>
-          <td>中年</td>
-          <td>否</td>
-          <td>否</td>
-          <td>好</td>
-          <td>否</td>
-      </tr>
-      <tr>
-          <td>8</td>
-          <td>中年</td>
-          <td>是</td>
-          <td>是</td>
-          <td>好</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>9</td>
-          <td>中年</td>
-          <td>否</td>
-          <td>是</td>
-          <td>非常好</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>10</td>
-          <td>中年</td>
-          <td>否</td>
-          <td>是</td>
-          <td>非常好</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>11</td>
-          <td>老年</td>
-          <td>否</td>
-          <td>是</td>
-          <td>非常好</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>12</td>
-          <td>老年</td>
-          <td>否</td>
-          <td>是</td>
-          <td>好</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>13</td>
-          <td>老年</td>
-          <td>是</td>
-          <td>否</td>
-          <td>好</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>14</td>
-          <td>老年</td>
-          <td>是</td>
-          <td>否</td>
-          <td>非常好</td>
-          <td>是</td>
-      </tr>
-      <tr>
-          <td>15</td>
-          <td>老年</td>
-          <td>否</td>
-          <td>否</td>
-          <td>一般</td>
-          <td>否</td>
-      </tr>
-  </tbody>
-</table>
 <p><a href="https://postimg.cc/N9Bhq9Cf"><img alt="image.png" loading="lazy" src="https://i.postimg.cc/Px8dD1mZ/image.png"></a></p>
 <p><strong>数据集的熵 H(D)</strong></p>
 <ul>
@@ -749,23 +615,16 @@ $$H(D_3) = -\frac{1}{5}\log_2\frac{1}{5} - \frac{4}{5}\log_2\frac{4}{5} = 0.722$
 </ul>
 <p><strong>条件熵</strong></p>
 <ul>
-<li><strong>公式：</strong>
+<li>
+<p><strong>公式：</strong>
+</p>
 $$H(D|\text{年龄}) = \sum_{i=1}^{3} \frac{|D_i|}{|D|} H(D_i)$$</li>
-<li><strong>计算：</strong>
+<li>
+<p><strong>计算：</strong>
+</p>
 $$
-\begin{aligned}
-H(D\mid\text{年龄})
-&amp;= \frac{5}{15} \times 0.971
-<ul>
-<li>\frac{5}{15} \times 0.971</li>
-<li>\frac{5}{15} \times 0.722 \[4pt]
-&amp;= \frac{1}{3}(0.971 + 0.971 + 0.722) \[4pt]
-&amp;= \frac{2.664}{3} \[4pt]
-&amp;= 0.888
-\end{aligned}
-$$</li>
-</ul>
-</li>
+  H(D \mid \text{年龄}) = \frac{5}{15}\times 0.971 + \frac{5}{15}\times 0.971 + \frac{5}{15}\times 0.722 = \frac{1}{3}(0.971 + 0.971 + 0.722) = \frac{2.664}{3} = 0.888
+  $$</li>
 </ul>
 <p><strong>信息增益</strong></p>
 <ul>
