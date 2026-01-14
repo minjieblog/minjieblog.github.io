@@ -1059,9 +1059,9 @@ $$\text{SwiGLU}(x) = \text{Swish}(xW_1) \odot (xW_2)$$
 
 1. 计算均值：$\mu = \frac{1}{d}\sum_{i=1}^d x_i$ → $d$ 次加法，1 次除法 ≈ $d$ FLOPs
 2. 计算方差：$\sigma^2 = \frac{1}{d}\sum_{i=1}^d (x_i - \mu)^2$ → $d$ 次减法，$d$ 次乘法，$d$ 次加法，1 次除法 ≈ $3d$ FLOPs
-3. 归一化和缩放：$y_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma_i + \beta_i$ → $d$ 次减法，$d$ 次除法，$d$ 次乘法，$d$ 次加法 ≈ $4d$ FLOPs
+3. 归一化和缩放：$y_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma_i + \beta_i$ →$d$ 次除法，$d$ 次乘法，$d$ 次加法 ≈ $3d$ FLOPs
 
-**总计算量：** $8d$ FLOPs
+**总计算量：** $7d$ FLOPs
 
 **数据移动：**
 
@@ -1070,7 +1070,7 @@ $$\text{SwiGLU}(x) = \text{Swish}(xW_1) \odot (xW_2)$$
 - 写入 $y$：$d \times 2$ bytes
 - 总计：$8d$ bytes
 
-**Operation Intensity：** $$\text{OI}_{\text{LN}} = \frac{8d}{8d} = 1 \text{ FLOP/Byte}$$
+**Operation Intensity：** $$\text{OI}_{\text{LN}} = \frac{7d}{8d} = 0.875 \text{ FLOP/Byte}$$
 
 ### RMSNorm
 
@@ -1092,7 +1092,7 @@ $$\text{SwiGLU}(x) = \text{Swish}(xW_1) \odot (xW_2)$$
 
 ### 对比
 
-LayerNorm 的 OI 为 1 FLOP/Byte，RMSNorm 的 OI 为 2/3 FLOP/Byte。两者都很低，属于 **Memory-bounded** 操作。RMSNorm 虽然计算量更少，但由于数据移动占主导，实际加速效果有限。
+LayerNorm 的 OI 为 0.875 FLOP/Byte，RMSNorm 的 OI 为 2/3 FLOP/Byte。两者都很低，属于 **Memory-bounded** 操作。RMSNorm 虽然计算量更少，但由于数据移动占主导，实际加速效果有限。
 
 ------
 
@@ -1285,6 +1285,7 @@ $$
 $$
 
 **说明**：
+
 - $\rightarrow, \downarrow, \uparrow, \leftarrow$ 表示最优行动方向
 - $A$：触发特殊转移到 $A'$（+10奖励）
 - $B$：触发特殊转移到 $B'$（+5奖励）
@@ -1337,7 +1338,7 @@ $$
 **代表性技术：Reflexion**
 
 - **会议：NeurIPS 2023**
-- **论文：**Reflexion: Language Agents with Verbal Reinforcement Learning (Shinn et al.)
+- **论文**  Reflexion: Language Agents with Verbal Reinforcement Learning (Shinn et al.)
 
 **核心原理**
  Reflexion 引入了语言化的自我反思机制，使 Agent 能够从试错中快速学习：
@@ -1371,7 +1372,7 @@ AI Agent 能够与其他 Agent 进行协作、竞争或沟通，在多智能体�
 **代表性技术：QMIX**
 
 - **会议：** ICML 2018
-- **论文：** Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (Rashid et al.)
+- **论文**  Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (Rashid et al.)
 
 **核心原理**
 
