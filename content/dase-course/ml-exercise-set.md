@@ -713,7 +713,7 @@ $\alpha_1^{\text{new}} = \alpha_1^{\text{old}} + y^{(1)}y^{(2)}(\alpha_2^{\text{
 
 **信息增益比**
 - **计算：**
-  $$\text{Gain\_ratio}(\text{信贷}) = \frac{0.363}{1.577} = 0.230$$
+  $$\text{Gain\_ratio}(\text{信贷}) = \frac{0.363}{1.577} = 0.232$$
 
 **结论：有自己的房子的信息增益比最大(0.433)，应优先选择该特征进行分裂。**
 
@@ -755,12 +755,14 @@ $\tilde{\mathcal{L}}^{(t)} = \sum_{i=1}^{n}[g_i f_t(x_i) + \frac{1}{2}h_i f_t(x_
 
 将样本按叶子节点分组：
 
-$\tilde{\mathcal{L}}^{(t)} = \sum_{j=1}^{T}\left[\left(\sum_{i \in \mathcal{I}*j}g_i\right)w_j + \frac{1}{2}\left(\sum*{i \in \mathcal{I}_j}h_i + \lambda\right)w_j^2\right] + \gamma T$
-
+$$
+\tilde{\mathcal{L}}^{(t)} = \sum_{j=1}^{T}\left[\left(\sum_{i \in \mathcal{I}*j}g_i\right)w_j + \frac{1}{2}\left(\sum*{i \in \mathcal{I}_j}h_i + \lambda\right)w_j^2\right] + \gamma T
+$$
 记 $G_j = \sum_{i \in \mathcal{I}*j}g_i$，$H_j = \sum*{i \in \mathcal{I}_j}h_i$，则：
 
-$\tilde{\mathcal{L}}^{(t)} = \sum_{j=1}^{T}\left[G_j w_j + \frac{1}{2}(H_j + \lambda)w_j^2\right] + \gamma T$
-
+$$
+\tilde{\mathcal{L}}^{(t)} = \sum_{j=1}^{T}\left[G_j w_j + \frac{1}{2}(H_j + \lambda)w_j^2\right] + \gamma T
+$$
 对 $w_j$ 求导并令其为0：
 
 $\frac{\partial \tilde{\mathcal{L}}^{(t)}}{\partial w_j} = G_j + (H_j + \lambda)w_j = 0$
@@ -869,8 +871,6 @@ Pre-norm 将 LayerNorm 应用在 Sublayer 之前：
 $$
 x_{l+1} = x_l + \text{Sublayer}(y_l)
 $$
-是的，**有必要讨论到 L 层**。这样能更清楚地展示梯度消失/爆炸的累积效应。修改如下：
-
 **2. 梯度分析**
 
 **Post-norm 的梯度：**
@@ -1068,21 +1068,21 @@ $$\text{SwiGLU}(x, W_1, W_2, W_3) = (\text{Swish}(xW_1) \odot xW_2) W_3$$
 
 **1. repeat=16 时**
 
-计算量减半： $$T_{\text{comp}}^{(16)} = \frac{1}{2} T_{\text{comp}}$$
+计算量减半： $T_{\text{comp}}^{(16)} = \frac{1}{2} T_{\text{comp}}$
 
-数据移动量不变（输入输出大小固定）： $$T_{\text{move}}^{(16)} = T_{\text{move}}$$
+数据移动量不变（输入输出大小固定）： $T_{\text{move}}^{(16)} = T_{\text{move}}$
 
-总时间： $$T_{\text{total}}^{(16)} = T_{\text{move}}^{(16)} + T_{\text{comp}}^{(16)} = T_{\text{move}} + \frac{1}{2}T_{\text{comp}} = \frac{3}{2}T_{\text{move}}$$
+总时间： $T_{\text{total}}^{(16)} = T_{\text{move}}^{(16)} + T_{\text{comp}}^{(16)} = T_{\text{move}} + \frac{1}{2}T_{\text{comp}} = \frac{3}{2}T_{\text{move}}$
 
 由于 $T_{\text{move}}^{(16)} > T_{\text{comp}}^{(16)}$，GPU 处于 **Memory-bounded**。
 
 **2. repeat=64 时**
 
-计算量翻倍： $$T_{\text{comp}}^{(64)} = 2T_{\text{comp}}$$
+计算量翻倍： $T_{\text{comp}}^{(64)} = 2T_{\text{comp}}$
 
-数据移动量不变： $$T_{\text{move}}^{(64)} = T_{\text{move}}$$
+数据移动量不变： $T_{\text{move}}^{(64)} = T_{\text{move}}$
 
-总时间： $$T_{\text{total}}^{(64)} = T_{\text{move}}^{(64)} + T_{\text{comp}}^{(64)} = T_{\text{move}} + 2T_{\text{comp}} = 3T_{\text{move}}$$
+总时间： $T_{\text{total}}^{(64)} = T_{\text{move}}^{(64)} + T_{\text{comp}}^{(64)} = T_{\text{move}} + 2T_{\text{comp}} = 3T_{\text{move}}$
 
 由于 $T_{\text{comp}}^{(64)} > T_{\text{move}}^{(64)}$，GPU 处于 **Compute-bounded**。
 
@@ -1349,7 +1349,7 @@ $$
 **代表性技术：ReAct**
 
 - **会议：ICLR 2023**
-- **论文：**ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)
+- **论文**  ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)
 
 **核心原理**
  ReAct 框架通过将推理（Reasoning）和行动（Acting）相结合，使语言模型能够以交替方式生成推理轨迹和任务特定的行动序列：
