@@ -767,13 +767,9 @@ $\frac{\partial \tilde{\mathcal{L}}^{(t)}}{\partial w_j} = G_j + (H_j + \lambda)
 
 解得：
 
-$w_j^* = -\frac{G_j}{H_j + \lambda} = -\frac{\sum_{i \in \mathcal{I}*j}g_i}{\sum*{i \in \mathcal{I}_j}h_i + \lambda}$
-
-这就是叶子节点的最优权重。将其代入损失函数，得到：
-
-$\tilde{\mathcal{L}}^{(t)} = -\frac{1}{2}\sum_{j=1}^{T}\frac{G_j^2}{H_j + \lambda} + \gamma T$
-
-这个公式用于评估树结构的质量，指导分裂决策。
+$$
+w_j^* = -\frac{G_j}{H_j + \lambda} = -\frac{\sum_{i \in \mathcal{I}*j}g_i}{\sum*{i \in \mathcal{I}_j}h_i + \lambda}
+$$
 
 # 语言模型 & GPUs（40%）
 
@@ -1278,12 +1274,13 @@ $$
 **最优策略**
 
 $$
-\pi_* = \begin{bmatrix}
+\pi_* = 
+\begin{bmatrix}
 \rightarrow & A & \leftarrow & B & \leftarrow \\
-\uparrow & \uparrow & \uparrow & \uparrow & \leftarrow \\
-\uparrow & \uparrow & \uparrow & \uparrow & \uparrow \\
-\uparrow & \uparrow & \uparrow & \uparrow & \uparrow \\
-\uparrow & \uparrow & \uparrow & \uparrow & \uparrow
+\uparrow/\rightarrow & \uparrow & \uparrow/\leftarrow & \leftarrow & \leftarrow \\
+\uparrow/\rightarrow & \uparrow & \uparrow/\leftarrow & \uparrow/\leftarrow & \uparrow/\leftarrow \\
+\uparrow/\rightarrow & \uparrow & \uparrow/\leftarrow & \uparrow/\leftarrow & \uparrow/\leftarrow \\
+\uparrow/\rightarrow & \uparrow & \uparrow/\leftarrow & \uparrow/\leftarrow & \uparrow/\leftarrow
 \end{bmatrix}
 $$
 
