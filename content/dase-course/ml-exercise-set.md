@@ -816,17 +816,16 @@ $$\begin{aligned} \text{总存储} &= B \times N \times 2 \times L \times d \tim
 
 **解：**
 
-**1. 证明点积仅与相对位置相关**
+**1. RoPE 点积仅与相对位置相关的证明**
 
 RoPE 通过旋转矩阵将位置信息编码。对于二维情况，旋转矩阵为：
 
-$$R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \ \sin\theta & \cos\theta \end{pmatrix}$$
+$$R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$$
 
-对于位置 $m$ 和 $n$，变换后的向量为：
-
-$$\tilde{q}*m = R*{m\theta} q_m, \quad \tilde{k}*n = R*{n\theta} k_n$$
+对于位置 $m$ 和 $n$，变换后的向量为：$$\tilde{q}_m = R_{m\theta} q_m, \quad \tilde{k}_n = R_{n\theta} k_n$$
 
 它们的点积为：
+
 $$
 \begin{aligned}
 \tilde{q}_m^\top \tilde{k}_n
@@ -835,9 +834,8 @@ $$
 &= q_m^\top R_{(n-m)\theta} k_n
 \end{aligned}
 $$
-由于旋转矩阵满足 $R_\alpha^\top R_\beta = R_{\beta - \alpha}$，因此点积仅依赖于相对位置 $m - n$。
 
-更高维度的情况下，RoPE 将向量分成多个二维子空间，每个子空间独立应用旋转，结论同样成立。
+因此变换后的向量 $\tilde{q}_m$ 和 $\tilde{k}_n$ 的点积仅和 $q_m$、$k_n$ 及相对位置 $m - n$ 相关
 
 **2. RoPE 对哪些向量注入位置信息**
 
@@ -851,7 +849,13 @@ RoPE 仅对 **Query (q) 和 Key (k)** 向量注入位置信息，**不对 Value 
 
 **题目：** 对于 Transformer Block 的 Post-norm 有：
 
-$$x_{l+1} = x_l + \text{Sublayer}(x_l)$$ $$y_{l+1} = \text{LN}(x_{l+1})$$
+$$
+x_{l+1} = x_l + \text{Sublayer}(x_l)
+$$
+
+$$
+y_{l+1} = \text{LN}(x_{l+1})
+$$
 
 1. 请相应给出 Pre-norm 的计算公式；
 2. 结合梯度分析证明 Post-norm 相比 Pre-norm 更易出现梯度消失或放大，并指出其中的梯度恒等映射通路。
@@ -862,35 +866,56 @@ $$x_{l+1} = x_l + \text{Sublayer}(x_l)$$ $$y_{l+1} = \text{LN}(x_{l+1})$$
 
 Pre-norm 将 LayerNorm 应用在 Sublayer 之前：
 
-$$y_l = \text{LN}(x_l)$$ $$x_{l+1} = x_l + \text{Sublayer}(y_l)$$
+$$
+x_{l+1} = x_l + \text{Sublayer}(y_l)
+$$
+是的，**有必要讨论到 L 层**。这样能更清楚地展示梯度消失/爆炸的累积效应。修改如下：
 
 **2. 梯度分析**
 
 **Post-norm 的梯度：**
 
-对于 Post-norm：$y_{l+1} = \text{LN}(x_l + \text{Sublayer}(x_l))$
+对于 Post-norm：$x_{l+1} = \text{LN}(x_l + \text{Sublayer}(x_l))$
 
-反向传播时：
+反向传播时： $$\frac{\partial \mathcal{L}}{\partial x_l} = \frac{\partial \mathcal{L}}{\partial x_{l+1}} \cdot \frac{\partial \text{LN}}{\partial (x_l + \text{Sublayer}(x_l))} \cdot \left(I + \frac{\partial \text{Sublayer}}{\partial x_l}\right)$$
 
-$$\frac{\partial \mathcal{L}}{\partial x_l} = \frac{\partial \mathcal{L}}{\partial y_{l+1}} \cdot \frac{\partial \text{LN}}{\partial x_{l+1}} \cdot \left(I + \frac{\partial \text{Sublayer}}{\partial x_l}\right)$$
+**多层传播**：从第 $L$ 层到第 0 层： $$\frac{\partial \mathcal{L}}{\partial x_0} = \frac{\partial \mathcal{L}}{\partial x_L} \prod_{l=0}^{L-1} \left[\frac{\partial \text{LN}}{\partial (\cdot)} \cdot \left(I + \frac{\partial \text{Sublayer}_l}{\partial x_l}\right)\right]$$
 
-由于 LayerNorm 的导数和 Sublayer 的导数都可能较大或较小，梯度容易累积放大或缩小，导致梯度爆炸或消失。
+由于需要经过 $L$ 个 LayerNorm 的导数**连乘**：
+
+- 若 $\left|\frac{\partial \text{LN}}{\partial (\cdot)}\right| < 1$，梯度**指数级衰减**（梯度消失）
+- 若 $\left|\frac{\partial \text{LN}}{\partial (\cdot)}\right| > 1$，梯度**指数级放大**（梯度爆炸）
+
+------
 
 **Pre-norm 的梯度：**
 
 对于 Pre-norm：$x_{l+1} = x_l + \text{Sublayer}(\text{LN}(x_l))$
 
-反向传播时：
+反向传播时： $$\frac{\partial \mathcal{L}}{\partial x_l} = \frac{\partial \mathcal{L}}{\partial x_{l+1}} \cdot \left(I + \frac{\partial \text{Sublayer}(\text{LN}(x_l))}{\partial x_l}\right)$$
 
-$$\frac{\partial \mathcal{L}}{\partial x_l} = \frac{\partial \mathcal{L}}{\partial x_{l+1}} \cdot \left(I + \frac{\partial \text{Sublayer}}{\partial y_l} \cdot \frac{\partial \text{LN}}{\partial x_l}\right)$$
+**多层传播**：从第 $L$ 层到第 0 层： $$\frac{\partial \mathcal{L}}{\partial x_0} = \frac{\partial \mathcal{L}}{\partial x_L} \prod_{l=0}^{L-1} \left(I + \frac{\partial \text{Sublayer}_l(\text{LN}(x_l))}{\partial x_l}\right)$$
 
-**梯度恒等映射通路：** $\frac{\partial x_{l+1}}{\partial x_l}$ 包含恒等项 $I$，即：
+展开后包含恒等路径： $$\frac{\partial \mathcal{L}}{\partial x_0} = \frac{\partial \mathcal{L}}{\partial x_L} + \text{其他梯度项}$$
 
-$$\frac{\partial x_{l+1}}{\partial x_l} = I + \frac{\partial \text{Sublayer}}{\partial y_l} \cdot \frac{\partial \text{LN}}{\partial x_l}$$
+**关键**：$\frac{\partial \mathcal{L}}{\partial x_L}$ 可以**直接传播**到 $x_0$，不受层数 $L$ 影响。
 
-这个恒等项提供了一条直接的梯度传播路径，即使 Sublayer 的梯度很小，梯度仍能通过恒等映射传播，避免梯度消失。
+------
 
-**结论：** Pre-norm 由于存在梯度恒等映射通路（residual connection 在 LayerNorm 之后），梯度更稳定；Post-norm 的梯度需要先经过 LayerNorm，更容易出现梯度消失或放大。
+**梯度恒等映射通路：**
+
+$\frac{\partial x_{l+1}}{\partial x_l}$ 包含恒等项 $I$，即： $$\frac{\partial x_{l+1}}{\partial x_l} = I + \frac{\partial \text{Sublayer}(\text{LN}(x_l))}{\partial x_l}$$
+
+这个恒等项提供了一条**直接的梯度传播路径**： $$x_0 \xleftarrow{I} x_1 \xleftarrow{I} \cdots \xleftarrow{I} x_L$$
+
+即使 Sublayer 的梯度很小，梯度仍能通过恒等映射传播，**避免梯度消失**。
+
+------
+
+**结论：**
+
+- **Post-norm**：梯度需经过 $L$ 个 LayerNorm 导数连乘，容易出现梯度消失或爆炸，且**无恒等映射通路**
+- **Pre-norm**：存在梯度恒等映射通路（残差连接在 LayerNorm 之外），梯度可直接传播，训练更稳定
 
 ------
 
@@ -910,19 +935,35 @@ $$o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right)W_O^k = \sum_{j=0}
 
 根据图示，Gated Attention 在不同位置应用门控机制：
 
-**G1（最有效）：** 在 Concat 之后、Dense Layer 之前应用门控
+**G1（Most Effective）：在 Concat 之后应用门控**
 
-$$o_i^k = \left[\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right] \odot \sigma(Z_i W_{g1}) \cdot W_O^k$$
+在多头注意力拼接后、Dense Layer 之前对聚合表示进行门控：
 
-其中 $Z_i$ 可以是 Query、Key 或其他输入特征。
+$$H_i = \sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k$$
 
-**G2：** 在 Value Layer 输出上应用门控
+$$o_i^k = \left[H_i \odot \sigma(H_i W_{g1})\right] W_O^k$$
+
+**作用**：对整体的注意力输出进行调制，控制信息流向后续层。
+
+**G2：在 Value Layer 输出上应用门控**
+
+对每个位置的 Value 表示单独进行门控：
 
 $$o_i^k = \sum_{j=0}^{i} S_{ij}^k \cdot \left[X_j W_V^k \odot \sigma(X_j W_{g2})\right] W_O^k$$
 
-**G3：** 在 Key Layer 上应用门控
+**作用**：选择性地保留或抑制不同位置的 Value 信息。
 
-$$\tilde{K}*j = X_j W_K^k \odot \sigma(X_j W*{g3})$$ $$S_{ij}^k = \text{softmax}\left(\frac{Q_i \tilde{K}*j^\top}{\sqrt{d_k}}\right)$$ $$o_i^k = \sum*{j=0}^{i} S_{ij}^k \cdot X_j W_V^k \cdot W_O^k$$
+**G3：在 Key Layer 上应用门控**
+
+对 Key 进行门控，影响注意力权重的计算：
+
+$$\tilde{K}_j = X_j W_K^k \odot \sigma(X_j W_{g3})$$
+
+$$S_{ij}^k = \text{softmax}_j\left(\frac{Q_i \tilde{K}_j^\top}{\sqrt{d_k}}\right)$$
+
+$$o_i^k = \sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k \cdot W_O^k$$
+
+**作用**：调制注意力分布，控制哪些位置应该被关注。
 
 ------
 
@@ -938,6 +979,8 @@ $$\tilde{K}*j = X_j W_K^k \odot \sigma(X_j W*{g3})$$ $$S_{ij}^k = \text{softmax}
 
 ![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMbaVkEaPxJiLSOOUpltJRujxULRC8AAmUMaxs22shWu9iZ7u-CKO8BAAMCAAN3AAM4BA.png)
 
+你的回答整体结构清晰、要点准确，但有一些细节可以改进：
+
 **解：**
 
 **1. RoPE（Rotary Position Embedding）**
@@ -945,58 +988,60 @@ $$\tilde{K}*j = X_j W_K^k \odot \sigma(X_j W*{g3})$$ $$S_{ij}^k = \text{softmax}
 **内容：** 旋转位置编码，通过旋转矩阵将位置信息注入 Query 和 Key 向量。
 
 **意义：**
-
-- 相对位置编码：attention score 仅依赖于相对位置 $m-n$
+- 相对位置编码：Query 和 Key 的点积仅依赖于相对位置 $m-n$，而非绝对位置
 - 外推性好：可以处理训练时未见过的序列长度
-- 计算高效：不需要额外的位置嵌入参数
+- 计算高效：通过旋转操作直接编码位置，无需额外的可学习位置嵌入参数
 
 **2. RMSNorm（Root Mean Square Normalization）**
 
 **内容：** 简化的 LayerNorm，公式为：
 
-$$y = \frac{x}{\sqrt{|x|_2^2 + \epsilon}} \cdot \gamma$$
+$$y = \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^{d} x_i^2 + \epsilon}} \cdot \gamma$$
 
-不计算均值，只进行缩放。
+不计算均值，只进行缩放归一化。
 
 **意义：**
-
-- 计算效率高：省去均值计算和减法操作
+- 计算效率高：省去均值计算和中心化操作
 - 参数更少：只需 scale 参数 $\gamma$，不需要 shift 参数 $\beta$
-- 性能相当：在实践中与 LayerNorm 效果相当
+- 性能相当：在实践中与 LayerNorm 效果相当或更好
 
 **3. GQA（Grouped Query Attention）**
 
-**内容：** 将多个 Query head 共享同一组 Key 和 Value head。
+**内容：** 将多个 Query head 分组共享同一组 Key 和 Value head。
+
+**对比**：
+- MHA：$n_h$ 个 Query，$n_h$ 对 KV
+- GQA：$n_h$ 个 Query，$n_g$ 对 KV（$n_g < n_h$）
+- MQA：$n_h$ 个 Query，$1$ 对 KV
 
 **意义：**
-
 - 减少 KV Cache：多个 Query 共享 KV，显著降低显存占用
 - 推理加速：减少 KV 读取的内存带宽需求
-- 折中方案：介于 MHA（每个 head 独立 KV）和 MQA（所有 head 共享 KV）之间
+- 性能折中：介于 MHA 和 MQA 之间，平衡质量与效率
 
 **4. MoE（Mixture of Experts）**
 
-**内容：** 使用路由器（Router）动态选择激活的专家（FFN），每个 token 只激活部分专家。
+**内容：** 使用路由器（Router/Gate）动态选择激活的专家（Expert FFN），每个 token 只激活 Top-K 个专家。
 
 **意义：**
-
-- 增加模型容量：总参数量大幅增加（20B 模型容量）
-- 计算效率：每次前向只激活少量参数（实际激活 3.6B）
-- 专业化：不同专家学习处理不同类型的输入
+- 增加模型容量：总参数量大幅增加（如 Mixtral 8x7B 有 47B 参数）
+- 稀疏激活：每个 token 只激活少量专家（如 Top-2），实际计算量接近小模型
+- 计算效率：在参数量增加的同时保持推理速度
+- 专业化：不同专家学习处理不同类型或领域的输入
 
 **5. SwiGLU（Swish-Gated Linear Unit）**
 
 **内容：** 激活函数，结合 Swish 激活和门控机制：
 
-$$\text{SwiGLU}(x) = \text{Swish}(xW_1) \odot (xW_2)$$
+$$\text{SwiGLU}(x, W_1, W_2, W_3) = (\text{Swish}(xW_1) \odot xW_2) W_3$$
 
 其中 $\text{Swish}(x) = x \cdot \sigma(x)$
 
 **意义：**
 
-- 性能提升：比标准 ReLU/GELU 效果更好
+- 性能提升：比标准 ReLU/GELU 在多数任务上效果更好
 - 门控机制：允许模型动态控制信息流
-- 平滑激活：Swish 的平滑特性有助于优化
+- 平滑激活：Swish 的平滑性有助于梯度优化
 
 ------
 
