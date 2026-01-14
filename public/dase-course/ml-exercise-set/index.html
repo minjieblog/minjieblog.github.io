@@ -242,7 +242,17 @@ code.has-jax {
                 <li>
                     <a href="#%e7%ac%ac%e5%8d%81%e5%9b%9b%e9%a2%98svm%e6%9c%80%e4%bc%98%e5%8c%96%e9%97%ae%e9%a2%98%e5%88%86%e6%9e%90" aria-label="第十四题：SVM最优化问题分析">第十四题：SVM最优化问题分析</a></li>
                 <li>
-                    <a href="#%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a%e6%af%94%e8%ae%a1%e7%ae%97" aria-label="第十五题：信息增益比计算">第十五题：信息增益比计算</a></li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a%e6%af%94%e8%ae%a1%e7%ae%97" aria-label="第十五题：信息增益比计算">第十五题：信息增益比计算</a><ul>
+                        
+                <li>
+                    <a href="#%e7%89%b9%e5%be%811%e5%b9%b4%e9%be%84" aria-label="特征1：年龄">特征1：年龄</a></li>
+                <li>
+                    <a href="#%e7%89%b9%e5%be%812%e6%9c%89%e5%b7%a5%e4%bd%9c" aria-label="特征2：有工作">特征2：有工作</a></li>
+                <li>
+                    <a href="#%e7%89%b9%e5%be%813%e6%9c%89%e8%87%aa%e5%b7%b1%e7%9a%84%e6%88%bf%e5%ad%90" aria-label="特征3：有自己的房子">特征3：有自己的房子</a></li>
+                <li>
+                    <a href="#%e7%89%b9%e5%be%814%e4%bf%a1%e8%b4%b7%e6%83%85%e5%86%b5" aria-label="特征4：信贷情况">特征4：信贷情况</a></li></ul>
+                </li>
                 <li>
                     <a href="#%e7%ac%ac%e5%8d%81%e5%85%ad%e9%a2%98xgboost%e6%8d%9f%e5%a4%b1%e5%87%bd%e6%95%b0%e4%ba%8c%e9%98%b6%e6%b3%b0%e5%8b%92%e5%b1%95%e5%bc%80" aria-label="第十六题：XGBoost损失函数二阶泰勒展开">第十六题：XGBoost损失函数二阶泰勒展开</a></li></ul>
                 </li>
@@ -575,52 +585,333 @@ $$ \text{s.t.} \quad y^{(i)}(w^\top x^{(i)} + b) \geq 1, \quad i=1,\ldots,n $$<p
 <hr>
 <h2 id="第十五题信息增益比计算">第十五题：信息增益比计算<a hidden class="anchor" aria-hidden="true" href="#第十五题信息增益比计算">#</a></h2>
 <p><strong>题目：</strong> 计算给定数据集中四个特征的信息增益比。可保留log项，统一底数为2。</p>
+<table>
+  <thead>
+      <tr>
+          <th>ID</th>
+          <th>年龄</th>
+          <th>有工作</th>
+          <th>有房</th>
+          <th>信贷</th>
+          <th>类别</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>青年</td>
+          <td>否</td>
+          <td>否</td>
+          <td>一般</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>青年</td>
+          <td>否</td>
+          <td>否</td>
+          <td>好</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>青年</td>
+          <td>是</td>
+          <td>否</td>
+          <td>好</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>青年</td>
+          <td>是</td>
+          <td>是</td>
+          <td>一般</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>青年</td>
+          <td>否</td>
+          <td>否</td>
+          <td>一般</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>中年</td>
+          <td>否</td>
+          <td>否</td>
+          <td>一般</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>中年</td>
+          <td>否</td>
+          <td>否</td>
+          <td>好</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>中年</td>
+          <td>是</td>
+          <td>是</td>
+          <td>好</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>中年</td>
+          <td>否</td>
+          <td>是</td>
+          <td>非常好</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td>中年</td>
+          <td>否</td>
+          <td>是</td>
+          <td>非常好</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>11</td>
+          <td>老年</td>
+          <td>否</td>
+          <td>是</td>
+          <td>非常好</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>12</td>
+          <td>老年</td>
+          <td>否</td>
+          <td>是</td>
+          <td>好</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>13</td>
+          <td>老年</td>
+          <td>是</td>
+          <td>否</td>
+          <td>好</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>14</td>
+          <td>老年</td>
+          <td>是</td>
+          <td>否</td>
+          <td>非常好</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>15</td>
+          <td>老年</td>
+          <td>否</td>
+          <td>否</td>
+          <td>一般</td>
+          <td>否</td>
+      </tr>
+  </tbody>
+</table>
 <p><a href="https://postimg.cc/N9Bhq9Cf"><img alt="image.png" loading="lazy" src="https://i.postimg.cc/Px8dD1mZ/image.png"></a></p>
-<p><strong>解：</strong></p>
-<p>首先计算数据集的熵。类别分布：否=6，是=9，总计15。</p>
-<p>$H(D) = -\frac{6}{15}\log_2\frac{6}{15} - \frac{9}{15}\log_2\frac{9}{15} = -0.4\log_2(0.4) - 0.6\log_2(0.6) = 0.971$</p>
-<p><strong>特征1：年龄</strong></p>
+<p><strong>数据集的熵 H(D)</strong></p>
 <ul>
-<li>青年(5个)：否=3，是=2，$H = 0.971$</li>
-<li>中年(5个)：否=1，是=4，$H = 0.722$</li>
-<li>老年(5个)：否=2，是=3，$H = 0.971$</li>
+<li>
+<p><strong>公式：</strong>
+</p>
+$$H(D) = -\sum_{k=1}^{K} \frac{|C_k|}{|D|} \log_2 \frac{|C_k|}{|D|}$$</li>
+<li>
+<p><strong>计算：</strong>
+</p>
+$$H(D) = -\frac{6}{15}\log_2\frac{6}{15} - \frac{9}{15}\log_2\frac{9}{15} = 0.971$$</li>
 </ul>
-<p>条件熵：</p>
-<p>$H(D|\text{年龄}) = \frac{5}{15}(0.971) + \frac{5}{15}(0.722) + \frac{5}{15}(0.971) = 0.888$</p>
-<p>信息增益：</p>
-<p>$\text{Gain}(\text{年龄}) = 0.971 - 0.888 = 0.083$</p>
-<p>特征熵（分裂信息）：</p>
-<p>$H_A(\text{年龄}) = -3 \times \frac{5}{15}\log_2\frac{5}{15} = \log_2 3 = 1.585$</p>
-<p>信息增益比：</p>
-$$ \text{Gain\_ratio}(\text{年龄}) = \frac{0.083}{1.585} = 0.052 $$<p><strong>特征2：有工作</strong></p>
+<h3 id="特征1年龄">特征1：年龄<a hidden class="anchor" aria-hidden="true" href="#特征1年龄">#</a></h3>
+<p><strong>数据分布：</strong></p>
 <ul>
-<li>否(8个)：否=4，是=4，$H = 1.0$</li>
-<li>是(7个)：否=2，是=5，$H = 0.863$</li>
+<li>青年(5个)：否=3，是=2</li>
+<li>中年(5个)：否=2，是=3</li>
+<li>老年(5个)：否=1，是=4</li>
 </ul>
-<p>条件熵：$H(D|\text{有工作}) = 0.936$</p>
-<p>信息增益：$\text{Gain}(\text{有工作}) = 0.035$</p>
-<p>特征熵：$H_A(\text{有工作}) = 0.997$</p>
-<p>信息增益比：</p>
-$$ \text{Gain\_ratio}(\text{有工作}) = 0.035 $$<p><strong>特征3：有自己的房子</strong></p>
+<p><strong>各子集的熵</strong></p>
 <ul>
-<li>否(9个)：否=3，是=6，$H = 0.918$</li>
-<li>是(6个)：否=3，是=3，$H = 1.0$</li>
+<li><strong>青年组熵：</strong>
+$$H(D_1) = -\frac{3}{5}\log_2\frac{3}{5} - \frac{2}{5}\log_2\frac{2}{5} = 0.971$$</li>
+<li><strong>中年组熵：</strong>
+$$H(D_2) = -\frac{2}{5}\log_2\frac{2}{5} - \frac{3}{5}\log_2\frac{3}{5} = 0.971$$</li>
+<li><strong>老年组熵：</strong>
+$$H(D_3) = -\frac{1}{5}\log_2\frac{1}{5} - \frac{4}{5}\log_2\frac{4}{5} = 0.722$$</li>
 </ul>
-<p>条件熵：$H(D|\text{有房}) = 0.951$</p>
-<p>信息增益：$\text{Gain}(\text{有房}) = 0.020$</p>
-<p>特征熵：$H_A(\text{有房}) = 0.971$</p>
-<p>信息增益比：</p>
-$$ \text{Gain\_ratio}(\text{有房}) = 0.021 $$<p><strong>特征4：信贷情况</strong></p>
+<p><strong>条件熵</strong></p>
 <ul>
-<li>一般(5个)：否=4，是=1，$H = 0.722$</li>
-<li>好(6个)：否=2，是=4，$H = 0.918$</li>
-<li>非常好(4个)：否=0，是=4，$H = 0$</li>
+<li><strong>公式：</strong>
+$$H(D|\text{年龄}) = \sum_{i=1}^{3} \frac{|D_i|}{|D|} H(D_i)$$</li>
+<li><strong>计算：</strong>
+$$
+\begin{aligned}
+H(D\mid\text{年龄})
+&amp;= \frac{5}{15} \times 0.971
+<ul>
+<li>\frac{5}{15} \times 0.971</li>
+<li>\frac{5}{15} \times 0.722 \[4pt]
+&amp;= \frac{1}{3}(0.971 + 0.971 + 0.722) \[4pt]
+&amp;= \frac{2.664}{3} \[4pt]
+&amp;= 0.888
+\end{aligned}
+$$</li>
 </ul>
-<p>条件熵：$H(D|\text{信贷}) = 0.608$</p>
-<p>信息增益：$\text{Gain}(\text{信贷}) = 0.363$</p>
-<p>特征熵：$H_A(\text{信贷}) = 1.557$</p>
-<p>信息增益比：</p>
-$$ \text{Gain\_ratio}(\text{信贷}) = 0.233 $$<hr>
+</li>
+</ul>
+<p><strong>信息增益</strong></p>
+<ul>
+<li><strong>公式：</strong>
+$$\text{Gain}(\text{年龄}) = H(D) - H(D|\text{年龄})$$</li>
+<li><strong>计算：</strong>
+$$\text{Gain}(\text{年龄}) = 0.971 - 0.888 = 0.083$$</li>
+</ul>
+<p><strong>特征熵（分裂信息）</strong></p>
+<ul>
+<li><strong>公式：</strong>
+$$H_A(\text{年龄}) = -\sum_{i=1}^{3} \frac{|D_i|}{|D|} \log_2 \frac{|D_i|}{|D|}$$</li>
+<li><strong>计算：</strong>
+$$H_A(\text{年龄}) = -3 \times \frac{5}{15}\log_2\frac{5}{15} = -3 \times \frac{1}{3}\log_2\frac{1}{3}= -\log_2\frac{1}{3} = \log_2 3 = 1.585$$</li>
+</ul>
+<p><strong>信息增益比</strong></p>
+<ul>
+<li><strong>公式：</strong>
+$$\text{Gain\_ratio}(\text{年龄}) = \frac{\text{Gain}(\text{年龄})}{H_A(\text{年龄})}$$</li>
+<li><strong>计算：</strong>
+$$\text{Gain\_ratio}(\text{年龄}) = \frac{0.083}{1.585} = 0.052$$</li>
+</ul>
+<h3 id="特征2有工作">特征2：有工作<a hidden class="anchor" aria-hidden="true" href="#特征2有工作">#</a></h3>
+<p><strong>数据分布：</strong></p>
+<ul>
+<li>否(10个)：否=6，是=4</li>
+<li>是(5个)：否=0，是=5</li>
+</ul>
+<p><strong>各子集的熵</strong></p>
+<ul>
+<li><strong>无工作组熵：</strong>
+$$H(D_1) = -\frac{6}{10}\log_2\frac{6}{10} - \frac{4}{10}\log_2\frac{4}{10} = 0.971$$</li>
+<li><strong>有工作组熵：</strong>
+$$H(D_2) = -\frac{0}{5}\log_2\frac{0}{5} - \frac{5}{5}\log_2\frac{5}{5} = 0$$</li>
+</ul>
+<p><strong>条件熵</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$
+  \begin{aligned}
+  H(D\mid\text{有工作})
+  &= \frac{10}{15} \times 0.971 + \frac{5}{15} \times 0 \\[4pt]
+  &= 0.647 + 0 \\[4pt]
+  &= 0.647
+  \end{aligned}
+  $$</li>
+</ul>
+<p><strong>信息增益</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain}(\text{有工作}) = 0.971 - 0.647 = 0.324$$</li>
+</ul>
+<p><strong>特征熵（分裂信息）</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$H_A(\text{有工作}) = -\frac{10}{15}\log_2\frac{10}{15} - \frac{5}{15}\log_2\frac{5}{15} = 0.918$$</li>
+</ul>
+<p><strong>信息增益比</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain\_ratio}(\text{有工作}) = \frac{0.324}{0.918} = 0.353$$</li>
+</ul>
+<h3 id="特征3有自己的房子">特征3：有自己的房子<a hidden class="anchor" aria-hidden="true" href="#特征3有自己的房子">#</a></h3>
+<p><strong>数据分布：</strong></p>
+<ul>
+<li>否(8个)：否=5，是=3</li>
+<li>是(7个)：否=1，是=6</li>
+</ul>
+<p><strong>各子集的熵</strong></p>
+<ul>
+<li><strong>无房组熵：</strong>
+$$H(D_1) = -\frac{5}{8}\log_2\frac{5}{8} - \frac{3}{8}\log_2\frac{3}{8} = 0.954$$</li>
+<li><strong>有房组熵：</strong>
+$$H(D_2) = -\frac{1}{7}\log_2\frac{1}{7} - \frac{6}{7}\log_2\frac{6}{7} = 0.592$$</li>
+</ul>
+<p><strong>条件熵</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$
+  \begin{aligned}
+  H(D\mid\text{有房})
+  &= \frac{8}{15} \times 0.954 + \frac{7}{15} \times 0.592 \\[4pt]
+  &= 0.509 + 0.276 \\[4pt]
+  &= 0.785
+  \end{aligned}
+  $$</li>
+</ul>
+<p><strong>信息增益</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain}(\text{有房}) = 0.971 - 0.785 = 0.186$$</li>
+</ul>
+<p><strong>特征熵（分裂信息）</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$H_A(\text{有房}) = -\frac{8}{15}\log_2\frac{8}{15} - \frac{7}{15}\log_2\frac{7}{15} = 0.997$$</li>
+</ul>
+<p><strong>信息增益比</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain\_ratio}(\text{有房}) = \frac{0.186}{0.997} = 0.187$$</li>
+</ul>
+<h3 id="特征4信贷情况">特征4：信贷情况<a hidden class="anchor" aria-hidden="true" href="#特征4信贷情况">#</a></h3>
+<p><strong>数据分布：</strong></p>
+<ul>
+<li>一般(5个)：否=4，是=1</li>
+<li>好(6个)：否=2，是=4</li>
+<li>非常好(4个)：否=0，是=4</li>
+</ul>
+<p><strong>各子集的熵</strong></p>
+<ul>
+<li><strong>一般组熵：</strong>
+$$H(D_1) = -\frac{4}{5}\log_2\frac{4}{5} - \frac{1}{5}\log_2\frac{1}{5} = 0.722$$</li>
+<li><strong>好组熵：</strong>
+$$H(D_2) = -\frac{2}{6}\log_2\frac{2}{6} - \frac{4}{6}\log_2\frac{4}{6} = 0.918$$</li>
+<li><strong>非常好组熵：</strong>
+$$H(D_3) = -\frac{0}{4}\log_2\frac{0}{4} - \frac{4}{4}\log_2\frac{4}{4} = 0$$</li>
+</ul>
+<p><strong>条件熵</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$
+  \begin{aligned}
+  H(D\mid\text{信贷})
+  &= \frac{5}{15} \times 0.722 + \frac{6}{15} \times 0.918 + \frac{4}{15} \times 0 \\[4pt]
+  &= 0.241 + 0.367 + 0 \\[4pt]
+  &= 0.608
+  \end{aligned}
+  $$</li>
+</ul>
+<p><strong>信息增益</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain}(\text{信贷}) = 0.971 - 0.608 = 0.363$$</li>
+</ul>
+<p><strong>特征熵（分裂信息）</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$H_A(\text{信贷}) = -\frac{5}{15}\log_2\frac{5}{15} - \frac{6}{15}\log_2\frac{6}{15} - \frac{4}{15}\log_2\frac{4}{15} = 1.577$$</li>
+</ul>
+<p><strong>信息增益比</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain\_ratio}(\text{信贷}) = \frac{0.363}{1.577} = 0.230$$</li>
+</ul>
+<p><strong>结论：有工作的信息增益比最大(0.353)，应优先选择该特征进行分裂。</strong></p>
 <h2 id="第十六题xgboost损失函数二阶泰勒展开">第十六题：XGBoost损失函数二阶泰勒展开<a hidden class="anchor" aria-hidden="true" href="#第十六题xgboost损失函数二阶泰勒展开">#</a></h2>
 <p><strong>题目：</strong> 已知XGBoost优化第t棵树时的损失函数为：</p>
 <p>$\mathcal{L}^{(t)} = \sum_{i=1}^{n}l(y_i, \hat{y}*i^{(t-1)} + f_t(x_i)) + \gamma T + \frac{1}{2}\lambda\sum*{j=1}^{T}w_j^2$</p>
