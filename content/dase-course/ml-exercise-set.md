@@ -388,11 +388,11 @@ $$\hat{\gamma}^{(i)} = y^{(i)}(w^\top x^{(i)} + b)$$
 
 几何间隔定义为：
 
-$\gamma^{(i)} = \frac{y^{(i)}(w^\top x^{(i)} + b)}{|w|} = \frac{\hat{\gamma}^{(i)}}{|w|}$
+$\gamma^{(i)} = \frac{y^{(i)}(w^\top x^{(i)} + b)}{\|w\|} = \frac{\hat{\gamma}^{(i)}}{\|w\|}$
 
 **关系：**
 
-$\gamma^{(i)} = \frac{\hat{\gamma}^{(i)}}{|w|}$
+$\gamma^{(i)} = \frac{\hat{\gamma}^{(i)}}{\|w\|}$
 
 几何间隔是函数间隔除以权重向量的范数，表示点到超平面的真实距离。
 
