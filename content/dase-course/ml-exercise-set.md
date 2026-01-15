@@ -945,15 +945,13 @@ $$
 $$
 o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot \text{Non-Linearity-Map}(X_j W_V^k)\right) W_O^k
 $$
-**G3：在Query上进行门控（Query Gating）**
+**G3：在Key上进行门控（Key Gating）**
 
-对Query表示应用门控，影响注意力权重的计算： $$ \tilde{Q}_i^k = \text{Non-Linearity-Map}(X_i W_Q^k) $$
+对Key表示应用门控，影响注意力权重的计算：
 
-注意力权重为： $$ S_{ij}^k = \text{softmax}_j\left(\frac{\tilde{Q}_i^k \cdot (X_j W_K^k)^T}{\sqrt{d_k}}\right) $$
+注意力权重为： $$ \tilde{S}_{ij}^k = \text{softmax}\left(\frac{Q_i^k \cdot (\text{Non-Linearity-Map} (X_j W_K^k))^T}{\sqrt{d_k}}\right) $$
 
-最终输出为： $$ o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right) W_O^k $$
-
-其中 $S_{ij}^k$ 依赖于门控后的Query。
+最终输出为： $$ o_i^k = \left(\sum_{j=0}^{i} \tilde{S}_{ij}^k \cdot X_j W_V^k\right) W_O^k $$
 
 ------
 
