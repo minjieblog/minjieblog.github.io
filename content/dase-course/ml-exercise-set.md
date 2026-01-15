@@ -929,8 +929,6 @@ $$o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right)W_O^k = \sum_{j=0}
 
 注意：可用 Non-Linearity-Map 算子表示 element-wise gating 机制，即 $$Y' = Y \odot \sigma(XW_\theta) = \text{Non-Linearity-Map}(Y)$$
 
-## 第二十题 Gated Attention 的 Output 计算
-
 **解答：**
 
 **G1：在聚合后的结果上进行门控（Post-Aggregation Gating）**
