@@ -969,7 +969,7 @@ $$
 
 **解：**
 
-**1. RoPE（Rotary Position Embedding）**
+**1. RoPE（Rotary Position Embedding，旋转位置编码）**
 
 **内容：** 旋转位置编码，通过旋转矩阵将位置信息注入 Query 和 Key 向量。
 
@@ -978,7 +978,7 @@ $$
 - 外推性好：可以处理训练时未见过的序列长度
 - 计算高效：通过旋转操作直接编码位置，无需额外的可学习位置嵌入参数
 
-**2. RMSNorm（Root Mean Square Normalization）**
+**2. RMSNorm（Root Mean Square Normalization，均方根归一化）**
 
 **内容：** 简化的 LayerNorm，公式为：
 
@@ -991,7 +991,7 @@ $$y = \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^{d} x_i^2 + \epsilon}} \cdot \gamma$$
 - 参数更少：只需 scale 参数 $\gamma$，不需要 shift 参数 $\beta$
 - 性能相当：在实践中与 LayerNorm 效果相当或更好
 
-**3. GQA（Grouped Query Attention）**
+**3. GQA（Grouped Query Attention，分组查询注意力）**
 
 **内容：** 将多个 Query head 分组共享同一组 Key 和 Value head。
 
@@ -1005,7 +1005,7 @@ $$y = \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^{d} x_i^2 + \epsilon}} \cdot \gamma$$
 - 推理加速：减少 KV 读取的内存带宽需求
 - 性能折中：介于 MHA 和 MQA 之间，平衡质量与效率
 
-**4. MoE（Mixture of Experts）**
+**4. MoE（Mixture of Experts，混合专家模型）**
 
 **内容：** 使用路由器（Router/Gate）动态选择激活的专家（Expert FFN），每个 token 只激活 Top-K 个专家。
 
@@ -1015,7 +1015,7 @@ $$y = \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^{d} x_i^2 + \epsilon}} \cdot \gamma$$
 - 计算效率：在参数量增加的同时保持推理速度
 - 专业化：不同专家学习处理不同类型或领域的输入
 
-**5. SwiGLU（Swish-Gated Linear Unit）**
+**5. SwiGLU（Swish-Gated Linear Unit，Swish门控线性单元）**
 
 **内容：** 激活函数，结合 Swish 激活和门控机制：
 
