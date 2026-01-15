@@ -292,7 +292,9 @@ $$\mu_0 = \frac{\sum_{i:y^{(i)}=0}x^{(i)}}{\sum_{i:y^{(i)}=0}1} = \frac{\sum_{i=
 
 1. $p(y=1|x) = \frac{p(x|y=1)p(y=1)}{p(x|y=1)p(y=1) + p(x|y=0)p(y=0)}$
 2. 可记 $r(x) = \frac{p(x|y=1)p(y=1)}{p(x|y=0)p(y=0)}$
-3. 给出 $p(x|y=0)$, $p(x|y=1)$, $p(y=1)$ 的表达式
+3. $ p(x|y=0) = \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu_0)^\top\Sigma^{-1}(x-\mu_0)\right)$
+4. $p(x|y=1) = \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu_1)^\top\Sigma^{-1}(x-\mu_1)\right)$
+5. $p(y=1) = \phi$ 
 
 **解：**
 
