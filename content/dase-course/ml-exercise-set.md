@@ -867,7 +867,7 @@ $$
 Pre-norm 将 LayerNorm 应用在 Sublayer 之前：
 
 $$
-x_{l+1} = x_l + \text{Sublayer}(y_l)
+x_{l+1} = x_l + \text{Sublayer}(\text{LN}(x_l))
 $$
 **2. 梯度分析**
 
@@ -888,7 +888,7 @@ $$
 
 **Pre-norm 的梯度：**
 
-对于 Pre-norm：$x_{l+1} = x_l + \text{Sublayer}(\text{LN}(x_l))$
+对于 Pre-norm：$ x_{l+1} = x_l + \text{Sublayer}(\text{LN}(x_l))$
 
 反向传播时： $$\frac{\partial \mathcal{L}}{\partial x_l} = \frac{\partial \mathcal{L}}{\partial x_{l+1}} \cdot \left(I + \frac{\partial \text{Sublayer}(\text{LN}(x_l))}{\partial x_l}\right)$$
 
