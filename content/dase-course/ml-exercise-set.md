@@ -480,7 +480,7 @@ $$ \min_{w,b} \quad \frac{1}{2}\|w\|^2 \qquad (1) $$ $$ \text{s.t.} \quad y^{(i)
 
 **带L1正则的软间隔SVM优化目标为：**
 
-$\begin{aligned} \min_{w,b,\xi} &\quad \frac{1}{2}|w|^2 + C\sum_{i=1}^{n}\xi_i \\ \text{s.t.} &\quad y^{(i)}(w^\top x^{(i)} + b) \geq 1 - \xi_i, \quad i=1,\ldots,n \\ &\quad \xi_i \geq 0, \quad i=1,\ldots,n \end{aligned}$
+$\begin{aligned} \min_{w,b,\xi} &\quad \frac{1}{2}\|w\|^2 + C\sum_{i=1}^{n}\xi_i \\ \text{s.t.} &\quad y^{(i)}(w^\top x^{(i)} + b) \geq 1 - \xi_i, \quad i=1,\ldots,n \\ &\quad \xi_i \geq 0, \quad i=1,\ldots,n \end{aligned}$
 
 其中：
 
@@ -490,7 +490,7 @@ $\begin{aligned} \min_{w,b,\xi} &\quad \frac{1}{2}|w|^2 + C\sum_{i=1}^{n}\xi_i \
 
 这个目标函数平衡了两个目标：
 
-1. 最大化间隔（通过最小化 $|w|^2$）
+1. 最大化间隔（通过最小化 $\|w\|^2$）
 2. 最小化分类错误（通过最小化 $\sum\xi_i$）
 
 ------
