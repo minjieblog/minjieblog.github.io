@@ -606,7 +606,7 @@ public void addInterceptors(InterceptorRegistry registry) {
 
 #### 1.添加商户查询缓存
 
-![image-20251218111733464](C:\Users\Minjie\AppData\Roaming\Typora\typora-user-images\image-20251218111733464.png)
+![image-20251218111733464](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOhaXXq3gkxj-sY83G3yifUS14JrTEAAjsOaxs45LBX_DAyFav-ArwBAAMCAAN3AAM4BA.png)
 
 **代码实现**
 
@@ -777,7 +777,7 @@ public Shop queryWithPassThrough(Long id){
 
 ### 缓存雪崩
 
-![image-20251220150741785](C:\Users\Minjie\AppData\Roaming\Typora\typora-user-images\image-20251220150741785.png)
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMXaVIfVYCrQjA7xMuHGRqkHoQOyPoAAr8LaxtQ15FWvdjsQk_ca0oBAAMCAAN3AAM2BA.png)
 
 ### 缓存击穿
 
@@ -1561,22 +1561,1327 @@ public void unlock() {
 
 ![](https://pic1.imgdb.cn/item/694b3effc3594c4bdf9cb26f.png)
 
+**快速入门**
 
+```xml
+<!--引入依赖-->
+<dependency>
+    <groupId>org.redisson</groupId>
+    <artifactId>redisson</artifactId>
+    <version>3.13.6</version>
+</dependency>
+```
+
+```java
+/**
+ * 添加Redisson配置
+ * @author Minjie
+ */
+@Configuration
+public class RedissonConfig {
+
+    @Bean
+    public RedissonClient redissonClient(){
+        //配置
+        Config config = new Config();
+        config.useSingleServer().setAddress("redis://localhost:6379");
+        //创建RedissonClient对象
+        return Redisson.create(config);
+    }
+}
+```
+
+**使用样例**
+
+```java
+//SimpleRedisLock lock = new SimpleRedisLock("order:" + userId, stringRedisTemplate);
+RLock lock = redissonClient.getLock("order:" + userId);
+//获取锁
+boolean isLock = lock.tryLock();
+```
+
+##### (1) 可重入锁
+
+**问题来源**： `Setnx 中的NX 是互斥的参数`
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMFaU39-ofvYoFipTnm9XX8W5PVKOIAAvcNaxvu_XFWUZbpTRhQyjoBAAMCAAN3AAM2BA.png)
+
+**解决办法**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMGaU3_fD3PN1v-O7CMvsZoNOqRde0AAgcOaxvu_XFW7yr6QmjnSWgBAAMCAAN3AAM2BA.png)
+
+**Lua脚本实现**
+
+```lua
+-- 这里不去实现了，redisson对这个功能做了一个集成
+```
+
+##### (2) 锁重试
+
+`lock.trylock(long waitTime,long leaseTime,TimeUnit)    //这里是等待时间，超时时间ttl，时间单位`
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMHaU4KTh9XA4Gomy1UI6yp7ukAAf4QAAI0Dmsb7v1xVlkUhKFkmUYvAQADAgADdwADNgQ.png)
+
+##### (3) 超时释放-WatchDog机制
+
+一个默认的超时时间是`30*1000ms`
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMIaU4K5BE2vdwu6dsoby3d9W8eO1IAAjUOaxvu_XFWhOZjhs6MLygBAAMCAAN5AAM2BA.png)
+
+##### (4) 主重一致性-multiLock
+
+**问题来源**：主节点复制重节点时发生宕机，使锁失效
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMJaU4Li23MOyiNY4LyeEDSvC1W9tcAAjYOaxvu_XFWjRc4iYoOrkQBAAMCAAN3AAM2BA.png)
+
+**解决办法**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMLaU4Md_7NrW_S8C6EOUSBSxJhrH4AAjwOaxvu_XFWkvrdUHyq_ykBAAMCAAN3AAM2BA.png)
+
+**总结**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMMaU4N4l2p-o6ueHVhtI7-AUm_ljoAAj4Oaxvu_XFWIhYUff-1wTgBAAMCAAN5AAM2BA.png)
 
 ### Redis秒杀优化
 
+#### 1.问题来源
+
+**流程太多，并发的能力太差**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMNaU4PlLN2lKvyFaApiziJLK6x6ykAAkEOaxvu_XFWJ0c0VQWsGGcBAAMCAAN3AAM2BA.png)
+
+#### 2.解决办法
+
+**使用redis**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMOaU4Qc7I_TUc42ps6ViUoJrEi4jwAAkIOaxvu_XFWEn5ttAVESfgBAAMCAAN3AAM2BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMQaU4RQ4Or2jKBlZGDe_KqXbNgFRUAAkQOaxvu_XFWCvj8Pnt62TABAAMCAAN3AAM2BA.png)
+
+**需求分析**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMRaU4S4XgzhyRBzNmi3D4tC9BZv4QAAkYOaxvu_XFW20YVbENAHGQBAAMCAAN4AAM2BA.png)
+
+**总结**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMSaU4u0AABjjswITbXa870uI3YX7J5AAIGD2sb7v1xVrDBkcGKIFvRAQADAgADeQADNgQ.png)
+
+#### 3.代码实现
+
+**新增优惠券信息到Redis中**
+
+```java
+//保存秒杀库存到Redis中
+stringRedisTemplate.opsForValue().set(RedisConstants.SECKILL_STOCK_KEY+voucher.getId(),voucher.getStock().toString());
+```
+
+**基于Lua脚本，判断秒杀库存，一人一单，决定用户是否抢购成功**
+
+```lua
+--1.列表参数
+--1.1 优惠券id
+local voucherId = ARGV[1]
+--1.2 用户id
+local userId = ARGV[2]
+
+--2. 数据key
+--2.1 库存key
+local stockKey = 'seckill:stock:' .. voucherId
+--2.2 订单key
+local orderKey = 'seckill:order:' .. voucherId
+
+--3. 脚本业务
+--3.1 判断库存是否充足 get stockKey
+if(tonumber(redis.call('get',stockKey)) <= 0) then
+    --3.2 库存不足，返回1
+    return 1
+end
+--3.2 判断用户是否下单 SISMEMBER orderKey userId
+if(redis.call('sismember',orderKey,userId) == 1) then
+    --3.3 存在，说明时重复下单
+    return 2
+end
+--3.4 扣库存 incrby stockKey -1
+redis.call('incrby',stockKey,-1);
+--3.5 下单(保存用户) sadd orderKey userId
+redis.call('sadd',orderKey,userId)
+return 0
+```
+
+**如果抢购成功，将优惠券id和用户id封装后存入到阻塞队列**
+
+**开启线程任务，不断从阻塞队列中读取信息，实现异步下单的功能**
+
+```java
+private static final DefaultRedisScript<Long> SECKILL_SCRIPT;
+//初始化脚本
+static {
+    SECKILL_SCRIPT = new DefaultRedisScript<>();
+    SECKILL_SCRIPT.setLocation(new ClassPathResource("seckill.lua"));
+    SECKILL_SCRIPT.setResultType(Long.class);
+}
+//阻塞队列
+private BlockingQueue<VoucherOrder> orderTasks = new ArrayBlockingQueue<>(1024*1024);
+//线程池
+private static final ExecutorService SECKILL_ORDER_EXECUTOR = Executors.newSingleThreadExecutor();
+
+@PostConstruct
+private void init() {
+    SECKILL_ORDER_EXECUTOR.submit(new VoucherOrderHandler());
+}
+
+private class VoucherOrderHandler implements Runnable {
+    @Override
+    public void run() {
+        while (true) {
+            try{
+                //1.获取队列中的订单信息
+                VoucherOrder voucherOrder = orderTasks.take();
+                //2.创建订单
+                handleVoucherOrder(voucherOrder);
+            }catch (Exception e){
+                log.error("处理订单异常",e);
+            }
+        }
+    }
+}
+
+/*
+* 创建订单
+* */
+private void handleVoucherOrder(VoucherOrder voucherOrder) {
+    //1.获取用户
+    Long userId = voucherOrder.getUserId();
+    //2.创建新对象
+    RLock lock = redissonClient.getLock("lock:order:"+userId);
+    //3.获取锁
+    boolean isLock = lock.tryLock();
+    //判断锁是否获取成功
+    if(!isLock){
+        //获取锁失败或者重试
+        log.error("不允许重复下单");
+        return;
+    }
+    try {
+        proxy.createVoucherOrder(voucherOrder);
+    } catch (IllegalStateException e) {
+        throw new RuntimeException(e);
+    } finally {
+        lock.unlock();
+    }
+}
+
+private IVoucherOrderService proxy;
+
+@Override
+public Result seckillVoucher(Long voucherId) {
+    //获取用户
+    Long userId = UserHolder.getUser().getId();
+    //1.执行Lua脚本
+    Long result = stringRedisTemplate.execute(SECKILL_SCRIPT, Collections.emptyList(), voucherId.toString(), userId.toString());
+
+    //2.判断结果是否为0
+    int r = result.intValue();
+    if(r != 0){
+        //2.1 不为0，代表没有购买资格
+        return Result.fail(r == 1? "库存不足":"不能重复下单");
+    }
+    //2.2 为0，有购买资格，把下单信息保存到阻塞队列
+    VoucherOrder voucherOrder = new VoucherOrder();
+    //2.3订单Id
+    long orderId = redisIdWorker.nextId("order");
+    voucherOrder.setId(orderId);
+    //2.4用户id
+    voucherOrder.setUserId(userId);
+    //2.5代金券id
+    voucherOrder.setVoucherId(voucherId);
+    //2.6放入阻塞队列,执行异步下单
+    orderTasks.add(voucherOrder);
+
+    //获取代理对象
+    proxy = (IVoucherOrderService) AopContext.currentProxy();
+
+    return Result.ok(orderId);
+}
+
+@Transactional
+public void createVoucherOrder(VoucherOrder voucherOrder) {
+    //5.一人一单
+    Long userId = voucherOrder.getUserId();
+
+    //5.1查询订单
+    Long count = query().eq("user_id", userId).eq("voucher_id", voucherOrder).count();
+    //5.2判断是否存在
+    if(count > 0L){
+        //用户已经购买过了
+        log.error("用户已经购买过一次！");
+        return;
+    }
+
+    //6.扣减库存
+    boolean success = seckillVoucherService.update()
+            .setSql("stock = stock - 1")
+            .eq("voucher_id", voucherOrder).gt("stock",0).update();
+    if(!success){
+        //扣减失败
+        log.error("不允许重复下单");
+        return;
+    }
+
+    //7.创建订单
+    save(voucherOrder);
+}
+```
+
 ### Redis消息队列实现异步秒杀优化
+
+#### 1.认识消息队列
+
+**队列模型**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMTaU4wr8O4rLLf3xQBUMagojyMzz4AAh0Paxvu_XFWeQv9KbmVsLEBAAMCAAN5AAM2BA.png)
+
+**redis的实现**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMUaU4w4mLgQA2gMl9SCXmo73remn8AAh4Paxvu_XFWGDdcl-PC8RQBAAMCAAN5AAM2BA.png)
+
+#### 2.list实现mq
+
+**详情**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMVaU4zvxbzaYMXeFcU64IiG1SuM8IAAiIPaxvu_XFWBkEfSzy0utkBAAMCAAN5AAM2BA.png)
+
+**优缺点**
+
+- 优点：
+  - 利用Redis存储，不受限于VM内存上限    
+  - 基于Redis的持久化机制，数据安全性有保证
+  - 可以满足消息有序性
+- 缺点：
+  - 无法避免消息丢失
+  - 只支持单消费者
+
+#### 3.PubSub实现mq
+
+**详情**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN0aW3XYTfwiuOz9oemWM3tTK83uZAAApYNaxuSn3BX4mdTIwfRlVkBAAMCAAN3AAM4BA.png)
+
+**示例**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAANxaW3W_Cyo9S1sGupHjDtZQW3sRvwAApMNaxuSn3BXNOBZuGpDyI0BAAMCAAN4AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAANyaW3XJJIxyLRqohr-1qplj1S2uRwAApQNaxuSn3BXY5xm8-q1y4MBAAMCAAN4AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAANzaW3XN6fwHUONQ-cjdCVs9DDkCUkAApUNaxuSn3BXRB70mtBVve0BAAMCAAN4AAM4BA.png)
+
+**优缺点**
+
+- 优点
+  - 采用发布订阅模型，支持多生产、多消费
+- 缺点：
+  - 不支持**数据持久化**
+  - 无法避免消息丢失
+  - 消息堆积有上限，超出时数据丢失
+
+#### 4.Stream实现mq
+
+**详情-生产者**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN1aW3YlFny3_hfvqqDQQ6KGexdI20AApkNaxuSn3BXHKau_2pkDWIBAAMCAAN3AAM4BA.png)
+
+**详情-消费者**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN2aW3Z_KnYpE5YhBE6BTCHbjPlKnsAApoNaxuSn3BXPDSfP9YBEZIBAAMCAAN3AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN3aW3ae0XXM4kUWyh0cnLhIFmFtPgAApsNaxuSn3BXavQlR42cLgkBAAMCAAN3AAM4BA.png)
+
+**特点**
+
+- 消息可回
+- 一个消息可以被多个消费者读取
+- 可以阻塞读取
+- 有消息漏读的风险
+
+#### 5.Stream消费者组模式
+
+**详情**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN4aW3b-DBcaSlvzCAdwBiG93QzlzkAApwNaxuSn3BXPtEBaNqrPwMBAAMCAAN3AAM4BA.png)
+
+**创建消费者组**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN5aW3cjUTCa4eDBPMGO844kekcPSgAAp0NaxuSn3BX5UBlp95hjQ4BAAMCAAN3AAM4BA.png)
+
+**使用消费者组**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN6aW3dIeBQ5Kb8ctsjYK0KhvknwKsAAp4NaxuSn3BXNz9jHsPJrOIBAAMCAAN3AAM4BA.png)
+
+**特点**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN7aW3fJcRr4Vt27lKBAkfADNyHFMEAArwNaxuSn3BXTCsqqQ6glBYBAAMCAAN5AAM4BA.png)
+
+**对比**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN8aW3fVL9POpOnzW5jpbX9K1MwdLAAAr0NaxuSn3BXuC677KCYGooBAAMCAAN3AAM4BA.png)
+
+#### 6.基于Stream实现异步秒杀
+
+**需求分析**
+
+- 创建一个Stream类型的消息队列，名为stream.orders
+- 修改之前的秒杀下单Lua脚本，在认定有抢购资格后，直接向stream.orders中添加消息，内容包含voucherld、userld、 orderld
+- 项目启动时，开启一个线程任务，尝试获取stream.orders中的消息，完成下单
+
+**代码实现**
+
+``` po
+//添加消费者组，redis版本大于5.0
+XGROUP CREATE stream.orders g1 0 MKSTREAM
+```
+
+```lua
+--更新sekill.lua
+--1.列表参数
+--1.1 优惠券id
+local voucherId = ARGV[1]
+--1.2 用户id
+local userId = ARGV[2]
+--1.3 订单id
+local orderId = ARGV[3]
+
+--2. 数据key
+--2.1 库存key
+local stockKey = 'seckill:stock:' .. voucherId
+--2.2 订单key
+local orderKey = 'seckill:order:' .. voucherId
+
+--3. 脚本业务
+--3.1 判断库存是否充足 get stockKey
+if(tonumber(redis.call('get',stockKey)) <= 0) then
+    --3.2 库存不足，返回1
+    return 1
+end
+--3.2 判断用户是否下单 SISMEMBER orderKey userId
+if(redis.call('sismember',orderKey,userId) == 1) then
+    --3.3 存在，说明时重复下单
+    return 2
+end
+--3.4 扣库存 incrby stockKey -1
+redis.call('incrby',stockKey,-1);
+--3.5 下单(保存用户) sadd orderKey userId
+redis.call('sadd',orderKey,userId)
+--3.6 发送消息到队列中，XADD stream.orders * k1 v1 k2 v2 ...
+redis.call('xadd','stream.orders','*','userId',userId,'voucherId',voucherId,'id',orderId)
+return 0
+```
+
+```java
+//添加消息
+@Override
+public Result seckillVoucher(Long voucherId) {
+    //获取用户
+    Long userId = UserHolder.getUser().getId();
+    //获取订单id
+    long orderId = redisIdWorker.nextId("order");
+    //1.执行Lua脚本
+    Long result = stringRedisTemplate.execute(SECKILL_SCRIPT, Collections.emptyList(), voucherId.toString(), userId.toString(),String.valueOf(orderId));
+
+    //2.判断结果是否为0
+    int r = result.intValue();
+    if(r != 0){
+        //2.1 不为0，代表没有购买资格
+        return Result.fail(r == 1? "库存不足":"不能重复下单");
+    }
+
+    //3.获取代理对象
+    proxy = (IVoucherOrderService) AopContext.currentProxy();
+    //4.返回订单id
+    return Result.ok(orderId);
+}
+```
+
+```java
+//线程池
+private final ExecutorService SECKILL_ORDER_EXECUTOR = Executors.newSingleThreadExecutor();
+
+// 运行开关
+private volatile boolean running = true;
+
+@PostConstruct
+public void init() {
+    SECKILL_ORDER_EXECUTOR.submit(new VoucherOrderHandler());
+}
+
+@PreDestroy
+public void shutdown() {
+    running = false;
+    SECKILL_ORDER_EXECUTOR.shutdownNow();
+}
+
+private  class VoucherOrderHandler implements Runnable {
+    String queueName = "stream.orders";
+    @Override
+    public void run() {
+        while (running) {
+            try{
+                //1.获取消息队列中的订单信息 XREADGOURP GROUP g1 c1 COUNT 1 BLOCK 2000 STREAMS streams.order >
+                List<MapRecord<String, Object, Object>> list = stringRedisTemplate.opsForStream().read(
+                    Consumer.from("g1", "c1"),
+                    StreamReadOptions.empty().count(1).block(Duration.ofSeconds(2)),
+                    StreamOffset.create(queueName, ReadOffset.lastConsumed())
+                );
+                //2.判断消息是否获取成功
+                if(list == null||list.isEmpty()){
+                    //2.1 如果获取失败，说明没有消息，继续下一次循环
+                    continue;
+                }
+                //3.解析订单信息
+                MapRecord<String, Object, Object> record = list.get(0);
+                Map<Object, Object> values = record.getValue();
+                VoucherOrder voucherOrder = BeanUtil.fillBeanWithMap(values, new VoucherOrder(), true);
+
+                //4.如果获取成功，可以下单
+                handleVoucherOrder(voucherOrder);
+                //5.ACK确认 SACK stream.orders g1 id
+                stringRedisTemplate.opsForStream().acknowledge(queueName,"g1",record.getId());
+            }catch (Exception e){
+                log.error("处理订单异常",e);
+                handlePendingList();
+            }
+        }
+    }
+
+    private void handlePendingList() {
+        while (true) {
+            try{
+                //1.获取pending-list中的订单信息 XREADGOURP GROUP g1 c1 COUNT 1 STREAMS streams.order 0
+                List<MapRecord<String, Object, Object>> list = stringRedisTemplate.opsForStream().read(
+                    Consumer.from("g1", "c1"),
+                    StreamReadOptions.empty().count(1),
+                    StreamOffset.create(queueName, ReadOffset.from("0"))
+                );
+                //2.判断消息是否获取成功
+                if(list == null||list.isEmpty()){
+                    //2.1 如果获取失败，说明没有消息，继续下一次循环
+                    break;
+                }
+                //3.解析订单信息
+                MapRecord<String, Object, Object> record = list.get(0);
+                Map<Object, Object> values = record.getValue();
+                VoucherOrder voucherOrder = BeanUtil.fillBeanWithMap(values, new VoucherOrder(), true);
+
+                //4.如果获取成功，可以下单
+                handleVoucherOrder(voucherOrder);
+                //5.ACK确认 SACK stream.orders g1 id
+                stringRedisTemplate.opsForStream().acknowledge(queueName,"g1",record.getId());
+            }catch (Exception e){
+                log.error("处理订单异常",e); 
+            }
+        }
+    }
+}
+```
 
 ## 4.达人探店
 
+### 发布探店笔记
+
+探店笔记类似点评网站的评价，往往是图文结合。对应的表有两个：
+
+- tb_blog：探店笔记表，包含笔记中的标题、文字、图片等
+- tb_blog_comments：其他用户对探店笔记的评价
+
+#### 1.发布笔记需求分析
+
+**需求分析**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAN9aXA-lyHAy7amiP5drGsm3ORKNH4AAoYNaxvP9oBXh3uAh1AF0woBAAMCAAN3AAM4BA.png)
+
+**代码实现**
+
+```java
+@Override
+public Result saveBlog(Blog blog) {
+    //1.获取登录用户
+    UserDTO userDTO = UserHolder.getUser();
+    blog.setUserId(userDTO.getId());
+    //2.保存探店笔记
+    boolean isSucess = save(blog);
+    if(!isSucess){
+        return Result.fail("博客保存失败");
+    }
+    //3.查询笔记作者的所有粉丝 select * from tb___follow where follow_user_id = ?
+    List<Follow> follows = followService.query().eq("follow_user_id", userDTO.getId()).list();
+    //4.推送笔记id给所有粉丝
+    for(Follow follow : follows){
+        //4.1 获取粉丝id
+        Long userId = follow.getUserId();
+        //4.2 推送
+        String key = "feed:" + userId;
+        stringRedisTemplate.opsForZSet().add(key,blog.getId().toString(),System.currentTimeMillis());
+    }
+    //5.返回id
+    return Result.ok(blog.getId());
+}
+```
+
+#### 2.查看探店笔记
+
+**需求分析**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOCaXBHpG3innPTu8Nbv_AZJJPi_WEAAp0NaxvP9oBXC8AKIq8r9a8BAAMCAAN3AAM4BA.png)
+
+**代码实现**
+
+```java
+@Resource
+private IUserService userService;
+
+@Override
+public Result queryHotBlog(Integer current){
+    // 根据用户查询
+    Page<Blog> page = query()
+        .orderByDesc("liked")
+        .page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
+    // 获取当前页数据
+    List<Blog> records = page.getRecords();
+    // 查询用户
+    records.forEach(this::queryBlogUser);
+    return Result.ok(records);
+}
+
+@Override
+public Result queryBlogById(Long id){
+    //1.查询blog
+    Blog blog = getById(id);
+    if(blog == null){
+        return Result.fail("博客不存在！");
+    }
+    queryBlogUser(blog);
+    return Result.ok(blog);
+}
+
+private void queryBlogUser(Blog blog) {
+    Long userId = blog.getUserId();
+    User user = userService.getById(userId);
+    blog.setName(user.getNickName());
+    blog.setIcon(user.getIcon());
+}
+```
+
+### 点赞
+
+#### 1.需求分析
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAODaXBUNImr7nPLabVr3QEAAYrB7zikAAKxDWsbz_aAV3LLhVHshImFAQADAgADdwADOAQ.png)
+
+- 同一个用户只能点赞一次， 再次点击则取消点赞
+- 如果当前用户已经点，则点赞按钮高亮显示
+- **实现步骤**
+  - 给Blog类中添加一个isLike字段，标示是否被当前用户点赞
+  - 修改点赞功能，利用Redis的set集合判断是否点赞过，未点赞过则点赞数+1，已点赞过则点赞数-1
+  - 修改根据id查询Blog的业务，判断当前登录用户是否点赞过，赋值给isLike字段
+  - 修改分页查询Blog业务，判断当前登录用户是否点赞过，赋值给isLike字段
+
+#### 2.代码实现
+
+**添加isLike属性**
+
+```java
+/**
+ * 是否已经点赞
+*/
+@TableField(exist = false)
+private Boolean isLike;
+```
+
+**Service层**
+
+```java
+@Override
+public Result likeBlog(Long id){
+    //1.获取登录用户
+    Long userId = UserHolder.getUser().getId();
+    //2.判断当前用户是否已经点赞
+    String key = RedisConstants.BLOG_LIKED_KEY + id;
+    Boolean isMember = stringRedisTemplate.opsForSet().isMember(key, userId.toString());
+    if(BooleanUtil.isFalse(isMember)){
+        //3.如果未点赞，可以点赞
+        //3.1 数据库点赞数+1
+        boolean isSuccess = update().setSql("liked = liked + 1").eq("id", id).update();
+        //3.2 保存用户到Redis的set集合
+        if(isSuccess){
+            stringRedisTemplate.opsForSet().add(key, userId.toString());
+        }
+    }else {
+        //4.如果已点赞，取消点赞
+        //4.1 数据库点赞数-1
+        boolean isSuccess = update().setSql("liked = liked - 1").eq("id", id).update();
+        //4.2 把用户从redis的set集合中移除
+        stringRedisTemplate.opsForSet().remove(key, userId.toString());
+    }
+
+    return Result.ok();
+}
+```
+
+**同时影响点赞状态**
+
+```java
+private void isBlogLiked(Blog blog) {
+    //1.获取登录用户
+    Long userId = UserHolder.getUser().getId();
+    //2.判断当前用户是否已经点赞
+    String key = RedisConstants.BLOG_LIKED_KEY + blog.getId();
+    Boolean isMember = stringRedisTemplate.opsForSet().isMember(key, userId.toString());
+    blog.setIsLike(BooleanUtil.isTrue(isMember));
+}
+```
+
+### 点赞排行榜
+
+#### 1.需求分析
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOEaXBcl5StcJwGWsLnzhtgm19q-qcAArkNaxvP9oBXg0BZVxdBRrQBAAMCAAN3AAM4BA.png)
+
+#### 2.redis数据结构
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOFaXBc6IwkoHLQ8Z2pS1owXaO7uAcAAroNaxvP9oBXs-UyPHiLrJkBAAMCAAN5AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOGaXBdV8ZDjM8HJwIdPDoWFFJS2X8AArwNaxvP9oBX0Jxqz5qBzXEBAAMCAAN4AAM4BA.png)
+
+#### 3.代码实现
+
+```java
+//把set替换成Zset
+private void isBlogLiked(Blog blog) {
+    //1.获取登录用户
+    Long userId = UserHolder.getUser().getId();
+    //2.判断当前用户是否已经点赞
+    String key = RedisConstants.BLOG_LIKED_KEY + blog.getId();
+    Double score = stringRedisTemplate.opsForZSet().score(key, userId.toString());
+    blog.setIsLike(score != null);
+}
+
+@Override
+public Result likeBlog(Long id){
+    //1.获取登录用户
+    Long userId = UserHolder.getUser().getId();
+    //2.判断当前用户是否已经点赞
+    String key = RedisConstants.BLOG_LIKED_KEY + id;
+    Double score = stringRedisTemplate.opsForZSet().score(key, userId.toString());
+    if(score == null){
+        //3.如果未点赞，可以点赞
+        //3.1 数据库点赞数+1
+        boolean isSuccess = update().setSql("liked = liked + 1").eq("id", id).update();
+        //3.2 保存用户到Redis的set集合
+        if(isSuccess){
+            stringRedisTemplate.opsForZSet().add(key, userId.toString(),System.currentTimeMillis());
+        }
+    }else {
+        //4.如果已点赞，取消点赞
+        //4.1 数据库点赞数-1
+        boolean isSuccess = update().setSql("liked = liked - 1").eq("id", id).update();
+        //4.2 把用户从redis的set集合中移除
+        stringRedisTemplate.opsForZSet().remove(key, userId.toString());
+    }
+```
+
+#### 4.点赞列表查询
+
+**Controller层**
+
+```java
+@GetMapping("/likes/{id}")
+public Result queryBlogLikes(@PathVariable("id") Long id) {
+    return blogService.queryBlogLikes(id);
+}
+```
+
+**Service层**
+
+```java
+@Override
+public Result queryBlogLikes(Long id) {
+    String key = RedisConstants.BLOG_LIKED_KEY + id;
+    //1.查询top5的点赞用户 zrange key 0 4
+    Set<String> top5 = stringRedisTemplate.opsForZSet().range(key,0,4);
+    if(top5 == null||top5.isEmpty()){
+        return Result.ok(Collections.emptyList());
+    }
+    //2.解析出其中的用户id
+    List<Long> ids = top5.stream().map(Long::valueOf).collect(Collectors.toList());
+    String idStr = StrUtil.join(",",ids);
+    //3.根据用户id查询用户,where id in(5,1) order by field(id,5,1)
+    List<UserDTO> userDTOS = userService.query()
+        .in("id",ids).last("ORDER BY FIELD(id,"+idStr+")").list()
+        .stream()
+        .map(user-> BeanUtil.copyProperties(user,UserDTO.class))
+        .collect(Collectors.toList());
+    //4.返回
+    return Result.ok(userDTOS);
+}
+```
+
 ## 5.好友关注
+
+### 关注和取关
+
+#### 1.需求分析
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOHaXCCYxQWcAAB5VIkzwOLOi0CpCvpAAIFDmsbz_aAV8R0aA3GJtqbAQADAgADdwADOAQ.png)
+
+#### 2.代码实现
+
+**Controller层**
+
+```java
+ @PutMapping("/{id}/{isFollow}")
+public Result follow(@PathVariable("id") Long followUserId, @PathVariable("isFollow") Boolean isFollow){
+    return iFollowService.follow(followUserId,isFollow);
+}
+
+@GetMapping("/or/not/{id}")
+public Result isFollow(@PathVariable("id") Long followUserId){
+    return iFollowService.isFollow(followUserId);
+}
+```
+
+**Service层**
+
+```java
+@Override
+public Result follow(Long followUserId, Boolean isFollow) {
+    //1.获取登录用户
+    Long userId = UserHolder.getUser().getId();
+
+    //2.判断是关注还是取关
+    if(isFollow){
+        //2.1 关注，新增数据
+        Follow follow = new Follow();
+        follow.setUserId(userId);
+        follow.setFollowUserId(followUserId);
+        save(follow);
+    }else{
+        //3.取关,删除 delete from tb_follow where user_id = ? and follow_user_id = ?
+        remove(new QueryWrapper<Follow>()
+               .eq("user_id",userId).eq("follow_user_id",followUserId));
+    }
+    return Result.ok();
+}
+
+@Override
+public Result isFollow(Long followUserId) {
+    //1.获取登录用户
+    Long userId = UserHolder.getUser().getId();
+    //2.查询是否关注 select count(*) from tb_follow where user_id = ? and follow_user_id = ?
+    Long count = query().eq("user_id",userId).eq("follow_user_id",followUserId).count();
+    //3.判断
+    return Result.ok(count > 0);
+}
+```
+
+### 共同关注
+
+#### 1.需求分析
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOIaXCptsJggMwmqrC9s_iLPcnXobcAAlkOaxvP9oBX5m_j-wE1UnYBAAMCAAN3AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOJaXDAYmE6nShiFkGMQXYcXx4rlaUAAngOaxvP9oBXvi8zTMt6u1QBAAMCAAN3AAM4BA.png)
+
+#### 2.代码实现
+
+**改造关注**
+
+```java
+@Override
+public Result follow(Long followUserId, Boolean isFollow) {
+    //1.获取登录用户
+    Long userId = UserHolder.getUser().getId();
+
+    String key = "follows:" + userId;
+    //2.判断是关注还是取关
+    if(isFollow){
+        //2.1 关注，新增数据
+        Follow follow = new Follow();
+        follow.setUserId(userId);
+        follow.setFollowUserId(followUserId);
+        boolean isSuccess = save(follow);
+        if(isSuccess){
+            //把关注用户的id放入redis中的set集合 sadd userId followerUserId
+            stringRedisTemplate.opsForSet().add(key,followUserId.toString());
+        }
+    }else{
+        //3.取关,删除 delete from tb_follow where user_id = ? and follow_user_id = ?
+        boolean isSuccess = remove(new QueryWrapper<Follow>()
+                                   .eq("user_id",userId).eq("follow_user_id",followUserId));
+        //把关注的用户id从redis集合中移除
+        if(isSuccess){
+            stringRedisTemplate.opsForSet().remove(key,followUserId.toString());
+        }
+    }
+    return Result.ok();
+}
+```
+
+**Controller层**
+
+```java
+@GetMapping("/common/{id}")
+public Result followCommons(@PathVariable("id") Long id){
+    return iFollowService.followCommons(id);
+}
+```
+
+**Service层**
+
+```java
+@Override
+public Result followCommons(Long id) {
+    //1.获取当前用户
+    Long userId = UserHolder.getUser().getId();
+    String key = "follows:" + userId;
+    //2.求交集
+    String key2 = "follows:" + id;
+    Set<String> intersect = stringRedisTemplate.opsForSet().intersect(key,key2);
+    if(intersect.isEmpty()||intersect == null){
+        //无交集
+        return Result.ok(Collections.emptyList());
+    }
+    //3.解析id集合
+    List<Long> ids = intersect.stream().map(Long::valueOf).collect(Collectors.toList());
+    //4.查询用户
+    List<UserDTO> users = userService.listByIds(ids)
+        .stream()
+        .map(user -> BeanUtil.copyProperties(user, UserDTO.class))
+        .collect(Collectors.toList());
+    return Result.ok(users);
+}
+```
+
+### 关注推送
+
+#### 1.Feed流推送
+
+**实现方案**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOKaXGNPxAGMPD0poCy3XX4j0WWtmgAAmcNaxvP9ohXtYdv8RIPdcwBAAMCAAN3AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOLaXGNgysN51KmUrr0TEFc2C1FT10AAmkNaxvP9ohXm-S29w8H0cUBAAMCAAN3AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOMaXGN4Usi55kEmx1Hg62hbKA35_IAAmoNaxvP9ohXCVDMqVC1xY8BAAMCAAN3AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAONaXGOfLpTmfOCgrZAI5hpTCUNV8cAAmsNaxvP9ohXzTa3i-4dt1cBAAMCAAN3AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOOaXGOqU8_AS9kwJjnkCf9M9nqlUUAAmwNaxvP9ohXu-9GbpPAjpkBAAMCAAN3AAM4BA.png)
+
+#### 2.基于推模式实现推送功能
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOPaXLxEpB967ufwE574iQfzCLDjsQAAv8NaxuBT5lXo-GQDfKsGdIBAAMCAAN5AAM4BA.png)
+
+**实现滚动分页模式**：因为每一条数据的角标会发生变化，所以不能使用传统的分页模式
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOQaXLyjPd5Ep7j6YDmzxvIwZnZhgoAAgYOaxuBT5lX0q72AAHB-gkEAQADAgADdwADOAQ.png)
+
+**代码实现**
+
+```java
+@Override
+public Result saveBlog(Blog blog) {
+    //1.获取登录用户
+    UserDTO userDTO = UserHolder.getUser();
+    blog.setUserId(userDTO.getId());
+    //2.保存探店笔记
+    boolean isSucess = save(blog);
+    if(!isSucess){
+        return Result.fail("博客保存失败");
+    }
+    //3.查询笔记作者的所有粉丝 select * from tb___follow where follow_user_id = ?
+    List<Follow> follows = followService.query().eq("follow_user_id", userDTO.getId()).list();
+    //4.推送笔记id给所有粉丝
+    for(Follow follow : follows){
+        //4.1 获取粉丝id
+        Long userId = follow.getUserId();
+        //4.2 推送
+        String key = "feed:" + userId;
+        stringRedisTemplate.opsForSet().add(key,blog.getId().toString());
+    }
+    //5.返回id
+    return Result.ok(blog.getId());
+}
+```
+
+#### 3.实现滚动分页查询
+
+**需求分析**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAORaXL5j9-JrBaB3MYFYTYtFEzDSFUAAhoOaxuBT5lXFSUYs0RlqPIBAAMCAAN3AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOTaXL54q3i-vHVA4eRZQFy5_bYEZQAAhwOaxuBT5lXEIn8cpB-KTEBAAMCAAN3AAM4BA.png)
+
+**代码实现**
+
+```java
+//创建滚动分页类
+@Data
+public class ScrollResult {
+    private List<?> list;
+    private Long minTime;
+    private Integer offset;
+}
+```
+
+**定义接口**
+
+```java
+@GetMapping("/of/follow")
+public Result queryBlogOfFollow(
+    @RequestParam("lastId") Long max,@RequestParam(value = "offset",defaultValue = "0") Integer offset){
+    return blogService.queryBlogOfFollow(max,offset);
+}
+```
+
+**Service层**
+
+```java
+@Override
+public Result queryBlogOfFollow(Long max, Integer offset) {
+    //1.获取当前用户
+    Long userId = UserHolder.getUser().getId();
+    //2.查询收件箱 ZRERANGEBYSCORE key Max Min LIMIT offset count
+    String key = RedisConstants.FEED_KEY + userId;
+    Set<ZSetOperations.TypedTuple<String>> typedTuples = stringRedisTemplate.opsForZSet().reverseRangeByScoreWithScores(key,0,max,offset,2);
+    //3.非空判断
+    if(typedTuples == null || typedTuples.isEmpty()){
+        return Result.ok();
+    }
+    //4.解析数据：blogId,minTime(时间戳),offset
+    List<Long> ids = new ArrayList<>(typedTuples.size());
+    long minTime = 0;
+    int os = 1;
+    for(ZSetOperations.TypedTuple<String> tuple : typedTuples){
+        //4.1获取id
+        ids.add(Long.valueOf(tuple.getValue()));
+        //4.2 获取分数(时间戳)
+        long time = tuple.getScore().longValue();
+        if(time == minTime){
+            os++;
+        }else{
+            minTime = time;
+            os = 1;
+        }
+    }
+
+    //5.根据id查询blog
+    String idStr = StrUtil.join(",",ids);
+    List<Blog> blogs = query().in("id",ids).last("ORDER BY FIELD(id,"+idStr+")").list();
+
+    for(Blog blog : blogs){
+        //5.1 查询blog有关的用户
+        queryBlogUser(blog);
+        //5.2 查询blog是否被点赞
+        isBlogLiked(blog);
+    }
+
+    //5.封装并返回
+    ScrollResult r = new ScrollResult();
+    r.setList(blogs);
+    r.setOffset(os);
+    r.setMinTime(minTime);
+
+    return Result.ok(r);
+}
+```
 
 ## 6.附近商铺搜索
 
+### Redis中GEO功能
+
+**数据结构**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOVaXW7iC0OVsFaf5fyxBTA9FRSW3EAAscNaxs45LBX5EZk-ulmyggBAAMCAAN3AAM4BA.png)
+
+### 附近商家搜索
+
+#### 1.需求分析
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOWaXW81og8EJectZhWgNEcg5jQWsIAAsgNaxs45LBXIQmQRchWyW4BAAMCAAN3AAM4BA.png)
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOXaXW9fp-jwDCdSKEZJSJIOTfyQgwAAskNaxs45LBXiRBGNWv1NroBAAMCAAN5AAM4BA.png)
+
+#### 2.单元测试
+
+```java
+@Test
+void loadShopData(){
+    //1.查询店铺信息
+    List<Shop> list = shopService.list();
+    //2.把店铺分组，按照typeId分组，typeId一致的放到一个集合
+    Map<Long,List<Shop>> map = list.stream().collect(Collectors.groupingBy(Shop::getTypeId));
+    //3.分批完成写入Redis
+    for (Map.Entry<Long,List<Shop>> entry : map.entrySet()) {
+        //3.1 获取类型id
+        Long typeId = entry.getKey();
+        String key = RedisConstants.SHOP_GEO_KEY+typeId;
+        //3.2 获取同类型的店铺的集合
+        List<Shop> shops = entry.getValue();
+        List<RedisGeoCommands.GeoLocation<String>> locations = new ArrayList<>();
+        //3.3 写入Redis GEOADD key 经度 维度 member
+        for (Shop shop : shops) {
+            //stringRedisTemplate.opsForGeo().add(key,new Point(shop.getX(),shop.getY()),shop.getId().toString());
+            locations.add(new RedisGeoCommands.GeoLocation<>(
+                shop.getId().toString(),
+                new Point(shop.getX(),shop.getY())
+            ));
+        }
+        stringRedisTemplate.opsForGeo().add(key,locations);
+    }
+}
+```
+
+#### 3.代码实现
+
+**更新pom.xml**：由于不支持Redis 6.2提供的`GEOSEARCH`命令，需要提示其版本
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+    <exclusions>
+        <exclusion>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-redis</artifactId>
+    <version>2.6.2</version>
+</dependency>
+<dependency>
+    <groupId>io.lettuce</groupId>
+    <artifactId>lettuce-core</artifactId>
+    <version>6.1.6.RELEASE</version>
+</dependency>
+```
+
+**更改`ShopController`**
+
+```java
+@GetMapping("/of/type")
+public Result queryShopByType(
+    @RequestParam("typeId") Integer typeId,
+    @RequestParam(value = "current", defaultValue = "1") Integer current,
+    @RequestParam(value = "x",required = false) Double x,
+    @RequestParam(value = "y",required = false) Double y
+) {
+    return shopService.queryShopByType(typeId,current,x,y);
+}
+```
+
+**重写`ServiceImpl`**
+
+```java
+@Override
+public Result queryShopByType(Integer typeId, Integer current, Double x, Double y) {
+    //1.判断是否需要根据坐标查询
+    if(x==null||y==null){
+        //不需要坐标查询，直接查询数据库
+        Page<Shop> page = query().eq("type_id",typeId).page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
+        return  Result.ok(page.getRecords());
+    }
+    //2.计算分页参数
+    int from = (current-1)*SystemConstants.DEFAULT_PAGE_SIZE;
+    int end = current*SystemConstants.DEFAULT_PAGE_SIZE;
+
+    //3.查询Redis，按照距离排序，分页,结果： shopId,distance
+    String key = RedisConstants.SHOP_GEO_KEY+typeId;
+    GeoResults<RedisGeoCommands.GeoLocation<String>> results = stringRedisTemplate.opsForGeo()
+        .search(
+        key,
+        GeoReference.fromCoordinate(x, y),
+        new Distance(5000),
+        RedisGeoCommands.GeoSearchCommandArgs.newGeoSearchArgs().includeDistance().limit(end)
+    );
+    //4.解析出id
+    if(results==null){
+        return Result.ok(Collections.emptyList());
+    }
+    List<GeoResult<RedisGeoCommands.GeoLocation<String>>> list = results.getContent();
+    if(list.size() <= from){
+        //没有下一页了
+        return Result.ok(Collections.emptyList());
+    }
+    //4.1 截取from-end的部分
+    List<Long> ids = new ArrayList<>(list.size());
+    Map<String,Distance> distanceMap = new HashMap<>(list.size());
+    list.stream().skip(from).forEach(result -> {
+        //4.2 获取店铺id
+        String shopIdStr = result.getContent().getName();
+        ids.add(Long.valueOf(shopIdStr));
+        //4.3 获取距离
+        Distance distance = result.getDistance();
+        distanceMap.put(shopIdStr,distance);
+    });
+    //5.根据id查询shop
+    String idStr = StrUtil.join(",",ids);
+    List<Shop> shops = query().in("id", ids).last("ORDER BY FIELD(id," + idStr + ")").list();
+    for (Shop shop : shops) {
+        shop.setDistance(distanceMap.get(shop.getId().toString()).getValue());
+    }
+    //6.返回
+    return Result.ok(shops);
+}
+```
+
 ## 7.用户签到
+
+### BitMap用法
+
+**位图概念**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOYaXXcOi4UxVw3wWdvWV43Uh0MFZkAAgcOaxs45LBXwSFwm54vh5IBAAMCAAN3AAM4BA.png)
+
+**Redis中BitMap用法**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOZaXXcmnBjjYrNu6chEPaSEKK190gAAggOaxs45LBX-YYHlvJQE1UBAAMCAAN3AAM4BA.png)
+
+### 签到功能
+
+#### 1.需求分析
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOaaXXdf-sDKOinpmkw_jGdMdFQZjQAAgoOaxs45LBX0EZr9VGSULQBAAMCAAN5AAM4BA.png)
+
+#### 2.代码实现
+
+**`Controller`层**
+
+```java
+@PostMapping("/sign")
+public Result sign(){
+    return userService.sign();
+}
+```
+
+**`Service`层**
+
+```java
+@Override
+public Result sign() {
+    //1.获取当前登录的用户
+    Long userId = UserHolder.getUser().getId();
+    //2.获取日期
+    LocalDateTime now = LocalDateTime.now();
+    //3.拼接key
+    String keySuffix = now.format(DateTimeFormatter.ofPattern(":yyyyMM"));
+    String key = USER_SIGN_KEY+userId+keySuffix;
+    //4.获取今天是本月的第几天
+    int dayOfMonth = now.getDayOfMonth();
+    //5.写入redis: SETBIT key offset 1
+    stringRedisTemplate.opsForValue().setBit(key,dayOfMonth-1,true);
+    return Result.ok();
+}
+```
+
+### 签到统计
+
+#### 1.需求分析
+
+**前置知识**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAObaXXhKILhB2q2y6OnXPqxUMjb0ZMAAg8Oaxs45LBXiq6ReR3S5QwBAAMCAAN3AAM4BA.png)
+
+**接口实现**
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOcaXXhYD2JgrYj2y-iIMYAATo0fZBIAAIQDmsbOOSwV5-Ns5MhCc2uAQADAgADeQADOAQ.png)
+
+#### 2.代码实现
+
+**`Controller`层**
+
+```java
+@GetMapping("/sign/count")
+public Result signCount(){
+    return userService.signCount();
+}
+```
+
+**`Service`层**
+
+```java
+@Override
+public Result signCount() {
+    //1.获取当前登录的用户
+    Long userId = UserHolder.getUser().getId();
+    //2.获取日期
+    LocalDateTime now = LocalDateTime.now();
+    //3.拼接key
+    String keySuffix = now.format(DateTimeFormatter.ofPattern(":yyyyMM"));
+    String key = USER_SIGN_KEY+userId+keySuffix;
+    //4.获取今天是本月的第几天
+    int dayOfMonth = now.getDayOfMonth();
+    //5.获取本月截至到今天的所有签到记录，返回的是一个十进制的数字 BITFIELD sign:5:202203 GET ul4 0
+    List<Long> result = stringRedisTemplate.opsForValue().bitField(
+        key, BitFieldSubCommands.create()
+        .get(BitFieldSubCommands.BitFieldType.unsigned(dayOfMonth)).valueAt(0)
+    );
+    Long num = result.get(0);
+    if(num==null || num==0){
+        //没有签到结果
+        return Result.ok(0);
+    }
+    //6.循环遍历
+    int count = 0;
+    while(true){
+        //6.1.让这个数字与1做与运算，得到数字的最后一个bit位
+        if((num & 1)==0){
+            //如果为0，说明未签到，结束
+            break;
+        }else{
+            //如果不为0，说明已签到，计数器+1
+            count++;
+        }
+        //把数字右移一位，抛弃最后一个bit位，继续下一个bit位
+        num >>>=1;
+    }
+    return Result.ok(count);
+}
+```
 
 ## 8.UV统计
 
+### UV与PV
 
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOdaXXn2DPeLiMTftaRPzZek7TMrmEAAiMOaxs45LBX_opNgYEw0UYBAAMCAAN3AAM4BA.png)
 
+### HyperLogLog
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOfaXXoKoPUsIntvNUwMHeDMcRT4cYAAjQOaxs45LBXtd-v6ea0Io4BAAMCAAN3AAM4BA.png)
+
+### 单元测试
+
+```java
+@Test
+void testHyperLogLog(){
+    String[] values = new String[1000];
+    int j = 0;
+    for(int i=0;i<1000000;i++){
+        j = i%1000;
+        values[j] = "user_"+i;
+        if(j == 999){
+            //发送Redis
+            stringRedisTemplate.opsForHyperLogLog().add("hl2",values);
+        }
+    }
+    //统计数量
+    Long count = stringRedisTemplate.opsForHyperLogLog().size("hl2");
+    System.out.println("count = " + count);
+}
+```
 
