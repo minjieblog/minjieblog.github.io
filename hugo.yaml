@@ -74,8 +74,8 @@ params:
   - doc-intro
   - game-guide
   - java-notes
-  - music
-  - reading-notes
+  # - music
+  # - reading-notes
   #- obsidian
 
   # 评论系统
