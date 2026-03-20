@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Interview-Notes | Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Interview-Notes - Minjie&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/interview-notes/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Interview-Notes
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 二进制 // 将当前元素与1按位与，计算二进制中1的个数 public int[] countBits(int n) { int[] res= new int[n &#43; 1]; for (int i = 0; i &lt;=n; i&#43;&#43;) { int count = 0; int tmp = i; while (tmp != 0) { if ((tmp &amp; 1) == 1) { count&#43;&#43;; } tmp &gt;&gt;= 1; } res[i] = count; } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E8%BF%9B%E5%88%B6/338.-%E6%AF%94%E7%89%B9%E4%BD%8D%E8%AE%A1%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //检查x和y中的二进制不同的位数，可以先计算x异或y，x^y //再利用按位与判断尾数是否为1 xor&amp;1 public int hammingDistance(int x, int y) { int res = x^y, hammingDistance = 0; while (res != 0) { if ((res &amp; 1) == 1) { hammingDistance&#43;&#43;; } res &gt;&gt;= 1; } return hammingDistance; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E8%BF%9B%E5%88%B6/461.-%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { // 创建一个最小堆，存储所有的链表的头结点，每次从链表中取出一个节点，并将这个节点的下一个节点放入最小堆中 // 这样就可以保证每次取得当前k个节点的最小值 public ListNode mergeKLists(ListNode[] lists) { PriorityQueue&lt;ListNode&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; a.val - b.val); ListNode dummy = new ListNode(-1); ListNode cur = dummy; for (ListNode node :lists) { if (node != null) { // 需要判断是否为空，否则会出现空指针异常，优先队列不能加入空值 pq.offer(node); } } while (!pq.isEmpty()) { cur.next = pq.poll(); cur = cur.next; if (cur.next != null) { pq.offer(cur.next); } } return dummy.next; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/23.-%E5%90%88%E5%B9%B6-k-%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //优先队列存储当前元素值和索引，用大顶堆进行排序 public int[] maxSlidingWindow(int[] nums, int k) { int n = nums.length; if (n == 1) { return nums; } int[] res = new int[n - k &#43; 1]; PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; b[0] - a[0]); for (int i = 0; i &lt; k; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); } res[0] = pq.peek()[0]; int j = 1; for (int i = k ; i &lt; n; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); while (pq.peek()[1] &lt; i - k &#43; 1) { //滑动窗口的右边界k，左边界i-k&#43;1 pq.poll(); } res[j&#43;&#43;] = pq.peek()[0]; } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/239.-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int[] dailyTemperatures(int[] temperatures) { Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;(); int n = temperatures.length; int[] ans = new int[n]; // 默认全是 0 for (int i = 0; i &lt; n; i&#43;&#43;) { while (!stack.isEmpty() &amp;&amp; temperatures[stack.peekLast()] &lt; temperatures[i]) { int idx = stack.pollLast(); ans[idx] = i - idx; } stack.offerLast(i); } return ans; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88/739.-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //面积，（索引的差 &#43; 1）*（高度的最小值） // 单调栈 // 对于index位置的最大矩形的款是到左右两边第一次出现比heights[index]小的位置， public int largestRectangleArea(int[] heights) { int n = heights.length; Deque&lt;Integer&gt; stack = new LinkedList&lt;&gt;(); int maxArea = 0; for (int i = 0; i &lt; heights.length; i&#43;&#43;) { while (!stack.isEmpty() &amp;&amp; heights[i] &lt; heights[stack.peek()]) { int top = stack.pop(); int maxWidth = stack.isEmpty() ? i : i - stack.peek() - 1; // i 是右边届， stack.peek()是左边界 maxArea = Math.max(maxWidth * heights[top], maxArea); } stack.push(i); } while (!stack.isEmpty()) { // 右边没有更小的高 int top = stack.pop(); int maxWidth = stack.isEmpty() ? n : n - stack.peek() - 1; maxArea = Math.max(maxWidth * heights[top], maxArea); } return maxArea; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88/84.-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 所有可能，全排列，回溯 List&lt;String&gt; res = new ArrayList&lt;&gt;(); String[] numbers = {&#34;&#34;, &#34;&#34;, &#34;abc&#34;, &#34;def&#34;, &#34;ghi&#34;, &#34;jkl&#34;, &#34;mno&#34;, &#34;pqrs&#34;, &#34;tuv&#34;, &#34;wxyz&#34;}; public List&lt;String&gt; letterCombinations(String digits) { if (digits.length() == 0) { return res; } backTracking(digits, 0); return res; } StringBuffer sb = new StringBuffer(); public void backTracking(String digits, int num) { if (num == digits.length()) { res.add(sb.toString()); return; } int index = digits.charAt(num) - &#39;0&#39;; // 这里-&#39;0&#39;得到数字，不能用Inter.valueOf(),这是将字符串转为数字 String tmp = numbers[index]; for (int i = 0; i &lt; tmp.length(); i&#43;&#43;) { sb.append(tmp.charAt(i)); backTracking(digits, num &#43; 1); sb.deleteCharAt(sb.length() - 1); } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/17.-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 回溯，全排列 // stringBuffer的append方法和deleteCharAt()方法 // 有效的括号组合，对于任意括号左边的左括号的数量大于等于右括号的数量 // 空间复杂度：O(n) List&lt;String&gt; res; int left, right; int count = 0; StringBuffer sb = new StringBuffer(); public List&lt;String&gt; generateParenthesis(int n) { left = 0; right = 0; count = n; res = new ArrayList&lt;&gt;(); backTracking(); return res; } public void backTracking() { if (right == count) { res.add(sb.toString()); } if (left &lt; count) { // append左括号 sb.append(&#39;(&#39;); left&#43;&#43;; backTracking(); sb.deleteCharAt(sb.length() - 1); left--; } if (right &lt; left) { // append右括号，右括号的数量需要小于左括号的数量 sb.append(&#39;)&#39;); right&#43;&#43;; backTracking(); sb.deleteCharAt(sb.length() - 1); right--; } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/22.-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 1.回溯 因为是需要返回列表 // 如果是求个数那就是完全背包 // 递归三要素：1.返回值的类型和传递的参数 2.递归终止的条件 3.单层递归的逻辑 List&lt;List&lt;Integer&gt;&gt; res = new ArrayList(); List&lt;Integer&gt; path = new LinkedList(); public List&lt;List&lt;Integer&gt;&gt; combinationSum(int[] candidates, int target) { backTracking(candidates,target,0,0); // 后面俩个0,0 对应sum 和 startIndex 避免重复遍历 return res; } public void backTracking(int[] candidates, int target, int sum, int startIndex) { if (sum == target) { res.add(new ArrayList(path)); return; } if (sum &gt; target) { return; } for (int i = startIndex; i &lt; candidates.length; i&#43;&#43;) { sum &#43;= candidates[i]; path.add(candidates[i]); backTracking(candidates,target,sum,i); sum -= candidates[i]; path.removeLast(); } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/39.-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 回溯算法，用一个boolean类型的数组标记已经使用过的数字 // 回溯三要素：回溯函数的参数和返回类型、回溯的终止条件、回溯搜索的遍历过程 // 全排列：非常经典的回溯算法，回溯算法的本质上遍历所有的和能效 List&lt;List&lt;Integer&gt;&gt; res = new ArrayList(); List&lt;Integer&gt; path = new LinkedList(); public List&lt;List&lt;Integer&gt;&gt; permute(int[] nums) { boolean[] used = new boolean[nums.length]; backtracking(nums,used); return res; } public void backtracking(int[] nums, boolean[] used) { if (path.size() == nums.length) { res.add(new ArrayList(path)); } for (int i = 0; i &lt; nums.length; i&#43;&#43;) { if (used[i] == true) continue; path.add(nums[i]); used[i] = true; backtracking(nums,used); path.remove(path.size() - 1); // 后两步是在回溯，表明当前前缀数字的所有可能性都已经遍历完 used[i] = false; } } // public void backtracking(int[] nums, boolean[] used){ // if(path.size() == nums.length){ // res.add(new ArrayList(path)); // 需要注意：这里是new ArrayList(path) ,不是直接path，因为path是一直在变化的 // return; // } // for(int i = 0; i &lt; nums.length ; i&#43;&#43;){ // if(used[i] == true)continue; // path.add(nums[i]); // used[i] = true; // backtracking(nums,used); // path.removeLast(); // used[i] = false; // } // } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/46.-%E5%85%A8%E6%8E%92%E5%88%97/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/interview-notes/page/5/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/interview-notes/page/7/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

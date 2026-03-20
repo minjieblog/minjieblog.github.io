@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Wed, 24 Dec 2025 15:03:41 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Jan 2026 21:20:09 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>zkLogin: 基于现有凭证的隐私保护区块链认证</title>
+      <link>http://localhost:1313/blockchain/zklogin/</link>
+      <pubDate>Wed, 21 Jan 2026 21:20:09 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/zklogin/</guid>
+      <description>zkLogin 是一种创新的区块链认证方案,允许用户使用 Google、Facebook 等现有 OpenID 账户进行区块链交易认证,通过零知识证明技术保护隐私,无需管理私钥</description>
+    </item>
     <item>
       <title>Web3.0 身份认证系统综述：中心化与去中心化方案对比分析</title>
       <link>http://localhost:1313/blockchain/identity-management-systems-survey/</link>

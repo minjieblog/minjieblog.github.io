@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>老姚吉他 on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/tags/%E8%80%81%E5%A7%9A%E5%90%89%E4%BB%96/</link>
+    <description>Recent content in 老姚吉他 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Fri, 30 Jan 2026 19:01:57 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E8%80%81%E5%A7%9A%E5%90%89%E4%BB%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>老姚吉他学习笔记</title>
+      <link>http://localhost:1313/music/guitar-by-laoyao/</link>
+      <pubDate>Fri, 30 Jan 2026 19:01:57 +0800</pubDate>
+      <guid>http://localhost:1313/music/guitar-by-laoyao/</guid>
+      <description>记录老姚吉他课程的系统学习过程，从基础概念、指法练习到个人思考与问题总结，作为长期吉他学习与复盘的笔记专栏。</description>
+    </item>
+  </channel>
+</rss>

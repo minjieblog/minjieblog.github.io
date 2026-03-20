@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Interview-Notes | Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Interview-Notes - Minjie&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/interview-notes/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Interview-Notes
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 动态规划 // dp[i] 代表以i结尾的最长有效括号子串的长度 // s.charAt(i) == &#39;( dp[i] = 0; // s.charAt(i) == &#39;)&#39; s.charAt(i - 1) = &#39;(&#39; dp[i] = dp[i - 2] &#43; 2 // if (i - dp[i - 1] - 2 &gt;= 0)s.charAt(i - dp[i - 1] - 1) == &#39;(&#39; dp[i] = dp[i-1] &#43; 2 &#43; dp[i - dp[i - 1] - 2] // 初始化dp[0] = 0; // 遍历顺序 从左向右 public int longestValidParentheses(String s) { int len = s.length(); int[] dp = new int[len]; int maxLen = 0; for (int i = 1; i &lt;= len - 1; i&#43;&#43;) { if (s.charAt(i) == &#39;)&#39;) { if (s.charAt(i-1) == &#39;(&#39;) { dp[i] = (i &gt;= 2 ? dp[i-2] : 0) &#43; 2; maxLen = Math.max(maxLen,dp[i]); } else if (i-1 &gt;= dp[i-1] &amp;&amp; dp[i-1] &gt; 0 &amp;&amp; s.charAt(i-dp[i-1]-1) == &#39;(&#39;) { // 需要判断dp[i-1] &gt; 0 dp[i] = (i - dp[i-1] &gt;= 2)? dp[i-1] &#43; dp[i-dp[i-1]-2] &#43; 2 : dp[i-1] &#43; 2; } maxLen = Math.max(dp[i],maxLen); } } return maxLen; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/32.-%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 背包问题，完全背包 public int coinChange(int[] coins, int amount) { int[] dp = new int[amount &#43; 1]; // dp[i] 代表组成金额为i的最少硬币数 Arrays.fill(dp, amount &#43; 1); dp[0] = 0; for (int i = 0; i &lt; coins.length; i&#43;&#43;) { for (int j = coins[i]; j &lt;= amount; j&#43;&#43;) { dp[j] = Math.min(dp[j], dp[j-coins[i]] &#43; 1); } } return dp[amount]== amount&#43;1 ? - 1 : dp[amount]; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/322.-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //对于每一个节点，都有选或者不选两种决定 //选了该节点，则它的左子节点和右子节点不能选 //设定一个数组，下标0代表选了该节点的最大偷盗金额，下标1代表未选择该节点的最小偷盗金额 // dfs &#43; dp // 时间复杂度O(n),空间复杂度O(n); 每个节点遍历一次 public int rob(TreeNode root) { int[] res = dfs(root); // res[]记录选root和不选root可以偷窃的最大值 return Math.max(res[0], res[1]); } public int[] dfs(TreeNode root) { if (root == null) { return new int[]{0,0}; } int[] left = dfs(root.left); int[] right = dfs(root.right); int selected = root.val &#43; left[1] &#43; right[1]; int noSelected = Math.max(left[0], left[1]) &#43; Math.max (right[0], right[1]); return new int[]{selected, noSelected}; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/337.-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D-iii/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //两重for循环计算 public boolean canPartition(int[] nums) { // int sum = 0; // for(int i = 0; i &lt; nums.length; i&#43;&#43;) { // sum &#43;= nums[i]; // } // if(sum % 2 == 1) return false; // int target = sum / 2; // System.out.print(target); // // //dp[i]代表是否有和为i的子集 // // int[] dp = new int[target &#43; 1]; // // dp[0] = 0; // 初始化条件 // // for(int i = 0; i &lt; nums.length; i&#43;&#43;) { // // for(int j = target; j &gt;= nums[i]; j--) { // // dp[j] = Math.max(dp[j],dp[j - nums[i]] &#43; nums[i]); // // } // // } // int[][] dp = new int[nums.length][target&#43;1]; // for(int i = 0; i &lt; nums.length; i&#43;&#43;){ // dp[i][0] = 0; // } // for (int j = 0; j &lt;= target; j&#43;&#43;) { // if (j &gt;= nums[0]) { // dp[0][j] = nums[0]; // } // } // for (int i = 1; i &lt; nums.length; i&#43;&#43;) { // for (int j = 1; j &lt;= target; j&#43;&#43;) { // if (j &lt; nums[i]) { // dp[i][j] = dp[i-1][j]; // } else { // dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-nums[i]] &#43; nums[i]); // } // } // } // return dp[nums.length - 1][target] == target; int sum = 0; for(int i = 0; i &lt; nums.length; i&#43;&#43;) { sum &#43;= nums[i]; } if(sum % 2 == 1) return false; int target = sum / 2; boolean[] dp = new boolean[target &#43; 1]; //dp数组代表容量为j的背包能否恰好装满 dp[0] = true; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { for (int j = target; j &gt;= nums[i]; j--) { dp[j] = dp[j] || dp[j-nums[i]]; } } return dp[target]; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/416.-%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //下标i处能接的雨水为左右两边的最大值里的最小值- height[i] // 这里可以用双指针的思想 时间复杂度O(n),空间复杂度O(1) // 动态规划更直接， 用两个数组记录左右两边的最大值 时间复杂度O(n),空间复杂度O(1) public int trap(int[] height) { int n = height.length; // int[] leftMax = new int[n]; // int[] rightMax = new int[n]; // leftMax[0] = height[0]; // rightMax[n - 1] = height[n - 1]; // for (int i = 1; i &lt; n; i&#43;&#43;) { // leftMax[i] = Math.max(leftMax[i-1], height[i]); // } // for (int i = n - 2; i &gt;= 0; i--) { // rightMax[i] = Math.max(rightMax[i &#43; 1], height[i]); // } // int sum = 0; // for (int i = 0; i &lt; n; i&#43;&#43;) { // sum &#43;= Math.min(leftMax[i], rightMax[i]) - height[i]; // } // return sum; int leftMax = 0, rightMax = 0; int left = 0,right = n - 1, sum = 0; while (left &lt;= right) { leftMax = Math.max(height[left], leftMax); rightMax = Math.max(height[right], rightMax); if (leftMax &lt; rightMax) { sum &#43;= leftMax - height[left]; left&#43;&#43;; } else { sum &#43;= rightMax - height[right]; right--; } } return sum; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/42.-%E6%8E%A5%E9%9B%A8%E6%B0%B4/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 首先想到的是回溯，但是回溯的时间复杂度过大（2^n); // 想到背包问题： // 两个背包，一个放正数，一个放负数， // pos[i] - neg[i] = target; // pos[i] &#43; neg[i] = sum; // pos[i] = (target &#43; sum) / 2 public int findTargetSumWays(int[] nums, int target) { int sum = 0; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { sum &#43;= nums[i]; } if ((target &#43; sum) % 2 != 0 || (target &#43; sum) &lt; 0) { return 0; } int[] pos = new int[(target &#43; sum) / 2 &#43; 1]; pos[0]= 1; //pos[i] 代表容量为i的背包有多少种方式填满 for (int i = 0; i &lt; nums.length; i&#43;&#43;) { for (int j = (target &#43; sum) / 2; j &gt;= nums[i]; j--) { pos[j] &#43;= pos[j-nums[i]]; } } return pos[(target &#43; sum) / 2]; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/494.-%E7%9B%AE%E6%A0%87%E5%92%8C/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //最长回文子串，动态规划， //dp[i][j]代表从i到j的最长回文子串的长度 //初始化的dp[i][i] = 1 //遍历顺序：按长度遍历，再从左到右按索引遍历 public String longestPalindrome(String s) { // char[] arr = s.toCharArray(); // 反序与原始字符串相同，动态规划 // 如果s.substring(i,j)是回文子串，则s.substring(i&#43;1,j-1)一定也是回文子串 // 每一个字符一定是回文子串，判断2个长度的字符串是不是回文子串只需要判断两个字符是否相等 // 用二维哈希表来表示所有子串是不是回文子串，行下标与列下标的最大差值代表长度 // int len = arr.length; // if(len &lt; 2){ //长度小于2说明是动态数组 // return s; // } // boolean[][] hash = new boolean[len][len]; // int maxLen = 1; // int begin = 0; // for(int i = 0 ; i &lt; len; i&#43;&#43;){ // hash[i][i] = true; // 单个字符一定是回文串 // } // for(int L = 2; L &lt;= len; L&#43;&#43;){ //L代表的长度 // for(int i = 0 ; i &lt; len; i&#43;&#43;){ //左边界，字符串的起始下标 // int j = L &#43; i - 1; //子字符串的长度为L, j - i &#43; 1 = L; // if( j &gt;= len){ // break; // } // if(arr[i] != arr[j]){ // 子字符串长度小于等于3的时候，只需要看左右边界 // hash[i][j] = false; // 子字符串长度&gt;3的时候，hash[i][j] = hash[i&#43;1][j-1]; // }else { // if(L &lt;= 3){ // hash[i][j] = true; // }else{ // hash[i][j] = hash[i&#43;1][j-1]; // } // } // if(hash[i][j]&amp;&amp; L &gt; maxLen){ // maxLen = L; // begin = i; // } // } // } // return s.substring(begin,begin&#43;maxLen); // 不包括begin&#43;maxLen int n = s.length(); if (n == 1) { return s; } boolean[][] dp = new boolean[n][n]; for (int i = 0; i &lt; n; i&#43;&#43;) { dp[i][i] = true; } int maxLen = 1; int begin = 0; for (int i = 2; i &lt;= n; i&#43;&#43;) { for (int j = 0; j &lt; n;j&#43;&#43;) { int k = j &#43; i - 1; if(k &gt;= n) { break; } if (i &lt;= 3) { if (s.charAt(j) == s.charAt(k)) { dp[j][k] = true; }else { dp[j][k] = false; } } else { if (s.charAt(j) == s.charAt(k)) { dp[j][k] = dp[j &#43;1][k - 1] ; }else { dp[j][k] = false; } } if (dp[j][k] &amp;&amp; i &gt; maxLen ) { maxLen = i; begin = j; } } } return s.substring(begin,begin&#43;maxLen); } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/5.-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int maxSubArray(int[] nums) { // dp数组代表以nums[i]结尾的的最大子数组和，i代表索引 // if (dp[i-1] &lt; 0) dp[i] = nums[i]; // else dp[i] = dp[i-1] &#43; nums[i]; // 找到dp数组的最大值 int[] dp = new int[nums.length]; int max = nums[0]; dp[0] = nums[0]; for (int i = 1; i &lt; nums.length; i&#43;&#43;) { dp[i] = Math.max(dp[i-1] &#43; nums[i], nums[i]); max = Math.max(dp[i],max); } return max; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/53.-%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 动态规划 // dp[i][j] 代表从（0,0）出发到(i,j)有多少条不同的路径 // dp[i][j] = dp[i-1][j] &#43; dp[i][j-1]; // 左边界和上边界都只有1种可能 // 从上向下，从左往右遍历 int res = 0; public int uniquePaths(int m, int n) { int[][] dp = new int[m][n]; dp[0][0] = 1; for(int i = 1; i &lt; m;i&#43;&#43;){ dp[i][0] = 1; } for(int j = 1; j &lt; n; j&#43;&#43;){ dp[0][j] = 1; } for(int i = 1 ; i &lt; m; i&#43;&#43;){ for(int j = 1; j &lt; n; j&#43;&#43;){ dp[i][j] = dp[i - 1][j] &#43; dp[i][j - 1]; } } return dp[m-1][n-1]; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //二维动态规划 public int countSubstrings(String s) { int n = s.length(); int[][] dp = new int[n][n]; for (int i = 0; i &lt; n; i&#43;&#43;) { dp[i][i] = 1; } for(int len = 2; len &lt;= n; len&#43;&#43;) { for (int i = 0; i &lt;= n-len; i&#43;&#43;) { int j = i &#43; len - 1; if(s.charAt(i) == s.charAt(j)){ if (len &gt; 2) { dp[i][j] = dp[i &#43; 1][j - 1]; } else { dp[i][j] = 1; } }else { dp[i][j] = 0; } } } int count = 0; for (int i = 0; i &lt; n; i&#43;&#43;) { for (int j = 0; j &lt; n; j&#43;&#43;) { if (dp[i][j] != 0){ count&#43;&#43;; } } } return count; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/647.-%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/interview-notes/page/2/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/interview-notes/page/4/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

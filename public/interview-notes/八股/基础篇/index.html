@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="概念
+Java特点
+
+跨平台
+面向对象
+内存管理
+
+Java的优劣势
+
+优势：跨平台/生态系统/面向对象/内存管理/多线程/安全模型
+劣势：编译开销/语法繁琐/内存消耗
+
+Java跨平台原因
+
+Java首先被编译成.class(字节码文件)
+JVM将字节码翻译成机器码
+
+JVM、JDK、JRE三者关系
+
+JVM：运行环境。注：将字节码直接映射到本地的cpu指令集和OS的系统调用，所以屏蔽了与操作系统相关的信息
+JDK：开发工具包
+JRE：JVM&#43;Java类库
+
+Java解释和编译都有
+
+解释：JVM方法调用计数器，当累计计数大于一定值的时候，使用JIT编译成机器码，否则就是用解释器进行解释执行
+编译：源代码被编译成字节码，JIT会被那编译过的机器码保存起来
+
+解释型语言和编译型语言区别
+
+编译型语言：源代码被编译成机器码或是字节码，生成可执行文件。
+解释型语言：逐行解释执行源代码，不生产独立的可执行文件。在执行程序时同时进行翻译
+
+值传递和引用传递
+
+值传递：传递实际值的副本
+引用传递：实际上是伪概念，更改指向同一个对象的内部数据
+
+数据类型
+基本的数据类型
+
+数值型：整型（byte short int long）、浮点型（float  double）
+字符型：char
+布尔型：boolean
+
+类型互转出现的问题
+
+数据向上转一般是安全的
+出现的问题1.数值溢出
+出现的问题2.精度丢失
+
+为什么要使用bigDecimal而不是double进行运算
+
+double是使用二进制来进行的浮点运算，二进制不能精确的表示小数，比如说1/3
+bigDecimal则是可以进行精确计算
+
+装箱和拆箱
+
+将数据类型和对应的包装类进行转换的过程
+弊端：频繁的自动装箱操作可能会影响到程序的性能
+
+Java中的Integer和int
+Integer">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E5%9F%BA%E7%A1%80%E7%AF%87/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E5%9F%BA%E7%A1%80%E7%AF%87/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e6%a6%82%e5%bf%b5" aria-label="概念">概念</a><ul>
+                        
+                <li>
+                    <a href="#java%e7%89%b9%e7%82%b9" aria-label="Java特点">Java特点</a></li>
+                <li>
+                    <a href="#java%e7%9a%84%e4%bc%98%e5%8a%a3%e5%8a%bf" aria-label="Java的优劣势">Java的优劣势</a></li>
+                <li>
+                    <a href="#java%e8%b7%a8%e5%b9%b3%e5%8f%b0%e5%8e%9f%e5%9b%a0" aria-label="Java跨平台原因">Java跨平台原因</a></li>
+                <li>
+                    <a href="#jvmjdkjre%e4%b8%89%e8%80%85%e5%85%b3%e7%b3%bb" aria-label="JVM、JDK、JRE三者关系">JVM、JDK、JRE三者关系</a></li>
+                <li>
+                    <a href="#java%e8%a7%a3%e9%87%8a%e5%92%8c%e7%bc%96%e8%af%91%e9%83%bd%e6%9c%89" aria-label="Java解释和编译都有">Java解释和编译都有</a></li>
+                <li>
+                    <a href="#%e8%a7%a3%e9%87%8a%e5%9e%8b%e8%af%ad%e8%a8%80%e5%92%8c%e7%bc%96%e8%af%91%e5%9e%8b%e8%af%ad%e8%a8%80%e5%8c%ba%e5%88%ab" aria-label="解释型语言和编译型语言区别">解释型语言和编译型语言区别</a></li>
+                <li>
+                    <a href="#%e5%80%bc%e4%bc%a0%e9%80%92%e5%92%8c%e5%bc%95%e7%94%a8%e4%bc%a0%e9%80%92" aria-label="值传递和引用传递">值传递和引用传递</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="数据类型">数据类型</a><ul>
+                        
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac%e7%9a%84%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="基本的数据类型">基本的数据类型</a></li>
+                <li>
+                    <a href="#%e7%b1%bb%e5%9e%8b%e4%ba%92%e8%bd%ac%e5%87%ba%e7%8e%b0%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="类型互转出现的问题">类型互转出现的问题</a></li>
+                <li>
+                    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e4%bd%bf%e7%94%a8bigdecimal%e8%80%8c%e4%b8%8d%e6%98%afdouble%e8%bf%9b%e8%a1%8c%e8%bf%90%e7%ae%97" aria-label="为什么要使用bigDecimal而不是double进行运算">为什么要使用bigDecimal而不是double进行运算</a></li>
+                <li>
+                    <a href="#%e8%a3%85%e7%ae%b1%e5%92%8c%e6%8b%86%e7%ae%b1" aria-label="装箱和拆箱">装箱和拆箱</a></li>
+                <li>
+                    <a href="#java%e4%b8%ad%e7%9a%84integer%e5%92%8cint" aria-label="Java中的Integer和int">Java中的Integer和int</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" aria-label="面向对象">面向对象</a><ul>
+                        
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e5%b0%81%e8%a3%85%e7%bb%a7%e6%89%bf%e5%a4%9a%e6%80%81" aria-label="如何理解封装继承多态">如何理解封装继承多态</a></li>
+                <li>
+                    <a href="#%e5%a4%9a%e6%80%81%e4%bd%93%e7%8e%b0%e5%9c%a8%e5%93%aa%e4%ba%9b%e6%96%b9%e9%9d%a2" aria-label="多态体现在哪些方面">多态体现在哪些方面</a></li>
+                <li>
+                    <a href="#%e5%a4%9a%e6%80%81%e8%a7%a3%e5%86%b3%e4%ba%86%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98" aria-label="多态解决了什么问题">多态解决了什么问题</a></li>
+                <li>
+                    <a href="#%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e7%9a%84%e8%ae%be%e8%ae%a1%e5%8e%9f%e5%88%99%e6%9c%89%e5%93%aa%e4%ba%9b" aria-label="面向对象的设计原则有哪些">面向对象的设计原则有哪些</a></li>
+                <li>
+                    <a href="#%e9%87%8d%e8%bd%bd%e5%92%8c%e9%87%8d%e5%86%99%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" aria-label="重载和重写有什么区别">重载和重写有什么区别</a></li>
+                <li>
+                    <a href="#%e6%8a%bd%e8%b1%a1%e7%b1%bb%e5%92%8c%e6%99%ae%e9%80%9a%e7%b1%bb%e7%9a%84%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="抽象类和普通类的的区别">抽象类和普通类的的区别</a></li>
+                <li>
+                    <a href="#%e6%8a%bd%e8%b1%a1%e7%b1%bb%e5%92%8c%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="抽象类和接口的区别">抽象类和接口的区别</a></li>
+                <li>
+                    <a href="#%e6%8a%bd%e8%b1%a1%e7%b1%bb%e8%83%bd%e5%8a%a0final%e4%bf%ae%e9%a5%b0%e5%90%97" aria-label="抽象类能加final修饰吗">抽象类能加final修饰吗</a></li>
+                <li>
+                    <a href="#%e6%8e%a5%e5%8f%a3%e9%87%8c%e9%9d%a2%e5%8f%af%e4%bb%a5%e5%ae%9a%e4%b9%89%e5%93%aa%e4%ba%9b%e6%96%b9%e6%b3%95" aria-label="接口里面可以定义哪些方法">接口里面可以定义哪些方法</a></li>
+                <li>
+                    <a href="#%e6%8a%bd%e8%b1%a1%e7%b1%bb%e5%8f%af%e4%bb%a5%e8%a2%ab%e5%ae%9e%e4%be%8b%e5%8c%96%e5%90%97" aria-label="抽象类可以被实例化吗">抽象类可以被实例化吗</a></li>
+                <li>
+                    <a href="#%e6%8e%a5%e5%8f%a3%e5%8f%af%e4%bb%a5%e5%8c%85%e5%90%ab%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0%e5%90%97" aria-label="接口可以包含构造函数吗">接口可以包含构造函数吗</a></li>
+                <li>
+                    <a href="#java%e4%b8%ad%e7%9a%84%e9%9d%99%e6%80%81%e5%8f%98%e9%87%8f%e5%92%8c%e9%9d%99%e6%80%81%e6%96%b9%e6%b3%95" aria-label="Java中的静态变量和静态方法">Java中的静态变量和静态方法</a></li>
+                <li>
+                    <a href="#%e9%9d%9e%e9%9d%99%e6%80%81%e5%86%85%e9%83%a8%e7%b1%bb%e5%92%8c%e9%9d%99%e6%80%81%e5%86%85%e9%83%a8%e7%b1%bb%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="非静态内部类和静态内部类的区别">非静态内部类和静态内部类的区别</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e8%af%91%e5%99%a8%e6%98%af%e5%a6%82%e4%bd%95%e8%ae%a9%e9%9d%9e%e9%9d%99%e6%80%81%e5%86%85%e9%83%a8%e7%b1%bb%e7%9b%b4%e6%8e%a5%e8%ae%bf%e9%97%ae%e5%a4%96%e9%83%a8%e6%96%b9%e6%b3%95%e7%9a%84" aria-label="编译器是如何让非静态内部类直接访问外部方法的">编译器是如何让非静态内部类直接访问外部方法的</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="概念">概念<a hidden class="anchor" aria-hidden="true" href="#概念">#</a></h2>
+<h3 id="java特点">Java特点<a hidden class="anchor" aria-hidden="true" href="#java特点">#</a></h3>
+<ul>
+<li>跨平台</li>
+<li>面向对象</li>
+<li>内存管理</li>
+</ul>
+<h3 id="java的优劣势">Java的优劣势<a hidden class="anchor" aria-hidden="true" href="#java的优劣势">#</a></h3>
+<ol>
+<li>优势：<strong>跨平台</strong>/<strong>生态系统</strong>/<strong>面向对象</strong>/<strong>内存管理</strong>/<strong>多线程</strong>/<strong>安全模型</strong></li>
+<li>劣势：<strong>编译开销</strong>/<strong>语法繁琐</strong>/<strong>内存消耗</strong></li>
+</ol>
+<h3 id="java跨平台原因">Java跨平台原因<a hidden class="anchor" aria-hidden="true" href="#java跨平台原因">#</a></h3>
+<ol>
+<li>Java首先被编译成.class(<strong>字节码文件</strong>)</li>
+<li>JVM将字节码翻译成机器码</li>
+</ol>
+<h3 id="jvmjdkjre三者关系">JVM、JDK、JRE三者关系<a hidden class="anchor" aria-hidden="true" href="#jvmjdkjre三者关系">#</a></h3>
+<ul>
+<li>JVM：运行环境。<strong>注</strong>：将字节码直接映射到本地的cpu指令集和OS的系统调用，所以屏蔽了与操作系统相关的信息</li>
+<li>JDK：开发工具包</li>
+<li>JRE：JVM+Java类库</li>
+</ul>
+<h3 id="java解释和编译都有">Java解释和编译都有<a hidden class="anchor" aria-hidden="true" href="#java解释和编译都有">#</a></h3>
+<ul>
+<li><strong>解释</strong>：JVM方法调用计数器，当累计计数大于一定值的时候，使用JIT编译成机器码，否则就是用解释器进行解释执行</li>
+<li><strong>编译</strong>：源代码被编译成字节码，JIT会被那编译过的机器码保存起来</li>
+</ul>
+<h3 id="解释型语言和编译型语言区别">解释型语言和编译型语言区别<a hidden class="anchor" aria-hidden="true" href="#解释型语言和编译型语言区别">#</a></h3>
+<ul>
+<li><strong>编译型语言</strong>：源代码被编译成机器码或是字节码，生成可执行文件。</li>
+<li><strong>解释型语言</strong>：逐行解释执行源代码，不生产独立的可执行文件。在执行程序时同时进行翻译</li>
+</ul>
+<h3 id="值传递和引用传递">值传递和引用传递<a hidden class="anchor" aria-hidden="true" href="#值传递和引用传递">#</a></h3>
+<ul>
+<li><strong>值传递</strong>：传递实际值的副本</li>
+<li><strong>引用传递</strong>：实际上是伪概念，更改指向同一个对象的内部数据</li>
+</ul>
+<h2 id="数据类型">数据类型<a hidden class="anchor" aria-hidden="true" href="#数据类型">#</a></h2>
+<h3 id="基本的数据类型">基本的数据类型<a hidden class="anchor" aria-hidden="true" href="#基本的数据类型">#</a></h3>
+<ul>
+<li>数值型：整型（byte short int long）、浮点型（float  double）</li>
+<li>字符型：char</li>
+<li>布尔型：boolean</li>
+</ul>
+<h3 id="类型互转出现的问题">类型互转出现的问题<a hidden class="anchor" aria-hidden="true" href="#类型互转出现的问题">#</a></h3>
+<ul>
+<li>数据向上转一般是<strong>安全</strong>的</li>
+<li>出现的问题<strong>1.数值溢出</strong></li>
+<li>出现的问题<strong>2.精度丢失</strong></li>
+</ul>
+<h3 id="为什么要使用bigdecimal而不是double进行运算">为什么要使用bigDecimal而不是double进行运算<a hidden class="anchor" aria-hidden="true" href="#为什么要使用bigdecimal而不是double进行运算">#</a></h3>
+<ul>
+<li>double是使用二进制来进行的浮点运算，二进制不能精确的表示小数，比如说1/3</li>
+<li>bigDecimal则是可以进行精确计算</li>
+</ul>
+<h3 id="装箱和拆箱">装箱和拆箱<a hidden class="anchor" aria-hidden="true" href="#装箱和拆箱">#</a></h3>
+<ul>
+<li>将<strong>数据类型和对应的包装类进行转换</strong>的过程</li>
+<li>弊端：频繁的自动装箱操作可能会影响到程序的性能</li>
+</ul>
+<h3 id="java中的integer和int">Java中的Integer和int<a hidden class="anchor" aria-hidden="true" href="#java中的integer和int">#</a></h3>
+<p><strong>Integer</strong></p>
+<ul>
+<li>优势：<strong>泛型中的应用/转换中的应用/集合中的应用</strong></li>
+<li>是一种引用类型，需要实例化对象，就必须<strong>为对象分配内存</strong></li>
+<li>初始化为null，如果没有进行实例化，就会导致<strong>空指针异常</strong></li>
+<li><strong>缓存</strong>：在Integer内部有一个静态的缓存池，用于存储特定范围内的整数值对应的Integer对象</li>
+</ul>
+<p><strong>int</strong></p>
+<ul>
+<li>作为基本数据类型，在对应的内存块进行直接的数据存储，<strong>读写效率要比包装类更高</strong></li>
+<li>而且在64位的JVM上，在开启引用压缩的情况下，一个Integer对象要占用16个字节的内存空间，一个int只占用4个字节，<strong>存储效率也更高</strong></li>
+</ul>
+<h2 id="面向对象">面向对象<a hidden class="anchor" aria-hidden="true" href="#面向对象">#</a></h2>
+<h3 id="如何理解封装继承多态">如何理解封装继承多态<a hidden class="anchor" aria-hidden="true" href="#如何理解封装继承多态">#</a></h3>
+<h3 id="多态体现在哪些方面">多态体现在哪些方面<a hidden class="anchor" aria-hidden="true" href="#多态体现在哪些方面">#</a></h3>
+<h3 id="多态解决了什么问题">多态解决了什么问题<a hidden class="anchor" aria-hidden="true" href="#多态解决了什么问题">#</a></h3>
+<h3 id="面向对象的设计原则有哪些">面向对象的设计原则有哪些<a hidden class="anchor" aria-hidden="true" href="#面向对象的设计原则有哪些">#</a></h3>
+<h3 id="重载和重写有什么区别">重载和重写有什么区别<a hidden class="anchor" aria-hidden="true" href="#重载和重写有什么区别">#</a></h3>
+<h3 id="抽象类和普通类的的区别">抽象类和普通类的的区别<a hidden class="anchor" aria-hidden="true" href="#抽象类和普通类的的区别">#</a></h3>
+<h3 id="抽象类和接口的区别">抽象类和接口的区别<a hidden class="anchor" aria-hidden="true" href="#抽象类和接口的区别">#</a></h3>
+<h3 id="抽象类能加final修饰吗">抽象类能加final修饰吗<a hidden class="anchor" aria-hidden="true" href="#抽象类能加final修饰吗">#</a></h3>
+<h3 id="接口里面可以定义哪些方法">接口里面可以定义哪些方法<a hidden class="anchor" aria-hidden="true" href="#接口里面可以定义哪些方法">#</a></h3>
+<h3 id="抽象类可以被实例化吗">抽象类可以被实例化吗<a hidden class="anchor" aria-hidden="true" href="#抽象类可以被实例化吗">#</a></h3>
+<h3 id="接口可以包含构造函数吗">接口可以包含构造函数吗<a hidden class="anchor" aria-hidden="true" href="#接口可以包含构造函数吗">#</a></h3>
+<h3 id="java中的静态变量和静态方法">Java中的静态变量和静态方法<a hidden class="anchor" aria-hidden="true" href="#java中的静态变量和静态方法">#</a></h3>
+<h3 id="非静态内部类和静态内部类的区别">非静态内部类和静态内部类的区别<a hidden class="anchor" aria-hidden="true" href="#非静态内部类和静态内部类的区别">#</a></h3>
+<h3 id="编译器是如何让非静态内部类直接访问外部方法的">编译器是如何让非静态内部类直接访问外部方法的<a hidden class="anchor" aria-hidden="true" href="#编译器是如何让非静态内部类直接访问外部方法的">#</a></h3>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

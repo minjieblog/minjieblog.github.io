@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Interview-Notes | Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Interview-Notes - Minjie&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/interview-notes/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Interview-Notes
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 方法1：暴力，两重for循环，第一重for循环代表开头，第二重for循环代表结尾，遍历求和， 时间复杂度O（n^2） // 方法2：前缀和&#43;HashMap，类似于两数之和，用hashmap可以降时间复杂度 // public int subarraySum(int[] nums, int k) { int pre = 0; int count = 0; HashMap&lt;Integer,Integer&gt; hs = new HashMap&lt;&gt;(); // hashput存储的是前缀和 hs.put(0,1); //连续子数组，什么都没有默认为0 for (int i = 0; i &lt; nums.length; i&#43;&#43;) { pre &#43;= nums[i]; if (hs.containsKey(pre - k)) { count &#43;= hs.get(pre - k); } hs.put(pre, hs.getOrDefault(pre, 0) &#43; 1); } return count; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/560.-%E5%92%8C%E4%B8%BA-k-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 深度优先搜索：往一个方向遍历，走到头就回溯，再往另外一个方向遍历 // 广度优先搜索：从一个位置开始，向他的相邻位置搜索，逐层进行，用队列实现，需要用一个boolean数组进行标记,避免重复 // 岛屿数量这个题是深度优先搜索和广度优先搜索的基础题 // 深度优先代码相对简单，遍历字符数组，过程碰到&#39;1&#39;就进行深搜，深搜的过程只要判断是否越界，元素是否为&#39;1&#39;，对相邻&#39;1&#39;进行深度优先 int[][] pos = {{1,0}, {-1,0},{0,1},{0,-1}}; public int numIslands(char[][] grid) { int m = grid.length; int n = grid[0].length; int num = 0; boolean[][] visited = new boolean[m][n]; for (int i = 0; i &lt; grid.length; i&#43;&#43;) { for (int j = 0; j &lt; grid[0].length; j&#43;&#43;) { if ( grid[i][j] == &#39;1&#39;) { dfs(grid,i,j); num&#43;&#43;; } } } return num; } public void dfs(char[][] grid, int row, int col) { if (row &lt; 0 || row &gt;= grid.length || col &lt; 0 || col &gt;= grid[0].length || grid[row][col] == &#39;0&#39;) { return; } grid[row][col] = &#39;0&#39;; dfs(grid, row &#43; 1, col); dfs(grid, row - 1, col); dfs(grid, row, col &#43; 1); dfs(grid, row, col - 1); } // public void dfs (char[][] grid, int row, int col) { // if (row &lt; 0 || row &gt;= grid.length || col &lt; 0 || col &gt;= grid[0].length || grid[row][col] == &#39;0&#39;) { // return; // } // grid[row][col] = &#39;0&#39;; // dfs(grid, row - 1, col); // dfs(grid, row &#43; 1, col); // dfs(grid, row, col &#43; 1); // dfs(grid, row, col - 1); // } public void bfs(char[][] grid, int row, int col, boolean[][] visited) { grid[row][col] = &#39;0&#39;; visited[row][col] = true; Queue&lt;int[]&gt; que = new LinkedList&lt;&gt;(); que.offer(new int[]{row,col}); while (!que.isEmpty()) { int[] cur = que.poll(); int x = cur[0]; int y = cur[1]; for (int[] tmp : pos) { int curX = tmp[0] &#43; x; int curY = tmp[1] &#43; y; if (curX &lt; 0 || curX &gt;= grid.length || curY &lt; 0 || curY &gt;= grid[0].length || grid[curX][curY] == &#39;0&#39; || visited[curX][curY]) { continue; } que.offer(new int[]{curX, curY}); visited[curX][curY] = true; } } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //深度优先&#43;回溯， int[][] directions = {{0,1},{0,-1},{1,0},{-1,0}}; public boolean exist(char[][] board, String word) { int row = board.length; int col = board[0].length; boolean[][] visited = new boolean[row][col]; for (int i = 0; i &lt; row; i&#43;&#43;) { for (int j = 0; j &lt; col; j&#43;&#43;) { if (dfs(i,j,board,word,0,visited)) { return true; } } } return false; } public boolean dfs(int row, int col, char[][] board, String word, int index, boolean[][] visited) { if (index == word.length()) { return true; } if (row &lt; 0 || row &gt;= board.length || col &lt; 0 || col &gt;= board[0].length || word.charAt(index) != board[row][col] || visited[row][col] == true) { return false; } visited[row][col] = true; // 对当前的路径进行标记，避免重复访问 for (int[] dir : directions) { int curRow = row &#43; dir[0]; int curRol = col &#43; dir[1]; if (dfs(curRow, curRol, board, word, index &#43; 1, visited)) { return true; } } visited[row][col] = false; // 回溯，使得其他路径可以访问当前路径的元素 return false; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 矮个子插队，高个子看不见；所以我们可以先安排高个子的位置，再通过插队的方式安排矮个子的位置 // 身高从大到小排（身高相同k小的站前面） //先按照身高h降序排序，这样处理时可以确保当前插入的元素之前的所有元素身高都不小于它，从而简化位置的确定。 //如果身高相同，则按照序号k升序排序，因为身高相同的情况下，序号小的人应该排在前面 public int[][] reconstructQueue(int[][] people) { Arrays.sort(people, (a,b) -&gt; b[0] == a[0]? a[1] - b[1] : b[0] - a[0]); List&lt;int[]&gt; list = new ArrayList&lt;&gt;(); for (int i = 0; i &lt; people.length; i&#43;&#43;) { list.add(people[i][1], people[i]); } return list.toArray(new int[list.size()][2]); // list.toArray将list转成array } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/253.-%E4%BC%9A%E8%AE%AE%E5%AE%A4ii/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 矮个子插队，高个子看不见；所以我们可以先安排高个子的位置，再通过插队的方式安排矮个子的位置 // 身高从大到小排（身高相同k小的站前面） //先按照身高h降序排序，这样处理时可以确保当前插入的元素之前的所有元素身高都不小于它，从而简化位置的确定。 //如果身高相同，则按照序号k升序排序，因为身高相同的情况下，序号小的人应该排在前面 public int[][] reconstructQueue(int[][] people) { Arrays.sort(people, (a,b) -&gt; b[0] == a[0]? a[1] - b[1] : b[0] - a[0]); List&lt;int[]&gt; list = new ArrayList&lt;&gt;(); for (int i = 0; i &lt; people.length; i&#43;&#43;) { list.add(people[i][1], people[i]); } return list.toArray(new int[list.size()][2]); // list.toArray将list转成array } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 贪心 // 先执行次数最多的任务，可以充分利用任务之间的间隔。时间最短 // 每次执行次数最多的任务，考虑优先队列，大根堆 public int leastInterval(char[] tasks, int n) { PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; b-a); int[] count = new int[26]; int res = 0; for (int i = 0; i &lt; tasks.length; i&#43;&#43;) { //对任务计数 count[tasks[i] - &#39;A&#39;]&#43;&#43;; } for (int tmp : count) { // 出现次数大于0的元素才意味着任务需要完成 if (tmp &gt; 0) { pq.offer(tmp); } } while (!pq.isEmpty()) { List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); // list记录一个间隔内完成的任务 for (int i = 0; i &lt;= n; i&#43;&#43;) { if (!pq.isEmpty()) { list.add(pq.poll()); } } for (int t : list) { if ( --t &gt; 0) { pq.offer(t); } } res &#43;= pq.isEmpty() ? list.size() : n &#43; 1; } return res; } // public int leastInterval(char[] tasks, int n) { // // 统计每种任务的出现次数 // int[] count = new int[26]; // for (char task : tasks) { // count[task - &#39;A&#39;]&#43;&#43;; // } // // 创建一个优先队列,存储每种任务的下一次执行时间 // PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; b - a); // for (int c : count) { // if (c &gt; 0) { // pq.offer(c); // } // } // int time = 0; // while (!pq.isEmpty()) { // // 创建一个临时列表,存储当前时间可以执行的任务 // java.util.List&lt;Integer&gt; temp = new java.util.ArrayList&lt;&gt;(); // for (int i = 0; i &lt;= n; i&#43;&#43;) { // if (!pq.isEmpty()) { // temp.add(pq.poll()); // } // } // // 将当前时间可以执行的任务加回优先队列,并更新它们的下一次执行时间 // for (int t : temp) { // if (--t &gt; 0) { // pq.offer(t); // } // } // // 如果优先队列为空,说明所有任务已经完成,返回当前时间 // time &#43;= pq.isEmpty() ? temp.size() : n &#43; 1; // } // return time; // } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/621.-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 用一个列表存储先序遍历的结果，再构建单链表，将列表中的节点的左指针赋值为空，右指针指向列表中的下一个位置 List&lt;TreeNode&gt; res = new ArrayList&lt;&gt;(); public void flatten(TreeNode root) { if (root == null) { return; } preOrder(root); for (int i = 0; i &lt; res.size() - 1; i&#43;&#43;) { // 这里是小于 res.size() - 1,确保不会数组越界 TreeNode node = res.get(i); node.left = null; node.right = res.get(i &#43; 1); } } public void preOrder(TreeNode root) { if (root == null) { return; } res.add(root); preOrder(root.left); preOrder(root.right); } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/114.-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * class ListNode { * int val; * ListNode next; * ListNode(int x) { * val = x; * next = null; * } * } */ //环形链表，快慢指针 public class Solution { // Floyd判圈法 public boolean hasCycle(ListNode head) { if (head == null || head.next == null) { return false; } ListNode fast = head; ListNode slow = head; while (fast != null &amp;&amp; fast.next != null) { fast = fast.next.next; slow = slow.next; if (fast == slow) { return true; } } return false; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/141.-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * class ListNode { * int val; * ListNode next; * ListNode(int x) { * val = x; * next = null; * } * } */ public class Solution { // floyd判圈法，快慢指针 // 设置快慢两个指针都指向头结点 // 让一个快指针一次走两步，慢指针一次走一步 // 两个指针相遇后，将快指针移到起点，一次走一步，相遇的位置就是链表中环的起始位置 public ListNode detectCycle(ListNode head) { if (head == null || head.next == null) { return null; } ListNode fast = head; ListNode slow = head; while (fast != null &amp;&amp; fast.next != null) { // fast需要走两步，所以需要判断fast != null &amp;&amp; fast.next != null fast = fast.next.next; slow = slow.next; if (slow == fast) { fast = head; while (fast != slow) { fast = fast.next; slow = slow.next; } return slow; } } return null; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/142.-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-ii/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>// LRU缓存机制可以通过哈希表辅以双向链表实现 // 使用双向链表的理由：方便删除节点，O(1)时间 // 双向链表中存储key的理由：size &gt; capcity 时可以O(1)的时间删除哈希表中的键值对 // O(1)的get和put，用hashmap实现 // 基础还是链表的增删改查，只是这里是双向链表作为hashmap的value // 链表的中节点的移动和删除修改通过双向链表可以在O(1)的时间内实现 // 每访问一个节点都要将其移动链表头。整个过程分为两步:1.双向链表中删除该节点，2.添加到头部 // 链表中的元素个数超过capcity后需要删除链表尾的节点 class LRUCache { class DLinkedNode { int key; int value; DLinkedNode prev; DLinkedNode next; DLinkedNode() {} DLinkedNode(int key, int value) { this.key = key; this.value = value; } } private int size; private int capacity; private DLinkedNode head = new DLinkedNode(); private DLinkedNode tail = new DLinkedNode(); private HashMap&lt;Integer, DLinkedNode&gt; hs = new HashMap&lt;&gt;(); LRUCache(int capacity) { size = 0; this.capacity = capacity; head.next = tail; tail.prev = head; } public int get (int key) { DLinkedNode node = hs.get(key); if (node == null) { return -1; } moveToHead(node); return node.value; } public void put(int key, int value) { DLinkedNode node = hs.get(key); if (node == null) { node = new DLinkedNode(key, value); hs.put(key, node); addToHead(node); size&#43;&#43;; if (size &gt; capacity) { DLinkedNode tail = removeTail(); hs.remove(tail.key); --size; } } else { node.value = value; moveToHead(node); } } public void addToHead(DLinkedNode node) { // 添加到头结点,意味着新建了一个节点 node.next = head.next; node.prev = head; head.next.prev = node; head.next = node; } public void removeNode(DLinkedNode node) { // 删除节点 node.prev.next = node.next; node.next.prev = node.prev; } public void moveToHead(DLinkedNode node) { // 节点已经存在，改变他的值，需要将该节点移动到头的位置 removeNode(node); addToHead(node); } public DLinkedNode removeTail() { // size &gt; capacity 需要删除末尾节点 DLinkedNode node = tail.prev; removeNode(node); return node; } } // java自带的LinkedHashMap已经实现了LRU缓存 // class LRUCache extends LinkedHashMap&lt;Integer, Integer&gt; { // private int capacity; // public LRUCache(int capacity) { // super(capacity, 0.75F, true); //调用父类的构造方法 // this.capacity = capacity; // } // public int get(int key) { // return super.getOrDefault(key, -1); // } // public void put(int key, int value) { // super.put(key, value); // } // @Override // protected boolean removeEldestEntry(Map.Entry&lt;Integer, Integer&gt; eldest){ // return size() &gt; capacity; // } // } /** * Your LRUCache object will be instantiated and called as such: * LRUCache obj = new LRUCache(capacity); * int param_1 = obj.get(key); * obj.put(key,value); */ </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/146.-lru-%E7%BC%93%E5%AD%98/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/interview-notes/page/9/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/interview-notes/page/11/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

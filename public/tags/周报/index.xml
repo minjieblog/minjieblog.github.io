@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>周报 on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/tags/%E5%91%A8%E6%8A%A5/</link>
+    <description>Recent content in 周报 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <atom:link href="http://localhost:1313/tags/%E5%91%A8%E6%8A%A5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/group-meeting/25-26-spring/%E7%AC%AC%E4%B8%89%E5%91%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/group-meeting/25-26-spring/%E7%AC%AC%E4%B8%89%E5%91%A8/</guid>
+      <description>&lt;h1 id=&#34;第三周周报-2026-02-27--2026-03-05&#34;&gt;第三周周报 （2026-02-27 ~ 2026-03-05）&lt;/h1&gt;
+&lt;h2 id=&#34;本周日报&#34;&gt;本周日报&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-dataview&#34; data-lang=&#34;dataview&#34;&gt;LIST
+FROM &amp;#34;obsidian/todos&amp;#34;
+WHERE contains(tags, &amp;#34;日报&amp;#34;) AND date &amp;gt;= date(today) - dur(7 days)
+SORT date ASC
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;中长期目标&#34;&gt;中长期目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;填写本阶段科研或学习的中长期目标&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;迄今为止的执行情况&#34;&gt;迄今为止的执行情况&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;总结至今科研/学习的完成情况&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/group-meeting/25-26-spring/%E7%AC%AC%E4%BA%8C%E5%91%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/group-meeting/25-26-spring/%E7%AC%AC%E4%BA%8C%E5%91%A8/</guid>
+      <description>&lt;h1 id=&#34;第二周周报-2026-02-27--2026-03-05&#34;&gt;第二周周报 （2026-02-27 ~ 2026-03-05）&lt;/h1&gt;
+&lt;h2 id=&#34;本周日报&#34;&gt;本周日报&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-dataview&#34; data-lang=&#34;dataview&#34;&gt;LIST
+FROM &amp;#34;obsidian/todos&amp;#34;
+WHERE contains(tags, &amp;#34;日报&amp;#34;) AND date &amp;gt;= date(today) - dur(7 days)
+SORT date ASC
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;中长期目标&#34;&gt;中长期目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;填写本阶段科研或学习的中长期目标&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;迄今为止的执行情况&#34;&gt;迄今为止的执行情况&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;总结至今科研/学习的完成情况&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/templates/%E5%91%A8%E6%8A%A5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/templates/%E5%91%A8%E6%8A%A5/</guid>
+      <description>&lt;h1 id=&#34;-tpfiletitle-周报--tpdatenowyyyy-mm-dd--6----tpdatenowyyyy-mm-dd-&#34;&gt;&amp;lt;% tp.file.title %&amp;gt;周报 （&amp;lt;% tp.date.now(&amp;ldquo;YYYY-MM-DD&amp;rdquo;, -6) %&amp;gt; ~ &amp;lt;% tp.date.now(&amp;ldquo;YYYY-MM-DD&amp;rdquo;) %&amp;gt;）&lt;/h1&gt;
+&lt;h2 id=&#34;本周日报&#34;&gt;本周日报&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-dataview&#34; data-lang=&#34;dataview&#34;&gt;LIST
+FROM &amp;#34;obsidian/todos&amp;#34;
+WHERE contains(tags, &amp;#34;日报&amp;#34;) AND date &amp;gt;= date(today) - dur(7 days)
+SORT date ASC
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;中长期目标&#34;&gt;中长期目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;填写本阶段科研或学习的中长期目标&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;迄今为止的执行情况&#34;&gt;迄今为止的执行情况&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;总结至今科研/学习的完成情况&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

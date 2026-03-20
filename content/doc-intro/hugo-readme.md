@@ -169,54 +169,106 @@ showhome: true
 
 ---
 
-## 三、Hugo Shortcodes（短代码）
+## 三、Hugo.yaml
+### 3.1 完整配置示例
+```yaml
+baseURL: "https://example.com/"
+languageCode: "zh-cn"
+title: "Minjie Blog"
+theme: "PaperMod"
 
-### 3.1 内置 Shortcodes
+# 默认内容语言
+defaultContentLanguage: "zh-cn"
 
-```text
-# 显示图片
-{{</* figure src="/images/photo.jpg" title="图片标题" */>}}
+#排除某些文件夹
+ignoreFiles:
+  - "content/obsidian/.*"
 
-# 高亮文本
-{{</* highlight python */>}}
-def hello():
-    print("Hello!")
-{{</* /highlight */>}}
+# 分页设置
+pagination:
+  pagerSize: 10
 
-# YouTube 视频
-{{</* youtube VIDEO_ID */>}}
+# 构建配置
+buildDrafts: false
+buildFuture: false
+buildExpired: false
 
-# X (Twitter) 推文（新版）
-{{</* x user="USERNAME" id="TWEET_ID" */>}}
+# URL 设置
+permalinks:
+  posts: "/posts/:slug/"
 
-# GitHub Gist（已废弃，建议直接嵌入代码）
-# 可以使用 highlight 或直接用代码块替代
+# Markdown 渲染设置
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: "monokai"
+    lineNos: true
 
-# 参数传递（需要在 Front Matter 中定义参数）
-{{</* param "description" */>}}
+# 站点参数
+params:
+  author: "Minjie"
+  description: "Minjie 的技术博客"
+  keywords: ["Hugo", "技术博客", "编程"]
+
+  # 主题相关
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+
+  # 首页信息
+  homeInfoParams:
+    Title: "欢迎来到 Minjie Blog"
+    Content: "记录编程学习和技术成长"
+
+# 菜单配置
+menu:
+  main:
+    - identifier: home
+      name: 首页
+      url: /
+      weight: 1
+
+    - identifier: posts
+      name: 文章
+      url: /posts/
+      weight: 2
+
+    - identifier: categories
+      name: 分类
+      url: /categories/
+      weight: 3
+
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 4
+
+# 分类和标签
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
 ```
 
-### 3.2 自定义 Shortcode 示例
+### 3.2 常用字段说明
 
-在 `layouts/shortcodes/note.html` 创建：
-
-```html
-<div class="note">
-    {{ .Inner }}
-</div>
-```
-
-使用时：
-
-```text
-{{</* note */>}}
-这是一个提示框
-{{</* /note */>}}
-```
+|字段|说明|示例|
+|---|---|---|
+|`baseURL`|网站基础 URL|`"https://example.com/"`|
+|`languageCode`|网站语言|`"zh-cn"`|
+|`title`|网站标题|`"Minjie Blog"`|
+|`theme`|使用的主题|`"PaperMod"`|
+|`pagination.pagerSize`|每页文章数量|`10`|
+|`permalinks`|URL 结构规则|`"/posts/:slug/"`|
+|`markup`|Markdown 渲染配置|代码高亮、HTML支持|
+|`params`|主题参数配置|作者、描述、UI设置|
+|`menu`|网站导航菜单|首页 / 文章 / 标签|
 
 ---
-
-## 
 
 ## 四、Markdown 基本语法
 
@@ -354,7 +406,5 @@ title.zh: "中文标题"
 # 将草稿改为发布状态
 sed -i 's/draft: true/draft: false/' content/posts/my-post.md
 ```
-
-[![04cba73aad811b54d3259c8e101f764f86247372.png](https://i.postimg.cc/yN6kLgcf/04cba73aad811b54d3259c8e101f764f86247372.png)](https://postimg.cc/jD9x5j8N)
 
 ---

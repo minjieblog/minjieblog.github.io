@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Interview-Notes | Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Interview-Notes - Minjie&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/interview-notes/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Interview-Notes
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ // 排序，归并排序 class Solution { // 归并排序注意中点的划分 public ListNode sortList(ListNode head) { if (head == null || head.next == null) { return head; } ListNode fast = head.next; ListNode slow = head; while ( fast!= null &amp;&amp; fast.next != null ) { fast = fast.next.next; slow = slow.next; } ListNode tmp = slow.next; slow.next = null; ListNode left = sortList(head); ListNode right = sortList(tmp); ListNode dummy = new ListNode(-100001); ListNode res = dummy; while (left != null &amp;&amp; right != null) { if (left.val &lt;= right.val) { res.next = left; left = left.next; } else { res.next = right; right = right.next; } res = res.next; } res.next = left == null ? right : left; return dummy.next; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/148.-%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>哈希表 public class Solution { public ListNode getIntersectionNode(ListNode headA, ListNode headB) { //先存储A链表的所有结点，在遍历B链表。所以空间复杂度来到了O(m),A有m个节点的话 Set&lt;ListNode&gt; visited = new HashSet&lt;ListNode&gt;(); ListNode temp = headA; while (temp != null) { visited.add(temp); temp = temp.next; } temp = headB; while (temp != null) { if (visited.contains(temp)) { return temp; } temp = temp.next; } return null; } } 双指针 public class Solution { public ListNode getIntersectionNode(ListNode headA, ListNode headB) { if (headA == null || headB == null) { return null; } ListNode pA = headA, pB = headB; while (pA != pB) { pA = pA == null ? headB : pA.next; pB = pB == null ? headA : pB.next; } return pA; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/160.-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { // 思路：1. 得出链表的长度，然后走size - n - 1,接着进行删除 // 2. 快慢指针，让快指针先走n步，之后慢指针再出发， // 当快指针走到结尾的时候，慢指针指向的就是倒数第n个节点的前一个节点 public ListNode removeNthFromEnd(ListNode head, int n) { ListNode dummy = new ListNode(-1,head); ListNode fast = dummy; ListNode low = dummy; int count = 0; while (fast.next != null) { // fast走到最后一个节点需要停下来 fast = fast.next; count&#43;&#43;; if (count &gt;= n &#43; 1) { low = low.next; } } low.next = low.next.next; return dummy.next; // int size = 1; // ListNode cur = head; // while (cur.next != null) { // cur = cur.next; // size&#43;&#43;; // } // if (n == size) return head.next; // 特判 n == size 的情况 // cur = head; // for (int i = 1; i &lt; size - n; i&#43;&#43;) { // cur = cur.next; // } // cur.next = cur.next.next; // return head; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/19.-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC-n-%E4%B8%AA%E7%BB%93%E7%82%B9/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { // 用一个变量记录进位 // public ListNode addTwoNumbers(ListNode l1, ListNode l2) { ListNode dummyRes = new ListNode(); ListNode cur = dummyRes; int yushu = 0, sum = 0; while (l1 != null || l2 != null) { cur.next = new ListNode(); int var1 = (l1 == null) ? 0 : l1.val; int var2 = (l2 == null) ? 0 : l2.val; sum = var1 &#43; var2 &#43; yushu; cur.next = new ListNode(sum % 10); cur = cur.next; yushu = sum / 10; if (l1 != null) { l1 = l1.next; } if (l2 != null) { l2 = l2.next; } } if (yushu != 0) { cur.next = new ListNode(yushu); } return dummyRes.next; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/2.-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { // 链表的题往往使用虚拟头结点的方法 ListNode dummy 让虚拟头结点指向head，避免对head特判 // 链表的题删除链表、翻转节点、添加节点都要用双指针 public ListNode reverseList(ListNode head) { ListNode pre = null; ListNode cur = head; while (cur != null) { ListNode tmp = cur.next; cur.next = pre; pre = cur; cur = tmp; } return pre; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/206.-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { public ListNode mergeTwoLists(ListNode list1, ListNode list2) { //创建一个新的链表，比较两个链表将小的值加入这个链表； //创建一个新的链表，比较两个链表将小的值加入这个链表； // 类似于归并排序的合并过程 ListNode dummy = new ListNode(); ListNode cur = dummy; while (list1 != null &amp;&amp; list2 != null) { if (list1.val &lt;= list2.val) { cur.next = list1; list1 = list1.next; } else { cur.next = list2; list2 = list2.next; } cur = cur.next; } cur.next = (list1 == null) ? list2 : list1; return dummy.next; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/21.-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { // 创建一个最小堆，存储所有的链表的头结点，每次从链表中取出一个节点，并将这个节点的下一个节点放入最小堆中 // 这样就可以保证每次取得当前k个节点的最小值 public ListNode mergeKLists(ListNode[] lists) { PriorityQueue&lt;ListNode&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; a.val - b.val); ListNode dummy = new ListNode(-1); ListNode cur = dummy; for (ListNode node :lists) { if (node != null) { // 需要判断是否为空，否则会出现空指针异常，优先队列不能加入空值 pq.offer(node); } } while (!pq.isEmpty()) { cur.next = pq.poll(); cur = cur.next; if (cur.next != null) { pq.offer(cur.next); } } return dummy.next; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/23.-%E5%90%88%E5%B9%B6-k-%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { public boolean isPalindrome(ListNode head) { //思路：创建一个链表和原链表相同，再翻转，然后比较；两条链表 if (head == null) { return true; } ListNode headNew = new ListNode(head.val); ListNode curNew = headNew; ListNode cur = head; while (cur.next != null) { // 复制链表 curNew.next = new ListNode(cur.next.val); cur = cur.next; curNew = curNew.next; } ListNode pre = null; curNew = headNew; while (curNew != null) { // 翻转链表 ListNode tmp = curNew.next; curNew.next = pre; pre = curNew; curNew = tmp; } curNew = pre; cur = head; while (curNew != null) { if (curNew.val != cur.val) { return false; } else { curNew = curNew.next; cur = cur.next; } } return true; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/234.-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>LeetCode_Hot100_Java_Solution 本文将Leetcode hot 100题目按照类型分类。部分题目可能属于多个类型。 刷leetcode hot 100以前需要了解一些基础知识：
+常见排序：冒泡排序，插入排序，选择排序，归并排序，快速排序，堆排序。 时间复杂度为O(nlogn)：归并排序和堆排序。快速排序时间复杂度最好的情况下是O(nlogn)，最坏的情况下是O(n^2)。 字符串的常用方法：length()，substring()，spilt()。 StringBuffer()的常用方法：deleteCharAt()，reverse()，toString()，append()，insert。 常用数据结构及其常用方法：List，HashMap，HashSet，PriorityQueue，stack，queue。 Arrays.sort()自定义排序，PriorityQueue()自定义排序。 数据结构 常用方法 List add()，remove() HashMap put()，size()，remove()，containsKey() HashSet add()，remove()，size()，contains() PriorityQueue poll()，offer()，isEmpty()，size()，peek() stack push()，size()，pop()，isEmpty()，peek() queue poll()，offer()，isEmpty()，size()，peek() dp dp数组和下标的含义，递推公式，初始化，遍历顺序。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode_hot100_java_solutionleetcode_readme/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/interview-notes/page/10/">
+      «&nbsp;上一页&nbsp;
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

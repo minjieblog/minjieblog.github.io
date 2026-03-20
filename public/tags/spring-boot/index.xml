@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Spring Boot on Minjie&#39;s Blog</title>
+    <title>Spring-Boot on Minjie&#39;s Blog</title>
     <link>http://localhost:1313/tags/spring-boot/</link>
-    <description>Recent content in Spring Boot on Minjie&#39;s Blog</description>
+    <description>Recent content in Spring-Boot on Minjie&#39;s Blog</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
@@ -14,8 +14,7 @@
       <link>http://localhost:1313/java-notes/hmdp/</link>
       <pubDate>Wed, 17 Dec 2025 21:01:53 +0800</pubDate>
       <guid>http://localhost:1313/java-notes/hmdp/</guid>
-      <description>
-&amp;#34;记录黑马点评项目的学习过程，包括 Redis 的多种应用场景、缓存穿透/击穿/雪崩解决方案、分布式锁实现、UV 统计、好友关注等功能的技术实现细节&amp;#34;
+      <description>&amp;#34;记录黑马点评项目的学习过程，包括 Redis 的多种应用场景、缓存穿透/击穿/雪崩解决方案、分布式锁实现、UV 统计、好友关注等功能的技术实现细节&amp;#34;
 </description>
     </item>
   </channel>

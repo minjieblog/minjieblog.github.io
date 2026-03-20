@@ -1,0 +1,330 @@
+{
+  "main": {
+    "id": "6d30a120dfcf556d",
+    "type": "split",
+    "children": [
+      {
+        "id": "b7882e128cfad432",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7d52fb422a733f7d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "blockchain/decentralized-identity-systems.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "decentralized-identity-systems"
+            }
+          },
+          {
+            "id": "b21ad70f3d4da604",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "obsidian/todos/2026 Spring/Week 3/周计划.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "周计划"
+            }
+          },
+          {
+            "id": "cfd22dba14cfaa7a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "obsidian/todos/2026 Spring/Week 3/2026-03-19.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-03-19"
+            }
+          },
+          {
+            "id": "95f8a2cc1d2b9913",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "interview-notes/算法/LeetCode_Hot100_Java_Solutionleetcode_readme.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "LeetCode_Hot100_Java_Solutionleetcode_readme"
+            }
+          },
+          {
+            "id": "3f0d8a4be9732622",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "interview-notes/算法/leetcode/链表/148. 排序链表.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "148. 排序链表"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f7bd3a8c86b435c7",
+    "type": "split",
+    "children": [
+      {
+        "id": "1227e4e3439d0820",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1ebc47ebac23f6d9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "99013b2a7c6b52ad",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "dfc8245d89f7705b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 363.5
+  },
+  "right": {
+    "id": "b3c7a00882fee122",
+    "type": "split",
+    "children": [
+      {
+        "id": "d8afcdfbeb05b48d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2916fea69ae87259",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "obsidian/todos/2026 Spring/Week 1/2026-03-05.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "2026-03-05 的出链列表"
+            }
+          },
+          {
+            "id": "74561310361cc6f7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "interview-notes/算法/LeetCode_Hot100_Java_Solutionleetcode_readme.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "LeetCode_Hot100_Java_Solutionleetcode_readme 的反向链接列表"
+            }
+          },
+          {
+            "id": "29f9462db54a5c74",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "f3883223875f54a2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "obsidian/todos/2026 Spring/Week 1/2026-03-05.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-03-05"
+            }
+          },
+          {
+            "id": "1d7f2ab3f95bf21b",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "d4e2303402484061",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "blockchain/decentralized-identity-systems.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "decentralized-identity-systems 的大纲"
+            }
+          },
+          {
+            "id": "de4418a21364cb14",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "8ef464d3995155dc",
+            "type": "leaf",
+            "state": {
+              "type": "planner-timeline",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Timeline"
+            }
+          },
+          {
+            "id": "7a8c8b61051610e9",
+            "type": "leaf",
+            "state": {
+              "type": "reminder-list",
+              "state": {},
+              "icon": "clock",
+              "title": "Reminders"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 490.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-day-planner:Open Timeline": false,
+      "obsidian-day-planner:Open Multi-Day View": false
+    }
+  },
+  "active": "7d52fb422a733f7d",
+  "lastOpenFiles": [
+    "interview-notes/算法/leetcode/链表/148. 排序链表.md",
+    "interview-notes/算法/leetcode/dp/337. 打家劫舍 III.md",
+    "blockchain/decentralized-identity-systems.md",
+    "obsidian/todos/2026 Spring/Week 3/2026-03-20.md",
+    "interview-notes/八股/Redis.md",
+    "interview-notes/八股/Spring.md",
+    "interview-notes/八股/OS.md",
+    "interview-notes/八股/MySQL.md",
+    "interview-notes/八股/虚拟机.md",
+    "interview-notes/八股/集合篇.md",
+    "interview-notes/八股/基础篇.md",
+    "interview-notes/八股/并发篇.md",
+    "interview-notes/算法/LeetCode_Hot100_Java_Solutionleetcode_readme.md",
+    "obsidian/todos/2026 Spring/Week 3/2026-03-19.md",
+    "obsidian/todos/2026 Spring/Week 3/周计划.md",
+    "interview-notes/算法/leetcode/dp/322. 零钱兑换.md",
+    "obsidian/todos/2026 Spring/Week 3/2026-03-18.md",
+    "obsidian/todos/2026 Spring/Week 3/2026-03-17.md",
+    "obsidian/todos/2026 Spring/Week 3/未命名.md",
+    "interview-notes/八股/网络.md",
+    "interview-notes/算法/leetcode/链表/206. 反转链表.md",
+    "interview-notes/算法/leetcode/dp/494. 目标和.md",
+    "java-notes/algorithm-with-java.md",
+    "interview-notes/算法/leetcode/dp/416. 分割等和子集.md",
+    "obsidian/group-meeting/25-26-spring/第三周.md",
+    "obsidian/group-meeting/25-26-spring/第二周.md",
+    "obsidian/todos/2026 Spring/Week 3",
+    "未命名.base",
+    "obsidian/blockchain-relation/中心化",
+    "obsidian/blockchain-relation/去中心化",
+    "interview-notes/算法/leetcode/栈、队列、HashMap()、HashSet()",
+    "interview-notes/算法/leetcode/优先队列",
+    "interview-notes/算法/leetcode/贪心",
+    "interview-notes/算法/leetcode/数组",
+    "interview-notes/算法/leetcode/深度优先搜索和广度优先搜索",
+    "interview-notes/算法/leetcode/链表"
+  ]
+}

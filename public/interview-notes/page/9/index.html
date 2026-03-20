@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Interview-Notes | Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Interview-Notes - Minjie&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/interview-notes/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Interview-Notes
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { List&lt;List&lt;Integer&gt;&gt; edges; //存储邻接矩阵 int[] visited; boolean valid = true; public boolean canFinish(int numCourses, int[][] prerequisites) { edges = new ArrayList&lt;&gt;(); //初始化邻接矩阵的列 for (int i = 0; i &lt; numCourses; i&#43;&#43;) { edges.add(new ArrayList&lt;Integer&gt;()); } //给每一列都添加他的后置课程 for (int[] info : prerequisites) { edges.get(info[1]).add(info[0]); } //遍历每一个课程，和vaild值一起进行dfs，判断每一个课程是否可以学习完成 visited = new int[numCourses]; for (int i = 0; i &lt; numCourses &amp;&amp; valid ; i&#43;&#43;) { if (visited[i] == 0) { dfs(i); } } return valid; } public void dfs(int u) { visited[u] = 1; //表示正在被访问 for (int v : edges.get(u)) { if (visited[v] == 0) { dfs(v); if (!valid) { return; } //当出现有一个环的时候即为false }else if(visited[v] == 1) { valid = false; return; } } visited[u] = 2; //代表该门课程可以学习完成 } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/207.-%E8%AF%BE%E7%A8%8B%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>// 定义前缀树的节点，每个节点有一个子数组和标志位，标志位代表该节点是否为最终节点 // insert方法插入字符串，若当前节点的子数组中的对应索引位置为空，则新建前缀树的节点 // search 和 startWiths的区别在于search需要判断返回节点的isEnd属性 class TrieNode { TrieNode[] children; boolean isEnd; TrieNode() { children = new TrieNode[26]; isEnd = false; } } class Trie { TrieNode root; public Trie() { root = new TrieNode(); } public void insert(String word) { TrieNode node = root; for (int i = 0; i &lt; word.length(); i&#43;&#43;) { int index = word.charAt(i) - &#39;a&#39;; if (node.children[index] == null){ node.children[index] = new TrieNode(); } node = node.children[index]; } node.isEnd = true; } public boolean search(String word) { TrieNode node = searchPrefix(word); return node != null &amp;&amp; node.isEnd; } public boolean startsWith(String prefix) { TrieNode node = searchPrefix(prefix); return node != null; } public TrieNode searchPrefix(String word) { TrieNode node = root; for (int i = 0; i &lt; word.length(); i&#43;&#43;) { int index = word.charAt(i) - &#39;a&#39;; if (node.children[index] == null) { return null; } node = node.children[index]; } return node; } } /** * Your Trie object will be instantiated and called as such: * Trie obj = new Trie(); * obj.insert(word); * boolean param_2 = obj.search(word); * boolean param_3 = obj.startsWith(prefix); */ </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //使用构建图，使用HashMap存储节点和比率 //对每个查询使用DFS查询两个节点是否存在连接，并计算比率 // putIfAbsent方法 V putIfAbsent(K key, V value); // 如果之前 Map 中没有这个键，那么返回 null。 // 如果之前已经有这个键了，那么返回该键之前关联的值，并且不会替换已有的值。 HashMap&lt;String, HashMap&lt;String, Double&gt;&gt; hs = new HashMap&lt;&gt;(); public double[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, double[] values, List&lt;List&lt;String&gt;&gt; queries) { for (int i = 0; i &lt; equations.size(); i&#43;&#43;) { String u = equations.get(i).get(0); String v = equations.get(i).get(1); double k = values[i]; // 构建图 hs.putIfAbsent(u, new HashMap&lt;&gt;()); hs.putIfAbsent(v, new HashMap&lt;&gt;()); hs.get(u).put(v, k); hs.get(v).put(u, 1 / k); } double[] res = new double[queries.size()]; for (int i = 0; i &lt; queries.size(); i&#43;&#43;) { String u = queries.get(i).get(0); String v = queries.get(i).get(1); if (!hs.containsKey(u) || !hs.containsKey(v)) { res[i] = -1.0; } else { res[i] = dfs(u, v, new HashSet&lt;String&gt;()); } } return res; } public double dfs(String start, String end, HashSet&lt;String&gt; visited) { if (hs.get(start).containsKey(end)) { //直接包含 return hs.get(start).get(end); } visited.add(start); for (Map.Entry&lt;String, Double&gt; neighbor : hs.get(start).entrySet()) { if (!visited.contains(neighbor.getKey())) { double path = dfs(neighbor.getKey(), end, visited); if (path != -1.0) { return path*neighbor.getValue(); } } } return -1.0; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // O（n）就不能是排序 // 用HashSet存储所有元素 // 对于一个最长序列hashSet中一定不包含当前的nums[i] - 1; // 判断是否存在nums[i] &#43; 1; public int longestConsecutive(int[] nums) { if (nums.length == 0) { return 0; } HashSet&lt;Integer&gt; hs = new HashSet&lt;&gt;(); for (int i = 0; i &lt; nums.length; i&#43;&#43;) { hs.add(nums[i]); } int max = 1; for (int num : nums) { if (hs.contains(num - 1)) { continue; } int maxTmp = 1; while (hs.contains(num &#43; 1)) { num &#43;= 1; maxTmp&#43;&#43;; } max = Math.max(maxTmp, max); } return max; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/128.-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int majorityElement(int[] nums) { //hashmap 使用HashMap,若其中存在，则value &#43; 1,不存在则将相应的key添加进去 Map&lt;Integer,Integer&gt; map = new HashMap(); for(int num: nums){ map.put(num,map.getOrDefault(num,0)&#43;1); if(map.get(num) &gt; nums.length /2){ return num; } } return -1; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/169.-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0---%E5%89%AF%E6%9C%AC-3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int majorityElement(int[] nums) { //hashmap 使用HashMap,若其中存在，则value &#43; 1,不存在则将相应的key添加进去 Map&lt;Integer,Integer&gt; map = new HashMap(); for(int num: nums){ map.put(num,map.getOrDefault(num,0)&#43;1); if(map.get(num) &gt; nums.length /2){ return num; } } return -1; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/169.-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public boolean isValid(String s) { // 字符串中出现左括号就将右括号压入栈中， // 出现右括号就与栈顶的元素匹配,判断栈顶的元素是不是对应的右括号 // 不匹配则返回false // 最终需要检查栈是否为空 // 不为空说明还有未匹配的左括号 Deque&lt;Character&gt; stack = new LinkedList&lt;&gt;(); for (int i = 0; i &lt; s.length(); i&#43;&#43;) { if (s.charAt(i) == &#39;(&#39; || s.charAt(i) == &#39;{&#39; || s.charAt(i) == &#39;[&#39;) { stack.push(s.charAt(i)); } else { if (stack.isEmpty()) { return false; } char top = stack.pop(); if (s.charAt(i) == &#39;]&#39; &amp;&amp; top != &#39;[&#39; || (s.charAt(i) == &#39;}&#39; &amp;&amp; top != &#39;{&#39;) || (s.charAt(i) == &#39;)&#39; &amp;&amp; top != &#39;(&#39;)) { return false; } } } return stack.isEmpty(); //不匹配说明有多余的左括号 } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/20.-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 时间复杂度O(n)，空间复杂度O(1) public int lengthOfLongestSubstring(String s) { if (s.length() == 0) { return 0; } // HashSet &#43; 滑动窗口 or HashMap &#43; 滑动窗口 HashMap&lt;Character, Integer&gt; hs = new HashMap&lt;&gt;(); int left = 0, right = 0, max = Integer.MIN_VALUE; while (right &lt; s.length()) { char c = s.charAt(right); if (hs.containsKey(c) &amp;&amp; hs.get(c) &gt;= left) { //发现重复字符且重复字符的位置 &gt; 左边界 left = hs.get(c) &#43; 1; // left 的下一个位置是上一次出现重复的位置加1 } hs.put(c, right); max = Math.max(right - left &#43; 1, max); right&#43;&#43;; } return max; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/3.-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { int ptr = 0; // 栈 // 对于数字、字符串和左括号将其压入栈中 // 遇到右括号时，将相邻的左括号和字符串数字都弹出 // 并将解码后的字符串在压入栈中 // 定义一个全局变量用来遍历字符串 // 使用了StringBuffer的insert方法 StringBuffer insert(int offset, String str) 在指定位置插入字符串 public String decodeString(String s) { Stack&lt;String&gt; stack = new Stack&lt;&gt;(); while (ptr &lt; s.length()) { char c = s.charAt(ptr); if (Character.isDigit(c)) { //数字 String digits = getDigits(s); stack.push(digits); } else if (Character.isLetter(c) || c == &#39;[&#39;) { stack.push(String.valueOf(c)); ptr&#43;&#43;; } else { // 右括号 StringBuffer sb = new StringBuffer(); while (!stack.peek().equals(&#34;[&#34;)) { sb.insert(0, stack.pop()); } String str = sb.toString(); // stack.pop(); // 删除左括号 StringBuffer tmp = new StringBuffer(); int repeat = Integer.parseInt(stack.pop()); for (int j = 0; j &lt; repeat; j&#43;&#43;) { tmp.append(str); } stack.push(tmp.toString()); ptr&#43;&#43;; } } StringBuffer sb = new StringBuffer(); while (!stack.isEmpty()) { sb.insert(0, stack.pop()); } return sb.toString(); } public String getDigits(String s) { // 获得数字 StringBuffer sb = new StringBuffer(); while (Character.isDigit(s.charAt(ptr)) &amp;&amp; ptr &lt; s.length()) { sb.append(s.charAt(ptr&#43;&#43;)); } return sb.toString(); } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/394.-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 这一题和最小覆盖子串有点相似，但是这里需要找的子串不能包括其他元素,需要加一个长度限制的检查 // 异位词就是不同的排列方式 // 用哈希表存储字符串中每个字符出现的次数 // 维护一个p.length()长度的滑动窗口 // 如果滑动窗口内的元素出现频率等于p的频率，则为字母异位词 // 时间复杂度O(m &#43; (n - m &#43; 1)*26) // 改进的时间复杂度O(m &#43; n) public List&lt;Integer&gt; findAnagrams(String s, String p) { // List&lt;Integer&gt; res = new ArrayList(); // int[] pCount = new int[26]; // for (int i = 0; i &lt; p.length(); i&#43;&#43;) { // pCount[p.charAt(i) - &#39;a&#39;]&#43;&#43;; // } // int left = 0; int right = 0; // int[] sCount = new int[26] ; // while (right &lt; s.length()) { // if(right - left &#43; 1 &gt; p.length()) { // sCount[s.charAt(left) - &#39;a&#39;]--; // left&#43;&#43;; // } // sCount[s.charAt(right) - &#39;a&#39;]&#43;&#43;; // if(right - left &#43; 1 == p.length()) { // boolean isEqual = true; // for (int i = 0; i &lt; 26; i&#43;&#43;) { // if(pCount[i] != sCount[i]) { // isEqual = false; // break; // } // } // if (isEqual) { // res.add(left); // } // } // right&#43;&#43;; // } // return res; List&lt;Integer&gt; res = new ArrayList&lt;&gt;(); int sLen = s.length(), pLen = p.length(); if (sLen &lt; pLen) { return res; } HashMap&lt;Character, Integer&gt; hs = new HashMap&lt;&gt;(); for (int i = 0; i &lt; pLen; i&#43;&#43;) { char c = p.charAt(i); hs.put(c, hs.getOrDefault(c, 0) &#43; 1); } int required = hs.size(), current = 0; HashMap&lt;Character, Integer&gt; window = new HashMap&lt;&gt;(); int left = 0, right = 0; while (right &lt; sLen) { char word = s.charAt(right); if (hs.containsKey(word)) { window.put(word, window.getOrDefault(word, 0) &#43; 1); if (window.get(word).equals(hs.get(word))) { current&#43;&#43;; } } while (right - left &#43; 1 &gt;= pLen) { char tmp = s.charAt(left); if (current == required) { res.add(left); } if (hs.containsKey(tmp)) { if (window.get(tmp).equals(hs.get(tmp))) { current--; } window.put(tmp, window.get(tmp) - 1); } left&#43;&#43;; } right&#43;&#43;; } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/438.-%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/interview-notes/page/8/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/interview-notes/page/10/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

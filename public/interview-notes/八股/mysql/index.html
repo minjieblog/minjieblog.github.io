@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="SQL基础
+NOSQL和SQL的区别
+
+NOSQL: 非关系型数据库，更加宽松的模型BASE, 即基本可用，软状态和最终一致性
+SQL：关系型数据库，支持ACID，原子性、一致性、隔离性、持续性
+
+数据库三大范式
+
+第一：原子项
+第二：非码属性完全依赖于候选码，而不是单独某一个部分（部分函数依赖）
+第三：消除了传递依赖
+
+联表查询
+">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/mysql/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/mysql/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#sql%e5%9f%ba%e7%a1%80" aria-label="SQL基础">SQL基础</a><ul>
+                        
+                <li>
+                    <a href="#nosql%e5%92%8csql%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="NOSQL和SQL的区别">NOSQL和SQL的区别</a></li>
+                <li>
+                    <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%89%e5%a4%a7%e8%8c%83%e5%bc%8f" aria-label="数据库三大范式">数据库三大范式</a></li>
+                <li>
+                    <a href="#%e8%81%94%e8%a1%a8%e6%9f%a5%e8%af%a2" aria-label="联表查询">联表查询</a></li>
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e9%81%bf%e5%85%8d%e9%87%8d%e5%a4%8d%e6%8f%92%e5%85%a5%e6%95%b0%e6%8d%ae" aria-label="如何避免重复插入数据">如何避免重复插入数据</a></li>
+                <li>
+                    <a href="#char%e5%92%8cvarchar%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" aria-label="CHAR和VARCHAR有什么区别">CHAR和VARCHAR有什么区别</a></li>
+                <li>
+                    <a href="#varchar10%e8%bf%99%e7%a7%8d%e6%98%af%e4%bb%80%e4%b9%88%e6%84%8f%e6%80%9d" aria-label="VARCHAR（10）这种是什么意思">VARCHAR（10）这种是什么意思</a></li>
+                <li>
+                    <a href="#int1%e5%92%8cint10%e5%9c%a8mysql%e4%b8%8a%e6%9c%89%e4%bb%80%e4%b9%88%e4%b8%8d%e5%90%8c" aria-label="int(1)和int(10)在MySQL上有什么不同">int(1)和int(10)在MySQL上有什么不同</a></li>
+                <li>
+                    <a href="#text%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e5%8f%af%e4%bb%a5%e6%97%a0%e9%99%90%e5%a4%a7%e5%90%97" aria-label="text数据类型可以无限大吗">text数据类型可以无限大吗</a></li>
+                <li>
+                    <a href="#ip%e5%9c%b0%e5%9d%80%e5%a6%82%e4%bd%95%e5%9c%a8%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%ad%e5%ad%98%e5%82%a8" aria-label="IP地址如何在数据库中存储">IP地址如何在数据库中存储</a></li>
+                <li>
+                    <a href="#%e5%a4%96%e9%94%ae%e7%ba%a6%e6%9d%9f%e6%98%af%e4%bb%80%e4%b9%88" aria-label="外键约束是什么">外键约束是什么</a></li>
+                <li>
+                    <a href="#in%e5%92%8cexist%e5%8c%ba%e5%88%ab" aria-label="IN和exist区别">IN和exist区别</a></li>
+                <li>
+                    <a href="#mysql%e4%b8%ad%e7%9a%84%e4%b8%80%e4%ba%9b%e5%9f%ba%e6%9c%ac%e5%87%bd%e6%95%b0" aria-label="MySQL中的一些基本函数">MySQL中的一些基本函数</a></li>
+                <li>
+                    <a href="#%e6%9f%a5%e8%af%a2%e8%af%ad%e5%8f%a5%e7%9a%84%e5%9f%ba%e6%9c%ac%e9%a1%ba%e5%ba%8f%e6%98%af%e4%bb%80%e4%b9%88" aria-label="查询语句的基本顺序是什么">查询语句的基本顺序是什么</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e" aria-label="存储引擎">存储引擎</a><ul>
+                        
+                <li>
+                    <a href="#sql%e6%8c%87%e4%bb%a4%e7%9a%84%e6%89%a7%e8%a1%8c%e8%bf%87%e7%a8%8b" aria-label="SQL指令的执行过程">SQL指令的执行过程</a></li>
+                <li>
+                    <a href="#%e5%af%b9%e4%ba%8emysql%e5%bc%95%e6%93%8e%e7%9a%84%e4%ba%86%e8%a7%a3" aria-label="对于MySQL引擎的了解">对于MySQL引擎的了解</a></li>
+                <li>
+                    <a href="#%e6%95%b0%e6%8d%ae%e6%96%87%e4%bb%b6%e5%a4%a7%e4%bd%93%e5%88%86%e4%b8%ba%e5%93%aa%e5%87%a0%e7%b1%bb" aria-label="数据文件大体分为哪几类">数据文件大体分为哪几类</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95" aria-label="索引">索引</a><ul>
+                        
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95%e6%98%af%e4%bb%80%e4%b9%88%e6%9c%89%e4%bb%80%e4%b9%88%e7%89%b9%e6%80%a7" aria-label="索引是什么，有什么特性">索引是什么，有什么特性</a></li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95%e5%88%86%e7%b1%bb" aria-label="索引分类">索引分类</a></li>
+                <li>
+                    <a href="#%e5%93%88%e5%b8%8c%e7%b4%a2%e5%bc%95%e7%9a%84%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="哈希索引的使用场景">哈希索引的使用场景</a></li>
+                <li>
+                    <a href="#%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e5%92%8c%e9%9d%9e%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e7%9a%84%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" aria-label="聚簇索引和非聚簇索引的区别是什么">聚簇索引和非聚簇索引的区别是什么</a></li>
+                <li>
+                    <a href="#%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e7%9a%84%e5%ad%98%e5%82%a8%e6%9b%b4%e6%96%b0%e6%95%b0%e6%8d%ae%e4%bc%9a%e4%b8%8d%e4%bc%9a%e5%8f%91%e7%94%9f%e5%8f%98%e5%8c%96" aria-label="聚簇索引的存储更新，数据会不会发生变化">聚簇索引的存储更新，数据会不会发生变化</a></li>
+                <li>
+                    <a href="#mysql%e7%9a%84%e4%b8%bb%e9%94%ae%e6%97%b6%e8%81%9a%e7%b0%87%e7%b4%a2%e5%bc%95%e5%90%97" aria-label="MySQL的主键时聚簇索引吗">MySQL的主键时聚簇索引吗</a></li>
+                <li>
+                    <a href="#%e4%bb%80%e4%b9%88%e5%ad%97%e6%ae%b5%e9%80%82%e5%90%88%e5%bd%93%e4%b8%bb%e9%94%ae" aria-label="什么字段适合当主键">什么字段适合当主键</a></li>
+                <li>
+                    <a href="#%e6%80%a7%e8%83%bd%e5%ad%97%e6%ae%b5%e8%83%bd%e5%8a%a0%e7%b4%a2%e5%bc%95%e5%90%97" aria-label="性能字段能加索引吗">性能字段能加索引吗</a></li>
+                <li>
+                    <a href="#%e8%a1%a8%e4%b8%ad%e6%9c%89%e5%8d%81%e4%b8%aa%e5%ad%97%e6%ae%b5%e7%94%a8id%e8%bf%98%e6%98%afuuid" aria-label="表中有十个字段，用ID还是UUID">表中有十个字段，用ID还是UUID</a></li>
+                <li>
+                    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%87%aa%e5%a2%9eid%e5%bf%ab%e4%ba%8euuid" aria-label="为什么自增ID快于UUID">为什么自增ID快于UUID</a></li>
+                <li>
+                    <a href="#mysql%e4%b8%ad%e7%9a%84%e7%b4%a2%e5%bc%95%e6%98%af%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0%e7%9a%84" aria-label="MySQL中的索引是怎么实现的">MySQL中的索引是怎么实现的</a></li>
+                <li>
+                    <a href="#b%e6%a0%91%e6%9f%a5%e8%af%a2%e5%88%b0%e4%ba%86%e5%8f%b6%e5%ad%90%e8%8a%82%e7%82%b9%e4%b9%8b%e5%90%8e%e4%bc%9a%e6%80%8e%e4%b9%88%e4%bd%9c" aria-label="B&#43;树查询到了叶子节点之后会怎么作">B+树查询到了叶子节点之后会怎么作</a></li>
+                <li>
+                    <a href="#b%e6%a0%91%e7%9a%84%e7%89%b9%e6%80%a7%e6%98%af%e4%bb%80%e4%b9%88" aria-label="B&#43;树的特性是什么">B+树的特性是什么</a></li>
+                <li>
+                    <a href="#b%e6%a0%91%e5%92%8cb%e6%a0%91%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="B&#43;树和B树的区别">B+树和B树的区别</a></li>
+                <li>
+                    <a href="#b%e6%a0%91%e7%9a%84%e5%a5%bd%e5%a4%84%e6%98%af%e4%bb%80%e4%b9%88" aria-label="B&#43;树的好处是什么">B+树的好处是什么</a></li>
+                <li>
+                    <a href="#b%e6%a0%91%e7%9a%84%e5%8f%b6%e5%ad%90%e8%8a%82%e7%82%b9%e6%98%af%e5%8d%95%e5%90%91%e8%bf%98%e6%98%af%e5%8f%8c%e5%90%91%e4%b8%ba%e4%bb%80%e4%b9%88" aria-label="B&#43;树的叶子节点是单向还是双向，为什么">B+树的叶子节点是单向还是双向，为什么</a></li>
+                <li>
+                    <a href="#mysql%e4%b8%ba%e4%bb%80%e4%b9%88%e9%87%87%e7%94%a8b%e6%a0%91%e7%bb%93%e6%9e%84" aria-label="MySQL为什么采用B&#43;树结构">MySQL为什么采用B+树结构</a></li>
+                <li>
+                    <a href="#mysql%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b8%8d%e4%bd%bf%e7%94%a8%e8%b7%b3%e8%a1%a8" aria-label="MySQL为什么不使用跳表">MySQL为什么不使用跳表</a></li>
+                <li>
+                    <a href="#%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e7%9a%84%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" aria-label="联合索引的实现原理">联合索引的实现原理</a></li>
+                <li>
+                    <a href="#%e5%88%9b%e5%bb%ba%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e4%bb%80%e4%b9%88" aria-label="创建联合索引需要注意什么">创建联合索引需要注意什么</a></li>
+                <li>
+                    <a href="#%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e7%9a%84%e5%9c%ba%e6%99%af%e9%a2%98" aria-label="联合索引的场景题">联合索引的场景题</a></li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88%e6%9c%89%e5%93%aa%e4%ba%9b" aria-label="索引失效有哪些">索引失效有哪些</a></li>
+                <li>
+                    <a href="#%e4%bb%80%e4%b9%88%e6%97%b6%e5%80%99%e4%bc%9a%e6%9c%89%e5%9b%9e%e8%a1%a8%e6%9f%a5%e8%af%a2" aria-label="什么时候会有回表查询">什么时候会有回表查询</a></li>
+                <li>
+                    <a href="#%e8%a6%86%e7%9b%96%e7%b4%a2%e5%bc%95%e6%98%af%e4%bb%80%e4%b9%88" aria-label="覆盖索引是什么">覆盖索引是什么</a></li>
+                <li>
+                    <a href="#%e5%8d%95%e5%88%97%e7%b4%a2%e5%bc%95%e5%8f%88%e6%98%af%e8%81%94%e5%90%88%e7%b4%a2%e5%bc%95%e5%8d%95%e7%8b%ac%e6%9f%a5%e7%9a%84%e8%af%9d%e4%bc%9a%e5%85%88%e6%80%8e%e4%b9%88%e8%b5%b0" aria-label="单列索引，又是联合索引，单独查的话会先怎么走">单列索引，又是联合索引，单独查的话会先怎么走</a></li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95%e5%bb%ba%e5%a5%bd%e4%ba%86%e4%b9%8b%e5%90%8e%e5%86%8d%e6%8f%92%e5%85%a5%e6%95%b0%e6%8d%ae%e4%bc%9a%e6%80%8e%e4%b9%88%e6%a0%b7" aria-label="索引建好了之后再插入数据会怎么样">索引建好了之后再插入数据会怎么样</a></li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95%e5%ad%97%e6%ae%b5%e6%98%af%e4%b8%8d%e6%98%af%e8%b6%8a%e5%a4%9a%e8%b6%8a%e5%a5%bd" aria-label="索引字段是不是越多越好">索引字段是不是越多越好</a></li>
+                <li>
+                    <a href="#status%e7%9a%84%e5%80%bc%e4%b8%ba0-or-1%e6%97%b6%e9%80%82%e5%90%88%e5%bb%ba%e7%b4%a2%e5%bc%95%e5%90%97" aria-label="status的值为0 or 1时，适合建索引吗">status的值为0 or 1时，适合建索引吗</a></li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9" aria-label="索引的优缺点">索引的优缺点</a></li>
+                <li>
+                    <a href="#%e6%80%8e%e4%b9%88%e5%86%b3%e5%ae%9a%e5%bb%ba%e7%ab%8b%e5%93%aa%e4%ba%9b%e7%b4%a2%e5%bc%95" aria-label="怎么决定建立哪些索引">怎么决定建立哪些索引</a></li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95%e4%bc%98%e5%8c%96%e6%80%8e%e4%b9%88%e5%81%9a" aria-label="索引优化怎么做">索引优化怎么做</a></li>
+                <li>
+                    <a href="#%e5%89%8d%e7%bc%80%e7%b4%a2%e5%bc%95%e6%98%af%e4%bb%80%e4%b9%88" aria-label="前缀索引是什么">前缀索引是什么</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%8b%e5%8a%a1" aria-label="事务">事务</a></li>
+                <li>
+                    <a href="#%e9%94%81" aria-label="锁">锁</a></li>
+                <li>
+                    <a href="#%e6%97%a5%e5%bf%97" aria-label="日志">日志</a></li>
+                <li>
+                    <a href="#%e6%80%a7%e8%83%bd%e8%b0%83%e4%bc%98" aria-label="性能调优">性能调优</a></li>
+                <li>
+                    <a href="#%e6%9e%b6%e6%9e%84" aria-label="架构">架构</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="sql基础">SQL基础<a hidden class="anchor" aria-hidden="true" href="#sql基础">#</a></h2>
+<h3 id="nosql和sql的区别">NOSQL和SQL的区别<a hidden class="anchor" aria-hidden="true" href="#nosql和sql的区别">#</a></h3>
+<ul>
+<li>NOSQL: 非关系型数据库，更加宽松的模型BASE, 即基本可用，软状态和最终一致性</li>
+<li>SQL：关系型数据库，支持ACID，原子性、一致性、隔离性、持续性</li>
+</ul>
+<h3 id="数据库三大范式">数据库三大范式<a hidden class="anchor" aria-hidden="true" href="#数据库三大范式">#</a></h3>
+<ul>
+<li>第一：原子项</li>
+<li>第二：非码属性完全依赖于候选码，而不是单独某一个部分（<strong>部分函数依赖</strong>）</li>
+<li>第三：消除了传递依赖</li>
+</ul>
+<h3 id="联表查询">联表查询<a hidden class="anchor" aria-hidden="true" href="#联表查询">#</a></h3>
+<p><a href="https://postimg.cc/18BRRnKV"><img alt="image.png" loading="lazy" src="https://i.postimg.cc/s2dMc5Qm/image.png"></a></p>
+<ul>
+<li>INNER JOIN</li>
+<li>LEFT JOIN</li>
+<li>RIGHT JOIN</li>
+<li>FULL JOIN    需要使用UNION来实现</li>
+</ul>
+<h3 id="如何避免重复插入数据">如何避免重复插入数据<a hidden class="anchor" aria-hidden="true" href="#如何避免重复插入数据">#</a></h3>
+<ul>
+<li>使用<code>UNIQUE</code></li>
+<li>使用<code>INSERT ... ON DUPLICATE KEY UPDATE</code> 如果有记录冲突，可以选择进行更新</li>
+<li>使用<code>INSERT IGNORE INTO</code> 来避免冲突</li>
+</ul>
+<h3 id="char和varchar有什么区别"><code>CHAR</code>和<code>VARCHAR</code>有什么区别<a hidden class="anchor" aria-hidden="true" href="#char和varchar有什么区别">#</a></h3>
+<ul>
+<li><code>CHAR</code>：固定长度，末尾补空格，短字符效率跟高</li>
+<li><code>VARCHAR</code>：可变长度的字符串类型，定义时需要指定最大长度，适合存储可变长度的数据</li>
+</ul>
+<h3 id="varchar10这种是什么意思"><code>VARCHAR（10）</code>这种是什么意思<a hidden class="anchor" aria-hidden="true" href="#varchar10这种是什么意思">#</a></h3>
+<ul>
+<li>如果是ASCII字符集，每个字符占用一个字节，那么这最多可以存储10个ASCII字符，同时占用的空间最多为10个字节</li>
+<li>如果是UTF-8字符集，他的每个字符可能占用1-4个字节，他最多是存储10个字符</li>
+</ul>
+<h3 id="int1和int10在mysql上有什么不同"><code>int(1)</code>和<code>int(10)</code>在MySQL上有什么不同<a hidden class="anchor" aria-hidden="true" href="#int1和int10在mysql上有什么不同">#</a></h3>
+<ul>
+<li><code>int</code>在mysql占用的也是4个字节</li>
+<li>数值代表的是宽度，<code>int(1)</code>只会填充一个宽度，<code>int(10)</code>会填充10个宽度，然后不够的前面补0</li>
+</ul>
+<h3 id="text数据类型可以无限大吗"><code>text</code>数据类型可以无限大吗<a hidden class="anchor" aria-hidden="true" href="#text数据类型可以无限大吗">#</a></h3>
+<ul>
+<li><code>text</code>是$2^{16}$,也就是64kb</li>
+<li><code>Mediumtext</code>是$2^{24}$,即16MB</li>
+<li><code>longtext</code>是$2^{32}$,也就是4GB</li>
+</ul>
+<h3 id="ip地址如何在数据库中存储">IP地址如何在数据库中存储<a hidden class="anchor" aria-hidden="true" href="#ip地址如何在数据库中存储">#</a></h3>
+<ul>
+<li>ipv4是32个bit,可以选择字符串存储，也就是<code>varchar(15)</code></li>
+<li>可以进行<code>unsigned int</code>的方式进行存储</li>
+</ul>
+<h3 id="外键约束是什么">外键约束是什么<a hidden class="anchor" aria-hidden="true" href="#外键约束是什么">#</a></h3>
+<ul>
+<li><code>primary key ... references ...</code>保证了数据的一致性</li>
+</ul>
+<h3 id="in和exist区别"><code>IN</code>和<code>exist</code>区别<a hidden class="anchor" aria-hidden="true" href="#in和exist区别">#</a></h3>
+<ul>
+<li><code>WHERE condition IN (VALUE1,VALUE2...)</code> 查询的是在里面的值的情况</li>
+<li><code>WHERE condition EXIST ...</code>判断是的一个bool类型，所以当判断找到条件就停止判断，返回true,效率更高</li>
+</ul>
+<h3 id="mysql中的一些基本函数">MySQL中的一些基本函数<a hidden class="anchor" aria-hidden="true" href="#mysql中的一些基本函数">#</a></h3>
+<ul>
+<li>日期函数<code>MONTH(NOW())</code>,</li>
+<li>聚合函数<code>COUNT(*)</code>,<code>SUM()</code>&hellip;</li>
+<li>数值函数<code>ABS()</code></li>
+</ul>
+<h3 id="查询语句的基本顺序是什么">查询语句的基本顺序是什么<a hidden class="anchor" aria-hidden="true" href="#查询语句的基本顺序是什么">#</a></h3>
+<ul>
+<li>查询都是从<code>FROM</code>开始执行，生成一个虚拟表，这个虚拟表将作为下一个执行步骤的输入，每一个步骤都会生成一个虚拟表，最后一个步骤产生的虚拟表即为输出结果</li>
+<li><img alt="image-20251214083419811" loading="lazy" src="c:\\Users\\Minjie\\AppData\\Roaming\\Typora\\typora-user-images\\image-20251214083419811.png"></li>
+</ul>
+<h2 id="存储引擎">存储引擎<a hidden class="anchor" aria-hidden="true" href="#存储引擎">#</a></h2>
+<h3 id="sql指令的执行过程">SQL指令的执行过程<a hidden class="anchor" aria-hidden="true" href="#sql指令的执行过程">#</a></h3>
+<p><a href="https://postimg.cc/9zbfbC1m"><img alt="image.png" loading="lazy" src="https://i.postimg.cc/hPW7SGdd/image.png"></a></p>
+<ul>
+<li>连接器：建立和管理连接，检验用户的身份</li>
+<li>查询缓存：有则直接返回结果</li>
+<li>解析器：sql语句进行词法，语法的分析，构建语法树等</li>
+<li>执行器：预处理/优化/执行</li>
+</ul>
+<h3 id="对于mysql引擎的了解">对于MySQL引擎的了解<a hidden class="anchor" aria-hidden="true" href="#对于mysql引擎的了解">#</a></h3>
+<ul>
+<li><code>INNODB</code>，MySQL默认的存储引擎，支持ACID事务支持，行级锁，外键约束等特性，适用于高并发的读写操作</li>
+<li><code>MyISAM</code>，另一种常见的存储引擎，具有较低的存储空间和内存消耗，适用于大量的读写操作的场景</li>
+<li><code>Memory</code>，将数据存储在内存中，因此对性能要求较高的读操作，但是服务器重启或崩溃时数据会丢失</li>
+</ul>
+<h3 id="数据文件大体分为哪几类">数据文件大体分为哪几类<a hidden class="anchor" aria-hidden="true" href="#数据文件大体分为哪几类">#</a></h3>
+<ul>
+<li><code>db.opt</code>：存储当前数据库默认的字符集和字符检验规则</li>
+<li><code>t_order.frm</code>:保存表的结构</li>
+<li><code>t_order.ibd</code>:保存表的数据</li>
+</ul>
+<h2 id="索引">索引<a hidden class="anchor" aria-hidden="true" href="#索引">#</a></h2>
+<h3 id="索引是什么有什么特性">索引是什么，有什么特性<a hidden class="anchor" aria-hidden="true" href="#索引是什么有什么特性">#</a></h3>
+<ul>
+<li>没有索引，会进行全表的扫描查询，时间复杂度为$O(n)$</li>
+<li>有索引，可以基于二分查找的算法，一般的数据结构为<strong>b+树</strong>，查询的时间复杂度为$O(log{dN})$</li>
+</ul>
+<h3 id="索引分类">索引分类<a hidden class="anchor" aria-hidden="true" href="#索引分类">#</a></h3>
+<ul>
+<li>
+<p>数据结构分类：b+树，hash，full-text</p>
+<p><img alt="image-20251214090015080" loading="lazy" src="c:\\Users\\Minjie\\AppData\\Roaming\\Typora\\typora-user-images\\image-20251214090015080.png"></p>
+</li>
+<li>
+<p>物理存储：<strong>聚簇索引，二级索引</strong></p>
+<ul>
+<li>主键索引的b+树叶子节点存放的是<strong>实际数据</strong></li>
+<li>二级索引的b+树存放的是<strong>主键值</strong></li>
+<li>如果查询数据的时候，数据能在二级索引查询得到，就不需要回表，否则需要回表，这个过程叫做覆盖索引</li>
+</ul>
+</li>
+<li>
+<p>字段特性：主键索引，唯一索引，普通索引，前缀索引</p>
+<ul>
+<li>主键索引：创建表的时候建立在<strong>主键字段</strong>上的索引</li>
+<li>唯一索引：建立在<code>UNIQUE</code>字段上的索引</li>
+<li>普通索引：建立在普通字段</li>
+<li>前缀索引：针对字符串类型的前几个字符建立的索引</li>
+</ul>
+</li>
+<li>
+<p>字段个数：单列索引，联合索引</p>
+<ul>
+<li>单列索引：建立在单列上的索引</li>
+<li>联合索引：建立在多列上的索引，通过将多个字段组合成一个索引，该索引就被称为联合索引，这种索引的情况下使用的是<strong>最左匹配原则</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="哈希索引的使用场景">哈希索引的使用场景<a hidden class="anchor" aria-hidden="true" href="#哈希索引的使用场景">#</a></h3>
+<ul>
+<li>查询速度快，通过哈希函数计算数据位置来定位获取数据</li>
+<li>在<code>MEMORY</code>数据引擎中，比方讲缓存用户登录信息，通过用户ID快速查找对应的登录状态等信息，能够直接通过用户ID来计算哈希值，定位数据所在的桶，查询效率接近$O(1)$</li>
+</ul>
+<h3 id="聚簇索引和非聚簇索引的区别是什么">聚簇索引和非聚簇索引的区别是什么<a hidden class="anchor" aria-hidden="true" href="#聚簇索引和非聚簇索引的区别是什么">#</a></h3>
+<ul>
+<li><strong>数据索引</strong>：是否包含有实际的数据行</li>
+<li><strong>索引与数据关系</strong>：</li>
+</ul>
+<h3 id="聚簇索引的存储更新数据会不会发生变化">聚簇索引的存储更新，数据会不会发生变化<a hidden class="anchor" aria-hidden="true" href="#聚簇索引的存储更新数据会不会发生变化">#</a></h3>
+<h3 id="mysql的主键时聚簇索引吗">MySQL的主键时聚簇索引吗<a hidden class="anchor" aria-hidden="true" href="#mysql的主键时聚簇索引吗">#</a></h3>
+<h3 id="什么字段适合当主键">什么字段适合当主键<a hidden class="anchor" aria-hidden="true" href="#什么字段适合当主键">#</a></h3>
+<h3 id="性能字段能加索引吗">性能字段能加索引吗<a hidden class="anchor" aria-hidden="true" href="#性能字段能加索引吗">#</a></h3>
+<h3 id="表中有十个字段用id还是uuid">表中有十个字段，用ID还是UUID<a hidden class="anchor" aria-hidden="true" href="#表中有十个字段用id还是uuid">#</a></h3>
+<h3 id="为什么自增id快于uuid">为什么自增ID快于UUID<a hidden class="anchor" aria-hidden="true" href="#为什么自增id快于uuid">#</a></h3>
+<h3 id="mysql中的索引是怎么实现的">MySQL中的索引是怎么实现的<a hidden class="anchor" aria-hidden="true" href="#mysql中的索引是怎么实现的">#</a></h3>
+<h3 id="b树查询到了叶子节点之后会怎么作">B+树查询到了叶子节点之后会怎么作<a hidden class="anchor" aria-hidden="true" href="#b树查询到了叶子节点之后会怎么作">#</a></h3>
+<h3 id="b树的特性是什么">B+树的特性是什么<a hidden class="anchor" aria-hidden="true" href="#b树的特性是什么">#</a></h3>
+<h3 id="b树和b树的区别">B+树和B树的区别<a hidden class="anchor" aria-hidden="true" href="#b树和b树的区别">#</a></h3>
+<h3 id="b树的好处是什么">B+树的好处是什么<a hidden class="anchor" aria-hidden="true" href="#b树的好处是什么">#</a></h3>
+<h3 id="b树的叶子节点是单向还是双向为什么">B+树的叶子节点是单向还是双向，为什么<a hidden class="anchor" aria-hidden="true" href="#b树的叶子节点是单向还是双向为什么">#</a></h3>
+<h3 id="mysql为什么采用b树结构">MySQL为什么采用B+树结构<a hidden class="anchor" aria-hidden="true" href="#mysql为什么采用b树结构">#</a></h3>
+<h3 id="mysql为什么不使用跳表">MySQL为什么不使用跳表<a hidden class="anchor" aria-hidden="true" href="#mysql为什么不使用跳表">#</a></h3>
+<h3 id="联合索引的实现原理">联合索引的实现原理<a hidden class="anchor" aria-hidden="true" href="#联合索引的实现原理">#</a></h3>
+<h3 id="创建联合索引需要注意什么">创建联合索引需要注意什么<a hidden class="anchor" aria-hidden="true" href="#创建联合索引需要注意什么">#</a></h3>
+<h3 id="联合索引的场景题">联合索引的场景题<a hidden class="anchor" aria-hidden="true" href="#联合索引的场景题">#</a></h3>
+<h3 id="索引失效有哪些">索引失效有哪些<a hidden class="anchor" aria-hidden="true" href="#索引失效有哪些">#</a></h3>
+<h3 id="什么时候会有回表查询">什么时候会有回表查询<a hidden class="anchor" aria-hidden="true" href="#什么时候会有回表查询">#</a></h3>
+<h3 id="覆盖索引是什么">覆盖索引是什么<a hidden class="anchor" aria-hidden="true" href="#覆盖索引是什么">#</a></h3>
+<h3 id="单列索引又是联合索引单独查的话会先怎么走">单列索引，又是联合索引，单独查的话会先怎么走<a hidden class="anchor" aria-hidden="true" href="#单列索引又是联合索引单独查的话会先怎么走">#</a></h3>
+<h3 id="索引建好了之后再插入数据会怎么样">索引建好了之后再插入数据会怎么样<a hidden class="anchor" aria-hidden="true" href="#索引建好了之后再插入数据会怎么样">#</a></h3>
+<h3 id="索引字段是不是越多越好">索引字段是不是越多越好<a hidden class="anchor" aria-hidden="true" href="#索引字段是不是越多越好">#</a></h3>
+<h3 id="status的值为0-or-1时适合建索引吗">status的值为0 or 1时，适合建索引吗<a hidden class="anchor" aria-hidden="true" href="#status的值为0-or-1时适合建索引吗">#</a></h3>
+<h3 id="索引的优缺点">索引的优缺点<a hidden class="anchor" aria-hidden="true" href="#索引的优缺点">#</a></h3>
+<h3 id="怎么决定建立哪些索引">怎么决定建立哪些索引<a hidden class="anchor" aria-hidden="true" href="#怎么决定建立哪些索引">#</a></h3>
+<h3 id="索引优化怎么做">索引优化怎么做<a hidden class="anchor" aria-hidden="true" href="#索引优化怎么做">#</a></h3>
+<h3 id="前缀索引是什么">前缀索引是什么<a hidden class="anchor" aria-hidden="true" href="#前缀索引是什么">#</a></h3>
+<h2 id="事务">事务<a hidden class="anchor" aria-hidden="true" href="#事务">#</a></h2>
+<h2 id="锁">锁<a hidden class="anchor" aria-hidden="true" href="#锁">#</a></h2>
+<h2 id="日志">日志<a hidden class="anchor" aria-hidden="true" href="#日志">#</a></h2>
+<h2 id="性能调优">性能调优<a hidden class="anchor" aria-hidden="true" href="#性能调优">#</a></h2>
+<h2 id="架构">架构<a hidden class="anchor" aria-hidden="true" href="#架构">#</a></h2>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

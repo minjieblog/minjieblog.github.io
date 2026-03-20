@@ -2,10 +2,16 @@
 title: "zkLogin: 基于现有凭证的隐私保护区块链认证"
 date: 2026-01-21T21:20:09+08:00
 draft: false
-tags: ["区块链", "零知识证明", "身份认证", "OpenID", "隐私保护"]
-categories: ["论文笔记", "密码学"]
-summary: "本文详细介绍 zkLogin 系统,一个发表在 CCS 2024 的区块链认证方案。它利用 OpenID Connect 和零知识证明,让用户无需记忆助记词或管理私钥,仅用现有社交账户即可安全地进行区块链交易。系统已在 Sui 区块链部署,生成了数十万账户。"
-description: "zkLogin 是一种创新的区块链认证方案,允许用户使用 Google、Facebook 等现有 OpenID 账户进行区块链交易认证,通过零知识证明技术保护隐私,无需管理私钥"
+tags:
+  - 区块链
+  - 零知识证明
+  - 身份认证
+  - OpenID
+  - 隐私保护
+categories:
+  - 区块链论文
+summary: 本文详细介绍 zkLogin 系统,一个发表在 CCS 2024 的区块链认证方案。它利用 OpenID Connect 和零知识证明,让用户无需记忆助记词或管理私钥,仅用现有社交账户即可安全地进行区块链交易。系统已在 Sui 区块链部署,生成了数十万账户。
+description: zkLogin 是一种创新的区块链认证方案,允许用户使用 Google、Facebook 等现有 OpenID 账户进行区块链交易认证,通过零知识证明技术保护隐私,无需管理私钥
 comments: true
 ---
 

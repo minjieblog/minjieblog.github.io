@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Interview-Notes | Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Interview-Notes - Minjie&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/interview-notes/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Interview-Notes
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public void nextPermutation(int[] nums) { //Arrays.sort(int[] nums, int fromIndex, int toIndex) 这个方法对nums中的fromIndex到toIndex - 1的部分进行排序 // 从后向前遍历，一旦出现一个数大于前面的数，说明存在更大的数，记录该索引i // 下一个更大的数是，后面的数按从小到大排，将后面的数中第一个比i-1 大的数据与之交换 int n = nums.length; for (int i = n - 1; i &gt;= 0; i--) { if (i == 0) { Arrays.sort(nums); //当前排序是最大排序，返回最小排序 } else if (nums[i] &gt; nums[i-1]) { //nums[i] &gt; nums[i-1] 说明存在下一个更大的排列 Arrays.sort(nums, i, n); //并且nums[i]之后的部分满足最大排列，下一个更大的排列，即对nums[i]和之后的部分排序 for (int index = i; index &lt; n; index&#43;&#43;) { // 并取出第一个比nums[i-1]大的部分，进行交换 if (nums[index] &gt; nums[i-1]) { int temp = nums[i - 1]; nums[i - 1] = nums[index]; nums[index] = temp; return; } } } } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/31.-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 题目要求o(n)的时间复杂度 // 题目类型dp public int[] productExceptSelf(int[] nums) { //除nums[i]之外的所有数的乘积也就是将nums[i]当做1 // 可以计算这个数左乘积和右乘积 // 用三个数组分别存储前缀、后缀和乘积 // 对于元素nums[0]，我们设定初始值left[0] = 1; // 对于元素nums[nums.length - 1] 设定初始值right[nums.length - 1] = 1; int n = nums.length; int[] left = new int[n]; int[] right = new int[n]; int[] res = new int[n]; left[0] = 1;right[n - 1] = 1; for (int i = 1; i &lt; n; i&#43;&#43;) { left[i] = left[i-1] * nums[i-1]; } for (int j = n - 2; j &gt;= 0; j--) { right[j] = right[j &#43; 1] * nums[j &#43; 1]; } for (int i = 0; i &lt; n; i&#43;&#43;) { res[i] = left[i] * right[i]; } return res; class Solution { // 背包问题，完全背包 public int coinChange(int[] coins, int amount) { int[] dp = new int[amount &#43; 1]; // dp[i] 代表组成金额为i的最少硬币数 Arrays.fill(dp, amount &#43; 1); dp[0] = 0; for (int i = 0; i &lt; coins.length; i&#43;&#43;) { for (int j = coins[i]; j &lt;= amount; j&#43;&#43;) { dp[j] = Math.min(dp[j], dp[j-coins[i]] &#43; 1); } } return dp[amount]== amount&#43;1 ? - 1 : dp[amount]; } }} } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/322.-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // o(log n) 二分法 // 二分法的难点在于等号 // 判断nums[mid] 与 nums[left] 的关系，如果nums[mid] &gt;= nums[left] ,说明 left 到 mid 有序 // if (nums[mid] &lt; nums[left]) 说明 mid 到right 有序， // 判断target是否落在有序部分，若不在则切换子数组 // 据此缩小范围 public int search(int[] nums, int target) { int left = 0, right = nums.length - 1; while (left &lt;= right) { int mid = left &#43; (right - left) / 2; if (nums[mid] == target) { return mid; } else if (nums[mid] &gt;= nums[left]) { if (target &gt;= nums[left] &amp;&amp; target &lt; nums[mid]) { right = mid - 1; } else { left = mid &#43; 1; } } else { if (target &gt; nums[mid] &amp;&amp; target &lt;= nums[right]) { left = mid &#43; 1; } else { right = mid - 1; } } } return -1; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/33.-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 时间复杂度O(log n) 空间复杂度O(1) 常量空间存放变量 // 二分法 // 寻找第一次target的位置，更新右边界 // 最后一次target的位置，更新左边界 public int[] searchRange(int[] nums, int target) { int firstPos = findBoundary(nums, target, true); if (firstPos == -1) {return new int[]{-1, -1};} int lastPos = findBoundary(nums, target, false); return new int[]{firstPos, lastPos}; } public int findBoundary(int[] nums, int target, boolean first) { int left = 0, right = nums.length - 1; int pos = -1; while (left &lt;= right) { int mid = left &#43; (right - left) / 2; if (nums[mid] &lt; target) { left = mid &#43; 1; } else if (nums[mid] &gt; target) { right = mid - 1; } else { // nums[mid] == target pos = mid; if (first) { right = mid - 1; // 寻找第一次出现target的位置，向左移动右边界 } else { left = mid &#43; 1; // 寻找最后一次出现target的位置，向右移动左边界 } } } return pos; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/34.-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 算法的时间复杂度为O(log(min(m,n))) // 二分 public double findMedianSortedArrays(int[] nums1, int[] nums2) { if (nums1.length &gt; nums2.length) { return findMedianSortedArrays(nums2, nums1); } int m = nums1.length; int n = nums2.length; int left = 0, right = m; while (left &lt;= right) { int i = left &#43; (right - left) / 2; int j = (m &#43; n &#43; 1) / 2 - i; int nums1LeftMax = (i == 0 ? Integer.MIN_VALUE : nums1[i - 1]); int nums1RightMin = (i == m ? Integer.MAX_VALUE : nums1[i]); int nums2LeftMax = (j == 0 ? Integer.MIN_VALUE : nums2[j - 1]); int nums2RightMin = (j == n ? Integer.MAX_VALUE : nums2[j]); if (nums1LeftMax &lt;= nums2RightMin &amp;&amp; nums2LeftMax &lt;= nums1RightMin) { if ((m &#43; n) % 2 == 0) { return (Math.max(nums1LeftMax, nums2LeftMax) &#43; Math.min(nums1RightMin, nums2RightMin)) / 2.0; } else { return Math.max(nums1LeftMax, nums2LeftMax); } } else if (nums1LeftMax &gt; nums2RightMin) { right = i - 1; } else { left = i &#43; 1; } } return -1; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/4.-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public void rotate(int[][] matrix) { // 题目要求需要原地旋转，不能新建数组 // 直接matrix[col][n-1-row] = matrix[row][col]的交换会导致原位置的值被覆盖，后续的交换无法进行 //两步实现：1.转置matrix,使得matrix[i][j]变为matrix[j][i] //2.将matrix[j][i] 与 matrix[j][n-1-i]交换 // 先转置或者先交换行都一样，需要注意的是：交换和转置的边界 int n = matrix.length; for (int row = 0; row &lt; n / 2; row&#43;&#43;) { for (int col = 0; col &lt; n; col&#43;&#43;) { int temp = matrix[row][col]; matrix[row][col] = matrix[n - 1 - row][col]; matrix[n - 1 - row][col] = temp; } } for (int row = 0; row &lt; n ; row&#43;&#43;) { for (int col = row; col &lt; n; col&#43;&#43;) { int temp = matrix[row][col]; matrix[row][col] = matrix[col][row]; matrix[col][row] = temp; } } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/48.-%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //贪心算法，局部最优得全局最优 //每一步取最大,看最终能否走到nums[nums.length - 1] // if (coverrange == i) 说明到i为止就不能购在跳动了 public boolean canJump(int[] nums) { int coverrange = 0; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { coverrange = Math.max(nums[i] &#43; i, coverrange); if (coverrange == i) { break; } } return coverrange &gt;= nums.length - 1 ? true : false; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/55.-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 按照第数组中的第一个元素排序，排序之后 // 后一个数组的左端点如果小于前一个数组的右端点则需要合并 // 两种情况：1.后一个数组的左端点小于前一个数组的右端点，则直接合并前一个数组 // 2.后一个数组的左端点大于于前一个数组的右端点，则取前一个数组的左端点和后一个数组的右端点 // 由于合并之后的元素个数我们并不知道，所以一开始要用一个list存储结果 public int[][] merge(int[][] intervals) { int n = intervals.length; // 列已知为2 Arrays.sort(intervals, (a,b) -&gt; (a[0] == b[0] ? a[1] - b[1] : a[0] - b[0])); List&lt;int[]&gt; merge = new ArrayList&lt;&gt;(); for (int i = 0; i &lt; n; i&#43;&#43;) { // intevlas[i][1]与merge中最后一个数组的[1]进行比较 if (merge.isEmpty() || intervals[i][0] &gt; merge.get(merge.size() - 1)[1]) { merge.add(intervals[i]); } else { merge.get(merge.size() - 1)[1] = Math.max(merge.get(merge.size() - 1)[1], intervals[i][1]); } } int row = merge.size(); int[][] res = new int[row][2]; for (int i = 0; i &lt; row; i&#43;&#43;) { for (int j = 0; j &lt; 2; j&#43;&#43;) { res[i][j] = merge.get(i)[j]; } } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/56.-%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 动态规划 // dp[i][j] 代表从（0,0）出发到(i,j)有多少条不同的路径 // dp[i][j] = dp[i-1][j] &#43; dp[i][j-1]; // 左边界和上边界都只有1种可能 // 从上向下，从左往右遍历 int res = 0; public int uniquePaths(int m, int n) { int[][] dp = new int[m][n]; dp[0][0] = 1; for(int i = 1; i &lt; m;i&#43;&#43;){ dp[i][0] = 1; } for(int j = 1; j &lt; n; j&#43;&#43;){ dp[0][j] = 1; } for(int i = 1 ; i &lt; m; i&#43;&#43;){ for(int j = 1; j &lt; n; j&#43;&#43;){ dp[i][j] = dp[i - 1][j] &#43; dp[i][j - 1]; } } return dp[m-1][n-1]; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 原地排序 冒泡排序 选择排序 快速排序 插入排序 // 快排 平均 O（nlogn） 最差O(n^2) 最好是O(nlogn) public void sortColors(int[] nums) { quickSort(nums, 0, nums.length - 1); } public void quickSort(int[] nums, int low, int high) { if (low &lt; high) { int index = partition(nums, low ,high); quickSort(nums, low ,index - 1); quickSort(nums, index &#43; 1,high); } } public int partition(int[] nums, int low, int high) { // partition分区 int pivot = nums[high]; // pivot基准 int j = low; for (int i = low; i &lt; high; i&#43;&#43;) { if (nums[i] &lt; pivot) { swap(nums, i, j); j&#43;&#43;; } } swap(nums,j, high); return j; } public void swap(int[] arr, int i, int j) { int tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/75.-%E9%A2%9C%E8%89%B2%E5%88%86%E7%B1%BB/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/interview-notes/page/7/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/interview-notes/page/9/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

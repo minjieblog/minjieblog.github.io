@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>zkLogin: 基于现有凭证的隐私保护区块链认证 | Minjie&#39;s Blog</title>
+<meta name="keywords" content="区块链, 零知识证明, 身份认证, OpenID, 隐私保护">
+<meta name="description" content="zkLogin 是一种创新的区块链认证方案,允许用户使用 Google、Facebook 等现有 OpenID 账户进行区块链交易认证,通过零知识证明技术保护隐私,无需管理私钥">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blockchain/zklogin/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blockchain/zklogin/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      zkLogin: 基于现有凭证的隐私保护区块链认证
+    </h1>
+    <div class="post-description">
+      zkLogin 是一种创新的区块链认证方案,允许用户使用 Google、Facebook 等现有 OpenID 账户进行区块链交易认证,通过零知识证明技术保护隐私,无需管理私钥
+    </div>
+    <div class="post-meta"><span title='2026-01-21 21:20:09 +0800 CST'>2026年1月21日</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e8%ae%ba%e6%96%87%e5%9f%ba%e6%9c%ac%e4%bf%a1%e6%81%af" aria-label="论文基本信息">论文基本信息</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e7%a0%94%e7%a9%b6%e8%83%8c%e6%99%af%e4%b8%8e%e5%8a%a8%e6%9c%ba" aria-label="一、研究背景与动机">一、研究背景与动机</a><ul>
+                        
+                <li>
+                    <a href="#11-%e5%8c%ba%e5%9d%97%e9%93%be%e9%92%b1%e5%8c%85%e7%9a%84%e7%94%a8%e6%88%b7%e4%bd%93%e9%aa%8c%e5%9b%b0%e5%a2%83" aria-label="1.1 区块链钱包的用户体验困境">1.1 区块链钱包的用户体验困境</a></li>
+                <li>
+                    <a href="#12-%e6%a0%b8%e5%bf%83%e7%a0%94%e7%a9%b6%e9%97%ae%e9%a2%98" aria-label="1.2 核心研究问题">1.2 核心研究问题</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%8czklogin-%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3" aria-label="二、zkLogin 核心思想">二、zkLogin 核心思想</a><ul>
+                        
+                <li>
+                    <a href="#21-%e5%9f%ba%e6%9c%ac%e6%96%b9%e6%b3%95" aria-label="2.1 基本方法">2.1 基本方法</a></li>
+                <li>
+                    <a href="#22-%e6%9c%b4%e7%b4%a0%e6%96%b9%e6%a1%88%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="2.2 朴素方案的问题">2.2 朴素方案的问题</a></li>
+                <li>
+                    <a href="#23-zklogin-%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" aria-label="2.3 zkLogin 的解决方案">2.3 zkLogin 的解决方案</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%89%e7%b3%bb%e7%bb%9f%e6%9e%b6%e6%9e%84" aria-label="三、系统架构">三、系统架构</a><ul>
+                        
+                <li>
+                    <a href="#31-%e5%8f%82%e4%b8%8e%e5%ae%9e%e4%bd%93" aria-label="3.1 参与实体">3.1 参与实体</a></li>
+                <li>
+                    <a href="#32-%e5%9c%b0%e5%9d%80%e6%b4%be%e7%94%9f%e6%9c%ba%e5%88%b6" aria-label="3.2 地址派生机制">3.2 地址派生机制</a></li>
+                <li>
+                    <a href="#33-%e5%ae%8c%e6%95%b4%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b" aria-label="3.3 完整工作流程">3.3 完整工作流程</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%9b%9btagged-witness-signature-%e5%bd%a2%e5%bc%8f%e5%8c%96" aria-label="四、Tagged Witness Signature 形式化">四、Tagged Witness Signature 形式化</a><ul>
+                        
+                <li>
+                    <a href="#41-%e5%af%86%e7%a0%81%e5%ad%a6%e5%8e%9f%e8%af%ad%e5%ae%9a%e4%b9%89" aria-label="4.1 密码学原语定义">4.1 密码学原语定义</a></li>
+                <li>
+                    <a href="#42-%e5%ae%89%e5%85%a8%e5%b1%9e%e6%80%a7" aria-label="4.2 安全属性">4.2 安全属性</a></li>
+                <li>
+                    <a href="#43-zklogin-%e7%9a%84-tws-%e5%ae%9e%e4%be%8b%e5%8c%96" aria-label="4.3 zkLogin 的 TWS 实例化">4.3 zkLogin 的 TWS 实例化</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%94%e5%ae%9e%e7%8e%b0%e4%b8%8e%e4%bc%98%e5%8c%96" aria-label="五、实现与优化">五、实现与优化</a><ul>
+                        
+                <li>
+                    <a href="#51-%e8%af%81%e6%98%8e%e7%b3%bb%e7%bb%9f%e9%80%89%e6%8b%a9" aria-label="5.1 证明系统选择">5.1 证明系统选择</a></li>
+                <li>
+                    <a href="#52-%e7%94%b5%e8%b7%af%e4%bc%98%e5%8c%96" aria-label="5.2 电路优化">5.2 电路优化</a><ul>
+                        
+                <li>
+                    <a href="#521-jwt-%e9%aa%8c%e8%af%81" aria-label="5.2.1 JWT 验证">5.2.1 JWT 验证</a></li>
+                <li>
+                    <a href="#522-jwt-%e8%a7%a3%e6%9e%90%e4%bc%98%e5%8c%96" aria-label="5.2.2 JWT 解析优化">5.2.2 JWT 解析优化</a></li></ul>
+                </li>
+                <li>
+                    <a href="#53-salt-%e7%ae%a1%e7%90%86%e6%96%b9%e6%a1%88" aria-label="5.3 Salt 管理方案">5.3 Salt 管理方案</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%b9%e6%a1%88%e4%b8%80-%e5%ba%94%e7%94%a8%e7%ae%a1%e7%90%86-salt-service" aria-label="方案一: 应用管理 Salt Service">方案一: 应用管理 Salt Service</a></li>
+                <li>
+                    <a href="#%e6%96%b9%e6%a1%88%e4%ba%8c-%e7%94%a8%e6%88%b7%e7%ae%a1%e7%90%86" aria-label="方案二: 用户管理">方案二: 用户管理</a></li></ul>
+                </li>
+                <li>
+                    <a href="#54-zkp-%e7%94%9f%e6%88%90%e7%ad%96%e7%95%a5" aria-label="5.4 ZKP 生成策略">5.4 ZKP 生成策略</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ad%96%e7%95%a5%e4%b8%80-%e6%9c%ac%e5%9c%b0%e7%94%9f%e6%88%90" aria-label="策略一: 本地生成">策略一: 本地生成</a></li>
+                <li>
+                    <a href="#%e7%ad%96%e7%95%a5%e4%ba%8c-%e6%99%ae%e9%80%9a%e5%a7%94%e6%89%98" aria-label="策略二: 普通委托">策略二: 普通委托</a></li>
+                <li>
+                    <a href="#%e7%ad%96%e7%95%a5%e4%b8%89-%e5%ae%8c%e5%85%a8%e9%9a%90%e7%a7%81%e5%a7%94%e6%89%98" aria-label="策略三: 完全隐私委托">策略三: 完全隐私委托</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%ad%e6%80%a7%e8%83%bd%e8%af%84%e4%bc%b0" aria-label="六、性能评估">六、性能评估</a><ul>
+                        
+                <li>
+                    <a href="#61-%e5%ae%9e%e9%aa%8c%e9%85%8d%e7%bd%ae" aria-label="6.1 实验配置">6.1 实验配置</a></li>
+                <li>
+                    <a href="#62-%e6%80%a7%e8%83%bd%e6%8c%87%e6%a0%87" aria-label="6.2 性能指标">6.2 性能指标</a></li>
+                <li>
+                    <a href="#63-%e5%af%b9%e9%aa%8c%e8%af%81%e8%80%85%e7%9a%84%e5%bd%b1%e5%93%8d" aria-label="6.3 对验证者的影响">6.3 对验证者的影响</a></li>
+                <li>
+                    <a href="#64-%e7%94%a8%e6%88%b7%e4%bd%93%e9%aa%8c%e4%bc%98%e5%8c%96" aria-label="6.4 用户体验优化">6.4 用户体验优化</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%83%e5%ae%89%e5%85%a8%e5%88%86%e6%9e%90" aria-label="七、安全分析">七、安全分析</a><ul>
+                        
+                <li>
+                    <a href="#71-%e5%bd%a2%e5%bc%8f%e5%8c%96%e5%ae%89%e5%85%a8%e8%af%81%e6%98%8e" aria-label="7.1 形式化安全证明">7.1 形式化安全证明</a></li>
+                <li>
+                    <a href="#72-%e5%90%84%e7%bb%84%e4%bb%b6%e5%ae%89%e5%85%a8%e6%80%a7%e5%88%86%e6%9e%90" aria-label="7.2 各组件安全性分析">7.2 各组件安全性分析</a><ul>
+                        
+                <li>
+                    <a href="#openid-provider" aria-label="OpenID Provider">OpenID Provider</a></li>
+                <li>
+                    <a href="#%e5%ba%94%e7%94%a8" aria-label="应用">应用</a></li>
+                <li>
+                    <a href="#salt-service" aria-label="Salt Service">Salt Service</a></li>
+                <li>
+                    <a href="#%e5%8c%ba%e5%9d%97%e9%93%be" aria-label="区块链">区块链</a></li></ul>
+                </li>
+                <li>
+                    <a href="#73-%e5%a8%81%e8%83%81%e6%a8%a1%e5%9e%8b%e6%80%bb%e7%bb%93" aria-label="7.3 威胁模型总结">7.3 威胁模型总结</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="论文基本信息">论文基本信息<a hidden class="anchor" aria-hidden="true" href="#论文基本信息">#</a></h2>
+<ul>
+<li><strong>标题</strong>: zkLogin: Privacy-Preserving Blockchain Authentication with Existing Credentials</li>
+<li><strong>会议</strong>: ACM CCS 2024</li>
+<li><strong>作者</strong>: Foteini Baldimtsi 等 (Mysten Labs, Cornell Tech, KU Leuven)</li>
+<li><strong>链接</strong>: <a href="https://doi.org/10.1145/3658644.3690356">https://doi.org/10.1145/3658644.3690356</a></li>
+</ul>
+<h2 id="一研究背景与动机">一、研究背景与动机<a hidden class="anchor" aria-hidden="true" href="#一研究背景与动机">#</a></h2>
+<h3 id="11-区块链钱包的用户体验困境">1.1 区块链钱包的用户体验困境<a hidden class="anchor" aria-hidden="true" href="#11-区块链钱包的用户体验困境">#</a></h3>
+<p>传统区块链钱包面临严重的用户体验问题,成为区块链应用普及的主要障碍:</p>
+<p><strong>私钥管理的挑战</strong>:</p>
+<ul>
+<li>用户需要妥善保管助记词或使用硬件钱包</li>
+<li>一旦私钥丢失,资产将永久无法找回</li>
+<li>据估计,7% 的比特币已永久丢失</li>
+</ul>
+<p><strong>托管服务的信任问题</strong>:</p>
+<ul>
+<li>Mt. Gox、FTX、Quadriga 等知名托管平台相继倒闭</li>
+<li>用户难以信任新兴的托管服务</li>
+<li>中心化托管违背了区块链去中心化的理念</li>
+</ul>
+<p><strong>现有方案的局限</strong>:</p>
+<ul>
+<li>直接使用 OAuth 需要引入可信的预言机服务器</li>
+<li>暴露完整的 JWT payload 会泄露敏感信息(姓名、邮箱等)</li>
+<li>在公开区块链上,这种隐私泄露尤其严重</li>
+</ul>
+<h3 id="12-核心研究问题">1.2 核心研究问题<a hidden class="anchor" aria-hidden="true" href="#12-核心研究问题">#</a></h3>
+<blockquote>
+<p><strong>能否利用现有的认证系统来管理加密货币钱包,同时不依赖额外的可信第三方?</strong></p>
+</blockquote>
+<p>zkLogin 给出了肯定的答案。</p>
+<h2 id="二zklogin-核心思想">二、zkLogin 核心思想<a hidden class="anchor" aria-hidden="true" href="#二zklogin-核心思想">#</a></h2>
+<h3 id="21-基本方法">2.1 基本方法<a hidden class="anchor" aria-hidden="true" href="#21-基本方法">#</a></h3>
+<p>zkLogin 利用 OpenID Connect 规范,该规范被 Google、Facebook、Apple、Microsoft 等主流 OAuth 2.0 提供商广泛支持。</p>
+<p><strong>OpenID Provider (OP) 发放的 JWT 结构</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// Header
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;alg&#34;</span><span class="p">:</span> <span class="s2">&#34;RS256&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;kid&#34;</span><span class="p">:</span> <span class="s2">&#34;a987akjasnb&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;typ&#34;</span><span class="p">:</span> <span class="s2">&#34;JWT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Payload
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;sub&#34;</span><span class="p">:</span> <span class="s2">&#34;1234567890&#34;</span><span class="p">,</span>      <span class="c1">// 用户 ID
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;iss&#34;</span><span class="p">:</span> <span class="s2">&#34;google.com&#34;</span><span class="p">,</span>       <span class="c1">// 发行者
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;aud&#34;</span><span class="p">:</span> <span class="s2">&#34;4074087&#34;</span><span class="p">,</span>          <span class="c1">// 应用 ID
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;iat&#34;</span><span class="p">:</span> <span class="mi">1676415809</span><span class="p">,</span>         <span class="c1">// 签发时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;exp&#34;</span><span class="p">:</span> <span class="mi">1676419409</span><span class="p">,</span>         <span class="c1">// 过期时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;John Doe&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;john.doe@gmail.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;nonce&#34;</span><span class="p">:</span> <span class="s2">&#34;7-VU9fuWeWtgDLHmVJ2UtRrine8&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Signature: RS256(secret_key, base64(header) + &#34;.&#34; + base64(payload))
+</span></span></span></code></pre></div><h3 id="22-朴素方案的问题">2.2 朴素方案的问题<a hidden class="anchor" aria-hidden="true" href="#22-朴素方案的问题">#</a></h3>
+<p>一个直接的想法是:</p>
+<ol>
+<li>用户登录 OpenID Provider 获取 JWT</li>
+<li>将 JWT 发送到区块链</li>
+<li>智能合约验证 JWT 签名</li>
+<li>使用 JWT 中的 <code>sub</code> 标识用户</li>
+</ol>
+<p><strong>致命缺陷</strong>: 这会在公开区块链上暴露用户的所有敏感信息(姓名、邮箱、头像等)。</p>
+<h3 id="23-zklogin-的解决方案">2.3 zkLogin 的解决方案<a hidden class="anchor" aria-hidden="true" href="#23-zklogin-的解决方案">#</a></h3>
+<p>zkLogin 的核心创新是<strong>将临时密钥对嵌入 nonce</strong>:</p>
+<pre tabindex="0"><code>nonce ← H(vk_u, T_max, r)
+</code></pre><p>其中:</p>
+<ul>
+<li><code>vk_u</code>: 临时公钥</li>
+<li><code>T_max</code>: 过期时间</li>
+<li><code>r</code>: 随机数</li>
+</ul>
+<p><strong>zkLogin 签名包含两部分</strong>:</p>
+<ol>
+<li><strong>零知识证明 (ZKP)</strong>: 证明 JWT 有效且包含 <code>vk_u</code></li>
+<li><strong>传统签名</strong>: 使用 <code>sk_u</code> 对交易签名</li>
+</ol>
+<p><strong>关键优势</strong>:</p>
+<ul>
+<li>单个 ZKP 可重用于多笔交易(摊销成本)</li>
+<li>敏感信息通过 ZKP 隐藏</li>
+<li>可安全地将 ZKP 生成委托给服务器(服务器无法获取 <code>sk_u</code>)</li>
+</ul>
+<h2 id="三系统架构">三、系统架构<a hidden class="anchor" aria-hidden="true" href="#三系统架构">#</a></h2>
+<h3 id="31-参与实体">3.1 参与实体<a hidden class="anchor" aria-hidden="true" href="#31-参与实体">#</a></h3>
+<p>zkLogin 系统涉及四个主要实体:</p>
+<ol>
+<li><strong>OpenID Provider (OP)</strong>: Google、Facebook 等,负责签发 JWT</li>
+<li><strong>用户</strong>: 持有 OP 账户,可能使用资源受限设备</li>
+<li>应用
+<ul>
+<li>前端(FE): 浏览器扩展、移动或 Web 应用</li>
+<li>后端(BE): 可选的服务组件</li>
+</ul>
+</li>
+<li><strong>区块链</strong>: 由验证者组成,需支持 ZKP 验证和 JWK 预言机</li>
+</ol>
+<p><strong>信任模型</strong>:</p>
+<ul>
+<li>应用后端不受信任</li>
+<li>应用前端可信(代码公开,接受公众审查)</li>
+<li>OP 仅用于活性,非安全性(OP 不是托管方)</li>
+</ul>
+<h3 id="32-地址派生机制">3.2 地址派生机制<a hidden class="anchor" aria-hidden="true" href="#32-地址派生机制">#</a></h3>
+<p><strong>基本公式</strong>:</p>
+<pre tabindex="0"><code>zkaddr = H(stid, aud, iss, salt)
+</code></pre><p><strong>参数说明</strong>:</p>
+<ul>
+<li><code>stid</code>: 稳定标识符(Stable Identifier),如 <code>sub</code>、<code>email</code></li>
+<li><code>aud</code>: 应用的受众标识符(防止恶意应用窃取资产)</li>
+<li><code>iss</code>: OpenID Provider 标识符</li>
+<li><code>salt</code>: 用于隐私保护的盐值(可选但推荐)</li>
+</ul>
+<p><strong>为什么需要 salt?</strong></p>
+<p>当稳定标识符敏感时(如 email),或者 OP 使用公开标识符时(同一用户在不同应用的 <code>sub</code> 相同),salt 可防止链上地址与链下身份被关联。</p>
+<p><strong>Subject Identifier 的两种类型</strong>:</p>
+<ul>
+<li><strong>公开标识符</strong>: Google、Twitch、Slack(同一用户跨应用 <code>sub</code> 相同)</li>
+<li><strong>成对标识符</strong>: Apple、Facebook、Microsoft(每个应用分配唯一 <code>sub</code>)</li>
+</ul>
+<h3 id="33-完整工作流程">3.3 完整工作流程<a hidden class="anchor" aria-hidden="true" href="#33-完整工作流程">#</a></h3>
+<pre tabindex="0"><code>用户 → 应用前端 → OpenID Provider → 区块链
+
+第一步: 获取 JWT
+├─ 生成临时密钥对 (sk_u, vk_u)
+├─ 计算 nonce = H(vk_u, T_max, r)
+├─ 通过 OAuth 流程登录 OP
+└─ OP 返回签名的 JWT(包含 nonce)
+
+第二步: 获取 Salt
+├─ 从 Salt Service 获取(应用管理)
+└─ 或从本地存储获取(用户管理)
+
+第三步: 生成零知识证明
+├─ 公开输入: (pk_OP, iss, zkaddr, vk_u, T_max)
+├─ 私密见证: (jwt, salt, r)
+└─ 证明:
+    ├─ H(jwt.stid, jwt.aud, jwt.iss, salt) = zkaddr
+    ├─ H(vk_u, T_max, r) = jwt.nonce
+    └─ JWT.Verify(pk_OP, jwt) = 1
+
+第四步: 提交交易
+├─ 使用 sk_u 签名交易: σ_u ← Sign(sk_u, tx)
+├─ 完整签名: (vk_u, T_max, σ_u, π)
+└─ 验证者验证:
+    ├─ 验证 ZKP
+    ├─ 验证 pk_OP 是当前有效密钥
+    ├─ 验证传统签名
+    └─ 检查 T_max 未过期
+</code></pre><h2 id="四tagged-witness-signature-形式化">四、Tagged Witness Signature 形式化<a hidden class="anchor" aria-hidden="true" href="#四tagged-witness-signature-形式化">#</a></h2>
+<h3 id="41-密码学原语定义">4.1 密码学原语定义<a hidden class="anchor" aria-hidden="true" href="#41-密码学原语定义">#</a></h3>
+<p>zkLogin 的核心是一个新的密码学原语: <strong>Tagged Witness Signature (TWS)</strong>。</p>
+<p><strong>与传统签名的区别</strong>:</p>
+<ul>
+<li>传统签名: 需要长期持有密钥</li>
+<li>TWS: 用有效 witness 替代密钥</li>
+</ul>
+<p><strong>与 Signatures of Knowledge (SoK) 的区别</strong>:</p>
+<ul>
+<li>SoK: 无需密钥,知识即可签名</li>
+<li>TWS: 增加了前向安全性 —— 即使旧 witness 泄露,也无法伪造新 tag 的签名</li>
+</ul>
+<p><strong>语法定义</strong>:</p>
+<pre tabindex="0"><code>Gen(1^λ) → pk
+  输入: 安全参数
+  输出: 公钥
+
+Sign(t, pk, w, m) → σ
+  输入: tag t, 公钥 pk, witness w, 消息 m
+  输出: 签名 σ
+
+Verify(t, pk, m, σ) → 0/1
+  输入: tag t, 公钥 pk, 消息 m, 签名 σ
+  输出: 接受(1)或拒绝(0)
+</code></pre><h3 id="42-安全属性">4.2 安全属性<a hidden class="anchor" aria-hidden="true" href="#42-安全属性">#</a></h3>
+<p><strong>完备性 (Completeness)</strong>: 诚实生成的签名能够验证通过。</p>
+<p><strong>不可伪造性 (Unforgeability)</strong>: 即使攻击者获得其他 tag 的 witness,也无法伪造新 tag 的签名。这通过 witness 预言机建模:</p>
+<ul>
+<li>攻击者可查询任意 tag 的 witness</li>
+<li>但无法为未查询的 tag 伪造签名</li>
+</ul>
+<p><strong>Witness 隐藏 (Witness Hiding)</strong>: 签名不泄露关于 witness 的信息,实现隐私保护。</p>
+<h3 id="43-zklogin-的-tws-实例化">4.3 zkLogin 的 TWS 实例化<a hidden class="anchor" aria-hidden="true" href="#43-zklogin-的-tws-实例化">#</a></h3>
+<p><strong>谓词定义</strong>:</p>
+<pre tabindex="0"><code>P_zkLogin(tag = (pk_OP, iss, zkaddr, T),
+          w = (jwt, salt, r, vk_u, sk_u)):
+  
+  zkaddr = H(jwt.stid, jwt.aud, jwt.iss, salt) ∧
+  jwt.iss = iss ∧
+  jwt.nonce = H(vk_u, T, r) ∧
+  JWT.Verify(pk_OP, jwt) = 1 ∧
+  (sk_u, vk_u) is valid key-pair
+</code></pre><p><strong>电路 (Circuit)</strong>:</p>
+<pre tabindex="0"><code>Ckt(zkx = (pk_OP, iss, zkaddr, T, vk_u),
+    zkw = (jwt, salt, r)):
+  
+  // 验证地址派生
+  zkaddr = H(jwt.stid, jwt.aud, jwt.iss, salt)
+  
+  // 验证发行者
+  jwt.iss = iss
+  
+  // 验证 nonce
+  jwt.nonce = H(vk_u, T, r)
+  
+  // 验证 JWT 签名
+  JWT.Verify(pk_OP, jwt) = 1
+</code></pre><h2 id="五实现与优化">五、实现与优化<a hidden class="anchor" aria-hidden="true" href="#五实现与优化">#</a></h2>
+<h3 id="51-证明系统选择">5.1 证明系统选择<a hidden class="anchor" aria-hidden="true" href="#51-证明系统选择">#</a></h3>
+<p><strong>选用 Groth16 的原因</strong>:</p>
+<ul>
+<li>成熟的工具生态系统</li>
+<li>紧凑的证明尺寸</li>
+<li>使用 circom DSL 编写电路</li>
+</ul>
+<p><strong>可信设置仪式</strong>:</p>
+<ul>
+<li>Phase 1: 采用 Perpetual Powers of Tau 第 81 轮(80+ 社区贡献)</li>
+<li>Phase 2: 100+ 外部贡献者参与 zkLogin 专用设置</li>
+<li>安全假设: 只要一个参与者诚实,系统即安全</li>
+</ul>
+<h3 id="52-电路优化">5.2 电路优化<a hidden class="anchor" aria-hidden="true" href="#52-电路优化">#</a></h3>
+<p><strong>总约束数</strong>: ~1,100,000 (刚超过 2^20)</p>
+<p><strong>约束分布</strong>:</p>
+<pre tabindex="0"><code>SHA-256 哈希        : 750,000 (66%)
+RSA 大整数运算      : 155,000 (14%)
+JWT 解析           : 235,000 (20%)
+</code></pre><h4 id="521-jwt-验证">5.2.1 JWT 验证<a hidden class="anchor" aria-hidden="true" href="#521-jwt-验证">#</a></h4>
+<p>验证 RS256 签名(RSASSA-PKCS1-v1_5 using SHA-256):</p>
+<ol>
+<li>使用 SHA-2 哈希 JWT 的 header 和 payload</li>
+<li>模幂运算验证: <code>σ^65537 % p = pad(h)</code></li>
+</ol>
+<p><strong>优化</strong>:</p>
+<ul>
+<li>重用现有的 RSA 验证电路</li>
+<li>采用高效的模乘技术</li>
+</ul>
+<h4 id="522-jwt-解析优化">5.2.2 JWT 解析优化<a hidden class="anchor" aria-hidden="true" href="#522-jwt-解析优化">#</a></h4>
+<p><strong>朴素方法的问题</strong>: 完整解析 JSON 需要实现完整的 JSON 语法规则,在 R1CS 中极其低效。</p>
+<p><strong>zkLogin 的优化策略</strong>:</p>
+<ol>
+<li>
+<p><strong>公开输入 Header</strong>:</p>
+<ul>
+<li>Header 不包含敏感信息</li>
+<li>直接作为公开输入,避免 Base64 解码</li>
+</ul>
+</li>
+<li>
+<p><strong>选择性 Payload 解析</strong>: 基于 JWT payload 的简化特性:</p>
+<ul>
+<li>Provider 遵循 JSON 规范</li>
+<li>用户输入的字符串被正确转义</li>
+<li>关注的字段都在顶层</li>
+<li>JSON 值为字符串或布尔值</li>
+<li>JSON 键中不含转义引号</li>
+</ul>
+</li>
+<li>
+<p><strong>Base64 解码</strong>:</p>
+<pre tabindex="0"><code>解码单字符: 73 约束
+完整 payload (L_max=1500 字节): 73 × 1500 ≈ 110k 约束
+</code></pre></li>
+<li>
+<p><strong>字符串切片优化</strong>:</p>
+<p><strong>朴素算法</strong>:</p>
+<pre tabindex="0"><code>对于每个输出索引 j:
+  计算点积: S · O (O[j] = 1)
+  总约束: n × m
+</code></pre><p><strong>优化算法</strong>:</p>
+<pre tabindex="0"><code>- 将 16 个 8-bit 元素打包为 128-bit
+- 在打包元素上切片
+- 解包回 8-bit
+- 约束数: 18m + (n×m)/32
+</code></pre><p><strong>性能提升</strong>:</p>
+<pre tabindex="0"><code>n=1600, m=100:
+朴素: 160k 约束
+优化: 33k 约束
+提升: 4.8倍
+</code></pre></li>
+<li>
+<p><strong>JSON 键值对提取</strong>:</p>
+<p>对于字符串 <code>S = {&quot;sub&quot;:&quot;123&quot;,&quot;aud&quot;:&quot;mywallet&quot;,&quot;nonce&quot;:&quot;ajshda&quot;}</code>:</p>
+<pre tabindex="0"><code>给定起始索引 i 和长度 l:
+1. 切片: S&#39; = S[i:i+l]  // 例如: &#34;sub&#34;:&#34;123&#34;,
+2. 检查最后字符是 &#39;,&#39; 或 &#39;}&#39;
+3. 定位冒号位置 j
+4. 提取: key = S&#39;[0:j], value = S&#39;[j+1:-1]
+5. 验证首尾是引号
+</code></pre></li>
+</ol>
+<p><strong>安全性考虑</strong>:</p>
+<p>攻击者可能尝试过度扩展:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;sub&#34;</span><span class="p">:</span><span class="s2">&#34;1320606&#34;</span><span class="p">,</span><span class="nt">&#34;aud&#34;</span><span class="p">:</span><span class="s2">&#34;mywallet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">     <span class="err">↑---------------↑</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 提取: &#34;1320606&#34;,&#34;aud&#34;:&#34;mywallet&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>但这不是有效的 JSON 字符串(内部引号未转义),因此不会造成安全威胁。</p>
+<h3 id="53-salt-管理方案">5.3 Salt 管理方案<a hidden class="anchor" aria-hidden="true" href="#53-salt-管理方案">#</a></h3>
+<h4 id="方案一-应用管理-salt-service">方案一: 应用管理 Salt Service<a hidden class="anchor" aria-hidden="true" href="#方案一-应用管理-salt-service">#</a></h4>
+<p><strong>基本实现</strong>:</p>
+<pre tabindex="0"><code>salt = F(k_seed, sub‖aud‖iss)
+</code></pre><p>其中 <code>F</code> 可以是:</p>
+<ul>
+<li>哈希函数</li>
+<li>确定性签名(BLS, EdDSA)</li>
+</ul>
+<p><strong>优点</strong>:</p>
+<ul>
+<li>用户体验简单</li>
+<li>无需额外记忆</li>
+</ul>
+<p><strong>隐私增强选项</strong>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>去链接性</th>
+          <th>JWT 隐私</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>明文存储</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>最简单但无隐私</td>
+      </tr>
+      <tr>
+          <td>TEE (Enclave)</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>使用 AWS Nitro/Intel SGX</td>
+      </tr>
+      <tr>
+          <td>Plain MPC</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>t-out-of-n 门限签名</td>
+      </tr>
+      <tr>
+          <td>MPC + ZK</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>用户生成 n 个 ZKP,秘密分享 JWT 字段</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>TEE 实现细节</strong>:</p>
+<pre tabindex="0"><code>1. 在 Nitro enclave 中生成 k_seed
+2. 使用 AWS KMS 管理,仅特定 enclave 可解密
+3. 用户提交 JWT 认证
+4. Enclave 派生并返回 salt
+5. 备份: 使用 Shamir 秘密分享给可信委员会
+</code></pre><p><strong>MPC + ZK 方案</strong>:</p>
+<pre tabindex="0"><code>Setup:
+  n 个节点秘密分享 k_seed
+  F 设为 MPC 友好的 PRF (如 MiMC)
+
+Request:
+  用户计算 n 个 ZKP π_i
+  每个 π_i 输入 JWT,输出秘密分享的 sub_i, aud_i, iss
+
+Response:
+  节点验证 ZKP
+  联合计算 salt = F(k_seed, sub‖aud‖iss)
+</code></pre><h4 id="方案二-用户管理">方案二: 用户管理<a hidden class="anchor" aria-hidden="true" href="#方案二-用户管理">#</a></h4>
+<p><strong>优点</strong>:</p>
+<ul>
+<li>完全去中心化</li>
+<li>不依赖任何应用</li>
+</ul>
+<p><strong>实现策略</strong>:</p>
+<ol>
+<li>存储在本地设备(浏览器 local storage, 设备 enclave)</li>
+<li>使用 Passkeys 跨设备同步</li>
+<li>通过确定性签名派生: <code>salt = Sign(passkey, email)</code></li>
+</ol>
+<p><strong>挑战</strong>:</p>
+<ul>
+<li>设备丢失恢复</li>
+<li>跨设备/跨浏览器同步</li>
+<li>需要额外的用户教育</li>
+</ul>
+<h3 id="54-zkp-生成策略">5.4 ZKP 生成策略<a hidden class="anchor" aria-hidden="true" href="#54-zkp-生成策略">#</a></h3>
+<h4 id="策略一-本地生成">策略一: 本地生成<a hidden class="anchor" aria-hidden="true" href="#策略一-本地生成">#</a></h4>
+<p><strong>优点</strong>: 最大化隐私</p>
+<p><strong>挑战</strong>:</p>
+<ul>
+<li>在浏览器中生成约 1M 约束的证明可能崩溃或延迟</li>
+<li>移动设备性能受限</li>
+</ul>
+<h4 id="策略二-普通委托">策略二: 普通委托<a hidden class="anchor" aria-hidden="true" href="#策略二-普通委托">#</a></h4>
+<p><strong>流程</strong>:</p>
+<pre tabindex="0"><code>用户 → ZK Service:
+  发送完整 witness (jwt, salt, r)
+  
+ZK Service:
+  生成 ZKP
+  返回证明 π
+  
+用户:
+  验证 π
+  使用 sk_u 完成签名
+</code></pre><p><strong>安全性</strong>: ✅ (ZK Service 无法获取 sk_u)
+<strong>隐私性</strong>: ❌ (ZK Service 可计算 zkaddr)</p>
+<h4 id="策略三-完全隐私委托">策略三: 完全隐私委托<a hidden class="anchor" aria-hidden="true" href="#策略三-完全隐私委托">#</a></h4>
+<p><strong>方法 1 - 委员会</strong>:</p>
+<pre tabindex="0"><code>将 ZKP 生成委托给节点委员会
+只要少数节点不串谋,witness 保密
+</code></pre><p><strong>方法 2 - Enclave</strong>:</p>
+<pre tabindex="0"><code>在 TEE 内生成 ZKP
+隐私依赖于 TEE 安全性
+</code></pre><h2 id="六性能评估">六、性能评估<a hidden class="anchor" aria-hidden="true" href="#六性能评估">#</a></h2>
+<h3 id="61-实验配置">6.1 实验配置<a hidden class="anchor" aria-hidden="true" href="#61-实验配置">#</a></h3>
+<p><strong>Salt Service</strong>:</p>
+<ul>
+<li>平台: AWS Nitro Enclave on m5.xlarge</li>
+<li>配置: 4 vCPU, 16GB RAM</li>
+</ul>
+<p><strong>ZK Service</strong>:</p>
+<ul>
+<li>平台: Google Cloud n2d-standard-16</li>
+<li>配置: 16 vCPU, 64GB RAM</li>
+<li>实现: rapidsnark (C++/Assembly Groth16 prover)</li>
+</ul>
+<h3 id="62-性能指标">6.2 性能指标<a hidden class="anchor" aria-hidden="true" href="#62-性能指标">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>zkLogin</th>
+          <th>Ed25519</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>获取 Salt</td>
+          <td>0.2s</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td>生成 ZKP</td>
+          <td>2.78s</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td>签名验证</td>
+          <td>2.04ms</td>
+          <td>56.3μs</td>
+      </tr>
+      <tr>
+          <td>端到端确认</td>
+          <td>3.52s</td>
+          <td>120.74ms</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>ZKP 生成详细分解</strong>:</p>
+<pre tabindex="0"><code>Circom witness calculator: 550.05 ± 22.42 ms
+Groth16 证明生成:       2.1 ± 0.15 s
+其他开销(验证、缓存):    ~130 ms
+───────────────────────────────────────
+总计:                   2.78 ± 0.25 s
+</code></pre><p><strong>内存使用</strong>:</p>
+<pre tabindex="0"><code>峰值 RAM: 1.19 GB
+平均 RAM: 0.82 GB
+策略: 每台机器一次处理一个请求,横向扩展
+</code></pre><h3 id="63-对验证者的影响">6.3 对验证者的影响<a hidden class="anchor" aria-hidden="true" href="#63-对验证者的影响">#</a></h3>
+<p><strong>压力测试配置</strong>:</p>
+<pre tabindex="0"><code>8 个验证者节点
+每节点: 8 cores, 128GB RAM
+地理分布: New York + Los Angeles
+负载: 1000 TPS
+</code></pre><p><strong>吞吐量对比</strong>:</p>
+<pre tabindex="0"><code>Ed25519:  850 TPS
+zkLogin:  750 TPS
+下降:     ~11%
+</code></pre><p><strong>原因分析</strong>: 签名验证只是验证者工作的一小部分,因此影响有限。</p>
+<h3 id="64-用户体验优化">6.4 用户体验优化<a hidden class="anchor" aria-hidden="true" href="#64-用户体验优化">#</a></h3>
+<p><strong>延迟感知缓解</strong>:</p>
+<ol>
+<li>
+<p><strong>ZKP 重用</strong>:</p>
+<pre tabindex="0"><code>首次交易: 3.52s (包含 ZKP 生成)
+后续交易: ~120ms (重用 ZKP)
+</code></pre></li>
+<li>
+<p><strong>预取策略</strong>:</p>
+<pre tabindex="0"><code>在用户签名前,后台预先获取 ZKP
+隐藏额外延迟
+</code></pre></li>
+<li>
+<p><strong>会话管理</strong>:</p>
+<pre tabindex="0"><code>单个会话内重用临时密钥对
+只在会话开始时生成一次 ZKP
+</code></pre></li>
+</ol>
+<h2 id="七安全分析">七、安全分析<a hidden class="anchor" aria-hidden="true" href="#七安全分析">#</a></h2>
+<h3 id="71-形式化安全证明">7.1 形式化安全证明<a hidden class="anchor" aria-hidden="true" href="#71-形式化安全证明">#</a></h3>
+<p><strong>定理 1 (不可伪造性)</strong>:</p>
+<pre tabindex="0"><code>给定:
+  - Π 满足知识健全性
+  - JWT 和 Sig 满足 EUF-CMA 安全
+  - H(·) 是抗碰撞哈希函数
+
+则: ΣzkLogin 满足不可伪造性
+</code></pre><p><strong>证明思路</strong> (游戏序列):</p>
+<pre tabindex="0"><code>Game 0: 真实攻击
+Game 1: 检查 vk_u 是否被重用(依赖 Sig 安全性)
+Game 2: 提取 witness (依赖 NIZK 知识健全性)
+Game 3: 检查 JWT 是否伪造(依赖 JWT 签名安全性)
+
+在 Game 3 中攻击者永不获胜 → 原协议安全
+</code></pre><p><strong>定理 2 (Witness 隐藏)</strong>:</p>
+<pre tabindex="0"><code>给定:
+  - Π 满足零知识性
+
+则: ΣzkLogin 满足 witness 隐藏
+</code></pre><p><strong>定理 3 (zkLogin 安全性)</strong>:</p>
+<pre tabindex="0"><code>ΣzkLogin 不可伪造 → zkLogin 安全
+</code></pre><p><strong>定理 4 (去链接性)</strong>:</p>
+<pre tabindex="0"><code>给定:
+  - ΣzkLogin 满足 witness 隐藏
+  - zkaddr 是对 claimset 的隐藏承诺
+
+则: zkLogin 满足去链接性
+</code></pre><h3 id="72-各组件安全性分析">7.2 各组件安全性分析<a hidden class="anchor" aria-hidden="true" href="#72-各组件安全性分析">#</a></h3>
+<h4 id="openid-provider">OpenID Provider<a hidden class="anchor" aria-hidden="true" href="#openid-provider">#</a></h4>
+<p><strong>角色</strong>: 用于活性,非安全性</p>
+<p><strong>威胁场景</strong>:</p>
+<pre tabindex="0"><code>如果 JWT 单独可获取 salt:
+  恶意 OP 可签任意 JWT → 破坏安全性
+
+缓解措施:
+  ✅ Salt 由用户管理
+  ✅ Salt Service 需第二因素(TOTP)
+</code></pre><p><strong>隐私分析</strong>:</p>
+<pre tabindex="0"><code>去链接性:
+  ✅ JWT 不足以获取 salt → OP 无法追踪交易
+  ⚠️ OP 知道用户使用了哪个应用(OAuth 固有)
+  
+侧信道:
+  ⚠️ JWT 预取和 ZKP 重用可掩盖时序关联
+</code></pre><h4 id="应用">应用<a hidden class="anchor" aria-hidden="true" href="#应用">#</a></h4>
+<p><strong>活性</strong>: 应用不可用 → 资产锁定</p>
+<p><strong>缓解</strong>:</p>
+<pre tabindex="0"><code>设置多签:
+  1-out-of-2 Multi-sig 在 App1 和 App2 之间
+  任一应用可用即可访问资产
+</code></pre><p><strong>安全性</strong>: ✅ 恶意应用无法窃取资产</p>
+<h4 id="salt-service">Salt Service<a hidden class="anchor" aria-hidden="true" href="#salt-service">#</a></h4>
+<p><strong>安全性</strong>: ✅ 无 sk_u 访问权限,无法签名</p>
+<p><strong>隐私</strong>:</p>
+<pre tabindex="0"><code>明文存储:     ❌❌ 无隐私
+TEE:          ✅✅ 去链接 + JWT 隐私
+Plain MPC:    ✅❌ 去链接,JWT 可见
+MPC + ZK:     ✅✅ 完全隐私
+</code></pre><h4 id="区块链">区块链<a hidden class="anchor" aria-hidden="true" href="#区块链">#</a></h4>
+<p><strong>公开信息</strong>:</p>
+<ul>
+<li>zkLogin 地址</li>
+<li>发行者标识符 (iss)</li>
+<li>ZKP 和临时公钥</li>
+</ul>
+<p><strong>隐藏信息</strong>:</p>
+<ul>
+<li>稳定标识符 (sub, email)</li>
+<li>受众标识符 (aud)</li>
+<li>Salt</li>
+<li>JWT 其他字段</li>
+</ul>
+<h3 id="73-威胁模型总结">7.3 威胁模型总结<a hidden class="anchor" aria-hidden="true" href="#73-威胁模型总结">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>实体</th>
+          <th>安全影响</th>
+          <th>隐私影响</th>
+          <th>缓解措施</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>OP</td>
+          <td>JWT 单独获取 salt 时可破坏安全</td>
+          <td>JWT 单独获取 salt 时可追踪</td>
+          <td>用户管理 salt 或多因素认证</td>
+      </tr>
+      <tr>
+          <td>应用</td>
+          <td>仅影响活性</td>
+          <td>取决于 salt 管理</td>
+          <td>多签缓解活性问题</td>
+      </tr>
+      <tr>
+          <td>Salt Service</td>
+          <td>无影响(无 sk_u)</td>
+          <td>TEE/MPC 保护</td>
+          <td>使用 TEE 或 MPC</td>
+      </tr>
+      <tr>
+          <td>ZK Service</td>
+          <td>无影响(无 sk_u)</td>
+          <td>普通委托泄露</td>
+          <td>Enclave 或委员会</td>
+      </tr>
+      <tr>
+          <td>区块链</td>
+          <td>N/A</td>
+          <td>仅 iss 可见</td>
+          <td>Salt 保护其他字段</td>
+      </tr>
+  </tbody>
+</table>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a></li>
+      <li><a href="http://localhost:1313/tags/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/">零知识证明</a></li>
+      <li><a href="http://localhost:1313/tags/%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81/">身份认证</a></li>
+      <li><a href="http://localhost:1313/tags/openid/">OpenID</a></li>
+      <li><a href="http://localhost:1313/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/">隐私保护</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

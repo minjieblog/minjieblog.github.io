@@ -400,24 +400,26 @@ while (!minHeap.isEmpty()) {
 ```java
 Deque<Integer> deque = new ArrayDeque<>();
 
-// 头部操作
-deque.offerFirst(1);
-deque.pollFirst();
-deque.peekFirst();
+// ===== 头部操作（相当于队列的 front） =====
 
-// 尾部操作
-deque.offerLast(2);
-deque.pollLast();
-deque.peekLast();
+deque.offerFirst(1);   // 将 1 添加到 deque 的头部
+deque.pollFirst();     // 移除并返回头部元素，如果为空返回 null
+deque.peekFirst();     // 返回头部元素，但不删除，如果为空返回 null
 
-// 作为栈使用
-deque.push(3);
-int top = deque.pop();
+// ===== 尾部操作（相当于队列的 rear） =====
+
+deque.offerLast(2);    // 将 2 添加到 deque 的尾部
+deque.pollLast();      // 移除并返回尾部元素，如果为空返回 null
+deque.peekLast();      // 返回尾部元素，但不删除，如果为空返回 null
+
+// ===== 作为栈使用（LIFO） =====
+deque.push(3);         // 将 3 压入栈顶
+int top = deque.pop();  // 弹出栈顶元素并返回
 ```
 
 ---
 
-### 5. Stack - 栈
+### 5. Stack - 栈（不推荐使用）
 ```java
 Stack<Integer> stack = new Stack<>();
 
@@ -429,6 +431,95 @@ int size = stack.size();
 
 // 推荐使用 Deque 代替 Stack
 Deque<Integer> stack2 = new ArrayDeque<>();
+```
+
+---
+
+### 6.其他技巧
+#### Arrays.sort - 排序
+```java
+// ==================== Arrays.sort() ====================  
+  
+// 一维数组排序  
+int[] nums = {5,3,1,4,2};  
+Arrays.sort(nums); // 升序排序  
+  
+// 二维数组排序  
+int[][] arr = {{1,3},{2,2},{1,2}};  
+  
+// 按第一个元素升序  
+Arrays.sort(arr, (a,b) -> a[0] - b[0]);  
+  
+// 按第一个元素降序  
+Arrays.sort(arr, (a,b) -> b[0] - a[0]);  
+  
+// 多条件排序  
+Arrays.sort(arr, (a,b) ->  
+a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]  
+); // 先按a[0]排序，相同再按a[1]  
+  
+// 降序 + 升序组合  
+Arrays.sort(arr, (a,b) ->  
+b[0] == a[0] ? a[1] - b[1] : b[0] - a[0]  
+);  
+     
+  
+  
+// ==================== Arrays 工具 ====================  
+  
+// 填充数组  
+int[] arr2 = new int[5];  
+Arrays.fill(arr2, -1);  
+  
+// 指定范围填充  
+Arrays.fill(arr2, 1, 4, 9);  
+  
+// 复制数组  
+int[] copy = Arrays.copyOf(arr2, arr2.length);
+
+```
+
+#### Arrays工具
+```java
+// ==================== Arrays 工具 ====================  
+  
+// 填充数组  
+int[] arr2 = new int[5];  
+Arrays.fill(arr2, -1);  
+  
+// 指定范围填充  
+Arrays.fill(arr2, 1, 4, 9);  
+  
+// 复制数组  
+int[] copy = Arrays.copyOf(arr2, arr2.length);```
+---
+
+## 🧮 Part 2: 算法模板
+
+### 1. 树的遍历
+
+#### 二叉树定义
+
+```java
+class TreeNode {
+    int val;           // 节点值
+    TreeNode left;     // 左子节点
+    TreeNode right;    // 右子节点
+    TreeNode(int val) { this.val = val; }
+}
+```
+
+#### Math - 数值操作
+```java
+// ==================== Math ====================  
+  
+int max = Math.max(a, b); // 最大值  
+int min = Math.min(a, b); // 最小值  
+int abs = Math.abs(-10); // 绝对值  
+double pow = Math.pow(2,3); // 幂运算 2^3  
+double ceil = Math.ceil(3.2); // 向上取整  
+double floor = Math.floor(3.8); // 向下取整  
+long round = Math.round(3.6); // 四舍五入
 ```
 
 ---

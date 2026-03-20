@@ -1,14 +1,22 @@
 ---
-title: "黑马点评项目笔记"
+title: 黑马点评项目笔记
 date: 2025-12-17T21:01:53+08:00
 draft: false
-tags: ["Redis", "Spring Boot", "微服务", "缓存", "分布式"]
-categories: ["技术笔记-J"]
-summary: "黑马点评项目学习笔记，涵盖 Redis 缓存、分布式锁、消息队列等核心技术实践"
+tags:
+  - Redis
+  - Spring-Boot
+  - 微服务
+  - 缓存
+  - 分布式
+categories:
+  - 技术笔记-J
+summary: 黑马点评项目学习笔记，涵盖 Redis 缓存、分布式锁、消息队列等核心技术实践
 description: |
- "记录黑马点评项目的学习过程，包括 Redis 的多种应用场景、缓存穿透/击穿/雪崩解决方案、分布式锁实现、UV 统计、好友关注等功能的技术实现细节"
+  "记录黑马点评项目的学习过程，包括 Redis 的多种应用场景、缓存穿透/击穿/雪崩解决方案、分布式锁实现、UV 统计、好友关注等功能的技术实现细节"
 comments: true
 ---
+
+[点评demo](https://github.com/Minjie2003/dianping-demo)
 
 ## 0.前言
 

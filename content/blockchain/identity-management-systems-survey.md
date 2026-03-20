@@ -1,16 +1,23 @@
 ---
-title: "Web3.0 身份认证系统综述：中心化与去中心化方案对比分析"
+title: Web3.0 身份认证系统综述：中心化与去中心化方案对比分析
 date: 2025-12-24T15:03:41+08:00
 draft: false
-tags: ["Web3.0", "区块链", "身份认证", "去中心化身份", "DID", "SSI", "综述论文"]
-categories: ["区块链论文"]
-summary: |
-  深度解读 Web3.0 身份认证领域的最新综述论文，对比分析中心化（LDAP、SAML、OAuth）与去中心化（Hyperledger Indy、Sovrin、uPort）身份管理系统的优劣势
+tags:
+  - 区块链
+  - 身份认证
+  - 去中心化身份
+  - DID
+  - SSI
+  - 综述论文
+categories:
+  - 区块链论文
+summary: 深度解读 Web3.0 身份认证领域的最新综述论文，对比分析中心化（LDAP、SAML、OAuth）与去中心化（  Indy、Sovrin、uPort）身份管理系统的优劣势
 description: |
   基于 Future Internet 2025 年发表的综述论文，系统分析传统中心化身份管理系统与新兴去中心化方案在可扩展性、安全性、可靠性、适应性和成本方面的对比，为 Web3.0 身份认证研究提供全面参考
 comments: true
 ---
 
+The request is not authorized because credentials are missing or invalid.
 ## 论文基本信息
 
 - **标题**: A Comparative Survey of Centralised and Decentralised Identity Management Systems: Analysing Scalability, Security, and Feasibility
@@ -21,6 +28,7 @@ comments: true
 - **DOI**: https://doi.org/10.3390/fi17010001
 
 ---
+
 
 ## 研究背景与动机
 

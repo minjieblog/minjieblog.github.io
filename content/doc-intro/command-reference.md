@@ -438,6 +438,35 @@ tags: ["命令行", "PowerShell", "Linux", "Git", "GitHub"]
 
 ## Git 常用指令
 
+### SSH 连接 
+
+**生成 SSH 密钥**
+
+- `ssh-keygen -t ed25519 -C "<邮箱或备注>"` - 生成 Ed25519 类型 SSH 密钥
+- `ssh-keygen -t rsa -b 4096 -C "<邮箱或备注>"` - 生成 RSA 类型 SSH 密钥
+
+**查看公钥内容**
+
+- `type ~/.ssh/id_ed25519.pub` - 查看公钥内容，用于复制到远程仓库
+- `ssh-keygen -y -f ~/.ssh/id_rsa` - 从私钥生成对应公钥
+
+**上传公钥到远程仓库**
+
+- 登录 Git 远程平台（GitHub、GitCode.net 等）
+- 找到 Settings → SSH Keys → Add SSH Key
+- 粘贴公钥内容，设置 Title
+
+**测试 SSH 连接**
+
+- `ssh -T git@gitcode.net` - 测试是否成功连接
+    - 成功会显示：`Welcome to GitCode, @用户名!`
+    - 失败会显示：`Permission denied (publickey)`
+
+**使用 SSH 克隆仓库**
+
+- `git clone git@gitcode.net:<用户名>/<仓库名>.git` - 克隆仓库
+- `git clone -b <分支名> git@gitcode.net:<用户名>/<仓库名>.git` - 克隆指定分支
+
 ### 初始化和配置
 
 **初始化仓库**

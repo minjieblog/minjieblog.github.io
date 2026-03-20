@@ -15,7 +15,8 @@ enableEmoji: true # 允许 emoji
 pygmentsUseClasses: true
 defaultContentLanguage: zh # 顶部首先展示的语言界面
 defaultContentLanguageInSubdir: false # 是否要在地址栏加上默认的语言代码
-
+ignoreFiles:
+  - "content/obsidian/.*"
 params:
 
   #配置数学公式
@@ -73,6 +74,9 @@ params:
   - doc-intro
   - game-guide
   - java-notes
+  - music
+  - reading-notes
+  #- obsidian
 
   # 评论系统
   enableGiscus: true
