@@ -197,7 +197,8 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p></p>
+    <p>小林code
+</p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/os/"></a>
@@ -209,8 +210,13 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>https://xiaolincoding.com/redis/
-1.基础篇 2.数据结构 3.持久化 4.功能 5.高可用 6.缓存篇</p>
+    <p>图解redis redis常见面试题
+认识redis 什么是redis 基于内存的数据库，因此读写速度非常快
+提供多种数据类型支持不同的业务场景
+redis和Memcached有什么区别 共同点：
+都是基于内存的数据库 都有过期策略 两者性能都非常高 不同点：
+Redis支持的数据类型更加丰富 支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载使用，而Memcached没有持久功能，数据全在内存中 Redis原生支持集群模式，Memcached没有原生的集群模式，需要依赖客户端来实现集群中分片 Redis还支持订阅模型，Lua脚本，事务等功能 为什么用redis作为MySQL的缓存 高性能
+...</p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/redis/"></a>
@@ -222,7 +228,8 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p></p>
+    <p>小林code
+Spring 说一说你对Spring的理解 spring的核心思想你是如何理解的 Spring IoC和AOP介绍一下 Spring的aop介绍一下 IoC和AOP是通过什么机制来实现的 怎么理解Spring Ioc 依赖倒置、依赖注入、控制反转分别是什么 依赖注入了解吗，怎么实现依赖注入的 如果让你设计一个SpringIoc,你觉得会从哪些方面考虑这个设计 SpringAOP主要想解决什么问题 AOP在spring中的应用，你知道哪些 谈谈你对Spring IoC的了解程度 SpringAOP的原理了解吗 动态代理是什么 动态代理和静态代理的区别 能使用静态代理的方式实现AOP吗 AOP实现有哪些注解 什么是反射，有哪些应用场景 spring是如何解决循环依赖的 Spring三级缓存的数据结构是什么 Spring框架中都用到了哪些设计模式 Spring常用注解有什么 Spring的事务什么情况下会失效 Spring的事务，使用this调用是否生效 Bean的生命周期说一下 Bean是否单例 Bean的单例和非单例，生命周期是否一样 Spring Bean的作用域有哪些 Spring容器里存的是什么 Spring中，在bean加载/销毁前后，如果想实现某些逻辑，可以怎么做 Spring给我们提供了很多扩展点，这些有了解吗 SpringMVC MVC分层介绍一下 了解SpringMVC的处理流程 Handlermapping和Handlereadapter有了解吗 SpringBoot 为什么使用Springboot SpringBoot比Spring好在哪 Springboot用到了哪些设计模式 怎么理解SpringBoot中的约定大于配置 SpringBoot的项目结构是怎么样的 SpringBoot自动装配原理是什么 说几个启动器（start） 写过SpringBoot starter吗 SpringBoot里面有哪些重要的注解？还有一个配置相关的注解是什么 SpringBoot怎么开启事务 SpringBoot是怎么做到导入就可以直接使用的 SpringBoot过滤器和拦截器说一下 Mybatis 与传统的JDBC相比，Mybatis的优点 Mybatis绝的在哪方面做的比较好 还记得JDBC的连接数据库的步骤吗 项目中如何使用原生的mybatis去查询 Mybatis中的#和$的区别 MybatisPlus和Mybatis的区别 MyBatis运用了哪些常见的设计模式 SpringCloud SpringCloud的了解，以及和SpringBoot的区别 用过哪些微服务组件 负载均衡算法有哪些 如何实现一直均衡给一个用户 介绍一下服务熔断 介绍一下服务降级</p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/spring/"></a>
@@ -234,7 +241,8 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>概念 Java特点 跨平台 面向对象 内存管理 Java的优劣势 优势：跨平台/生态系统/面向对象/内存管理/多线程/安全模型 劣势：编译开销/语法繁琐/内存消耗 Java跨平台原因 Java首先被编译成.class(字节码文件) JVM将字节码翻译成机器码 JVM、JDK、JRE三者关系 JVM：运行环境。注：将字节码直接映射到本地的cpu指令集和OS的系统调用，所以屏蔽了与操作系统相关的信息 JDK：开发工具包 JRE：JVM&#43;Java类库 Java解释和编译都有 解释：JVM方法调用计数器，当累计计数大于一定值的时候，使用JIT编译成机器码，否则就是用解释器进行解释执行 编译：源代码被编译成字节码，JIT会被那编译过的机器码保存起来 解释型语言和编译型语言区别 编译型语言：源代码被编译成机器码或是字节码，生成可执行文件。 解释型语言：逐行解释执行源代码，不生产独立的可执行文件。在执行程序时同时进行翻译 值传递和引用传递 值传递：传递实际值的副本 引用传递：实际上是伪概念，更改指向同一个对象的内部数据 数据类型 基本的数据类型 数值型：整型（byte short int long）、浮点型（float double） 字符型：char 布尔型：boolean 类型互转出现的问题 数据向上转一般是安全的 出现的问题1.数值溢出 出现的问题2.精度丢失 为什么要使用bigDecimal而不是double进行运算 double是使用二进制来进行的浮点运算，二进制不能精确的表示小数，比如说1/3 bigDecimal则是可以进行精确计算 装箱和拆箱 将数据类型和对应的包装类进行转换的过程 弊端：频繁的自动装箱操作可能会影响到程序的性能 Java中的Integer和int Integer
+    <p>小林code
+概念 Java特点 跨平台 面向对象 内存管理 Java的优劣势 优势：跨平台/生态系统/面向对象/内存管理/多线程/安全模型 劣势：编译开销/语法繁琐/内存消耗 Java跨平台原因 Java首先被编译成.class(字节码文件) JVM将字节码翻译成机器码 JVM、JDK、JRE三者关系 JVM：运行环境。注：将字节码直接映射到本地的cpu指令集和OS的系统调用，所以屏蔽了与操作系统相关的信息 JDK：开发工具包 JRE：JVM&#43;Java类库 Java解释和编译都有 解释：JVM方法调用计数器，当累计计数大于一定值的时候，使用JIT编译成机器码，否则就是用解释器进行解释执行 编译：源代码被编译成字节码，JIT会被那编译过的机器码保存起来 解释型语言和编译型语言区别 编译型语言：源代码被编译成机器码或是字节码，生成可执行文件。 解释型语言：逐行解释执行源代码，不生产独立的可执行文件。在执行程序时同时进行翻译 值传递和引用传递 值传递：传递实际值的副本 引用传递：实际上是伪概念，更改指向同一个对象的内部数据 数据类型 基本的数据类型 数值型：整型（byte short int long）、浮点型（float double） 字符型：char 布尔型：boolean 类型互转出现的问题 数据向上转一般是安全的 出现的问题1.数值溢出 出现的问题2.精度丢失 为什么要使用bigDecimal而不是double进行运算 double是使用二进制来进行的浮点运算，二进制不能精确的表示小数，比如说1/3 bigDecimal则是可以进行精确计算 装箱和拆箱 将数据类型和对应的包装类进行转换的过程 弊端：频繁的自动装箱操作可能会影响到程序的性能 Java中的Integer和int Integer
 ...</p>
   </div>
   <footer class="entry-footer"></footer>
@@ -247,8 +255,9 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>https://www.bilibili.com/video/BV16J411h7Rd
-</p>
+    <p>https://www.bilibili.com/video/BV16J411h7Rd 小林code八股
+多线程 内存模型JMM - 介绍 解决多线程并发的一套规则，规定了在多线程环境下，线程怎么访问共享变量才能不出错，核心处理是可见性、原子性、有序性这三个问题。核心思路：规定变量必须从主内存加载到工作内存才能进行操作，改完再写回主内存。
+...</p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E5%B9%B6%E5%8F%91%E7%AF%87/"></a>
@@ -260,7 +269,8 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p></p>
+    <p>小林code
+</p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E7%BD%91%E7%BB%9C/"></a>
@@ -272,7 +282,8 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p></p>
+    <p>小林code
+内存模型 介绍Java中的内存模型 JVM中的堆和栈有什么区别 栈中存的是指针还是对象 堆可以分为哪几部分 如果有个大对象一般是在哪个区域 程序计数器的作用，为什么是私有的 方法区中的方法的执行过程是怎么样的 方法区中还有哪些东西 String保存在哪里 String s = new String(&#34;abc&#34;)的执行过程中分别对应哪些内存区域 引用类型有哪些？有什么区别？ 弱引用了解吗？举例说明在哪可以用到 内存泄漏和内存溢出的理解 jvm内存结构有哪几种内存溢出的情况 堆溢出的情况和对应解决办法 栈溢出的情况有哪些 内存泄漏和内存溢出的例子及解决办法 类初始化和类加载 创建对象的过程 对象的生命周期 类加载器有哪些 Java中双亲委派是什么，有什么用？ 类加载过程 类加载和双亲委派原则 垃圾回收 什么是Java中的垃圾回收？如何触发垃圾回收？ 判断垃圾的方法有哪些 垃圾回收算法是什么，解决了什么问题 java中的gc机制你知道什么 垃圾回收算法有哪些 垃圾回收器有哪些 标记清除算法的缺点是什么 垃圾回收算法哪些阶段会stop the world minorGC、majorGC、fullGC的区别，什么场景会触发fullGC 垃圾回收器CMS和G1的区别 CMS和G1的使用场景 G1回收器的特色是什么 GC只会对堆进行GC吗</p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E8%99%9A%E6%8B%9F%E6%9C%BA/"></a>
@@ -284,7 +295,8 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p></p>
+    <p>小林code
+概念 数组和集合的区别 Java中的线程安全的集合是什么 Collections和Collection的区别 集合遍历的方法有哪些 List Java中list的几种实现 list可以一边遍历一边修改元素吗 list如何删除某个指定下标的元素 ArrayList和LinkedList的区别，哪个集合线程安全 ArrayList和vector的区别 ArrayList为什么线程不安全 如何ArrayList转换为线程安全？ ArrayList和LinkedList的应用场景有哪些 ArrayList的扩容机制说一下 CopyonWriteArraylist是如何实现线程安全的 List里面填写基本数据类型为什么会报错 List和数组如何相互转换 Set Java集合中List和Set的区别是什么 如何对set排序 Set集合的特点，是如何实现Key无重复的 有序的Set是什么？记录插入顺序的集合是什么 Map 如何对map进行快速遍历 HashMap实现原理介绍一下 HashMap链表发生转换后为什么不用平衡二叉树 了解的哈希冲突解决办法有哪些 HashMap是线程安全的吗 hashMap.get()方法是怎么样的过程 hashMap.put()方法是什么样的过程 `HashMap.get()和HashMap.put()的过程 HashMap.get()一定安全吗 HashMap一般用什么做Key,String为什么适合来做key呢 实现HashMap为什么用红黑树而不是平衡二叉树 hashmap的key可以为null吗 重写HashMap的equal和hashcode方法需要注意什么 重写HashMap的equal方法不当会造成什么后果 列举HashMap在多线程的情况下可能出现的问题 HashMap的扩容机制介绍一下 HashMap的大小为什么是2的n次方大小 往HashMap中存20各元素，会扩容几次 HashMap的负载因子是什么 HashMap和HashTable有什么不一样的？HashMap一般怎么用 ConcurrentHashMap是怎么实现的 分段锁是怎么加锁的 分段锁是可以重入的吗 既然有了synchronized为什么还要有CAS呢 ConCurrentHashMap用了乐观锁还是悲观锁 HashTable的底层原理是什么 HashTable的线程安全是怎么实现的 hashMap,HashTable和concurrentHashTable有什么区别</p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E9%9B%86%E5%90%88%E7%AF%87/"></a>

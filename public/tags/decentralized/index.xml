@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Decentralized on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/tags/decentralized/</link>
+    <description>Recent content in Decentralized on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sun, 22 Mar 2026 15:00:06 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/decentralized/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>去中心化标识符（DID）与可验证凭证（VC）综述</title>
+      <link>http://localhost:1313/blockchain/did-vc-survey-2025/</link>
+      <pubDate>Sun, 22 Mar 2026 15:00:06 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/did-vc-survey-2025/</guid>
+      <description>系统梳理 IEEE 2025 年综述论文《A Survey on Decentralized Identifiers and Verifiable Credentials》的核心内容，包括数字身份演进历史、DID/VC 技术架构、安全威胁与缓解策略、五大主流实现框架对比、跨领域应用案例（智能交通/医疗/工业/教育等）、全球监管项目动态，以及标准化、可扩展性、隐私合规等关键挑战与未来研究方向。</description>
+    </item>
+  </channel>
+</rss>

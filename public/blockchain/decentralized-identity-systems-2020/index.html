@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Decentralized Identity Systems: Architecture, Challenges, Solutions and Future Directions | Minjie&#39;s Blog</title>
+<meta name="keywords" content="blockchain, decentralized-identity, SSI, DID">
+<meta name="description" content="本文对数字身份管理系统进行了全面综述，重点分析基于区块链的去中心化身份（SSI）范式——包括其架构、组件、生命周期与工作流程，并依据自主主权身份的十项原则对现有解决方案进行评估，最后讨论了阻碍去中心化身份全面落地的技术与非技术挑战。">
+<meta name="author" content="Omar Dib et al.">
+<link rel="canonical" href="http://localhost:1313/blockchain/decentralized-identity-systems-2020/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blockchain/decentralized-identity-systems-2020/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Decentralized Identity Systems: Architecture, Challenges, Solutions and Future Directions
+    </h1>
+    <div class="post-description">
+      本文对数字身份管理系统进行了全面综述，重点分析基于区块链的去中心化身份（SSI）范式——包括其架构、组件、生命周期与工作流程，并依据自主主权身份的十项原则对现有解决方案进行评估，最后讨论了阻碍去中心化身份全面落地的技术与非技术挑战。
+    </div>
+    <div class="post-meta"><span title='2026-03-20 14:12:28 +0800 CST'>2026年3月20日</span>&nbsp;·&nbsp;<span>Omar Dib et al.</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#-%e8%ae%ba%e6%96%87%e5%85%83%e6%95%b0%e6%8d%ae" aria-label="── 论文元数据">── 论文元数据</a><ul>
+                        
+                <li>
+                    <a href="#-%e8%ae%ba%e6%96%87%e6%a6%82%e8%a7%88" aria-label="📌 论文概览">📌 论文概览</a></li>
+                <li>
+                    <a href="#-%e6%a0%b8%e5%bf%83%e9%97%ae%e9%a2%98" aria-label="🧩 核心问题">🧩 核心问题</a></li>
+                <li>
+                    <a href="#1-%e5%bc%95%e8%a8%80%e4%b8%8e%e8%83%8c%e6%99%af" aria-label="1. 引言与背景">1. 引言与背景</a><ul>
+                        
+                <li>
+                    <a href="#11-%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e6%95%b0%e5%ad%97%e8%ba%ab%e4%bb%bd%e7%ae%a1%e7%90%86" aria-label="1.1 为什么需要数字身份管理？">1.1 为什么需要数字身份管理？</a></li>
+                <li>
+                    <a href="#12-%e6%95%b0%e5%ad%97%e8%ba%ab%e4%bb%bd%e7%8e%b0%e7%8a%b6%e4%b8%8e%e5%a8%81%e8%83%81%e8%a7%84%e6%a8%a1" aria-label="1.2 数字身份现状与威胁规模">1.2 数字身份现状与威胁规模</a></li></ul>
+                </li>
+                <li>
+                    <a href="#2-%e6%a0%b8%e5%bf%83%e6%9c%af%e8%af%ad%e5%ae%9a%e4%b9%89" aria-label="2. 核心术语定义">2. 核心术语定义</a><ul>
+                        
+                <li>
+                    <a href="#%e8%ae%a4%e8%af%81%e7%9a%84%e5%9b%9b%e7%a7%8d%e6%96%b9%e5%bc%8f" aria-label="认证的四种方式">认证的四种方式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#3-%e4%bc%a0%e7%bb%9f%e8%ba%ab%e4%bb%bd%e7%ae%a1%e7%90%86%e7%b3%bb%e7%bb%9f" aria-label="3. 传统身份管理系统">3. 传统身份管理系统</a><ul>
+                        
+                <li>
+                    <a href="#31-%e9%9b%86%e4%b8%ad%e5%bc%8f%e8%ba%ab%e4%bb%bdcentralized-identity" aria-label="3.1 集中式身份（Centralized Identity）">3.1 集中式身份（Centralized Identity）</a></li>
+                <li>
+                    <a href="#32-%e8%81%94%e9%82%a6%e5%bc%8f%e8%ba%ab%e4%bb%bdfederated-identity" aria-label="3.2 联邦式身份（Federated Identity）">3.2 联邦式身份（Federated Identity）</a></li></ul>
+                </li>
+                <li>
+                    <a href="#4-%e5%8e%bb%e4%b8%ad%e5%bf%83%e5%8c%96%e8%ba%ab%e4%bb%bddecentralized-identity" aria-label="4. 去中心化身份（Decentralized Identity）">4. 去中心化身份（Decentralized Identity）</a><ul>
+                        
+                <li>
+                    <a href="#41-%e6%a0%b8%e5%bf%83%e7%90%86%e5%bf%b5" aria-label="4.1 核心理念">4.1 核心理念</a></li>
+                <li>
+                    <a href="#42-%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6" aria-label="4.2 核心组件">4.2 核心组件</a><ul>
+                        
+                <li>
+                    <a href="#421-%e5%8e%bb%e4%b8%ad%e5%bf%83%e5%8c%96%e6%a0%87%e8%af%86%e7%ac%a6did" aria-label="4.2.1 去中心化标识符（DID）">4.2.1 去中心化标识符（DID）</a></li>
+                <li>
+                    <a href="#422-did%e6%96%87%e6%a1%a3did-document" aria-label="4.2.2 DID文档（DID Document）">4.2.2 DID文档（DID Document）</a></li>
+                <li>
+                    <a href="#423-%e5%88%86%e5%b8%83%e5%bc%8f%e8%b4%a6%e6%9c%acdistributed-ledger" aria-label="4.2.3 分布式账本（Distributed Ledger）">4.2.3 分布式账本（Distributed Ledger）</a></li>
+                <li>
+                    <a href="#424-%e5%8f%af%e9%aa%8c%e8%af%81%e5%87%ad%e8%af%81verifiable-credentials-vcs" aria-label="4.2.4 可验证凭证（Verifiable Credentials, VCs）">4.2.4 可验证凭证（Verifiable Credentials, VCs）</a></li>
+                <li>
+                    <a href="#425-%e5%ad%98%e5%82%a8%e4%bb%a3%e7%90%86storage-agents" aria-label="4.2.5 存储代理（Storage Agents）">4.2.5 存储代理（Storage Agents）</a></li>
+                <li>
+                    <a href="#426-%e7%a7%81%e4%ba%ba%e9%92%b1%e5%8c%85private-wallets" aria-label="4.2.6 私人钱包（Private Wallets）">4.2.6 私人钱包（Private Wallets）</a></li></ul>
+                </li>
+                <li>
+                    <a href="#43-%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8bcredential-workflow" aria-label="4.3 工作流程（Credential Workflow）">4.3 工作流程（Credential Workflow）</a></li>
+                <li>
+                    <a href="#44-ssi%e5%8d%81%e5%a4%a7%e5%8e%9f%e5%88%99%e8%af%84%e4%bc%b0%e6%a0%87%e5%87%86" aria-label="4.4 SSI十大原则（评估标准）">4.4 SSI十大原则（评估标准）</a></li></ul>
+                </li>
+                <li>
+                    <a href="#5-%e7%8e%b0%e6%9c%89ssi%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88%e5%88%86%e6%9e%90" aria-label="5. 现有SSI解决方案分析">5. 现有SSI解决方案分析</a><ul>
+                        
+                <li>
+                    <a href="#51-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88%e6%a6%82%e8%a7%88" aria-label="5.1 解决方案概览">5.1 解决方案概览</a></li>
+                <li>
+                    <a href="#52-%e5%90%84%e6%96%b9%e6%a1%88ssi%e5%8e%9f%e5%88%99%e7%ac%a6%e5%90%88%e5%ba%a6%e8%af%84%e4%bc%b0" aria-label="5.2 各方案SSI原则符合度评估">5.2 各方案SSI原则符合度评估</a></li>
+                <li>
+                    <a href="#53-%e9%87%8d%e7%82%b9%e6%96%b9%e6%a1%88%e8%af%a6%e8%a7%a3" aria-label="5.3 重点方案详解">5.3 重点方案详解</a><ul>
+                        
+                <li>
+                    <a href="#uport" aria-label="uPort">uPort</a></li>
+                <li>
+                    <a href="#sovrin" aria-label="Sovrin">Sovrin</a></li>
+                <li>
+                    <a href="#shocard" aria-label="ShoCard">ShoCard</a></li>
+                <li>
+                    <a href="#lifeid" aria-label="LifeID">LifeID</a></li>
+                <li>
+                    <a href="#selfkey" aria-label="SelfKey">SelfKey</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#6-%e6%8c%91%e6%88%98%e4%b8%8e%e8%ae%a8%e8%ae%ba" aria-label="6. 挑战与讨论">6. 挑战与讨论</a><ul>
+                        
+                <li>
+                    <a href="#61-%e6%8a%80%e6%9c%af%e6%8c%91%e6%88%98" aria-label="6.1 技术挑战">6.1 技术挑战</a><ul>
+                        
+                <li>
+                    <a href="#611-%e5%8c%ba%e5%9d%97%e9%93%be%e6%80%a7%e8%83%bd%e6%8c%91%e6%88%98" aria-label="6.1.1 区块链性能挑战">6.1.1 区块链性能挑战</a></li>
+                <li>
+                    <a href="#612-%e5%af%86%e9%92%a5%e7%ae%a1%e7%90%86key-storage" aria-label="6.1.2 密钥管理（Key Storage）">6.1.2 密钥管理（Key Storage）</a></li></ul>
+                </li>
+                <li>
+                    <a href="#62-%e9%9d%9e%e6%8a%80%e6%9c%af%e6%8c%91%e6%88%98" aria-label="6.2 非技术挑战">6.2 非技术挑战</a><ul>
+                        
+                <li>
+                    <a href="#%e9%81%97%e7%95%99%e7%b3%bb%e7%bb%9flegacy-systems" aria-label="遗留系统（Legacy Systems）">遗留系统（Legacy Systems）</a></li>
+                <li>
+                    <a href="#%e7%9b%91%e7%ae%a1regulations" aria-label="监管（Regulations）">监管（Regulations）</a></li>
+                <li>
+                    <a href="#%e6%a0%87%e5%87%86%e5%8c%96standards" aria-label="标准化（Standards）">标准化（Standards）</a></li>
+                <li>
+                    <a href="#%e7%94%a8%e6%88%b7%e9%87%87%e7%ba%b3adoption" aria-label="用户采纳（Adoption）">用户采纳（Adoption）</a></li>
+                <li>
+                    <a href="#%e5%8f%af%e8%ae%bf%e9%97%ae%e6%80%a7accessibility" aria-label="可访问性（Accessibility）">可访问性（Accessibility）</a></li>
+                <li>
+                    <a href="#%e7%94%a8%e6%88%b7%e8%a1%8c%e4%b8%bauser-behaviors" aria-label="用户行为（User Behaviors）">用户行为（User Behaviors）</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#7-%e4%b8%8e%e7%8e%b0%e6%9c%89%e7%bb%bc%e8%bf%b0%e7%9a%84%e5%af%b9%e6%af%94" aria-label="7. 与现有综述的对比">7. 与现有综述的对比</a></li>
+                <li>
+                    <a href="#8-%e7%bb%93%e8%ae%ba" aria-label="8. 结论">8. 结论</a></li>
+                <li>
+                    <a href="#-%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae%e7%b2%be%e9%80%89" aria-label="🔗 参考文献（精选）">🔗 参考文献（精选）</a></li>
+                <li>
+                    <a href="#-%e4%b8%aa%e4%ba%ba%e6%80%9d%e8%80%83%e4%b8%8e%e5%bb%b6%e4%bc%b8" aria-label="💡 个人思考与延伸">💡 个人思考与延伸</a><ul>
+                        
+                <li>
+                    <a href="#%e5%85%b3%e9%94%ae%e6%b4%9e%e5%af%9f" aria-label="关键洞察">关键洞察</a></li>
+                <li>
+                    <a href="#%e7%9b%b8%e5%85%b3%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb%e6%96%b9%e5%90%91" aria-label="相关延伸阅读方向">相关延伸阅读方向</a></li>
+                <li>
+                    <a href="#%e5%be%85%e6%8e%a2%e7%b4%a2%e9%97%ae%e9%a2%98" aria-label="待探索问题">待探索问题</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="-论文元数据">── 论文元数据<a hidden class="anchor" aria-hidden="true" href="#-论文元数据">#</a></h1>
+<p>authors:</p>
+<ul>
+<li>&ldquo;Omar Dib (Wenzhou-Kean University, China)&rdquo;</li>
+<li>&ldquo;Khalifa Toumi (IRT SystemX, Paris-Saclay, France)&rdquo; journal: &ldquo;Annals of Emerging Technologies in Computing (AETiC)&rdquo; volume: &ldquo;Vol. 4, No. 5&rdquo; year: 2020 doi: &ldquo;10.33166/AETiC.2020.05.002&rdquo; url: &ldquo;<a href="http://aetic.theiaer.org/archive/v4/v4n5/p2.html%22">http://aetic.theiaer.org/archive/v4/v4n5/p2.html"</a> paper_type: &ldquo;Review Article&rdquo;</li>
+</ul>
+<h2 id="-论文概览">📌 论文概览<a hidden class="anchor" aria-hidden="true" href="#-论文概览">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>字段</th>
+          <th>内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>标题</strong></td>
+          <td>Decentralized Identity Systems: Architecture, Challenges, Solutions and Future Directions</td>
+      </tr>
+      <tr>
+          <td><strong>作者</strong></td>
+          <td>Omar Dib, Khalifa Toumi</td>
+      </tr>
+      <tr>
+          <td><strong>期刊</strong></td>
+          <td>Annals of Emerging Technologies in Computing (AETiC), Vol.4 No.5</td>
+      </tr>
+      <tr>
+          <td><strong>发表时间</strong></td>
+          <td>2020年12月20日</td>
+      </tr>
+      <tr>
+          <td><strong>DOI</strong></td>
+          <td>10.33166/AETiC.2020.05.002</td>
+      </tr>
+      <tr>
+          <td><strong>类型</strong></td>
+          <td>综述论文 (Review Article)</td>
+      </tr>
+      <tr>
+          <td><strong>关键词</strong></td>
+          <td>Blockchain, Digital Identity, Identity Management Systems, Self-Sovereign Identity</td>
+      </tr>
+      <tr>
+          <td><strong>链接</strong></td>
+          <td>&ldquo;<a href="http://aetic.theiaer.org/archive/v4/v4n5/p2.html%22">http://aetic.theiaer.org/archive/v4/v4n5/p2.html"</a></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-核心问题">🧩 核心问题<a hidden class="anchor" aria-hidden="true" href="#-核心问题">#</a></h2>
+<blockquote>
+<p><strong>本文核心问题</strong>：基于区块链的新型去中心化身份管理系统（如SSI），能否彻底解决传统身份管理中数据安全、用户隐私及个人属性保护等问题？</p>
+</blockquote>
+<hr>
+<h2 id="1-引言与背景">1. 引言与背景<a hidden class="anchor" aria-hidden="true" href="#1-引言与背景">#</a></h2>
+<h3 id="11-为什么需要数字身份管理">1.1 为什么需要数字身份管理？<a hidden class="anchor" aria-hidden="true" href="#11-为什么需要数字身份管理">#</a></h3>
+<ul>
+<li>互联网与Web 2.0的指数级增长，使数字实体之间的交互从线下走向线上</li>
+<li>数字身份（Digital Identity, DI）是在数字世界中<strong>表示、评估和认证</strong>实体的信息集合</li>
+<li>DI 的组成：
+<ul>
+<li><strong>属性（Attributes）</strong>：后天获取的数据，如历史购买行为</li>
+<li><strong>偏好（Preferences）</strong>：实体的偏好，如航班座位选择</li>
+<li><strong>特征（Traits）</strong>：先天固有属性，如出生日期</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-数字身份现状与威胁规模">1.2 数字身份现状与威胁规模<a hidden class="anchor" aria-hidden="true" href="#12-数字身份现状与威胁规模">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>统计数据</th>
+          <th>数值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2017年美国身份盗窃受害者</td>
+          <td>~6000万人</td>
+      </tr>
+      <tr>
+          <td>2013年以来数据泄露记录总数</td>
+          <td>&gt;100亿条</td>
+      </tr>
+      <tr>
+          <td>2018年公开披露的数据泄露事件</td>
+          <td>&gt;6500起</td>
+      </tr>
+      <tr>
+          <td>每次身份欺诈平均损失</td>
+          <td>$263/人</td>
+      </tr>
+      <tr>
+          <td>2016年身份盗窃年度总损失</td>
+          <td>$160亿</td>
+      </tr>
+      <tr>
+          <td>每条敏感记录平均损失</td>
+          <td>$148</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="2-核心术语定义">2. 核心术语定义<a hidden class="anchor" aria-hidden="true" href="#2-核心术语定义">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>术语</th>
+          <th>定义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>IMS</strong> (Identity Management System)</td>
+          <td>用于企业或跨网络身份管理的系统/技术集合</td>
+      </tr>
+      <tr>
+          <td><strong>DI</strong> (Digital Identity)</td>
+          <td>在数字世界中代表实体的信息集合，无需人工操作即可认证</td>
+      </tr>
+      <tr>
+          <td><strong>Subject/Entity</strong></td>
+          <td>数字连接的人、组织、软件程序或设备</td>
+      </tr>
+      <tr>
+          <td><strong>Attribute</strong></td>
+          <td>实体的特征，可以是持久的、临时的或长期有效的</td>
+      </tr>
+      <tr>
+          <td><strong>Identifier</strong></td>
+          <td>与实体关联的难以或不可更改的属性集（如遗传模式）</td>
+      </tr>
+      <tr>
+          <td><strong>Identification</strong></td>
+          <td>将标识符与呈现属性的实体关联的过程</td>
+      </tr>
+      <tr>
+          <td><strong>Authentication</strong></td>
+          <td>提供凭证以证明实体身份的过程</td>
+      </tr>
+      <tr>
+          <td><strong>Authorization</strong></td>
+          <td>身份认证成功后，基于已证明的身份授予权限</td>
+      </tr>
+      <tr>
+          <td><strong>SSI</strong> (Self-Sovereign Identity)</td>
+          <td>用户完全拥有自己身份数据、无需外部管理机构干预的新型IMS</td>
+      </tr>
+      <tr>
+          <td><strong>DID</strong> (Decentralized IDentifier)</td>
+          <td>支持可验证、去中心化数字身份的新型标识符</td>
+      </tr>
+      <tr>
+          <td><strong>VC</strong> (Verifiable Credential)</td>
+          <td>护照、驾照等物理凭证的电子等价物，可被密码学验证</td>
+      </tr>
+      <tr>
+          <td><strong>PoA</strong> (Proof of Authority)</td>
+          <td>基于身份作为质押的共识算法，提供较快的交易速度</td>
+      </tr>
+      <tr>
+          <td><strong>ZKP</strong> (Zero Knowledge Proof)</td>
+          <td>一方向另一方证明持有某信息而不泄露信息本身的数字方法</td>
+      </tr>
+      <tr>
+          <td><strong>SDK</strong></td>
+          <td>用于为特定设备或操作系统开发应用的软件工具集合</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="认证的四种方式">认证的四种方式<a hidden class="anchor" aria-hidden="true" href="#认证的四种方式">#</a></h3>
+<ol>
+<li><strong>Something You Know</strong>：PIN码、密码</li>
+<li><strong>Something You Have</strong>：身份证、银行卡、智能卡、手机</li>
+<li><strong>Something You Are</strong>：指纹、人脸、虹膜、声纹</li>
+<li><strong>Something You Do</strong>：运动技能、手势、按键习惯</li>
+</ol>
+<hr>
+<h2 id="3-传统身份管理系统">3. 传统身份管理系统<a hidden class="anchor" aria-hidden="true" href="#3-传统身份管理系统">#</a></h2>
+<p>身份解决方案可分为三类：</p>
+<pre tabindex="0"><code>身份管理系统
+├── 集中式（Centralized）   ← 传统
+├── 联邦式（Federated）     ← 传统
+└── 去中心化（Decentralized）← 新型
+</code></pre><h3 id="31-集中式身份centralized-identity">3.1 集中式身份（Centralized Identity）<a hidden class="anchor" aria-hidden="true" href="#31-集中式身份centralized-identity">#</a></h3>
+<p><strong>模型</strong>：用户 → 多个独立的服务提供商（各自管理独立账户）</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>由私人组织（银行、社交媒体公司、政府）管理</li>
+<li>认证通过登录名+密码的匹配验证完成</li>
+<li>每个服务提供商各自存储用户数据</li>
+<li>数据质量取决于服务商的政策</li>
+</ul>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>成功实现了实体的数字表示，支持广泛的在线服务</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>隐私风险：第三方管理数据，用户在线活动可被追踪</li>
+<li>体验碎片化：用户需为每个服务商创建单独账号</li>
+<li>成本高：服务商需投入大量资源存储、维护、保护用户数据</li>
+</ul>
+<h3 id="32-联邦式身份federated-identity">3.2 联邦式身份（Federated Identity）<a hidden class="anchor" aria-hidden="true" href="#32-联邦式身份federated-identity">#</a></h3>
+<p><strong>模型</strong>：统一身份提供商（IdP）→ 多个服务提供商</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>多个集中式系统之间建立相互信任</li>
+<li>典型实现：OAuth（Google/Facebook账号登录第三方）</li>
+<li>国际组织或政府间互认身份凭证（如欧盟eIDAS标准）</li>
+</ul>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>用户体验便利（单点登录，跨平台访问）</li>
+<li>广泛采用</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>建立信任关系复杂，需要法律协议和技术标准</li>
+<li>身份提供商可追踪用户活动，交叉关联身份数据，存在隐私泄露</li>
+<li>实现成本高，影响普及</li>
+</ul>
+<hr>
+<h2 id="4-去中心化身份decentralized-identity">4. 去中心化身份（Decentralized Identity）<a hidden class="anchor" aria-hidden="true" href="#4-去中心化身份decentralized-identity">#</a></h2>
+<h3 id="41-核心理念">4.1 核心理念<a hidden class="anchor" aria-hidden="true" href="#41-核心理念">#</a></h3>
+<blockquote>
+<p>实体本身处于交互的核心，移除第三方管理身份的需求</p>
+</blockquote>
+<p><strong>实现基础</strong>：</p>
+<ul>
+<li>密码学算法（数字签名等）</li>
+<li>安全分布式账本（区块链）</li>
+</ul>
+<p><strong>工作方式</strong>：</p>
+<ul>
+<li>用户通过数字设备（手机、PC）管理自己的身份属性</li>
+<li>数据存储在私人数据存储（如手机/个人云）中</li>
+<li>用户自主决定分享哪些数据、与谁分享、用于何种目的</li>
+<li>不会完全消除第三方（仍需可信机构签发VCs，如政府签发驾照）</li>
+</ul>
+<h3 id="42-核心组件">4.2 核心组件<a hidden class="anchor" aria-hidden="true" href="#42-核心组件">#</a></h3>
+<h4 id="421-去中心化标识符did">4.2.1 去中心化标识符（DID）<a hidden class="anchor" aria-hidden="true" href="#421-去中心化标识符did">#</a></h4>
+<ul>
+<li><strong>定义</strong>：实体自己创建的唯一标识符，不依赖任何中心化注册中心</li>
+<li><strong>结构</strong>（W3C规范）：<code>Scheme:Method:Method-Specific Identifier</code></li>
+<li><strong>特性</strong>：
+<ul>
+<li>拥有公钥（可公开分享）和私钥（由DID所有者保存）</li>
+<li>永久性：无需更改</li>
+<li>可解析：可查找关联的元数据</li>
+<li>一个实体可创建<strong>任意数量的DID</strong></li>
+</ul>
+</li>
+<li><strong>现有DID方法规范</strong>：Sovrin、Bitcoin Reference、Ethereum uPort、Blockstack、Veres One、IPFS</li>
+</ul>
+<h4 id="422-did文档did-document">4.2.2 DID文档（DID Document）<a hidden class="anchor" aria-hidden="true" href="#422-did文档did-document">#</a></h4>
+<ul>
+<li><strong>格式</strong>：JSON-LD文档</li>
+<li><strong>包含六个组件</strong>：
+<ol>
+<li>DID本身</li>
+<li>密码学材料（用于认证的公钥）</li>
+<li>与DID主体交互的密码学协议</li>
+<li>DID端点列表</li>
+<li>审计时间戳</li>
+<li>JSON-LD签名（验证文档完整性）</li>
+</ol>
+</li>
+</ul>
+<h4 id="423-分布式账本distributed-ledger">4.2.3 分布式账本（Distributed Ledger）<a hidden class="anchor" aria-hidden="true" href="#423-分布式账本distributed-ledger">#</a></h4>
+<p>区块链作为分布式账本的核心价值：</p>
+<table>
+  <thead>
+      <tr>
+          <th>功能</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>DID注册</strong></td>
+          <td>去中心化但可信的DID存储</td>
+      </tr>
+      <tr>
+          <td><strong>凭证公证</strong></td>
+          <td>通过哈希上链，提供创建时间证明和防篡改电子封印</td>
+      </tr>
+      <tr>
+          <td><strong>访问权限记录</strong></td>
+          <td>记录信息访问权限和用户同意</td>
+      </tr>
+      <tr>
+          <td><strong>业务流程自动化</strong></td>
+          <td>通过智能合约自动触发业务流程</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="424-可验证凭证verifiable-credentials-vcs">4.2.4 可验证凭证（Verifiable Credentials, VCs）<a hidden class="anchor" aria-hidden="true" href="#424-可验证凭证verifiable-credentials-vcs">#</a></h4>
+<ul>
+<li>关于实体背景的<strong>密码学可信信息</strong></li>
+<li>通过公钥-私钥机制进行数字签名验证</li>
+<li>需要<strong>标准化</strong>（JSON及其变体）以实现自动化处理</li>
+<li>一旦发行，用户可在多个平台和网站重复使用</li>
+</ul>
+<h4 id="425-存储代理storage-agents">4.2.5 存储代理（Storage Agents）<a hidden class="anchor" aria-hidden="true" href="#425-存储代理storage-agents">#</a></h4>
+<ul>
+<li>存储VCs和DID关联的私钥</li>
+<li>存储方式：个人设备（智能手机、笔记本）或第三方安全方案</li>
+<li>数据完全由实体控制 → 实现数据主权，提升互操作性</li>
+</ul>
+<h4 id="426-私人钱包private-wallets">4.2.6 私人钱包（Private Wallets）<a hidden class="anchor" aria-hidden="true" href="#426-私人钱包private-wallets">#</a></h4>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOvab0AAXhM0MqQwAsf1IaFIBJwrMD-AALsDWsbtS_pVSVtgyvfuOfkAQADAgADdwADOgQ.png"></p>
+<ul>
+<li>管理DIDs、私钥和VCs的工具</li>
+<li>形式：手机应用、软件、云或硬件钱包</li>
+<li><strong>核心原则</strong>：钱包及其访问权限必须完全在实体的唯一控制下</li>
+</ul>
+<h3 id="43-工作流程credential-workflow">4.3 工作流程（Credential Workflow）<a hidden class="anchor" aria-hidden="true" href="#43-工作流程credential-workflow">#</a></h3>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOuabz_23MhrN7BkD0qQ9QYyk3lBScAAuoNaxu1L-lV-_6SKVDpyzcBAAMCAAN5AAM6BA.png"></p>
+<pre tabindex="0"><code>用户导航到网站
+    ↓
+[User Agent] 请求凭证
+    ↓
+[分布式账本] 查询DID数据
+    ↓
+[User Storage] 请求属性
+    ↓
+[User Storage] 提供属性
+    ↓
+[VC Issuer] 验证属性
+    ↓
+[VC Issuer] 签发凭证
+    ↓
+[User Agent] 展示凭证
+    ↓
+用户保存凭证
+    ↓
+[User Agent] 存储凭证 → 列出凭证清单 → 展示凭证列表
+</code></pre><p><strong>数据交换模式</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>模式</th>
+          <th>说明</th>
+          <th>隐私级别</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>加密原始属性</td>
+          <td>用服务商公钥加密后发送，服务商解密获取</td>
+          <td>中等（存在数据泄露风险）</td>
+      </tr>
+      <tr>
+          <td><strong>ZKP（零知识证明）</strong></td>
+          <td>证明拥有某信息而不揭示具体值（如只证明年龄&gt;18岁）</td>
+          <td><strong>高</strong></td>
+      </tr>
+      <tr>
+          <td>同态加密</td>
+          <td>直接在加密数据上运行模型</td>
+          <td>最高（但计算成本极高，尚未广泛采用）</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="44-ssi十大原则评估标准">4.4 SSI十大原则（评估标准）<a hidden class="anchor" aria-hidden="true" href="#44-ssi十大原则评估标准">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>原则</th>
+          <th>核心要求</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td><strong>Existence（存在性）</strong></td>
+          <td>SSI必须基于物理身份，用户不能纯粹是数字化的</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td><strong>Control（控制性）</strong></td>
+          <td>用户必须完全控制自己的身份，可引用、更新或隐藏</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td><strong>Access（访问性）</strong></td>
+          <td>用户必须能访问自己的所有数据，不能有隐藏的个人数据</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td><strong>Transparency（透明性）</strong></td>
+          <td>所有SSI组件必须透明、开源、独立于特定组织</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td><strong>Persistence（持久性）</strong></td>
+          <td>身份必须长期有效，只能由所有者删除</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td><strong>Portability（可移植性）</strong></td>
+          <td>身份属性和凭证必须可由所有者携带，不能仅由第三方管理</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td><strong>Interoperability（互操作性）</strong></td>
+          <td>身份必须尽可能广泛可用，不局限于特定平台或领域</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td><strong>Consent（同意性）</strong></td>
+          <td>用户必须自由同意身份属性和数据的使用方式</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td><strong>Minimalization（最小化）</strong></td>
+          <td>身份属性披露必须最小化，只共享必要信息</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td><strong>Protection（保护性）</strong></td>
+          <td>用户权利高于网络需求，须保护用户对抗强权</td>
+      </tr>
+      <tr>
+          <td>(+)</td>
+          <td><strong>Provable（可证明性）</strong></td>
+          <td>身份声明必须能被验证（如由可信第三方）</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="5-现有ssi解决方案分析">5. 现有SSI解决方案分析<a hidden class="anchor" aria-hidden="true" href="#5-现有ssi解决方案分析">#</a></h2>
+<h3 id="51-解决方案概览">5.1 解决方案概览<a hidden class="anchor" aria-hidden="true" href="#51-解决方案概览">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>创建年份</th>
+          <th>分布式账本</th>
+          <th>区块链类型</th>
+          <th>白皮书</th>
+          <th>开源</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>uPort</strong></td>
+          <td>2016</td>
+          <td>Ethereum</td>
+          <td>无许可</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td><strong>Sovrin</strong></td>
+          <td>2016</td>
+          <td>Indy</td>
+          <td>许可制</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td><strong>ShoCard</strong></td>
+          <td>2015</td>
+          <td>Bitcoin</td>
+          <td>混合</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td><strong>IDchainZ</strong></td>
+          <td>2014</td>
+          <td>—</td>
+          <td>—</td>
+          <td>❌</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td><strong>EverID</strong></td>
+          <td>2016</td>
+          <td>Ethereum</td>
+          <td>许可制</td>
+          <td>✅</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td><strong>LifeID</strong></td>
+          <td>2017</td>
+          <td>LIFEID</td>
+          <td>无许可</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td><strong>SelfKey</strong></td>
+          <td>2017</td>
+          <td>Ethereum</td>
+          <td>无许可</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td><strong>Civic</strong></td>
+          <td>2015</td>
+          <td>Ethereum</td>
+          <td>—</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td><strong>TheKey</strong></td>
+          <td>2014</td>
+          <td>NEO</td>
+          <td>—</td>
+          <td>✅</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td><strong>Bitnation</strong></td>
+          <td>2014</td>
+          <td>NEO</td>
+          <td>—</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="52-各方案ssi原则符合度评估">5.2 各方案SSI原则符合度评估<a hidden class="anchor" aria-hidden="true" href="#52-各方案ssi原则符合度评估">#</a></h3>
+<blockquote>
+<p>1 = 符合，0 = 不符合</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th style="text-align: center">Cont</th>
+          <th style="text-align: center">Acce</th>
+          <th style="text-align: center">Trans</th>
+          <th style="text-align: center">Pers</th>
+          <th style="text-align: center">Port</th>
+          <th style="text-align: center">Inte</th>
+          <th style="text-align: center">Cons</th>
+          <th style="text-align: center">Mini</th>
+          <th style="text-align: center">Prot</th>
+          <th style="text-align: center">Prov</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>uPort</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+      </tr>
+      <tr>
+          <td>Sovrin</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+      </tr>
+      <tr>
+          <td>ShoCard</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+      </tr>
+      <tr>
+          <td>IDchainZ</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+      </tr>
+      <tr>
+          <td>EverID</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+      </tr>
+      <tr>
+          <td>LifeID</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+      </tr>
+      <tr>
+          <td>SelfKey</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+      </tr>
+      <tr>
+          <td>Civic</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+      </tr>
+      <tr>
+          <td>TheKey</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+      </tr>
+      <tr>
+          <td>Bitnation</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+          <td style="text-align: center">✅</td>
+          <td style="text-align: center">❌</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Cont=控制 | Acce=访问 | Trans=透明 | Pers=持久 | Port=可移植 | Inte=互操作 | Cons=同意 | Mini=最小化 | Prot=保护 | Prov=可证明</p>
+</blockquote>
+<h3 id="53-重点方案详解">5.3 重点方案详解<a hidden class="anchor" aria-hidden="true" href="#53-重点方案详解">#</a></h3>
+<h4 id="uport">uPort<a hidden class="anchor" aria-hidden="true" href="#uport">#</a></h4>
+<ul>
+<li><strong>基础</strong>：开源，基于Ethereum，通过手机App管理身份</li>
+<li><strong>机制</strong>：自动部署 <code>controller</code>（控制层） + <code>proxy</code>（身份本体） 两个智能合约，两层设计可以用于公钥的更新，方便于管理身份的<code>update</code>；registry合约映射属性。属性在哈希存链上，实际数据存<strong>IPFS</strong></li>
+<li><strong>密钥恢复</strong>：社交恢复协议（用户提名受托人，达到投票仲裁后更换公钥）</li>
+<li><strong>局限</strong>：
+<ul>
+<li>可移植性差：仅uPort身份间可互相证明，等价于<strong>身份孤岛（Identity silo）</strong></li>
+<li>恶意区块链节点可追踪所有uPortID相关活动</li>
+<li>受托人集合可能被攻击，导致身份被永久攻陷</li>
+</ul>
+</li>
+</ul>
+<h4 id="sovrin">Sovrin<a hidden class="anchor" aria-hidden="true" href="#sovrin">#</a></h4>
+<ul>
+<li><strong>基础</strong>：开源，基于许可制账本（Indy），仅可信机构（政府/银行/大学）可运行节点，更像是<strong>受监管的去中心化</strong></li>
+<li><strong>特点</strong>：链上只存储最小信息（DID，公钥等）不存储Claims，VC完全链下；支持点对点通信，无需依赖共享账本，通过<strong>ZKP</strong>验证。</li>
+<li><strong>局限</strong>：
+<ul>
+<li>预定义机构作为中间人可能访问用户身份信息</li>
+<li>不保证网络代理的正确运行（影响可证明性）</li>
+</ul>
+</li>
+</ul>
+<h4 id="shocard">ShoCard<a hidden class="anchor" aria-hidden="true" href="#shocard">#</a></h4>
+<ul>
+<li><strong>基础</strong>：基于Bitcoin账本，将用户标识符、可信凭证（护照/驾照）和身份数据绑定</li>
+<li><strong>局限</strong>：
+<ul>
+<li>中心化服务器管理证书分发，存在数据泄露风险</li>
+<li>依赖公司存续：若公司消失，用户无法使用已获取的凭证</li>
+<li>强制用户提供完整可信凭证，泄露过多个人信息</li>
+</ul>
+</li>
+</ul>
+<h4 id="lifeid">LifeID<a hidden class="anchor" aria-hidden="true" href="#lifeid">#</a></h4>
+<ul>
+<li><strong>亮点</strong>：支持ZKP（最小化数据披露）；三种备份恢复选项（冷存储/受托人/可信组织）；SDK支持跨链部署</li>
+<li><strong>局限</strong>：GitHub活跃度不足，技术细节和架构说明不够充分</li>
+</ul>
+<h4 id="selfkey">SelfKey<a hidden class="anchor" aria-hidden="true" href="#selfkey">#</a></h4>
+<ul>
+<li><strong>亮点</strong>：ZKP协议最小化数据披露；仅可信实体可验证身份声明（保证可证明性）</li>
+<li><strong>局限</strong>：PoA共识非拜占庭容错，一个恶意节点可破坏共识；预定义角色可能导致匿名性、可追踪性问题</li>
+</ul>
+<hr>
+<h2 id="6-挑战与讨论">6. 挑战与讨论<a hidden class="anchor" aria-hidden="true" href="#6-挑战与讨论">#</a></h2>
+<h3 id="61-技术挑战">6.1 技术挑战<a hidden class="anchor" aria-hidden="true" href="#61-技术挑战">#</a></h3>
+<h4 id="611-区块链性能挑战">6.1.1 区块链性能挑战<a hidden class="anchor" aria-hidden="true" href="#611-区块链性能挑战">#</a></h4>
+<table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>详情</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>匿名性</strong></td>
+          <td>区块链地址与物理身份一旦关联，所有DID可被追踪</td>
+      </tr>
+      <tr>
+          <td><strong>存储限制</strong></td>
+          <td>所有关系DIDs存链上将产生巨大存储压力</td>
+      </tr>
+      <tr>
+          <td><strong>实时性</strong></td>
+          <td>DID注册需等待交易验证，延迟不可忽视（比特币&lt;10 TPS）</td>
+      </tr>
+      <tr>
+          <td><strong>交易费用</strong></td>
+          <td>公有链上创建DID需支付Gas费</td>
+      </tr>
+      <tr>
+          <td><strong>可扩展性</strong></td>
+          <td>联盟链虽解决性能问题，但依赖预定义成员，违背去中心化理念</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="612-密钥管理key-storage">6.1.2 密钥管理（Key Storage）<a hidden class="anchor" aria-hidden="true" href="#612-密钥管理key-storage">#</a></h4>
+<ul>
+<li><strong>问题</strong>：私钥和VCs通常存在用户设备上，设备丢失 = 身份丢失</li>
+<li><strong>现有方案</strong>：
+<ul>
+<li>多设备备份（仍可能全部丢失）</li>
+<li>第三方云存储（即使加密，给出密文等于给予无限破解时间）</li>
+</ul>
+</li>
+<li><strong>核心矛盾</strong>：安全性与便利性之间的根本张力</li>
+</ul>
+<h3 id="62-非技术挑战">6.2 非技术挑战<a hidden class="anchor" aria-hidden="true" href="#62-非技术挑战">#</a></h3>
+<h4 id="遗留系统legacy-systems">遗留系统（Legacy Systems）<a hidden class="anchor" aria-hidden="true" href="#遗留系统legacy-systems">#</a></h4>
+<ul>
+<li>现有信任锚（银行、政府）运行中心化系统，转型需改造基础设施</li>
+<li>不仅是信任锚，服务提供商和依赖方也需要适配</li>
+</ul>
+<h4 id="监管regulations">监管（Regulations）<a hidden class="anchor" aria-hidden="true" href="#监管regulations">#</a></h4>
+<ul>
+<li>现有运营模式为中心化设计</li>
+<li>违规责任分配在去中心化架构中极为复杂</li>
+<li>用户需要教育才能负责任地使用去中心化系统</li>
+</ul>
+<h4 id="标准化standards">标准化（Standards）<a hidden class="anchor" aria-hidden="true" href="#标准化standards">#</a></h4>
+<ul>
+<li>缺乏标准 → 各服务商自定义DID和凭证格式 → 形成信息孤岛</li>
+<li>标准制定需全球数字参与者广泛协调</li>
+</ul>
+<h4 id="用户采纳adoption">用户采纳（Adoption）<a hidden class="anchor" aria-hidden="true" href="#用户采纳adoption">#</a></h4>
+<ul>
+<li>商业侧：需重组商业模式以支持可复用凭证</li>
+<li>用户侧：
+<ul>
+<li>复杂性是主要障碍</li>
+<li>打破现有便捷的中心化身份习惯阻力大</li>
+<li>大多数用户仍信任企业处理其数据</li>
+</ul>
+</li>
+</ul>
+<h4 id="可访问性accessibility">可访问性（Accessibility）<a hidden class="anchor" aria-hidden="true" href="#可访问性accessibility">#</a></h4>
+<ul>
+<li>弱势群体、残疾人、儿童、老年人及无法获取技术设备的人群需特殊考虑</li>
+<li>智能手机/PC几乎是必要条件，但全球仍有大量人口无法获取</li>
+<li>需要专项法律法规保障特殊群体的身份权利</li>
+</ul>
+<h4 id="用户行为user-behaviors">用户行为（User Behaviors）<a hidden class="anchor" aria-hidden="true" href="#用户行为user-behaviors">#</a></h4>
+<ul>
+<li>工作流程过于复杂 → 用户寻找更简单（但不安全）的替代方案</li>
+<li>弱密码/重复密码现象普遍</li>
+<li>企业可能索要超出必要限度的用户信息</li>
+</ul>
+<hr>
+<h2 id="7-与现有综述的对比">7. 与现有综述的对比<a hidden class="anchor" aria-hidden="true" href="#7-与现有综述的对比">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>综述</th>
+          <th>身份定义</th>
+          <th>组件架构</th>
+          <th>使用场景</th>
+          <th>挑战/未来</th>
+          <th>生命周期</th>
+          <th>评估方案数</th>
+          <th>年份</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>[32] Der et al.</td>
+          <td>非正式</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>有（无细节）</td>
+          <td>❌</td>
+          <td>—</td>
+          <td>2017</td>
+      </tr>
+      <tr>
+          <td>[33] Ferdous et al.</td>
+          <td>数学定义</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>序列图</td>
+          <td>4</td>
+          <td>2019</td>
+      </tr>
+      <tr>
+          <td>[34] Kuperberg</td>
+          <td>基于用例</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>有（无细节）</td>
+          <td>❌</td>
+          <td>43</td>
+          <td>2019</td>
+      </tr>
+      <tr>
+          <td>[35] Zhu &amp; Badr</td>
+          <td>正式定义</td>
+          <td>❌</td>
+          <td>IoT</td>
+          <td>IoT专项</td>
+          <td>❌</td>
+          <td>15</td>
+          <td>2018</td>
+      </tr>
+      <tr>
+          <td>[38] Muhle et al.</td>
+          <td>简短</td>
+          <td>高层概述</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>—</td>
+          <td>2018</td>
+      </tr>
+      <tr>
+          <td>[39] Lesavre</td>
+          <td>术语/标准</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>安全/共享</td>
+          <td>✅</td>
+          <td>—</td>
+          <td>2019</td>
+      </tr>
+      <tr>
+          <td><strong>本文</strong></td>
+          <td><strong>综合定义</strong></td>
+          <td><strong>完整架构</strong></td>
+          <td><strong>通用</strong></td>
+          <td><strong>技术+非技术</strong></td>
+          <td><strong>完整</strong></td>
+          <td><strong>10</strong></td>
+          <td><strong>2020</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>本文的主要贡献</strong>：</p>
+<ol>
+<li>提出<strong>通用抽象的SSI架构</strong>，独立于具体用例</li>
+<li>建立<strong>全面的评估策略</strong>（社区反馈 + 代码成熟度 + 文档质量）</li>
+<li>同时呈现<strong>技术和非技术限制</strong>，并给出推荐研究方向</li>
+</ol>
+<hr>
+<h2 id="8-结论">8. 结论<a hidden class="anchor" aria-hidden="true" href="#8-结论">#</a></h2>
+<p><strong>核心结论</strong>：构建一个能有效管理用户身份同时保护其数据和行为的去中心化身份系统，目前<strong>尚未完全可行</strong>。</p>
+<p><strong>技术层面建议</strong>：</p>
+<ul>
+<li>重点解决区块链的<strong>可扩展性</strong>和<strong>互操作性</strong>问题</li>
+<li>解决区块链本身的身份问题（可链接性、可追踪性、匿名性）</li>
+<li>完善<strong>用户密钥管理</strong>机制</li>
+</ul>
+<p><strong>非技术层面建议</strong>：</p>
+<ul>
+<li>加快制定去中心化身份组件的<strong>行业标准</strong>（Sovrin、身份基金会、欧洲论坛等已开始，需扩大范围）</li>
+<li>进行<strong>定量研究</strong>（本文主要为定性分析）</li>
+</ul>
+<p><strong>未来工作方向</strong>：</p>
+<ol>
+<li>评估Sovrin IMS在不同活跃用户规模下的吞吐量和延迟</li>
+<li>统计分析SSI采纳成本和获取率</li>
+<li>量化评估SSI解决方案的安全级别（后量子密码学背景下）</li>
+</ol>
+<hr>
+<h2 id="-参考文献精选">🔗 参考文献（精选）<a hidden class="anchor" aria-hidden="true" href="#-参考文献精选">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>编号</th>
+          <th>内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>[18]</td>
+          <td>Alzahrani, B. (2020). An ICN-based Registry for DIDs and VCs. IEEE Access</td>
+      </tr>
+      <tr>
+          <td>[21]</td>
+          <td>Lux et al. (2020). DLT-based Authentication with DIDs and VCs. arXiv</td>
+      </tr>
+      <tr>
+          <td>[24][19]</td>
+          <td>van Bokkem et al. (2019). SSI: The necessity of blockchain. arXiv:1904.12816</td>
+      </tr>
+      <tr>
+          <td>[28]</td>
+          <td>Sovrin Foundation (2018). Sovrin: A protocol and token for SSI. Tech Report</td>
+      </tr>
+      <tr>
+          <td>[33]</td>
+          <td>Ferdous et al. (2019). In search of SSI leveraging blockchain. IEEE Access</td>
+      </tr>
+      <tr>
+          <td>[39]</td>
+          <td>Lesavre (2019). A taxonomic approach to emerging blockchain IMS. arXiv:1908.00929</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-个人思考与延伸">💡 个人思考与延伸<a hidden class="anchor" aria-hidden="true" href="#-个人思考与延伸">#</a></h2>
+<h3 id="关键洞察">关键洞察<a hidden class="anchor" aria-hidden="true" href="#关键洞察">#</a></h3>
+<ol>
+<li><strong>没有&quot;完美&quot;的去中心化</strong>：即便是SSI，仍需依赖可信第三方（如政府）签发凭证，只是将控制权交还给用户</li>
+<li><strong>区块链≠万能</strong>：区块链解决了分布式信任问题，但其自身的性能、匿名性、存储限制成为新瓶颈</li>
+<li><strong>ZKP是关键技术</strong>：在隐私保护与可验证性之间取得平衡的核心工具，值得深入研究</li>
+<li><strong>&ldquo;安全性与便利性&quot;永恒悖论</strong>：越安全（自托管密钥）就越不便捷，这是去中心化身份的根本张力</li>
+</ol>
+<h3 id="相关延伸阅读方向">相关延伸阅读方向<a hidden class="anchor" aria-hidden="true" href="#相关延伸阅读方向">#</a></h3>
+<ul>
+<li>W3C DID规范：https://www.w3.org/TR/did-core/</li>
+<li>Verifiable Credentials数据模型：https://www.w3.org/TR/vc-data-model/</li>
+<li>Hyperledger Indy（Sovrin底层）</li>
+<li>Zero Knowledge Proof在身份领域的应用（zk-SNARKs）</li>
+<li>欧盟eIDAS 2.0与数字身份钱包</li>
+</ul>
+<h3 id="待探索问题">待探索问题<a hidden class="anchor" aria-hidden="true" href="#待探索问题">#</a></h3>
+<ul>
+<li><input disabled="" type="checkbox"> ZKP在实际SSI系统中的性能开销有多大？</li>
+<li><input disabled="" type="checkbox"> 量子计算对现有DID密码学体系的威胁程度如何？</li>
+<li><input disabled="" type="checkbox"> 如何为没有智能手机的人群设计可访问的去中心化身份？</li>
+<li><input disabled="" type="checkbox"> 联盟链方案在保持一定去中心化程度的同时能否满足实际吞吐量需求？</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/blockchain/">Blockchain</a></li>
+      <li><a href="http://localhost:1313/tags/decentralized-identity/">Decentralized-Identity</a></li>
+      <li><a href="http://localhost:1313/tags/ssi/">SSI</a></li>
+      <li><a href="http://localhost:1313/tags/did/">DID</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

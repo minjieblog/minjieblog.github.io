@@ -14,7 +14,6 @@ categories:
 summary: 基于 IEEE Communications Surveys & Tutorials 2025 综述论文的详细学习笔记，覆盖 DID/VC 从基础原理到全球落地的完整知识体系。
 description: 系统梳理 IEEE 2025 年综述论文《A Survey on Decentralized Identifiers and Verifiable Credentials》的核心内容，包括数字身份演进历史、DID/VC 技术架构、安全威胁与缓解策略、五大主流实现框架对比、跨领域应用案例（智能交通/医疗/工业/教育等）、全球监管项目动态，以及标准化、可扩展性、隐私合规等关键挑战与未来研究方向。
 comments: true
-url: https://ieeexplore.ieee.org/abstract/document/10891701/
 ---
 ---
 
@@ -24,6 +23,7 @@ url: https://ieeexplore.ieee.org/abstract/document/10891701/
 > - 期刊：IEEE Communications Surveys & Tutorials, Vol. 27, No. 6, Fourth Quarter 2025
 > - 作者：Carlo Mazzocca, Abbas Acar, Selcuk Uluagac, Rebecca Montanari, Paolo Bellavista, Mauro Conti
 > - DOI：10.1109/COMST.2025.3543197
+> - URL: https://ieeexplore.ieee.org/abstract/document/10891701/
 
 ---
 ## 一、引言

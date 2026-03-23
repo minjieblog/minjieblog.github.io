@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Mon, 08 Dec 2025 10:50:12 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 20 Mar 2026 14:12:28 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/decentralized-identity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Decentralized Identity Systems: Architecture, Challenges, Solutions and Future Directions</title>
+      <link>http://localhost:1313/blockchain/decentralized-identity-systems-2020/</link>
+      <pubDate>Fri, 20 Mar 2026 14:12:28 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/decentralized-identity-systems-2020/</guid>
+      <description>本文对数字身份管理系统进行了全面综述，重点分析基于区块链的去中心化身份（SSI）范式——包括其架构、组件、生命周期与工作流程，并依据自主主权身份的十项原则对现有解决方案进行评估，最后讨论了阻碍去中心化身份全面落地的技术与非技术挑战。</description>
+    </item>
     <item>
       <title>zkBID: 区块链账户与Web 3.0去中心化身份</title>
       <link>http://localhost:1313/blockchain/linking-souls-to-humans/</link>

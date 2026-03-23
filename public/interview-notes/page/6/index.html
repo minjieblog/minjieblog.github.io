@@ -221,7 +221,7 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>class Solution { //优先队列存储当前元素值和索引，用大顶堆进行排序 public int[] maxSlidingWindow(int[] nums, int k) { int n = nums.length; if (n == 1) { return nums; } int[] res = new int[n - k &#43; 1]; PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; b[0] - a[0]); for (int i = 0; i &lt; k; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); } res[0] = pq.peek()[0]; int j = 1; for (int i = k ; i &lt; n; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); while (pq.peek()[1] &lt; i - k &#43; 1) { //滑动窗口的右边界k，左边界i-k&#43;1 pq.poll(); } res[j&#43;&#43;] = pq.peek()[0]; } return res; } } </p>
+    <p>1. 优先队列 PriorityQueue class Solution { //优先队列存储当前元素值和索引，用大顶堆进行排序 public int[] maxSlidingWindow(int[] nums, int k) { int n = nums.length; if (n == 1) { return nums; } int[] res = new int[n - k &#43; 1]; //初始化大顶堆 PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; b[0] - a[0]); for (int i = 0; i &lt; k; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); } res[0] = pq.peek()[0]; int j = 1; for (int i = k ; i &lt; n; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); while (pq.peek()[1] &lt; i - k &#43; 1) { //滑动窗口的右边界k，左边界i-k&#43;1 pq.poll(); } res[j&#43;&#43;] = pq.peek()[0]; } return res; } } 2.单调队列 Deque </p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/239.-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/"></a>
@@ -245,7 +245,7 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>class Solution { //面积，（索引的差 &#43; 1）*（高度的最小值） // 单调栈 // 对于index位置的最大矩形的款是到左右两边第一次出现比heights[index]小的位置， public int largestRectangleArea(int[] heights) { int n = heights.length; Deque&lt;Integer&gt; stack = new LinkedList&lt;&gt;(); int maxArea = 0; for (int i = 0; i &lt; heights.length; i&#43;&#43;) { while (!stack.isEmpty() &amp;&amp; heights[i] &lt; heights[stack.peek()]) { int top = stack.pop(); int maxWidth = stack.isEmpty() ? i : i - stack.peek() - 1; // i 是右边届， stack.peek()是左边界 maxArea = Math.max(maxWidth * heights[top], maxArea); } stack.push(i); } while (!stack.isEmpty()) { // 右边没有更小的高 int top = stack.pop(); int maxWidth = stack.isEmpty() ? n : n - stack.peek() - 1; maxArea = Math.max(maxWidth * heights[top], maxArea); } return maxArea; } } </p>
+    <p>class Solution { //面积，（索引的差 &#43; 1）*（高度的最小值） // 单调栈 // 对于index位置的最大矩形的款是到左右两边第一次出现比heights[index]小的位置， public int largestRectangleArea(int[] heights) { int n = heights.length; Deque&lt;Integer&gt; stack = new LinkedList&lt;&gt;(); int maxArea = 0; for (int i = 0; i &lt; heights.length; i&#43;&#43;) { // 当前柱子比栈顶小，说明找到了右边界 while (!stack.isEmpty() &amp;&amp; heights[i] &lt; heights[stack.peek()]) { int top = stack.pop(); // 计算宽度 int maxWidth = stack.isEmpty() ? i : i - stack.peek() - 1; maxArea = Math.max(maxWidth * heights[top], maxArea); } stack.push(i); } // 处理右边没有更小柱子的情况 while (!stack.isEmpty()) { int top = stack.pop(); int maxWidth = stack.isEmpty() ? n : n - stack.peek() - 1; maxArea = Math.max(maxWidth * heights[top], maxArea); } return maxArea; } } </p>
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88/84.-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/"></a>

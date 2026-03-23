@@ -10,43 +10,6 @@
 <meta name="description" content="class Solution {
     //两重for循环计算
     public boolean canPartition(int[] nums) {
-    //     int sum = 0;
-    //     for(int i = 0; i &lt; nums.length; i&#43;&#43;) {
-    //         sum &#43;= nums[i];
-    //     }
-    //     if(sum % 2 == 1) return false;
-    //     int target = sum / 2;
-    //     System.out.print(target);
-    // //     //dp[i]代表是否有和为i的子集
-    // //   int[] dp = new int[target &#43; 1];
-    // //     dp[0] = 0;  // 初始化条件
-    // //     for(int i = 0; i &lt; nums.length; i&#43;&#43;) {
-    // //         for(int j = target; j &gt;= nums[i]; j--) {
-    // //             dp[j] = Math.max(dp[j],dp[j - nums[i]] &#43; nums[i]);
-    // //         }
-
-    //     // }
-    //     int[][] dp = new int[nums.length][target&#43;1];
-    //     for(int i = 0; i &lt; nums.length; i&#43;&#43;){
-    //         dp[i][0] = 0;
-    //     }
-    //     for (int j = 0; j &lt;= target; j&#43;&#43;) {
-    //         if (j &gt;= nums[0]) {
-    //             dp[0][j] = nums[0];
-    //         }
-    //     }
-    //     for (int i = 1; i &lt; nums.length; i&#43;&#43;) {
-    //         for (int j = 1; j &lt;= target; j&#43;&#43;) {
-    //             if (j &lt; nums[i]) {
-    //                 dp[i][j] = dp[i-1][j];
-    //             } else {
-    //                  dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-nums[i]] &#43; nums[i]);
-    //             }
-               
-    //         }
-    //     }
-        
-    //     return dp[nums.length - 1][target] == target;
     
         int sum = 0;
         for(int i = 0; i &lt; nums.length; i&#43;&#43;) {
@@ -249,43 +212,6 @@ code.has-jax {
   <div class="post-content"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//两重for循环计算</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">canPartition</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     int sum = 0;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     for(int i = 0; i &lt; nums.length; i++) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//         sum += nums[i];</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     if(sum % 2 == 1) return false;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     int target = sum / 2;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     System.out.print(target);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// //     //dp[i]代表是否有和为i的子集</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// //   int[] dp = new int[target + 1];</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// //     dp[0] = 0;  // 初始化条件</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// //     for(int i = 0; i &lt; nums.length; i++) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// //         for(int j = target; j &gt;= nums[i]; j--) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// //             dp[j] = Math.max(dp[j],dp[j - nums[i]] + nums[i]);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// //         }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     // }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     int[][] dp = new int[nums.length][target+1];</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     for(int i = 0; i &lt; nums.length; i++){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//         dp[i][0] = 0;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     for (int j = 0; j &lt;= target; j++) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//         if (j &gt;= nums[0]) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//             dp[0][j] = nums[0];</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//         }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     for (int i = 1; i &lt; nums.length; i++) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//         for (int j = 1; j &lt;= target; j++) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//             if (j &lt; nums[i]) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//                 dp[i][j] = dp[i-1][j];</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//             } else {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//                  dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-nums[i]] + nums[i]);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//             }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">               
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//         }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//     return dp[nums.length - 1][target] == target;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">

@@ -7,7 +7,59 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content=" - Minjie&#39;s Blog">
+<meta name="description" content="小林code
+概念
+数组和集合的区别
+Java中的线程安全的集合是什么
+Collections和Collection的区别
+集合遍历的方法有哪些
+List
+Java中list的几种实现
+list可以一边遍历一边修改元素吗
+list如何删除某个指定下标的元素
+ArrayList和LinkedList的区别，哪个集合线程安全
+ArrayList和vector的区别
+ArrayList为什么线程不安全
+如何ArrayList转换为线程安全？
+ArrayList和LinkedList的应用场景有哪些
+ArrayList的扩容机制说一下
+CopyonWriteArraylist是如何实现线程安全的
+List里面填写基本数据类型为什么会报错
+List和数组如何相互转换
+Set
+Java集合中List和Set的区别是什么
+如何对set排序
+Set集合的特点，是如何实现Key无重复的
+有序的Set是什么？记录插入顺序的集合是什么
+Map
+如何对map进行快速遍历
+HashMap实现原理介绍一下
+HashMap链表发生转换后为什么不用平衡二叉树
+了解的哈希冲突解决办法有哪些
+HashMap是线程安全的吗
+hashMap.get()方法是怎么样的过程
+hashMap.put()方法是什么样的过程
+`HashMap.get()和HashMap.put()的过程
+HashMap.get()一定安全吗
+HashMap一般用什么做Key,String为什么适合来做key呢
+实现HashMap为什么用红黑树而不是平衡二叉树
+hashmap的key可以为null吗
+重写HashMap的equal和hashcode方法需要注意什么
+重写HashMap的equal方法不当会造成什么后果
+列举HashMap在多线程的情况下可能出现的问题
+HashMap的扩容机制介绍一下
+HashMap的大小为什么是2的n次方大小
+往HashMap中存20各元素，会扩容几次
+HashMap的负载因子是什么
+HashMap和HashTable有什么不一样的？HashMap一般怎么用
+ConcurrentHashMap是怎么实现的
+分段锁是怎么加锁的
+分段锁是可以重入的吗
+既然有了synchronized为什么还要有CAS呢
+ConCurrentHashMap用了乐观锁还是悲观锁
+HashTable的底层原理是什么
+HashTable的线程安全是怎么实现的
+hashMap,HashTable和concurrentHashTable有什么区别">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E9%9B%86%E5%90%88%E7%AF%87/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -182,8 +234,188 @@ code.has-jax {
     <div class="post-meta">
 
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
 
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e6%a6%82%e5%bf%b5" aria-label="概念">概念</a><ul>
+                        
+                <li>
+                    <a href="#%e6%95%b0%e7%bb%84%e5%92%8c%e9%9b%86%e5%90%88%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="数组和集合的区别">数组和集合的区别</a></li>
+                <li>
+                    <a href="#java%e4%b8%ad%e7%9a%84%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e7%9a%84%e9%9b%86%e5%90%88%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Java中的线程安全的集合是什么">Java中的线程安全的集合是什么</a></li>
+                <li>
+                    <a href="#collections%e5%92%8ccollection%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="Collections和Collection的区别">Collections和Collection的区别</a></li>
+                <li>
+                    <a href="#%e9%9b%86%e5%90%88%e9%81%8d%e5%8e%86%e7%9a%84%e6%96%b9%e6%b3%95%e6%9c%89%e5%93%aa%e4%ba%9b" aria-label="集合遍历的方法有哪些">集合遍历的方法有哪些</a></li></ul>
+                </li>
+                <li>
+                    <a href="#list" aria-label="List">List</a><ul>
+                        
+                <li>
+                    <a href="#java%e4%b8%adlist%e7%9a%84%e5%87%a0%e7%a7%8d%e5%ae%9e%e7%8e%b0" aria-label="Java中list的几种实现">Java中list的几种实现</a></li>
+                <li>
+                    <a href="#list%e5%8f%af%e4%bb%a5%e4%b8%80%e8%be%b9%e9%81%8d%e5%8e%86%e4%b8%80%e8%be%b9%e4%bf%ae%e6%94%b9%e5%85%83%e7%b4%a0%e5%90%97" aria-label="list可以一边遍历一边修改元素吗">list可以一边遍历一边修改元素吗</a></li>
+                <li>
+                    <a href="#list%e5%a6%82%e4%bd%95%e5%88%a0%e9%99%a4%e6%9f%90%e4%b8%aa%e6%8c%87%e5%ae%9a%e4%b8%8b%e6%a0%87%e7%9a%84%e5%85%83%e7%b4%a0" aria-label="list如何删除某个指定下标的元素">list如何删除某个指定下标的元素</a></li>
+                <li>
+                    <a href="#arraylist%e5%92%8clinkedlist%e7%9a%84%e5%8c%ba%e5%88%ab%e5%93%aa%e4%b8%aa%e9%9b%86%e5%90%88%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8" aria-label="ArrayList和LinkedList的区别，哪个集合线程安全">ArrayList和LinkedList的区别，哪个集合线程安全</a></li>
+                <li>
+                    <a href="#arraylist%e5%92%8cvector%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="ArrayList和vector的区别">ArrayList和vector的区别</a></li>
+                <li>
+                    <a href="#arraylist%e4%b8%ba%e4%bb%80%e4%b9%88%e7%ba%bf%e7%a8%8b%e4%b8%8d%e5%ae%89%e5%85%a8" aria-label="ArrayList为什么线程不安全">ArrayList为什么线程不安全</a></li>
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95arraylist%e8%bd%ac%e6%8d%a2%e4%b8%ba%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8" aria-label="如何ArrayList转换为线程安全？">如何ArrayList转换为线程安全？</a></li>
+                <li>
+                    <a href="#arraylist%e5%92%8clinkedlist%e7%9a%84%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af%e6%9c%89%e5%93%aa%e4%ba%9b" aria-label="ArrayList和LinkedList的应用场景有哪些">ArrayList和LinkedList的应用场景有哪些</a></li>
+                <li>
+                    <a href="#arraylist%e7%9a%84%e6%89%a9%e5%ae%b9%e6%9c%ba%e5%88%b6%e8%af%b4%e4%b8%80%e4%b8%8b" aria-label="ArrayList的扩容机制说一下">ArrayList的扩容机制说一下</a></li>
+                <li>
+                    <a href="#copyonwritearraylist%e6%98%af%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e7%9a%84" aria-label="CopyonWriteArraylist是如何实现线程安全的">CopyonWriteArraylist是如何实现线程安全的</a></li>
+                <li>
+                    <a href="#list%e9%87%8c%e9%9d%a2%e5%a1%ab%e5%86%99%e5%9f%ba%e6%9c%ac%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bc%9a%e6%8a%a5%e9%94%99" aria-label="List里面填写基本数据类型为什么会报错">List里面填写基本数据类型为什么会报错</a></li>
+                <li>
+                    <a href="#list%e5%92%8c%e6%95%b0%e7%bb%84%e5%a6%82%e4%bd%95%e7%9b%b8%e4%ba%92%e8%bd%ac%e6%8d%a2" aria-label="List和数组如何相互转换">List和数组如何相互转换</a></li></ul>
+                </li>
+                <li>
+                    <a href="#set" aria-label="Set">Set</a><ul>
+                        
+                <li>
+                    <a href="#java%e9%9b%86%e5%90%88%e4%b8%adlist%e5%92%8cset%e7%9a%84%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Java集合中List和Set的区别是什么">Java集合中List和Set的区别是什么</a></li>
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e5%af%b9set%e6%8e%92%e5%ba%8f" aria-label="如何对set排序">如何对set排序</a></li>
+                <li>
+                    <a href="#set%e9%9b%86%e5%90%88%e7%9a%84%e7%89%b9%e7%82%b9%e6%98%af%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0key%e6%97%a0%e9%87%8d%e5%a4%8d%e7%9a%84" aria-label="Set集合的特点，是如何实现Key无重复的">Set集合的特点，是如何实现Key无重复的</a></li>
+                <li>
+                    <a href="#%e6%9c%89%e5%ba%8f%e7%9a%84set%e6%98%af%e4%bb%80%e4%b9%88%e8%ae%b0%e5%bd%95%e6%8f%92%e5%85%a5%e9%a1%ba%e5%ba%8f%e7%9a%84%e9%9b%86%e5%90%88%e6%98%af%e4%bb%80%e4%b9%88" aria-label="有序的Set是什么？记录插入顺序的集合是什么">有序的Set是什么？记录插入顺序的集合是什么</a></li></ul>
+                </li>
+                <li>
+                    <a href="#map" aria-label="Map">Map</a><ul>
+                        
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e5%af%b9map%e8%bf%9b%e8%a1%8c%e5%bf%ab%e9%80%9f%e9%81%8d%e5%8e%86" aria-label="如何对map进行快速遍历">如何对map进行快速遍历</a></li>
+                <li>
+                    <a href="#hashmap%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86%e4%bb%8b%e7%bb%8d%e4%b8%80%e4%b8%8b" aria-label="HashMap实现原理介绍一下">HashMap实现原理介绍一下</a></li>
+                <li>
+                    <a href="#hashmap%e9%93%be%e8%a1%a8%e5%8f%91%e7%94%9f%e8%bd%ac%e6%8d%a2%e5%90%8e%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b8%8d%e7%94%a8%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91" aria-label="HashMap链表发生转换后为什么不用平衡二叉树">HashMap链表发生转换后为什么不用平衡二叉树</a></li>
+                <li>
+                    <a href="#%e4%ba%86%e8%a7%a3%e7%9a%84%e5%93%88%e5%b8%8c%e5%86%b2%e7%aa%81%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95%e6%9c%89%e5%93%aa%e4%ba%9b" aria-label="了解的哈希冲突解决办法有哪些">了解的哈希冲突解决办法有哪些</a></li>
+                <li>
+                    <a href="#hashmap%e6%98%af%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e7%9a%84%e5%90%97" aria-label="HashMap是线程安全的吗">HashMap是线程安全的吗</a></li>
+                <li>
+                    <a href="#hashmapget%e6%96%b9%e6%b3%95%e6%98%af%e6%80%8e%e4%b9%88%e6%a0%b7%e7%9a%84%e8%bf%87%e7%a8%8b" aria-label="hashMap.get()方法是怎么样的过程">hashMap.get()方法是怎么样的过程</a></li>
+                <li>
+                    <a href="#hashmapput%e6%96%b9%e6%b3%95%e6%98%af%e4%bb%80%e4%b9%88%e6%a0%b7%e7%9a%84%e8%bf%87%e7%a8%8b" aria-label="hashMap.put()方法是什么样的过程">hashMap.put()方法是什么样的过程</a></li>
+                <li>
+                    <a href="#hashmapget%e5%92%8chashmapput%e7%9a%84%e8%bf%87%e7%a8%8b" aria-label="`HashMap.get()和HashMap.put()的过程">`HashMap.get()和HashMap.put()的过程</a></li>
+                <li>
+                    <a href="#hashmapget%e4%b8%80%e5%ae%9a%e5%ae%89%e5%85%a8%e5%90%97" aria-label="HashMap.get()一定安全吗">HashMap.get()一定安全吗</a></li>
+                <li>
+                    <a href="#hashmap%e4%b8%80%e8%88%ac%e7%94%a8%e4%bb%80%e4%b9%88%e5%81%9akeystring%e4%b8%ba%e4%bb%80%e4%b9%88%e9%80%82%e5%90%88%e6%9d%a5%e5%81%9akey%e5%91%a2" aria-label="HashMap一般用什么做Key,String为什么适合来做key呢">HashMap一般用什么做Key,String为什么适合来做key呢</a></li>
+                <li>
+                    <a href="#%e5%ae%9e%e7%8e%b0hashmap%e4%b8%ba%e4%bb%80%e4%b9%88%e7%94%a8%e7%ba%a2%e9%bb%91%e6%a0%91%e8%80%8c%e4%b8%8d%e6%98%af%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91" aria-label="实现HashMap为什么用红黑树而不是平衡二叉树">实现HashMap为什么用红黑树而不是平衡二叉树</a></li>
+                <li>
+                    <a href="#hashmap%e7%9a%84key%e5%8f%af%e4%bb%a5%e4%b8%banull%e5%90%97" aria-label="hashmap的key可以为null吗">hashmap的key可以为null吗</a></li>
+                <li>
+                    <a href="#%e9%87%8d%e5%86%99hashmap%e7%9a%84equal%e5%92%8chashcode%e6%96%b9%e6%b3%95%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e4%bb%80%e4%b9%88" aria-label="重写HashMap的equal和hashcode方法需要注意什么">重写HashMap的equal和hashcode方法需要注意什么</a></li>
+                <li>
+                    <a href="#%e9%87%8d%e5%86%99hashmap%e7%9a%84equal%e6%96%b9%e6%b3%95%e4%b8%8d%e5%bd%93%e4%bc%9a%e9%80%a0%e6%88%90%e4%bb%80%e4%b9%88%e5%90%8e%e6%9e%9c" aria-label="重写HashMap的equal方法不当会造成什么后果">重写HashMap的equal方法不当会造成什么后果</a></li>
+                <li>
+                    <a href="#%e5%88%97%e4%b8%behashmap%e5%9c%a8%e5%a4%9a%e7%ba%bf%e7%a8%8b%e7%9a%84%e6%83%85%e5%86%b5%e4%b8%8b%e5%8f%af%e8%83%bd%e5%87%ba%e7%8e%b0%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="列举HashMap在多线程的情况下可能出现的问题">列举HashMap在多线程的情况下可能出现的问题</a></li>
+                <li>
+                    <a href="#hashmap%e7%9a%84%e6%89%a9%e5%ae%b9%e6%9c%ba%e5%88%b6%e4%bb%8b%e7%bb%8d%e4%b8%80%e4%b8%8b" aria-label="HashMap的扩容机制介绍一下">HashMap的扩容机制介绍一下</a></li>
+                <li>
+                    <a href="#hashmap%e7%9a%84%e5%a4%a7%e5%b0%8f%e4%b8%ba%e4%bb%80%e4%b9%88%e6%98%af2%e7%9a%84n%e6%ac%a1%e6%96%b9%e5%a4%a7%e5%b0%8f" aria-label="HashMap的大小为什么是2的n次方大小">HashMap的大小为什么是2的n次方大小</a></li>
+                <li>
+                    <a href="#%e5%be%80hashmap%e4%b8%ad%e5%ad%9820%e5%90%84%e5%85%83%e7%b4%a0%e4%bc%9a%e6%89%a9%e5%ae%b9%e5%87%a0%e6%ac%a1" aria-label="往HashMap中存20各元素，会扩容几次">往HashMap中存20各元素，会扩容几次</a></li>
+                <li>
+                    <a href="#hashmap%e7%9a%84%e8%b4%9f%e8%bd%bd%e5%9b%a0%e5%ad%90%e6%98%af%e4%bb%80%e4%b9%88" aria-label="HashMap的负载因子是什么">HashMap的负载因子是什么</a></li>
+                <li>
+                    <a href="#hashmap%e5%92%8chashtable%e6%9c%89%e4%bb%80%e4%b9%88%e4%b8%8d%e4%b8%80%e6%a0%b7%e7%9a%84hashmap%e4%b8%80%e8%88%ac%e6%80%8e%e4%b9%88%e7%94%a8" aria-label="HashMap和HashTable有什么不一样的？HashMap一般怎么用">HashMap和HashTable有什么不一样的？HashMap一般怎么用</a></li>
+                <li>
+                    <a href="#concurrenthashmap%e6%98%af%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0%e7%9a%84" aria-label="ConcurrentHashMap是怎么实现的">ConcurrentHashMap是怎么实现的</a></li>
+                <li>
+                    <a href="#%e5%88%86%e6%ae%b5%e9%94%81%e6%98%af%e6%80%8e%e4%b9%88%e5%8a%a0%e9%94%81%e7%9a%84" aria-label="分段锁是怎么加锁的">分段锁是怎么加锁的</a></li>
+                <li>
+                    <a href="#%e5%88%86%e6%ae%b5%e9%94%81%e6%98%af%e5%8f%af%e4%bb%a5%e9%87%8d%e5%85%a5%e7%9a%84%e5%90%97" aria-label="分段锁是可以重入的吗">分段锁是可以重入的吗</a></li>
+                <li>
+                    <a href="#%e6%97%a2%e7%84%b6%e6%9c%89%e4%ba%86synchronized%e4%b8%ba%e4%bb%80%e4%b9%88%e8%bf%98%e8%a6%81%e6%9c%89cas%e5%91%a2" aria-label="既然有了synchronized为什么还要有CAS呢">既然有了synchronized为什么还要有CAS呢</a></li>
+                <li>
+                    <a href="#concurrenthashmap%e7%94%a8%e4%ba%86%e4%b9%90%e8%a7%82%e9%94%81%e8%bf%98%e6%98%af%e6%82%b2%e8%a7%82%e9%94%81" aria-label="ConCurrentHashMap用了乐观锁还是悲观锁">ConCurrentHashMap用了乐观锁还是悲观锁</a></li>
+                <li>
+                    <a href="#hashtable%e7%9a%84%e5%ba%95%e5%b1%82%e5%8e%9f%e7%90%86%e6%98%af%e4%bb%80%e4%b9%88" aria-label="HashTable的底层原理是什么">HashTable的底层原理是什么</a></li>
+                <li>
+                    <a href="#hashtable%e7%9a%84%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e6%98%af%e6%80%8e%e4%b9%88%e5%ae%9e%e7%8e%b0%e7%9a%84" aria-label="HashTable的线程安全是怎么实现的">HashTable的线程安全是怎么实现的</a></li>
+                <li>
+                    <a href="#hashmaphashtable%e5%92%8cconcurrenthashtable%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" aria-label="hashMap,HashTable和concurrentHashTable有什么区别">hashMap,HashTable和concurrentHashTable有什么区别</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p><a href="https://xiaolincoding.com/interview/collections.html">小林code</a></p>
+<h2 id="概念">概念<a hidden class="anchor" aria-hidden="true" href="#概念">#</a></h2>
+<h3 id="数组和集合的区别">数组和集合的区别<a hidden class="anchor" aria-hidden="true" href="#数组和集合的区别">#</a></h3>
+<h3 id="java中的线程安全的集合是什么">Java中的线程安全的集合是什么<a hidden class="anchor" aria-hidden="true" href="#java中的线程安全的集合是什么">#</a></h3>
+<h3 id="collections和collection的区别"><code>Collections</code>和<code>Collection</code>的区别<a hidden class="anchor" aria-hidden="true" href="#collections和collection的区别">#</a></h3>
+<h3 id="集合遍历的方法有哪些">集合遍历的方法有哪些<a hidden class="anchor" aria-hidden="true" href="#集合遍历的方法有哪些">#</a></h3>
+<h2 id="list"><code>List</code><a hidden class="anchor" aria-hidden="true" href="#list">#</a></h2>
+<h3 id="java中list的几种实现">Java中list的几种实现<a hidden class="anchor" aria-hidden="true" href="#java中list的几种实现">#</a></h3>
+<h3 id="list可以一边遍历一边修改元素吗">list可以一边遍历一边修改元素吗<a hidden class="anchor" aria-hidden="true" href="#list可以一边遍历一边修改元素吗">#</a></h3>
+<h3 id="list如何删除某个指定下标的元素">list如何删除某个指定下标的元素<a hidden class="anchor" aria-hidden="true" href="#list如何删除某个指定下标的元素">#</a></h3>
+<h3 id="arraylist和linkedlist的区别哪个集合线程安全"><code>ArrayList</code>和<code>LinkedList</code>的区别，哪个集合线程安全<a hidden class="anchor" aria-hidden="true" href="#arraylist和linkedlist的区别哪个集合线程安全">#</a></h3>
+<h3 id="arraylist和vector的区别"><code>ArrayList</code>和<code>vector</code>的区别<a hidden class="anchor" aria-hidden="true" href="#arraylist和vector的区别">#</a></h3>
+<h3 id="arraylist为什么线程不安全"><code>ArrayList</code>为什么线程不安全<a hidden class="anchor" aria-hidden="true" href="#arraylist为什么线程不安全">#</a></h3>
+<h3 id="如何arraylist转换为线程安全">如何<code>ArrayList</code>转换为线程安全？<a hidden class="anchor" aria-hidden="true" href="#如何arraylist转换为线程安全">#</a></h3>
+<h3 id="arraylist和linkedlist的应用场景有哪些"><code>ArrayList</code>和<code>LinkedList</code>的应用场景有哪些<a hidden class="anchor" aria-hidden="true" href="#arraylist和linkedlist的应用场景有哪些">#</a></h3>
+<h3 id="arraylist的扩容机制说一下"><code>ArrayList</code>的扩容机制说一下<a hidden class="anchor" aria-hidden="true" href="#arraylist的扩容机制说一下">#</a></h3>
+<h3 id="copyonwritearraylist是如何实现线程安全的"><code>CopyonWriteArraylist</code>是如何实现线程安全的<a hidden class="anchor" aria-hidden="true" href="#copyonwritearraylist是如何实现线程安全的">#</a></h3>
+<h3 id="list里面填写基本数据类型为什么会报错">List里面填写基本数据类型为什么会报错<a hidden class="anchor" aria-hidden="true" href="#list里面填写基本数据类型为什么会报错">#</a></h3>
+<h3 id="list和数组如何相互转换">List和数组如何相互转换<a hidden class="anchor" aria-hidden="true" href="#list和数组如何相互转换">#</a></h3>
+<h2 id="set"><code>Set</code><a hidden class="anchor" aria-hidden="true" href="#set">#</a></h2>
+<h3 id="java集合中list和set的区别是什么">Java集合中<code>List</code>和<code>Set</code>的区别是什么<a hidden class="anchor" aria-hidden="true" href="#java集合中list和set的区别是什么">#</a></h3>
+<h3 id="如何对set排序">如何对<code>set</code>排序<a hidden class="anchor" aria-hidden="true" href="#如何对set排序">#</a></h3>
+<h3 id="set集合的特点是如何实现key无重复的"><code>Set</code>集合的特点，是如何实现Key无重复的<a hidden class="anchor" aria-hidden="true" href="#set集合的特点是如何实现key无重复的">#</a></h3>
+<h3 id="有序的set是什么记录插入顺序的集合是什么">有序的Set是什么？记录插入顺序的集合是什么<a hidden class="anchor" aria-hidden="true" href="#有序的set是什么记录插入顺序的集合是什么">#</a></h3>
+<h2 id="map"><code>Map</code><a hidden class="anchor" aria-hidden="true" href="#map">#</a></h2>
+<h3 id="如何对map进行快速遍历">如何对map进行快速遍历<a hidden class="anchor" aria-hidden="true" href="#如何对map进行快速遍历">#</a></h3>
+<h3 id="hashmap实现原理介绍一下">HashMap实现原理介绍一下<a hidden class="anchor" aria-hidden="true" href="#hashmap实现原理介绍一下">#</a></h3>
+<h3 id="hashmap链表发生转换后为什么不用平衡二叉树"><code>HashMap</code>链表发生转换后为什么不用平衡二叉树<a hidden class="anchor" aria-hidden="true" href="#hashmap链表发生转换后为什么不用平衡二叉树">#</a></h3>
+<h3 id="了解的哈希冲突解决办法有哪些">了解的哈希冲突解决办法有哪些<a hidden class="anchor" aria-hidden="true" href="#了解的哈希冲突解决办法有哪些">#</a></h3>
+<h3 id="hashmap是线程安全的吗"><code>HashMap</code>是线程安全的吗<a hidden class="anchor" aria-hidden="true" href="#hashmap是线程安全的吗">#</a></h3>
+<h3 id="hashmapget方法是怎么样的过程"><code>hashMap.get()</code>方法是怎么样的过程<a hidden class="anchor" aria-hidden="true" href="#hashmapget方法是怎么样的过程">#</a></h3>
+<h3 id="hashmapput方法是什么样的过程"><code>hashMap.put()</code>方法是什么样的过程<a hidden class="anchor" aria-hidden="true" href="#hashmapput方法是什么样的过程">#</a></h3>
+<h3 id="hashmapget和hashmapput的过程">`HashMap.get()和HashMap.put()的过程<a hidden class="anchor" aria-hidden="true" href="#hashmapget和hashmapput的过程">#</a></h3>
+<h3 id="hashmapget一定安全吗"><code>HashMap.get()</code>一定安全吗<a hidden class="anchor" aria-hidden="true" href="#hashmapget一定安全吗">#</a></h3>
+<h3 id="hashmap一般用什么做keystring为什么适合来做key呢"><code>HashMap</code>一般用什么做Key,<code>String</code>为什么适合来做<code>key</code>呢<a hidden class="anchor" aria-hidden="true" href="#hashmap一般用什么做keystring为什么适合来做key呢">#</a></h3>
+<h3 id="实现hashmap为什么用红黑树而不是平衡二叉树">实现<code>HashMap</code>为什么用红黑树而不是平衡二叉树<a hidden class="anchor" aria-hidden="true" href="#实现hashmap为什么用红黑树而不是平衡二叉树">#</a></h3>
+<h3 id="hashmap的key可以为null吗"><code>hashmap</code>的<code>key</code>可以为<code>null</code>吗<a hidden class="anchor" aria-hidden="true" href="#hashmap的key可以为null吗">#</a></h3>
+<h3 id="重写hashmap的equal和hashcode方法需要注意什么">重写<code>HashMap</code>的<code>equal</code>和<code>hashcode</code>方法需要注意什么<a hidden class="anchor" aria-hidden="true" href="#重写hashmap的equal和hashcode方法需要注意什么">#</a></h3>
+<h3 id="重写hashmap的equal方法不当会造成什么后果">重写<code>HashMap</code>的<code>equal</code>方法不当会造成什么后果<a hidden class="anchor" aria-hidden="true" href="#重写hashmap的equal方法不当会造成什么后果">#</a></h3>
+<h3 id="列举hashmap在多线程的情况下可能出现的问题">列举<code>HashMap</code>在多线程的情况下可能出现的问题<a hidden class="anchor" aria-hidden="true" href="#列举hashmap在多线程的情况下可能出现的问题">#</a></h3>
+<h3 id="hashmap的扩容机制介绍一下"><code>HashMap</code>的扩容机制介绍一下<a hidden class="anchor" aria-hidden="true" href="#hashmap的扩容机制介绍一下">#</a></h3>
+<h3 id="hashmap的大小为什么是2的n次方大小"><code>HashMap</code>的大小为什么是2的n次方大小<a hidden class="anchor" aria-hidden="true" href="#hashmap的大小为什么是2的n次方大小">#</a></h3>
+<h3 id="往hashmap中存20各元素会扩容几次">往<code>HashMap</code>中存20各元素，会扩容几次<a hidden class="anchor" aria-hidden="true" href="#往hashmap中存20各元素会扩容几次">#</a></h3>
+<h3 id="hashmap的负载因子是什么"><code>HashMap</code>的负载因子是什么<a hidden class="anchor" aria-hidden="true" href="#hashmap的负载因子是什么">#</a></h3>
+<h3 id="hashmap和hashtable有什么不一样的hashmap一般怎么用"><code>HashMap</code>和<code>HashTable</code>有什么不一样的？<code>HashMap</code>一般怎么用<a hidden class="anchor" aria-hidden="true" href="#hashmap和hashtable有什么不一样的hashmap一般怎么用">#</a></h3>
+<h3 id="concurrenthashmap是怎么实现的"><code>ConcurrentHashMap</code>是怎么实现的<a hidden class="anchor" aria-hidden="true" href="#concurrenthashmap是怎么实现的">#</a></h3>
+<h3 id="分段锁是怎么加锁的">分段锁是怎么加锁的<a hidden class="anchor" aria-hidden="true" href="#分段锁是怎么加锁的">#</a></h3>
+<h3 id="分段锁是可以重入的吗">分段锁是可以重入的吗<a hidden class="anchor" aria-hidden="true" href="#分段锁是可以重入的吗">#</a></h3>
+<h3 id="既然有了synchronized为什么还要有cas呢">既然有了<code>synchronized</code>为什么还要有CAS呢<a hidden class="anchor" aria-hidden="true" href="#既然有了synchronized为什么还要有cas呢">#</a></h3>
+<h3 id="concurrenthashmap用了乐观锁还是悲观锁"><code>ConCurrentHashMap</code>用了乐观锁还是悲观锁<a hidden class="anchor" aria-hidden="true" href="#concurrenthashmap用了乐观锁还是悲观锁">#</a></h3>
+<h3 id="hashtable的底层原理是什么"><code>HashTable</code>的底层原理是什么<a hidden class="anchor" aria-hidden="true" href="#hashtable的底层原理是什么">#</a></h3>
+<h3 id="hashtable的线程安全是怎么实现的"><code>HashTable</code>的线程安全是怎么实现的<a hidden class="anchor" aria-hidden="true" href="#hashtable的线程安全是怎么实现的">#</a></h3>
+<h3 id="hashmaphashtable和concurrenthashtable有什么区别"><code>hashMap,HashTable</code>和<code>concurrentHashTable</code>有什么区别<a hidden class="anchor" aria-hidden="true" href="#hashmaphashtable和concurrenthashtable有什么区别">#</a></h3>
+
+
+  </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
