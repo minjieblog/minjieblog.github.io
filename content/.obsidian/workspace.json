@@ -13,21 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blockchain/decentralized-identity-systems.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "decentralized-identity-systems"
-            }
-          },
-          {
-            "id": "b21ad70f3d4da604",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "obsidian/todos/2026 Spring/Week 3/周计划.md",
+                "file": "obsidian/todos/2026 Spring/Week 4/周计划.md",
                 "mode": "source",
                 "source": false
               },
@@ -41,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "obsidian/todos/2026 Spring/Week 3/2026-03-19.md",
+                "file": "blockchain/did-vc-survey-2025.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-03-19"
+              "title": "did-vc-survey-2025"
             }
           },
           {
@@ -77,7 +63,8 @@
               "title": "148. 排序链表"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -226,13 +213,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blockchain/decentralized-identity-systems.md",
+                "file": "blockchain/did-vc-survey-2025.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "decentralized-identity-systems 的大纲"
+              "title": "did-vc-survey-2025 的大纲"
             }
           },
           {
@@ -288,11 +275,22 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "7d52fb422a733f7d",
+  "active": "cfd22dba14cfaa7a",
   "lastOpenFiles": [
+    "blockchain/decentralized-identity-systems-2020.md",
+    "blockchain/did-vc-survey-2025.md",
+    "obsidian/todos/2026 Spring/Week 4/2026-03-23.md",
+    "obsidian/todos/2026 Spring/Week 4/周计划.md",
+    "obsidian/todos/2026 Spring/Week 3/周计划.md",
+    "obsidian/todos/2026 Spring/Week 3/2026-03-19.md",
+    "obsidian/todos/2026 Spring/Week 3/2026-03-22.md",
+    "obsidian/todos/2026 Spring/Week 3/2026-03-21.md",
+    "obsidian/group-meeting/25-26-spring/第二周.md",
+    "obsidian/group-meeting/25-26-spring/第三周.md",
+    "obsidian/group-meeting/25-26-spring/第四周.md",
+    "obsidian/todos/2026 Spring/Week 4",
     "interview-notes/算法/leetcode/链表/148. 排序链表.md",
     "interview-notes/算法/leetcode/dp/337. 打家劫舍 III.md",
-    "blockchain/decentralized-identity-systems.md",
     "obsidian/todos/2026 Spring/Week 3/2026-03-20.md",
     "interview-notes/八股/Redis.md",
     "interview-notes/八股/Spring.md",
@@ -303,19 +301,9 @@
     "interview-notes/八股/基础篇.md",
     "interview-notes/八股/并发篇.md",
     "interview-notes/算法/LeetCode_Hot100_Java_Solutionleetcode_readme.md",
-    "obsidian/todos/2026 Spring/Week 3/2026-03-19.md",
-    "obsidian/todos/2026 Spring/Week 3/周计划.md",
     "interview-notes/算法/leetcode/dp/322. 零钱兑换.md",
     "obsidian/todos/2026 Spring/Week 3/2026-03-18.md",
     "obsidian/todos/2026 Spring/Week 3/2026-03-17.md",
-    "obsidian/todos/2026 Spring/Week 3/未命名.md",
-    "interview-notes/八股/网络.md",
-    "interview-notes/算法/leetcode/链表/206. 反转链表.md",
-    "interview-notes/算法/leetcode/dp/494. 目标和.md",
-    "java-notes/algorithm-with-java.md",
-    "interview-notes/算法/leetcode/dp/416. 分割等和子集.md",
-    "obsidian/group-meeting/25-26-spring/第三周.md",
-    "obsidian/group-meeting/25-26-spring/第二周.md",
     "obsidian/todos/2026 Spring/Week 3",
     "未命名.base",
     "obsidian/blockchain-relation/中心化",
@@ -324,7 +312,6 @@
     "interview-notes/算法/leetcode/优先队列",
     "interview-notes/算法/leetcode/贪心",
     "interview-notes/算法/leetcode/数组",
-    "interview-notes/算法/leetcode/深度优先搜索和广度优先搜索",
-    "interview-notes/算法/leetcode/链表"
+    "interview-notes/算法/leetcode/深度优先搜索和广度优先搜索"
   ]
 }
