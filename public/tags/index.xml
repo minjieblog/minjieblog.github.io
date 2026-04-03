@@ -7,8 +7,106 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 22 Mar 2026 15:00:06 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 14:01:58 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DID</title>
+      <link>http://localhost:1313/tags/did/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/tags/did/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Revocation</title>
+      <link>http://localhost:1313/tags/revocation/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/tags/revocation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SSI</title>
+      <link>http://localhost:1313/tags/ssi/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/tags/ssi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VC</title>
+      <link>http://localhost:1313/tags/vc/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/tags/vc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>零知识证明</title>
+      <link>http://localhost:1313/tags/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>隐私保护</title>
+      <link>http://localhost:1313/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IoT安全</title>
+      <link>http://localhost:1313/tags/iot%E5%AE%89%E5%85%A8/</link>
+      <pubDate>Sat, 28 Mar 2026 15:06:30 +0800</pubDate>
+      <guid>http://localhost:1313/tags/iot%E5%AE%89%E5%85%A8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PKI</title>
+      <link>http://localhost:1313/tags/pki/</link>
+      <pubDate>Sat, 28 Mar 2026 15:06:30 +0800</pubDate>
+      <guid>http://localhost:1313/tags/pki/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sparse-Merkle-Tree</title>
+      <link>http://localhost:1313/tags/sparse-merkle-tree/</link>
+      <pubDate>Sat, 28 Mar 2026 15:06:30 +0800</pubDate>
+      <guid>http://localhost:1313/tags/sparse-merkle-tree/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>证书撤销</title>
+      <link>http://localhost:1313/tags/%E8%AF%81%E4%B9%A6%E6%92%A4%E9%94%80/</link>
+      <pubDate>Sat, 28 Mar 2026 15:06:30 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E8%AF%81%E4%B9%A6%E6%92%A4%E9%94%80/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Privacy</title>
+      <link>http://localhost:1313/tags/privacy/</link>
+      <pubDate>Thu, 26 Mar 2026 19:25:03 +0800</pubDate>
+      <guid>http://localhost:1313/tags/privacy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DLT</title>
+      <link>http://localhost:1313/tags/dlt/</link>
+      <pubDate>Thu, 26 Mar 2026 12:30:54 +0800</pubDate>
+      <guid>http://localhost:1313/tags/dlt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IoT</title>
+      <link>http://localhost:1313/tags/iot/</link>
+      <pubDate>Thu, 26 Mar 2026 12:30:54 +0800</pubDate>
+      <guid>http://localhost:1313/tags/iot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Verifiable-Credentials</title>
+      <link>http://localhost:1313/tags/verifiable-credentials/</link>
+      <pubDate>Thu, 26 Mar 2026 12:30:54 +0800</pubDate>
+      <guid>http://localhost:1313/tags/verifiable-credentials/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Blockchain</title>
       <link>http://localhost:1313/tags/blockchain/</link>
@@ -24,31 +122,10 @@
       <description></description>
     </item>
     <item>
-      <title>DID</title>
-      <link>http://localhost:1313/tags/did/</link>
-      <pubDate>Sun, 22 Mar 2026 15:00:06 +0800</pubDate>
-      <guid>http://localhost:1313/tags/did/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Digital-Identity</title>
       <link>http://localhost:1313/tags/digital-identity/</link>
       <pubDate>Sun, 22 Mar 2026 15:00:06 +0800</pubDate>
       <guid>http://localhost:1313/tags/digital-identity/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>SSI</title>
-      <link>http://localhost:1313/tags/ssi/</link>
-      <pubDate>Sun, 22 Mar 2026 15:00:06 +0800</pubDate>
-      <guid>http://localhost:1313/tags/ssi/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>VC</title>
-      <link>http://localhost:1313/tags/vc/</link>
-      <pubDate>Sun, 22 Mar 2026 15:00:06 +0800</pubDate>
-      <guid>http://localhost:1313/tags/vc/</guid>
       <description></description>
     </item>
     <item>
@@ -94,13 +171,6 @@
       <description></description>
     </item>
     <item>
-      <title>零知识证明</title>
-      <link>http://localhost:1313/tags/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/</link>
-      <pubDate>Wed, 21 Jan 2026 21:20:09 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>区块链</title>
       <link>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
       <pubDate>Wed, 21 Jan 2026 21:20:09 +0800</pubDate>
@@ -112,13 +182,6 @@
       <link>http://localhost:1313/tags/%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81/</link>
       <pubDate>Wed, 21 Jan 2026 21:20:09 +0800</pubDate>
       <guid>http://localhost:1313/tags/%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>隐私保护</title>
-      <link>http://localhost:1313/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/</link>
-      <pubDate>Wed, 21 Jan 2026 21:20:09 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/</guid>
       <description></description>
     </item>
     <item>
@@ -175,13 +238,6 @@
       <link>http://localhost:1313/tags/spv/</link>
       <pubDate>Thu, 25 Dec 2025 03:52:02 +0800</pubDate>
       <guid>http://localhost:1313/tags/spv/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Verifiable-Credentials</title>
-      <link>http://localhost:1313/tags/verifiable-credentials/</link>
-      <pubDate>Thu, 25 Dec 2025 03:52:02 +0800</pubDate>
-      <guid>http://localhost:1313/tags/verifiable-credentials/</guid>
       <description></description>
     </item>
     <item>
@@ -364,13 +420,6 @@
       <link>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
       <pubDate>Wed, 10 Dec 2025 08:45:19 +0800</pubDate>
       <guid>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Privacy</title>
-      <link>http://localhost:1313/tags/privacy/</link>
-      <pubDate>Mon, 08 Dec 2025 10:50:12 +0800</pubDate>
-      <guid>http://localhost:1313/tags/privacy/</guid>
       <description></description>
     </item>
     <item>

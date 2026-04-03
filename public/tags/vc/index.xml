@@ -7,8 +7,22 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 22 Mar 2026 15:00:06 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 14:01:58 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/vc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSI 中的VC撤销与 DID 注销</title>
+      <link>http://localhost:1313/blockchain/ssi-credential-revocation-did-deactivation-survey/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/ssi-credential-revocation-did-deactivation-survey/</guid>
+      <description>本文是对 IEEE Access 2026 综述论文《A Survey on Credential Revocation and DID Deactivation in Self-Sovereign Identity Systems》的系统性解析笔记。论文提出 SSI 撤销机制的四大类分类框架（列表式、密码学累加器、正向确认、治理感知），并独立分析 DID 注销层。笔记按原文结构展开，重点覆盖各类机制的技术细节、隐私分析、可扩展性对比以及开放挑战。</description>
+    </item>
+    <item>
+      <title>Crset Private Vc Revocation</title>
+      <link>http://localhost:1313/blockchain/crset-private-vc-revocation/</link>
+      <pubDate>Thu, 26 Mar 2026 19:25:03 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/crset-private-vc-revocation/</guid>
+      <description>本文是对论文《CRSet: Private Non-Interactive Verifiable Credential Revocation》的详细阅读笔记。论文识别了现有 SSI 撤销机制（如 Bitstring Status List、AnonCreds）在签发方活动隐私上的根本缺陷，提出并形式化证明了「选择计数不可区分性」这一隐私定义，并设计实现了满足该定义的 CRSet 机制，每个以太坊 Blob 可支持约 17 万张凭证的撤销数据。</description>
+    </item>
     <item>
       <title>去中心化标识符（DID）与可验证凭证（VC）综述</title>
       <link>http://localhost:1313/blockchain/did-vc-survey-2025/</link>

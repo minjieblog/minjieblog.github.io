@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>证书撤销 on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/tags/%E8%AF%81%E4%B9%A6%E6%92%A4%E9%94%80/</link>
+    <description>Recent content in 证书撤销 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sat, 28 Mar 2026 15:06:30 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E8%AF%81%E4%B9%A6%E6%92%A4%E9%94%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>V&#39;CER: 约束网络中的高效证书验证</title>
+      <link>http://localhost:1313/blockchain/vcer-certificate-validation-constrained-networks/</link>
+      <pubDate>Sat, 28 Mar 2026 15:06:30 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/vcer-certificate-validation-constrained-networks/</guid>
+      <description>no description</description>
+    </item>
+  </channel>
+</rss>

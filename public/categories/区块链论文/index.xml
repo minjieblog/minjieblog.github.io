@@ -7,8 +7,36 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 22 Mar 2026 15:00:06 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 14:01:58 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%AE%BA%E6%96%87/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSI 中的VC撤销与 DID 注销</title>
+      <link>http://localhost:1313/blockchain/ssi-credential-revocation-did-deactivation-survey/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/ssi-credential-revocation-did-deactivation-survey/</guid>
+      <description>本文是对 IEEE Access 2026 综述论文《A Survey on Credential Revocation and DID Deactivation in Self-Sovereign Identity Systems》的系统性解析笔记。论文提出 SSI 撤销机制的四大类分类框架（列表式、密码学累加器、正向确认、治理感知），并独立分析 DID 注销层。笔记按原文结构展开，重点覆盖各类机制的技术细节、隐私分析、可扩展性对比以及开放挑战。</description>
+    </item>
+    <item>
+      <title>V&#39;CER: 约束网络中的高效证书验证</title>
+      <link>http://localhost:1313/blockchain/vcer-certificate-validation-constrained-networks/</link>
+      <pubDate>Sat, 28 Mar 2026 15:06:30 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/vcer-certificate-validation-constrained-networks/</guid>
+      <description>no description</description>
+    </item>
+    <item>
+      <title>Crset Private Vc Revocation</title>
+      <link>http://localhost:1313/blockchain/crset-private-vc-revocation/</link>
+      <pubDate>Thu, 26 Mar 2026 19:25:03 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/crset-private-vc-revocation/</guid>
+      <description>本文是对论文《CRSet: Private Non-Interactive Verifiable Credential Revocation》的详细阅读笔记。论文识别了现有 SSI 撤销机制（如 Bitstring Status List、AnonCreds）在签发方活动隐私上的根本缺陷，提出并形式化证明了「选择计数不可区分性」这一隐私定义，并设计实现了满足该定义的 CRSet 机制，每个以太坊 Blob 可支持约 17 万张凭证的撤销数据。</description>
+    </item>
+    <item>
+      <title>EVOKE：面向物联网的高效可验证凭证吊销机制</title>
+      <link>http://localhost:1313/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/</link>
+      <pubDate>Thu, 26 Mar 2026 12:30:54 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/</guid>
+      <description>EVOKE 针对 IoT 环境下 VC 吊销机制在存储、连通性与可扩展性方面的不足，提出一种基于密码学累加器的高效撤销方案。相比传统 PKI 吊销方法（OCSP、CRL）及 W3C Revocation List 2020，EVOKE 通过 ECC 正向累加器将有效凭证集合压缩为常数大小，并结合 witness 实现本地可验证性，从而避免在线查询需求；同时借助 DAG 分布式账本实现吊销信息的高效传播与离线同步。实验结果表明，该方案在资源受限设备上具有较低的计算开销，并在大规模网络中表现出优良的同步性能，体现了在低存储、离线验证与批量吊销之间的良好权衡。</description>
+    </item>
     <item>
       <title>去中心化标识符（DID）与可验证凭证（VC）综述</title>
       <link>http://localhost:1313/blockchain/did-vc-survey-2025/</link>

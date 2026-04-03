@@ -58,8 +58,60 @@ comments: true
 ### 变音记号
 
 ![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAOoaaEE_B89CiZ4IuPYjd5rWLx9vcQAApsNaxtBNQlVIoSXAAHOb3fNAQADAgADeQADOgQ.png)
+### 大调音阶的音程关系
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO1acOSbeXF2EXp9_rA0Lq2uF-lg8AAAv0Maxs-ASFWtVPXlQUVdG4BAAMCAAN4AAM6BA.png)
+
+- 音程  ：两个音在**音高上的距离**，单位名称是**度**
+### 和弦级数的快速转换
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO2acOVNq5CFFZXwG81If80923KOLwAAgMNaxs-ASFWTOxs_4nqTYoBAAMCAAN4AAM6BA.png)
+
+### 12个大调音阶的快速演算
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO4acOWa92YS2FPMrpXTptO0ccNjxQAAgcNaxs-ASFWxaO4wzFXCIABAAMCAAN5AAM6BA.png )
+### 三和弦
+
+- 什么是三和弦：
+		
+	- 1.由三个音按照**三度关系叠置**起来的和弦，叫做三和弦
+	- 2.全三和弦中，下面的音叫做**根音**，或一度音用**数字1**来代表：中间的音叫做**三度音**，用**数字3**来代表；上面的音叫做**五度音**，用**数字5**来代表
+	- 3.三和弦的类型有：**大三和弦，小三和弦，增三和弦，减三和弦**
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO5acOYvB64sf6UcYREJIaNbozDR0sAAqQNaxtR7yBWFYkRAAH9HDsRAQADAgADeAADOgQ.png)
+- 三种和弦分类：
+	![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO6acOY6ckKMzlIwk6SG32quXd0DMcAAqUNaxtR7yBWxevzD6b2mXEBAAMCAAN5AAM6BA.png)
+	![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO7acOaJ9j_lY4hcb_UgJx50IJCY5UAArENaxtR7yBWbj4cw06ix1EBAAMCAAN5AAM6BA.png)
+### 和弦关系推算表
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO8acObI-ml6-vh4y27lc_r3R2ay7UAArQNaxtR7yBWHftv77_n5zoBAAMCAAN4AAM6BA.png)
+### 七和弦
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO9acOcJPgYlSRtPFLisa3QAAGwIeO_AAK7DWsbUe8gVr4Lc8wEy7VJAQADAgADeQADOgQ.png)
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO-acOcQyhj87SWU7R4qJUJcpZPQw0AArwNaxtR7yBWF5o5gM2-HeQBAAMCAAN5AAM6BA.png)
+
+### 减三和弦
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPBacTTCehcYNA-wmykBBf3W_DkFAIAAgwPaxtR7yhW1Uh4jhdm7icBAAMCAAN4AAM6BA.png)
+### 常用和弦种类
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPCacTTVTESS7A69bT0fYavrGckbIYAAg4PaxtR7yhW-nuuUkW7mMoBAAMCAAN5AAM6BA.png)
 
 ## 3.音阶
+
+### 音阶推算图
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPDacTU9sH7W8utdl0HoFP0ylLMKU0AAhMPaxtR7yhWh0M5_eZKjVQBAAMCAAN5AAM6BA.png)
+
+### 练习：
+
+#### 1. 音阶练习-mi型（低音）
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPFacY5gpM2mnX_XiEi9-0JqCN9DwIAAiEQaxs4xzFWTsBZJ3-TRaoBAAMCAAN5AAM6BA.png)
+
+#### 2. 音阶练习-sol型
+
+![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPEacY4rGdNpHIp7EnzH6tdV2f6hzcAAhgQaxs4xzFWe5UR7jEnKxoBAAMCAAN5AAM6BA.png)
+
 
 ## 4.扫弦
 

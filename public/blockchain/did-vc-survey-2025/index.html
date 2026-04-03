@@ -1034,16 +1034,18 @@ URI  DID方法标识    方法特定标识符
 <h3 id="75-安全与隐私security-and-privacy">7.5 安全与隐私（Security and Privacy）<a hidden class="anchor" aria-hidden="true" href="#75-安全与隐私security-and-privacy">#</a></h3>
 <p><strong>DID 管理相关挑战：</strong></p>
 <ul>
-<li><strong>DID Controller 的潜在漏洞</strong>：授权第三方管理 DID Document 引入了安全隐患，DID Controller 可能通过生成新密钥对并修改 DID Document 中的公钥来冒充 DID Owner，需要强健的授权和审计机制</li>
-<li><strong>密钥轮换的局限性</strong>：当前公钥通常注册在区块链上对网络节点公开可见。私钥泄露时，DID 所有者需生成新密钥对并发布用旧密钥签名的新公钥，但密钥泄露的不可预测性使密钥轮换的保护存在根本性时间窗口。应重点研究能够动态响应密钥泄露的灵活轮换机制，支持自动检测和立即吊销，而非仅依赖预防性更新；将 MFA（如 OTP）与密钥轮换集成可增加额外安全层</li>
-<li><strong>研究空白</strong>：目前仅有一篇论文专门提出针对 IoT 网络的新型高效 VC 吊销机制（EVOKE），VC 吊销领域的研究整体欠缺</li>
+<li><strong>DID Controller 的潜在漏洞</strong>：授权第三方管理 DID Document 引入了安全隐患，DID Controller 可能通过生成<strong>新密钥</strong>对并修改 DID Document 中的<strong>公钥</strong>来冒充 DID Owner，需要强健的授权和审计机制</li>
+<li><strong>密钥轮换的局限性</strong>：当前公钥通常注册在区块链上对网络节点公开可见。<strong>私钥泄露</strong>时，DID 所有者需生成新密钥对并发布用旧密钥签名的新公钥，但密钥泄露的不可预测性使密钥轮换的保护存在根本性时间窗口。应重点研究<strong>能够动态响应密钥泄露的灵活轮换机制</strong>，支持自动检测和立即吊销，而非仅依赖预防性更新；将 MFA（如 OTP）与密钥轮换集成可增加额外安全层</li>
 </ul>
 <p><strong>VC 吊销的研究现状：</strong></p>
+<ul>
+<li><strong>研究空白</strong>：目前仅有一篇论文专门提出针对 IoT 网络的新型高效 VC 吊销机制（EVOKE），VC 吊销领域的研究整体欠缺</li>
+</ul>
 <p>现阶段唯一存在的提议规范（Revocation List 2020）尚未达到 W3C 正式标准状态，仍处于 W3C 标准轨道上。该领域存在大量未探索的研究机会：</p>
 <ul>
 <li>当前方案在高吞吐量环境或受限设备（如 IoT 网络）中的可扩展性欠缺</li>
-<li>利用密码学累加器和 ZKP 可进一步增强可靠性和安全性</li>
-<li>跨各种去中心化系统可互操作的吊销解决方案也是有前景的研究方向</li>
+<li>利用密码学累加器和 ZKP 可进一步增强<strong>可靠性和安全性</strong></li>
+<li><strong>跨各种去中心化系统</strong>可互操作的吊销解决方案也是有前景的研究方向</li>
 </ul>
 <p><strong>合规性（Accountability）：</strong></p>
 <p>在确保隐私的同时遵守 KYC（了解你的客户）和 AML（反洗钱）等现有法规对 DID 构成重大挑战。利用 DID 的现代系统应能够筛查系统用户，识别和验证与用户相关的凭证，对照制裁名单等各类名单筛查个人以确定是否需要采取预防措施（如黑名单）。</p>
@@ -1051,7 +1053,7 @@ URI  DID方法标识    方法特定标识符
 <p>虽然 SD-JWT 是被广泛接受的方案，但仍存在一些挑战：</p>
 <ul>
 <li>凭证大小随声明数量线性增长，对终端用户存储需求影响显著</li>
-<li>SD-JWT 虽然隐藏了隐藏声明的内容，但仍<strong>披露了包含的确切声明数量</strong>，引入了隐私隐患——攻击者可能基于未披露声明的数量推断敏感信息（推断攻击）</li>
+<li>SD-JWT 虽然隐藏了隐藏声明的内容，但仍<strong>披露了包含的确切声明数量</strong>，引入了隐私隐患——攻击者可能基于未披露声明的数量推断敏感信息（<strong>推断攻击</strong>）</li>
 </ul>
 <hr>
 <h2 id="八核心概念总结">八、核心概念总结<a hidden class="anchor" aria-hidden="true" href="#八核心概念总结">#</a></h2>

@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Thu, 25 Dec 2025 03:52:02 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Mar 2026 12:30:54 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/verifiable-credentials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EVOKE：面向物联网的高效可验证凭证吊销机制</title>
+      <link>http://localhost:1313/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/</link>
+      <pubDate>Thu, 26 Mar 2026 12:30:54 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/</guid>
+      <description>EVOKE 针对 IoT 环境下 VC 吊销机制在存储、连通性与可扩展性方面的不足，提出一种基于密码学累加器的高效撤销方案。相比传统 PKI 吊销方法（OCSP、CRL）及 W3C Revocation List 2020，EVOKE 通过 ECC 正向累加器将有效凭证集合压缩为常数大小，并结合 witness 实现本地可验证性，从而避免在线查询需求；同时借助 DAG 分布式账本实现吊销信息的高效传播与离线同步。实验结果表明，该方案在资源受限设备上具有较低的计算开销，并在大规模网络中表现出优良的同步性能，体现了在低存储、离线验证与批量吊销之间的良好权衡。</description>
+    </item>
     <item>
       <title>xRWA: 真实世界资产的跨链互操作性框架</title>
       <link>http://localhost:1313/blockchain/xrwa-cross-chain-real-world-assets/</link>

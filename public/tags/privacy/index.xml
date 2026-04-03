@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Mon, 08 Dec 2025 10:50:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Mar 2026 19:25:03 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/privacy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Crset Private Vc Revocation</title>
+      <link>http://localhost:1313/blockchain/crset-private-vc-revocation/</link>
+      <pubDate>Thu, 26 Mar 2026 19:25:03 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/crset-private-vc-revocation/</guid>
+      <description>本文是对论文《CRSet: Private Non-Interactive Verifiable Credential Revocation》的详细阅读笔记。论文识别了现有 SSI 撤销机制（如 Bitstring Status List、AnonCreds）在签发方活动隐私上的根本缺陷，提出并形式化证明了「选择计数不可区分性」这一隐私定义，并设计实现了满足该定义的 CRSet 机制，每个以太坊 Blob 可支持约 17 万张凭证的撤销数据。</description>
+    </item>
     <item>
       <title>zkBID: 区块链账户与Web 3.0去中心化身份</title>
       <link>http://localhost:1313/blockchain/linking-souls-to-humans/</link>

@@ -1,0 +1,18 @@
+/* Blue Topaz Theme 自定义背景图片 */
+.workspace, 
+.workspace-split, 
+.workspace-leaf {
+    background-image: url("https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPGacvdKGbizSeHcE6EF50VKoNyhQsAArsPaxuCQmFWrskIJm2PHA8BAAMCAAN3AAM6BA.png") !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-attachment: fixed !important; /* 固定背景 */
+}
+
+/* 可选：调暗背景 */
+.workspace, 
+.workspace-split, 
+.workspace-leaf {
+    background-color: rgba(0, 0, 0, 0.6) !important; 
+    background-blend-mode: darken !important;
+}

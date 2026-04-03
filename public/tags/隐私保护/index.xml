@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Wed, 21 Jan 2026 21:20:09 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 14:01:58 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSI 中的VC撤销与 DID 注销</title>
+      <link>http://localhost:1313/blockchain/ssi-credential-revocation-did-deactivation-survey/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/ssi-credential-revocation-did-deactivation-survey/</guid>
+      <description>本文是对 IEEE Access 2026 综述论文《A Survey on Credential Revocation and DID Deactivation in Self-Sovereign Identity Systems》的系统性解析笔记。论文提出 SSI 撤销机制的四大类分类框架（列表式、密码学累加器、正向确认、治理感知），并独立分析 DID 注销层。笔记按原文结构展开，重点覆盖各类机制的技术细节、隐私分析、可扩展性对比以及开放挑战。</description>
+    </item>
     <item>
       <title>zkLogin: 基于现有凭证的隐私保护区块链认证</title>
       <link>http://localhost:1313/blockchain/zklogin/</link>

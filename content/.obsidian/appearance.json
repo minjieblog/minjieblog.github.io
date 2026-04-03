@@ -1,1 +1,8 @@
-{}
+{
+  "cssTheme": "Blue Topaz",
+  "accentColor": "#7655c3",
+  "theme": "obsidian",
+  "enabledCssSnippets": [
+    "blue-topaz-background"
+  ]
+}

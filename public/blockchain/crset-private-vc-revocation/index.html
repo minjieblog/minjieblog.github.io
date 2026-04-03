@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Crset Private Vc Revocation | Minjie&#39;s Blog</title>
+<meta name="keywords" content="Revocation, privacy, VC, SSI">
+<meta name="description" content="本文是对论文《CRSet: Private Non-Interactive Verifiable Credential Revocation》的详细阅读笔记。论文识别了现有 SSI 撤销机制（如 Bitstring Status List、AnonCreds）在签发方活动隐私上的根本缺陷，提出并形式化证明了「选择计数不可区分性」这一隐私定义，并设计实现了满足该定义的 CRSet 机制，每个以太坊 Blob 可支持约 17 万张凭证的撤销数据。">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blockchain/crset-private-vc-revocation/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blockchain/crset-private-vc-revocation/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Crset Private Vc Revocation
+    </h1>
+    <div class="post-description">
+      本文是对论文《CRSet: Private Non-Interactive Verifiable Credential Revocation》的详细阅读笔记。论文识别了现有 SSI 撤销机制（如 Bitstring Status List、AnonCreds）在签发方活动隐私上的根本缺陷，提出并形式化证明了「选择计数不可区分性」这一隐私定义，并设计实现了满足该定义的 CRSet 机制，每个以太坊 Blob 可支持约 17 万张凭证的撤销数据。
+    </div>
+    <div class="post-meta"><span title='2026-03-26 19:25:03 +0800 CST'>2026年3月26日</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99" aria-label="相关资料">相关资料</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e8%83%8c%e6%99%af%e4%b8%8e%e5%8a%a8%e6%9c%ba" aria-label="一、背景与动机">一、背景与动机</a><ul>
+                        
+                <li>
+                    <a href="#11-%e8%87%aa%e4%b8%bb%e4%b8%bb%e6%9d%83%e8%ba%ab%e4%bb%bdssi" aria-label="1.1 自主主权身份（SSI）">1.1 自主主权身份（SSI）</a></li>
+                <li>
+                    <a href="#12-%e5%8f%af%e9%aa%8c%e8%af%81%e5%87%ad%e8%af%81vc" aria-label="1.2 可验证凭证（VC）">1.2 可验证凭证（VC）</a></li>
+                <li>
+                    <a href="#13-%e7%8e%b0%e6%9c%89%e6%92%a4%e9%94%80%e6%96%b9%e6%a1%88%e7%9a%84%e6%a0%b8%e5%bf%83%e7%bc%ba%e9%99%b7" aria-label="1.3 现有撤销方案的核心缺陷">1.3 现有撤销方案的核心缺陷</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%8c%e7%b3%bb%e7%bb%9f%e8%ae%be%e8%ae%a1%e7%9b%ae%e6%a0%87" aria-label="二、系统设计目标">二、系统设计目标</a><ul>
+                        
+                <li>
+                    <a href="#21-%e5%88%a9%e7%9b%8a%e7%9b%b8%e5%85%b3%e6%96%b9%e6%a8%a1%e5%9e%8b" aria-label="2.1 利益相关方模型">2.1 利益相关方模型</a></li>
+                <li>
+                    <a href="#22-%e8%ae%be%e8%ae%a1%e7%9b%ae%e6%a0%87" aria-label="2.2 设计目标">2.2 设计目标</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%89%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e9%80%89%e5%9e%8b" aria-label="三、数据结构选型">三、数据结构选型</a><ul>
+                        
+                <li>
+                    <a href="#31-bloom-%e8%bf%87%e6%bb%a4%e5%99%a8%e5%9f%ba%e7%a1%80" aria-label="3.1 Bloom 过滤器基础">3.1 Bloom 过滤器基础</a></li>
+                <li>
+                    <a href="#32-%e8%bf%87%e6%bb%a4%e5%99%a8%e7%ba%a7%e8%81%94filter-cascade" aria-label="3.2 过滤器级联（Filter Cascade）">3.2 过滤器级联（Filter Cascade）</a></li>
+                <li>
+                    <a href="#33-%e4%b8%ba%e4%bd%95%e9%80%89%e6%8b%a9-bloom-%e8%bf%87%e6%bb%a4%e5%99%a8%e8%80%8c%e9%9d%9e%e5%85%b6%e4%bb%96" aria-label="3.3 为何选择 Bloom 过滤器而非其他">3.3 为何选择 Bloom 过滤器而非其他</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%9b%9bcrset-%e6%9c%ba%e5%88%b6%e8%af%a6%e8%a7%a3" aria-label="四、CRSet 机制详解">四、CRSet 机制详解</a><ul>
+                        
+                <li>
+                    <a href="#41-%e6%a0%87%e8%af%86%e7%ac%a6%e4%b8%8e%e5%93%88%e5%b8%8c" aria-label="4.1 标识符与哈希">4.1 标识符与哈希</a></li>
+                <li>
+                    <a href="#42-%e5%a1%ab%e5%85%85padding%e6%9c%ba%e5%88%b6" aria-label="4.2 填充（Padding）机制">4.2 填充（Padding）机制</a></li>
+                <li>
+                    <a href="#43-%e5%8f%91%e5%b8%83%e6%9c%ba%e5%88%b6" aria-label="4.3 发布机制">4.3 发布机制</a></li>
+                <li>
+                    <a href="#44-%e6%a0%b8%e5%bf%83%e7%ae%97%e6%b3%95" aria-label="4.4 核心算法">4.4 核心算法</a></li>
+                <li>
+                    <a href="#45-%e6%80%a7%e8%83%bd%e7%89%b9%e5%be%81" aria-label="4.5 性能特征">4.5 性能特征</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%94%e9%9a%90%e7%a7%81%e5%bd%a2%e5%bc%8f%e5%8c%96%e8%af%81%e6%98%8e" aria-label="五、隐私形式化证明">五、隐私形式化证明</a><ul>
+                        
+                <li>
+                    <a href="#51-%e6%92%a4%e9%94%80%e6%9c%ba%e5%88%b6%e7%9a%84%e5%bd%a2%e5%bc%8f%e5%8c%96%e5%ae%9a%e4%b9%89" aria-label="5.1 撤销机制的形式化定义">5.1 撤销机制的形式化定义</a></li>
+                <li>
+                    <a href="#52-%e9%80%89%e6%8b%a9%e8%ae%a1%e6%95%b0%e4%b8%8d%e5%8f%af%e5%8c%ba%e5%88%86%e6%b8%b8%e6%88%8fccig" aria-label="5.2 选择计数不可区分游戏（CCIG）">5.2 选择计数不可区分游戏（CCIG）</a></li>
+                <li>
+                    <a href="#53-crset-%e6%bb%a1%e8%b6%b3%e8%af%a5%e5%ae%9a%e4%b9%89%e7%9a%84%e8%af%81%e6%98%8e%e8%8d%89%e5%9b%be" aria-label="5.3 CRSet 满足该定义的证明草图">5.3 CRSet 满足该定义的证明草图</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%ad%e5%ae%9e%e7%8e%b0%e4%b8%8e%e8%af%84%e4%bc%b0" aria-label="六、实现与评估">六、实现与评估</a><ul>
+                        
+                <li>
+                    <a href="#61-%e6%a0%b8%e5%bf%83%e5%ae%9e%e9%aa%8c%e8%af%84%e4%bc%b0" aria-label="6.1 核心实验评估">6.1 核心实验评估</a></li>
+                <li>
+                    <a href="#62-%e7%ab%af%e5%88%b0%e7%ab%af%e8%af%84%e4%bc%b0" aria-label="6.2 端到端评估">6.2 端到端评估</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%83%e5%ae%9e%e8%b7%b5%e5%b1%80%e9%99%90%e6%80%a7" aria-label="七、实践局限性">七、实践局限性</a></li>
+                <li>
+                    <a href="#%e5%85%ab%e6%80%bb%e7%bb%93%e4%b8%8e%e6%80%9d%e8%80%83" aria-label="八、总结与思考">八、总结与思考</a><ul>
+                        
+                <li>
+                    <a href="#81-%e8%ae%ba%e6%96%87%e8%b4%a1%e7%8c%ae" aria-label="8.1 论文贡献">8.1 论文贡献</a></li>
+                <li>
+                    <a href="#82-%e6%a0%b8%e5%bf%83%e6%9d%83%e8%a1%a1" aria-label="8.2 核心权衡">8.2 核心权衡</a></li>
+                <li>
+                    <a href="#83-%e5%85%b3%e9%94%ae%e6%b4%9e%e5%af%9f" aria-label="8.3 关键洞察">8.3 关键洞察</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><hr>
+<h2 id="相关资料">相关资料<a hidden class="anchor" aria-hidden="true" href="#相关资料">#</a></h2>
+<ul>
+<li>原论文：<a href="https://arxiv.org/abs/2501.17089">arXiv:2501.17089v3</a></li>
+<li>核心实验代码：<a href="https://github.com/flhps/crset-empirical-experiments">github.com/flhps/crset-empirical-experiments</a></li>
+<li>端到端演示：<a href="https://github.com/flhps/crset-demo">github.com/flhps/crset-demo</a></li>
+<li>W3C Bitstring Status List v1.0：<a href="https://www.w3.org/TR/vc-bitstring-status-list/">w3.org</a></li>
+<li>EIP-4844 Blob 交易：<a href="https://eips.ethereum.org/EIPS/eip-4844">eips.ethereum.org</a></li>
+<li>CRLite（Bloom 过滤器级联用于 TLS 撤销）：Larisch et al., IEEE S&amp;P 2017</li>
+</ul>
+<h2 id="一背景与动机">一、背景与动机<a hidden class="anchor" aria-hidden="true" href="#一背景与动机">#</a></h2>
+<h3 id="11-自主主权身份ssi">1.1 自主主权身份（SSI）<a hidden class="anchor" aria-hidden="true" href="#11-自主主权身份ssi">#</a></h3>
+<p>自主主权身份（Self-Sovereign Identity, SSI）是一种以用户为中心的数字身份方法，允许个人控制自己的身份数据而无需依赖中心化机构。欧洲区块链服务基础设施（EBSI）和美国国土安全部已在基于 SSI 的系统上开展实践，用于签发数字文凭和移民记录等。</p>
+<h3 id="12-可验证凭证vc">1.2 可验证凭证（VC）<a hidden class="anchor" aria-hidden="true" href="#12-可验证凭证vc">#</a></h3>
+<p>可验证凭证（Verifiable Credentials, VCs）是经过数字签名的结构化数据对象，用于表示可证明的声明，例如身份证件、职业执照或组织角色。与任何凭证系统一样，撤销之前签发的 VC 的能力至关重要——用于纠正错误、响应密钥泄露或反映状态变更。</p>
+<h3 id="13-现有撤销方案的核心缺陷">1.3 现有撤销方案的核心缺陷<a hidden class="anchor" aria-hidden="true" href="#13-现有撤销方案的核心缺陷">#</a></h3>
+<p>现有撤销机制普遍存在一个被忽视的隐私问题：<strong>签发方活动泄露</strong>。</p>
+<table>
+  <thead>
+      <tr>
+          <th>机制</th>
+          <th>撤销数据量</th>
+          <th>持有者隐私</th>
+          <th>依赖方隐私</th>
+          <th>签发方隐私</th>
+          <th>非交互式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Bitstring Status List</td>
+          <td>&lt; 1 bit/容量</td>
+          <td>PIR</td>
+          <td>否</td>
+          <td>仅速率</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>AnonCreds Revocation</td>
+          <td>&gt; 12 B/容量</td>
+          <td>PIR</td>
+          <td>是</td>
+          <td>否</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td>Prevoke</td>
+          <td>未知</td>
+          <td>是</td>
+          <td>是</td>
+          <td>仅速率</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td>Evoke</td>
+          <td>≥ 32 B/撤销</td>
+          <td>是</td>
+          <td>取决于 gossip</td>
+          <td>仅速率</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td>Sitouah et al.</td>
+          <td>≥ 2 B/有效凭证</td>
+          <td>是</td>
+          <td>是</td>
+          <td>仅速率</td>
+          <td>否</td>
+      </tr>
+      <tr>
+          <td><strong>CRSet</strong></td>
+          <td><strong>≈ 6 bit/容量</strong></td>
+          <td><strong>是</strong></td>
+          <td><strong>是</strong></td>
+          <td><strong>是</strong></td>
+          <td><strong>是</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>W3C Bitstring Status List（BSL）</strong> 虽然压缩效率高，但每次撤销都是可被外部观察者发现的，使得攻击者可以推断出员工离职等内部信息。<strong>AnonCreds</strong> 虽提供持有者匿名性，但累加器的公开数据仍暴露了签发方层面的撤销信息（本质上也是一个比特串）。</p>
+<p>传统 PKI 机制（CRL、OCSP）同样不适用：CRL 暴露聚合撤销数量，OCSP 在验证时泄露使用元数据。</p>
+<blockquote>
+<p><strong>核心问题</strong>：没有现有方案能同时保护签发方活动的绝对数量与相对变化，而这对于企业采用 SSI 是一个实质性障碍。</p>
+</blockquote>
+<hr>
+<h2 id="二系统设计目标">二、系统设计目标<a hidden class="anchor" aria-hidden="true" href="#二系统设计目标">#</a></h2>
+<h3 id="21-利益相关方模型">2.1 利益相关方模型<a hidden class="anchor" aria-hidden="true" href="#21-利益相关方模型">#</a></h3>
+<p>SSI 生态中包含三类角色：</p>
+<ul>
+<li><strong>签发方（Issuer）</strong>：签发 VC，如雇主签发员工 ID。</li>
+<li><strong>持有者/主体（Subject）</strong>：接收并持有 VC，如员工。</li>
+<li><strong>依赖方（Relying Party, RP）</strong>：验证 VC，如门禁系统。</li>
+</ul>
+<p>每个角色都可能成为试图推断敏感元数据的攻击者。签发方若参与撤销检查（如托管数据到自己的 Web 服务器），则可监控 RP 的验证行为，从而侵犯持有者和 RP 的隐私。外部观察者则可访问公开撤销数据，推断签发或撤销事件（如员工流失率）。</p>
+<p>因此，需要保护两类核心信息：</p>
+<ol>
+<li><strong>展示活动（Presentation Activity）</strong>：VC 被展示时产生的元数据。</li>
+<li><strong>签发方活动（Issuer Activity）</strong>：签发与撤销行为的详情。</li>
+</ol>
+<h3 id="22-设计目标">2.2 设计目标<a hidden class="anchor" aria-hidden="true" href="#22-设计目标">#</a></h3>
+<ol>
+<li>
+<p><strong>可参数化容量</strong>：签发方应能灵活配置撤销机制实例的最大容量，以适应不同规模的用例，并在数据大小与时间跨度之间进行权衡。</p>
+</li>
+<li>
+<p><strong>签发方活动保密性</strong>：</p>
+<ul>
+<li>分析单个快照时，攻击者不能推断已撤销或已签发 VC 的数量。</li>
+<li>分析连续多个版本的撤销数据时，攻击者依然不能提取签发方的元数据（绝对数量和相对变化均需保护）。</li>
+</ul>
+</li>
+<li>
+<p><strong>展示活动保密性</strong>：持有者与 RP 之间的展示过程对外完全不可见，包括签发方在内的任何人都无法得知某张 VC 被展示了。</p>
+</li>
+<li>
+<p><strong>良好互操作性</strong>：无需修改已有的钱包代理（Wallet Agent）和传输协议，所有撤销检查所需信息均兼容 W3C VC 标准的 <code>credentialStatus</code> 字段。</p>
+</li>
+</ol>
+<hr>
+<h2 id="三数据结构选型">三、数据结构选型<a hidden class="anchor" aria-hidden="true" href="#三数据结构选型">#</a></h2>
+<h3 id="31-bloom-过滤器基础">3.1 Bloom 过滤器基础<a hidden class="anchor" aria-hidden="true" href="#31-bloom-过滤器基础">#</a></h3>
+<p>Bloom 过滤器是最广泛使用的近似成员查询（AMQ）数据结构，由长度为 $m$ 的比特串和哈希函数 $h: {0,1}^* \to \mathbb{N}_m$ 组成：</p>
+<ul>
+<li><strong>插入</strong>：将元素 $d$ 对应的位 $h(d)$ 置为 1。</li>
+<li><strong>查询</strong>：检查位 $h(d')$ 是否为 1。可能产生<strong>假阳性</strong>，但不产生假阴性。</li>
+</ul>
+<h3 id="32-过滤器级联filter-cascade">3.2 过滤器级联（Filter Cascade）<a hidden class="anchor" aria-hidden="true" href="#32-过滤器级联filter-cascade">#</a></h3>
+<p>在已知子集（如已签发的 VC ID）上，通过将一个 AMQ 的假阳性编码到下一级 AMQ 中，直到不再出现假阳性，可以消除假阳性。这对于撤销场景非常高效。</p>
+<h3 id="33-为何选择-bloom-过滤器而非其他">3.3 为何选择 Bloom 过滤器而非其他<a hidden class="anchor" aria-hidden="true" href="#33-为何选择-bloom-过滤器而非其他">#</a></h3>
+<p>论文考察了多种更现代的过滤器：</p>
+<ul>
+<li><strong>Cuckoo Filter</strong>：桶中显式存储了指纹（哈希值），攻击者可以直接计数，不符合隐私要求。</li>
+<li><strong>XOR Filter / Binary Fuse Filter</strong>：假阳性率不可自由配置（仅有 0.4% 和 0.002%），而构建高效级联需要约 <strong>50% 的假阳性率</strong>。这些过滤器固定的低假阳性率会导致级联数据量显著增大。</li>
+</ul>
+<p>因此，<strong>可灵活配置假阳性率的 Bloom 过滤器</strong>是最适合构建撤销级联的选择。</p>
+<hr>
+<h2 id="四crset-机制详解">四、CRSet 机制详解<a hidden class="anchor" aria-hidden="true" href="#四crset-机制详解">#</a></h2>
+<h3 id="41-标识符与哈希">4.1 标识符与哈希<a hidden class="anchor" aria-hidden="true" href="#41-标识符与哈希">#</a></h3>
+<p>每张 VC 被随机分配一个 256 位的撤销 ID（与 VC 的 <code>id</code> 字段完全无关）：</p>
+$$\text{ID} \in U = {0, 1}^{256}$$<p>在任意时间点 $i$，签发方维护三个集合：</p>
+<ul>
+<li>$C_i$：已签发 VC 的 ID 集合</li>
+<li>$R_i \subseteq C_i$：已撤销 VC 的 ID 集合</li>
+<li>$V_i \subseteq C_i$：仍有效 VC 的 ID 集合，且 $R_i \cap V_i = \emptyset$</li>
+</ul>
+<p><strong>必须使用密码学哈希函数</strong>（如 SHA-256），而非普通快速哈希。这确保攻击者无法通过逆向过滤器中的设置位来推断可能的 ID 集合。</p>
+<h3 id="42-填充padding机制">4.2 填充（Padding）机制<a hidden class="anchor" aria-hidden="true" href="#42-填充padding机制">#</a></h3>
+<p><strong>问题</strong>：即使使用级联，攻击者仍可通过分析 Bloom 过滤器的元数据（如每级过滤器的大小、设置位的数量）来推断元素数量。</p>
+<p><strong>解决方案</strong>：引入填充，用随机生成的 ID 将有效集合和撤销集合分别填充到固定大小：</p>
+<ul>
+<li>填充后的集合：$\hat{R}$（含真实撤销 ID + 随机填充），$\hat{V}$（含真实有效 ID + 随机填充）</li>
+<li>约束：$R \subseteq \hat{R}$，$V \subseteq \hat{V}$，$\hat{R} \cap \hat{V} = \emptyset$</li>
+</ul>
+<p><strong>固定比例</strong>：为防止泄露有效/撤销 ID 的比例，采用固定比例：</p>
+$$n_{\max} = |\hat{V}| = \frac{1}{2}|\hat{R}|$$<p>这确保了签发方在极端情况下也能紧急撤销所有有效凭证（$x = 1/2$ 是最坏情况的撤销率上界）。</p>
+<p>长期容量分析（设年签发量 $v$，撤销率 $x$，年均增长 $\delta$，VC 有效期 $t$ 年）：</p>
+$$|\hat{V}| \geq (1-x) \cdot v \sum_{i=y-t}^{y} \delta^i, \quad |\hat{R}| \geq \frac{1}{1-x}|\hat{V}|$$<h3 id="43-发布机制">4.3 发布机制<a hidden class="anchor" aria-hidden="true" href="#43-发布机制">#</a></h3>
+<p><strong>定期强制发布</strong>：为实现完美可否认性，签发方必须在<strong>固定间隔</strong>（如每 24 小时）重新创建并发布过滤器级联，无论是否有新的撤销发生。这使得观察者无法通过发布时间推断撤销事件。</p>
+<p><strong>发布载体</strong>：使用以太坊的 <strong>Blob 携带交易</strong>（EIP-4844）作为去中心化存储，相较于写入主链数据成本较低。</p>
+<p><strong>容量计算</strong>：</p>
+<ul>
+<li>级联总大小（比特）$\approx 5.64 \times n_{\max}$</li>
+<li>一个 Blob（128 KB）可支持：$n_{\max} \approx 128\text{KB} / 6\text{bit} \approx 170{,}000$ 张 VC</li>
+</ul>
+<p><strong>凭证状态字段格式</strong>（符合 W3C VC 标准）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;credentialStatus&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;eip155:1:0x32...53:dd...d3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;CRSetEntry&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>id</code> 字段采用 CAIP-10 标准引用区块链账户，末尾拼接撤销 ID。Blob 有官方保留期限，与定期更新（只需最新版本）完美匹配。</p>
+<h3 id="44-核心算法">4.4 核心算法<a hidden class="anchor" aria-hidden="true" href="#44-核心算法">#</a></h3>
+<p><strong>算法 1：创建 CRSet 过滤器级联</strong></p>
+<pre tabindex="0"><code>输入：有效 ID 集合 V，撤销 ID 集合 R，填充容量 n_max
+输出：填充后的 Bloom 过滤器级联及其盐值
+
+1. (cascade, salt) ← ([], 随机256位值)
+2. (p₀, p) ← (√p/2, 1/2)        // 目标假阳性率（两概率策略）
+3. included ← pad(V, n_max)       // 有效 ID 填充至 n_max
+4. excluded ← pad(R, 2·n_max)     // 撤销 ID 填充至 2·n_max
+5. for i = 0; |included| &gt; 0; i++:
+   a. cascade[i] ← bloom({id∥i∥salt | id ∈ excluded}, p₀ or p, 1)
+   b. fps ← {id ∈ excluded | id∥i∥salt ∈ cascade[i]}  // 假阳性
+   c. excluded ← included
+   d. included ← fps
+6. return (cascade, salt)
+</code></pre><p><strong>关键设计点</strong>：</p>
+<ul>
+<li>每次更新都必须<strong>完整重建</strong>，禁止增量更新（否则差分可被量化）。</li>
+<li>引入<strong>确定性盐</strong>（层级索引）确保不同层的哈希行为符合随机性假设。</li>
+<li>引入<strong>随机盐</strong>（整个级联共用）：一方面抵抗暴力破解，另一方面在创建过程无法收敛时重新采样（生成新盐）以重试。</li>
+<li>最优假阳性率：实验确定 $p = 0.53$，接近理论最优 $1/2$。</li>
+</ul>
+<p><strong>算法 2：检查 ID 是否有效（未被撤销）</strong></p>
+<pre tabindex="0"><code>输入：VC 的撤销 ID，过滤器级联及盐值
+输出：True 表示有效（在级联中），False 表示已撤销
+
+1. for i = 0; i &lt; len(cascade); i++:
+   if id∥i∥salt ∉ cascade[i]:
+       return (i mod 2 == 1)  // 偶数层确认成员，奇数层否定成员
+2. return (len(cascade) mod 2 == 1)
+</code></pre><p><strong>前提假设</strong>：仅对真实存在的 VC 的 ID 进行查询（$\text{id} \in R \cup V$）。RP 只在收到由签发方正确签名的 VC 后，才会获取该签发方的 CRSet 进行查询，因此此假设在实践中成立。</p>
+<h3 id="45-性能特征">4.5 性能特征<a hidden class="anchor" aria-hidden="true" href="#45-性能特征">#</a></h3>
+<ul>
+<li><strong>级联总大小</strong>：$\approx 5.64 \times n_{\max}$（线性增长）</li>
+<li><strong>级联层数</strong>：对于数十万张 VC，约为 40 层（对数增长）——这是最坏情况下的查询复杂度</li>
+<li><strong>空间效率</strong>：约 <strong>6 bit/容量</strong>，介于 BSL（&lt; 1 bit）和 AnonCreds（&gt; 12 B）之间</li>
+</ul>
+<hr>
+<h2 id="五隐私形式化证明">五、隐私形式化证明<a hidden class="anchor" aria-hidden="true" href="#五隐私形式化证明">#</a></h2>
+<h3 id="51-撤销机制的形式化定义">5.1 撤销机制的形式化定义<a hidden class="anchor" aria-hidden="true" href="#51-撤销机制的形式化定义">#</a></h3>
+<p>将撤销机制定义为一个概率函数：</p>
+$$\text{create}: {(V, R, n) \in (2^U \times 2^U \times \mathbb{N}) \mid V \cap R = \emptyset} \to {0,1}^*$$<p>正确性要求：$d \in V \Rightarrow d \in S_i$，$d \in R \Rightarrow d \notin S_i$。</p>
+<h3 id="52-选择计数不可区分游戏ccig">5.2 选择计数不可区分游戏（CCIG）<a hidden class="anchor" aria-hidden="true" href="#52-选择计数不可区分游戏ccig">#</a></h3>
+<p><strong>游戏 $\text{CCIG}(\text{create}, A, l, n)$</strong>：</p>
+<ol>
+<li>攻击者 $A$ 选择两组不同的、合理的 VC 计数序列（有效数量 $NV_0, NV_1$ 和撤销数量 $NR_0, NR_1$，共 $l$ 个时间步，每个计数 &lt; $n$），发送给挑战者。</li>
+<li>挑战者随机选取比特 $b$，对每个时间点 $i$ 随机生成符合 $NV_{b,i}$ 和 $NR_{b,i}$ 的 ID 集合，构成合理历史，并生成对应撤销数据 $S_i$ 发回攻击者。</li>
+<li>攻击者输出预测 $\hat{b}$，若 $\hat{b} = b$ 则赢得游戏。</li>
+</ol>
+<p><strong>定义 1（选择计数不可区分性）</strong>：若对所有高效算法 $A$、历史长度 $l$ 和容量 $n$，有：</p>
+$$\left| \Pr[\text{CCIG}(\text{create}, A, l, n) = 1] - \frac{1}{2} \right| \text{ 可忽略}$$<p>则称该撤销数据结构是<strong>选择计数不可区分</strong>的。</p>
+<h3 id="53-crset-满足该定义的证明草图">5.3 CRSet 满足该定义的证明草图<a hidden class="anchor" aria-hidden="true" href="#53-crset-满足该定义的证明草图">#</a></h3>
+<p><strong>引理 1</strong>：修改版游戏 $G_1$（用随机填充替换真实 ID）的胜率恰好为 $1/2$。</p>
+<p>证明：$G_1$ 中输出 $S$ 完全不依赖于隐藏比特 $b$，猜测是最优策略。</p>
+<p><strong>引理 2</strong>：任何高效攻击者都无法区分 $G_0$（原始游戏）和 $G_1$（随机填充游戏）。</p>
+<p>证明：CRSet 的输出本质上是一组哈希值。由于假设哈希函数为<strong>随机预言机</strong>，对于任意两个输入分布 $X, Y$，有：</p>
+$$\left| \Pr_{s,x}[A(s, h(x|s)) = 1] - \Pr_{s,y}[A(s, h(y|s)) = 1] \right| \leq 2\epsilon_{\text{RO}}$$<p>其中 $\epsilon_{\text{RO}}$ 可忽略。这意味着不同输入集合产生的哈希集合无法被区分。</p>
+<p><strong>定理 1（CRSet 是选择计数不可区分的）</strong>：</p>
+<p>综合两个引理：</p>
+$$\left| \Pr[G_0(A, l, n) = 1] - \frac{1}{2} \right| \text{ 可忽略} \quad \blacksquare$$<hr>
+<h2 id="六实现与评估">六、实现与评估<a hidden class="anchor" aria-hidden="true" href="#六实现与评估">#</a></h2>
+<h3 id="61-核心实验评估">6.1 核心实验评估<a hidden class="anchor" aria-hidden="true" href="#61-核心实验评估">#</a></h3>
+<p><strong>实现</strong>：Python 核心库，基于修改版 <code>rbloom</code>，使用 SHA-256 哈希函数。</p>
+<p><strong>机器学习隐私验证实验 1（有监督回归）</strong>：</p>
+<ul>
+<li>数据集：200 万条记录（有填充 vs 无填充），容量约 $\hat{r} = 10^5$。</li>
+<li>特征：级联总大小、过滤器层数、前三层大小及设置位数量（标准归一化）。</li>
+<li>模型：岭回归 + Lasso 回归，指标：MSE 和 $R^2$。</li>
+</ul>
+<p>结果：</p>
+<ul>
+<li><strong>有填充</strong>：$R^2 \approx 0$，MSE 接近数据方差，模型只能给出均值预测——级联结构不泄露任何撤销数量信息。</li>
+<li><strong>无填充</strong>：模型可轻易预测 VC 数量，印证了填充的必要性。</li>
+</ul>
+<p><strong>机器学习隐私验证实验 2（深度神经网络，无特征工程）</strong>：</p>
+<ul>
+<li>数据集：两组各 10,000 个均匀分布数据点，均值约 10,000 张有效 VC。</li>
+<li>模型：多层全连接网络 + Dropout + BatchNorm，80-10-10 分割，MAE 指标。</li>
+</ul>
+<p>结果：</p>
+<ul>
+<li><strong>无填充</strong>：训练和验证 MAE 均收敛到 0，网络可从二进制表示中提取 VC 数量。</li>
+<li><strong>有填充</strong>：训练 MAE 下降（出现记忆化），但验证 MAE 稳定在约 <strong>5,000</strong>（与均匀分布的期望绝对偏差完全吻合），即等同于随机猜测——印证了 CRSet 的隐私保护特性。</li>
+</ul>
+<p><strong>性能评估</strong>（AMD Ryzen 7 Pro 7840U，32 GB RAM）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>容量</th>
+          <th>创建时间</th>
+          <th>总大小</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$10^2$ VC</td>
+          <td>~5 秒</td>
+          <td>~$10^5$ 字节</td>
+      </tr>
+      <tr>
+          <td>$10^7$ VC</td>
+          <td>~200 秒</td>
+          <td>~$10^7$ 字节</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>创建时间和总大小在对数空间中均呈<strong>近线性增长</strong>，可预测性强。</li>
+<li>100,000 次创建测试中，<strong>未观测到一次创建失败</strong>。</li>
+</ul>
+<h3 id="62-端到端评估">6.2 端到端评估<a hidden class="anchor" aria-hidden="true" href="#62-端到端评估">#</a></h3>
+<p><strong>JavaScript 实现</strong>（面向 Web 部署），包含四个组件：</p>
+<ol>
+<li><strong>CRSet Cascade</strong>：纯 JavaScript 库，实现填充级联，使用 SHA-256。</li>
+<li><strong>CRSet Check (CRSC)</strong>：供 RP 调用的撤销检查库。</li>
+<li><strong>CRSet Issuer Backend (CRSIB)</strong>：签发方后端服务，提供 REST API，管理撤销 ID 和 CRSet 更新发布。</li>
+<li><strong>CRSet Demonstrator</strong>：完整演示场景，模拟签发方和 RP 的 Web 应用，基于 OID4VC 协议交互。</li>
+</ol>
+<p><strong>RP 验证流程</strong>：</p>
+<ol>
+<li>标准 VC 验证软件检查格式和签名。</li>
+<li>CRSC 从 <code>statusEntry.id</code> 中提取地址，通过区块链 RPC（Moralis）获取最新 Blob 哈希。</li>
+<li>从共识层（Blobscan）获取 Blob 数据，拼接反序列化为过滤器级联。</li>
+<li>检查撤销 ID 是否在级联中。</li>
+</ol>
+<p><strong>主要性能瓶颈</strong>：两次网络往返（获取 Blob 哈希 + 获取 Blob 数据）。</p>
+<p><strong>发布成本</strong>：Blob gas 费用波动较大，2024 年末至 2025 年初为 2–50 Gwei，每个 Blob 成本从数美分到约 57 USD 不等。Pectra 升级后增加了每区块的 Blob 配额，成本已迅速降至数美分量级。</p>
+<hr>
+<h2 id="七实践局限性">七、实践局限性<a hidden class="anchor" aria-hidden="true" href="#七实践局限性">#</a></h2>
+<ol>
+<li>
+<p><strong>长期隐私风险</strong>：CRSet 是基于哈希的机制，数据公开存储，理论上攻击者可通过暴力破解，随时间逐渐提取信息。</p>
+</li>
+<li>
+<p><strong>容量切换可见性</strong>：当签发方因当前实例容量耗尽而创建新实例时（体现为新的以太坊地址），观察者若看到使用新实例的新 VC，可推断旧实例已满。但由于地址之间无内在关联，且实例通常可设计为覆盖数十年，实际泄露的信息极为有限。</p>
+</li>
+<li>
+<p><strong>区块链访问复杂度</strong>：通过第三方 API 提供商访问 Blob 数据可能损害展示活动的保密性（第三方可记录查询日志）。谨慎的 RP 可维护自己的节点。</p>
+</li>
+<li>
+<p><strong>发布成本无上界</strong>：Blob 费用直接由以太币汇率和 Blob 需求驱动，无硬性上限，这是规模化部署的一个挑战。</p>
+</li>
+</ol>
+<hr>
+<h2 id="八总结与思考">八、总结与思考<a hidden class="anchor" aria-hidden="true" href="#八总结与思考">#</a></h2>
+<h3 id="81-论文贡献">8.1 论文贡献<a hidden class="anchor" aria-hidden="true" href="#81-论文贡献">#</a></h3>
+<ol>
+<li><strong>识别并形式化</strong>了 SSI 撤销机制中被忽视的签发方隐私问题，定义了「选择计数不可区分性」这一严格隐私概念。</li>
+<li><strong>提出 CRSet</strong>：基于填充 Bloom 过滤器级联的非交互式撤销机制，同时保护签发方、RP 和持有者三方隐私。</li>
+<li><strong>实现与评估</strong>：通过 Python 核心实验和 JavaScript 端到端原型，实验验证了 CRSet 的隐私特性和性能表现。</li>
+</ol>
+<h3 id="82-核心权衡">8.2 核心权衡<a hidden class="anchor" aria-hidden="true" href="#82-核心权衡">#</a></h3>
+<p>CRSet 以<strong>空间效率</strong>换取了<strong>更强的隐私保护</strong>：</p>
+<ul>
+<li>BSL 约 &lt; 1 bit/容量，但完全暴露签发方活动。</li>
+<li>CRSet 约 6 bit/容量，但实现了三方全面隐私保护。</li>
+<li>考虑到一个 Blob 即可容纳约 17 万张 VC 的撤销数据，这一权衡在实际应用中是合理的。</li>
+</ul>
+<h3 id="83-关键洞察">8.3 关键洞察<a hidden class="anchor" aria-hidden="true" href="#83-关键洞察">#</a></h3>
+<ul>
+<li><strong>填充是隐私的关键</strong>：无论是传统机器学习还是深度神经网络，均证明了无填充的级联可被轻易推断元素数量，而有填充的级联等同于随机噪声。</li>
+<li><strong>非交互式设计降低了采用门槛</strong>：无需修改钱包代理和传输协议，现有 W3C VC 基础设施可直接兼容。</li>
+<li><strong>定期发布是隐私的时序保障</strong>：固定间隔发布（不论是否有新撤销）消除了时序信息泄露的可能。</li>
+</ul>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/revocation/">Revocation</a></li>
+      <li><a href="http://localhost:1313/tags/privacy/">Privacy</a></li>
+      <li><a href="http://localhost:1313/tags/vc/">VC</a></li>
+      <li><a href="http://localhost:1313/tags/ssi/">SSI</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
