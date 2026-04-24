@@ -236,7 +236,26 @@
       <link>http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E7%BD%91%E7%BB%9C/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://xiaolincoding.com/network/&#34;&gt;小林code&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://xiaolincoding.com/network/&#34;&gt;小林code&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1基础篇&#34;&gt;1.基础篇&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPfaeh6E_CEfpwHHpXOS52LXUmTwMQAAkEQaxt5_UhXkHFrir0XZLwBAAMCAAN5AAM7BA.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;应用层&#34;&gt;应用层&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;只需要专注于给用户提供应用功能，比如HTTP，FTP，Telnet，DNS等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分层模型中只有应用层是用户态，其他都是在内核态中进行工作&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;传输层&#34;&gt;传输层&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;为应用层提供网络支持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;tcp&#34;&gt;TCP&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;传输控制协议，大部分应用正是采用该协议，比如HTTP协议，TCP比UDP多了一些特性，比如&lt;strong&gt;流量控制，超时重传，拥塞机制&lt;/strong&gt;等，&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>

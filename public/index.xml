@@ -7,8 +7,29 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Mon, 30 Mar 2026 14:01:58 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2026 19:04:09 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>设计模式-JAVA</title>
+      <link>http://localhost:1313/java-notes/design-patterns/</link>
+      <pubDate>Fri, 10 Apr 2026 19:04:09 +0800</pubDate>
+      <guid>http://localhost:1313/java-notes/design-patterns/</guid>
+      <description>本文记录了关于 Java 后端开发中设计模式的实践思考，.内容涵盖单例、工厂模式的应用及范式化设计建议</description>
+    </item>
+    <item>
+      <title>Java 核心技术 卷 I：基础知识 - 学习笔记</title>
+      <link>http://localhost:1313/java-notes/core-java_volume_1/</link>
+      <pubDate>Wed, 08 Apr 2026 09:57:34 +0800</pubDate>
+      <guid>http://localhost:1313/java-notes/core-java_volume_1/</guid>
+      <description>深入解析 Java 核心技术卷一，重点整理 JVM 运行机制、对象构造、继承与接口、泛型编程以及 Swing 之外的所有后端必备基础。适合初学者巩固及开发者查漏补缺。</description>
+    </item>
+    <item>
+      <title>Prevoke：一种保护隐私的可配置可验证凭证撤销方案</title>
+      <link>http://localhost:1313/blockchain/prevoke-privacy-preserving-vc-revocation/</link>
+      <pubDate>Mon, 06 Apr 2026 12:11:32 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/prevoke-privacy-preserving-vc-revocation/</guid>
+      <description>Prevoke 是一种面向自我主权身份（SSI）系统的可验证凭证撤销方案，通过将布隆过滤器（Bloom Filter）与默克尔树累加器（Merkle Tree Accumulator）结合，并部署在以太坊智能合约上，首次同时满足了 PR1（不暴露持有者与验证者关联）、PR2（不泄露被撤销持有者身份）、PR3（不泄露撤销率）三大隐私需求。本文从背景知识、隐私需求、系统设计、算法流程到实验评估进行了全面介绍，适合区块链与身份认证领域的初学者阅读。</description>
+    </item>
     <item>
       <title>SSI 中的VC撤销与 DID 注销</title>
       <link>http://localhost:1313/blockchain/ssi-credential-revocation-did-deactivation-survey/</link>
@@ -437,7 +458,26 @@ bI247mK4pVNgIgNc0C1m7h6Dgql/7gLKMIKA85vRgMePoAkfxSDpigaA2KMDIAoNIGg1u7cbJgIvrAzQ
       <link>http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E7%BD%91%E7%BB%9C/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://xiaolincoding.com/network/&#34;&gt;小林code&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://xiaolincoding.com/network/&#34;&gt;小林code&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1基础篇&#34;&gt;1.基础篇&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPfaeh6E_CEfpwHHpXOS52LXUmTwMQAAkEQaxt5_UhXkHFrir0XZLwBAAMCAAN5AAM7BA.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;应用层&#34;&gt;应用层&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;只需要专注于给用户提供应用功能，比如HTTP，FTP，Telnet，DNS等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分层模型中只有应用层是用户态，其他都是在内核态中进行工作&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;传输层&#34;&gt;传输层&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;为应用层提供网络支持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;tcp&#34;&gt;TCP&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;传输控制协议，大部分应用正是采用该协议，比如HTTP协议，TCP比UDP多了一些特性，比如&lt;strong&gt;流量控制，超时重传，拥塞机制&lt;/strong&gt;等，&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>

@@ -195,19 +195,21 @@ code.has-jax {
                 <li>
                     <a href="#%e4%b8%80%e8%ae%ba%e6%96%87%e5%ae%9a%e4%bd%8d%e4%b8%8e%e8%b4%a1%e7%8c%ae" aria-label="一、论文定位与贡献">一、论文定位与贡献</a></li>
                 <li>
-                    <a href="#%e4%ba%8cssi-%e5%9f%ba%e7%a1%80%e6%9e%b6%e6%9e%84" aria-label="二、SSI 基础架构">二、SSI 基础架构</a><ul>
+                    <a href="#%e4%ba%8c%e5%9f%ba%e7%a1%80%e6%a6%82%e5%bf%b5" aria-label="二、基础概念">二、基础概念</a><ul>
                         
                 <li>
-                    <a href="#%e4%bf%a1%e4%bb%bb%e4%b8%89%e8%a7%92triangle-of-trust" aria-label="信任三角（Triangle of Trust）">信任三角（Triangle of Trust）</a></li>
+                    <a href="#ssi%e4%bf%a1%e4%bb%bb%e4%b8%89%e8%a7%92triangle-of-trust" aria-label="SSI信任三角（Triangle of Trust）">SSI信任三角（Triangle of Trust）</a></li>
                 <li>
-                    <a href="#%e6%8a%80%e6%9c%af%e7%bb%84%e4%bb%b6" aria-label="技术组件">技术组件</a></li>
+                    <a href="#%e5%8e%bb%e4%b8%ad%e5%bf%83%e5%8c%96%e6%a0%87%e8%af%86%e7%ac%a6did" aria-label="去中心化标识符（DID）">去中心化标识符（DID）</a></li>
                 <li>
-                    <a href="#ssi-%e5%b7%a5%e4%bd%9c%e6%b5%81%e4%b8%ad%e7%9a%84%e6%92%a4%e9%94%80" aria-label="SSI 工作流中的撤销">SSI 工作流中的撤销</a></li></ul>
+                    <a href="#%e5%8f%af%e9%aa%8c%e8%af%81%e5%87%ad%e8%af%81vc%e4%b8%8e%e5%8f%af%e9%aa%8c%e8%af%81%e5%b1%95%e7%a4%bavp" aria-label="可验证凭证（VC）与可验证展示（VP）">可验证凭证（VC）与可验证展示（VP）</a></li>
+                <li>
+                    <a href="#ssi-%e5%b7%a5%e4%bd%9c%e6%b5%81%e4%b8%ad%e7%9a%84%e6%92%a4%e9%94%80" aria-label="SSI 工作流中的撤销">SSI 工作流中的撤销</a></li>
+                <li>
+                    <a href="#%e6%92%a4%e9%94%80%e5%9c%a8-ssi-%e4%b8%ad%e7%9a%84%e6%8c%91%e6%88%98%e6%9d%a5%e6%ba%90" aria-label="撤销在 SSI 中的挑战来源">撤销在 SSI 中的挑战来源</a></li></ul>
                 </li>
                 <li>
-                    <a href="#%e4%b8%89%e6%92%a4%e9%94%80%e5%9c%a8-ssi-%e4%b8%ad%e7%9a%84%e6%8c%91%e6%88%98%e6%9d%a5%e6%ba%90" aria-label="三、撤销在 SSI 中的挑战来源">三、撤销在 SSI 中的挑战来源</a></li>
-                <li>
-                    <a href="#%e5%9b%9b%e5%85%b8%e5%9e%8b%e7%94%a8%e4%be%8b" aria-label="四、典型用例">四、典型用例</a><ul>
+                    <a href="#%e4%b8%89%e5%85%b8%e5%9e%8b%e7%94%a8%e4%be%8b" aria-label="三、典型用例">三、典型用例</a><ul>
                         
                 <li>
                     <a href="#vc-%e6%92%a4%e9%94%80%e5%9c%ba%e6%99%af" aria-label="VC 撤销场景">VC 撤销场景</a></li>
@@ -215,7 +217,7 @@ code.has-jax {
                     <a href="#did-%e6%b3%a8%e9%94%80%e5%9c%ba%e6%99%af" aria-label="DID 注销场景">DID 注销场景</a></li></ul>
                 </li>
                 <li>
-                    <a href="#%e4%ba%94%e6%92%a4%e9%94%80%e6%9c%ba%e5%88%b6%e5%88%86%e7%b1%bb%e8%af%a6%e8%a7%a3" aria-label="五、撤销机制分类详解">五、撤销机制分类详解</a><ul>
+                    <a href="#%e5%9b%9b%e6%92%a4%e9%94%80%e6%9c%ba%e5%88%b6%e5%88%86%e7%b1%bb%e8%af%a6%e8%a7%a3" aria-label="四、撤销机制分类详解">四、撤销机制分类详解</a><ul>
                         
                 <li>
                     <a href="#a-%e5%9f%ba%e4%ba%8e%e5%88%97%e8%a1%a8%e7%9a%84%e6%92%a4%e9%94%80list-based-revocation" aria-label="A. 基于列表的撤销（List-Based Revocation）">A. 基于列表的撤销（List-Based Revocation）</a><ul>
@@ -239,19 +241,17 @@ code.has-jax {
                 <li>
                     <a href="#b3-merkle-tree-%e7%b4%af%e5%8a%a0%e5%99%a8" aria-label="B3. Merkle Tree 累加器">B3. Merkle Tree 累加器</a></li>
                 <li>
-                    <a href="#b4-%e7%b4%af%e5%8a%a0%e5%99%a8%e6%9b%b4%e6%96%b0%e4%b8%8e%e8%a7%81%e8%af%81%e7%ae%a1%e7%90%86" aria-label="B4. 累加器更新与见证管理">B4. 累加器更新与见证管理</a></li>
-                <li>
-                    <a href="#b5-%e9%9b%b6%e7%9f%a5%e8%af%86%e9%9b%86%e6%88%90" aria-label="B5. 零知识集成">B5. 零知识集成</a></li></ul>
+                    <a href="#b4-%e7%b4%af%e5%8a%a0%e5%99%a8%e6%9b%b4%e6%96%b0%e4%b8%8e%e8%a7%81%e8%af%81%e7%ae%a1%e7%90%86" aria-label="B4. 累加器更新与见证管理">B4. 累加器更新与见证管理</a></li></ul>
                 </li>
                 <li>
                     <a href="#c-%e6%ad%a3%e5%90%91%e7%a1%ae%e8%ae%a4%e6%a8%a1%e5%9e%8bpositive-confirmation-approaches" aria-label="C. 正向确认模型（Positive-Confirmation Approaches）">C. 正向确认模型（Positive-Confirmation Approaches）</a><ul>
                         
                 <li>
-                    <a href="#c1-%e7%9f%ad%e6%9c%9f%e5%87%ad%e8%af%81%e8%87%aa%e5%8a%a8%e9%87%8d%e9%a2%81%e5%8f%91short-lived-re-issuance" aria-label="C1. 短期凭证自动重颁发（Short-Lived Re-Issuance）">C1. 短期凭证自动重颁发（Short-Lived Re-Issuance）</a></li>
+                    <a href="#c1-%e7%9f%ad%e6%9c%9f%e5%87%ad%e8%af%81short-lived-re-issuance" aria-label="C1. 短期凭证（Short-lived Re-issuance）">C1. 短期凭证（Short-lived Re-issuance）</a></li>
                 <li>
-                    <a href="#c2-%e5%85%81%e8%ae%b8%e5%88%97%e8%a1%a8%e5%88%86%e5%8f%91trust-anchorallow-list-distribution" aria-label="C2. 允许列表分发（Trust-Anchor/Allow-List Distribution）">C2. 允许列表分发（Trust-Anchor/Allow-List Distribution）</a></li>
+                    <a href="#c2-%e4%bf%a1%e4%bb%bb%e9%94%9a%e5%85%81%e8%ae%b8%e5%88%97%e8%a1%a8%e5%88%86%e5%8f%91" aria-label="C2. 信任锚/允许列表分发">C2. 信任锚/允许列表分发</a></li>
                 <li>
-                    <a href="#c3-%e5%85%b3%e8%81%94%e6%9c%89%e6%95%88%e6%80%a7%e5%8f%af%e9%aa%8c%e8%af%81%e5%87%ad%e8%af%81lvvc-linked-validity-verifiable-credential" aria-label="C3. 关联有效性可验证凭证（LVVC, Linked Validity Verifiable Credential）">C3. 关联有效性可验证凭证（LVVC, Linked Validity Verifiable Credential）</a></li></ul>
+                    <a href="#c3-%e5%85%b3%e8%81%94%e6%9c%89%e6%95%88%e6%80%a7-vclinked-validity-vc-lvvc" aria-label="C3. 关联有效性 VC（Linked Validity VC, LVVC）">C3. 关联有效性 VC（Linked Validity VC, LVVC）</a></li></ul>
                 </li>
                 <li>
                     <a href="#d-%e6%b2%bb%e7%90%86%e6%84%9f%e7%9f%a5%e4%b8%8e%e8%87%aa%e9%80%82%e5%ba%94%e6%92%a4%e9%94%80governance-aware-and-adaptive-revocation" aria-label="D. 治理感知与自适应撤销（Governance-Aware and Adaptive Revocation）">D. 治理感知与自适应撤销（Governance-Aware and Adaptive Revocation）</a></li>
@@ -259,7 +259,7 @@ code.has-jax {
                     <a href="#e-did-%e6%b3%a8%e9%94%80did-deactivation" aria-label="E. DID 注销（DID Deactivation）">E. DID 注销（DID Deactivation）</a></li></ul>
                 </li>
                 <li>
-                    <a href="#%e5%85%ad%e9%9a%90%e7%a7%81%e5%88%86%e6%9e%90" aria-label="六、隐私分析">六、隐私分析</a><ul>
+                    <a href="#%e4%ba%94%e9%9a%90%e7%a7%81%e5%88%86%e6%9e%90" aria-label="五、隐私分析">五、隐私分析</a><ul>
                         
                 <li>
                     <a href="#%e9%9a%90%e7%a7%81%e6%b3%84%e9%9c%b2%e7%9a%84%e4%b8%89%e7%b1%bb%e5%9c%ba%e6%99%af" aria-label="隐私泄露的三类场景">隐私泄露的三类场景</a></li>
@@ -267,23 +267,19 @@ code.has-jax {
                     <a href="#%e5%90%84%e5%88%a9%e7%9b%8a%e7%9b%b8%e5%85%b3%e6%96%b9%e7%9a%84%e9%9a%90%e7%a7%81%e9%a3%8e%e9%99%a9" aria-label="各利益相关方的隐私风险">各利益相关方的隐私风险</a></li></ul>
                 </li>
                 <li>
-                    <a href="#%e4%b8%83%e5%8f%af%e6%89%a9%e5%b1%95%e6%80%a7%e4%b8%8e%e6%80%a7%e8%83%bd%e6%af%94%e8%be%83" aria-label="七、可扩展性与性能比较">七、可扩展性与性能比较</a></li>
+                    <a href="#%e5%85%ad%e5%8f%af%e6%89%a9%e5%b1%95%e6%80%a7%e4%b8%8e%e6%80%a7%e8%83%bd%e6%af%94%e8%be%83" aria-label="六、可扩展性与性能比较">六、可扩展性与性能比较</a></li>
                 <li>
-                    <a href="#%e5%85%ab%e5%bc%80%e6%94%be%e6%8c%91%e6%88%98%e4%b8%8e%e6%9c%aa%e6%9d%a5%e6%96%b9%e5%90%91" aria-label="八、开放挑战与未来方向">八、开放挑战与未来方向</a><ul>
+                    <a href="#%e4%b8%83%e5%bc%80%e6%94%be%e6%8c%91%e6%88%98%e4%b8%8e%e6%9c%aa%e6%9d%a5%e6%96%b9%e5%90%91" aria-label="七、开放挑战与未来方向">七、开放挑战与未来方向</a><ul>
                         
                 <li>
-                    <a href="#%e9%9a%90%e7%a7%81%e4%b8%8e%e9%97%ae%e8%b4%a3%e7%9a%84%e5%b9%b3%e8%a1%a1" aria-label="隐私与问责的平衡">隐私与问责的平衡</a></li>
+                    <a href="#%e6%8a%80%e6%9c%af%e6%8c%91%e6%88%98" aria-label="技术挑战">技术挑战</a></li>
                 <li>
-                    <a href="#%e7%a6%bb%e7%ba%bf%e9%aa%8c%e8%af%81%e7%9a%84%e5%a4%8d%e6%9d%82%e6%80%a7" aria-label="离线验证的复杂性">离线验证的复杂性</a></li>
-                <li>
-                    <a href="#%e5%af%86%e9%92%a5%e7%ae%a1%e7%90%86%e4%b8%8e%e6%81%a2%e5%a4%8d" aria-label="密钥管理与恢复">密钥管理与恢复</a></li>
-                <li>
-                    <a href="#%e5%90%8e%e9%87%8f%e5%ad%90%e5%af%86%e7%a0%81%e5%b0%b1%e7%bb%aa%e6%80%a7" aria-label="后量子密码就绪性">后量子密码就绪性</a></li>
-                <li>
-                    <a href="#iot-%e4%b8%8e%e8%be%b9%e7%bc%98%e8%ae%a1%e7%ae%97%e9%9b%86%e6%88%90" aria-label="IoT 与边缘计算集成">IoT 与边缘计算集成</a></li></ul>
+                    <a href="#%e8%b7%a8%e5%ad%a6%e7%a7%91%e6%8c%91%e6%88%98" aria-label="跨学科挑战">跨学科挑战</a></li></ul>
                 </li>
                 <li>
-                    <a href="#%e4%b9%9d%e7%9b%b8%e5%85%b3%e7%bb%bc%e8%bf%b0%e6%af%94%e8%be%83" aria-label="九、相关综述比较">九、相关综述比较</a></li>
+                    <a href="#%e5%85%ab%e7%9b%b8%e5%85%b3%e7%bb%bc%e8%bf%b0%e6%af%94%e8%be%83" aria-label="八、相关综述比较">八、相关综述比较</a></li>
+                <li>
+                    <a href="#%e4%b9%9d%e7%bb%bc%e5%90%88%e5%88%86%e7%b1%bb%e8%a1%a8table-1-%e7%b2%be%e5%8d%8e" aria-label="九、综合分类表（Table 1 精华）">九、综合分类表（Table 1 精华）</a></li>
                 <li>
                     <a href="#%e5%8d%81%e7%bb%93%e8%ae%ba" aria-label="十、结论">十、结论</a></li>
                 <li>
@@ -311,17 +307,24 @@ code.has-jax {
 <li>识别若干持续性挑战：隐私与问责的平衡、离线验证、密钥泄露处理、后量子就绪性、监管合规</li>
 </ul>
 <hr>
-<h2 id="二ssi-基础架构">二、SSI 基础架构<a hidden class="anchor" aria-hidden="true" href="#二ssi-基础架构">#</a></h2>
-<h3 id="信任三角triangle-of-trust">信任三角（Triangle of Trust）<a hidden class="anchor" aria-hidden="true" href="#信任三角triangle-of-trust">#</a></h3>
-<p>SSI 系统围绕三个核心角色运作：</p>
+<h2 id="二基础概念">二、基础概念<a hidden class="anchor" aria-hidden="true" href="#二基础概念">#</a></h2>
+<h3 id="ssi信任三角triangle-of-trust">SSI信任三角（Triangle of Trust）<a hidden class="anchor" aria-hidden="true" href="#ssi信任三角triangle-of-trust">#</a></h3>
+<pre tabindex="0"><code>		Issuer（发行者）
+        /               \
+  颁发 VC               发布公钥/撤销信息
+      /                   \
+Holder（持有者）  ←——VP——→  Verifier（验证者）
+  保管凭证，                查询撤销状态
+  选择性披露               （从 VDR 获取，不联系 Issuer）
+</code></pre><p>SSI 系统围绕三个核心角色运作：</p>
 <p><strong>Issuer（颁发者）</strong>：对主体做出权威声明并颁发 VC 的实体，包括政府机构、教育机构、雇主、医疗机构等。Issuer 用私钥对 VC 进行密码学签名，使其可被独立验证，无需与颁发机构持续通信。这一&quot;颁发后独立性&quot;特征既是 SSI 的核心优势，也构成了撤销机制的根本挑战——Verifier 无法在验证时实时询问 Issuer 当前状态。</p>
-<p>从撤销角度，Issuer 承担以下职责：管理签名密钥对；向 VDR（可验证数据注册表）发布公钥与撤销信息；在凭证失效时触发撤销流程；遵守凭证元数据标准。Issuer 同时需要制定撤销策略，明确触发事件（员工离职、执照暂停、密钥泄露）、处理时间线、撤销粒度（单个凭证 vs 批量）及监管合规要求。</p>
+<p>从撤销角度，Issuer 承担以下职责：管理<strong>签名密钥对</strong>；向 VDR（可验证数据注册表）发布公钥与撤销信息；在凭证失效时触发撤销流程；遵守凭证元数据标准。Issuer 同时需要制定撤销策略，明确触发事件（员工离职、执照暂停、密钥泄露）、处理时间线、撤销粒度（单个凭证 vs 批量）及监管合规要求。</p>
 <p><strong>Holder（持有者）</strong>：在数字钱包中管理一张或多张 VC，自主决定向谁披露何种信息的个体或机构。Holder 在撤销机制中处于双重位置：既可能是被撤销的对象，也需主动向 Verifier 证明自身凭证的有效状态（提供非撤销证明）。</p>
 <p>Holder 在撤销问题上面临利益冲突：当私钥被盗时希望立即撤销；而当凭证因离职或执照暂停被撤销时，则可能希望存在宽限期。设计健全的系统确保 Holder 无法控制撤销状态——Verifier 直接从可信来源（签名状态列表或密码学累加器）检查状态，Holder 仅提供验证所需的最少信息。</p>
 <p>在使用累加器或状态列表时，钱包通常缓存一个小的见证值（witness），使访问控制系统可在不获取额外信息的前提下确认&quot;仍然有效&quot;。在网络断开时，该见证值支持一个策略约束的短暂宽限窗口；恢复连接后再对当前状态制品进行刷新。</p>
 <p><strong>Verifier（验证者）</strong>：接收并审查 VP（可验证陈述）并决定是否信任相关声明的一方。验证流程包括：检查 Issuer 的公钥签名、有效期、撤销状态，并做出接受或拒绝决定。Verifier 与 Issuer 之间的信任关系通过治理安排或监管监督预先建立。</p>
 <p>Verifier 面临实时撤销状态不一定可获取的问题——注册表可能因维护而离线，本地网络可能中断。此时 Verifier 只有缓存数据，需要基于风险评估做出决策：高风险交易直接实时确认撤销状态；低风险交易可通过缓存检查。</p>
-<h3 id="技术组件">技术组件<a hidden class="anchor" aria-hidden="true" href="#技术组件">#</a></h3>
+<h3 id="去中心化标识符did">去中心化标识符（DID）<a hidden class="anchor" aria-hidden="true" href="#去中心化标识符did">#</a></h3>
 <p><strong>DID（去中心化标识符）</strong>：格式为 <code>did:method:identifier</code>，解析为包含公钥、服务端点与认证方法的 DID Document，通常存储于 VDR。DID Document 中与撤销直接相关的组件包括：公钥（用于签名验证）、服务端点（用于接收撤销通知）、能力委托机制（在紧急撤销场景中可授权他人代为操作）。</p>
 <p>不同 DID 方法对撤销的影响存在显著差异：</p>
 <table>
@@ -334,67 +337,174 @@ code.has-jax {
   </thead>
   <tbody>
       <tr>
-          <td><code>did:web</code></td>
+          <td><code>did:web:example.com:users:alice</code></td>
           <td>HTTPS/DNS</td>
           <td>实现简单，但依赖域名控制的持续性，域名到期可能导致控制权丧失</td>
       </tr>
       <tr>
-          <td><code>did:ethr</code></td>
+          <td><code>did:ethr:0x123456789...</code></td>
           <td>以太坊区块链</td>
           <td>强防篡改性，但频繁更新面临吞吐量限制与交易成本</td>
       </tr>
       <tr>
-          <td><code>did:indy</code></td>
+          <td><code>did:indy:sovrin:WRFXP..</code></td>
           <td>Hyperledger Indy</td>
           <td>专为身份设计，内置完善的撤销支持</td>
       </tr>
       <tr>
-          <td><code>did:key</code></td>
+          <td><code>did:key:z6MkhaKg.bz</code></td>
           <td>无外部存储</td>
           <td>DID 直接派生自公钥，撤销等价于密钥撤销</td>
       </tr>
   </tbody>
 </table>
+<h3 id="可验证凭证vc与可验证展示vp">可验证凭证（VC）与可验证展示（VP）<a hidden class="anchor" aria-hidden="true" href="#可验证凭证vc与可验证展示vp">#</a></h3>
 <p><strong>VC（可验证凭证）</strong>：包含声明与元数据的数字凭证，由 Issuer 密码学签名，无需实时通信即可验证。与撤销相关的关键字段：<code>credentialStatus</code> 字段引用外部撤销机制（状态列表或累加器），是 Verifier 检查撤销状态的入口；<code>proof</code> 部分包含 Issuer 的数字签名以及见证更新或零知识证明生成所需的附加信息。</p>
-<p><strong>VP（可验证陈述）</strong>：VC 的集合或派生证明，支持选择性披露。VP 的选择性披露特性与撤销机制之间存在张力——许多撤销机制在状态检查时会暴露稳定标识符，使 Verifier 能够跨多次陈述进行关联，损害 VP 的隐私性。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;@context&#34;</span><span class="p">:</span> <span class="p">[</span><span class="err">...</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;http://dmv.example.gov/credentials/DL2024-789456&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;VerifiableCredential&#34;</span><span class="p">,</span> <span class="s2">&#34;DriverLicenseCredential&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;issuer&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;did:web:dmv.example.gov&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;issuanceDate&#34;</span><span class="p">:</span> <span class="s2">&#34;2024-03-15T10:00:00Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;credentialSubject&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;did:example:ebfeb1f712ebc6f1c276e12ec21&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;licenseNumber&#34;</span><span class="p">:</span> <span class="s2">&#34;DL789456&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;licenseClass&#34;</span><span class="p">:</span> <span class="s2">&#34;C&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;credentialStatus&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;https://dmv.example.gov/revocation-lists/2024#45678&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;BachelorOfScience&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;revocationListIndex&#34;</span><span class="p">:</span> <span class="s2">&#34;45678&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;revocationListCredential&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;proof&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Ed25519Signature2020&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>VP（可验证陈述）</strong>：VC 的集合或派生证明,是对一张或多张 VC 的封装展示，支持选择性披露。VP 的选择性披露特性与撤销机制之间存在张力——许多撤销机制在状态检查时会暴露稳定标识符，使 Verifier 能够跨多次陈述进行关联，损害 VP 的隐私性。</p>
 <p><strong>VDR（可验证数据注册表）</strong>：存储 DID 文档、公钥、凭证 Schema、撤销状态数据与治理记录的共享防篡改存储库。实践中通常采用混合架构：区块链作为不可变锚点处理关键或低频更新，数据库或文件系统层（如 IPFS）处理频繁变化的撤销列表，以平衡信任与性能。</p>
+<table>
+  <thead>
+      <tr>
+          <th>存储类型</th>
+          <th>代表技术</th>
+          <th>优点</th>
+          <th>缺点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>区块链</td>
+          <td>Ethereum, Hyperledger Indy, Bitcoin</td>
+          <td>去中心化、防篡改</td>
+          <td>吞吐量低、更新成本高</td>
+      </tr>
+      <tr>
+          <td>数据库</td>
+          <td>传统关系型/NoSQL</td>
+          <td>高吞吐、低延迟</td>
+          <td>需要严格访问控制</td>
+      </tr>
+      <tr>
+          <td>文件系统</td>
+          <td>IPFS, Git</td>
+          <td>版本控制、去中心化分发</td>
+          <td>同步复杂</td>
+      </tr>
+      <tr>
+          <td>混合架构</td>
+          <td>区块链 + 数据库</td>
+          <td>平衡信任与性能</td>
+          <td>设计复杂</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>实践中</strong>：区块链作为不可变锚点存储关键/低频更新（如公钥、DID），数据库或文件层处理高频变化的撤销列表。</p>
+</blockquote>
 <h3 id="ssi-工作流中的撤销">SSI 工作流中的撤销<a hidden class="anchor" aria-hidden="true" href="#ssi-工作流中的撤销">#</a></h3>
-<p><strong>颁发阶段</strong>：Issuer 在签发 VC 的同时启用撤销机制，发布初始状态，并为 Holder 提供展示非撤销状态所需的见证材料。</p>
-<p><strong>验证阶段</strong>：撤销状态检查须在每次 VP 验证时执行，同时维护隐私并避免 &ldquo;calling home&rdquo; 问题（即每次验证都联系 Issuer，使 Issuer 获知 Holder 的凭证使用行为）。Holder 可能需要在 VP 中附加非撤销证明，Verifier 则需对此进行密码学验证。</p>
-<hr>
-<h2 id="三撤销在-ssi-中的挑战来源">三、撤销在 SSI 中的挑战来源<a hidden class="anchor" aria-hidden="true" href="#三撤销在-ssi-中的挑战来源">#</a></h2>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPIadM8iInACC-jQ9FVfO7fgprFmD8AAioNaxvXnJhWAWxf9IyAvcgBAAMCAAN3AAM7BA.png"></p>
+<p><strong>颁发阶段</strong>：</p>
+<ul>
+<li>持有者<strong>创建</strong>DID并将DID文档发布到VDR；生成的密钥和标识符随后支持见证更新和不可撤销证明。然后持有者请求凭证。</li>
+<li>颁发者执行适合上下文的身份检查，并<strong>保留足够的详细信息</strong>，以便在凭证受到质疑时支持未来的审核。发行人将 VC 与所需的声明和元数据组装在一起，对其进行签名，然后将其返回给持有者。</li>
+<li>在同一步骤中，发行人<strong>启用撤销方法</strong>（通常是列表或累加器），发布相关状态，并向持有者提供证明当前未撤销状态所需的任何证人或证明材料。</li>
+</ul>
+<p><strong>验证阶段</strong>：</p>
+<ul>
+<li>在凭证验证的工作流程中，验证者要求持有者提供特定的凭证或证明。持有者选择满足验证者要求的适当凭证并用它们制作 VP。、</li>
+<li>由于这一部分，撤销检查变得更加<strong>复杂</strong>——持有者可能需要在其 VP 中包含<strong>非撤销证明</strong>。他们也不得损害隐私。</li>
+<li>撤销状态检查须在每次 VP 验证时执行，同时维护隐私并避免 &ldquo;calling home&rdquo; 问题（即每次验证都联系 Issuer，<strong>使 Issuer 获知 Holder 的凭证使用行为</strong>）。Holder 可能需要在 VP 中附加非撤销证明，Verifier 则需对此进行密码学验证。</li>
+</ul>
+<h3 id="撤销在-ssi-中的挑战来源">撤销在 SSI 中的挑战来源<a hidden class="anchor" aria-hidden="true" href="#撤销在-ssi-中的挑战来源">#</a></h3>
 <p>传统 PKI 的 CRL 和 OCSP 与 SSI 的三条核心原则存在根本冲突：</p>
 <ul>
-<li><strong>避免持续的三方交互</strong>：OCSP 每次验证都须实时联系 CA，直接违反颁发后独立性原则</li>
+<li><strong>避免持续的三方交互</strong>：OCSP 每次验证都须实时联系 CA，直接违反颁发后<strong>独立性原则</strong></li>
 <li><strong>强隐私保障</strong>：CRL 暴露完整撤销列表；OCSP 使 CA 获知验证双方的身份与时间信息</li>
 <li><strong>防止单点故障</strong>：中心化撤销服务一旦不可用，全网验证即告中断</li>
 </ul>
 <p>SSI 因此需要同时满足去中心化、保密性、可扩展性与离线可验证性的全新撤销机制。</p>
 <hr>
-<h2 id="四典型用例">四、典型用例<a hidden class="anchor" aria-hidden="true" href="#四典型用例">#</a></h2>
+<h2 id="三典型用例">三、典型用例<a hidden class="anchor" aria-hidden="true" href="#三典型用例">#</a></h2>
 <h3 id="vc-撤销场景">VC 撤销场景<a hidden class="anchor" aria-hidden="true" href="#vc-撤销场景">#</a></h3>
-<p><strong>员工凭证撤销</strong>：员工离职后，关联凭证须立即失效以防止对公司资源的持续访问。在 SSI 环境中，Verifier 不能直接向公司（Issuer）查询状态，否则构成隐私侵犯。撤销须在不揭示 Holder 行为的前提下独立完成。</p>
-<p><strong>医师执照暂停</strong>：医师执照因法律原因须临时或永久吊销。撤销系统需支持临时与永久两种模式，同时保证患者可在离线状态下及时验证医师凭证的有效性。</p>
-<p><strong>学位证书欺诈</strong>：大学发现伪造材料获得的学位须予以撤销。系统在撤销时须保护合法持有者的个人信息，同时具备抵御关联攻击的能力（防止通过多次撤销检查推断同一 Holder 持有哪些凭证）。</p>
+<p><strong>员工凭证撤销</strong>：员工离职后，其工作证明 VC 必须立即失效，防止其继续以前员工身份访问公司资源。与传统系统不同，SSI 中员工独立持有凭证，验证者不能直接问发行者（这违反隐私原则），所以需要一种<strong>不依赖发行者实时查询</strong>的撤销机制。</p>
+<p><strong>医师执照暂停</strong>：医生执照可能因法律原因被暂时吊销。撤销系统必须：</p>
+<ul>
+<li>支持<strong>临时</strong>或<strong>永久</strong>撤销</li>
+<li>即使患者<strong>离线</strong>也能验证执照状态</li>
+</ul>
+<p><strong>学位证书欺诈</strong>：发现学生用伪造文件获取学位后，大学必须撤销相应凭证。同时：</p>
+<ul>
+<li>保护<strong>合法</strong>持有者的个人信息</li>
+<li>抵御<strong>关联攻击</strong>（防止推断某人同时持有多张凭证）</li>
+</ul>
 <h3 id="did-注销场景">DID 注销场景<a hidden class="anchor" aria-hidden="true" href="#did-注销场景">#</a></h3>
 <p><strong>私钥泄露（EU 数字新冠证书事件，2021年）</strong>：黑客泄露 EU 数字新冠证书签名私钥，导致可为任意主体生成通过官方验证的假健康码。当局撤销泄露密钥后，所有依赖该密钥颁发的证书即刻失效。该事件展示了 DID 私钥泄露后须立即注销对应 DID 的实际场景。</p>
 <p><strong>设备丢失（移动驾照，mDL）</strong>：DID 通常与存储在设备上的密钥绑定。手机丢失时，现代 mDL 系统允许 Issuer 或用户远程注销关联的数字身份，使其无法再被任何人使用。该能力已成为数字身份部署的标准安全实践。</p>
 <p><strong><code>did:web</code> 域名到期劫持</strong>：<code>did:web</code> 依赖互联网域名托管 DID Document。域名注册到期后，第三方可购买该域名并发布自定义的 DID Document，完全劫持原来的 DID 控制权。社区已意识到此风险，并催生了 <code>did:webs</code> 等内嵌密码学证明的新方法以防止域名易主后的控制权丧失。</p>
 <p><strong>基础设施关闭（Sovrin MainNet，2024年）</strong>：Sovrin 基金会因可持续性与监管挑战，宣布于 2025 年 3 月前关闭 MainNet 账本。此后，所有基于 <code>did:sov</code> 的 DID 将无法解析或更新，等同于批量注销。使用这些 DID 的组织须迁移至其他 DID 方法，该事件揭示了 DID 可移植性规划的重要性。</p>
 <hr>
-<h2 id="五撤销机制分类详解">五、撤销机制分类详解<a hidden class="anchor" aria-hidden="true" href="#五撤销机制分类详解">#</a></h2>
-<h3 id="a-基于列表的撤销list-based-revocation">A. 基于列表的撤销（List-Based Revocation）<a hidden class="anchor" aria-hidden="true" href="#a-基于列表的撤销list-based-revocation">#</a></h3>
+<h2 id="四撤销机制分类详解">四、撤销机制分类详解<a hidden class="anchor" aria-hidden="true" href="#四撤销机制分类详解">#</a></h2>
+<pre tabindex="0"><code>VC 撤销机制
+├── A. 列表式（List-based）
+│   ├── A1. 证书撤销列表（CRL）/ 撤销信息列表
+│   ├── A2. 比特串状态列表（Bitstring Status List, BSL）
+│   └── A3. 在线状态协议（OSP/OCSP）
+├── B. 密码学累加器（Cryptographic Accumulators）
+│   ├── B1. RSA 累加器
+│   ├── B2. 双线性映射累加器
+│   ├── B3. 默克尔树累加器
+│   └── B4. 见证值管理技术
+├── C. 正向确认式（Positive-Confirmation）
+│   ├── C1. 短期凭证（Short-lived credentials）
+│   ├── C2. 信任锚/允许列表分发
+│   └── C3. 关联有效性 VC（LVVC）
+└── D. 治理感知式（Governance-aware）
+    ├── D1. 层级管理
+    ├── D2. 联合撤销
+    └── D3. 自适应策略控制
+
+DID 注销
+└── E. DID 层注销与恢复
+    ├── E1. 控制者主动注销
+    ├── E2. 行政撤销
+    └── E3. 密钥妥协与紧急响应
+</code></pre><h3 id="a-基于列表的撤销list-based-revocation">A. 基于列表的撤销（List-Based Revocation）<a hidden class="anchor" aria-hidden="true" href="#a-基于列表的撤销list-based-revocation">#</a></h3>
 <h4 id="a1-证书撤销列表crl及-ssi-变体">A1. 证书撤销列表（CRL）及 SSI 变体<a hidden class="anchor" aria-hidden="true" href="#a1-证书撤销列表crl及-ssi-变体">#</a></h4>
-<p>Issuer 维护被撤销凭证标识符（或哈希）的签名列表，定期推送至 VDR，Verifier 下载后比对。在 SSI 语境中，列表存储凭证标识符或哈希，而非传统的证书序列号，存储位置为 VDR 而非中心化服务器。</p>
-<p>主要限制：公开列表会暴露 Issuer 的撤销频率及凭证类型分布；列表大小随系统规模线性增长；时效性存在缺陷——Issuer 即时记录撤销，但 Verifier 仅在下次拉取时才获知变更。</p>
+<p>Issuer 维护被撤销凭证标识符（或哈希）的签名列表，定期推送至 VDR，Verifier 下载后比对。在 SSI 语境中，列表存储<strong>凭证标识符或哈希</strong>，而非传统的证书序列号，存储位置为 VDR 而非中心化服务器。</p>
+<p>主要限制：公开列表会<strong>暴露 Issuer 的撤销频率及凭证类型分布</strong>；列表大小随系统规模<strong>线性增长</strong>；时效性存在缺陷——Issuer 即时记录撤销，但 Verifier 仅在下次拉取时才获知变更。</p>
 <h4 id="a2-位字符串状态列表bitstring-status-list-bsl">A2. 位字符串状态列表（Bitstring Status List, BSL）<a hidden class="anchor" aria-hidden="true" href="#a2-位字符串状态列表bitstring-status-list-bsl">#</a></h4>
-<p>W3C 推荐的主流方案。每张凭证在颁发时分配固定索引位置，BSL 为压缩位数组，撤销时将对应 bit 从 0 翻转为 1。Issuer 对整个位字符串签名并重新发布至 VDR，Verifier 检查凭证索引处的单个 bit，时间复杂度 O(1)。</p>
+<pre tabindex="0"><code>BSL（压缩前）：0 0 0 0 0 1 0 0 0 1 0 0 ...
+                ↑             ↑
+              VC 0           VC 5（已撤销）
+</code></pre><p>W3C 推荐的主流方案。每张凭证在颁发时分配固定索引位置，BSL 为压缩位数组，撤销时将对应 bit 从 0 翻转为 1。Issuer 对整个位字符串签名并重新发布至 VDR，Verifier 检查凭证索引处的单个 bit，时间复杂度 O(1)。</p>
 <p><strong>压缩技术</strong>：BSL 使用 GZIP 减少存储与传输开销。GZIP 通过 LZ77 风格的子串去重检测重复字节模式，再应用霍夫曼编码对剩余符号进行熵编码。撤销率低时（大量 bit 为 0），压缩比极高。</p>
-<p><strong>隐私问题</strong>：跨多次陈述复用同一状态索引可能导致可关联性——Verifier 可通过索引追踪同一 Holder 的使用行为。缓解措施包括：短期索引、按用途分区、结合零知识证明进行索引保护。</p>
+<p><strong>隐私问题</strong>：跨多次陈述复用同一状态索引可能导致可关联性——<strong>Verifier 可通过索引追踪同一 Holder 的使用行为</strong>；<strong>索引管理不当可能导致模糊性</strong></p>
 <p>BSL 可配合 CDN 分发，支持高效的离线验证路径。微软 Entra Verified ID 采用了该方案。</p>
 <h4 id="a3-在线状态协议online-status-protocol-osp">A3. 在线状态协议（Online Status Protocol, OSP）<a hidden class="anchor" aria-hidden="true" href="#a3-在线状态协议online-status-protocol-osp">#</a></h4>
 <p>类比传统 PKI 的 OCSP，Verifier 实时向状态服务查询特定凭证的当前状态，服务返回状态、时间戳与密码学证明。部分协议采用零知识证明或盲签名等隐私保护扩展。</p>
-<p>根本缺陷为&quot;calling home&quot;问题：每次查询使状态服务或 Issuer 获知验证双方的身份与时间信息，严重违反 SSI 隐私原则，并引入对在线服务可用性的依赖，可能开启监控与审查。该方案仅适用于高安全性场景下隐私代价可接受的情形。</p>
+<p>根本缺陷为<strong>calling home问题</strong>：每次查询使状态服务或 Issuer 获知验证双方的身份与时间信息，严重违反 SSI 隐私原则，并引入对在线服务可用性的依赖，可能开启监控与审查。该方案仅适用于<strong>高安全性场景下隐私代价可接受</strong>的情形。</p>
 <p>OpenAttestation 框架采用 OSP 进行验证，但其状态信息服务是中心化的，网络故障或服务中断会中断验证流程。</p>
 <hr>
 <h3 id="b-密码学累加器cryptographic-accumulators">B. 密码学累加器（Cryptographic Accumulators）<a hidden class="anchor" aria-hidden="true" href="#b-密码学累加器cryptographic-accumulators">#</a></h3>
@@ -414,7 +524,7 @@ code.has-jax {
 <p>在 RSA 模数 $n = pq$（安全素数）、生成元 $g \in QR_n$ 下，对集合 $S = {x_1, ..., x_k}$ 的素数编码元素，累加器值为：</p>
 $$A_S = g^{\prod_{x \in S} x} \mod n$$<p>元素 $x$ 的成员见证：$w_x = g^{\prod_{y \in S \setminus {x}} y} \mod n$，验证：$w_x^x \equiv A_S \mod n$</p>
 <p>安全性基于强 RSA 假设，但传统构造要求所有累积元素为素数，导致代价高昂的哈希到素数操作，在处理大型数字对象时尤为突出。</p>
-<p><strong>无素数要求的 RSA 累加器（Kemmoe &amp; Lysyanskaya, CCS 2024）</strong>：</p>
+<p>最新<strong>无素数要求的 RSA 累加器（Kemmoe &amp; Lysyanskaya, CCS 2024）</strong>：</p>
 <p>使用随机预言机 $H$ 将输入映射至大奇数集合 $\text{Odds}(2^{\ell-1}, 2^\ell - 1)$，累加器定义为 $A_S = g^{\prod_{x \in S} H(x)} \mod n$。随机大奇数几乎必然有大素因子，从而避免了除数泄露漏洞，同时维持方案的可靠性。</p>
 <p>该方案的关键创新在于见证更新机制：当元素 $y$ 被撤销时，协议维护 $H(x)$ 与所有已撤销元素哈希值之间的 GCD 信息，利用 Shamir 技巧在 $H(x)$ 与 $H(y)$ 非互质时仍能正确计算更新见证——此为与此前方案相比的核心突破（此前构造均要求哈希结果互质）。</p>
 <p>该方案还结合 Wesolowski 的 VDF 处理任意奇数，支持通过指数证明（Proof of Exponentiation）生成批量成员证明，同时具备正向累加器与通用累加器特性，适合 WebPKI 场景中计算能力有限的 CA。</p>
@@ -438,46 +548,119 @@ $$A_S = g^{\prod_{x \in S} x} \mod n$$<p>元素 $x$ 的成员见证：$w_x = g^{
 </li>
 </ul>
 <h4 id="b3-merkle-tree-累加器">B3. Merkle Tree 累加器<a hidden class="anchor" aria-hidden="true" href="#b3-merkle-tree-累加器">#</a></h4>
-<p>仅依赖密码学哈希函数构造，无需特殊密码学假设，适合区块链原生与资源受限场景。叶子为消息哈希，父节点为子节点哈希的拼接哈希，根哈希即累加器值。见证为目标消息的所有兄弟节点与祖先节点，大小 $O(\log n)$，验证仅需哈希运算，速度快，实现简单，易于审计。</p>
-<p><strong>非成员证明的挑战</strong>：传统 Merkle Tree 优化于成员证明，非成员证明（&ldquo;该凭证不在撤销集合中&rdquo;）需要额外策略。Sparse Merkle Tree（SMT）通过覆盖所有可能的哈希值位置并为空叶子赋予明确默认值，同时高效支持成员证明与非成员证明。SMT 已被 Ethereum 2.0 与 Diem（前 Libra）用于状态及撤销注册表。</p>
+<p><strong>工作原理</strong>：</p>
+<ol>
+<li>每个被撤销的凭证标识符被哈希后作为叶节点</li>
+<li>父节点 = Hash(左子 || 右子)，递归向上</li>
+<li>根哈希值作为累加器</li>
+<li>某元素的见证值 = 从叶到根路径上所有兄弟节点的哈希集合</li>
+</ol>
+<pre tabindex="0"><code>				h0（累加器根）
+             /              \
+           h1                h2
+          /    \            /    \
+        h3      h4        h5      h6
+        |       |         |       |
+      H(M1)   H(M2)     H(M3)   H(M4)
+</code></pre><p>M2 的见证值 = {h3, h2}，验证：重建路径计算根哈希，与 h0 比较。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>只需哈希函数，无需配对运算，<strong>极度轻量</strong></li>
+<li>证明大小为 O(log n)，适合区块链和资源受限 IoT 环境</li>
+<li>标准默克尔树擅长<strong>成员证明</strong>，非成员证明需要额外策略</li>
+</ul>
 <p><strong>隐私增强的近期工作</strong>：</p>
 <ul>
 <li><strong>Prevoke（IEEE Blockchain 2024）</strong>：可配置的隐私保护撤销，支持对披露策略的细粒度控制</li>
 <li><strong>Sitouah et al.（ICBC 2024）</strong>：通过随机哈希值构造不可追踪的 Merkle Tree 累加器，防止跨不同验证的非撤销证明之间的关联</li>
-<li>零知识友好 Merkle Tree：使用 ZK 友好哈希函数与电路设计，使用户无需暴露树中位置即可证明非撤销状态</li>
+<li><strong>零知识友好 Merkle Tree</strong>：使用 ZK 友好哈希函数与电路设计，使用户无需暴露树中位置即可证明非撤销状态</li>
 </ul>
 <h4 id="b4-累加器更新与见证管理">B4. 累加器更新与见证管理<a hidden class="anchor" aria-hidden="true" href="#b4-累加器更新与见证管理">#</a></h4>
-<p>动态累加器面临固有的同步挑战：每次撤销改变公开累加器值，使所有未撤销 Holder 的见证值失效。主要解决策略：</p>
-<p><strong>广播更新（Broadcast Updates）</strong>：Camenisch &amp; Lysyanskaya 的开创性工作——Issuer 广播公开更新数据 $U_t$，Holder 无需交互即可自行更新见证，保护隐私。异步累加器支持延迟更新，通用累加器增加非成员证明。发布间隔 $\Delta$ 直接决定撤销延迟。</p>
-<p><strong>见证更新服务（Witness Update Services）</strong>：专用服务代替资源受限设备（智能手机、IoT 节点）计算见证更新。可观察的更新模式带来隐私风险，需配合匿名交互协议与密码学审计日志缓解。</p>
-<p><strong>批量更新（Batch Updates）</strong>：将多次撤销事件打包处理。批次大小 $B$ 或时间间隔 $\Delta$ 是新鲜度与效率的权衡参数。双线性配对构造在批量操作上表现最优；ALLOSAUR 通过遗忘式批处理实现亚秒级延迟；IoT 环境受益于更低的通信开销。</p>
-<p><strong>见证与证明聚合（Proof Aggregation）</strong>：配对基累加器天然支持证明聚合，验证速度线性提升；RSA 变体需要专用例程实现类似效果。大规模聚合降低验证成本，但在成员状态变化时使更新复杂化。</p>
-<h4 id="b5-零知识集成">B5. 零知识集成<a hidden class="anchor" aria-hidden="true" href="#b5-零知识集成">#</a></h4>
-<p>将密码学累加器与零知识证明（ZKP）结合，可实现最强隐私保护：Holder 证明&quot;撤销句柄不在 Issuer 的撤销累加器中&quot;，而不暴露句柄本身。</p>
-<p>在 W3C VC 生态中，ZK 非撤销模式可与 VCDM 2.0 标准化的 BSL 机制并行使用；非成员证明可与选择性披露证明组合，使 Verifier 同时获得所需属性与隐私保护的撤销状态。</p>
-<p>代表性方案的特性对比：</p>
-<ul>
-<li><strong>BBS+</strong>：在 W3C Data Integrity 下支持不可关联派生证明，适合选择性披露与非撤销证明的组合</li>
-<li><strong>SD-JWT</strong>：通过加盐哈希承诺实现选择性披露，本身不是 ZK 证明；ZK 非撤销证明须在展示层单独附加</li>
-<li><strong>Groth16</strong>：证明体积最小，但需要可信设置</li>
-<li><strong>PLONK</strong>：支持灵活电路与长期部署，通用可更新设置</li>
-<li><strong>STARKs</strong>：无可信设置，趋向后量子安全，但证明体积较大</li>
-</ul>
-<p><strong>设备约束</strong>：ZK 证明生成（Prover）远比验证（Verifier）消耗资源，在受限设备上是瓶颈。缓解措施包括：专用电路设计、SNARK 友好哈希（如 Poseidon）、隐私保护的外包证明（zkSaaS）。</p>
-<p><strong>Hyperledger Indy / AnonCreds</strong>：历史上依赖累加器&quot;尾文件（tails）&ldquo;与非撤销见证实现不可关联性。在未经仔细分区与分发的情况下，尾文件可能扩展至 GB 级，对存储与网络传输构成实际压力。</p>
+<p>动态累加器面临的核心挑战：每次撤销都会改变公开累加器值，使所有现有持有者的见证值失效。</p>
+<p>四种管理策略：</p>
+<table>
+  <thead>
+      <tr>
+          <th>策略</th>
+          <th>说明</th>
+          <th>优点</th>
+          <th>缺点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>广播更新</strong></td>
+          <td>发行者公开广播更新数据，持有者自行计算新见证值</td>
+          <td>无需交互，保护隐私</td>
+          <td>持有者需处理所有历史更新</td>
+      </tr>
+      <tr>
+          <td><strong>见证值更新服务</strong></td>
+          <td>专用服务为持有者计算更新</td>
+          <td>适合资源受限设备</td>
+          <td>可观察更新模式，存在隐私风险</td>
+      </tr>
+      <tr>
+          <td><strong>批量更新</strong></td>
+          <td>将多次撤销合并处理</td>
+          <td>降低通信和计算开销</td>
+          <td>牺牲新鲜度</td>
+      </tr>
+      <tr>
+          <td><strong>聚合证明</strong></td>
+          <td>将多个见证值聚合成单个证明</td>
+          <td>降低验证成本</td>
+          <td>成员变化时更新复杂</td>
+      </tr>
+  </tbody>
+</table>
 <hr>
 <h3 id="c-正向确认模型positive-confirmation-approaches">C. 正向确认模型（Positive-Confirmation Approaches）<a hidden class="anchor" aria-hidden="true" href="#c-正向确认模型positive-confirmation-approaches">#</a></h3>
-<p>与传统&quot;负向确认&rdquo;（证明凭证不在撤销列表中）不同，正向确认模型要求凭证被明确且当前地确认为有效，缺乏确认即视为无效。</p>
-<h4 id="c1-短期凭证自动重颁发short-lived-re-issuance">C1. 短期凭证自动重颁发（Short-Lived Re-Issuance）<a hidden class="anchor" aria-hidden="true" href="#c1-短期凭证自动重颁发short-lived-re-issuance">#</a></h4>
-<p>Issuer 定期刷新有效期极短（数小时至数天）的凭证或证明，到期即视为撤销，无需维护独立的撤销列表。代表标准为 RFC 8739（ACME-STAR），标准化了 TLS 短期证书的自动化续期。</p>
-<p>优势：无需始终在线的撤销查询，与操作密钥或策略轮换对齐，Verifier 仅检查有效期即可，离线友好。</p>
-<p>限制：Holder 须频繁与 Issuer 联系，与 SSI 的颁发后独立原则存在张力；无法应对紧急情况（如密钥泄露后须等到当前凭证自然到期）；刷新模式本身可能引入时序关联风险。</p>
-<h4 id="c2-允许列表分发trust-anchorallow-list-distribution">C2. 允许列表分发（Trust-Anchor/Allow-List Distribution）<a hidden class="anchor" aria-hidden="true" href="#c2-允许列表分发trust-anchorallow-list-distribution">#</a></h4>
-<p>Verifier 仅接受当前允许列表中的 Issuer 或密钥签发的凭证，允许列表的更新本身代表信任状态的变化。在 ISO/IEC 18013-5（移动驾照标准）中，AAMVA 的 DTS/VICAL 分发当前 Issuer 公钥，使 Verifier 依赖&quot;当前可信的 Issuer&quot;而非全局撤销检查。</p>
-<h4 id="c3-关联有效性可验证凭证lvvc-linked-validity-verifiable-credential">C3. 关联有效性可验证凭证（LVVC, Linked Validity Verifiable Credential）<a hidden class="anchor" aria-hidden="true" href="#c3-关联有效性可验证凭证lvvc-linked-validity-verifiable-credential">#</a></h4>
-<p>将内容 VC 与状态解耦：内容 VC 包含相对稳定的声明内容，LVVC 是一个小型、频繁刷新的有效性令牌（仅包含最少状态与时间戳信息）。Verifier 同时需要两者；若内容 VC 须被撤销，Issuer 停止颁发对应 LVVC 即可——&ldquo;缺乏正向确认即为无效&rdquo;。</p>
-<p>优势：更新体积小（只需更新 LVVC），限制内容暴露；由于 LVVC 频繁刷新而 Verifier 始终获得最新 LVVC，Verifier 无需联系 Issuer，提升 Holder 隐私。</p>
-<p>权衡：需要 Holder 定期与 Issuer 联系（与颁发后独立性原则存在张力）；刷新模式可能带来时序/关联风险。缓解措施包括随机化刷新窗口、不可关联刷新令牌与隐私保护状态证明。Procivis 已在实践中实现 LVVC，与 BSL 并行部署。</p>
+<p>传统撤销（CRL/累加器）是<strong>负向确认</strong>——默认有效，撤销时标记为无效。<br>
+正向确认则相反——<strong>只接受明确声明为有效</strong>的凭证，缺乏确认即视为撤销。</p>
+<h4 id="c1-短期凭证short-lived-re-issuance">C1. 短期凭证（Short-lived Re-issuance）<a hidden class="anchor" aria-hidden="true" href="#c1-短期凭证short-lived-re-issuance">#</a></h4>
+<p><strong>原理</strong>：给凭证设置极短的有效期（如几小时或几天），到期自动失效，发行者定期重新颁发。</p>
+<p><strong>类比</strong>：好比&quot;当天有效的通行证&quot;——每天早上重新签发，失效就不续签。</p>
+<p><strong>代表标准</strong>：RFC 8739 ACME-STAR（自动证书管理环境中的短期、自动续签证书）</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>无需撤销注册表</li>
+<li>支持离线验证（只需检查过期时间）</li>
+<li>自然对齐密钥/策略轮换</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>频繁更新带来发行者负担</li>
+<li>无法即时处理紧急情况（如密钥泄露）——仍需紧急撤销后备机制</li>
+</ul>
+<h4 id="c2-信任锚允许列表分发">C2. 信任锚/允许列表分发<a hidden class="anchor" aria-hidden="true" href="#c2-信任锚允许列表分发">#</a></h4>
+<p><strong>原理</strong>：验证者只接受当前<strong>允许列表</strong>上的发行者/密钥，而不是执行全局负向检查。</p>
+<p><strong>代表应用</strong>：ISO/IEC 18013-5 mDL（移动驾照）生态系统，AAMVA 的 DTS/VICAL 分发当前发行者公钥，验证者依赖&quot;谁现在是可信的&quot;而非检查谁被撤销了。</p>
+<h4 id="c3-关联有效性-vclinked-validity-vc-lvvc">C3. 关联有效性 VC（Linked Validity VC, LVVC）<a hidden class="anchor" aria-hidden="true" href="#c3-关联有效性-vclinked-validity-vc-lvvc">#</a></h4>
+<p><strong>原理</strong>：将一张 VC 拆分为两部分：</p>
+<ul>
+<li><strong>内容 VC</strong>：包含实际声明（不经常变化）</li>
+<li><strong>有效性 VC（LVVC）</strong>：只包含有效期/状态信息，由发行者频繁刷新</li>
+</ul>
+<p>验证者同时要求两张 VC；如果发行者停止发出 LVVC，缺乏正向确认即等同于撤销。</p>
+<pre tabindex="0"><code>持有者钱包：
+  ┌────────────────────────────────┐
+  │ 内容 VC（长期有效，含实际属性） │
+  └────────────────────────────────┘
+  ┌────────────────────────────────┐
+  │ LVVC（短期有效，定期更新）      │  ← 发行者每 N 天刷新
+  └────────────────────────────────┘
+</code></pre><p><strong>优点</strong>：</p>
+<ul>
+<li>减少内容 VC 的暴露频率</li>
+<li>验证者无需联系发行者（因为总有新的 LVVC）</li>
+<li>已有实际部署（Procivis 等）</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>持有者需要定期联系发行者获取新 LVVC（与&quot;发行者独立性&quot;原则有轻微张力）</li>
+<li>刷新模式可能导致时序关联攻击（需要随机化刷新窗口等缓解措施）</li>
+</ul>
 <hr>
 <h3 id="d-治理感知与自适应撤销governance-aware-and-adaptive-revocation">D. 治理感知与自适应撤销（Governance-Aware and Adaptive Revocation）<a hidden class="anchor" aria-hidden="true" href="#d-治理感知与自适应撤销governance-aware-and-adaptive-revocation">#</a></h3>
 <p>该类方案关注撤销的组织、政策与监管层面，而非密码学机制本身。</p>
@@ -494,16 +677,21 @@ $$A_S = g^{\prod_{x \in S} x} \mod n$$<p>元素 $x$ 的成员见证：$w_x = g^{
 <p><strong>密钥泄露与应急响应（Key Compromise and Emergency Procedures）</strong>：私钥泄露时，优先选择密钥恢复或轮换（保持标识符连续性），仅在恢复不可行或风险评估要求退休时才执行注销。支持机制包括：专用恢复密钥（区别于更新密钥）、多签名或社会恢复机制。推荐分阶段响应：将 DID 标记为高风险 → 尝试恢复/轮换 → 确认泄露后执行完全注销。</p>
 <p><strong>与 VC 撤销的关系</strong>：DID 注销影响该标识符下的所有密钥与服务，间接影响依赖该 DID 的 VC 验证流程。但凭证撤销状态由 VC 状态列表或累加器管理，与 DID 注销正交，系统应独立处理两个层次以避免过度撤销。</p>
 <hr>
-<h2 id="六隐私分析">六、隐私分析<a hidden class="anchor" aria-hidden="true" href="#六隐私分析">#</a></h2>
+<h2 id="五隐私分析">五、隐私分析<a hidden class="anchor" aria-hidden="true" href="#五隐私分析">#</a></h2>
 <h3 id="隐私泄露的三类场景">隐私泄露的三类场景<a hidden class="anchor" aria-hidden="true" href="#隐私泄露的三类场景">#</a></h3>
-<p>Manimaran et al. 在研究 SSI 环境中通过 Issuer 查询撤销信息时，识别了三类具体隐私泄露场景：</p>
+<p>Manimaran et al. 在研究 SSI 环境中通过 Issuer 查询撤销信息时，识别了三类具体隐私泄露场景（Prevoke）：</p>
 <p><strong>场景一：Holder-Verifier 关联泄露</strong>：若 Verifier 向 Issuer 查询撤销状态，Issuer 即可获知验证双方的身份与时间信息。典型案例：雇主 A（Issuer）为员工 X（Holder）颁发工作凭证，员工 X 在雇主 B（Verifier）处面试时，雇主 B 向雇主 A 查询凭证状态，使雇主 A 获知员工 X 的求职行为。</p>
 <p><strong>场景二：Holder 状态与唯一标识泄露</strong>：任何第三方均可向 Issuer 查询特定 Holder 的 VC 状态，可用于推断其就业状况等敏感信息。</p>
 <p><strong>场景三：撤销率泄露</strong>：Issuer 的批量撤销率变化可能揭示商业敏感信息，如员工离职率或监管调查情况。</p>
 <h3 id="各利益相关方的隐私风险">各利益相关方的隐私风险<a hidden class="anchor" aria-hidden="true" href="#各利益相关方的隐私风险">#</a></h3>
-<p>在线撤销系统使 Issuer 可以观察到凭证被使用的时间与地点，违背颁发后独立性原则。Verifier 不应获得 Holder 的其他凭证或历史交互的可见性，可通过零知识撤销证明实现。网络观察者可从流量模式中提取元数据（如使用时间、地理位置），须通过缓存、批量分发或匿名化技术缓解。组织层面的撤销率本身也可能泄露敏感商业信息，部分实现通过将撤销证据与原始凭证标识符解耦（如 LVVC），或应用时延发布策略来降低推断风险。</p>
+<ul>
+<li><strong>传统列表式（CRL/OCSP）</strong>：最差。凭证标识符或其确定性哈希值在查询时暴露，启用跨验证者的关联攻击，甚至可能通过字典攻击重建使用模式。</li>
+<li><strong>BSL</strong>：通过固定大小压缩位数组改善，但状态索引复用问题依然存在。</li>
+<li><strong>累加器 + 零知识证明</strong>：最佳隐私保护，持有者可在不暴露身份的情况下证明&quot;未被撤销&quot;。</li>
+<li><strong>LVVC</strong>：通过解耦内容与状态，减少内容暴露；刷新模式需随机化以防时序关联。</li>
+</ul>
 <hr>
-<h2 id="七可扩展性与性能比较">七、可扩展性与性能比较<a hidden class="anchor" aria-hidden="true" href="#七可扩展性与性能比较">#</a></h2>
+<h2 id="六可扩展性与性能比较">六、可扩展性与性能比较<a hidden class="anchor" aria-hidden="true" href="#六可扩展性与性能比较">#</a></h2>
 <p>论文 Table 2 对各方案可扩展性与性能的系统比较：</p>
 <table>
   <thead>
@@ -553,23 +741,127 @@ $$A_S = g^{\prod_{x \in S} x} \mod n$$<p>元素 $x$ 的成员见证：$w_x = g^{
       </tr>
   </tbody>
 </table>
-<p>各方案无法在所有维度同时占优。BSL 提供优秀的 Verifier 端性能与简单的离线分发语义，代价是 Issuer 定期发布与 CDN 维护。累加器缩减公开状态大小，但将见证刷新责任转移给 Holder，使设备能力与连接模式成为一类设计约束。ZKP 栈实现强隐私与最小关联面，可扩展性取决于预计算、简洁证明系统与跨用户会话的摊销。</p>
+<p><strong>结论</strong>：没有哪种方法在所有维度都占优。选择时需根据具体场景权衡：</p>
+<ul>
+<li>需要高性能离线验证 → BSL</li>
+<li>需要强隐私/不可关联 → 累加器 + ZKP</li>
+<li>需要简单部署 → 短期凭证（LVVC）</li>
+<li>IoT/资源受限 → 默克尔树累加器</li>
+</ul>
 <hr>
-<h2 id="八开放挑战与未来方向">八、开放挑战与未来方向<a hidden class="anchor" aria-hidden="true" href="#八开放挑战与未来方向">#</a></h2>
-<h3 id="隐私与问责的平衡">隐私与问责的平衡<a hidden class="anchor" aria-hidden="true" href="#隐私与问责的平衡">#</a></h3>
-<p>SSI 对隐私、不可关联性与用户控制的强调，与合法监管对可追踪性、可审计性与合规性的需求之间存在根本张力。反洗钱（AML）法规要求保留详细的身份验证记录；GDPR 赋予数据删除权与区块链不可变性存在冲突；执法机构可能需要调查凭证滥用或欺诈行为，而 SSI 的隐私保护特性增加了此类调查的难度。</p>
-<p>研究方向包括：选择性审计能力（特定凭证可审计，其余保持隐私）、时延透明度（审计信息在指定延迟后公开）、门限披露（仅在满足特定条件时披露审计信息）、基于密码学方法的隐私保护审计技术。</p>
-<h3 id="离线验证的复杂性">离线验证的复杂性<a hidden class="anchor" aria-hidden="true" href="#离线验证的复杂性">#</a></h3>
-<p>在移动、IoT 与应急场景中，网络连接不能保证。离线 Verifier 只有本地缓存数据，面临三重困境：信息新鲜度与存储开销的权衡、多个离线 Verifier 之间撤销状态视图的一致性问题、资源受限设备难以执行复杂密码学运算。研究方向包括高级缓存策略、基于使用模式的预测性预加载、优雅降级的混合在线-离线验证，以及支持间歇连接的分布式共识机制。</p>
-<h3 id="密钥管理与恢复">密钥管理与恢复<a hidden class="anchor" aria-hidden="true" href="#密钥管理与恢复">#</a></h3>
-<p>SSI 的去中心化将密钥管理责任完全压给终端用户，带来如下挑战：私钥丢失导致无法证明凭证有效性；传统密钥托管（如可信密钥代管）与 SSI 最小化中介原则冲突；SSI 环境中密钥泄露难以自动检测；长期凭证面临密码算法在凭证到期前即遭破解的风险；多设备场景下部分密钥安全、部分密钥泄露的处理更为复杂。</p>
-<p>研究方向包括：社会恢复机制（向可信对等方委托部分恢复权）、基于安全飞地/HSM/TEE 的硬件保护、门限密码学（密钥分割为多份，需一定份额才能重建）、支持前向安全性的自动化密钥轮换协议。</p>
-<h3 id="后量子密码就绪性">后量子密码就绪性<a hidden class="anchor" aria-hidden="true" href="#后量子密码就绪性">#</a></h3>
-<p>Shor 算法在足量量子比特的量子计算机上可在多项式时间内破解 RSA、ECC 与离散对数问题，直接威胁 SSI 中广泛使用的密码学基础。SSI 系统须同时处理两个难题：迁移至后量子密码算法（PQC），以及为已颁发的长期凭证（生命周期可达数十年）维持向后兼容的可验证性。ZKP 系统同样须 PQC 化——STARKs 与基于格的 ZK 协议是候选方案，但效率与集成至现有 SSI 架构的难度仍是挑战。PQC 就绪性不仅是技术挑战，更是系统性挑战，需在算法变更、基础设施更新与信任锚迁移中全程维持可验证性。</p>
-<h3 id="iot-与边缘计算集成">IoT 与边缘计算集成<a hidden class="anchor" aria-hidden="true" href="#iot-与边缘计算集成">#</a></h3>
-<p>IoT 设备面临与通用互联网环境不同的撤销约束：计算能力弱、内存小、网络带宽低；设备数量百万级且高度异构；物理安全难以保证（攻击者可能物理接触设备）。研究方向包括：专为资源受限设备设计的轻量级撤销机制、将复杂操作委托给更强边缘设备或网关的层级撤销系统、能在对抗性部署场景中提供更强保证的安全硬件方案。</p>
+<h2 id="七开放挑战与未来方向">七、开放挑战与未来方向<a hidden class="anchor" aria-hidden="true" href="#七开放挑战与未来方向">#</a></h2>
+<h3 id="技术挑战">技术挑战<a hidden class="anchor" aria-hidden="true" href="#技术挑战">#</a></h3>
+<p><strong>1. 隐私与可问责性的平衡</strong></p>
+<p>这是最核心的张力。SSI 强调隐私和用户控制，但现实中存在合法的追踪、审计和监管合规需求：</p>
+<ul>
+<li>AML（反洗钱）法规要求金融机构维护身份验证详细记录</li>
+<li>执法机构可能需要调查凭证滥用</li>
+<li>组织需要证明合规</li>
+</ul>
+<p><strong>研究方向</strong>：</p>
+<ul>
+<li>选择性审计（特定凭证可审计，其余保留隐私）</li>
+<li>时延透明（审计信息在指定延迟后可用）</li>
+<li>基于门限的披露（只在特定条件满足时披露审计信息）</li>
+<li>密码学审计（使用 ZKP 验证而不完全披露）</li>
+</ul>
+<p><strong>2. 离线验证的复杂性</strong></p>
+<p>在无网络连接场景（移动、IoT、紧急情况）中，如何可靠地验证撤销状态？</p>
+<p>挑战：</p>
+<ul>
+<li>新鲜度 vs 存储成本的权衡</li>
+<li>多个离线验证者需要一致的撤销视图</li>
+<li>资源受限设备无法存储大量撤销信息</li>
+<li>本地缓存信息可能过时</li>
+</ul>
+<p><strong>研究方向</strong>：</p>
+<ul>
+<li>优化缓存策略（平衡存储与新鲜度）</li>
+<li>基于使用模式的预测性预加载</li>
+<li>优雅降级的混合在线/离线验证</li>
+<li>适用于间歇性连接的分布式共识机制</li>
+</ul>
+<p><strong>3. 密钥管理与恢复</strong></p>
+<p>SSI 用户独立管理密钥，没有中央机构可以重置——这与传统系统的关键区别：</p>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>传统系统</th>
+          <th>SSI</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>私钥丢失</td>
+          <td>联系中央机构重置</td>
+          <td>无法证明凭证有效性 ❌</td>
+      </tr>
+      <tr>
+          <td>密钥被盗</td>
+          <td>管理员立即锁定</td>
+          <td>难以即时检测，去中心化限制自动检测</td>
+      </tr>
+      <tr>
+          <td>长寿命凭证</td>
+          <td>定期更新协议</td>
+          <td>算法可能在凭证过期前就过时</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>解决方案方向</strong>：</p>
+<ul>
+<li>社交恢复（将部分恢复权限委托给信任的朋友/机构）</li>
+<li>HSM/TEE 硬件保护</li>
+<li>门限密码学（密钥分片，需要 k/n 份才能重建）</li>
+<li>自动化密钥轮换协议（支持前向保密）</li>
+</ul>
+<p><strong>4. 后量子密码（PQC）就绪性</strong></p>
+<p>量子计算机运行 Shor 算法可以在多项式时间内破解 RSA、ECC、离散对数等当前主流密码算法——这将直接威胁现有所有基于这些算法的撤销机制。</p>
+<p>当前 SSI 中受威胁的组件：</p>
+<ul>
+<li>RSA 累加器</li>
+<li>双线性配对（基于椭圆曲线）</li>
+<li>现有的 ZKP 系统（如 Groth16、PLONK）</li>
+</ul>
+<p><strong>候选替代方案</strong>：</p>
+<ul>
+<li><strong>STARKs</strong>：无需可信设置，趋向后量子安全假设</li>
+<li><strong>格密码学（Lattice-based）</strong>：正在开发的格密码学累加器和零知识证明</li>
+<li><strong>代码基密码学（Code-based）</strong></li>
+</ul>
+<p><strong>额外挑战</strong>：密码学迁移问题——系统需要在新旧算法之间保持向后兼容性，确保旧凭证在算法过渡期间仍可验证。</p>
+<p><strong>5. IoT 与边缘计算集成</strong></p>
+<p>IoT 设备的特殊约束：</p>
+<ul>
+<li>计算、存储、带宽均受限</li>
+<li>设备数量达百万级，且高度异构</li>
+<li>物理可接触性导致硬件攻击风险高</li>
+</ul>
+<p><strong>研究方向</strong>：</p>
+<ul>
+<li>专为资源受限设备设计的轻量级撤销机制</li>
+<li>层级撤销系统（将复杂操作委托给边缘网关）</li>
+<li>安全硬件方案</li>
+</ul>
+<h3 id="跨学科挑战">跨学科挑战<a hidden class="anchor" aria-hidden="true" href="#跨学科挑战">#</a></h3>
+<p><strong>标准化与互操作性</strong></p>
+<p>当前状况：</p>
+<ul>
+<li>W3C 的 DID 和 VC 标准提供数据模型基础</li>
+<li>但各实现在状态传播方法、状态列表格式、验证者操作假设等方面存在分歧</li>
+<li>导致跨系统凭证验证困难，阻碍 SSI 大规模采用</li>
+</ul>
+<p><strong>监管合规</strong></p>
+<p>主要矛盾：</p>
+<ul>
+<li><strong>GDPR 被遗忘权</strong> vs <strong>区块链不可篡改性</strong>：区块链上的撤销记录与删除个人数据的权利直接冲突</li>
+<li>数据最小化原则要求验证者只能访问必要信息</li>
+<li>金融监管（AML/KYC）要求详细审计记录</li>
+<li>跨境数据传输触发额外法律要求</li>
+</ul>
 <hr>
-<h2 id="九相关综述比较">九、相关综述比较<a hidden class="anchor" aria-hidden="true" href="#九相关综述比较">#</a></h2>
+<h2 id="八相关综述比较">八、相关综述比较<a hidden class="anchor" aria-hidden="true" href="#八相关综述比较">#</a></h2>
 <p>论文 Table 3 系统比较了此前 8 篇 SSI/DID 相关综述对撤销机制的处理深度：</p>
 <table>
   <thead>
@@ -614,6 +906,132 @@ $$A_S = g^{\prod_{x \in S} x} \mod n$$<p>元素 $x$ 的成员见证：$w_x = g^{
   </tbody>
 </table>
 <p>上述综述均未对 SSI 撤销机制提供系统性技术分类与比较，本文填补了这一空白。</p>
+<h2 id="九综合分类表table-1-精华">九、综合分类表（Table 1 精华）<a hidden class="anchor" aria-hidden="true" href="#九综合分类表table-1-精华">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>顶级类别</th>
+          <th>子类别</th>
+          <th>核心技术</th>
+          <th>主要优势</th>
+          <th>主要挑战</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>A. 列表式</strong></td>
+          <td>CRL/RIL</td>
+          <td>哈希撤销标识符；签名时间戳列表</td>
+          <td>设计简单，兼容性广</td>
+          <td>列表增长；标识符关联</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>BSL</td>
+          <td>W3C 状态列表；GZIP 压缩</td>
+          <td>O(1) 查询；离线友好；可扩展</td>
+          <td>索引关联性；发行者更新负担</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>在线状态协议</td>
+          <td>OCSP 风格查询；完整性证明</td>
+          <td>实时准确</td>
+          <td>&ldquo;打电话回家&quot;隐私问题</td>
+      </tr>
+      <tr>
+          <td><strong>B. 密码学累加器</strong></td>
+          <td>RSA 累加器</td>
+          <td>素数代表动态累加器；无需哈希到素数的变体</td>
+          <td>常数大小证明；强隐私</td>
+          <td>见证值更新复杂性</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>双线性映射</td>
+          <td>多项式批量更新；通用成员/非成员证明</td>
+          <td>快速批量更新；ZK 集成友好</td>
+          <td>配对计算开销；可信设置问题</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>默克尔树</td>
+          <td>稀疏默克尔树；ZK 友好；随机化叶节点</td>
+          <td>轻量哈希；区块链原生</td>
+          <td>非成员证明复杂性</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>见证值管理</td>
+          <td>广播更新；匿名更新服务；聚合证明</td>
+          <td>设备灵活性；减少通信</td>
+          <td>同步成本；延迟调优</td>
+      </tr>
+      <tr>
+          <td><strong>C. 正向确认</strong></td>
+          <td>短期凭证</td>
+          <td>自动短期刷新（ACME-STAR）</td>
+          <td>无需撤销注册表；离线验证友好</td>
+          <td>频繁刷新 → 在线依赖；难以快速撤销</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>允许列表分发</td>
+          <td>mDL 的信任锚供应</td>
+          <td>离线验证友好</td>
+          <td>难以快速撤销发行者</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>LVVC</td>
+          <td>独立有效性令牌；不续签 = 撤销</td>
+          <td>减少关联性；更新数据量小</td>
+          <td>持有者需定期联系发行者</td>
+      </tr>
+      <tr>
+          <td><strong>D. 治理感知</strong></td>
+          <td>层级管理</td>
+          <td>本地 vs 全局范围；委托规则</td>
+          <td>适合大型组织；跨生态互操作</td>
+          <td>防滥用；审计要求</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>联合撤销</td>
+          <td>多司法管辖共识；跨账本桥接</td>
+          <td>跨生态互操作</td>
+          <td>治理复杂性；延迟</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>自适应策略</td>
+          <td>情境感知规则；威胁驱动撤销</td>
+          <td>对异构性的韧性</td>
+          <td>系统复杂性高</td>
+      </tr>
+      <tr>
+          <td><strong>E. DID 注销</strong></td>
+          <td>控制者主动注销</td>
+          <td>恢复密钥禁用控制</td>
+          <td>强用户自主性</td>
+          <td>需与 VC 撤销同步</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>行政撤销</td>
+          <td>管理员或监管者干预</td>
+          <td>紧急处理</td>
+          <td>过度中心化风险</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>密钥妥协响应</td>
+          <td>多签恢复；基于事件的撤销信号</td>
+          <td>防止标识符劫持</td>
+          <td>永久丢失风险</td>
+      </tr>
+  </tbody>
+</table>
 <hr>
 <h2 id="十结论">十、结论<a hidden class="anchor" aria-hidden="true" href="#十结论">#</a></h2>
 <p>论文的核心结论是：SSI 中没有单一撤销方案能同时满足所有需求，每种方案均有不同的权衡关系。</p>

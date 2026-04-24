@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Mon, 30 Mar 2026 14:01:58 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2026 12:11:32 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/blockchain/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Prevoke：一种保护隐私的可配置可验证凭证撤销方案</title>
+      <link>http://localhost:1313/blockchain/prevoke-privacy-preserving-vc-revocation/</link>
+      <pubDate>Mon, 06 Apr 2026 12:11:32 +0800</pubDate>
+      <guid>http://localhost:1313/blockchain/prevoke-privacy-preserving-vc-revocation/</guid>
+      <description>Prevoke 是一种面向自我主权身份（SSI）系统的可验证凭证撤销方案，通过将布隆过滤器（Bloom Filter）与默克尔树累加器（Merkle Tree Accumulator）结合，并部署在以太坊智能合约上，首次同时满足了 PR1（不暴露持有者与验证者关联）、PR2（不泄露被撤销持有者身份）、PR3（不泄露撤销率）三大隐私需求。本文从背景知识、隐私需求、系统设计、算法流程到实验评估进行了全面介绍，适合区块链与身份认证领域的初学者阅读。</description>
+    </item>
     <item>
       <title>SSI 中的VC撤销与 DID 注销</title>
       <link>http://localhost:1313/blockchain/ssi-credential-revocation-did-deactivation-survey/</link>
