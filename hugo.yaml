@@ -17,6 +17,10 @@ defaultContentLanguage: zh # 顶部首先展示的语言界面
 defaultContentLanguageInSubdir: false # 是否要在地址栏加上默认的语言代码
 ignoreFiles:
   - "content/obsidian/.*"
+  - "content/music/.*"
+  - "content/reading-notes/.*"
+  - "content/java-notes/core-java_volume_1.md"
+  - "content/java-notes/design-patterns.md"
 params:
 
   #配置数学公式
@@ -76,7 +80,7 @@ params:
   - java-notes
   # - music
   # - reading-notes
-  #- obsidian
+  # - obsidian
 
   # 评论系统
   enableGiscus: true

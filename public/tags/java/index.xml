@@ -7,15 +7,8 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Fri, 10 Apr 2026 19:04:09 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 07 Dec 2025 16:33:25 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/java/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>设计模式-JAVA</title>
-      <link>http://localhost:1313/java-notes/design-patterns/</link>
-      <pubDate>Fri, 10 Apr 2026 19:04:09 +0800</pubDate>
-      <guid>http://localhost:1313/java-notes/design-patterns/</guid>
-      <description>本文记录了关于 Java 后端开发中设计模式的实践思考，.内容涵盖单例、工厂模式的应用及范式化设计建议</description>
-    </item>
     <item>
       <title>算法刷题必备：Java集合与算法模板</title>
       <link>http://localhost:1313/java-notes/algorithm-with-java/</link>

@@ -16,12 +16,5 @@
       <guid>http://localhost:1313/java-notes/core-java_volume_1/</guid>
       <description>深入解析 Java 核心技术卷一，重点整理 JVM 运行机制、对象构造、继承与接口、泛型编程以及 Swing 之外的所有后端必备基础。适合初学者巩固及开发者查漏补缺。</description>
     </item>
-    <item>
-      <title>Books 2026</title>
-      <link>http://localhost:1313/reading-notes/books-2026/</link>
-      <pubDate>Wed, 04 Mar 2026 22:14:00 +0800</pubDate>
-      <guid>http://localhost:1313/reading-notes/books-2026/</guid>
-      <description>这是我在2026年里的书单，以及相应的思考和学习笔记大杂烩</description>
-    </item>
   </channel>
 </rss>

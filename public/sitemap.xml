@@ -2,40 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/blockchain/</loc>
+    <lastmod>2026-04-06T12:11:32+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2026-04-10T19:04:09+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/java/</loc>
-    <lastmod>2026-04-10T19:04:09+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/java-notes/</loc>
-    <lastmod>2026-04-10T19:04:09+08:00</lastmod>
+    <lastmod>2026-04-06T12:11:32+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-04-10T19:04:09+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-04-10T19:04:09+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0-j/</loc>
-    <lastmod>2026-04-10T19:04:09+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2026-04-10T19:04:09+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/java-notes/design-patterns/</loc>
-    <lastmod>2026-04-10T19:04:09+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/java-notes/core-java_volume_1/</loc>
-    <lastmod>2026-04-08T09:57:34+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/java-se/</loc>
-    <lastmod>2026-04-08T09:57:34+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-04-08T09:57:34+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blockchain/</loc>
     <lastmod>2026-04-06T12:11:32+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blockchain/prevoke-privacy-preserving-vc-revocation/</loc>
@@ -45,6 +18,9 @@
     <lastmod>2026-04-06T12:11:32+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/ssi/</loc>
+    <lastmod>2026-04-06T12:11:32+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-04-06T12:11:32+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/vc/</loc>
@@ -122,33 +98,6 @@
     <loc>http://localhost:1313/tags/decentralized-identity/</loc>
     <lastmod>2026-03-20T14:12:28+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/reading-notes/books-2026/</loc>
-    <lastmod>2026-03-04T22:14:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/reading-notes/</loc>
-    <lastmod>2026-03-04T22:14:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-03-04T22:14:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2026-03-04T22:14:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/music/</loc>
-    <lastmod>2026-01-30T19:01:57+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/music/guitar-by-changyu/</loc>
-    <lastmod>2026-01-30T19:01:57+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/%E5%90%89%E4%BB%96/</loc>
-    <lastmod>2026-01-30T19:01:57+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E9%9F%B3%E4%B9%90/</loc>
-    <lastmod>2026-01-30T19:01:57+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/%E9%9F%B3%E4%B9%90%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2026-01-30T19:01:57+08:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/openid/</loc>
     <lastmod>2026-01-21T21:20:09+08:00</lastmod>
   </url><url>
@@ -224,6 +173,9 @@
     <loc>http://localhost:1313/tags/%E5%B0%BE%E4%B8%8D%E7%AD%89%E5%BC%8F/</loc>
     <lastmod>2025-12-21T15:50:54+08:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/java-notes/</loc>
+    <lastmod>2025-12-17T21:01:53+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/redis/</loc>
     <lastmod>2025-12-17T21:01:53+08:00</lastmod>
   </url><url>
@@ -237,6 +189,9 @@
     <lastmod>2025-12-17T21:01:53+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/%E7%BC%93%E5%AD%98/</loc>
+    <lastmod>2025-12-17T21:01:53+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0-j/</loc>
     <lastmod>2025-12-17T21:01:53+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
@@ -322,6 +277,9 @@
   </url><url>
     <loc>http://localhost:1313/blockchain/linking-souls-to-humans/</loc>
     <lastmod>2025-12-08T10:50:12+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/java/</loc>
+    <lastmod>2025-12-07T16:33:25+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/leetcode/</loc>
     <lastmod>2025-12-07T16:33:25+08:00</lastmod>

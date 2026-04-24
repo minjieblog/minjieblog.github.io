@@ -7,15 +7,8 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Fri, 10 Apr 2026 19:04:09 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2026 12:11:32 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>技术笔记-J</title>
-      <link>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0-j/</link>
-      <pubDate>Fri, 10 Apr 2026 19:04:09 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0-j/</guid>
-      <description></description>
-    </item>
     <item>
       <title>区块链论文</title>
       <link>http://localhost:1313/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%AE%BA%E6%96%87/</link>
@@ -24,24 +17,17 @@
       <description></description>
     </item>
     <item>
-      <title>读书笔记</title>
-      <link>http://localhost:1313/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Wed, 04 Mar 2026 22:14:00 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>音乐</title>
-      <link>http://localhost:1313/categories/%E9%9F%B3%E4%B9%90/</link>
-      <pubDate>Fri, 30 Jan 2026 19:01:57 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E9%9F%B3%E4%B9%90/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>研究生课程</title>
       <link>http://localhost:1313/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%AF%BE%E7%A8%8B/</link>
       <pubDate>Mon, 29 Dec 2025 13:25:26 +0800</pubDate>
       <guid>http://localhost:1313/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%AF%BE%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>技术笔记-J</title>
+      <link>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0-j/</link>
+      <pubDate>Wed, 17 Dec 2025 21:01:53 +0800</pubDate>
+      <guid>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0-j/</guid>
       <description></description>
     </item>
     <item>

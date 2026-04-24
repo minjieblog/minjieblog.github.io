@@ -7,22 +7,8 @@
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Fri, 10 Apr 2026 19:04:09 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 17 Dec 2025 21:01:53 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0-j/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>设计模式-JAVA</title>
-      <link>http://localhost:1313/java-notes/design-patterns/</link>
-      <pubDate>Fri, 10 Apr 2026 19:04:09 +0800</pubDate>
-      <guid>http://localhost:1313/java-notes/design-patterns/</guid>
-      <description>本文记录了关于 Java 后端开发中设计模式的实践思考，.内容涵盖单例、工厂模式的应用及范式化设计建议</description>
-    </item>
-    <item>
-      <title>Java 核心技术 卷 I：基础知识 - 学习笔记</title>
-      <link>http://localhost:1313/java-notes/core-java_volume_1/</link>
-      <pubDate>Wed, 08 Apr 2026 09:57:34 +0800</pubDate>
-      <guid>http://localhost:1313/java-notes/core-java_volume_1/</guid>
-      <description>深入解析 Java 核心技术卷一，重点整理 JVM 运行机制、对象构造、继承与接口、泛型编程以及 Swing 之外的所有后端必备基础。适合初学者巩固及开发者查漏补缺。</description>
-    </item>
     <item>
       <title>黑马点评项目笔记</title>
       <link>http://localhost:1313/java-notes/hmdp/</link>
