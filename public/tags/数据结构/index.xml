@@ -4,11 +4,18 @@
     <title>数据结构 on Minjie&#39;s Blog</title>
     <link>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
     <description>Recent content in 数据结构 on Minjie&#39;s Blog</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.146.7</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Sun, 07 Dec 2025 16:33:25 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 06 Sep 2026 23:34:32 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 面试算法手册：数据结构、刷题模板与 AI 算法</title>
+      <link>http://localhost:1313/interview-notes/python-algorithm-cheatsheet/</link>
+      <pubDate>Sun, 06 Sep 2026 23:34:32 +0800</pubDate>
+      <guid>http://localhost:1313/interview-notes/python-algorithm-cheatsheet/</guid>
+      <description>系统整理 Python 容器、二分、双指针、树、图、动态规划，以及线性回归、K-Means、PCA、Attention 等面试手写模板，附复杂度、输入约定和易错点。</description>
+    </item>
     <item>
       <title>算法刷题必备：Java集合与算法模板</title>
       <link>http://localhost:1313/java-notes/algorithm-with-java/</link>

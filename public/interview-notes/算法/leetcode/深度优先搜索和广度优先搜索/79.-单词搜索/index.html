@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="ref
@@ -71,16 +71,16 @@ class Solution {
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/">
 <noscript>
     <style>
         #theme-toggle,
@@ -169,13 +169,135 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="ref class Solution { //深度优先&#43;回溯， int[][] directions = {{0,1},{0,-1},{1,0},{-1,0}}; public boolean exist(char[][] board, String word) { int row = board.length; int col = board[0].length; boolean[][] visited = new boolean[row][col]; for (int i = 0; i &lt; row; i&#43;&#43;) { for (int j = 0; j &lt; col; j&#43;&#43;) { if (dfs(i,j,board,word,0,visited)) { return true; } } } return false; } public boolean dfs(int row, int col, char[][] board, String word, int index, boolean[][] visited) { if (index == word.length()) { return true; } if (row &lt; 0 || row &gt;= board.length || col &lt; 0 || col &gt;= board[0].length || word.charAt(index) != board[row][col] || visited[row][col] == true) { return false; } visited[row][col] = true; // 对当前的路径进行标记，避免重复访问 for (int[] dir : directions) { int curRow = row &#43; dir[0]; int curRol = col &#43; dir[1]; if (dfs(curRow, curRol, board, word, index &#43; 1, visited)) { return true; } } visited[row][col] = false; // 回溯，使得其他路径可以访问当前路径的元素 return false; } } 八皇后写法 class Solution { public boolean exist(char[][] board, String word) { int l = board.length; int w = board[0].length; boolean[][] visited = new boolean[l][w]; for(int i=0;i&lt;l;i&#43;&#43;){ for(int j=0;j&lt;w;j&#43;&#43;){ if(pd(board,visited,word,0,i,j)) return true; } } return false; } public boolean pd(char[][] board,boolean visited[][],String word,int index,int i,int j){ if(index == word.length()) return true; if(i&lt;0||i&gt;=board.length||j&lt;0||j&gt;=board[0].length||visited[i][j]||board[i][j] != word.charAt(index)) return false; visited[i][j] = true; boolean res = pd(board,visited,word,index&#43;1,i&#43;1,j)|pd(board,visited,word,index&#43;1,i,j&#43;1)|pd(board,visited,word,index&#43;1,i-1,j)|pd(board,visited,word,index&#43;1,i,j-1); visited[i][j] = false; return res; } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="ref
+class Solution {
+    //深度优先&#43;回溯，
+    
+    int[][] directions = {{0,1},{0,-1},{1,0},{-1,0}};  
+    public boolean exist(char[][] board, String word) {
+        int row = board.length;
+        int col = board[0].length;
+        boolean[][] visited = new boolean[row][col];
+        for (int i = 0; i &lt; row; i&#43;&#43;) {
+            for (int j = 0; j &lt; col; j&#43;&#43;) {
+                    if (dfs(i,j,board,word,0,visited)) {
+                        return true;
+                    }
+                } 
+            }
+            return false;
+    }
+   
+    public boolean dfs(int row, int col, char[][] board, String word, int index, boolean[][] visited) {
+        if (index == word.length()) {
+            return true;
+        }
+        if (row &lt; 0 || row &gt;= board.length || col &lt; 0 || col &gt;= board[0].length || word.charAt(index) != board[row][col] || visited[row][col] == true) {
+            return false;
+        }
+        visited[row][col] = true; // 对当前的路径进行标记，避免重复访问
+        for (int[] dir : directions) {
+            int curRow = row &#43; dir[0];
+            int curRol = col &#43; dir[1];
+            if (dfs(curRow, curRol, board, word, index &#43; 1, visited)) {
+                return true;
+            }
+        }
+        visited[row][col] = false; // 回溯，使得其他路径可以访问当前路径的元素
+        return false;
+
+    }
+}
+八皇后写法
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int l = board.length;
+        int w = board[0].length;
+        boolean[][] visited = new boolean[l][w];
+        for(int i=0;i&lt;l;i&#43;&#43;){
+            for(int j=0;j&lt;w;j&#43;&#43;){
+                if(pd(board,visited,word,0,i,j)) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean pd(char[][] board,boolean visited[][],String word,int index,int i,int j){
+        if(index == word.length()) return true;
+        if(i&lt;0||i&gt;=board.length||j&lt;0||j&gt;=board[0].length||visited[i][j]||board[i][j] != word.charAt(index)) return false;
+        visited[i][j] = true;
+        boolean res = pd(board,visited,word,index&#43;1,i&#43;1,j)|pd(board,visited,word,index&#43;1,i,j&#43;1)|pd(board,visited,word,index&#43;1,i-1,j)|pd(board,visited,word,index&#43;1,i,j-1);
+        visited[i][j] = false;
+        return res;
+    }
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "ref class Solution { //深度优先+回溯， int[][] directions = {{0,1},{0,-1},{1,0},{-1,0}}; public boolean exist(char[][] board, String word) { int row = board.length; int col = board[0].length; boolean[][] visited = new boolean[row][col]; for (int i = 0; i \u0026lt; row; i++) { for (int j = 0; j \u0026lt; col; j++) { if (dfs(i,j,board,word,0,visited)) { return true; } } } return false; } public boolean dfs(int row, int col, char[][] board, String word, int index, boolean[][] visited) { if (index == word.length()) { return true; } if (row \u0026lt; 0 || row \u0026gt;= board.length || col \u0026lt; 0 || col \u0026gt;= board[0].length || word.charAt(index) != board[row][col] || visited[row][col] == true) { return false; } visited[row][col] = true; // 对当前的路径进行标记，避免重复访问 for (int[] dir : directions) { int curRow = row + dir[0]; int curRol = col + dir[1]; if (dfs(curRow, curRol, board, word, index + 1, visited)) { return true; } } visited[row][col] = false; // 回溯，使得其他路径可以访问当前路径的元素 return false; } } 八皇后写法 class Solution { public boolean exist(char[][] board, String word) { int l = board.length; int w = board[0].length; boolean[][] visited = new boolean[l][w]; for(int i=0;i\u0026lt;l;i++){ for(int j=0;j\u0026lt;w;j++){ if(pd(board,visited,word,0,i,j)) return true; } } return false; } public boolean pd(char[][] board,boolean visited[][],String word,int index,int i,int j){ if(index == word.length()) return true; if(i\u0026lt;0||i\u0026gt;=board.length||j\u0026lt;0||j\u0026gt;=board[0].length||visited[i][j]||board[i][j] != word.charAt(index)) return false; visited[i][j] = true; boolean res = pd(board,visited,word,index+1,i+1,j)|pd(board,visited,word,index+1,i,j+1)|pd(board,visited,word,index+1,i-1,j)|pd(board,visited,word,index+1,i,j-1); visited[i][j] = false; return res; } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "ref class Solution { //深度优先+回溯， int[][] directions = {{0,1},{0,-1},{1,0},{-1,0}}; public boolean exist(char[][] board, String word) { int row = board.length; int col = board[0].length; boolean[][] visited = new boolean[row][col]; for (int i = 0; i \u003c row; i++) { for (int j = 0; j \u003c col; j++) { if (dfs(i,j,board,word,0,visited)) { return true; } } } return false; } public boolean dfs(int row, int col, char[][] board, String word, int index, boolean[][] visited) { if (index == word.length()) { return true; } if (row \u003c 0 || row \u003e= board.length || col \u003c 0 || col \u003e= board[0].length || word.charAt(index) != board[row][col] || visited[row][col] == true) { return false; } visited[row][col] = true; // 对当前的路径进行标记，避免重复访问 for (int[] dir : directions) { int curRow = row + dir[0]; int curRol = col + dir[1]; if (dfs(curRow, curRol, board, word, index + 1, visited)) { return true; } } visited[row][col] = false; // 回溯，使得其他路径可以访问当前路径的元素 return false; } } 八皇后写法 class Solution { public boolean exist(char[][] board, String word) { int l = board.length; int w = board[0].length; boolean[][] visited = new boolean[l][w]; for(int i=0;i\u003cl;i++){ for(int j=0;j\u003cw;j++){ if(pd(board,visited,word,0,i,j)) return true; } } return false; } public boolean pd(char[][] board,boolean visited[][],String word,int index,int i,int j){ if(index == word.length()) return true; if(i\u003c0||i\u003e=board.length||j\u003c0||j\u003e=board[0].length||visited[i][j]||board[i][j] != word.charAt(index)) return false; visited[i][j] = true; boolean res = pd(board,visited,word,index+1,i+1,j)|pd(board,visited,word,index+1,i,j+1)|pd(board,visited,word,index+1,i-1,j)|pd(board,visited,word,index+1,i,j-1); visited[i][j] = false; return res; } } ",
+  "wordCount" : "274",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -201,32 +323,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

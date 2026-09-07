@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="/**
@@ -64,16 +64,16 @@ class Solution {
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/101.-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/101.-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/101.-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/101.-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
 <noscript>
     <style>
         #theme-toggle,
@@ -162,13 +162,128 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/101.-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 1.层序遍历，每次删除两个节点，判断轴对称的两个节点的值是否相等，并将他们的左右子节点的轴对称位置添加进行 // 2.递归 public boolean isSymmetric(TreeNode root) { // if (root == null) { // return true; // } // return isMirror(root.left, root.right); if (root == null) { return true; } Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); que.offer(root.left); que.offer(root.right); while (!que.isEmpty()) { int len = que.size(); for (int i = len; i &gt; 0; i -= 2) { TreeNode tmp1 = que.poll(); TreeNode tmp2 = que.poll(); if (tmp1 == null &amp;&amp; tmp2 == null) { continue; } if (tmp1 == null || tmp2 == null || tmp1.val != tmp2.val) { return false; } que.offer(tmp1.left); //轴对称的添加节点 que.offer(tmp2.right); que.offer(tmp1.right); que.offer(tmp2.left); } } return true; } // public boolean isMirror(TreeNode left, TreeNode right) { // if (left == null &amp;&amp; right == null) return true; // if (left == null || right == null) return false; // return left.val == right.val &amp;&amp; isMirror(left.left, right.right) &amp;&amp; isMirror(left.right, right.left); // } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
+ * }
+ */
+class Solution {
+    // 1.层序遍历，每次删除两个节点，判断轴对称的两个节点的值是否相等，并将他们的左右子节点的轴对称位置添加进行
+    // 2.递归
+    public boolean isSymmetric(TreeNode root) {
+    //    if (root == null) {
+    //     return true;
+    //    }
+    //    return isMirror(root.left, root.right);
+        if (root == null) {
+            return true;
+        }
+        Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;();
+        que.offer(root.left);
+        que.offer(root.right);
+        while (!que.isEmpty()) {
+            int len = que.size();
+            for (int i = len; i &gt; 0; i -= 2) {
+                TreeNode tmp1 = que.poll();
+                TreeNode tmp2 = que.poll();
+                if (tmp1 == null &amp;&amp; tmp2 == null) {
+                    continue;
+                }
+                if (tmp1 == null || tmp2 == null || tmp1.val != tmp2.val) {
+                    return false;
+                }
+                que.offer(tmp1.left); //轴对称的添加节点
+                que.offer(tmp2.right);
+                que.offer(tmp1.right);
+                que.offer(tmp2.left);
+            }
+        }
+        return true;
+    }
+
+    // public boolean isMirror(TreeNode left, TreeNode right) {
+    //     if (left == null &amp;&amp; right == null) return true;
+    //     if (left == null || right == null) return false;
+    //     return left.val == right.val &amp;&amp; isMirror(left.left, right.right) &amp;&amp; isMirror(left.right, right.left);
+    // }
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/101.-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 1.层序遍历，每次删除两个节点，判断轴对称的两个节点的值是否相等，并将他们的左右子节点的轴对称位置添加进行 // 2.递归 public boolean isSymmetric(TreeNode root) { // if (root == null) { // return true; // } // return isMirror(root.left, root.right); if (root == null) { return true; } Queue\u0026lt;TreeNode\u0026gt; que = new LinkedList\u0026lt;\u0026gt;(); que.offer(root.left); que.offer(root.right); while (!que.isEmpty()) { int len = que.size(); for (int i = len; i \u0026gt; 0; i -= 2) { TreeNode tmp1 = que.poll(); TreeNode tmp2 = que.poll(); if (tmp1 == null \u0026amp;\u0026amp; tmp2 == null) { continue; } if (tmp1 == null || tmp2 == null || tmp1.val != tmp2.val) { return false; } que.offer(tmp1.left); //轴对称的添加节点 que.offer(tmp2.right); que.offer(tmp1.right); que.offer(tmp2.left); } } return true; } // public boolean isMirror(TreeNode left, TreeNode right) { // if (left == null \u0026amp;\u0026amp; right == null) return true; // if (left == null || right == null) return false; // return left.val == right.val \u0026amp;\u0026amp; isMirror(left.left, right.right) \u0026amp;\u0026amp; isMirror(left.right, right.left); // } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 1.层序遍历，每次删除两个节点，判断轴对称的两个节点的值是否相等，并将他们的左右子节点的轴对称位置添加进行 // 2.递归 public boolean isSymmetric(TreeNode root) { // if (root == null) { // return true; // } // return isMirror(root.left, root.right); if (root == null) { return true; } Queue\u003cTreeNode\u003e que = new LinkedList\u003c\u003e(); que.offer(root.left); que.offer(root.right); while (!que.isEmpty()) { int len = que.size(); for (int i = len; i \u003e 0; i -= 2) { TreeNode tmp1 = que.poll(); TreeNode tmp2 = que.poll(); if (tmp1 == null \u0026\u0026 tmp2 == null) { continue; } if (tmp1 == null || tmp2 == null || tmp1.val != tmp2.val) { return false; } que.offer(tmp1.left); //轴对称的添加节点 que.offer(tmp2.right); que.offer(tmp1.right); que.offer(tmp2.left); } } return true; } // public boolean isMirror(TreeNode left, TreeNode right) { // if (left == null \u0026\u0026 right == null) return true; // if (left == null || right == null) return false; // return left.val == right.val \u0026\u0026 isMirror(left.left, right.right) \u0026\u0026 isMirror(left.right, right.left); // } } ",
+  "wordCount" : "272",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/101.-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -194,32 +309,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

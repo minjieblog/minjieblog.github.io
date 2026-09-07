@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="class Solution {
@@ -76,16 +76,16 @@
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">
 <noscript>
     <style>
         #theme-toggle,
@@ -174,13 +174,140 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="class Solution { // 深度优先搜索：往一个方向遍历，走到头就回溯，再往另外一个方向遍历 // 广度优先搜索：从一个位置开始，向他的相邻位置搜索，逐层进行，用队列实现，需要用一个boolean数组进行标记,避免重复 // 岛屿数量这个题是深度优先搜索和广度优先搜索的基础题 // 深度优先代码相对简单，遍历字符数组，过程碰到&#39;1&#39;就进行深搜，深搜的过程只要判断是否越界，元素是否为&#39;1&#39;，对相邻&#39;1&#39;进行深度优先 int[][] pos = {{1,0}, {-1,0},{0,1},{0,-1}}; public int numIslands(char[][] grid) { int m = grid.length; int n = grid[0].length; int num = 0; boolean[][] visited = new boolean[m][n]; for (int i = 0; i &lt; grid.length; i&#43;&#43;) { for (int j = 0; j &lt; grid[0].length; j&#43;&#43;) { if ( grid[i][j] == &#39;1&#39;) { dfs(grid,i,j); num&#43;&#43;; } } } return num; } public void dfs(char[][] grid, int row, int col) { if (row &lt; 0 || row &gt;= grid.length || col &lt; 0 || col &gt;= grid[0].length || grid[row][col] == &#39;0&#39;) { return; } grid[row][col] = &#39;0&#39;; dfs(grid, row &#43; 1, col); dfs(grid, row - 1, col); dfs(grid, row, col &#43; 1); dfs(grid, row, col - 1); } // public void dfs (char[][] grid, int row, int col) { // if (row &lt; 0 || row &gt;= grid.length || col &lt; 0 || col &gt;= grid[0].length || grid[row][col] == &#39;0&#39;) { // return; // } // grid[row][col] = &#39;0&#39;; // dfs(grid, row - 1, col); // dfs(grid, row &#43; 1, col); // dfs(grid, row, col &#43; 1); // dfs(grid, row, col - 1); // } public void bfs(char[][] grid, int row, int col, boolean[][] visited) { grid[row][col] = &#39;0&#39;; visited[row][col] = true; Queue&lt;int[]&gt; que = new LinkedList&lt;&gt;(); que.offer(new int[]{row,col}); while (!que.isEmpty()) { int[] cur = que.poll(); int x = cur[0]; int y = cur[1]; for (int[] tmp : pos) { int curX = tmp[0] &#43; x; int curY = tmp[1] &#43; y; if (curX &lt; 0 || curX &gt;= grid.length || curY &lt; 0 || curY &gt;= grid[0].length || grid[curX][curY] == &#39;0&#39; || visited[curX][curY]) { continue; } que.offer(new int[]{curX, curY}); visited[curX][curY] = true; } } } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="class Solution {
+    // 深度优先搜索：往一个方向遍历，走到头就回溯，再往另外一个方向遍历
+    // 广度优先搜索：从一个位置开始，向他的相邻位置搜索，逐层进行，用队列实现，需要用一个boolean数组进行标记,避免重复
+
+
+     // 岛屿数量这个题是深度优先搜索和广度优先搜索的基础题
+     // 深度优先代码相对简单，遍历字符数组，过程碰到&#39;1&#39;就进行深搜，深搜的过程只要判断是否越界，元素是否为&#39;1&#39;，对相邻&#39;1&#39;进行深度优先 
+    int[][] pos = {{1,0}, {-1,0},{0,1},{0,-1}};
+    public int numIslands(char[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int num = 0;
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0; i &lt; grid.length; i&#43;&#43;) {
+            for (int j = 0; j &lt; grid[0].length; j&#43;&#43;) {
+                if ( grid[i][j] == &#39;1&#39;) {
+                    dfs(grid,i,j);
+                    num&#43;&#43;;
+                }
+            }
+        }
+        return num;
+    }
+    public void dfs(char[][] grid, int row, int col) {
+        if (row &lt; 0 || row &gt;= grid.length || col &lt; 0 || col &gt;= grid[0].length || grid[row][col] == &#39;0&#39;) {
+             return;
+         }
+        
+        grid[row][col] = &#39;0&#39;;
+        dfs(grid, row &#43; 1, col);
+        dfs(grid, row - 1, col);
+        dfs(grid, row, col &#43; 1);
+        dfs(grid, row, col - 1);
+    }
+        
+    // public void dfs (char[][] grid, int row, int col) {
+    //     if (row &lt; 0 || row &gt;= grid.length || col &lt; 0 || col &gt;= grid[0].length || grid[row][col] == &#39;0&#39;) {
+    //         return;
+    //     }
+    //     grid[row][col] = &#39;0&#39;;
+    //     dfs(grid, row - 1, col);
+    //     dfs(grid, row &#43; 1, col);
+    //     dfs(grid, row, col &#43; 1);
+    //     dfs(grid, row, col - 1);
+    // }
+    public void bfs(char[][] grid, int row, int col, boolean[][] visited) {
+        grid[row][col] = &#39;0&#39;;
+        visited[row][col] = true;
+        Queue&lt;int[]&gt; que = new LinkedList&lt;&gt;();
+        que.offer(new int[]{row,col});
+        while (!que.isEmpty()) {
+            int[] cur = que.poll();
+            int x = cur[0];
+            int y = cur[1];
+            for (int[] tmp : pos) {
+                int curX = tmp[0] &#43; x;
+                int curY = tmp[1] &#43; y;
+                if (curX &lt; 0 || curX &gt;= grid.length || curY &lt; 0 || curY &gt;= grid[0].length || grid[curX][curY] == &#39;0&#39; || visited[curX][curY]) {
+                    continue;
+                }
+                que.offer(new int[]{curX, curY});
+                visited[curX][curY] = true;
+            }
+            
+        }
+    }
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "class Solution { // 深度优先搜索：往一个方向遍历，走到头就回溯，再往另外一个方向遍历 // 广度优先搜索：从一个位置开始，向他的相邻位置搜索，逐层进行，用队列实现，需要用一个boolean数组进行标记,避免重复 // 岛屿数量这个题是深度优先搜索和广度优先搜索的基础题 // 深度优先代码相对简单，遍历字符数组，过程碰到\u0026#39;1\u0026#39;就进行深搜，深搜的过程只要判断是否越界，元素是否为\u0026#39;1\u0026#39;，对相邻\u0026#39;1\u0026#39;进行深度优先 int[][] pos = {{1,0}, {-1,0},{0,1},{0,-1}}; public int numIslands(char[][] grid) { int m = grid.length; int n = grid[0].length; int num = 0; boolean[][] visited = new boolean[m][n]; for (int i = 0; i \u0026lt; grid.length; i++) { for (int j = 0; j \u0026lt; grid[0].length; j++) { if ( grid[i][j] == \u0026#39;1\u0026#39;) { dfs(grid,i,j); num++; } } } return num; } public void dfs(char[][] grid, int row, int col) { if (row \u0026lt; 0 || row \u0026gt;= grid.length || col \u0026lt; 0 || col \u0026gt;= grid[0].length || grid[row][col] == \u0026#39;0\u0026#39;) { return; } grid[row][col] = \u0026#39;0\u0026#39;; dfs(grid, row + 1, col); dfs(grid, row - 1, col); dfs(grid, row, col + 1); dfs(grid, row, col - 1); } // public void dfs (char[][] grid, int row, int col) { // if (row \u0026lt; 0 || row \u0026gt;= grid.length || col \u0026lt; 0 || col \u0026gt;= grid[0].length || grid[row][col] == \u0026#39;0\u0026#39;) { // return; // } // grid[row][col] = \u0026#39;0\u0026#39;; // dfs(grid, row - 1, col); // dfs(grid, row + 1, col); // dfs(grid, row, col + 1); // dfs(grid, row, col - 1); // } public void bfs(char[][] grid, int row, int col, boolean[][] visited) { grid[row][col] = \u0026#39;0\u0026#39;; visited[row][col] = true; Queue\u0026lt;int[]\u0026gt; que = new LinkedList\u0026lt;\u0026gt;(); que.offer(new int[]{row,col}); while (!que.isEmpty()) { int[] cur = que.poll(); int x = cur[0]; int y = cur[1]; for (int[] tmp : pos) { int curX = tmp[0] + x; int curY = tmp[1] + y; if (curX \u0026lt; 0 || curX \u0026gt;= grid.length || curY \u0026lt; 0 || curY \u0026gt;= grid[0].length || grid[curX][curY] == \u0026#39;0\u0026#39; || visited[curX][curY]) { continue; } que.offer(new int[]{curX, curY}); visited[curX][curY] = true; } } } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "class Solution { // 深度优先搜索：往一个方向遍历，走到头就回溯，再往另外一个方向遍历 // 广度优先搜索：从一个位置开始，向他的相邻位置搜索，逐层进行，用队列实现，需要用一个boolean数组进行标记,避免重复 // 岛屿数量这个题是深度优先搜索和广度优先搜索的基础题 // 深度优先代码相对简单，遍历字符数组，过程碰到'1'就进行深搜，深搜的过程只要判断是否越界，元素是否为'1'，对相邻'1'进行深度优先 int[][] pos = {{1,0}, {-1,0},{0,1},{0,-1}}; public int numIslands(char[][] grid) { int m = grid.length; int n = grid[0].length; int num = 0; boolean[][] visited = new boolean[m][n]; for (int i = 0; i \u003c grid.length; i++) { for (int j = 0; j \u003c grid[0].length; j++) { if ( grid[i][j] == '1') { dfs(grid,i,j); num++; } } } return num; } public void dfs(char[][] grid, int row, int col) { if (row \u003c 0 || row \u003e= grid.length || col \u003c 0 || col \u003e= grid[0].length || grid[row][col] == '0') { return; } grid[row][col] = '0'; dfs(grid, row + 1, col); dfs(grid, row - 1, col); dfs(grid, row, col + 1); dfs(grid, row, col - 1); } // public void dfs (char[][] grid, int row, int col) { // if (row \u003c 0 || row \u003e= grid.length || col \u003c 0 || col \u003e= grid[0].length || grid[row][col] == '0') { // return; // } // grid[row][col] = '0'; // dfs(grid, row - 1, col); // dfs(grid, row + 1, col); // dfs(grid, row, col + 1); // dfs(grid, row, col - 1); // } public void bfs(char[][] grid, int row, int col, boolean[][] visited) { grid[row][col] = '0'; visited[row][col] = true; Queue\u003cint[]\u003e que = new LinkedList\u003c\u003e(); que.offer(new int[]{row,col}); while (!que.isEmpty()) { int[] cur = que.poll(); int x = cur[0]; int y = cur[1]; for (int[] tmp : pos) { int curX = tmp[0] + x; int curY = tmp[1] + y; if (curX \u003c 0 || curX \u003e= grid.length || curY \u003c 0 || curY \u003e= grid[0].length || grid[curX][curY] == '0' || visited[curX][curY]) { continue; } que.offer(new int[]{curX, curY}); visited[curX][curY] = true; } } } } ",
+  "wordCount" : "489",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -206,32 +333,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

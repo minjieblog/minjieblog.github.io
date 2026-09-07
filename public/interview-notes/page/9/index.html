@@ -185,90 +185,6 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>class Solution { List&lt;List&lt;Integer&gt;&gt; edges; //存储邻接矩阵 int[] visited; boolean valid = true; public boolean canFinish(int numCourses, int[][] prerequisites) { edges = new ArrayList&lt;&gt;(); //初始化邻接矩阵的列 for (int i = 0; i &lt; numCourses; i&#43;&#43;) { edges.add(new ArrayList&lt;Integer&gt;()); } //给每一列都添加他的后置课程 for (int[] info : prerequisites) { edges.get(info[1]).add(info[0]); } //遍历每一个课程，和vaild值一起进行dfs，判断每一个课程是否可以学习完成 visited = new int[numCourses]; for (int i = 0; i &lt; numCourses &amp;&amp; valid ; i&#43;&#43;) { if (visited[i] == 0) { dfs(i); } } return valid; } public void dfs(int u) { visited[u] = 1; //表示正在被访问 for (int v : edges.get(u)) { if (visited[v] == 0) { dfs(v); if (!valid) { return; } //当出现有一个环的时候即为false }else if(visited[v] == 1) { valid = false; return; } } visited[u] = 2; //代表该门课程可以学习完成 } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/207.-%E8%AF%BE%E7%A8%8B%E8%A1%A8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>// 定义前缀树的节点，每个节点有一个子数组和标志位，标志位代表该节点是否为最终节点 // insert方法插入字符串，若当前节点的子数组中的对应索引位置为空，则新建前缀树的节点 // search 和 startWiths的区别在于search需要判断返回节点的isEnd属性 class TrieNode { TrieNode[] children; boolean isEnd; TrieNode() { children = new TrieNode[26]; isEnd = false; } } class Trie { TrieNode root; public Trie() { root = new TrieNode(); } public void insert(String word) { TrieNode node = root; for (int i = 0; i &lt; word.length(); i&#43;&#43;) { int index = word.charAt(i) - &#39;a&#39;; if (node.children[index] == null){ node.children[index] = new TrieNode(); } node = node.children[index]; } node.isEnd = true; } public boolean search(String word) { TrieNode node = searchPrefix(word); return node != null &amp;&amp; node.isEnd; } public boolean startsWith(String prefix) { TrieNode node = searchPrefix(prefix); return node != null; } public TrieNode searchPrefix(String word) { TrieNode node = root; for (int i = 0; i &lt; word.length(); i&#43;&#43;) { int index = word.charAt(i) - &#39;a&#39;; if (node.children[index] == null) { return null; } node = node.children[index]; } return node; } } /** * Your Trie object will be instantiated and called as such: * Trie obj = new Trie(); * obj.insert(word); * boolean param_2 = obj.search(word); * boolean param_3 = obj.startsWith(prefix); */ </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { //使用构建图，使用HashMap存储节点和比率 //对每个查询使用DFS查询两个节点是否存在连接，并计算比率 // putIfAbsent方法 V putIfAbsent(K key, V value); // 如果之前 Map 中没有这个键，那么返回 null。 // 如果之前已经有这个键了，那么返回该键之前关联的值，并且不会替换已有的值。 HashMap&lt;String, HashMap&lt;String, Double&gt;&gt; hs = new HashMap&lt;&gt;(); public double[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, double[] values, List&lt;List&lt;String&gt;&gt; queries) { for (int i = 0; i &lt; equations.size(); i&#43;&#43;) { String u = equations.get(i).get(0); String v = equations.get(i).get(1); double k = values[i]; // 构建图 hs.putIfAbsent(u, new HashMap&lt;&gt;()); hs.putIfAbsent(v, new HashMap&lt;&gt;()); hs.get(u).put(v, k); hs.get(v).put(u, 1 / k); } double[] res = new double[queries.size()]; for (int i = 0; i &lt; queries.size(); i&#43;&#43;) { String u = queries.get(i).get(0); String v = queries.get(i).get(1); if (!hs.containsKey(u) || !hs.containsKey(v)) { res[i] = -1.0; } else { res[i] = dfs(u, v, new HashSet&lt;String&gt;()); } } return res; } public double dfs(String start, String end, HashSet&lt;String&gt; visited) { if (hs.get(start).containsKey(end)) { //直接包含 return hs.get(start).get(end); } visited.add(start); for (Map.Entry&lt;String, Double&gt; neighbor : hs.get(start).entrySet()) { if (!visited.contains(neighbor.getKey())) { double path = dfs(neighbor.getKey(), end, visited); if (path != -1.0) { return path*neighbor.getValue(); } } } return -1.0; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { // O（n）就不能是排序 // 用HashSet存储所有元素 // 对于一个最长序列hashSet中一定不包含当前的nums[i] - 1; // 判断是否存在nums[i] &#43; 1; public int longestConsecutive(int[] nums) { if (nums.length == 0) { return 0; } HashSet&lt;Integer&gt; hs = new HashSet&lt;&gt;(); for (int i = 0; i &lt; nums.length; i&#43;&#43;) { hs.add(nums[i]); } int max = 1; for (int num : nums) { if (hs.contains(num - 1)) { continue; } int maxTmp = 1; while (hs.contains(num &#43; 1)) { num &#43;= 1; maxTmp&#43;&#43;; } max = Math.max(maxTmp, max); } return max; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/128.-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { public int majorityElement(int[] nums) { //hashmap 使用HashMap,若其中存在，则value &#43; 1,不存在则将相应的key添加进去 Map&lt;Integer,Integer&gt; map = new HashMap(); for(int num: nums){ map.put(num,map.getOrDefault(num,0)&#43;1); if(map.get(num) &gt; nums.length /2){ return num; } } return -1; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/169.-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0---%E5%89%AF%E6%9C%AC-3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { public int majorityElement(int[] nums) { //hashmap 使用HashMap,若其中存在，则value &#43; 1,不存在则将相应的key添加进去 Map&lt;Integer,Integer&gt; map = new HashMap(); for(int num: nums){ map.put(num,map.getOrDefault(num,0)&#43;1); if(map.get(num) &gt; nums.length /2){ return num; } } return -1; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/169.-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { public boolean isValid(String s) { // 字符串中出现左括号就将右括号压入栈中， // 出现右括号就与栈顶的元素匹配,判断栈顶的元素是不是对应的右括号 // 不匹配则返回false // 最终需要检查栈是否为空 // 不为空说明还有未匹配的左括号 Deque&lt;Character&gt; stack = new LinkedList&lt;&gt;(); for (int i = 0; i &lt; s.length(); i&#43;&#43;) { if (s.charAt(i) == &#39;(&#39; || s.charAt(i) == &#39;{&#39; || s.charAt(i) == &#39;[&#39;) { stack.push(s.charAt(i)); } else { if (stack.isEmpty()) { return false; } char top = stack.pop(); if (s.charAt(i) == &#39;]&#39; &amp;&amp; top != &#39;[&#39; || (s.charAt(i) == &#39;}&#39; &amp;&amp; top != &#39;{&#39;) || (s.charAt(i) == &#39;)&#39; &amp;&amp; top != &#39;(&#39;)) { return false; } } } return stack.isEmpty(); //不匹配说明有多余的左括号 } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/20.-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
     <p>class Solution { // 时间复杂度O(n)，空间复杂度O(1) public int lengthOfLongestSubstring(String s) { if (s.length() == 0) { return 0; } // HashSet &#43; 滑动窗口 or HashMap &#43; 滑动窗口 HashMap&lt;Character, Integer&gt; hs = new HashMap&lt;&gt;(); int left = 0, right = 0, max = Integer.MIN_VALUE; while (right &lt; s.length()) { char c = s.charAt(right); if (hs.containsKey(c) &amp;&amp; hs.get(c) &gt;= left) { //发现重复字符且重复字符的位置 &gt; 左边界 left = hs.get(c) &#43; 1; // left 的下一个位置是上一次出现重复的位置加1 } hs.put(c, right); max = Math.max(right - left &#43; 1, max); right&#43;&#43;; } return max; } } </p>
   </div>
   <footer class="entry-footer"></footer>
@@ -297,6 +213,90 @@ code.has-jax {
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/438.-%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 方法1：暴力，两重for循环，第一重for循环代表开头，第二重for循环代表结尾，遍历求和， 时间复杂度O（n^2） // 方法2：前缀和&#43;HashMap，类似于两数之和，用hashmap可以降时间复杂度 // public int subarraySum(int[] nums, int k) { int pre = 0; int count = 0; HashMap&lt;Integer,Integer&gt; hs = new HashMap&lt;&gt;(); // hashput存储的是前缀和 hs.put(0,1); //连续子数组，什么都没有默认为0 for (int i = 0; i &lt; nums.length; i&#43;&#43;) { pre &#43;= nums[i]; if (hs.containsKey(pre - k)) { count &#43;= hs.get(pre - k); } hs.put(pre, hs.getOrDefault(pre, 0) &#43; 1); } return count; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/560.-%E5%92%8C%E4%B8%BA-k-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 深度优先搜索：往一个方向遍历，走到头就回溯，再往另外一个方向遍历 // 广度优先搜索：从一个位置开始，向他的相邻位置搜索，逐层进行，用队列实现，需要用一个boolean数组进行标记,避免重复 // 岛屿数量这个题是深度优先搜索和广度优先搜索的基础题 // 深度优先代码相对简单，遍历字符数组，过程碰到&#39;1&#39;就进行深搜，深搜的过程只要判断是否越界，元素是否为&#39;1&#39;，对相邻&#39;1&#39;进行深度优先 int[][] pos = {{1,0}, {-1,0},{0,1},{0,-1}}; public int numIslands(char[][] grid) { int m = grid.length; int n = grid[0].length; int num = 0; boolean[][] visited = new boolean[m][n]; for (int i = 0; i &lt; grid.length; i&#43;&#43;) { for (int j = 0; j &lt; grid[0].length; j&#43;&#43;) { if ( grid[i][j] == &#39;1&#39;) { dfs(grid,i,j); num&#43;&#43;; } } } return num; } public void dfs(char[][] grid, int row, int col) { if (row &lt; 0 || row &gt;= grid.length || col &lt; 0 || col &gt;= grid[0].length || grid[row][col] == &#39;0&#39;) { return; } grid[row][col] = &#39;0&#39;; dfs(grid, row &#43; 1, col); dfs(grid, row - 1, col); dfs(grid, row, col &#43; 1); dfs(grid, row, col - 1); } // public void dfs (char[][] grid, int row, int col) { // if (row &lt; 0 || row &gt;= grid.length || col &lt; 0 || col &gt;= grid[0].length || grid[row][col] == &#39;0&#39;) { // return; // } // grid[row][col] = &#39;0&#39;; // dfs(grid, row - 1, col); // dfs(grid, row &#43; 1, col); // dfs(grid, row, col &#43; 1); // dfs(grid, row, col - 1); // } public void bfs(char[][] grid, int row, int col, boolean[][] visited) { grid[row][col] = &#39;0&#39;; visited[row][col] = true; Queue&lt;int[]&gt; que = new LinkedList&lt;&gt;(); que.offer(new int[]{row,col}); while (!que.isEmpty()) { int[] cur = que.poll(); int x = cur[0]; int y = cur[1]; for (int[] tmp : pos) { int curX = tmp[0] &#43; x; int curY = tmp[1] &#43; y; if (curX &lt; 0 || curX &gt;= grid.length || curY &lt; 0 || curY &gt;= grid[0].length || grid[curX][curY] == &#39;0&#39; || visited[curX][curY]) { continue; } que.offer(new int[]{curX, curY}); visited[curX][curY] = true; } } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/200.-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ref class Solution { //深度优先&#43;回溯， int[][] directions = {{0,1},{0,-1},{1,0},{-1,0}}; public boolean exist(char[][] board, String word) { int row = board.length; int col = board[0].length; boolean[][] visited = new boolean[row][col]; for (int i = 0; i &lt; row; i&#43;&#43;) { for (int j = 0; j &lt; col; j&#43;&#43;) { if (dfs(i,j,board,word,0,visited)) { return true; } } } return false; } public boolean dfs(int row, int col, char[][] board, String word, int index, boolean[][] visited) { if (index == word.length()) { return true; } if (row &lt; 0 || row &gt;= board.length || col &lt; 0 || col &gt;= board[0].length || word.charAt(index) != board[row][col] || visited[row][col] == true) { return false; } visited[row][col] = true; // 对当前的路径进行标记，避免重复访问 for (int[] dir : directions) { int curRow = row &#43; dir[0]; int curRol = col &#43; dir[1]; if (dfs(curRow, curRol, board, word, index &#43; 1, visited)) { return true; } } visited[row][col] = false; // 回溯，使得其他路径可以访问当前路径的元素 return false; } } 八皇后写法 class Solution { public boolean exist(char[][] board, String word) { int l = board.length; int w = board[0].length; boolean[][] visited = new boolean[l][w]; for(int i=0;i&lt;l;i&#43;&#43;){ for(int j=0;j&lt;w;j&#43;&#43;){ if(pd(board,visited,word,0,i,j)) return true; } } return false; } public boolean pd(char[][] board,boolean visited[][],String word,int index,int i,int j){ if(index == word.length()) return true; if(i&lt;0||i&gt;=board.length||j&lt;0||j&gt;=board[0].length||visited[i][j]||board[i][j] != word.charAt(index)) return false; visited[i][j] = true; boolean res = pd(board,visited,word,index&#43;1,i&#43;1,j)|pd(board,visited,word,index&#43;1,i,j&#43;1)|pd(board,visited,word,index&#43;1,i-1,j)|pd(board,visited,word,index&#43;1,i,j-1); visited[i][j] = false; return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/79.-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 矮个子插队，高个子看不见；所以我们可以先安排高个子的位置，再通过插队的方式安排矮个子的位置 // 身高从大到小排（身高相同k小的站前面） //先按照身高h降序排序，这样处理时可以确保当前插入的元素之前的所有元素身高都不小于它，从而简化位置的确定。 //如果身高相同，则按照序号k升序排序，因为身高相同的情况下，序号小的人应该排在前面 public int[][] reconstructQueue(int[][] people) { Arrays.sort(people, (a,b) -&gt; b[0] == a[0]? a[1] - b[1] : b[0] - a[0]); List&lt;int[]&gt; list = new ArrayList&lt;&gt;(); for (int i = 0; i &lt; people.length; i&#43;&#43;) { list.add(people[i][1], people[i]); } return list.toArray(new int[list.size()][2]); // list.toArray将list转成array } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/253.-%E4%BC%9A%E8%AE%AE%E5%AE%A4ii/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 矮个子插队，高个子看不见；所以我们可以先安排高个子的位置，再通过插队的方式安排矮个子的位置 // 身高从大到小排（身高相同k小的站前面） //先按照身高h降序排序，这样处理时可以确保当前插入的元素之前的所有元素身高都不小于它，从而简化位置的确定。 //如果身高相同，则按照序号k升序排序，因为身高相同的情况下，序号小的人应该排在前面 public int[][] reconstructQueue(int[][] people) { Arrays.sort(people, (a,b) -&gt; b[0] == a[0]? a[1] - b[1] : b[0] - a[0]); List&lt;int[]&gt; list = new ArrayList&lt;&gt;(); for (int i = 0; i &lt; people.length; i&#43;&#43;) { list.add(people[i][1], people[i]); } return list.toArray(new int[list.size()][2]); // list.toArray将list转成array } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 贪心 // 先执行次数最多的任务，可以充分利用任务之间的间隔。时间最短 // 每次执行次数最多的任务，考虑优先队列，大根堆 public int leastInterval(char[] tasks, int n) { PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; b-a); int[] count = new int[26]; int res = 0; for (int i = 0; i &lt; tasks.length; i&#43;&#43;) { //对任务计数 count[tasks[i] - &#39;A&#39;]&#43;&#43;; } for (int tmp : count) { // 出现次数大于0的元素才意味着任务需要完成 if (tmp &gt; 0) { pq.offer(tmp); } } while (!pq.isEmpty()) { List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); // list记录一个间隔内完成的任务 for (int i = 0; i &lt;= n; i&#43;&#43;) { if (!pq.isEmpty()) { list.add(pq.poll()); } } for (int t : list) { if ( --t &gt; 0) { pq.offer(t); } } res &#43;= pq.isEmpty() ? list.size() : n &#43; 1; } return res; } // public int leastInterval(char[] tasks, int n) { // // 统计每种任务的出现次数 // int[] count = new int[26]; // for (char task : tasks) { // count[task - &#39;A&#39;]&#43;&#43;; // } // // 创建一个优先队列,存储每种任务的下一次执行时间 // PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; b - a); // for (int c : count) { // if (c &gt; 0) { // pq.offer(c); // } // } // int time = 0; // while (!pq.isEmpty()) { // // 创建一个临时列表,存储当前时间可以执行的任务 // java.util.List&lt;Integer&gt; temp = new java.util.ArrayList&lt;&gt;(); // for (int i = 0; i &lt;= n; i&#43;&#43;) { // if (!pq.isEmpty()) { // temp.add(pq.poll()); // } // } // // 将当前时间可以执行的任务加回优先队列,并更新它们的下一次执行时间 // for (int t : temp) { // if (--t &gt; 0) { // pq.offer(t); // } // } // // 如果优先队列为空,说明所有任务已经完成,返回当前时间 // time &#43;= pq.isEmpty() ? temp.size() : n &#43; 1; // } // return time; // } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/621.-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 用一个列表存储先序遍历的结果，再构建单链表，将列表中的节点的左指针赋值为空，右指针指向列表中的下一个位置 List&lt;TreeNode&gt; res = new ArrayList&lt;&gt;(); public void flatten(TreeNode root) { if (root == null) { return; } preOrder(root); for (int i = 0; i &lt; res.size() - 1; i&#43;&#43;) { // 这里是小于 res.size() - 1,确保不会数组越界 TreeNode node = res.get(i); node.left = null; node.right = res.get(i &#43; 1); } } public void preOrder(TreeNode root) { if (root == null) { return; } res.add(root); preOrder(root.left); preOrder(root.right); } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/114.-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

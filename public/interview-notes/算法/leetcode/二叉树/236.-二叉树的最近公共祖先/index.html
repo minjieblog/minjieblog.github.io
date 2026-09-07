@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="/**
@@ -41,16 +41,16 @@ class Solution {
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">
 <noscript>
     <style>
         #theme-toggle,
@@ -139,13 +139,105 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) { val = x; } * } */ class Solution { // 递归 // 递归检查左子树 是否包含节点 p 或 q。 // 递归检查右子树 是否包含节点 p 或 q。 // 如果当前节点自身是 p 或 q 中的一个，且其左子树或右子树包含另一个节点，那么该节点就是最近的公共祖先。 // 如果当前节点的左右子树各包含一个目标节点（p 和 q），那么当前节点就是最近的公共祖先。 // 如果上述情况都不成立，返回找到的包含目标节点的子树（可能为空，表示当前子树不包含目标节点）。 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) { if(root == null || root == p || root == q) { return root; } TreeNode left = lowestCommonAncestor(root.left, p, q); TreeNode right = lowestCommonAncestor(root.right, p, q); if (left!= null &amp;&amp; right != null) {//都不为空，说明公共祖先在根节点 return root; }else if (left != null &amp;&amp; right == null) { //一边为空，一边不为空，说明在公共祖先在不为空的一边 return left; }else if (left == null &amp;&amp; right != null) { return right; } return null; } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    // 递归
+    // 递归检查左子树 是否包含节点 p 或 q。
+    // 递归检查右子树 是否包含节点 p 或 q。
+    // 如果当前节点自身是 p 或 q 中的一个，且其左子树或右子树包含另一个节点，那么该节点就是最近的公共祖先。
+    // 如果当前节点的左右子树各包含一个目标节点（p 和 q），那么当前节点就是最近的公共祖先。
+    // 如果上述情况都不成立，返回找到的包含目标节点的子树（可能为空，表示当前子树不包含目标节点）。
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left!= null &amp;&amp; right != null) {//都不为空，说明公共祖先在根节点
+            return root;
+        }else if (left != null &amp;&amp; right == null) { //一边为空，一边不为空，说明在公共祖先在不为空的一边
+            return left;
+        }else if (left == null &amp;&amp; right != null) {
+            return right;
+        }
+        return null;
+    }
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) { val = x; } * } */ class Solution { // 递归 // 递归检查左子树 是否包含节点 p 或 q。 // 递归检查右子树 是否包含节点 p 或 q。 // 如果当前节点自身是 p 或 q 中的一个，且其左子树或右子树包含另一个节点，那么该节点就是最近的公共祖先。 // 如果当前节点的左右子树各包含一个目标节点（p 和 q），那么当前节点就是最近的公共祖先。 // 如果上述情况都不成立，返回找到的包含目标节点的子树（可能为空，表示当前子树不包含目标节点）。 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) { if(root == null || root == p || root == q) { return root; } TreeNode left = lowestCommonAncestor(root.left, p, q); TreeNode right = lowestCommonAncestor(root.right, p, q); if (left!= null \u0026amp;\u0026amp; right != null) {//都不为空，说明公共祖先在根节点 return root; }else if (left != null \u0026amp;\u0026amp; right == null) { //一边为空，一边不为空，说明在公共祖先在不为空的一边 return left; }else if (left == null \u0026amp;\u0026amp; right != null) { return right; } return null; } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) { val = x; } * } */ class Solution { // 递归 // 递归检查左子树 是否包含节点 p 或 q。 // 递归检查右子树 是否包含节点 p 或 q。 // 如果当前节点自身是 p 或 q 中的一个，且其左子树或右子树包含另一个节点，那么该节点就是最近的公共祖先。 // 如果当前节点的左右子树各包含一个目标节点（p 和 q），那么当前节点就是最近的公共祖先。 // 如果上述情况都不成立，返回找到的包含目标节点的子树（可能为空，表示当前子树不包含目标节点）。 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) { if(root == null || root == p || root == q) { return root; } TreeNode left = lowestCommonAncestor(root.left, p, q); TreeNode right = lowestCommonAncestor(root.right, p, q); if (left!= null \u0026\u0026 right != null) {//都不为空，说明公共祖先在根节点 return root; }else if (left != null \u0026\u0026 right == null) { //一边为空，一边不为空，说明在公共祖先在不为空的一边 return left; }else if (left == null \u0026\u0026 right != null) { return right; } return null; } } ",
+  "wordCount" : "334",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -171,32 +263,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

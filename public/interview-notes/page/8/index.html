@@ -185,90 +185,6 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>class Solution { public void nextPermutation(int[] nums) { //Arrays.sort(int[] nums, int fromIndex, int toIndex) 这个方法对nums中的fromIndex到toIndex - 1的部分进行排序 // 从后向前遍历，一旦出现一个数大于前面的数，说明存在更大的数，记录该索引i // 下一个更大的数是，后面的数按从小到大排，将后面的数中第一个比i-1 大的数据与之交换 int n = nums.length; for (int i = n - 1; i &gt;= 0; i--) { if (i == 0) { Arrays.sort(nums); //当前排序是最大排序，返回最小排序 } else if (nums[i] &gt; nums[i-1]) { //nums[i] &gt; nums[i-1] 说明存在下一个更大的排列 Arrays.sort(nums, i, n); //并且nums[i]之后的部分满足最大排列，下一个更大的排列，即对nums[i]和之后的部分排序 for (int index = i; index &lt; n; index&#43;&#43;) { // 并取出第一个比nums[i-1]大的部分，进行交换 if (nums[index] &gt; nums[i-1]) { int temp = nums[i - 1]; nums[i - 1] = nums[index]; nums[index] = temp; return; } } } } } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/31.-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { // 题目要求o(n)的时间复杂度 // 题目类型dp public int[] productExceptSelf(int[] nums) { //除nums[i]之外的所有数的乘积也就是将nums[i]当做1 // 可以计算这个数左乘积和右乘积 // 用三个数组分别存储前缀、后缀和乘积 // 对于元素nums[0]，我们设定初始值left[0] = 1; // 对于元素nums[nums.length - 1] 设定初始值right[nums.length - 1] = 1; int n = nums.length; int[] left = new int[n]; int[] right = new int[n]; int[] res = new int[n]; left[0] = 1;right[n - 1] = 1; for (int i = 1; i &lt; n; i&#43;&#43;) { left[i] = left[i-1] * nums[i-1]; } for (int j = n - 2; j &gt;= 0; j--) { right[j] = right[j &#43; 1] * nums[j &#43; 1]; } for (int i = 0; i &lt; n; i&#43;&#43;) { res[i] = left[i] * right[i]; } return res; class Solution { // 背包问题，完全背包 public int coinChange(int[] coins, int amount) { int[] dp = new int[amount &#43; 1]; // dp[i] 代表组成金额为i的最少硬币数 Arrays.fill(dp, amount &#43; 1); dp[0] = 0; for (int i = 0; i &lt; coins.length; i&#43;&#43;) { for (int j = coins[i]; j &lt;= amount; j&#43;&#43;) { dp[j] = Math.min(dp[j], dp[j-coins[i]] &#43; 1); } } return dp[amount]== amount&#43;1 ? - 1 : dp[amount]; } }} } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/322.-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { // o(log n) 二分法 // 二分法的难点在于等号 // 判断nums[mid] 与 nums[left] 的关系，如果nums[mid] &gt;= nums[left] ,说明 left 到 mid 有序 // if (nums[mid] &lt; nums[left]) 说明 mid 到right 有序， // 判断target是否落在有序部分，若不在则切换子数组 // 据此缩小范围 public int search(int[] nums, int target) { int left = 0, right = nums.length - 1; while (left &lt;= right) { int mid = left &#43; (right - left) / 2; if (nums[mid] == target) { return mid; } else if (nums[mid] &gt;= nums[left]) { if (target &gt;= nums[left] &amp;&amp; target &lt; nums[mid]) { right = mid - 1; } else { left = mid &#43; 1; } } else { if (target &gt; nums[mid] &amp;&amp; target &lt;= nums[right]) { left = mid &#43; 1; } else { right = mid - 1; } } } return -1; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/33.-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { // 时间复杂度O(log n) 空间复杂度O(1) 常量空间存放变量 // 二分法 // 寻找第一次target的位置，更新右边界 // 最后一次target的位置，更新左边界 public int[] searchRange(int[] nums, int target) { int firstPos = findBoundary(nums, target, true); if (firstPos == -1) {return new int[]{-1, -1};} int lastPos = findBoundary(nums, target, false); return new int[]{firstPos, lastPos}; } public int findBoundary(int[] nums, int target, boolean first) { int left = 0, right = nums.length - 1; int pos = -1; while (left &lt;= right) { int mid = left &#43; (right - left) / 2; if (nums[mid] &lt; target) { left = mid &#43; 1; } else if (nums[mid] &gt; target) { right = mid - 1; } else { // nums[mid] == target pos = mid; if (first) { right = mid - 1; // 寻找第一次出现target的位置，向左移动右边界 } else { left = mid &#43; 1; // 寻找最后一次出现target的位置，向右移动左边界 } } } return pos; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/34.-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { // 算法的时间复杂度为O(log(min(m,n))) // 二分 public double findMedianSortedArrays(int[] nums1, int[] nums2) { if (nums1.length &gt; nums2.length) { return findMedianSortedArrays(nums2, nums1); } int m = nums1.length; int n = nums2.length; int left = 0, right = m; while (left &lt;= right) { int i = left &#43; (right - left) / 2; int j = (m &#43; n &#43; 1) / 2 - i; int nums1LeftMax = (i == 0 ? Integer.MIN_VALUE : nums1[i - 1]); int nums1RightMin = (i == m ? Integer.MAX_VALUE : nums1[i]); int nums2LeftMax = (j == 0 ? Integer.MIN_VALUE : nums2[j - 1]); int nums2RightMin = (j == n ? Integer.MAX_VALUE : nums2[j]); if (nums1LeftMax &lt;= nums2RightMin &amp;&amp; nums2LeftMax &lt;= nums1RightMin) { if ((m &#43; n) % 2 == 0) { return (Math.max(nums1LeftMax, nums2LeftMax) &#43; Math.min(nums1RightMin, nums2RightMin)) / 2.0; } else { return Math.max(nums1LeftMax, nums2LeftMax); } } else if (nums1LeftMax &gt; nums2RightMin) { right = i - 1; } else { left = i &#43; 1; } } return -1; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/4.-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { public void rotate(int[][] matrix) { // 题目要求需要原地旋转，不能新建数组 // 直接matrix[col][n-1-row] = matrix[row][col]的交换会导致原位置的值被覆盖，后续的交换无法进行 //两步实现：1.转置matrix,使得matrix[i][j]变为matrix[j][i] //2.将matrix[j][i] 与 matrix[j][n-1-i]交换 // 先转置或者先交换行都一样，需要注意的是：交换和转置的边界 int n = matrix.length; for (int row = 0; row &lt; n / 2; row&#43;&#43;) { for (int col = 0; col &lt; n; col&#43;&#43;) { int temp = matrix[row][col]; matrix[row][col] = matrix[n - 1 - row][col]; matrix[n - 1 - row][col] = temp; } } for (int row = 0; row &lt; n ; row&#43;&#43;) { for (int col = row; col &lt; n; col&#43;&#43;) { int temp = matrix[row][col]; matrix[row][col] = matrix[col][row]; matrix[col][row] = temp; } } } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/48.-%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { //贪心算法，局部最优得全局最优 //每一步取最大,看最终能否走到nums[nums.length - 1] // if (coverrange == i) 说明到i为止就不能购在跳动了 public boolean canJump(int[] nums) { int coverrange = 0; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { coverrange = Math.max(nums[i] &#43; i, coverrange); if (coverrange == i) { break; } } return coverrange &gt;= nums.length - 1 ? true : false; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/55.-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
     <p>class Solution { // 按照第数组中的第一个元素排序，排序之后 // 后一个数组的左端点如果小于前一个数组的右端点则需要合并 // 两种情况：1.后一个数组的左端点小于前一个数组的右端点，则直接合并前一个数组 // 2.后一个数组的左端点大于于前一个数组的右端点，则取前一个数组的左端点和后一个数组的右端点 // 由于合并之后的元素个数我们并不知道，所以一开始要用一个list存储结果 public int[][] merge(int[][] intervals) { int n = intervals.length; // 列已知为2 Arrays.sort(intervals, (a,b) -&gt; (a[0] == b[0] ? a[1] - b[1] : a[0] - b[0])); List&lt;int[]&gt; merge = new ArrayList&lt;&gt;(); for (int i = 0; i &lt; n; i&#43;&#43;) { // intevlas[i][1]与merge中最后一个数组的[1]进行比较 if (merge.isEmpty() || intervals[i][0] &gt; merge.get(merge.size() - 1)[1]) { merge.add(intervals[i]); } else { merge.get(merge.size() - 1)[1] = Math.max(merge.get(merge.size() - 1)[1], intervals[i][1]); } } int row = merge.size(); int[][] res = new int[row][2]; for (int i = 0; i &lt; row; i&#43;&#43;) { for (int j = 0; j &lt; 2; j&#43;&#43;) { res[i][j] = merge.get(i)[j]; } } return res; } } </p>
   </div>
   <footer class="entry-footer"></footer>
@@ -297,6 +213,90 @@ code.has-jax {
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/75.-%E9%A2%9C%E8%89%B2%E5%88%86%E7%B1%BB/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { List&lt;List&lt;Integer&gt;&gt; edges; //存储邻接矩阵 int[] visited; boolean valid = true; public boolean canFinish(int numCourses, int[][] prerequisites) { edges = new ArrayList&lt;&gt;(); //初始化邻接矩阵的列 for (int i = 0; i &lt; numCourses; i&#43;&#43;) { edges.add(new ArrayList&lt;Integer&gt;()); } //给每一列都添加他的后置课程 for (int[] info : prerequisites) { edges.get(info[1]).add(info[0]); } //遍历每一个课程，和vaild值一起进行dfs，判断每一个课程是否可以学习完成 visited = new int[numCourses]; for (int i = 0; i &lt; numCourses &amp;&amp; valid ; i&#43;&#43;) { if (visited[i] == 0) { dfs(i); } } return valid; } public void dfs(int u) { visited[u] = 1; //表示正在被访问 for (int v : edges.get(u)) { if (visited[v] == 0) { dfs(v); if (!valid) { return; } //当出现有一个环的时候即为false }else if(visited[v] == 1) { valid = false; return; } } visited[u] = 2; //代表该门课程可以学习完成 } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/207.-%E8%AF%BE%E7%A8%8B%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>// 定义前缀树的节点，每个节点有一个子数组和标志位，标志位代表该节点是否为最终节点 // insert方法插入字符串，若当前节点的子数组中的对应索引位置为空，则新建前缀树的节点 // search 和 startWiths的区别在于search需要判断返回节点的isEnd属性 class TrieNode { TrieNode[] children; boolean isEnd; TrieNode() { children = new TrieNode[26]; isEnd = false; } } class Trie { TrieNode root; public Trie() { root = new TrieNode(); } public void insert(String word) { TrieNode node = root; for (int i = 0; i &lt; word.length(); i&#43;&#43;) { int index = word.charAt(i) - &#39;a&#39;; if (node.children[index] == null){ node.children[index] = new TrieNode(); } node = node.children[index]; } node.isEnd = true; } public boolean search(String word) { TrieNode node = searchPrefix(word); return node != null &amp;&amp; node.isEnd; } public boolean startsWith(String prefix) { TrieNode node = searchPrefix(prefix); return node != null; } public TrieNode searchPrefix(String word) { TrieNode node = root; for (int i = 0; i &lt; word.length(); i&#43;&#43;) { int index = word.charAt(i) - &#39;a&#39;; if (node.children[index] == null) { return null; } node = node.children[index]; } return node; } } /** * Your Trie object will be instantiated and called as such: * Trie obj = new Trie(); * obj.insert(word); * boolean param_2 = obj.search(word); * boolean param_3 = obj.startsWith(prefix); */ </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //使用构建图，使用HashMap存储节点和比率 //对每个查询使用DFS查询两个节点是否存在连接，并计算比率 // putIfAbsent方法 V putIfAbsent(K key, V value); // 如果之前 Map 中没有这个键，那么返回 null。 // 如果之前已经有这个键了，那么返回该键之前关联的值，并且不会替换已有的值。 HashMap&lt;String, HashMap&lt;String, Double&gt;&gt; hs = new HashMap&lt;&gt;(); public double[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, double[] values, List&lt;List&lt;String&gt;&gt; queries) { for (int i = 0; i &lt; equations.size(); i&#43;&#43;) { String u = equations.get(i).get(0); String v = equations.get(i).get(1); double k = values[i]; // 构建图 hs.putIfAbsent(u, new HashMap&lt;&gt;()); hs.putIfAbsent(v, new HashMap&lt;&gt;()); hs.get(u).put(v, k); hs.get(v).put(u, 1 / k); } double[] res = new double[queries.size()]; for (int i = 0; i &lt; queries.size(); i&#43;&#43;) { String u = queries.get(i).get(0); String v = queries.get(i).get(1); if (!hs.containsKey(u) || !hs.containsKey(v)) { res[i] = -1.0; } else { res[i] = dfs(u, v, new HashSet&lt;String&gt;()); } } return res; } public double dfs(String start, String end, HashSet&lt;String&gt; visited) { if (hs.get(start).containsKey(end)) { //直接包含 return hs.get(start).get(end); } visited.add(start); for (Map.Entry&lt;String, Double&gt; neighbor : hs.get(start).entrySet()) { if (!visited.contains(neighbor.getKey())) { double path = dfs(neighbor.getKey(), end, visited); if (path != -1.0) { return path*neighbor.getValue(); } } } return -1.0; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // O（n）就不能是排序 // 用HashSet存储所有元素 // 对于一个最长序列hashSet中一定不包含当前的nums[i] - 1; // 判断是否存在nums[i] &#43; 1; public int longestConsecutive(int[] nums) { if (nums.length == 0) { return 0; } HashSet&lt;Integer&gt; hs = new HashSet&lt;&gt;(); for (int i = 0; i &lt; nums.length; i&#43;&#43;) { hs.add(nums[i]); } int max = 1; for (int num : nums) { if (hs.contains(num - 1)) { continue; } int maxTmp = 1; while (hs.contains(num &#43; 1)) { num &#43;= 1; maxTmp&#43;&#43;; } max = Math.max(maxTmp, max); } return max; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/128.-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int majorityElement(int[] nums) { //hashmap 使用HashMap,若其中存在，则value &#43; 1,不存在则将相应的key添加进去 Map&lt;Integer,Integer&gt; map = new HashMap(); for(int num: nums){ map.put(num,map.getOrDefault(num,0)&#43;1); if(map.get(num) &gt; nums.length /2){ return num; } } return -1; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/169.-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0---%E5%89%AF%E6%9C%AC-3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int majorityElement(int[] nums) { //hashmap 使用HashMap,若其中存在，则value &#43; 1,不存在则将相应的key添加进去 Map&lt;Integer,Integer&gt; map = new HashMap(); for(int num: nums){ map.put(num,map.getOrDefault(num,0)&#43;1); if(map.get(num) &gt; nums.length /2){ return num; } } return -1; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/169.-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public boolean isValid(String s) { // 字符串中出现左括号就将右括号压入栈中， // 出现右括号就与栈顶的元素匹配,判断栈顶的元素是不是对应的右括号 // 不匹配则返回false // 最终需要检查栈是否为空 // 不为空说明还有未匹配的左括号 Deque&lt;Character&gt; stack = new LinkedList&lt;&gt;(); for (int i = 0; i &lt; s.length(); i&#43;&#43;) { if (s.charAt(i) == &#39;(&#39; || s.charAt(i) == &#39;{&#39; || s.charAt(i) == &#39;[&#39;) { stack.push(s.charAt(i)); } else { if (stack.isEmpty()) { return false; } char top = stack.pop(); if (s.charAt(i) == &#39;]&#39; &amp;&amp; top != &#39;[&#39; || (s.charAt(i) == &#39;}&#39; &amp;&amp; top != &#39;{&#39;) || (s.charAt(i) == &#39;)&#39; &amp;&amp; top != &#39;(&#39;)) { return false; } } } return stack.isEmpty(); //不匹配说明有多余的左括号 } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%A0%88%E9%98%9F%E5%88%97hashmaphashset/20.-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

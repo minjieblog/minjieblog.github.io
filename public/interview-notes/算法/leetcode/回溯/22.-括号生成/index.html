@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="class Solution {
@@ -47,16 +47,16 @@
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/22.-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/22.-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/22.-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/22.-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/">
 <noscript>
     <style>
         #theme-toggle,
@@ -145,13 +145,111 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/22.-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="class Solution { // 回溯，全排列 // stringBuffer的append方法和deleteCharAt()方法 // 有效的括号组合，对于任意括号左边的左括号的数量大于等于右括号的数量 // 空间复杂度：O(n) List&lt;String&gt; res; int left, right; int count = 0; StringBuffer sb = new StringBuffer(); public List&lt;String&gt; generateParenthesis(int n) { left = 0; right = 0; count = n; res = new ArrayList&lt;&gt;(); backTracking(); return res; } public void backTracking() { if (right == count) { res.add(sb.toString()); } if (left &lt; count) { // append左括号 sb.append(&#39;(&#39;); left&#43;&#43;; backTracking(); sb.deleteCharAt(sb.length() - 1); left--; } if (right &lt; left) { // append右括号，右括号的数量需要小于左括号的数量 sb.append(&#39;)&#39;); right&#43;&#43;; backTracking(); sb.deleteCharAt(sb.length() - 1); right--; } } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="class Solution {
+    // 回溯，全排列
+    // stringBuffer的append方法和deleteCharAt()方法
+    // 有效的括号组合，对于任意括号左边的左括号的数量大于等于右括号的数量
+    // 空间复杂度：O(n)
+    List&lt;String&gt; res;
+    int left, right;
+    int count = 0;
+    StringBuffer sb = new StringBuffer(); 
+    public List&lt;String&gt; generateParenthesis(int n) {
+        left = 0;
+        right = 0;
+        count = n;
+        res = new ArrayList&lt;&gt;();
+        backTracking();
+        return res;
+    }
+
+    public void backTracking() {
+        if (right == count) {
+            res.add(sb.toString());
+        }
+        if (left &lt; count) { // append左括号
+            sb.append(&#39;(&#39;);
+            left&#43;&#43;;
+            backTracking();
+            sb.deleteCharAt(sb.length() - 1); 
+            left--;
+        }
+        if (right &lt; left) { // append右括号，右括号的数量需要小于左括号的数量
+            sb.append(&#39;)&#39;);
+            right&#43;&#43;;
+            backTracking();
+            sb.deleteCharAt(sb.length() - 1);
+            right--;
+        }
+    }
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/22.-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "class Solution { // 回溯，全排列 // stringBuffer的append方法和deleteCharAt()方法 // 有效的括号组合，对于任意括号左边的左括号的数量大于等于右括号的数量 // 空间复杂度：O(n) List\u0026lt;String\u0026gt; res; int left, right; int count = 0; StringBuffer sb = new StringBuffer(); public List\u0026lt;String\u0026gt; generateParenthesis(int n) { left = 0; right = 0; count = n; res = new ArrayList\u0026lt;\u0026gt;(); backTracking(); return res; } public void backTracking() { if (right == count) { res.add(sb.toString()); } if (left \u0026lt; count) { // append左括号 sb.append(\u0026#39;(\u0026#39;); left++; backTracking(); sb.deleteCharAt(sb.length() - 1); left--; } if (right \u0026lt; left) { // append右括号，右括号的数量需要小于左括号的数量 sb.append(\u0026#39;)\u0026#39;); right++; backTracking(); sb.deleteCharAt(sb.length() - 1); right--; } } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "class Solution { // 回溯，全排列 // stringBuffer的append方法和deleteCharAt()方法 // 有效的括号组合，对于任意括号左边的左括号的数量大于等于右括号的数量 // 空间复杂度：O(n) List\u003cString\u003e res; int left, right; int count = 0; StringBuffer sb = new StringBuffer(); public List\u003cString\u003e generateParenthesis(int n) { left = 0; right = 0; count = n; res = new ArrayList\u003c\u003e(); backTracking(); return res; } public void backTracking() { if (right == count) { res.add(sb.toString()); } if (left \u003c count) { // append左括号 sb.append('('); left++; backTracking(); sb.deleteCharAt(sb.length() - 1); left--; } if (right \u003c left) { // append右括号，右括号的数量需要小于左括号的数量 sb.append(')'); right++; backTracking(); sb.deleteCharAt(sb.length() - 1); right--; } } } ",
+  "wordCount" : "206",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/22.-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -177,32 +275,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

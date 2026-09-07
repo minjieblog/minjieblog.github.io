@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="// 定义前缀树的节点，每个节点有一个子数组和标志位，标志位代表该节点是否为最终节点
@@ -69,16 +69,16 @@ class Trie {
  */
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/">
 <noscript>
     <style>
         #theme-toggle,
@@ -167,13 +167,133 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="// 定义前缀树的节点，每个节点有一个子数组和标志位，标志位代表该节点是否为最终节点 // insert方法插入字符串，若当前节点的子数组中的对应索引位置为空，则新建前缀树的节点 // search 和 startWiths的区别在于search需要判断返回节点的isEnd属性 class TrieNode { TrieNode[] children; boolean isEnd; TrieNode() { children = new TrieNode[26]; isEnd = false; } } class Trie { TrieNode root; public Trie() { root = new TrieNode(); } public void insert(String word) { TrieNode node = root; for (int i = 0; i &lt; word.length(); i&#43;&#43;) { int index = word.charAt(i) - &#39;a&#39;; if (node.children[index] == null){ node.children[index] = new TrieNode(); } node = node.children[index]; } node.isEnd = true; } public boolean search(String word) { TrieNode node = searchPrefix(word); return node != null &amp;&amp; node.isEnd; } public boolean startsWith(String prefix) { TrieNode node = searchPrefix(prefix); return node != null; } public TrieNode searchPrefix(String word) { TrieNode node = root; for (int i = 0; i &lt; word.length(); i&#43;&#43;) { int index = word.charAt(i) - &#39;a&#39;; if (node.children[index] == null) { return null; } node = node.children[index]; } return node; } } /** * Your Trie object will be instantiated and called as such: * Trie obj = new Trie(); * obj.insert(word); * boolean param_2 = obj.search(word); * boolean param_3 = obj.startsWith(prefix); */ ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="// 定义前缀树的节点，每个节点有一个子数组和标志位，标志位代表该节点是否为最终节点
+// insert方法插入字符串，若当前节点的子数组中的对应索引位置为空，则新建前缀树的节点
+// search 和 startWiths的区别在于search需要判断返回节点的isEnd属性
+class TrieNode {
+    TrieNode[] children;
+    boolean isEnd;
+    TrieNode() {
+        children = new TrieNode[26];
+        isEnd = false;
+    } 
+}
+class Trie {
+    TrieNode root;
+    public Trie() {
+        root = new TrieNode();
+    }
+    
+    public void insert(String word) {
+        TrieNode node = root;
+        for (int i = 0; i &lt; word.length(); i&#43;&#43;) {
+            int index = word.charAt(i) - &#39;a&#39;;
+            if (node.children[index] == null){
+                node.children[index] = new TrieNode();
+            }
+            node = node.children[index];
+        }
+        node.isEnd = true;
+    
+    }
+    
+    public boolean search(String word) {
+        TrieNode node = searchPrefix(word);
+        return node != null &amp;&amp; node.isEnd;
+    }
+    
+    public boolean startsWith(String prefix) {
+        TrieNode node = searchPrefix(prefix);
+        return node != null;
+    }
+    public TrieNode searchPrefix(String word) {
+        TrieNode node = root;
+        for (int i = 0; i &lt; word.length(); i&#43;&#43;) {
+            int index = word.charAt(i) - &#39;a&#39;;
+            if (node.children[index] == null) {
+                return null;
+            }
+            node = node.children[index];
+        }
+        return node;
+    }
+    
+}
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "// 定义前缀树的节点，每个节点有一个子数组和标志位，标志位代表该节点是否为最终节点 // insert方法插入字符串，若当前节点的子数组中的对应索引位置为空，则新建前缀树的节点 // search 和 startWiths的区别在于search需要判断返回节点的isEnd属性 class TrieNode { TrieNode[] children; boolean isEnd; TrieNode() { children = new TrieNode[26]; isEnd = false; } } class Trie { TrieNode root; public Trie() { root = new TrieNode(); } public void insert(String word) { TrieNode node = root; for (int i = 0; i \u0026lt; word.length(); i++) { int index = word.charAt(i) - \u0026#39;a\u0026#39;; if (node.children[index] == null){ node.children[index] = new TrieNode(); } node = node.children[index]; } node.isEnd = true; } public boolean search(String word) { TrieNode node = searchPrefix(word); return node != null \u0026amp;\u0026amp; node.isEnd; } public boolean startsWith(String prefix) { TrieNode node = searchPrefix(prefix); return node != null; } public TrieNode searchPrefix(String word) { TrieNode node = root; for (int i = 0; i \u0026lt; word.length(); i++) { int index = word.charAt(i) - \u0026#39;a\u0026#39;; if (node.children[index] == null) { return null; } node = node.children[index]; } return node; } } /** * Your Trie object will be instantiated and called as such: * Trie obj = new Trie(); * obj.insert(word); * boolean param_2 = obj.search(word); * boolean param_3 = obj.startsWith(prefix); */ ",
+  "keywords": [
+    
+  ],
+  "articleBody": "// 定义前缀树的节点，每个节点有一个子数组和标志位，标志位代表该节点是否为最终节点 // insert方法插入字符串，若当前节点的子数组中的对应索引位置为空，则新建前缀树的节点 // search 和 startWiths的区别在于search需要判断返回节点的isEnd属性 class TrieNode { TrieNode[] children; boolean isEnd; TrieNode() { children = new TrieNode[26]; isEnd = false; } } class Trie { TrieNode root; public Trie() { root = new TrieNode(); } public void insert(String word) { TrieNode node = root; for (int i = 0; i \u003c word.length(); i++) { int index = word.charAt(i) - 'a'; if (node.children[index] == null){ node.children[index] = new TrieNode(); } node = node.children[index]; } node.isEnd = true; } public boolean search(String word) { TrieNode node = searchPrefix(word); return node != null \u0026\u0026 node.isEnd; } public boolean startsWith(String prefix) { TrieNode node = searchPrefix(prefix); return node != null; } public TrieNode searchPrefix(String word) { TrieNode node = root; for (int i = 0; i \u003c word.length(); i++) { int index = word.charAt(i) - 'a'; if (node.children[index] == null) { return null; } node = node.children[index]; } return node; } } /** * Your Trie object will be instantiated and called as such: * Trie obj = new Trie(); * obj.insert(word); * boolean param_2 = obj.search(word); * boolean param_3 = obj.startsWith(prefix); */ ",
+  "wordCount" : "299",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/208.-%E5%AE%9E%E7%8E%B0-trie-%E5%89%8D%E7%BC%80%E6%A0%91/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -199,32 +319,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

@@ -105,11 +105,7 @@ hidden: true
 
 ### 音阶推算图
 
-<<<<<<< HEAD
 ![720](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPDacTU9sH7W8utdl0HoFP0ylLMKU0AAhMPaxtR7yhWh0M5_eZKjVQBAAMCAAN5AAM6BA.png)
-=======
-![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPDacTU9sH7W8utdl0HoFP0ylLMKU0AAhMPaxtR7yhWh0M5_eZKjVQBAAMCAAN5AAM6BA.png)
->>>>>>> origin/master
 
 ### 练习：
 
@@ -119,7 +115,6 @@ hidden: true
 
 #### 2. 音阶练习-sol型
 
-<<<<<<< HEAD
 ![720](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPEacY4rGdNpHIp7EnzH6tdV2f6hzcAAhgQaxs4xzFWe5UR7jEnKxoBAAMCAAN5AAM6BA.png)
 
 #### 3.音阶练习-la型
@@ -132,11 +127,6 @@ hidden: true
 ![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPrajik675PjQv4x1FyVXpsgg_p3-EAAsQPaxt1_8hVSLXNclTLwVQBAAMCAAN5AAM8BA.png)
 #### 7. 音阶练习-mi型
 ![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPsajilESqFkqwXEO0x1dSZGkbAQZ8AAsUPaxt1_8hVg2R8RFR8WrcBAAMCAAN5AAM8BA.png)
-=======
-![](https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPEacY4rGdNpHIp7EnzH6tdV2f6hzcAAhgQaxs4xzFWe5UR7jEnKxoBAAMCAAN5AAM6BA.png)
-
-
->>>>>>> origin/master
 ## 4.扫弦
 
 ## 5.和弦

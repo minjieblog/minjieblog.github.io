@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="class Solution {
@@ -24,16 +24,16 @@
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/">
 <noscript>
     <style>
         #theme-toggle,
@@ -122,13 +122,88 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="class Solution { // 矮个子插队，高个子看不见；所以我们可以先安排高个子的位置，再通过插队的方式安排矮个子的位置 // 身高从大到小排（身高相同k小的站前面） //先按照身高h降序排序，这样处理时可以确保当前插入的元素之前的所有元素身高都不小于它，从而简化位置的确定。 //如果身高相同，则按照序号k升序排序，因为身高相同的情况下，序号小的人应该排在前面 public int[][] reconstructQueue(int[][] people) { Arrays.sort(people, (a,b) -&gt; b[0] == a[0]? a[1] - b[1] : b[0] - a[0]); List&lt;int[]&gt; list = new ArrayList&lt;&gt;(); for (int i = 0; i &lt; people.length; i&#43;&#43;) { list.add(people[i][1], people[i]); } return list.toArray(new int[list.size()][2]); // list.toArray将list转成array } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="class Solution {
+    // 矮个子插队，高个子看不见；所以我们可以先安排高个子的位置，再通过插队的方式安排矮个子的位置
+        // 身高从大到小排（身高相同k小的站前面）
+        //先按照身高h降序排序，这样处理时可以确保当前插入的元素之前的所有元素身高都不小于它，从而简化位置的确定。
+        //如果身高相同，则按照序号k升序排序，因为身高相同的情况下，序号小的人应该排在前面
+    public int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people, (a,b) -&gt; b[0] == a[0]? a[1] - b[1] : b[0] - a[0]);
+        List&lt;int[]&gt; list = new ArrayList&lt;&gt;();
+        for (int i = 0; i &lt; people.length; i&#43;&#43;) {
+            list.add(people[i][1], people[i]);
+        }
+       
+        return list.toArray(new int[list.size()][2]); // list.toArray将list转成array
+    }
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "class Solution { // 矮个子插队，高个子看不见；所以我们可以先安排高个子的位置，再通过插队的方式安排矮个子的位置 // 身高从大到小排（身高相同k小的站前面） //先按照身高h降序排序，这样处理时可以确保当前插入的元素之前的所有元素身高都不小于它，从而简化位置的确定。 //如果身高相同，则按照序号k升序排序，因为身高相同的情况下，序号小的人应该排在前面 public int[][] reconstructQueue(int[][] people) { Arrays.sort(people, (a,b) -\u0026gt; b[0] == a[0]? a[1] - b[1] : b[0] - a[0]); List\u0026lt;int[]\u0026gt; list = new ArrayList\u0026lt;\u0026gt;(); for (int i = 0; i \u0026lt; people.length; i++) { list.add(people[i][1], people[i]); } return list.toArray(new int[list.size()][2]); // list.toArray将list转成array } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "class Solution { // 矮个子插队，高个子看不见；所以我们可以先安排高个子的位置，再通过插队的方式安排矮个子的位置 // 身高从大到小排（身高相同k小的站前面） //先按照身高h降序排序，这样处理时可以确保当前插入的元素之前的所有元素身高都不小于它，从而简化位置的确定。 //如果身高相同，则按照序号k升序排序，因为身高相同的情况下，序号小的人应该排在前面 public int[][] reconstructQueue(int[][] people) { Arrays.sort(people, (a,b) -\u003e b[0] == a[0]? a[1] - b[1] : b[0] - a[0]); List\u003cint[]\u003e list = new ArrayList\u003c\u003e(); for (int i = 0; i \u003c people.length; i++) { list.add(people[i][1], people[i]); } return list.toArray(new int[list.size()][2]); // list.toArray将list转成array } } ",
+  "wordCount" : "231",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E8%B4%AA%E5%BF%83/406.-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -154,32 +229,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

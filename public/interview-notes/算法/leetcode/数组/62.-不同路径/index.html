@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="class Solution {
@@ -36,16 +36,16 @@
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/">
 <noscript>
     <style>
         #theme-toggle,
@@ -134,13 +134,100 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="class Solution { // 动态规划 // dp[i][j] 代表从（0,0）出发到(i,j)有多少条不同的路径 // dp[i][j] = dp[i-1][j] &#43; dp[i][j-1]; // 左边界和上边界都只有1种可能 // 从上向下，从左往右遍历 int res = 0; public int uniquePaths(int m, int n) { int[][] dp = new int[m][n]; dp[0][0] = 1; for(int i = 1; i &lt; m;i&#43;&#43;){ dp[i][0] = 1; } for(int j = 1; j &lt; n; j&#43;&#43;){ dp[0][j] = 1; } for(int i = 1 ; i &lt; m; i&#43;&#43;){ for(int j = 1; j &lt; n; j&#43;&#43;){ dp[i][j] = dp[i - 1][j] &#43; dp[i][j - 1]; } } return dp[m-1][n-1]; } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="class Solution {
+    
+    // 动态规划
+    // dp[i][j] 代表从（0,0）出发到(i,j)有多少条不同的路径
+    // dp[i][j] = dp[i-1][j] &#43; dp[i][j-1];
+    // 左边界和上边界都只有1种可能
+    // 从上向下，从左往右遍历
+    int res = 0;
+    public int uniquePaths(int m, int n) {
+        int[][] dp = new int[m][n]; 
+        dp[0][0] = 1;
+        
+        for(int i = 1; i &lt; m;i&#43;&#43;){
+            dp[i][0] = 1;  
+        }
+        for(int j = 1; j &lt; n; j&#43;&#43;){
+            dp[0][j] = 1;
+        }
+        for(int i = 1 ; i &lt; m; i&#43;&#43;){
+            for(int j = 1; j &lt; n; j&#43;&#43;){
+                dp[i][j] = dp[i - 1][j] &#43; dp[i][j - 1]; 
+            }
+        } 
+        return dp[m-1][n-1];
+    }
+   
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "class Solution { // 动态规划 // dp[i][j] 代表从（0,0）出发到(i,j)有多少条不同的路径 // dp[i][j] = dp[i-1][j] + dp[i][j-1]; // 左边界和上边界都只有1种可能 // 从上向下，从左往右遍历 int res = 0; public int uniquePaths(int m, int n) { int[][] dp = new int[m][n]; dp[0][0] = 1; for(int i = 1; i \u0026lt; m;i++){ dp[i][0] = 1; } for(int j = 1; j \u0026lt; n; j++){ dp[0][j] = 1; } for(int i = 1 ; i \u0026lt; m; i++){ for(int j = 1; j \u0026lt; n; j++){ dp[i][j] = dp[i - 1][j] + dp[i][j - 1]; } } return dp[m-1][n-1]; } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "class Solution { // 动态规划 // dp[i][j] 代表从（0,0）出发到(i,j)有多少条不同的路径 // dp[i][j] = dp[i-1][j] + dp[i][j-1]; // 左边界和上边界都只有1种可能 // 从上向下，从左往右遍历 int res = 0; public int uniquePaths(int m, int n) { int[][] dp = new int[m][n]; dp[0][0] = 1; for(int i = 1; i \u003c m;i++){ dp[i][0] = 1; } for(int j = 1; j \u003c n; j++){ dp[0][j] = 1; } for(int i = 1 ; i \u003c m; i++){ for(int j = 1; j \u003c n; j++){ dp[i][j] = dp[i - 1][j] + dp[i][j - 1]; } } return dp[m-1][n-1]; } } ",
+  "wordCount" : "142",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/62.-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -166,32 +253,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

@@ -1,0 +1,22 @@
+[
+  "assets\\css\\extended\\blank.css",
+  "assets\\css\\extended\\footer-overrides.css",
+  "assets\\css\\extended\\scroll-bar-overrides.css",
+  "assets\\css\\extended\\theme-vars-override.css",
+  "assets\\extended\\custom.css",
+  "content\\.obsidian\\app.json",
+  "content\\.obsidian\\workspace.json",
+  "content\\.obsidian\\plugins\\obsidian-style-settings\\data.json",
+  "content\\.obsidian\\snippets\\blue-topaz-background.css",
+  "content\\blockchain\\crset-private-vc-revocation.md",
+  "content\\blockchain\\prevoke-privacy-preserving-vc-revocation.md",
+  "content\\doc-intro\\hugo-readme.md",
+  "content\\music\\guitar-by-changyu.md",
+  "content\\obsidian\\Templates\\日报.md",
+  "layouts\\partials\\comments.html",
+  "layouts\\partials\\extend_foot.html",
+  "layouts\\partials\\extend_head.html",
+  "layouts\\partials\\mathjax.html",
+  "static\\static\\cursors\\zoom-in.svg",
+  "static\\static\\cursors\\zoom-out.svg"
+]

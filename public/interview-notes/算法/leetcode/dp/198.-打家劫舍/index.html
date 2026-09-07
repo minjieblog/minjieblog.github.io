@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="dp
@@ -56,16 +56,16 @@ class Solution {
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/198.-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/198.-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/198.-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/198.-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/">
 <noscript>
     <style>
         #theme-toggle,
@@ -154,13 +154,120 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/198.-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="dp class Solution { //动态规划4步：1.确定dp数组及下标的含义 // 2.确定递推公式 // 3.dp数组如何初始化 // 4.确定遍历顺序 // 偷窃当前房屋，不偷窃当前房屋 // dp[i] 代表从0-i间房偷窃获得的最大值是多少 // dp[i] = Math.max(dp[i-1], dp[i-2] &#43;nums[i]); // dp[0] = nums[0], dp[1] = Math.max(nums[1], nums[0]); // public int rob(int[] nums) { int n = nums.length; if (n == 1) { return nums[0]; } else if (n == 2) { return Math.max(nums[0], nums[1]); } int[] dp = new int[n]; dp[0] = nums[0]; dp[1] = Math.max(nums[0], nums[1]); for (int i = 2; i &lt; n; i&#43;&#43;) { dp[i] = Math.max(dp[i-1], dp[i - 2] &#43; nums[i]); //对于每到一下个房间有两种可能，1.偷当前房间， 2.不偷当前房间 } return dp[n-1]; } } dfs&#43;递归 class Solution { public int rob(int[] nums) { int n = nums.length; Integer[] memo = new Integer[n]; // 记忆化数组 return dfs(nums, 0, memo); } private int dfs(int[] nums, int i, Integer[] memo) { if (i &gt;= nums.length) return 0; //超出边介 if (memo[i] != null) return memo[i]; // 偷当前房子 int take = nums[i] &#43; dfs(nums, i &#43; 2, memo); // 不偷当前房子 int notTake = dfs(nums, i &#43; 1, memo); memo[i] = Math.max(take, notTake); return memo[i]; } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="dp
+class Solution {
+    //动态规划4步：1.确定dp数组及下标的含义
+    // 2.确定递推公式
+    // 3.dp数组如何初始化
+    // 4.确定遍历顺序
+    // 偷窃当前房屋，不偷窃当前房屋
+    // dp[i] 代表从0-i间房偷窃获得的最大值是多少
+    // dp[i] = Math.max(dp[i-1], dp[i-2] &#43;nums[i]);
+    // dp[0] = nums[0], dp[1] = Math.max(nums[1], nums[0]);
+    //
+    public int rob(int[] nums) {
+        int n = nums.length;
+        if (n == 1) {
+            return nums[0];
+        } else if (n == 2) {
+            return Math.max(nums[0], nums[1]);
+        }
+        int[] dp = new int[n];
+        dp[0] = nums[0]; dp[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i &lt; n; i&#43;&#43;) {
+            dp[i] = Math.max(dp[i-1], dp[i - 2] &#43; nums[i]); //对于每到一下个房间有两种可能，1.偷当前房间， 2.不偷当前房间
+        }
+        return dp[n-1];
+    }
+}
+dfs&#43;递归
+class Solution {
+	public int rob(int[] nums) {  
+		int n = nums.length;  
+		Integer[] memo = new Integer[n]; // 记忆化数组  
+		return dfs(nums, 0, memo);  
+	}  
+  
+	private int dfs(int[] nums, int i, Integer[] memo) {  
+		if (i &gt;= nums.length) return 0;  //超出边介
+		if (memo[i] != null) return memo[i];  
+		  
+		// 偷当前房子  
+		int take = nums[i] &#43; dfs(nums, i &#43; 2, memo);  
+		// 不偷当前房子  
+		int notTake = dfs(nums, i &#43; 1, memo);  
+		  
+		memo[i] = Math.max(take, notTake);  
+		return memo[i];  
+	}
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/198.-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "dp class Solution { //动态规划4步：1.确定dp数组及下标的含义 // 2.确定递推公式 // 3.dp数组如何初始化 // 4.确定遍历顺序 // 偷窃当前房屋，不偷窃当前房屋 // dp[i] 代表从0-i间房偷窃获得的最大值是多少 // dp[i] = Math.max(dp[i-1], dp[i-2] +nums[i]); // dp[0] = nums[0], dp[1] = Math.max(nums[1], nums[0]); // public int rob(int[] nums) { int n = nums.length; if (n == 1) { return nums[0]; } else if (n == 2) { return Math.max(nums[0], nums[1]); } int[] dp = new int[n]; dp[0] = nums[0]; dp[1] = Math.max(nums[0], nums[1]); for (int i = 2; i \u0026lt; n; i++) { dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i]); //对于每到一下个房间有两种可能，1.偷当前房间， 2.不偷当前房间 } return dp[n-1]; } } dfs+递归 class Solution { public int rob(int[] nums) { int n = nums.length; Integer[] memo = new Integer[n]; // 记忆化数组 return dfs(nums, 0, memo); } private int dfs(int[] nums, int i, Integer[] memo) { if (i \u0026gt;= nums.length) return 0; //超出边介 if (memo[i] != null) return memo[i]; // 偷当前房子 int take = nums[i] + dfs(nums, i + 2, memo); // 不偷当前房子 int notTake = dfs(nums, i + 1, memo); memo[i] = Math.max(take, notTake); return memo[i]; } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "dp class Solution { //动态规划4步：1.确定dp数组及下标的含义 // 2.确定递推公式 // 3.dp数组如何初始化 // 4.确定遍历顺序 // 偷窃当前房屋，不偷窃当前房屋 // dp[i] 代表从0-i间房偷窃获得的最大值是多少 // dp[i] = Math.max(dp[i-1], dp[i-2] +nums[i]); // dp[0] = nums[0], dp[1] = Math.max(nums[1], nums[0]); // public int rob(int[] nums) { int n = nums.length; if (n == 1) { return nums[0]; } else if (n == 2) { return Math.max(nums[0], nums[1]); } int[] dp = new int[n]; dp[0] = nums[0]; dp[1] = Math.max(nums[0], nums[1]); for (int i = 2; i \u003c n; i++) { dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i]); //对于每到一下个房间有两种可能，1.偷当前房间， 2.不偷当前房间 } return dp[n-1]; } } dfs+递归 class Solution { public int rob(int[] nums) { int n = nums.length; Integer[] memo = new Integer[n]; // 记忆化数组 return dfs(nums, 0, memo); } private int dfs(int[] nums, int i, Integer[] memo) { if (i \u003e= nums.length) return 0; //超出边介 if (memo[i] != null) return memo[i]; // 偷当前房子 int take = nums[i] + dfs(nums, i + 2, memo); // 不偷当前房子 int notTake = dfs(nums, i + 1, memo); memo[i] = Math.max(take, notTake); return memo[i]; } } ",
+  "wordCount" : "303",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/dp/198.-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -186,32 +293,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

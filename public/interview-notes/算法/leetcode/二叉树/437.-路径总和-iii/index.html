@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="/**
@@ -52,16 +52,16 @@ class Solution {
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/">
 <noscript>
     <style>
         #theme-toggle,
@@ -150,13 +150,116 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //计算所有路径和为targetSym的路径：深度优先搜索 //定义函数rootSum 用来计算以某个节点为起点时的路径和为targetSum的条数 //pathSum函数递归调用自身，遍历所有节点； // 时间复杂度O(N^2),空间复杂度(N) // 采用前缀和的方式，时间复杂度O(N),空间复杂度O(N) // 采用先序遍历的方式用hashmap记录所有路径和，若遍历当前节点时，hashmap中存在路径和-targetsum // 说明此路径中存在某个节点到当前节点的路径和为target // 最后需要回溯，防止影响到其他节点 public int pathSum(TreeNode root, long targetSum) { // taegetSum 会溢出，需要改为long Map&lt;Long, Integer&gt; prefix = new HashMap&lt;&gt;(); prefix.put(0L, 1); // 为了处理路径和刚好等于targetSum的特殊情况 return dfs(root, prefix, 0, targetSum); } public int dfs(TreeNode node, Map&lt;Long, Integer&gt; prefix, long curr,long targetSum) { if (node == null) { return 0; } int count = 0; curr &#43;= node.val; count = prefix.getOrDefault(curr - targetSum, 0); prefix.put(curr, prefix.getOrDefault(curr, 0) &#43; 1); count &#43;= dfs(node.left, prefix, curr, targetSum); count &#43;= dfs(node.right, prefix, curr, targetSum); prefix.put(curr, prefix.get(curr) - 1); // 递归返回后，减少技术，防止影响其他路径的搜索 return count; } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //计算所有路径和为targetSym的路径：深度优先搜索
+    //定义函数rootSum 用来计算以某个节点为起点时的路径和为targetSum的条数
+    //pathSum函数递归调用自身，遍历所有节点；
+    // 时间复杂度O(N^2),空间复杂度(N)
+    // 采用前缀和的方式，时间复杂度O(N),空间复杂度O(N)
+    // 采用先序遍历的方式用hashmap记录所有路径和，若遍历当前节点时，hashmap中存在路径和-targetsum
+    // 说明此路径中存在某个节点到当前节点的路径和为target
+    // 最后需要回溯，防止影响到其他节点
+    public int pathSum(TreeNode root, long targetSum) { // taegetSum 会溢出，需要改为long
+       Map&lt;Long, Integer&gt; prefix = new HashMap&lt;&gt;();
+       prefix.put(0L, 1); // 为了处理路径和刚好等于targetSum的特殊情况
+       return dfs(root, prefix, 0, targetSum);
+    }
+    public int dfs(TreeNode node, Map&lt;Long, Integer&gt; prefix, long curr,long targetSum) {
+       if (node == null) {
+        return 0;
+       }
+       int count = 0;
+       curr &#43;= node.val;
+       count = prefix.getOrDefault(curr - targetSum, 0);
+       prefix.put(curr, prefix.getOrDefault(curr, 0) &#43; 1);
+       count &#43;= dfs(node.left, prefix, curr, targetSum);
+       count &#43;= dfs(node.right, prefix, curr, targetSum);
+       prefix.put(curr, prefix.get(curr) - 1); // 递归返回后，减少技术，防止影响其他路径的搜索
+       return count;
+    }
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //计算所有路径和为targetSym的路径：深度优先搜索 //定义函数rootSum 用来计算以某个节点为起点时的路径和为targetSum的条数 //pathSum函数递归调用自身，遍历所有节点； // 时间复杂度O(N^2),空间复杂度(N) // 采用前缀和的方式，时间复杂度O(N),空间复杂度O(N) // 采用先序遍历的方式用hashmap记录所有路径和，若遍历当前节点时，hashmap中存在路径和-targetsum // 说明此路径中存在某个节点到当前节点的路径和为target // 最后需要回溯，防止影响到其他节点 public int pathSum(TreeNode root, long targetSum) { // taegetSum 会溢出，需要改为long Map\u0026lt;Long, Integer\u0026gt; prefix = new HashMap\u0026lt;\u0026gt;(); prefix.put(0L, 1); // 为了处理路径和刚好等于targetSum的特殊情况 return dfs(root, prefix, 0, targetSum); } public int dfs(TreeNode node, Map\u0026lt;Long, Integer\u0026gt; prefix, long curr,long targetSum) { if (node == null) { return 0; } int count = 0; curr += node.val; count = prefix.getOrDefault(curr - targetSum, 0); prefix.put(curr, prefix.getOrDefault(curr, 0) + 1); count += dfs(node.left, prefix, curr, targetSum); count += dfs(node.right, prefix, curr, targetSum); prefix.put(curr, prefix.get(curr) - 1); // 递归返回后，减少技术，防止影响其他路径的搜索 return count; } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //计算所有路径和为targetSym的路径：深度优先搜索 //定义函数rootSum 用来计算以某个节点为起点时的路径和为targetSum的条数 //pathSum函数递归调用自身，遍历所有节点； // 时间复杂度O(N^2),空间复杂度(N) // 采用前缀和的方式，时间复杂度O(N),空间复杂度O(N) // 采用先序遍历的方式用hashmap记录所有路径和，若遍历当前节点时，hashmap中存在路径和-targetsum // 说明此路径中存在某个节点到当前节点的路径和为target // 最后需要回溯，防止影响到其他节点 public int pathSum(TreeNode root, long targetSum) { // taegetSum 会溢出，需要改为long Map\u003cLong, Integer\u003e prefix = new HashMap\u003c\u003e(); prefix.put(0L, 1); // 为了处理路径和刚好等于targetSum的特殊情况 return dfs(root, prefix, 0, targetSum); } public int dfs(TreeNode node, Map\u003cLong, Integer\u003e prefix, long curr,long targetSum) { if (node == null) { return 0; } int count = 0; curr += node.val; count = prefix.getOrDefault(curr - targetSum, 0); prefix.put(curr, prefix.getOrDefault(curr, 0) + 1); count += dfs(node.left, prefix, curr, targetSum); count += dfs(node.right, prefix, curr, targetSum); prefix.put(curr, prefix.get(curr) - 1); // 递归返回后，减少技术，防止影响其他路径的搜索 return count; } } ",
+  "wordCount" : "453",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -182,32 +285,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

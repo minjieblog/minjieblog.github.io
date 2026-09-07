@@ -4,11 +4,32 @@
     <title>Categories on Minjie&#39;s Blog</title>
     <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Minjie&#39;s Blog</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.146.7</generator>
     <language>zh</language>
     <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
-    <lastBuildDate>Mon, 06 Apr 2026 12:11:32 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 06 Sep 2026 23:34:32 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>面试笔记</title>
+      <link>http://localhost:1313/categories/%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 06 Sep 2026 23:34:32 +0800</pubDate>
+      <guid>http://localhost:1313/categories/%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文档介绍</title>
+      <link>http://localhost:1313/categories/%E6%96%87%E6%A1%A3%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Wed, 02 Sep 2026 11:12:43 +0800</pubDate>
+      <guid>http://localhost:1313/categories/%E6%96%87%E6%A1%A3%E4%BB%8B%E7%BB%8D/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Agent</title>
+      <link>http://localhost:1313/categories/agent/</link>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/categories/agent/</guid>
+      <description></description>
+    </item>
     <item>
       <title>区块链论文</title>
       <link>http://localhost:1313/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%AE%BA%E6%96%87/</link>
@@ -35,13 +56,6 @@
       <link>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5/</link>
       <pubDate>Sat, 13 Dec 2025 12:16:13 +0800</pubDate>
       <guid>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>文档介绍</title>
-      <link>http://localhost:1313/categories/%E6%96%87%E6%A1%A3%E4%BB%8B%E7%BB%8D/</link>
-      <pubDate>Wed, 10 Dec 2025 11:28:47 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E6%96%87%E6%A1%A3%E4%BB%8B%E7%BB%8D/</guid>
       <description></description>
     </item>
     <item>

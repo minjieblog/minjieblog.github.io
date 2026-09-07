@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="class Solution {
@@ -59,16 +59,16 @@
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
 <noscript>
     <style>
         #theme-toggle,
@@ -157,13 +157,123 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="class Solution { //使用构建图，使用HashMap存储节点和比率 //对每个查询使用DFS查询两个节点是否存在连接，并计算比率 // putIfAbsent方法 V putIfAbsent(K key, V value); // 如果之前 Map 中没有这个键，那么返回 null。 // 如果之前已经有这个键了，那么返回该键之前关联的值，并且不会替换已有的值。 HashMap&lt;String, HashMap&lt;String, Double&gt;&gt; hs = new HashMap&lt;&gt;(); public double[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, double[] values, List&lt;List&lt;String&gt;&gt; queries) { for (int i = 0; i &lt; equations.size(); i&#43;&#43;) { String u = equations.get(i).get(0); String v = equations.get(i).get(1); double k = values[i]; // 构建图 hs.putIfAbsent(u, new HashMap&lt;&gt;()); hs.putIfAbsent(v, new HashMap&lt;&gt;()); hs.get(u).put(v, k); hs.get(v).put(u, 1 / k); } double[] res = new double[queries.size()]; for (int i = 0; i &lt; queries.size(); i&#43;&#43;) { String u = queries.get(i).get(0); String v = queries.get(i).get(1); if (!hs.containsKey(u) || !hs.containsKey(v)) { res[i] = -1.0; } else { res[i] = dfs(u, v, new HashSet&lt;String&gt;()); } } return res; } public double dfs(String start, String end, HashSet&lt;String&gt; visited) { if (hs.get(start).containsKey(end)) { //直接包含 return hs.get(start).get(end); } visited.add(start); for (Map.Entry&lt;String, Double&gt; neighbor : hs.get(start).entrySet()) { if (!visited.contains(neighbor.getKey())) { double path = dfs(neighbor.getKey(), end, visited); if (path != -1.0) { return path*neighbor.getValue(); } } } return -1.0; } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="class Solution {
+    //使用构建图，使用HashMap存储节点和比率
+    //对每个查询使用DFS查询两个节点是否存在连接，并计算比率
+    
+    // putIfAbsent方法 V putIfAbsent(K key, V value);
+    // 如果之前 Map 中没有这个键，那么返回 null。
+    // 如果之前已经有这个键了，那么返回该键之前关联的值，并且不会替换已有的值。
+    HashMap&lt;String, HashMap&lt;String, Double&gt;&gt; hs = new HashMap&lt;&gt;();
+    public double[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, double[] values, List&lt;List&lt;String&gt;&gt; queries) {
+            for (int i = 0; i &lt; equations.size(); i&#43;&#43;) {
+                String u = equations.get(i).get(0);
+                String v = equations.get(i).get(1);
+                double k = values[i];
+                // 构建图
+                hs.putIfAbsent(u, new HashMap&lt;&gt;());
+                hs.putIfAbsent(v, new HashMap&lt;&gt;());
+                hs.get(u).put(v, k);
+                hs.get(v).put(u, 1 / k);
+                
+            }
+            double[] res = new double[queries.size()];
+            for (int i = 0; i &lt; queries.size(); i&#43;&#43;) {
+                String u = queries.get(i).get(0);
+                String v = queries.get(i).get(1);
+                if (!hs.containsKey(u) || !hs.containsKey(v)) {
+                    res[i] = -1.0;
+                } else {
+                    res[i] = dfs(u, v, new HashSet&lt;String&gt;());
+                }
+            }
+            return res;
+    }
+    
+    public double dfs(String start, String end, HashSet&lt;String&gt; visited) {
+        if (hs.get(start).containsKey(end)) { //直接包含
+            return hs.get(start).get(end);
+        }
+        visited.add(start);
+        for (Map.Entry&lt;String, Double&gt; neighbor : hs.get(start).entrySet()) {
+            if (!visited.contains(neighbor.getKey())) {
+                double path = dfs(neighbor.getKey(), end, visited);
+                if (path != -1.0) {
+                    return path*neighbor.getValue();
+                }
+            }
+        }
+        return -1.0;
+    }
+        
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "class Solution { //使用构建图，使用HashMap存储节点和比率 //对每个查询使用DFS查询两个节点是否存在连接，并计算比率 // putIfAbsent方法 V putIfAbsent(K key, V value); // 如果之前 Map 中没有这个键，那么返回 null。 // 如果之前已经有这个键了，那么返回该键之前关联的值，并且不会替换已有的值。 HashMap\u0026lt;String, HashMap\u0026lt;String, Double\u0026gt;\u0026gt; hs = new HashMap\u0026lt;\u0026gt;(); public double[] calcEquation(List\u0026lt;List\u0026lt;String\u0026gt;\u0026gt; equations, double[] values, List\u0026lt;List\u0026lt;String\u0026gt;\u0026gt; queries) { for (int i = 0; i \u0026lt; equations.size(); i++) { String u = equations.get(i).get(0); String v = equations.get(i).get(1); double k = values[i]; // 构建图 hs.putIfAbsent(u, new HashMap\u0026lt;\u0026gt;()); hs.putIfAbsent(v, new HashMap\u0026lt;\u0026gt;()); hs.get(u).put(v, k); hs.get(v).put(u, 1 / k); } double[] res = new double[queries.size()]; for (int i = 0; i \u0026lt; queries.size(); i++) { String u = queries.get(i).get(0); String v = queries.get(i).get(1); if (!hs.containsKey(u) || !hs.containsKey(v)) { res[i] = -1.0; } else { res[i] = dfs(u, v, new HashSet\u0026lt;String\u0026gt;()); } } return res; } public double dfs(String start, String end, HashSet\u0026lt;String\u0026gt; visited) { if (hs.get(start).containsKey(end)) { //直接包含 return hs.get(start).get(end); } visited.add(start); for (Map.Entry\u0026lt;String, Double\u0026gt; neighbor : hs.get(start).entrySet()) { if (!visited.contains(neighbor.getKey())) { double path = dfs(neighbor.getKey(), end, visited); if (path != -1.0) { return path*neighbor.getValue(); } } } return -1.0; } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "class Solution { //使用构建图，使用HashMap存储节点和比率 //对每个查询使用DFS查询两个节点是否存在连接，并计算比率 // putIfAbsent方法 V putIfAbsent(K key, V value); // 如果之前 Map 中没有这个键，那么返回 null。 // 如果之前已经有这个键了，那么返回该键之前关联的值，并且不会替换已有的值。 HashMap\u003cString, HashMap\u003cString, Double\u003e\u003e hs = new HashMap\u003c\u003e(); public double[] calcEquation(List\u003cList\u003cString\u003e\u003e equations, double[] values, List\u003cList\u003cString\u003e\u003e queries) { for (int i = 0; i \u003c equations.size(); i++) { String u = equations.get(i).get(0); String v = equations.get(i).get(1); double k = values[i]; // 构建图 hs.putIfAbsent(u, new HashMap\u003c\u003e()); hs.putIfAbsent(v, new HashMap\u003c\u003e()); hs.get(u).put(v, k); hs.get(v).put(u, 1 / k); } double[] res = new double[queries.size()]; for (int i = 0; i \u003c queries.size(); i++) { String u = queries.get(i).get(0); String v = queries.get(i).get(1); if (!hs.containsKey(u) || !hs.containsKey(v)) { res[i] = -1.0; } else { res[i] = dfs(u, v, new HashSet\u003cString\u003e()); } } return res; } public double dfs(String start, String end, HashSet\u003cString\u003e visited) { if (hs.get(start).containsKey(end)) { //直接包含 return hs.get(start).get(end); } visited.add(start); for (Map.Entry\u003cString, Double\u003e neighbor : hs.get(start).entrySet()) { if (!visited.contains(neighbor.getKey())) { double path = dfs(neighbor.getKey(), end, visited); if (path != -1.0) { return path*neighbor.getValue(); } } } return -1.0; } } ",
+  "wordCount" : "287",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/399.-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -189,32 +299,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

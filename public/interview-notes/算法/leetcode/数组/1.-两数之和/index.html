@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="class Solution {
@@ -31,16 +31,16 @@
 }
 ">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
 <noscript>
     <style>
         #theme-toggle,
@@ -129,13 +129,95 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="class Solution { // 1.暴力求解，两重for循环分别代表起始元素 // 2.用HashMap,时间复杂度为O(n),空间复杂度为O(n); // 两个数之和 = target 那么就是target - 其中一个数 = 另外一个target // 一重for循环，遍历整个数组，将出现过的值加入到hashmap中，key为值，value为索引 // 对于当前元素，hashmap.contiansKey(target - value) ，则找到两个数 public int[] twoSum(int[] nums, int target) { int[] res = new int[2]; HashMap&lt;Integer, Integer&gt; hs = new HashMap(); for (int i = 0; i &lt; nums.length; i&#43;&#43;) { int value = target - nums[i]; if (hs.containsKey(value)) { res[1] = i; res[0] = hs.get(value); break; } hs.put(nums[i],i); } return res; } } ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="class Solution {
+    // 1.暴力求解，两重for循环分别代表起始元素
+    // 2.用HashMap,时间复杂度为O(n),空间复杂度为O(n);
+    // 两个数之和 = target 那么就是target - 其中一个数 = 另外一个target
+    // 一重for循环，遍历整个数组，将出现过的值加入到hashmap中，key为值，value为索引
+    // 对于当前元素，hashmap.contiansKey(target - value) ，则找到两个数
+    public int[] twoSum(int[] nums, int target) {
+        int[] res = new int[2];
+        HashMap&lt;Integer, Integer&gt; hs = new HashMap();
+        for (int i = 0; i &lt; nums.length; i&#43;&#43;) {
+            int value = target - nums[i];
+            if (hs.containsKey(value)) {
+                res[1] = i;
+                res[0] = hs.get(value);
+                break;
+            }
+            hs.put(nums[i],i);
+        }
+        return res;
+    }
+   
+}
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "class Solution { // 1.暴力求解，两重for循环分别代表起始元素 // 2.用HashMap,时间复杂度为O(n),空间复杂度为O(n); // 两个数之和 = target 那么就是target - 其中一个数 = 另外一个target // 一重for循环，遍历整个数组，将出现过的值加入到hashmap中，key为值，value为索引 // 对于当前元素，hashmap.contiansKey(target - value) ，则找到两个数 public int[] twoSum(int[] nums, int target) { int[] res = new int[2]; HashMap\u0026lt;Integer, Integer\u0026gt; hs = new HashMap(); for (int i = 0; i \u0026lt; nums.length; i++) { int value = target - nums[i]; if (hs.containsKey(value)) { res[1] = i; res[0] = hs.get(value); break; } hs.put(nums[i],i); } return res; } } ",
+  "keywords": [
+    
+  ],
+  "articleBody": "class Solution { // 1.暴力求解，两重for循环分别代表起始元素 // 2.用HashMap,时间复杂度为O(n),空间复杂度为O(n); // 两个数之和 = target 那么就是target - 其中一个数 = 另外一个target // 一重for循环，遍历整个数组，将出现过的值加入到hashmap中，key为值，value为索引 // 对于当前元素，hashmap.contiansKey(target - value) ，则找到两个数 public int[] twoSum(int[] nums, int target) { int[] res = new int[2]; HashMap\u003cInteger, Integer\u003e hs = new HashMap(); for (int i = 0; i \u003c nums.length; i++) { int value = target - nums[i]; if (hs.containsKey(value)) { res[1] = i; res[0] = hs.get(value); break; } hs.put(nums[i],i); } return res; } } ",
+  "wordCount" : "237",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -161,32 +243,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

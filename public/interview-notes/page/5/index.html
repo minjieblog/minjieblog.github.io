@@ -185,90 +185,6 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 层序遍历，遍历过程中对每一个节点的位置进行交换 public TreeNode invertTree(TreeNode root) { if (root == null) { return root; } Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); que.offer(root); while (!que.isEmpty()) { int len = que.size(); while (len &gt; 0) { TreeNode tmp = que.poll(); TreeNode tmpSon = tmp.left; tmp.left = tmp.right; tmp.right = tmpSon; if (tmp.left != null) { que.offer(tmp.left); } if (tmp.right != null) { que.offer(tmp.right); } len--; } } return root; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/226.-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) { val = x; } * } */ class Solution { // 递归 // 递归检查左子树 是否包含节点 p 或 q。 // 递归检查右子树 是否包含节点 p 或 q。 // 如果当前节点自身是 p 或 q 中的一个，且其左子树或右子树包含另一个节点，那么该节点就是最近的公共祖先。 // 如果当前节点的左右子树各包含一个目标节点（p 和 q），那么当前节点就是最近的公共祖先。 // 如果上述情况都不成立，返回找到的包含目标节点的子树（可能为空，表示当前子树不包含目标节点）。 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) { if(root == null || root == p || root == q) { return root; } TreeNode left = lowestCommonAncestor(root.left, p, q); TreeNode right = lowestCommonAncestor(root.right, p, q); if (left!= null &amp;&amp; right != null) {//都不为空，说明公共祖先在根节点 return root; }else if (left != null &amp;&amp; right == null) { //一边为空，一边不为空，说明在公共祖先在不为空的一边 return left; }else if (left == null &amp;&amp; right != null) { return right; } return null; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) { val = x; } * } */ // 一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构 // 序列化，层序遍历。反序列化，去除首尾&#34;[]&#34;，将字符串按照&#34;,&#34;划分，采用层序遍历的方式，还原树 // 层序遍历 public class Codec { // 序列化，层序遍历树。需要注意的是：在结尾删除&#34;,&#34; public String serialize(TreeNode root) { if (root == null) { return &#34;[]&#34;; } Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); StringBuffer sb = new StringBuffer(); sb.append(&#34;[&#34;); que.offer(root); while (!que.isEmpty()) { TreeNode tmp = que.poll(); if (tmp != null) { que.offer(tmp.left); que.offer(tmp.right); // 这里最终的结果会多出几个null值，对于序列化二叉树没有任何影响 sb.append(tmp.val &#43; &#34;,&#34;); } else { sb.append(&#34;null,&#34;); } } sb.deleteCharAt(sb.length() - 1); sb.append(&#34;]&#34;); return sb.toString(); } // Decodes your encoded data to tree. // 用split方法划分，将字符串划分为一个字符串数组 // 字符串转为Integer的方法 Integer.parseInt(); public TreeNode deserialize(String data) { if (data.equals(&#34;[]&#34;)) { return null; } String[] val = data.substring(1, data.length() - 1).split(&#34;,&#34;); TreeNode root = new TreeNode(Integer.parseInt(val[0])); Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); que.offer(root); int i = 1; while (!que.isEmpty()) { TreeNode tmp = que.poll(); if (!val[i].equals(&#34;null&#34;)) { tmp.left = new TreeNode(Integer.parseInt(val[i])); que.offer(tmp.left); } i&#43;&#43;; if (!val[i].equals(&#34;null&#34;)) { tmp.right = new TreeNode(Integer.parseInt(val[i])); que.offer(tmp.right); } i&#43;&#43;; } return root; } } // Your Codec object will be instantiated and called as such: // Codec ser = new Codec(); // Codec deser = new Codec(); // TreeNode ans = deser.deserialize(ser.serialize(root)); </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/297.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //计算所有路径和为targetSym的路径：深度优先搜索 //定义函数rootSum 用来计算以某个节点为起点时的路径和为targetSum的条数 //pathSum函数递归调用自身，遍历所有节点； // 时间复杂度O(N^2),空间复杂度(N) // 采用前缀和的方式，时间复杂度O(N),空间复杂度O(N) // 采用先序遍历的方式用hashmap记录所有路径和，若遍历当前节点时，hashmap中存在路径和-targetsum // 说明此路径中存在某个节点到当前节点的路径和为target // 最后需要回溯，防止影响到其他节点 public int pathSum(TreeNode root, long targetSum) { // taegetSum 会溢出，需要改为long Map&lt;Long, Integer&gt; prefix = new HashMap&lt;&gt;(); prefix.put(0L, 1); // 为了处理路径和刚好等于targetSum的特殊情况 return dfs(root, prefix, 0, targetSum); } public int dfs(TreeNode node, Map&lt;Long, Integer&gt; prefix, long curr,long targetSum) { if (node == null) { return 0; } int count = 0; curr &#43;= node.val; count = prefix.getOrDefault(curr - targetSum, 0); prefix.put(curr, prefix.getOrDefault(curr, 0) &#43; 1); count &#43;= dfs(node.left, prefix, curr, targetSum); count &#43;= dfs(node.right, prefix, curr, targetSum); prefix.put(curr, prefix.get(curr) - 1); // 递归返回后，减少技术，防止影响其他路径的搜索 return count; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 解决方案使用了一个递归的方法。算法的关键步骤如下: // 如果当前节点为空,则返回 null。 // 首先递归处理右子树,因为我们需要先处理比当前节点大的节点。 // 处理完右子树后,累加当前节点的值到 sum 变量中,并将当前节点的值更新为 sum。 // 最后递归处理左子树 int sum = 0; public TreeNode convertBST(TreeNode root) { if (root == null) { return null; } convertBST(root.right); sum &#43;= root.val; root.val = sum; convertBST(root.left); return root; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/538.-%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //对每一个节点求左子树的最大深度 &#43; 右子树的最大深度 // 他们之和的最大值即为直径。 // 直径为所有子节点的最大 int sum = 0; public int diameterOfBinaryTree(TreeNode root) { maxDepth(root); return sum; } public int maxDepth(TreeNode node) { if (node == null) { return 0; } int leftDepth = maxDepth(node.left); int rightDepth = maxDepth(node.right); sum = Math.max(sum, leftDepth &#43; rightDepth); return Math.max(leftDepth, rightDepth) &#43; 1; //左右节点的最大深度 &#43; 1，因为要包括自身 } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/543.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //层序遍历 两棵树的对应位置都不为空则值相加 //以返回第一颗数为例，如果第一颗树和第二颗数对应位置都不为空，值相加；第一颗树为空，第二颗不空，让第一颗的对应的位置指向第二颗的 //对应位置；第二颗为空，第一颗为空，不操作； public TreeNode mergeTrees(TreeNode root1, TreeNode root2) { if (root1 == null) { return root2; } if (root2 == null) { return root1; } Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); que.offer(root1); que.offer(root2); while (!que.isEmpty()) { TreeNode tmp1 = que.poll(); TreeNode tmp2 = que.poll(); tmp1.val &#43;= tmp2.val; if (tmp1.left != null &amp;&amp; tmp2.left != null) { que.offer(tmp1.left); // 层序遍历，每次poll两棵树对应位置的两个点 que.offer(tmp2.left); } else if (tmp1.left == null &amp;&amp; tmp2.left != null) { tmp1.left = tmp2.left; } if (tmp1.right != null &amp;&amp; tmp2.right != null) { que.offer(tmp1.right); que.offer(tmp2.right); } else if (tmp1.right == null &amp;&amp; tmp2.right != null) { tmp1.right = tmp2.right; } } return root1; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/617.-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
     <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ // 两种方法 ： 1. 递归 2.迭代 class Solution { List&lt;Integer&gt; res; public List&lt;Integer&gt; inorderTraversal(TreeNode root) { res = new ArrayList&lt;&gt;(); Stack&lt;TreeNode&gt; stack = new Stack(); TreeNode cur = root; while (!stack.isEmpty() || cur != null) { while (cur != null) { stack.push(cur); cur = cur.left; // 左 } cur = stack.pop(); res.add(cur.val); // 中 cur = cur.right; // 右 } return res; } } </p>
   </div>
   <footer class="entry-footer"></footer>
@@ -297,6 +213,90 @@ code.has-jax {
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/98.-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 二进制 // 将当前元素与1按位与，计算二进制中1的个数 public int[] countBits(int n) { int[] res= new int[n &#43; 1]; for (int i = 0; i &lt;=n; i&#43;&#43;) { int count = 0; int tmp = i; while (tmp != 0) { if ((tmp &amp; 1) == 1) { count&#43;&#43;; } tmp &gt;&gt;= 1; } res[i] = count; } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E8%BF%9B%E5%88%B6/338.-%E6%AF%94%E7%89%B9%E4%BD%8D%E8%AE%A1%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //检查x和y中的二进制不同的位数，可以先计算x异或y，x^y //再利用按位与判断尾数是否为1 xor&amp;1 public int hammingDistance(int x, int y) { int res = x^y, hammingDistance = 0; while (res != 0) { if ((res &amp; 1) == 1) { hammingDistance&#43;&#43;; } res &gt;&gt;= 1; } return hammingDistance; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E8%BF%9B%E5%88%B6/461.-%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { // 创建一个最小堆，存储所有的链表的头结点，每次从链表中取出一个节点，并将这个节点的下一个节点放入最小堆中 // 这样就可以保证每次取得当前k个节点的最小值 public ListNode mergeKLists(ListNode[] lists) { PriorityQueue&lt;ListNode&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; a.val - b.val); ListNode dummy = new ListNode(-1); ListNode cur = dummy; for (ListNode node :lists) { if (node != null) { // 需要判断是否为空，否则会出现空指针异常，优先队列不能加入空值 pq.offer(node); } } while (!pq.isEmpty()) { cur.next = pq.poll(); cur = cur.next; if (cur.next != null) { pq.offer(cur.next); } } return dummy.next; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/23.-%E5%90%88%E5%B9%B6-k-%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. 优先队列 PriorityQueue class Solution { //优先队列存储当前元素值和索引，用大顶堆进行排序 public int[] maxSlidingWindow(int[] nums, int k) { int n = nums.length; if (n == 1) { return nums; } int[] res = new int[n - k &#43; 1]; //初始化大顶堆 PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; b[0] - a[0]); for (int i = 0; i &lt; k; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); } res[0] = pq.peek()[0]; int j = 1; for (int i = k ; i &lt; n; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); while (pq.peek()[1] &lt; i - k &#43; 1) { //滑动窗口的右边界k，左边界i-k&#43;1 pq.poll(); } res[j&#43;&#43;] = pq.peek()[0]; } return res; } } 2.单调队列 Deque </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/239.-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int[] dailyTemperatures(int[] temperatures) { Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;(); int n = temperatures.length; int[] ans = new int[n]; // 默认全是 0 for (int i = 0; i &lt; n; i&#43;&#43;) { while (!stack.isEmpty() &amp;&amp; temperatures[stack.peekLast()] &lt; temperatures[i]) { int idx = stack.pollLast(); ans[idx] = i - idx; } stack.offerLast(i); } return ans; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88/739.-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //面积，（索引的差 &#43; 1）*（高度的最小值） // 单调栈 // 对于index位置的最大矩形的款是到左右两边第一次出现比heights[index]小的位置， public int largestRectangleArea(int[] heights) { int n = heights.length; Deque&lt;Integer&gt; stack = new LinkedList&lt;&gt;(); int maxArea = 0; for (int i = 0; i &lt; heights.length; i&#43;&#43;) { // 当前柱子比栈顶小，说明找到了右边界 while (!stack.isEmpty() &amp;&amp; heights[i] &lt; heights[stack.peek()]) { int top = stack.pop(); // 计算宽度 int maxWidth = stack.isEmpty() ? i : i - stack.peek() - 1; maxArea = Math.max(maxWidth * heights[top], maxArea); } stack.push(i); } // 处理右边没有更小柱子的情况 while (!stack.isEmpty()) { int top = stack.pop(); int maxWidth = stack.isEmpty() ? n : n - stack.peek() - 1; maxArea = Math.max(maxWidth * heights[top], maxArea); } return maxArea; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88/84.-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 所有可能，全排列，回溯 List&lt;String&gt; res = new ArrayList&lt;&gt;(); String[] numbers = {&#34;&#34;, &#34;&#34;, &#34;abc&#34;, &#34;def&#34;, &#34;ghi&#34;, &#34;jkl&#34;, &#34;mno&#34;, &#34;pqrs&#34;, &#34;tuv&#34;, &#34;wxyz&#34;}; public List&lt;String&gt; letterCombinations(String digits) { if (digits.length() == 0) { return res; } backTracking(digits, 0); return res; } StringBuffer sb = new StringBuffer(); public void backTracking(String digits, int num) { if (num == digits.length()) { res.add(sb.toString()); return; } int index = digits.charAt(num) - &#39;0&#39;; // 这里-&#39;0&#39;得到数字，不能用Inter.valueOf(),这是将字符串转为数字 String tmp = numbers[index]; for (int i = 0; i &lt; tmp.length(); i&#43;&#43;) { sb.append(tmp.charAt(i)); backTracking(digits, num &#43; 1); sb.deleteCharAt(sb.length() - 1); } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/17.-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

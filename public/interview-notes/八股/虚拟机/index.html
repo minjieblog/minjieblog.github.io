@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Minjie&#39;s Blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="小林code
@@ -48,16 +48,16 @@ CMS和G1的使用场景
 G1回收器的特色是什么
 GC只会对堆进行GC吗">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+<link rel="canonical" href="https://minjieblog.github.io/interview-notes/%E5%85%AB%E8%82%A1/%E8%99%9A%E6%8B%9F%E6%9C%BA/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
-<link rel="mask-icon" href="http://localhost:1313/code.png">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/%E5%85%AB%E8%82%A1/%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/interview-notes/%E5%85%AB%E8%82%A1/%E8%99%9A%E6%8B%9F%E6%9C%BA/">
 <noscript>
     <style>
         #theme-toggle,
@@ -146,13 +146,113 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style>
+</style><meta property="og:url" content="https://minjieblog.github.io/interview-notes/%E5%85%AB%E8%82%A1/%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="小林code
+内存模型 介绍Java中的内存模型 JVM中的堆和栈有什么区别 栈中存的是指针还是对象 堆可以分为哪几部分 如果有个大对象一般是在哪个区域 程序计数器的作用，为什么是私有的 方法区中的方法的执行过程是怎么样的 方法区中还有哪些东西 String保存在哪里 String s = new String(&#34;abc&#34;)的执行过程中分别对应哪些内存区域 引用类型有哪些？有什么区别？ 弱引用了解吗？举例说明在哪可以用到 内存泄漏和内存溢出的理解 jvm内存结构有哪几种内存溢出的情况 堆溢出的情况和对应解决办法 栈溢出的情况有哪些 内存泄漏和内存溢出的例子及解决办法 类初始化和类加载 创建对象的过程 对象的生命周期 类加载器有哪些 Java中双亲委派是什么，有什么用？ 类加载过程 类加载和双亲委派原则 垃圾回收 什么是Java中的垃圾回收？如何触发垃圾回收？ 判断垃圾的方法有哪些 垃圾回收算法是什么，解决了什么问题 java中的gc机制你知道什么 垃圾回收算法有哪些 垃圾回收器有哪些 标记清除算法的缺点是什么 垃圾回收算法哪些阶段会stop the world minorGC、majorGC、fullGC的区别，什么场景会触发fullGC 垃圾回收器CMS和G1的区别 CMS和G1的使用场景 G1回收器的特色是什么 GC只会对堆进行GC吗">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="interview-notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="小林code
+内存模型
+介绍Java中的内存模型
+JVM中的堆和栈有什么区别
+栈中存的是指针还是对象
+堆可以分为哪几部分
+如果有个大对象一般是在哪个区域
+程序计数器的作用，为什么是私有的
+方法区中的方法的执行过程是怎么样的
+方法区中还有哪些东西
+String保存在哪里
+String s = new String(&quot;abc&quot;)的执行过程中分别对应哪些内存区域
+引用类型有哪些？有什么区别？
+弱引用了解吗？举例说明在哪可以用到
+内存泄漏和内存溢出的理解
+jvm内存结构有哪几种内存溢出的情况
+堆溢出的情况和对应解决办法
+栈溢出的情况有哪些
+内存泄漏和内存溢出的例子及解决办法
+类初始化和类加载
+创建对象的过程
+对象的生命周期
+类加载器有哪些
+Java中双亲委派是什么，有什么用？
+类加载过程
+类加载和双亲委派原则
+垃圾回收
+什么是Java中的垃圾回收？如何触发垃圾回收？
+判断垃圾的方法有哪些
+垃圾回收算法是什么，解决了什么问题
+java中的gc机制你知道什么
+垃圾回收算法有哪些
+垃圾回收器有哪些
+标记清除算法的缺点是什么
+垃圾回收算法哪些阶段会stop the world
+minorGC、majorGC、fullGC的区别，什么场景会触发fullGC
+垃圾回收器CMS和G1的区别
+CMS和G1的使用场景
+G1回收器的特色是什么
+GC只会对堆进行GC吗">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Interview-Notes",
+      "item": "https://minjieblog.github.io/interview-notes/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/interview-notes/%E5%85%AB%E8%82%A1/%E8%99%9A%E6%8B%9F%E6%9C%BA/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "小林code\n内存模型 介绍Java中的内存模型 JVM中的堆和栈有什么区别 栈中存的是指针还是对象 堆可以分为哪几部分 如果有个大对象一般是在哪个区域 程序计数器的作用，为什么是私有的 方法区中的方法的执行过程是怎么样的 方法区中还有哪些东西 String保存在哪里 String s = new String(\u0026quot;abc\u0026quot;)的执行过程中分别对应哪些内存区域 引用类型有哪些？有什么区别？ 弱引用了解吗？举例说明在哪可以用到 内存泄漏和内存溢出的理解 jvm内存结构有哪几种内存溢出的情况 堆溢出的情况和对应解决办法 栈溢出的情况有哪些 内存泄漏和内存溢出的例子及解决办法 类初始化和类加载 创建对象的过程 对象的生命周期 类加载器有哪些 Java中双亲委派是什么，有什么用？ 类加载过程 类加载和双亲委派原则 垃圾回收 什么是Java中的垃圾回收？如何触发垃圾回收？ 判断垃圾的方法有哪些 垃圾回收算法是什么，解决了什么问题 java中的gc机制你知道什么 垃圾回收算法有哪些 垃圾回收器有哪些 标记清除算法的缺点是什么 垃圾回收算法哪些阶段会stop the world minorGC、majorGC、fullGC的区别，什么场景会触发fullGC 垃圾回收器CMS和G1的区别 CMS和G1的使用场景 G1回收器的特色是什么 GC只会对堆进行GC吗",
+  "keywords": [
+    
+  ],
+  "articleBody": "小林code\n内存模型 介绍Java中的内存模型 JVM中的堆和栈有什么区别 栈中存的是指针还是对象 堆可以分为哪几部分 如果有个大对象一般是在哪个区域 程序计数器的作用，为什么是私有的 方法区中的方法的执行过程是怎么样的 方法区中还有哪些东西 String保存在哪里 String s = new String(\"abc\")的执行过程中分别对应哪些内存区域 引用类型有哪些？有什么区别？ 弱引用了解吗？举例说明在哪可以用到 内存泄漏和内存溢出的理解 jvm内存结构有哪几种内存溢出的情况 堆溢出的情况和对应解决办法 栈溢出的情况有哪些 内存泄漏和内存溢出的例子及解决办法 类初始化和类加载 创建对象的过程 对象的生命周期 类加载器有哪些 Java中双亲委派是什么，有什么用？ 类加载过程 类加载和双亲委派原则 垃圾回收 什么是Java中的垃圾回收？如何触发垃圾回收？ 判断垃圾的方法有哪些 垃圾回收算法是什么，解决了什么问题 java中的gc机制你知道什么 垃圾回收算法有哪些 垃圾回收器有哪些 标记清除算法的缺点是什么 垃圾回收算法哪些阶段会stop the world minorGC、majorGC、fullGC的区别，什么场景会触发fullGC 垃圾回收器CMS和G1的区别 CMS和G1的使用场景 G1回收器的特色是什么 GC只会对堆进行GC吗 ",
+  "wordCount" : "530",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/interview-notes/%E5%85%AB%E8%82%A1/%E8%99%9A%E6%8B%9F%E6%9C%BA/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -178,32 +278,32 @@ code.has-jax {
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="归档">
+                <a href="https://minjieblog.github.io/archives/" title="归档">
                     <span>归档</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="Categories">
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="搜索">
+                <a href="https://minjieblog.github.io/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="关于我">
+                <a href="https://minjieblog.github.io/about/" title="关于我">
                     <span>关于</span>
                 </a>
             </li>

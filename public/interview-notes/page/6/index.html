@@ -185,90 +185,6 @@ code.has-jax {
     </h2>
   </header>
   <div class="entry-content">
-    <p>class Solution { // 二进制 // 将当前元素与1按位与，计算二进制中1的个数 public int[] countBits(int n) { int[] res= new int[n &#43; 1]; for (int i = 0; i &lt;=n; i&#43;&#43;) { int count = 0; int tmp = i; while (tmp != 0) { if ((tmp &amp; 1) == 1) { count&#43;&#43;; } tmp &gt;&gt;= 1; } res[i] = count; } return res; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E8%BF%9B%E5%88%B6/338.-%E6%AF%94%E7%89%B9%E4%BD%8D%E8%AE%A1%E6%95%B0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { //检查x和y中的二进制不同的位数，可以先计算x异或y，x^y //再利用按位与判断尾数是否为1 xor&amp;1 public int hammingDistance(int x, int y) { int res = x^y, hammingDistance = 0; while (res != 0) { if ((res &amp; 1) == 1) { hammingDistance&#43;&#43;; } res &gt;&gt;= 1; } return hammingDistance; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E8%BF%9B%E5%88%B6/461.-%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>/** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode() {} * ListNode(int val) { this.val = val; } * ListNode(int val, ListNode next) { this.val = val; this.next = next; } * } */ class Solution { // 创建一个最小堆，存储所有的链表的头结点，每次从链表中取出一个节点，并将这个节点的下一个节点放入最小堆中 // 这样就可以保证每次取得当前k个节点的最小值 public ListNode mergeKLists(ListNode[] lists) { PriorityQueue&lt;ListNode&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; a.val - b.val); ListNode dummy = new ListNode(-1); ListNode cur = dummy; for (ListNode node :lists) { if (node != null) { // 需要判断是否为空，否则会出现空指针异常，优先队列不能加入空值 pq.offer(node); } } while (!pq.isEmpty()) { cur.next = pq.poll(); cur = cur.next; if (cur.next != null) { pq.offer(cur.next); } } return dummy.next; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/23.-%E5%90%88%E5%B9%B6-k-%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>1. 优先队列 PriorityQueue class Solution { //优先队列存储当前元素值和索引，用大顶堆进行排序 public int[] maxSlidingWindow(int[] nums, int k) { int n = nums.length; if (n == 1) { return nums; } int[] res = new int[n - k &#43; 1]; //初始化大顶堆 PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a,b) -&gt; b[0] - a[0]); for (int i = 0; i &lt; k; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); } res[0] = pq.peek()[0]; int j = 1; for (int i = k ; i &lt; n; i&#43;&#43;) { pq.offer(new int[]{nums[i],i}); while (pq.peek()[1] &lt; i - k &#43; 1) { //滑动窗口的右边界k，左边界i-k&#43;1 pq.poll(); } res[j&#43;&#43;] = pq.peek()[0]; } return res; } } 2.单调队列 Deque </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/239.-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { public int[] dailyTemperatures(int[] temperatures) { Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;(); int n = temperatures.length; int[] ans = new int[n]; // 默认全是 0 for (int i = 0; i &lt; n; i&#43;&#43;) { while (!stack.isEmpty() &amp;&amp; temperatures[stack.peekLast()] &lt; temperatures[i]) { int idx = stack.pollLast(); ans[idx] = i - idx; } stack.offerLast(i); } return ans; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88/739.-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { //面积，（索引的差 &#43; 1）*（高度的最小值） // 单调栈 // 对于index位置的最大矩形的款是到左右两边第一次出现比heights[index]小的位置， public int largestRectangleArea(int[] heights) { int n = heights.length; Deque&lt;Integer&gt; stack = new LinkedList&lt;&gt;(); int maxArea = 0; for (int i = 0; i &lt; heights.length; i&#43;&#43;) { // 当前柱子比栈顶小，说明找到了右边界 while (!stack.isEmpty() &amp;&amp; heights[i] &lt; heights[stack.peek()]) { int top = stack.pop(); // 计算宽度 int maxWidth = stack.isEmpty() ? i : i - stack.peek() - 1; maxArea = Math.max(maxWidth * heights[top], maxArea); } stack.push(i); } // 处理右边没有更小柱子的情况 while (!stack.isEmpty()) { int top = stack.pop(); int maxWidth = stack.isEmpty() ? n : n - stack.peek() - 1; maxArea = Math.max(maxWidth * heights[top], maxArea); } return maxArea; } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88/84.-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>class Solution { // 所有可能，全排列，回溯 List&lt;String&gt; res = new ArrayList&lt;&gt;(); String[] numbers = {&#34;&#34;, &#34;&#34;, &#34;abc&#34;, &#34;def&#34;, &#34;ghi&#34;, &#34;jkl&#34;, &#34;mno&#34;, &#34;pqrs&#34;, &#34;tuv&#34;, &#34;wxyz&#34;}; public List&lt;String&gt; letterCombinations(String digits) { if (digits.length() == 0) { return res; } backTracking(digits, 0); return res; } StringBuffer sb = new StringBuffer(); public void backTracking(String digits, int num) { if (num == digits.length()) { res.add(sb.toString()); return; } int index = digits.charAt(num) - &#39;0&#39;; // 这里-&#39;0&#39;得到数字，不能用Inter.valueOf(),这是将字符串转为数字 String tmp = numbers[index]; for (int i = 0; i &lt; tmp.length(); i&#43;&#43;) { sb.append(tmp.charAt(i)); backTracking(digits, num &#43; 1); sb.deleteCharAt(sb.length() - 1); } } } </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/17.-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
     <p>class Solution { // 回溯，全排列 // stringBuffer的append方法和deleteCharAt()方法 // 有效的括号组合，对于任意括号左边的左括号的数量大于等于右括号的数量 // 空间复杂度：O(n) List&lt;String&gt; res; int left, right; int count = 0; StringBuffer sb = new StringBuffer(); public List&lt;String&gt; generateParenthesis(int n) { left = 0; right = 0; count = n; res = new ArrayList&lt;&gt;(); backTracking(); return res; } public void backTracking() { if (right == count) { res.add(sb.toString()); } if (left &lt; count) { // append左括号 sb.append(&#39;(&#39;); left&#43;&#43;; backTracking(); sb.deleteCharAt(sb.length() - 1); left--; } if (right &lt; left) { // append右括号，右括号的数量需要小于左括号的数量 sb.append(&#39;)&#39;); right&#43;&#43;; backTracking(); sb.deleteCharAt(sb.length() - 1); right--; } } } </p>
   </div>
   <footer class="entry-footer"></footer>
@@ -297,6 +213,90 @@ code.has-jax {
   </div>
   <footer class="entry-footer"></footer>
   <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/46.-%E5%85%A8%E6%8E%92%E5%88%97/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { List&lt;List&lt;Integer&gt;&gt; res = new ArrayList(); List&lt;Integer&gt; path = new LinkedList(); public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) { backTracking(nums,0); return res; } public void backTracking(int[] nums,int startIndex){ res.add(new ArrayList(path)); if(startIndex &gt;= nums.length){ return; } for(int i = startIndex; i &lt; nums.length ; i&#43;&#43;){ path.add(nums[i]); backTracking(nums,i&#43;1); // 这里是i &#43; 1 path.removeLast(); } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/78.-%E5%AD%90%E9%9B%86/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 1.暴力求解，两重for循环分别代表起始元素 // 2.用HashMap,时间复杂度为O(n),空间复杂度为O(n); // 两个数之和 = target 那么就是target - 其中一个数 = 另外一个target // 一重for循环，遍历整个数组，将出现过的值加入到hashmap中，key为值，value为索引 // 对于当前元素，hashmap.contiansKey(target - value) ，则找到两个数 public int[] twoSum(int[] nums, int target) { int[] res = new int[2]; HashMap&lt;Integer, Integer&gt; hs = new HashMap(); for (int i = 0; i &lt; nums.length; i&#43;&#43;) { int value = target - nums[i]; if (hs.containsKey(value)) { res[1] = i; res[0] = hs.get(value); break; } hs.put(nums[i],i); } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int maxArea(int[] height) { // 暴力复杂度为O(n^2) // 双指针：时间复杂度为）（n） //最大容量：索引的差*两个索引最小高度； int left = 0, right = height.length - 1; int maxArea = 0; while (left &lt; right) { int area = Math.min(height[left], height[right]) *(right - left); maxArea = Math.max(area, maxArea); if (height[left] &gt; height[right]) { //宽已经是最大了，想要更大的面积只能是更大的高 right--; } else { left&#43;&#43;; } } return maxArea; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/11.-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 排序之后，使用双指针,左右指针，注意去重 // 时间复杂度O(n^2)，空间复杂度:排序的复杂度O(logn) &#43; 三数列表的个数O(m) public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) { List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;(); Arrays.sort(nums); // 排序 int n = nums.length; for (int i = 0; i &lt; n - 2; i&#43;&#43;) { if (i &gt; 0 &amp;&amp; nums[i]== nums[i-1]) { //外部去除 continue; } int target = -nums[i]; int left = i &#43; 1, right = n - 1; while (left &lt; right) { if (nums[left] &#43; nums[right] &lt; target) { left&#43;&#43;; } else if (nums[left] &#43; nums[right] &gt; target) { right--; } else { res.add(Arrays.asList(nums[i], nums[left], nums[right])); while (left &lt; right &amp;&amp; nums[right] == nums[right - 1]) { //内部去重 right--; } while (left &lt; right &amp;&amp; nums[left] == nums[left &#43; 1]) { left&#43;&#43;; } left&#43;&#43;; right--; } } } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/15.-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //用堆排序实现，删除前k-1个元素皆可以得到第k大的元素 // 要求O(n),但是O(nlogn)可以通过 public int findKthLargest(int[] nums, int k) { // int n = nums.length; // buildMaxHeap(nums); // for (int i = n - 1; i &gt; n - k; i--) { // swap(nums,0,i); // heapify(nums,i,0); // } // return nums[0]; PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;((a,b)-&gt; b-a); for (int i = 0; i &lt; nums.length; i&#43;&#43;) { pq.offer(nums[i]); } for (int i = 0; i &lt; k - 1; i&#43;&#43;) { pq.poll(); } int val = pq.poll(); return val; } // public void buildMaxHeap(int[] arr) { // int n = arr.length; // for (int i = n / 2 - 1; i &gt;= 0; i--) { // heapify(arr,n,i); // } // } // public void heapify(int[] arr, int n ,int i) { // int largest = i; // int left = 2 * i &#43; 1; // int right = 2 *i &#43; 2; // if (left &lt; n &amp;&amp; arr[left] &gt; arr[largest]) { // largest = left; // } // if (right &lt; n &amp;&amp; arr[right] &gt; arr[largest]) { // largest = right; // } // if (largest != i) { // swap(arr,largest,i); // heapify(arr,n,largest); // } // } // public void swap(int[] arr, int i ,int j) { // int temp = arr[i]; // arr[i] = arr[j]; // arr[j] = temp; // } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/215.-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACk%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 题目要求o(n)的时间复杂度 // 题目类型dp public int[] productExceptSelf(int[] nums) { //除nums[i]之外的所有数的乘积也就是将nums[i]当做1 // 可以计算这个数左乘积和右乘积 // 用三个数组分别存储前缀、后缀和乘积 // 对于元素nums[0]，我们设定初始值left[0] = 1; // 对于元素nums[nums.length - 1] 设定初始值right[nums.length - 1] = 1; int n = nums.length; int[] left = new int[n]; int[] right = new int[n]; int[] res = new int[n]; left[0] = 1;right[n - 1] = 1; for (int i = 1; i &lt; n; i&#43;&#43;) { left[i] = left[i-1] * nums[i-1]; } for (int j = n - 2; j &gt;= 0; j--) { right[j] = right[j &#43; 1] * nums[j &#43; 1]; } for (int i = 0; i &lt; n; i&#43;&#43;) { res[i] = left[i] * right[i]; } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/238.-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public boolean searchMatrix(int[][] matrix, int target) { //从矩阵的左下角或者右上角开始遍历,时间复杂度O(m &#43; n) int m = matrix.length; int n = matrix[0].length; int i = m - 1; int j = 0; while (i &gt;= 0 &amp;&amp; j &lt; n) { if (matrix[i][j] == target) { return true; } else if(matrix[i][j] &gt; target) { i--; } else { j&#43;&#43;; } } return false; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/240.-%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5-ii/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
