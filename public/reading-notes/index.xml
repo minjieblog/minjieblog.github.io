@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Reading-Notes on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/reading-notes/</link>
+    <description>Recent content in Reading-Notes on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Wed, 04 Mar 2026 22:14:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/reading-notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Books 2026</title>
+      <link>http://localhost:1313/reading-notes/books-2026/</link>
+      <pubDate>Wed, 04 Mar 2026 22:14:00 +0800</pubDate>
+      <guid>http://localhost:1313/reading-notes/books-2026/</guid>
+      <description>这是我在2026年里的书单，以及相应的思考和学习笔记大杂烩</description>
+    </item>
+  </channel>
+</rss>

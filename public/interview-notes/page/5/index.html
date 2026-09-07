@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Interview-Notes | Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Interview-Notes - Minjie&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/interview-notes/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Interview-Notes
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 层序遍历，遍历过程中对每一个节点的位置进行交换 public TreeNode invertTree(TreeNode root) { if (root == null) { return root; } Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); que.offer(root); while (!que.isEmpty()) { int len = que.size(); while (len &gt; 0) { TreeNode tmp = que.poll(); TreeNode tmpSon = tmp.left; tmp.left = tmp.right; tmp.right = tmpSon; if (tmp.left != null) { que.offer(tmp.left); } if (tmp.right != null) { que.offer(tmp.right); } len--; } } return root; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/226.-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) { val = x; } * } */ class Solution { // 递归 // 递归检查左子树 是否包含节点 p 或 q。 // 递归检查右子树 是否包含节点 p 或 q。 // 如果当前节点自身是 p 或 q 中的一个，且其左子树或右子树包含另一个节点，那么该节点就是最近的公共祖先。 // 如果当前节点的左右子树各包含一个目标节点（p 和 q），那么当前节点就是最近的公共祖先。 // 如果上述情况都不成立，返回找到的包含目标节点的子树（可能为空，表示当前子树不包含目标节点）。 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) { if(root == null || root == p || root == q) { return root; } TreeNode left = lowestCommonAncestor(root.left, p, q); TreeNode right = lowestCommonAncestor(root.right, p, q); if (left!= null &amp;&amp; right != null) {//都不为空，说明公共祖先在根节点 return root; }else if (left != null &amp;&amp; right == null) { //一边为空，一边不为空，说明在公共祖先在不为空的一边 return left; }else if (left == null &amp;&amp; right != null) { return right; } return null; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/236.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) { val = x; } * } */ // 一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构 // 序列化，层序遍历。反序列化，去除首尾&#34;[]&#34;，将字符串按照&#34;,&#34;划分，采用层序遍历的方式，还原树 // 层序遍历 public class Codec { // 序列化，层序遍历树。需要注意的是：在结尾删除&#34;,&#34; public String serialize(TreeNode root) { if (root == null) { return &#34;[]&#34;; } Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); StringBuffer sb = new StringBuffer(); sb.append(&#34;[&#34;); que.offer(root); while (!que.isEmpty()) { TreeNode tmp = que.poll(); if (tmp != null) { que.offer(tmp.left); que.offer(tmp.right); // 这里最终的结果会多出几个null值，对于序列化二叉树没有任何影响 sb.append(tmp.val &#43; &#34;,&#34;); } else { sb.append(&#34;null,&#34;); } } sb.deleteCharAt(sb.length() - 1); sb.append(&#34;]&#34;); return sb.toString(); } // Decodes your encoded data to tree. // 用split方法划分，将字符串划分为一个字符串数组 // 字符串转为Integer的方法 Integer.parseInt(); public TreeNode deserialize(String data) { if (data.equals(&#34;[]&#34;)) { return null; } String[] val = data.substring(1, data.length() - 1).split(&#34;,&#34;); TreeNode root = new TreeNode(Integer.parseInt(val[0])); Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); que.offer(root); int i = 1; while (!que.isEmpty()) { TreeNode tmp = que.poll(); if (!val[i].equals(&#34;null&#34;)) { tmp.left = new TreeNode(Integer.parseInt(val[i])); que.offer(tmp.left); } i&#43;&#43;; if (!val[i].equals(&#34;null&#34;)) { tmp.right = new TreeNode(Integer.parseInt(val[i])); que.offer(tmp.right); } i&#43;&#43;; } return root; } } // Your Codec object will be instantiated and called as such: // Codec ser = new Codec(); // Codec deser = new Codec(); // TreeNode ans = deser.deserialize(ser.serialize(root)); </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/297.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //计算所有路径和为targetSym的路径：深度优先搜索 //定义函数rootSum 用来计算以某个节点为起点时的路径和为targetSum的条数 //pathSum函数递归调用自身，遍历所有节点； // 时间复杂度O(N^2),空间复杂度(N) // 采用前缀和的方式，时间复杂度O(N),空间复杂度O(N) // 采用先序遍历的方式用hashmap记录所有路径和，若遍历当前节点时，hashmap中存在路径和-targetsum // 说明此路径中存在某个节点到当前节点的路径和为target // 最后需要回溯，防止影响到其他节点 public int pathSum(TreeNode root, long targetSum) { // taegetSum 会溢出，需要改为long Map&lt;Long, Integer&gt; prefix = new HashMap&lt;&gt;(); prefix.put(0L, 1); // 为了处理路径和刚好等于targetSum的特殊情况 return dfs(root, prefix, 0, targetSum); } public int dfs(TreeNode node, Map&lt;Long, Integer&gt; prefix, long curr,long targetSum) { if (node == null) { return 0; } int count = 0; curr &#43;= node.val; count = prefix.getOrDefault(curr - targetSum, 0); prefix.put(curr, prefix.getOrDefault(curr, 0) &#43; 1); count &#43;= dfs(node.left, prefix, curr, targetSum); count &#43;= dfs(node.right, prefix, curr, targetSum); prefix.put(curr, prefix.get(curr) - 1); // 递归返回后，减少技术，防止影响其他路径的搜索 return count; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/437.-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-iii/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 解决方案使用了一个递归的方法。算法的关键步骤如下: // 如果当前节点为空,则返回 null。 // 首先递归处理右子树,因为我们需要先处理比当前节点大的节点。 // 处理完右子树后,累加当前节点的值到 sum 变量中,并将当前节点的值更新为 sum。 // 最后递归处理左子树 int sum = 0; public TreeNode convertBST(TreeNode root) { if (root == null) { return null; } convertBST(root.right); sum &#43;= root.val; root.val = sum; convertBST(root.left); return root; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/538.-%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //对每一个节点求左子树的最大深度 &#43; 右子树的最大深度 // 他们之和的最大值即为直径。 // 直径为所有子节点的最大 int sum = 0; public int diameterOfBinaryTree(TreeNode root) { maxDepth(root); return sum; } public int maxDepth(TreeNode node) { if (node == null) { return 0; } int leftDepth = maxDepth(node.left); int rightDepth = maxDepth(node.right); sum = Math.max(sum, leftDepth &#43; rightDepth); return Math.max(leftDepth, rightDepth) &#43; 1; //左右节点的最大深度 &#43; 1，因为要包括自身 } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/543.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { //层序遍历 两棵树的对应位置都不为空则值相加 //以返回第一颗数为例，如果第一颗树和第二颗数对应位置都不为空，值相加；第一颗树为空，第二颗不空，让第一颗的对应的位置指向第二颗的 //对应位置；第二颗为空，第一颗为空，不操作； public TreeNode mergeTrees(TreeNode root1, TreeNode root2) { if (root1 == null) { return root2; } if (root2 == null) { return root1; } Queue&lt;TreeNode&gt; que = new LinkedList&lt;&gt;(); que.offer(root1); que.offer(root2); while (!que.isEmpty()) { TreeNode tmp1 = que.poll(); TreeNode tmp2 = que.poll(); tmp1.val &#43;= tmp2.val; if (tmp1.left != null &amp;&amp; tmp2.left != null) { que.offer(tmp1.left); // 层序遍历，每次poll两棵树对应位置的两个点 que.offer(tmp2.left); } else if (tmp1.left == null &amp;&amp; tmp2.left != null) { tmp1.left = tmp2.left; } if (tmp1.right != null &amp;&amp; tmp2.right != null) { que.offer(tmp1.right); que.offer(tmp2.right); } else if (tmp1.right == null &amp;&amp; tmp2.right != null) { tmp1.right = tmp2.right; } } return root1; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/617.-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ // 两种方法 ： 1. 递归 2.迭代 class Solution { List&lt;Integer&gt; res; public List&lt;Integer&gt; inorderTraversal(TreeNode root) { res = new ArrayList&lt;&gt;(); Stack&lt;TreeNode&gt; stack = new Stack(); TreeNode cur = root; while (!stack.isEmpty() || cur != null) { while (cur != null) { stack.push(cur); cur = cur.left; // 左 } cur = stack.pop(); res.add(cur.val); // 中 cur = cur.right; // 右 } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/94.-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int numTrees(int n) { int[] dp = new int[n&#43;1]; //dp[i]表示n个节点组成的二叉搜索数的种数 dp[1] = 1; dp[0] = 1; //递推公式：选定任意点i作为根节点，则左子树为[1,i-1];右子树为[i&#43;1,n]; //dp[i] = ∑(dp[i-1] * dp[n-i]) // dp[1] = 1 // 遍历顺序：从前向后 for (int i = 2; i &lt;=n; i&#43;&#43;) { // 总共有多少个节点 for (int j = 1; j &lt;= i; j&#43;&#43;) { // 选哪一个做根节点 dp[i] &#43;= dp[j-1]*dp[i-j]; } } return dp[n]; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/96.-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>/** * Definition for a binary tree node. * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode() {} * TreeNode(int val) { this.val = val; } * TreeNode(int val, TreeNode left, TreeNode right) { * this.val = val; * this.left = left; * this.right = right; * } * } */ class Solution { // 两种方法：一种是递归，一种是中序遍历 // 对二叉树中序遍历得到的结果是升序的， // 需要注意边界值，如果最左边的节点的值是最小值 public boolean isValidBST(TreeNode root) { long max = Long.MAX_VALUE; long min = Long.MIN_VALUE; return isValid(root, min, max); } // Deque&lt;TreeNode&gt; stack = new LinkedList&lt;&gt;(); // long inorder = Long.MIN_VALUE; // while (!stack.isEmpty() || root != null) { // while (root != null) { // stack.push(root); // root = root.left; // } // TreeNode tmp = stack.pop(); // if ((long)tmp.val &lt;= inorder) { // return false; // } // root = tmp.right; // inorder = tmp.val; // } // return true; // } public boolean isValid(TreeNode node, long min, long max) { if (node == null) { return true; } if (node.val &lt;= min || node.val &gt;= max) { return false; } return isValid(node.left, min, node.val) &amp;&amp; isValid(node.right, node.val, max); } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/98.-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/interview-notes/page/4/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/interview-notes/page/6/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

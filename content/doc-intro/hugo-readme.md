@@ -18,7 +18,10 @@ comments: true               # 提供评论
 
 
 ## 一、Hugo 常用指令
+<<<<<<< HEAD
 > 如何下载：winget install Hugo.Hugo.Extended --version 0.146.7
+=======
+>>>>>>> origin/master
 
 ### 1.1 创建新站点
 ```bash

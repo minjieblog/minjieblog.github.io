@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Interview-Notes | Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Interview-Notes - Minjie&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/interview-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/interview-notes/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/interview-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Interview-Notes
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { List&lt;List&lt;Integer&gt;&gt; res = new ArrayList(); List&lt;Integer&gt; path = new LinkedList(); public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) { backTracking(nums,0); return res; } public void backTracking(int[] nums,int startIndex){ res.add(new ArrayList(path)); if(startIndex &gt;= nums.length){ return; } for(int i = startIndex; i &lt; nums.length ; i&#43;&#43;){ path.add(nums[i]); backTracking(nums,i&#43;1); // 这里是i &#43; 1 path.removeLast(); } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E5%9B%9E%E6%BA%AF/78.-%E5%AD%90%E9%9B%86/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 1.暴力求解，两重for循环分别代表起始元素 // 2.用HashMap,时间复杂度为O(n),空间复杂度为O(n); // 两个数之和 = target 那么就是target - 其中一个数 = 另外一个target // 一重for循环，遍历整个数组，将出现过的值加入到hashmap中，key为值，value为索引 // 对于当前元素，hashmap.contiansKey(target - value) ，则找到两个数 public int[] twoSum(int[] nums, int target) { int[] res = new int[2]; HashMap&lt;Integer, Integer&gt; hs = new HashMap(); for (int i = 0; i &lt; nums.length; i&#43;&#43;) { int value = target - nums[i]; if (hs.containsKey(value)) { res[1] = i; res[0] = hs.get(value); break; } hs.put(nums[i],i); } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/1.-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int maxArea(int[] height) { // 暴力复杂度为O(n^2) // 双指针：时间复杂度为）（n） //最大容量：索引的差*两个索引最小高度； int left = 0, right = height.length - 1; int maxArea = 0; while (left &lt; right) { int area = Math.min(height[left], height[right]) *(right - left); maxArea = Math.max(area, maxArea); if (height[left] &gt; height[right]) { //宽已经是最大了，想要更大的面积只能是更大的高 right--; } else { left&#43;&#43;; } } return maxArea; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/11.-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 排序之后，使用双指针,左右指针，注意去重 // 时间复杂度O(n^2)，空间复杂度:排序的复杂度O(logn) &#43; 三数列表的个数O(m) public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) { List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;(); Arrays.sort(nums); // 排序 int n = nums.length; for (int i = 0; i &lt; n - 2; i&#43;&#43;) { if (i &gt; 0 &amp;&amp; nums[i]== nums[i-1]) { //外部去除 continue; } int target = -nums[i]; int left = i &#43; 1, right = n - 1; while (left &lt; right) { if (nums[left] &#43; nums[right] &lt; target) { left&#43;&#43;; } else if (nums[left] &#43; nums[right] &gt; target) { right--; } else { res.add(Arrays.asList(nums[i], nums[left], nums[right])); while (left &lt; right &amp;&amp; nums[right] == nums[right - 1]) { //内部去重 right--; } while (left &lt; right &amp;&amp; nums[left] == nums[left &#43; 1]) { left&#43;&#43;; } left&#43;&#43;; right--; } } } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/15.-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //用堆排序实现，删除前k-1个元素皆可以得到第k大的元素 // 要求O(n),但是O(nlogn)可以通过 public int findKthLargest(int[] nums, int k) { // int n = nums.length; // buildMaxHeap(nums); // for (int i = n - 1; i &gt; n - k; i--) { // swap(nums,0,i); // heapify(nums,i,0); // } // return nums[0]; PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;((a,b)-&gt; b-a); for (int i = 0; i &lt; nums.length; i&#43;&#43;) { pq.offer(nums[i]); } for (int i = 0; i &lt; k - 1; i&#43;&#43;) { pq.poll(); } int val = pq.poll(); return val; } // public void buildMaxHeap(int[] arr) { // int n = arr.length; // for (int i = n / 2 - 1; i &gt;= 0; i--) { // heapify(arr,n,i); // } // } // public void heapify(int[] arr, int n ,int i) { // int largest = i; // int left = 2 * i &#43; 1; // int right = 2 *i &#43; 2; // if (left &lt; n &amp;&amp; arr[left] &gt; arr[largest]) { // largest = left; // } // if (right &lt; n &amp;&amp; arr[right] &gt; arr[largest]) { // largest = right; // } // if (largest != i) { // swap(arr,largest,i); // heapify(arr,n,largest); // } // } // public void swap(int[] arr, int i ,int j) { // int temp = arr[i]; // arr[i] = arr[j]; // arr[j] = temp; // } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/215.-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACk%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 题目要求o(n)的时间复杂度 // 题目类型dp public int[] productExceptSelf(int[] nums) { //除nums[i]之外的所有数的乘积也就是将nums[i]当做1 // 可以计算这个数左乘积和右乘积 // 用三个数组分别存储前缀、后缀和乘积 // 对于元素nums[0]，我们设定初始值left[0] = 1; // 对于元素nums[nums.length - 1] 设定初始值right[nums.length - 1] = 1; int n = nums.length; int[] left = new int[n]; int[] right = new int[n]; int[] res = new int[n]; left[0] = 1;right[n - 1] = 1; for (int i = 1; i &lt; n; i&#43;&#43;) { left[i] = left[i-1] * nums[i-1]; } for (int j = n - 2; j &gt;= 0; j--) { right[j] = right[j &#43; 1] * nums[j &#43; 1]; } for (int i = 0; i &lt; n; i&#43;&#43;) { res[i] = left[i] * right[i]; } return res; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/238.-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public boolean searchMatrix(int[][] matrix, int target) { //从矩阵的左下角或者右上角开始遍历,时间复杂度O(m &#43; n) int m = matrix.length; int n = matrix[0].length; int i = m - 1; int j = 0; while (i &gt;= 0 &amp;&amp; j &lt; n) { if (matrix[i][j] == target) { return true; } else if(matrix[i][j] &gt; target) { i--; } else { j&#43;&#43;; } } return false; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/240.-%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5-ii/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { // 用一个指针标记此新的数组的当下元素的索引 // 对整个数组进行遍历，遍历完之后剩下的部分全部赋值为0 // 或者说快慢指针，快指针用来遍历数组，慢指针用来指向移动后当前索引的元素 public void moveZeroes(int[] nums) { int slow = 0; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { if (nums[i] != 0) { nums[slow&#43;&#43;] = nums[i]; } } for (int i = slow; i &lt; nums.length; i&#43;&#43;) { nums[i] = 0; } } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/283.-%E7%A7%BB%E5%8A%A8%E9%9B%B6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { public int findDuplicate(int[] nums) { // 1.二分查找 计算数组中小于等于该元素数量的个数，如果数量 &gt; 该元素的值，说明，重复元素在l,元素区间内 // 2.Floyd判圈算法 // 快慢指针找相遇点 慢指针一次走一步，快指针一次走两步 // 然后将其中一个指针移动到出发点 // 两个指针的相遇点即为所求 // 可以以i-&gt;nums[i]构建链表，有重复数字，说明有环 int low = 0, high = nums.length -1; while (low &lt; high) { int mid = low &#43; (high - low) / 2; int count = 0; for (int i = 0; i &lt; nums.length ; i&#43;&#43;) { if (nums[i] &lt;= mid) { count&#43;&#43;; } } if (count &lt;= mid) { low = mid &#43; 1; } else { high = mid ; } } return low; // int slow = nums[0]; // int fast = nums[nums[0]]; // while (slow != fast) { // slow = nums[slow]; // fast = nums[nums[fast]]; // } // fast = 0; // while (slow != fast) { // slow = nums[slow]; // fast = nums[fast]; // } // return fast; } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/287.-%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>class Solution { //动态规划 //动态规划四部曲：确定dp[]数组及下标对应的含义，递推公式、初始化、遍历顺序 // 三种状态： 持有股票，不持有股票并且处于冷冻期，不持有股票并且不处于冷冻期对应dp[i][0],dp[i][1],dp[i][2]; // 递推公式：dp[i][0] = dp[i-1][2] - prices[0]; // dp[i][1] = dp[i][0] &#43; prices[i] dp[i][2] = dp[i-1][1]; public int maxProfit(int[] prices) { int n = prices.length; int[][] dp = new int[n][3]; dp[0][0] = -prices[0]; dp[0][1] = 0; dp[0][2] = 0; for (int i = 1; i &lt; prices.length; i&#43;&#43;) { dp[i][0] = Math.max(dp[i-1][0], dp[i-1][2] - prices[i]); dp[i][1] = dp[i-1][0] &#43; prices[i]; dp[i][2] = Math.max(dp[i-1][2], dp[i-1][1]); } return Math.max(dp[n-1][1],dp[n-1][2]); } } </p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="http://localhost:1313/interview-notes/%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/309.-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%E5%90%AB%E5%86%B7%E5%86%BB%E6%9C%9F/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/interview-notes/page/6/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/interview-notes/page/8/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

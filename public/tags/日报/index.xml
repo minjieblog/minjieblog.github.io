@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>日报 on Minjie&#39;s Blog</title>
+    <link>http://localhost:1313/tags/%E6%97%A5%E6%8A%A5/</link>
+    <description>Recent content in 日报 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sun, 08 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%97%A5%E6%8A%A5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-08/</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-08/</guid>
+      <description>&lt;h2 id=&#34;科研学习&#34;&gt;科研学习&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;今天还是不学习&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;今日计划&#34;&gt;今日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 12:10 - 10:30&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 11:00 - 12:30 完成实验报告&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 14:00 - 15:30 复习 DID 协议相关内容&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 16:00 - 17:00 写笔记 / 总结&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习内容&#34;&gt;学习内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;用一句话总结今天学到的新知识、概念或技能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;问题--思考&#34;&gt;问题 / 思考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;今天遇到的难点、疑问或灵感&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;明日计划&#34;&gt;明日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 明天的科研或学习任务&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 明天的阅读或实验安排&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-07/</link>
+      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-07/</guid>
+      <description>&lt;h2 id=&#34;科研学习&#34;&gt;科研学习&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;今天不学习&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;今日计划&#34;&gt;今日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 13:00 - 13:30 复习昨天的四道算法题 1.&lt;a href=&#34;https://leetcode.cn/problems/house-robber/?envType=problem-list-v2&amp;amp;envId=2cktkvj&amp;amp;&#34;&gt;打家劫舍&lt;/a&gt;2.&lt;a href=&#34;https://leetcode.cn/problems/intersection-of-two-linked-lists/description/?envType=problem-list-v2&amp;amp;envId=2cktkvj&#34;&gt;相交链表&lt;/a&gt;3.&lt;a href=&#34;https://leetcode.cn/problems/daily-temperatures/submissions/543113746/?envType=problem-list-v2&amp;amp;envId=2cktkvj&#34;&gt; 每日温度 &lt;/a&gt;4.&lt;a href=&#34;https://leetcode.cn/problems/course-schedule/description/?envType=problem-list-v2&amp;amp;envId=2cktkvj&#34;&gt;课程表 &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 13:30 - 15:00 写四道算法题 1.&lt;a href=&#34;https://leetcode.cn/problems/hamming-distance/description/?envType=problem-list-v2&amp;amp;envId=2cktkvj&#34;&gt;汉明距离&lt;/a&gt;2.&lt;a href=&#34;https://leetcode.cn/problems/queue-reconstruction-by-height/&#34;&gt;根据身高重建队列&lt;/a&gt;3.&lt;a href=&#34;https://leetcode.cn/problems/sliding-window-maximum/&#34;&gt;滑动窗口最大值&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 剩余时间开始战斗&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习内容&#34;&gt;学习内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;用一句话总结今天学到的新知识、概念或技能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;问题--思考&#34;&gt;问题 / 思考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;今天遇到的难点、疑问或灵感&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;明日计划&#34;&gt;明日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 明天的科研或学习任务&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 明天的阅读或实验安排&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-06/</link>
+      <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-06/</guid>
+      <description>&lt;h2 id=&#34;科研学习&#34;&gt;科研学习&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;更改区块链教材第七章内容 v1&lt;/li&gt;
+&lt;li&gt;找一篇论文准备精读&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;今日计划&#34;&gt;今日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 上课 @{2026-03-06 12:50}&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 09:30 - 11:20 配置gitcode ssh&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 11:20 - 12:00 吃午饭&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 12:00 - 12:50 继续配置gitcode ssh&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 13:00 - 15:00 写四道力扣题目&amp;amp;上课&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 15:00 - 17:00 锻炼身体，跑步&amp;amp;篮球&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 17:00 - 19:00 回宿舍吃饭，洗澡&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 19:00 - 20:00 休息&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 20:00 - 21:40 做剩余的事情&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 21:40 - 00:20 丝之歌战斗&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习内容&#34;&gt;学习内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;学习ssh连接&amp;amp;做相应的笔记&lt;/li&gt;
+&lt;li&gt;下载OPENCLAW： url:https://github.com/openclaw/openclaw&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;问题--思考&#34;&gt;问题 / 思考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;番外：学习了git中的ssh连接&lt;/li&gt;
+&lt;li&gt;项目：了解了大营销的例子，并学习了基本的库表建设&lt;/li&gt;
+&lt;li&gt;算法：四道题目：dp（小偷），链表（求两个链表相交于哪一个节点），栈（下一个温度，维护一个递减的栈即可），拓扑排序（dfs问题）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;明日计划&#34;&gt;明日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; dyx的p4,5&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 算法四道题目&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-04/</link>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-04/</guid>
+      <description>&lt;hr&gt;
+&lt;h1 id=&#34;2026-03-04日报&#34;&gt;2026-03-04日报&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;这是一期测试，用于obsidian的使用&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-05/</link>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/todos/2026-spring/week-1/2026-03-05/</guid>
+      <description>&lt;p&gt;#日报 2026-03-05&lt;/p&gt;
+&lt;h2 id=&#34;科研学习&#34;&gt;科研学习&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;更改区块链教材第七章内容 v1&lt;/li&gt;
+&lt;li&gt;找一篇论文准备精读&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;今日计划&#34;&gt;今日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 14:00 - 15:30 午休&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 15:50 - 17:00 爽完&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习内容&#34;&gt;学习内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;配置Obsidian templater插件使用，书写日报周报的模板&lt;/li&gt;
+&lt;li&gt;了解day planner的使用方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;问题--思考&#34;&gt;问题 / 思考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;今天遇到的难点、疑问或灵感&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;明日计划&#34;&gt;明日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 学习码农会所——大营销项目&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 学习Redis的面试集合&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 学习Java JUC&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 更改区块链教材第七章内容 v1&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 找一篇论文准备精读&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/obsidian/templates/%E6%97%A5%E6%8A%A5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/obsidian/templates/%E6%97%A5%E6%8A%A5/</guid>
+      <description>&lt;h2 id=&#34;科研学习&#34;&gt;科研学习&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;今天科研/学习的重点，例如论文、实验、编程等&lt;/li&gt;
+&lt;li&gt;可以附上链接或笔记标题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;今日计划&#34;&gt;今日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 09:00 - 10:30 阅读区块链身份管理论文&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 11:00 - 12:30 完成实验报告&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 14:00 - 15:30 复习 DID 协议相关内容&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 16:00 - 17:00 写笔记 / 总结&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习内容&#34;&gt;学习内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;用一句话总结今天学到的新知识、概念或技能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;问题--思考&#34;&gt;问题 / 思考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;今天遇到的难点、疑问或灵感&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;明日计划&#34;&gt;明日计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 明天的科研或学习任务&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 明天的阅读或实验安排&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

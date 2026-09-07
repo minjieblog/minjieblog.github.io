@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Minjie&#39;s Blog</title>
+<meta name="keywords" content="周报">
+<meta name="description" content="第三周周报 （2026-02-27 ~ 2026-03-05）
+本周日报
+LIST
+FROM &#34;obsidian/todos&#34;
+WHERE contains(tags, &#34;日报&#34;) AND date &gt;= date(today) - dur(7 days)
+SORT date ASC
+
+中长期目标
+
+填写本阶段科研或学习的中长期目标
+
+迄今为止的执行情况
+
+
+总结至今科研/学习的完成情况">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/obsidian/group-meeting/25-26-spring/%E7%AC%AC%E4%B8%89%E5%91%A8/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/obsidian/group-meeting/25-26-spring/%E7%AC%AC%E4%B8%89%E5%91%A8/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%ac%ac%e4%b8%89%e5%91%a8%e5%91%a8%e6%8a%a5-2026-02-27--2026-03-05" aria-label="第三周周报 （2026-02-27 ~ 2026-03-05）">第三周周报 （2026-02-27 ~ 2026-03-05）</a><ul>
+                        
+                <li>
+                    <a href="#%e6%9c%ac%e5%91%a8%e6%97%a5%e6%8a%a5" aria-label="本周日报">本周日报</a></li>
+                <li>
+                    <a href="#%e4%b8%ad%e9%95%bf%e6%9c%9f%e7%9b%ae%e6%a0%87" aria-label="中长期目标">中长期目标</a></li>
+                <li>
+                    <a href="#%e8%bf%84%e4%bb%8a%e4%b8%ba%e6%ad%a2%e7%9a%84%e6%89%a7%e8%a1%8c%e6%83%85%e5%86%b5" aria-label="迄今为止的执行情况">迄今为止的执行情况</a></li>
+                <li>
+                    <a href="#%e6%9c%ac%e5%91%a8%e6%8b%9f%e5%ae%8c%e6%88%90%e7%9a%84%e4%bb%bb%e5%8a%a1" aria-label="本周拟完成的任务">本周拟完成的任务</a></li>
+                <li>
+                    <a href="#%e7%a7%91%e7%a0%94%e5%b7%a5%e4%bd%9c%e8%bf%9b%e5%b1%95%e6%83%85%e5%86%b5" aria-label="科研工作进展情况">科研工作进展情况</a><ul>
+                        
+                <li>
+                    <a href="#page1" aria-label="Page1">Page1</a></li>
+                <li>
+                    <a href="#page2" aria-label="Page2">Page2</a></li>
+                <li>
+                    <a href="#page3" aria-label="Page3">Page3</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%9c%ac%e5%91%a8%e5%ad%a6%e4%b9%a0%e4%bd%93%e4%bc%9a" aria-label="本周学习体会">本周学习体会</a></li>
+                <li>
+                    <a href="#%e4%b8%8b%e5%91%a8%e7%a7%91%e7%a0%94%e8%ae%a1%e5%88%92" aria-label="下周科研计划">下周科研计划</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="第三周周报-2026-02-27--2026-03-05">第三周周报 （2026-02-27 ~ 2026-03-05）<a hidden class="anchor" aria-hidden="true" href="#第三周周报-2026-02-27--2026-03-05">#</a></h1>
+<h2 id="本周日报">本周日报<a hidden class="anchor" aria-hidden="true" href="#本周日报">#</a></h2>
+<pre tabindex="0"><code class="language-dataview" data-lang="dataview">LIST
+FROM &#34;obsidian/todos&#34;
+WHERE contains(tags, &#34;日报&#34;) AND date &gt;= date(today) - dur(7 days)
+SORT date ASC
+</code></pre><hr>
+<h2 id="中长期目标">中长期目标<a hidden class="anchor" aria-hidden="true" href="#中长期目标">#</a></h2>
+<ul>
+<li>填写本阶段科研或学习的中长期目标</li>
+</ul>
+<h2 id="迄今为止的执行情况">迄今为止的执行情况<a hidden class="anchor" aria-hidden="true" href="#迄今为止的执行情况">#</a></h2>
+<ul>
+<li>
+<p>总结至今科研/学习的完成情况</p>
+</li>
+<li>
+<p>标注关键进展或遇到的障碍</p>
+</li>
+</ul>
+<h2 id="本周拟完成的任务">本周拟完成的任务<a hidden class="anchor" aria-hidden="true" href="#本周拟完成的任务">#</a></h2>
+<ul>
+<li>
+<p>列出本周计划完成的科研或学习任务</p>
+</li>
+<li>
+<p>可标记优先级或截止时间</p>
+</li>
+</ul>
+<h2 id="科研工作进展情况">科研工作进展情况<a hidden class="anchor" aria-hidden="true" href="#科研工作进展情况">#</a></h2>
+<h3 id="page1">Page1<a hidden class="anchor" aria-hidden="true" href="#page1">#</a></h3>
+<ul>
+<li>具体科研项目进展或实验情况</li>
+</ul>
+<h3 id="page2">Page2<a hidden class="anchor" aria-hidden="true" href="#page2">#</a></h3>
+<ul>
+<li>具体科研项目进展或实验情况</li>
+</ul>
+<h3 id="page3">Page3<a hidden class="anchor" aria-hidden="true" href="#page3">#</a></h3>
+<ul>
+<li>具体科研项目进展或实验情况</li>
+</ul>
+<h2 id="本周学习体会">本周学习体会<a hidden class="anchor" aria-hidden="true" href="#本周学习体会">#</a></h2>
+<ul>
+<li>
+<p>总结本周学习收获、反思、灵感或问题</p>
+</li>
+<li>
+<p>可结合日报里的学习内容</p>
+</li>
+</ul>
+<h2 id="下周科研计划">下周科研计划<a hidden class="anchor" aria-hidden="true" href="#下周科研计划">#</a></h2>
+<ul>
+<li>
+<p>预先列出下周科研任务和学习计划</p>
+</li>
+<li>
+<p>可以参考本周问题/不足进行改进</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/%E5%91%A8%E6%8A%A5/">周报</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

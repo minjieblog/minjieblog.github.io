@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>EVOKE：面向物联网的高效可验证凭证吊销机制 | Minjie&#39;s Blog</title>
+<meta name="keywords" content="IoT, verifiable-credentials, DID, Revocation, DLT">
+<meta name="description" content="EVOKE 针对 IoT 环境下 VC 吊销机制在存储、连通性与可扩展性方面的不足，提出一种基于密码学累加器的高效撤销方案。相比传统 PKI 吊销方法（OCSP、CRL）及 W3C Revocation List 2020，EVOKE 通过 ECC 正向累加器将有效凭证集合压缩为常数大小，并结合 witness 实现本地可验证性，从而避免在线查询需求；同时借助 DAG 分布式账本实现吊销信息的高效传播与离线同步。实验结果表明，该方案在资源受限设备上具有较低的计算开销，并在大规模网络中表现出优良的同步性能，体现了在低存储、离线验证与批量吊销之间的良好权衡。">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/code.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/code.png">
+<link rel="mask-icon" href="http://localhost:1313/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      EVOKE：面向物联网的高效可验证凭证吊销机制
+    </h1>
+    <div class="post-description">
+      EVOKE 针对 IoT 环境下 VC 吊销机制在存储、连通性与可扩展性方面的不足，提出一种基于密码学累加器的高效撤销方案。相比传统 PKI 吊销方法（OCSP、CRL）及 W3C Revocation List 2020，EVOKE 通过 ECC 正向累加器将有效凭证集合压缩为常数大小，并结合 witness 实现本地可验证性，从而避免在线查询需求；同时借助 DAG 分布式账本实现吊销信息的高效传播与离线同步。实验结果表明，该方案在资源受限设备上具有较低的计算开销，并在大规模网络中表现出优良的同步性能，体现了在低存储、离线验证与批量吊销之间的良好权衡。
+    </div>
+    <div class="post-meta"><span title='2026-03-26 12:30:54 +0800 CST'>2026年3月26日</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#1-%e7%a0%94%e7%a9%b6%e8%83%8c%e6%99%af%e4%b8%8e%e5%8a%a8%e6%9c%ba" aria-label="1. 研究背景与动机">1. 研究背景与动机</a><ul>
+                        
+                <li>
+                    <a href="#11-iot-%e4%bf%a1%e4%bb%bb%e9%97%ae%e9%a2%98" aria-label="1.1 IoT 信任问题">1.1 IoT 信任问题</a></li>
+                <li>
+                    <a href="#12-vc-%e6%92%a4%e9%94%80%e7%9a%84%e7%89%b9%e6%ae%8a%e6%8c%91%e6%88%98" aria-label="1.2 VC 撤销的特殊挑战">1.2 VC 撤销的特殊挑战</a></li>
+                <li>
+                    <a href="#13-%e7%8e%b0%e6%9c%89%e6%96%b9%e6%a1%88%e7%9a%84%e4%b8%8d%e8%b6%b3" aria-label="1.3 现有方案的不足">1.3 现有方案的不足</a></li></ul>
+                </li>
+                <li>
+                    <a href="#2-%e8%83%8c%e6%99%af%e7%9f%a5%e8%af%86" aria-label="2. 背景知识">2. 背景知识</a><ul>
+                        
+                <li>
+                    <a href="#21-%e5%8e%bb%e4%b8%ad%e5%bf%83%e5%8c%96%e6%a0%87%e8%af%86%e7%ac%a6did" aria-label="2.1 去中心化标识符（DID）">2.1 去中心化标识符（DID）</a></li>
+                <li>
+                    <a href="#22-%e5%8f%af%e9%aa%8c%e8%af%81%e5%87%ad%e8%af%81vc%e4%b8%8e%e5%8f%af%e9%aa%8c%e8%af%81%e5%b1%95%e7%a4%bavp" aria-label="2.2 可验证凭证（VC）与可验证展示（VP）">2.2 可验证凭证（VC）与可验证展示（VP）</a></li>
+                <li>
+                    <a href="#23-%e5%af%86%e7%a0%81%e5%ad%a6%e7%b4%af%e5%8a%a0%e5%99%a8" aria-label="2.3 密码学累加器">2.3 密码学累加器</a></li></ul>
+                </li>
+                <li>
+                    <a href="#3-%e7%b3%bb%e7%bb%9f%e6%a8%a1%e5%9e%8b%e4%b8%8e%e5%a8%81%e8%83%81%e6%a8%a1%e5%9e%8b" aria-label="3. 系统模型与威胁模型">3. 系统模型与威胁模型</a><ul>
+                        
+                <li>
+                    <a href="#31-%e7%b3%bb%e7%bb%9f%e6%a8%a1%e5%9e%8b" aria-label="3.1 系统模型">3.1 系统模型</a></li>
+                <li>
+                    <a href="#32-%e5%90%84%e7%bb%84%e4%bb%b6%e8%af%a6%e8%a7%a3" aria-label="3.2 各组件详解">3.2 各组件详解</a></li>
+                <li>
+                    <a href="#33-%e5%a8%81%e8%83%81%e6%a8%a1%e5%9e%8b" aria-label="3.3 威胁模型">3.3 威胁模型</a></li></ul>
+                </li>
+                <li>
+                    <a href="#4-evoke-%e5%8d%8f%e8%ae%ae%e8%af%a6%e8%a7%a3" aria-label="4. EVOKE 协议详解">4. EVOKE 协议详解</a><ul>
+                        
+                <li>
+                    <a href="#41-%e6%a0%b8%e5%bf%83%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e4%b8%8e%e5%87%bd%e6%95%b0" aria-label="4.1 核心数据结构与函数">4.1 核心数据结构与函数</a></li>
+                <li>
+                    <a href="#42-%e5%8d%8f%e8%ae%ae%e4%b8%89%e5%a4%a7%e9%98%b6%e6%ae%b5" aria-label="4.2 协议三大阶段">4.2 协议三大阶段</a><ul>
+                        
+                <li>
+                    <a href="#phase-1setup%e5%88%9d%e5%a7%8b%e5%8c%96" aria-label="Phase 1：Setup（初始化）">Phase 1：Setup（初始化）</a></li>
+                <li>
+                    <a href="#phase-2authentication%e8%ae%be%e5%a4%87%e9%97%b4%e4%ba%92%e4%bf%a1%e8%ae%a4%e8%af%81" aria-label="Phase 2：Authentication（设备间互信认证）">Phase 2：Authentication（设备间互信认证）</a></li>
+                <li>
+                    <a href="#phase-3update%e6%92%a4%e9%94%80%e4%b8%8e%e6%9b%b4%e6%96%b0" aria-label="Phase 3：Update（撤销与更新）">Phase 3：Update（撤销与更新）</a></li></ul>
+                </li>
+                <li>
+                    <a href="#43-%e4%b8%a4%e5%a4%a7%e7%89%b9%e6%80%a7%e7%9a%84%e5%bd%a2%e5%bc%8f%e5%8c%96%e5%ae%9a%e4%b9%89" aria-label="4.3 两大特性的形式化定义">4.3 两大特性的形式化定义</a></li></ul>
+                </li>
+                <li>
+                    <a href="#5-%e5%ae%89%e5%85%a8%e5%88%86%e6%9e%90" aria-label="5. 安全分析">5. 安全分析</a><ul>
+                        
+                <li>
+                    <a href="#51-issuer-%e4%be%a7%e5%ae%89%e5%85%a8" aria-label="5.1 Issuer 侧安全">5.1 Issuer 侧安全</a></li>
+                <li>
+                    <a href="#52-iot-%e8%ae%be%e5%a4%87%e4%be%a7%e5%ae%89%e5%85%a8" aria-label="5.2 IoT 设备侧安全">5.2 IoT 设备侧安全</a></li>
+                <li>
+                    <a href="#53-%e9%80%9a%e4%bf%a1%e4%be%a7%e5%ae%89%e5%85%a8" aria-label="5.3 通信侧安全">5.3 通信侧安全</a></li></ul>
+                </li>
+                <li>
+                    <a href="#6-%e5%ae%9e%e7%8e%b0%e4%b8%8e%e8%af%84%e4%bc%b0" aria-label="6. 实现与评估">6. 实现与评估</a><ul>
+                        
+                <li>
+                    <a href="#61-%e5%ae%9e%e7%8e%b0%e7%bb%86%e8%8a%82" aria-label="6.1 实现细节">6.1 实现细节</a></li>
+                <li>
+                    <a href="#62-%e6%b6%88%e8%b4%b9%e7%ba%a7-iot-%e8%ae%be%e5%a4%87%e6%b5%8b%e8%af%95" aria-label="6.2 消费级 IoT 设备测试">6.2 消费级 IoT 设备测试</a></li>
+                <li>
+                    <a href="#63-%e6%b7%b7%e5%90%88%e7%bd%91%e7%bb%9c%e6%b5%8b%e8%af%95" aria-label="6.3 混合网络测试">6.3 混合网络测试</a></li>
+                <li>
+                    <a href="#64-%e5%a4%a7%e8%a7%84%e6%a8%a1%e4%bb%bf%e7%9c%9f" aria-label="6.4 大规模仿真">6.4 大规模仿真</a></li></ul>
+                </li>
+                <li>
+                    <a href="#7-%e4%b8%8e%e7%8e%b0%e6%9c%89%e6%96%b9%e6%a1%88%e7%9a%84%e8%af%a6%e7%bb%86%e5%af%b9%e6%af%94" aria-label="7. 与现有方案的详细对比">7. 与现有方案的详细对比</a><ul>
+                        
+                <li>
+                    <a href="#71-ocsp-%e7%b3%bb%e5%88%97" aria-label="7.1 OCSP 系列">7.1 OCSP 系列</a></li>
+                <li>
+                    <a href="#72-crl-%e7%b3%bb%e5%88%97" aria-label="7.2 CRL 系列">7.2 CRL 系列</a></li>
+                <li>
+                    <a href="#73-vcerusenix-security-2022" aria-label="7.3 V&rsquo;CER（USENIX Security 2022）">7.3 V&rsquo;CER（USENIX Security 2022）</a></li>
+                <li>
+                    <a href="#74-%e7%bb%bc%e5%90%88%e5%af%b9%e6%af%94%e8%a1%a8" aria-label="7.4 综合对比表">7.4 综合对比表</a></li></ul>
+                </li>
+                <li>
+                    <a href="#8-%e7%9b%b8%e5%85%b3%e5%b7%a5%e4%bd%9c%e6%a2%b3%e7%90%86" aria-label="8. 相关工作梳理">8. 相关工作梳理</a><ul>
+                        
+                <li>
+                    <a href="#81-%e4%bc%a0%e7%bb%9fvc-%e6%92%a4%e9%94%80%e6%96%b9%e6%a1%88" aria-label="8.1 传统VC 撤销方案">8.1 传统VC 撤销方案</a></li>
+                <li>
+                    <a href="#82-%e5%9f%ba%e4%ba%8e%e7%b4%af%e5%8a%a0%e5%99%a8%e7%9a%84%e6%96%b9%e6%a1%88" aria-label="8.2 基于累加器的方案">8.2 基于累加器的方案</a></li>
+                <li>
+                    <a href="#83-%e5%9f%ba%e4%ba%8e-dlt-%e7%9a%84%e6%96%b9%e6%a1%88" aria-label="8.3 基于 DLT 的方案">8.3 基于 DLT 的方案</a></li>
+                <li>
+                    <a href="#84-evoke-%e7%9a%84%e5%b7%ae%e5%bc%82%e5%8c%96%e5%ae%9a%e4%bd%8d" aria-label="8.4 EVOKE 的差异化定位">8.4 EVOKE 的差异化定位</a></li></ul>
+                </li>
+                <li>
+                    <a href="#9-%e6%80%bb%e7%bb%93" aria-label="9. 总结">9. 总结</a><ul>
+                        
+                <li>
+                    <a href="#1-%e6%a0%b8%e5%bf%83%e5%ae%9a%e4%bd%8d%e4%b8%8e%e4%bb%b7%e5%80%bc" aria-label="1. 核心定位与价值">1. 核心定位与价值</a></li>
+                <li>
+                    <a href="#2-%e4%b8%89%e5%a4%a7%e6%a0%b8%e5%bf%83%e7%89%b9%e6%80%a7" aria-label="2. 三大核心特性">2. 三大核心特性</a></li></ul>
+                </li>
+                <li>
+                    <a href="#10%e4%b8%aa%e4%ba%ba%e7%96%91%e7%82%b9" aria-label="10.个人疑点">10.个人疑点</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><hr>
+<h2 id="1-研究背景与动机">1. 研究背景与动机<a hidden class="anchor" aria-hidden="true" href="#1-研究背景与动机">#</a></h2>
+<h3 id="11-iot-信任问题">1.1 IoT 信任问题<a hidden class="anchor" aria-hidden="true" href="#11-iot-信任问题">#</a></h3>
+<p>当前全球约有 <strong>150 亿台 IoT 设备</strong>在线，产生海量数据，但设备间及跨组织的信任缺失严重限制了数据的协作使用。</p>
+<p><strong>传统方案——PKI + 中心化 CA</strong> 的主要问题：</p>
+<ul>
+<li><strong>可扩展性差</strong>：海量设备的证书管理集中于少数 CA；</li>
+<li><strong>单点故障</strong>：CA 被攻陷或下线影响整个信任体系；</li>
+<li><strong>跨域互操作性差</strong>：不同 CA 管辖的设备难以互信；</li>
+<li><strong>自主权缺失</strong>：设备对自身身份数据缺乏控制权。</li>
+</ul>
+<p><strong>新兴去中心化方案——DID + VC</strong>：</p>
+<ul>
+<li>W3C 已标准化 <strong>去中心化标识符（DID）</strong> 和 <strong>可验证凭证（VC）</strong>；</li>
+<li>欧盟 eIDAS 法规将 VC 列为电子身份认证的关键技术；</li>
+<li>数字医疗护照、国家数字身份钱包等应用已落地或在研；</li>
+<li>Kantara Initiative 引入 <strong>Identity of Things（IDoT）</strong>：每台设备拥有 DID，通过 VC 向其他设备证明自身能力。</li>
+</ul>
+<h3 id="12-vc-撤销的特殊挑战">1.2 VC 撤销的特殊挑战<a hidden class="anchor" aria-hidden="true" href="#12-vc-撤销的特殊挑战">#</a></h3>
+<p>IoT 场景对撤销机制提出了比 Web PKI 更严苛的要求：</p>
+<table>
+  <thead>
+      <tr>
+          <th>挑战</th>
+          <th>具体表现</th>
+          <th>EVOKE的解决办法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>计算能力受限</strong></td>
+          <td>部分设备处理器极弱，无法承担复杂密码学操作</td>
+          <td><strong>最小化计算</strong>，用了一种基于<strong>椭圆曲线密码学（ECC）累加器</strong>的方法，该方法可以将多个数据高效聚合为一个称为“累加值”的唯一元素，并且<strong>无论数据量多少，累加值的大小始终保持不变</strong>。<br>一个重要特性是：<strong>证明某个元素属于该累加器（成员证明）时，其验证时间也是常数级的</strong>。</td>
+      </tr>
+      <tr>
+          <td><strong>存储容量有限</strong></td>
+          <td>几十 KB 的存储开销已难以接受</td>
+          <td>最小化计算这些特性保证了，即使网络中的凭证和设备数量不断增长，EVOKE 仍然能够保持高效运行。</td>
+      </tr>
+      <tr>
+          <td><strong>网络不稳定</strong></td>
+          <td>设备可能处于省电休眠或低带宽环境，无法实时联系 Issuer</td>
+          <td>EVOKE 还支持一种重要特性：<strong>离线撤销</strong><br>即：<br>- 如果某些设备没有收到撤销更新<br>- 它们仍然可以通过与“已更新设备”交互来同步状态</td>
+      </tr>
+      <tr>
+          <td><strong>设备数量巨大</strong></td>
+          <td>可能有上万甚至百万个设备参与VC的吊销</td>
+          <td>由于实验的每个设备只要 ~1.5KB，所以非常适合多台设备的同时更新</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>典型案例</strong>：CCS'17 揭示的 RSA 密钥生成芯片漏洞（Nemec et al.）导致超过 <strong>70 万张证书</strong>需要同时撤销，现有机制难以高效处理此类大规模批量撤销。</p>
+</blockquote>
+<h3 id="13-现有方案的不足">1.3 现有方案的不足<a hidden class="anchor" aria-hidden="true" href="#13-现有方案的不足">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>每设备存储（100万凭证）</th>
+          <th>批量撤销</th>
+          <th>离线撤销</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>OCSP / OCSP Stapling</td>
+          <td>~4 KB/次</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>TinyOCSP</td>
+          <td>~1.2 KB（但需可靠连接）</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>CRL</td>
+          <td>数 MB</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>Revocation List 2020（W3C）</td>
+          <td>~125 KB</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>CRLite</td>
+          <td>~112.5 KB</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>Let&rsquo;s Revoke</td>
+          <td>~70 KB</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td><strong>V&rsquo;CER</strong>（目前最优）</td>
+          <td><strong>~3 KB</strong></td>
+          <td>✗</td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td><strong>EVOKE（本文）</strong></td>
+          <td><strong>~1.5 KB</strong></td>
+          <td><strong>✓</strong></td>
+          <td><strong>✓</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p>W3C 目前尚无专用的 VC 撤销标准（仍处于 draft 阶段），EVOKE 填补了这一空白。</p>
+<ul>
+<li>为物联网网络中的虚拟控制器提出了一种<strong>新颖且高效的撤销机制</strong>。我们的方法提供了设备到设备信任建立的直接应用，显着提高了撤销效率，同时实现了大规模撤销 VC 的能力。</li>
+<li>EVOKE 支持<strong>离线撤销</strong>，有效降低网络开销。如果设备错过更新（即累加器值和见证），EVOKE 允许通过利用与网络中其他设备的<strong>交互</strong>来更新设备。</li>
+<li>EVOKE 确保每个设备仅存储验证其他VC 和建立可信通信所需的<strong>最少量数据</strong>。这种设计最大限度地减少了存储需求，同时保持了系统的完整性。</li>
+<li>为了全面评估我们方法的有效性和性能，我们进行了一系列实验，其中包括在多种<strong>商用物联网设备</strong>上对 EVOKE 进行直接评估。据我们所知，这项工作代表了 VC 撤销的第一个解决方案和设计。</li>
+</ul>
+<hr>
+<h2 id="2-背景知识">2. 背景知识<a hidden class="anchor" aria-hidden="true" href="#2-背景知识">#</a></h2>
+<h3 id="21-去中心化标识符did">2.1 去中心化标识符（DID）<a hidden class="anchor" aria-hidden="true" href="#21-去中心化标识符did">#</a></h3>
+<p>DID 是 W3C 标准化的去中心化身份标识，结构上由三部分组成：</p>
+<pre tabindex="0"><code>did : &lt;DID method&gt; : &lt;method-specific identifier&gt;
+ ↑        ↑                    ↑
+URI前缀  方法标识符           方法特定标识符
+</code></pre><p>每个 DID 解析为一个 <strong>DID Document</strong>（JSON-LD 格式），包含：</p>
+<ul>
+<li>密码学公钥；</li>
+<li>服务端点（Service Endpoints）；</li>
+<li>认证参数；</li>
+<li>时间戳与元数据。</li>
+</ul>
+<p>DID 无需身份提供商，实体通过对应私钥证明 DID 所有权。DID Document 通常托管在<strong>可验证数据注册表</strong>（Verifiable Data Registry，通常基于 DLT）上。</p>
+<h3 id="22-可验证凭证vc与可验证展示vp">2.2 可验证凭证（VC）与可验证展示（VP）<a hidden class="anchor" aria-hidden="true" href="#22-可验证凭证vc与可验证展示vp">#</a></h3>
+<p><strong>VC 生态系统的四个角色</strong>（对应论文 Figure 1）：</p>
+<pre tabindex="0"><code>Issuer ──(②注册 DID/Schema)──► Verifiable Data Registry
+  │                                       ▲
+  │(③签发 VC)                   (①注册) (⑤验证)
+  ▼                                       │
+Holder ──(④发送 VP)──────────────► Verifier
+</code></pre><ol>
+<li><strong>Holder</strong>：持有一个或多个 VC 的实体（IoT 场景中即为设备本身）；</li>
+<li><strong>Issuer</strong>：创建并签发 VC（IoT 场景中通常是设备制造商）；</li>
+<li><strong>Verifier</strong>：请求并验证 VC 以建立信任（例如：智能锁向烟雾探测器请求 VC 以决定疏散时是否开锁）；</li>
+<li><strong>Verifiable Data Registry</strong>：调解标识符、密钥、凭证模式等的创建与验证，通常基于 DLT 实现。</li>
+</ol>
+<p><strong>VC 的组成元素</strong>：Subject URI、Issuer URI、唯一凭证标识符、声明过期条件、密码学签名。</p>
+<p><strong>VP（可验证展示）</strong>：Holder 将 VC 打包并签名后发送给 Verifier 的数据结构，由 W3C VC 工作组引入。</p>
+<h3 id="23-密码学累加器">2.3 密码学累加器<a hidden class="anchor" aria-hidden="true" href="#23-密码学累加器">#</a></h3>
+<p>密码学累加器于 <strong>1994 年</strong>由 Benaloh &amp; de Mare 提出，作为消除可信中心机构的去中心化替代方案。</p>
+<p><strong>核心概念</strong>：</p>
+<ul>
+<li>将一组元素压缩为一个<strong>固定大小的承诺值</strong>（accumulator value）；</li>
+<li>通过简短证明（witness）验证<strong>某元素</strong>是否属于该集合；</li>
+<li>基于<strong>单向哈希函数族</strong>，满足<strong>拟交换性（quasi-commutative）</strong>，确保累加顺序不影响结果。</li>
+</ul>
+<p><strong>累加器类型</strong>：</p>
+<ul>
+<li><strong>正向（Positive）</strong>：支持成员资格证明（membership witness）；</li>
+<li><strong>负向（Negative）</strong>：支持非成员资格证明（non-membership witness）；</li>
+<li><strong>通用（Universal）</strong>：同时支持两者。</li>
+</ul>
+<p><strong>三类累加器性能对比</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>累加器值大小</th>
+          <th>Witness 大小</th>
+          <th>验证复杂度</th>
+          <th>适用性</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>RSA-based</td>
+          <td>由模数决定（大）</td>
+          <td>较大</td>
+          <td>中</td>
+          <td>安全性强但资源消耗高</td>
+      </tr>
+      <tr>
+          <td>Merkle Tree</td>
+          <td>固定</td>
+          <td>O(log n)</td>
+          <td>O(log n)</td>
+          <td>大集合时 proof 增长明显</td>
+      </tr>
+      <tr>
+          <td><strong>ECC-based（本文选用）</strong></td>
+          <td><strong>固定（常量）</strong></td>
+          <td><strong>固定（常量）</strong></td>
+          <td><strong>O(1)</strong></td>
+          <td><strong>最适合 IoT 受限环境</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p>本文采用 <strong>Vitto &amp; Biryukov（CT-RSA 2022）</strong> 提出的正向 ECC 累加器，额外支持批量操作（含批量 witness 生成）。</p>
+<hr>
+<h2 id="3-系统模型与威胁模型">3. 系统模型与威胁模型<a hidden class="anchor" aria-hidden="true" href="#3-系统模型与威胁模型">#</a></h2>
+<h3 id="31-系统模型">3.1 系统模型<a hidden class="anchor" aria-hidden="true" href="#31-系统模型">#</a></h3>
+<p><strong>IoT 网络结构</strong>（参见论文 Figure 2）：</p>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAO_acTEtHqvtgfP2mYoCTaDB3EP7qQAAsQOaxtR7yhWgbAaTZWwoSoBAAMCAAN3AAM6BA.png"></p>
+<p><strong>符号表</strong>（论文 Table 1）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>符号</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$\mathcal{N}$</td>
+          <td>IoT 网络集合</td>
+      </tr>
+      <tr>
+          <td>$\mathcal{I}$</td>
+          <td>Issuer 集合</td>
+      </tr>
+      <tr>
+          <td>$\mathcal{ACC}$</td>
+          <td>累加器集合</td>
+      </tr>
+      <tr>
+          <td>$j$</td>
+          <td>地理区域标识</td>
+      </tr>
+      <tr>
+          <td>$A_j$</td>
+          <td>$j$ 区域的单个累加器</td>
+      </tr>
+      <tr>
+          <td>$a_j$</td>
+          <td>$j$ 区域的累加器值</td>
+      </tr>
+      <tr>
+          <td>$i_j$</td>
+          <td>$j$ 区域的 Issuer</td>
+      </tr>
+      <tr>
+          <td>$D_j$</td>
+          <td>$j$ 区域的设备集合</td>
+      </tr>
+      <tr>
+          <td>$d_i$</td>
+          <td>单台 IoT 设备</td>
+      </tr>
+      <tr>
+          <td>$W_j$</td>
+          <td>$j$ 区域的 witness 集合</td>
+      </tr>
+      <tr>
+          <td>$w_i$</td>
+          <td>设备 $d_i$ 的 witness</td>
+      </tr>
+      <tr>
+          <td>$b$</td>
+          <td>DLT</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>地理分区</strong>：每个地理位置 $j$（可以是一个 5G 小区）对应子网络 $n_j \in \mathcal{N}$，其中 $d_i \in D_j \subset \mathcal{D}$，每台设备的 VC 由 $i_j \in \mathcal{I}$ 签发。</p>
+<p><strong>三条核心假设</strong>：</p>
+<ol>
+<li>Issuer $i_j$ 具备充足计算资源，可构建 $a_j$、撤销 VC、批量生成 $W_j$，并通过 DLT 分发更新；Issuer 仅向经过认证且未被攻陷的设备签发 VC；</li>
+<li>每台设备 $d_i$ 初始被分配：有效 $\text{vc}_i$、$a_j$、$w_i$、密码学材料、Issuer 公钥 $pk_{i_j}$；</li>
+<li>网络中存在具备完整连通性（可直连 DLT）的设备；更新信息通过<strong>发布/订阅（pub/sub）范式在 $n_j$ 内传播。</strong></li>
+</ol>
+<h3 id="32-各组件详解">3.2 各组件详解<a hidden class="anchor" aria-hidden="true" href="#32-各组件详解">#</a></h3>
+<p><strong>Issuer</strong>：</p>
+<ul>
+<li>独立部署于安全环境，<strong>仅通过 DLT 与网络通信</strong>，不直接与 IoT 设备交互；</li>
+<li>记录 $n_j$ 内所有已签发 VC 及设备信息；</li>
+<li>全权负责 $a_j$ 的生成与更新、$W_j$ 的计算与分发。</li>
+</ul>
+<p><strong>DLT（本文采用 IOTA Tangle，DAG-based）</strong>：</p>
+<ul>
+<li>作为 Issuer 与 $D_j$ 之间的<strong>安全分布式数据源</strong>；</li>
+<li>安全性来源：数字签名、哈希函数、共识机制、单点故障抵抗性；</li>
+<li>即使 DLT 被攻击：<strong>可用性</strong>可能受影响，但更新<strong>完整性</strong>不受损（因更新封装在 Issuer 签名 VC 中，伪造需要 Issuer 私钥）；</li>
+<li>选用 <strong>DAG</strong> 而非传统区块链的原因：更低延迟、更低能耗，同时保持透明性与不可篡改性；</li>
+<li>每个 $n_j$ 至少有一个 DLT 节点维护账本的最新一致版本。</li>
+</ul>
+<p><strong>IoT 设备</strong>：</p>
+<ul>
+<li>能力差异悬殊（计算力、存储、网络各有不同）；</li>
+<li>每台设备仅需存储：<strong>$a_j$（区域j的累加器值）、自身 VC、DID 及关联信息、$w_i$（设备$d_i$的witness值），加上最小密码学函数；</strong></li>
+<li>具备充足网络能力的设备可直接与 DLT 交互（Direct Retrieval）；</li>
+<li>网络能力不足的设备通过邻近设备间接获取更新（Indirect Retrieval）。</li>
+</ul>
+<h3 id="33-威胁模型">3.3 威胁模型<a hidden class="anchor" aria-hidden="true" href="#33-威胁模型">#</a></h3>
+<p><strong>对手模型</strong>：采用 <strong>Dolev-Yao 模型</strong>——攻击者可窃听、拦截、注入任意数量消息，并可尝试攻陷 $n_j$ 中的任意实体。</p>
+<p><strong>攻击目标</strong>：获取有效 VC，从而建立被网络其他设备信任的通信连接。</p>
+<p><strong>三类主要威胁</strong>：</p>
+<p><strong>① 攻陷 Issuer</strong>：</p>
+<ul>
+<li>可任意签发合法 VC（虚假声明，非法授权）；</li>
+<li>可吊销合法设备的 VC（拒绝服务 DoS，破坏信任关系）；</li>
+<li>是危害最大的攻击面。</li>
+</ul>
+<p><strong>② 攻陷 IoT 设备</strong>：</p>
+<ul>
+<li>通过固件漏洞获得未授权访问或控制权；</li>
+<li>供应链攻击：出厂时预植入恶意硬件/软件；</li>
+<li>通过恶意固件更新分发 malware；</li>
+<li>被攻陷设备若持有有效 VC + witness，可冒充合法设备。</li>
+</ul>
+<p><strong>③ 攻陷通信链路</strong>：</p>
+<ul>
+<li>IoT 网络<strong>不强制要求加密</strong>，易被窃听；</li>
+<li>攻击者可截获 VC，以受害设备的身份欺骗其他设备建立信任（身份伪造）。</li>
+</ul>
+<hr>
+<h2 id="4-evoke-协议详解">4. EVOKE 协议详解<a hidden class="anchor" aria-hidden="true" href="#4-evoke-协议详解">#</a></h2>
+<h3 id="41-核心数据结构与函数">4.1 核心数据结构与函数<a hidden class="anchor" aria-hidden="true" href="#41-核心数据结构与函数">#</a></h3>
+<p><strong>成员证明</strong>：当使用撤销列表时，必须相互验证的两个设备$d_i$和$d_k$呈现它们的VC并验证接收到的VC是否包含在列表中。同样，要使用$j$撤销VC，$d_i$需要提供名为<strong>Witness $w_i$</strong> 的成员身份证明。通过这种方式，接收器应用验证功能，允许其声明VC是否已包含在j中。</p>
+<p><strong>累加器值 $a_j$</strong>：所有有效 VC 哈希值（SHA-256）的 ECC 椭圆曲线聚合，大小<strong>恒定</strong>（与 VC 数量无关）。</p>
+<p><strong>Witness $w_i$</strong>：证明 $\text{vc}_i$ 被包含于 $a_j$ 的成员证明，通过累加<strong>除 $\text{vc}_i$ 外</strong>所有其他有效 VC 得到，大小同样<strong>恒定</strong>。</p>
+<p><strong>七个核心函数</strong>：</p>
+$$Setup(K) → a_{info}$$<p>输入椭圆曲线的公开随机生成元集合 $K$，输出累加器参数 $a_{info}$。</p>
+$$
+ComputeAccumulator(a_{info}, V) → a_j
+$$<p>将有效 VC 集合 $V$ 中每个 VC 映射到椭圆曲线上并聚合，得到累加器值。签发新 VC 或 VC 被撤销后重新执行。</p>
+$$RemoveFromAccumulator(a_{info}, a_j^{t-1}, V) → a_j^t$$<p>从已有累加器值中批量移除一组无效 VC $V$。</p>
+$$ComputeWitness(a_j, vc_i) → w_i$$<p>为单个有效 VC 生成成员证明 $witness$，支持批量生成。</p>
+$$Verify(a_j, vc_i, w_i, pk_i) → {0, 1}$$<ul>
+<li>$d_i$ 用私钥 $\text{sk}_i$ 对 $\text{vc}_i$ 签名后发送给验证方；</li>
+<li>验证方同时检查：(1) $w_i$ 确实被包含于 $a_j$（撤销状态）；(2) $\text{vc}_i$ 与 $d_i$ 的对应关系（通过 $pk_i$ 验证所有权）。</li>
+</ul>
+$$UpdateAccumulator(a_{info}, a_j^{t-1}, V) → a_j^t$$<p>先调用 <code>RemoveFromAccumulator()</code> 移除无效 VC；若有新签发 VC，再调用 <code>ComputeAccumulator()</code> 加入；得到最新版本 $a_j^t$。</p>
+$$UpdateWitness(a_j^t, vc_i) → w_i^t$$<p>$a_j$ 更新后，旧 $W_j^{t-1}$ <strong>全部失效</strong>，需为每个仍有效的 VC 重新计算 witness。</p>
+<h3 id="42-协议三大阶段">4.2 协议三大阶段<a hidden class="anchor" aria-hidden="true" href="#42-协议三大阶段">#</a></h3>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPAacTGl2uuHDXkf2JNEu0t3YiHEqMAAscOaxtR7yhWncS-zSzGoNYBAAMCAAN5AAM6BA.png"></p>
+<h4 id="phase-1setup初始化">Phase 1：Setup（初始化）<a hidden class="anchor" aria-hidden="true" href="#phase-1setup初始化">#</a></h4>
+<pre tabindex="0"><code>Issuer i_j 执行：
+  ainfo ← Setup(K)
+  a_j ← ComputeAccumulator(ainfo, V)
+      // 每个 vc 先做 SHA-256，再映射到椭圆曲线上
+  for each vc_i ∈ V:
+    w_i ← ComputeWitness(a_j, vc_i)   // 批量生成
+  将 a_j 和 W_j 封装进 Issuer 签名的 VC → 发布到 DLT b
+
+每台设备 d_i 初始获得：
+  vc_i（有效凭证）+ a_j（当前累加器值）+ w_i（自身 witness）
+  + Issuer 公钥 pk_{i_j}（用于验证更新来源）
+</code></pre><h4 id="phase-2authentication设备间互信认证">Phase 2：Authentication（设备间互信认证）<a hidden class="anchor" aria-hidden="true" href="#phase-2authentication设备间互信认证">#</a></h4>
+<pre tabindex="0"><code>d_i 发起与 d_k 的认证：
+
+[Step 1] 时间戳同步
+  d_i → d_k: timestamp(a_j^i)
+  d_k 比对本地 timestamp(a_j^k)：
+    ├─ 相同 → 版本一致，继续下一步
+    └─ 不同 → 较旧方先执行 Update（见 Phase 3）
+
+[Step 2] 互换凭证与证明
+  d_i → d_k: Sign_{sk_i}(vc_i)  +  w_i
+  d_k → d_i: Sign_{sk_k}(vc_k)  +  w_k
+
+[Step 3] 双向本地验证
+  d_k 执行: Verify(a_j, vc_i, w_i, pk_i)
+    ① 验证 vc_i 由 i_j 签发（检查 Issuer 签名）
+    ② 哈希 vc_i，调用 ECC 累加器验证其在 a_j 中（成员证明）
+  d_i 执行: Verify(a_j, vc_k, w_k, pk_k)   // 完全对称
+
+[Step 4] 建立信任
+  双方验证通过 → 建立安全可信通信通道
+  （敏感数据可用接收方公钥加密传输）
+</code></pre><p><strong>关键设计特性</strong>：认证<strong>完全本地化</strong>，无需实时联系 Issuer；验证同时检查<strong>撤销状态</strong>与<strong>所有权</strong>。</p>
+<h4 id="phase-3update撤销与更新">Phase 3：Update（撤销与更新）<a hidden class="anchor" aria-hidden="true" href="#phase-3update撤销与更新">#</a></h4>
+<p><strong>Issuer 侧撤销流程</strong>（参见论文 Figure 3）：</p>
+<p>当设备被标记为&quot;已攻陷&quot;或&quot;故障&quot;，需撤销 $V_{revoked}$ 时：</p>
+$$a_j^t ← UpdateAccumulator(a_{info}, a_j^{t-1}, V_{revoked)}$$<p>
+</p>
+$$  W_j^t ← { UpdateWitness(a_j^t, vc_i) | vc_i ∈ V_{valid} }$$$$ 将 a_j^t + W_j^t 封装进 Issuer 签名的 VC → 发布到 DLT b$$<p><strong>设备侧更新</strong>：已连网设备通过 pub/sub 订阅 DLT，收到新 VC 后验证 Issuer 签名，更新本地 $a_j$ 和 $w_i$。</p>
+<p><strong>离线更新（Offline Revocation）——EVOKE 核心创新</strong>：</p>
+<p>设备 $d_k$ 离线错过更新时，由邻近的已更新设备 $d_i$ 协助：</p>
+<pre tabindex="0"><code>Algorithm 1: HandleUpdates（简化伪代码）
+
+for each d_i ∈ D_j:
+  d_i 与 d_k 交互（i ≠ k）:
+
+  case: a_j^i 比 a_j^k 旧（d_i 落后）:
+    a_j^i ← a_j^k
+    if d_i 支持 Direct Retrieval:
+      w_i ← 直接从 DLT b 拉取
+    elif d_k 支持 Direct Retrieval:
+      w_i ← d_k 代为从 DLT 获取后转发（Indirect Retrieval）
+    else:
+      d_i 禁用信任通信，等待下一次交互
+
+  case: a_j^k 比 a_j^i 旧（d_k 落后）:
+    // 对称操作，更新 d_k
+    ...
+</code></pre><p><strong>Direct vs Indirect Retrieval</strong>：</p>
+<ul>
+<li><strong>Direct Retrieval</strong>：设备有足够网络能力，直接访问 DLT 拉取最新 witness；</li>
+<li><strong>Indirect Retrieval</strong>：通过邻近的&quot;中继设备&quot;代为从 DLT 获取 witness 并转发；</li>
+<li>更新信息封装在 Issuer 签名的 VC 中，确保即使通过设备中继也<strong>可验证真实性</strong>。</li>
+</ul>
+<p><strong>两种版本不一致场景的处理</strong>：</p>
+<p><strong>场景 A：双方版本相同但均已过期</strong>：</p>
+<ul>
+<li>无法相互检测到遗漏的更新，可能发生误认证；</li>
+<li>缓解：一旦遇到持有更新版本的第三台设备立即校正；实验证明多数设备在 <strong>1 小时内</strong>更新，风险时间有限。</li>
+</ul>
+<p><strong>场景 B：双方版本不同（Mismatching）</strong>：</p>
+<ul>
+<li>较旧方（如 $d_k$）：
+<ul>
+<li>支持 Direct Retrieval → 直接从 DLT 拉取 $w_k$，据此确认最新 $a_j$ 版本并更新；</li>
+<li>需 Indirect Retrieval → $d_i$ 代取 $w_k$ 并转发，$d_i$ 同步也更新自身；</li>
+<li>双方均无网络能力 → 暂停信任通信，等待下次交互迭代；</li>
+</ul>
+</li>
+<li>该流程保证了累加器值与 witness 的一致性同步。</li>
+</ul>
+<h3 id="43-两大特性的形式化定义">4.3 两大特性的形式化定义<a hidden class="anchor" aria-hidden="true" href="#43-两大特性的形式化定义">#</a></h3>
+<p><strong>定义 1（Mass Revocation，批量撤销）</strong>：批量撤销是指高效撤销大量 VC 而不影响 Issuer 和设备开销的能力。支持批量撤销的协议须保证：管理 VC 的底层数据结构的内存大小以及验证时间不受已撤销 VC 数量的影响。</p>
+<p><strong>定义 2（Offline Revocation，离线撤销）</strong>：离线撤销是指设备在断开网络连接时仍能接收并应用撤销更新的能力，且不加重网络资源负担。支持离线撤销的协议须最小化促成此类更新所需的数据传输开销。</p>
+<hr>
+<h2 id="5-安全分析">5. 安全分析<a hidden class="anchor" aria-hidden="true" href="#5-安全分析">#</a></h2>
+<h3 id="51-issuer-侧安全">5.1 Issuer 侧安全<a hidden class="anchor" aria-hidden="true" href="#51-issuer-侧安全">#</a></h3>
+<p><strong>攻击面 1：外部直接访问 $a_j$</strong></p>
+<ul>
+<li><strong>防护</strong>：Issuer 部署在限制外部直接通信的安全环境；$a_j$ 仅通过 DLT 公开；攻击者无法从外部直接干预累加器计算。</li>
+</ul>
+<p><strong>攻击面 2：获取 $a_{info}$（累加器参数）</strong></p>
+<ul>
+<li><strong>防护</strong>：$\text{ainfo}$ 本身是公开参数，不赋予任何签名能力；攻击者即使获得 $a_{info}$ 也无法伪造有效的 $a_j$ 或 $W_j$——因为需要 Issuer 的 DID 密钥对才能签名包含这些值的 VC。</li>
+</ul>
+<p><strong>攻击面 3：Issuer 密钥对泄露</strong></p>
+<ul>
+<li><strong>防护</strong>：立即将 Issuer 迁移至新服务器，赋予新 DID 和密钥对；被攻陷期间签发的所有 VC 撤销；所有设备更新信任的 Issuer 公钥。</li>
+</ul>
+<h3 id="52-iot-设备侧安全">5.2 IoT 设备侧安全<a hidden class="anchor" aria-hidden="true" href="#52-iot-设备侧安全">#</a></h3>
+<p><strong>核心防护逻辑</strong>：</p>
+<ul>
+<li>设备被攻陷后，Issuer 将其 VC 从 $a_j$ 中移除（撤销）；</li>
+<li>被撤销设备无法获得新的有效 $w_i$（其 VC 不在 $a_j$ 中，<code>Verify()</code> 返回 0）；</li>
+<li>即便攻击者持有该设备旧版本的 $w_i^{t-1}$，也无法通过基于最新 $a_j^t$ 的验证；</li>
+<li><strong>注意</strong>：EVOKE 本身不负责检测被攻陷设备，这依赖于外部 IDS 方案。</li>
+</ul>
+<h3 id="53-通信侧安全">5.3 通信侧安全<a hidden class="anchor" aria-hidden="true" href="#53-通信侧安全">#</a></h3>
+<p><strong>威胁 1：选择性 VC 转发（Selective Forwarding）</strong></p>
+<p>攻击者刻意不向过期设备转发最新 $a_j$，使其继续信任已撤销设备。</p>
+<p>防护层次：</p>
+<ol>
+<li>设备<strong>只接受时间戳比当前更新</strong>的 $a_j$，攻击者无法提供&quot;比正版更新&quot;的假版本；</li>
+<li>被撤销设备可能提供一个&quot;不含其被撤销 VC 但比目标设备版本新&quot;的 $a_j$——若目标设备支持 Direct Retrieval，可在拉取 witness 时发现版本不一致（本地 $a_j$ 与 DLT 返回的 witness 对应版本不符）；</li>
+<li>即使短暂被欺骗，风险时间有限——实验证明多数设备在 <strong>1 小时内</strong>完成更新；</li>
+<li>此局限性与 CRL 相同（CRL 同样无法保证实时撤销新鲜度）。</li>
+</ol>
+<p><strong>威胁 2：VC 窃取伪装（VC Theft &amp; Masquerading）</strong></p>
+<p>攻击者截获 $\text{vc}_i + w_i$，尝试冒充 $d_i$。</p>
+<p>防护：<code>Verify()</code> 函数同时验证 VC 所有权——需要用 $d_i$ 的私钥 $\text{sk}_i$ 对 VC 签名，攻击者不持有私钥，无法通过此步验证。</p>
+<hr>
+<h2 id="6-实现与评估">6. 实现与评估<a hidden class="anchor" aria-hidden="true" href="#6-实现与评估">#</a></h2>
+<h3 id="61-实现细节">6.1 实现细节<a hidden class="anchor" aria-hidden="true" href="#61-实现细节">#</a></h3>
+<p><strong>技术栈选型</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>组件</th>
+          <th>选用技术</th>
+          <th>原因</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>实现语言</td>
+          <td>JavaScript + WebAssembly（WASM）</td>
+          <td>跨设备兼容，浏览器即可运行</td>
+      </tr>
+      <tr>
+          <td>密码学原语</td>
+          <td>crypto-wasm-ts（docknetwork）</td>
+          <td>WASM 实现，高性能密码学操作</td>
+      </tr>
+      <tr>
+          <td>DID/VC 管理</td>
+          <td>identity-wasm/web（IOTA 基金会）</td>
+          <td>标准 DID/VC 创建、管理、验证</td>
+      </tr>
+      <tr>
+          <td>DLT</td>
+          <td>IOTA Tangle（DAG-based）</td>
+          <td>专为 IoT 设计，低延迟低能耗</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>所有结果取 <strong>1000 次运行</strong>平均值；</li>
+<li>代码开源：https://github.com/evokevc/EVOKE</li>
+</ul>
+<p><strong>设备兼容性方案</strong>：厂商通常限制用户在设备上直接运行代码。解决方案：Python Web 服务器向设备提供含内嵌 JavaScript/WASM 的 HTML 页面，设备在<strong>浏览器端</strong>执行 EVOKE 操作。这意味着：若厂商原生集成 EVOKE，性能可进一步大幅提升。</p>
+<h3 id="62-消费级-iot-设备测试">6.2 消费级 IoT 设备测试<a hidden class="anchor" aria-hidden="true" href="#62-消费级-iot-设备测试">#</a></h3>
+<p><strong>测试设备规格</strong>（论文 Table 2）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>设备</th>
+          <th>类型</th>
+          <th>处理器</th>
+          <th>内存</th>
+          <th>OS</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>LG Smart TV</td>
+          <td>智能电视</td>
+          <td>LG Quad Core</td>
+          <td>1.5 GB</td>
+          <td>WebOS</td>
+      </tr>
+      <tr>
+          <td>Amazon Echo Show 5</td>
+          <td>智能音箱</td>
+          <td>MediaTek MT8163</td>
+          <td>1 GB</td>
+          <td>Linux</td>
+      </tr>
+      <tr>
+          <td>Apple iPhone 12</td>
+          <td>智能手机</td>
+          <td>Apple A14 Bionic</td>
+          <td>4 GB</td>
+          <td>iOS 16</td>
+      </tr>
+      <tr>
+          <td>Oculus Quest 2</td>
+          <td>VR 头显</td>
+          <td>Qualcomm Snapdragon XR2</td>
+          <td>6 GB</td>
+          <td>Oculus OS</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>验证时延</strong>（论文 Table 3，1000次平均）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>LG Smart TV</th>
+          <th>Amazon Echo Show 5</th>
+          <th>Apple iPhone 12</th>
+          <th>Oculus Quest 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>验证有效 VC</td>
+          <td>477.44 ms</td>
+          <td>499.70 ms</td>
+          <td><strong>12.62 ms</strong></td>
+          <td>48.69 ms</td>
+      </tr>
+      <tr>
+          <td>验证已撤销 VC</td>
+          <td>476.89 ms</td>
+          <td>498.67 ms</td>
+          <td><strong>12.58 ms</strong></td>
+          <td>47.89 ms</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>关键观察</strong>：</p>
+<ol>
+<li>所有设备均在 <strong>500 ms 以内</strong>完成验证，对 IoT 交互场景完全可接受；</li>
+<li>有效 VC 与已撤销 VC 的验证时延<strong>几乎相同</strong>（体现 ECC 累加器的常量验证时间特性——撤销不增加验证成本）；</li>
+<li>每台设备的<strong>存储开销约 1.5 KB</strong>（$a_j$ + $w_i$），且该值<strong>与网络中 VC 总数无关</strong>；</li>
+<li>iPhone 12 性能最优（~13 ms），LG TV 和 Echo Show 较慢，主要受限于 WASM 执行效率（原生实现可显著优化）。</li>
+</ol>
+<h3 id="63-混合网络测试">6.3 混合网络测试<a hidden class="anchor" aria-hidden="true" href="#63-混合网络测试">#</a></h3>
+<p><strong>测试场景</strong>：智能家居，模拟 Zigbee / Z-Wave 典型 IoT 协议的网络拓扑。</p>
+<p><strong>硬件配置</strong>：5 台 Raspberry Pi 4（8GB RAM），同一 Wi-Fi 网络，使用 <strong>NTP</strong> 同步时钟。</p>
+<p><strong>两种拓扑</strong>（论文 Figure 4）：</p>
+<p><strong>星形拓扑（Star Network，Figure 4a）</strong>：</p>
+<ul>
+<li>所有通信经过中心 Hub（如 Amazon Alexa / Google Home）；</li>
+<li>特点：管理简单，但可扩展性和容错性受限于中心节点；</li>
+<li>IoT 代表场景：智能家居中控。</li>
+</ul>
+<p><strong>网格拓扑（Mesh Network，Figure 4b，Full-mesh）</strong>：</p>
+<ul>
+<li>每台设备可直接与所有其他设备通信（完全连通）；</li>
+<li>特点：多路径鲁棒性强，动态适应性好，但管理复杂度随设备数增加；</li>
+<li>IoT 代表场景：工业 IoT、楼宇自动化。</li>
+</ul>
+<p><strong>性能结果</strong>（论文 Table 4）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>拓扑</th>
+          <th>方案</th>
+          <th>Total Latency（Verify + Transfer）</th>
+          <th>E2E Latency</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>星形</td>
+          <td>EVOKE</td>
+          <td>1152.7 ms</td>
+          <td>948.3 ms</td>
+      </tr>
+      <tr>
+          <td>星形</td>
+          <td>Baseline（仅最小数据）</td>
+          <td>967.7 ms</td>
+          <td>705.5 ms</td>
+      </tr>
+      <tr>
+          <td>网格</td>
+          <td>EVOKE</td>
+          <td>545.2 ms</td>
+          <td>307.5 ms</td>
+      </tr>
+      <tr>
+          <td>网格</td>
+          <td>Baseline</td>
+          <td>97.4 ms</td>
+          <td>91.7 ms</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>分析</strong>：</p>
+<ul>
+<li>星形延迟约为网格的 <strong>2 倍以上</strong>：星形需经中心节点中转，交互设备数更多；</li>
+<li><strong>NTP 时钟同步延迟</strong>是总延迟的主要贡献者，而非 EVOKE 自身计算；</li>
+<li>EVOKE 的 VC 验证计算额外引入<strong>仅几毫秒</strong>开销，其余差异来自撤销信息的数据传输；</li>
+<li>EVOKE 与 Baseline 的差距（传输 $a_j$ + $w_i$）远小于 CRL 等方案（CRL 数据量约为 EVOKE 的 100 倍）；</li>
+<li><strong>混合架构优势</strong>：通过 Raspberry Pi 作控制器，可为没有计算能力的微型传感器代理执行 EVOKE 操作，显著扩展适用范围。</li>
+</ul>
+<h3 id="64-大规模仿真">6.4 大规模仿真<a hidden class="anchor" aria-hidden="true" href="#64-大规模仿真">#</a></h3>
+<p><strong>仿真配置</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>参数</th>
+          <th>值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>设备规模</td>
+          <td>10K / 50K / 500K / 1M</td>
+      </tr>
+      <tr>
+          <td>仿真时长</td>
+          <td>一周</td>
+      </tr>
+      <tr>
+          <td>硬件</td>
+          <td>Intel i7-11370H @ 3.30GHz，4核，16GB RAM</td>
+      </tr>
+      <tr>
+          <td>撤销比例</td>
+          <td>~0.028%/天（约 10%/年，参考 Heartbleed 对 PKI 的影响）</td>
+      </tr>
+      <tr>
+          <td>错过更新比例</td>
+          <td>10% / 30% / 50%</td>
+      </tr>
+      <tr>
+          <td>交互频率（主实验）</td>
+          <td>5 次/设备/小时</td>
+      </tr>
+      <tr>
+          <td>交互频率（附录对比）</td>
+          <td>1 次/设备/小时</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>1 小时内更新完成率</strong>（论文 Figure 5，5次/小时）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>错过更新比例</th>
+          <th>1小时更新率</th>
+          <th>备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>10%</td>
+          <td><strong>~100%</strong></td>
+          <td>完全收敛</td>
+      </tr>
+      <tr>
+          <td>30%</td>
+          <td><strong>~98%</strong></td>
+          <td>极少数未更新</td>
+      </tr>
+      <tr>
+          <td>50%</td>
+          <td><strong>~96%</strong></td>
+          <td>即使半数离线仍高效更新</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>重要发现</strong>：更新完成率与设备总数<strong>基本无关</strong>（10K 和 1M 的曲线几乎重叠），体现了 EVOKE 出色的可扩展性。</p>
+</blockquote>
+<p><strong>通信开销</strong>（论文 Table 5，5次/小时）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>设备总数</th>
+          <th>10% 错过</th>
+          <th>30% 错过</th>
+          <th>50% 错过</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>10K</td>
+          <td>1.49 MB</td>
+          <td>4.42 MB</td>
+          <td>7.19 MB</td>
+      </tr>
+      <tr>
+          <td>50K</td>
+          <td>7.45 MB</td>
+          <td>22.03 MB</td>
+          <td>36.05 MB</td>
+      </tr>
+      <tr>
+          <td>500K</td>
+          <td>74.51 MB</td>
+          <td>220.44 MB</td>
+          <td>360.70 MB</td>
+      </tr>
+      <tr>
+          <td>1M</td>
+          <td>155.43 MB</td>
+          <td>452.13 MB</td>
+          <td>721.67 MB</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Issuer 侧开销</strong>（论文 Figure 6，对数坐标，1M 设备）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>耗时（1M 设备）</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>累加器值生成（初始）</td>
+          <td>~1 s</td>
+          <td>一次性</td>
+      </tr>
+      <tr>
+          <td>Witness 批量生成</td>
+          <td><strong>~80 s</strong></td>
+          <td><strong>主要瓶颈</strong>，理论下界 $\Omega(w)$</td>
+      </tr>
+      <tr>
+          <td>累加器更新（撤销 10%）</td>
+          <td>~40 s</td>
+          <td>撤销越多，剩余 witness 越少，反而更快</td>
+      </tr>
+      <tr>
+          <td>累加器更新（撤销 25%）</td>
+          <td>~20 s</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>累加器更新（撤销 50%）</td>
+          <td><strong>~10 s</strong></td>
+          <td>批量撤销反而最快</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>关键解读</strong>：</p>
+<ul>
+<li>Witness 批量生成是 Issuer 侧的唯一瓶颈，但 Issuer 通常具备充足算力，80 秒可接受；</li>
+<li><strong>撤销比例越高，更新耗时越短</strong>：因为被撤销设备不再需要 witness，需生成的总数减少；</li>
+<li>设备侧的存储（1.5 KB）和验证时延（毫秒级）完全不受 Issuer 侧开销影响。</li>
+</ul>
+<hr>
+<h2 id="7-与现有方案的详细对比">7. 与现有方案的详细对比<a hidden class="anchor" aria-hidden="true" href="#7-与现有方案的详细对比">#</a></h2>
+<h3 id="71-ocsp-系列">7.1 OCSP 系列<a hidden class="anchor" aria-hidden="true" href="#71-ocsp-系列">#</a></h3>
+<p><strong>标准 OCSP</strong>：验证方在线查询 Issuer；假设稳定连接；每次约 4 KB；不适合 IoT。</p>
+<p><strong>OCSP Stapling</strong>：持有方定期预取 OCSP 响应并附在 VC 上；无需验证方联系 Issuer；但响应<strong>有时效，不保证实时撤销新鲜度</strong>，且 4 KB 仍超过 EVOKE。</p>
+<p><strong>TinyOCSP（JISA 2023）</strong>：将 OCSP 响应大小减小约 70%（至约 1.2 KB）；但仍需<strong>可靠连接</strong>，IoT 环境难以保证；不支持批量或离线撤销。</p>
+<h3 id="72-crl-系列">7.2 CRL 系列<a hidden class="anchor" aria-hidden="true" href="#72-crl-系列">#</a></h3>
+<p><strong>标准 CRL</strong>：完整列表存储在设备上；百万证书场景需数 MB；对 IoT 完全不可行。</p>
+<p><strong>Revocation List 2020（W3C draft）</strong>：</p>
+<ul>
+<li>位串（bitstring）方案：每个 VC 对应一位（1=撤销，0=有效）；</li>
+<li>100 万 VC → 约 <strong>125 KB</strong>；</li>
+<li><strong>ZLIB</strong> 压缩后约 62.5 KB（假设 50% 压缩率）；</li>
+<li>即使压缩后仍是 EVOKE 的 <strong>40 倍以上</strong>；</li>
+<li>不支持批量撤销（bitstring 大小随撤销数线性增长）；</li>
+<li>不支持离线撤销。</li>
+</ul>
+<p><strong>CRLite（IEEE S&amp;P 2017）</strong>：约 112.5 KB，针对 Web PKI 优化，IoT 不适用。</p>
+<p><strong>Let&rsquo;s Revoke（NDSS 2020）</strong>：约 70 KB，同上。</p>
+<h3 id="73-vcerusenix-security-2022">7.3 V&rsquo;CER（USENIX Security 2022）<a hidden class="anchor" aria-hidden="true" href="#73-vcerusenix-security-2022">#</a></h3>
+<p>V&rsquo;CER 是面向受限网络的高效证书验证方案，采用 <strong>Sparse Merkle Tree（SMT）</strong>：</p>
+<ul>
+<li>将所有有效证书哈希值串联，生成 hash root（类似 $a_j$）；</li>
+<li>Co-path（witness）= 路径上所有兄弟节点的哈希 = <strong>O(log n) 大小</strong>；</li>
+<li>100 万证书场景：约 <strong>3 KB</strong>（EVOKE 的 2 倍）；</li>
+<li>支持离线撤销：设备可分布式自行修复 proof（无需 CA 参与）；</li>
+<li><strong>不支持批量撤销</strong>（SMT 的 proof 大小随撤销数对数增长）。</li>
+</ul>
+<p><strong>EVOKE vs V&rsquo;CER 全面对比</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>EVOKE</th>
+          <th>V&rsquo;CER</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>基础结构</td>
+          <td>ECC 累加器</td>
+          <td>Sparse Merkle Tree</td>
+      </tr>
+      <tr>
+          <td>Witness 大小</td>
+          <td><strong>O(1)（常量~1.5 KB）</strong></td>
+          <td>O(log n)（~3 KB @ 1M）</td>
+      </tr>
+      <tr>
+          <td>存储效率</td>
+          <td><strong>最优</strong></td>
+          <td>次优（EVOKE 的 2 倍）</td>
+      </tr>
+      <tr>
+          <td>批量撤销</td>
+          <td><strong>✓</strong></td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>离线撤销</td>
+          <td>✓</td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td>离线更新机制</td>
+          <td>邻居设备中继（含 Issuer 签名 VC）</td>
+          <td>设备间自行修复 proof</td>
+      </tr>
+      <tr>
+          <td>DLT 依赖</td>
+          <td>是（IOTA Tangle）</td>
+          <td>否（独立）</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="74-综合对比表">7.4 综合对比表<a hidden class="anchor" aria-hidden="true" href="#74-综合对比表">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>存储（1M VC）</th>
+          <th>批量撤销</th>
+          <th>离线撤销</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>EVOKE</strong></td>
+          <td><strong>1.5 KB</strong></td>
+          <td><strong>✓</strong></td>
+          <td><strong>✓</strong></td>
+      </tr>
+      <tr>
+          <td>V&rsquo;CER</td>
+          <td>3 KB</td>
+          <td>✗</td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td>Revocation List 2020</td>
+          <td>125 KB</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>CRLite</td>
+          <td>112.5 KB</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>Let&rsquo;s Revoke</td>
+          <td>70 KB</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td>TinyOCSP</td>
+          <td>需实时连接</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="8-相关工作梳理">8. 相关工作梳理<a hidden class="anchor" aria-hidden="true" href="#8-相关工作梳理">#</a></h2>
+<h3 id="81-传统vc-撤销方案">8.1 传统VC 撤销方案<a hidden class="anchor" aria-hidden="true" href="#81-传统vc-撤销方案">#</a></h3>
+<ul>
+<li>
+<ul>
+<li><strong>Abraham 等人的方案 [2]</strong>：通过在撤销列表中包含 VC 来实现。为了支持<strong>离线验证</strong>，节点可以生成“新鲜度证明（Attestations）”，让验证方确认凭证当前是否有效。</li>
+</ul>
+</li>
+<li>
+<p><strong>Fotiu 等人的方案 [18] (基于 W3C 草案)</strong>：采用位图（Bitstring）机制。给每个 VC 分配一个位置下标，如果对应位置是 <code>1</code> 则代表已撤销。这种方式简单，但只适合 <strong>VC 数量较少</strong>的场景。</p>
+</li>
+<li>
+<p><strong>DNS 方案 [19]</strong>：将撤销列表存放在 DNS 的 TXT 记录中。这种方案局限于<strong>群组设备管理</strong>，不适合非集群化的通用 IoT 场景。</p>
+</li>
+</ul>
+<h3 id="82-基于累加器的方案">8.2 基于累加器的方案<a hidden class="anchor" aria-hidden="true" href="#82-基于累加器的方案">#</a></h3>
+<ul>
+<li>
+<p><strong>Parameswarath 等人的方案 [39]</strong>：虽然使用了累加器，但侧重于<strong>用户权限/策略</strong>的撤销，而非针对受限网络环境的效率优化。</p>
+</li>
+<li>
+<p><strong>V’CER [27]：使用</strong>稀疏默克尔树（SMT）** 作为哈希累加器。它在存储效率上表现优异（100 万个证书仅需不到 3KB 空间），且支持<strong>离线更新</strong>。</p>
+</li>
+</ul>
+<h3 id="83-基于-dlt-的方案">8.3 基于 DLT 的方案<a hidden class="anchor" aria-hidden="true" href="#83-基于-dlt-的方案">#</a></h3>
+<ul>
+<li>
+<p><strong>传统区块链方案 [16, 28, 44, 59]</strong>：虽然能存撤销信息，但存在<strong>延迟高、能耗大、吞吐量低</strong>的问题，不适合资源受限的 IoT 设备。</p>
+</li>
+<li>
+<p><strong>DAG（有向无环图）方案 [49, 57]</strong>：作为区块链的替代方案，DAG（如 IOTA）更轻量，能在保持安全性的同时满足 IoT 网络的特定需求。</p>
+</li>
+</ul>
+<h3 id="84-evoke-的差异化定位">8.4 EVOKE 的差异化定位<a hidden class="anchor" aria-hidden="true" href="#84-evoke-的差异化定位">#</a></h3>
+<p>EVOKE 是现有所有方案中<strong>第一个</strong>同时满足以下四点的方案：</p>
+<ol>
+<li>专为 <strong>VC</strong>（而非 PKI 证书）设计；</li>
+<li>专为 <strong>IoT 受限环境</strong>裁剪；</li>
+<li>支持<strong>批量撤销</strong>；</li>
+<li>支持<strong>离线撤销</strong>，且存储开销最小（1.5 KB）。</li>
+</ol>
+<hr>
+<h2 id="9-总结">9. 总结<a hidden class="anchor" aria-hidden="true" href="#9-总结">#</a></h2>
+<ol>
+<li><strong>极低存储开销</strong>：比 V’CER 更强，每个设备仅需 <strong>1.5KB</strong> 即可处理百万级 VC（V’CER 需要 3KB）。</li>
+<li><strong>空间恒定性</strong>：无论撤销多少个 VC，累加器和证明（Witness）的大小<strong>固定不变</strong>，不会随数量增加而膨胀。</li>
+<li><strong>支持批量撤销</strong>：这是传统方案（如 SMT）难以高效实现的，EVOKE 可以在保持小体积的同时处理大规模撤销。</li>
+<li><strong>离线能力</strong>：继承并优化了离线验证功能，专门为断网或弱网的 IoT 环境设计。</li>
+</ol>
+<h3 id="1-核心定位与价值">1. 核心定位与价值<a hidden class="anchor" aria-hidden="true" href="#1-核心定位与价值">#</a></h3>
+<ul>
+<li>
+<p><strong>填补空白</strong>：指出 VC（可验证凭证）虽然能增强 IoT 设备的信任，但“如何高效撤销”仍处于早期研究阶段。EVOKE 为该领域奠定了基础。</p>
+</li>
+<li>
+<p><strong>技术核心</strong>：明确了 EVOKE 是利用 <strong>ECC（椭圆曲线密码学）累加器</strong>来解决 IoT 网络中计算和存储资源极度受限的问题。</p>
+</li>
+</ul>
+<h3 id="2-三大核心特性">2. 三大核心特性<a hidden class="anchor" aria-hidden="true" href="#2-三大核心特性">#</a></h3>
+<ul>
+<li>
+<p><strong>高效管理</strong>：极低的计算和存储开销。</p>
+</li>
+<li>
+<p><strong>批量撤销 (Mass Revocation)</strong>：能够大规模处理凭证废止。</p>
+</li>
+<li>
+<p><strong>离线撤销 (Offline Revocation)</strong>：在没有持续网络连接的情况下依然有效，解决了 IoT 的痛点。</p>
+</li>
+<li>
+<p><strong>Witness 生成瓶颈</strong>：Issuer 侧生成 1M witness 约需 80 秒，高频撤销场景下有优化空间（可研究增量更新算法）；</p>
+</li>
+<li>
+<p><strong>非最优实现</strong>：当前 JS/WASM 实现非最优，原生实现（C/Rust）可大幅降低设备侧延迟；</p>
+</li>
+<li>
+<p><strong>设备检测依赖外部</strong>：被攻陷设备的检测完全依赖 IDS，EVOKE 自身不提供检测能力；</p>
+</li>
+<li>
+<p><strong>低交互频率场景</strong>：1次/小时且 50% 离线时更新率降至 75%，需研究主动推送补充机制；</p>
+</li>
+<li>
+<p><strong>DAG-DLT 中心化风险</strong>：早期 IOTA Tangle 对协调器（Coordinator）有依赖，IOTA 2.0 正在解决该问题，EVOKE 可考虑支持其他 DAG-DLT。</p>
+</li>
+</ul>
+<h2 id="10个人疑点">10.个人疑点<a hidden class="anchor" aria-hidden="true" href="#10个人疑点">#</a></h2>
+<ul>
+<li>为什么说选用 <strong>DAG</strong> 而非传统区块链的原因：更低延迟、更低能耗，同时保持透明性与不可篡改性；（如何说明<strong>DAG更优</strong>）</li>
+<li>3.3威胁模型为什么要采用 <strong>Dolev-Yao 模型</strong>——攻击者可窃听、拦截、注入任意数量消息，并可尝试攻陷 $n_j$ 中的任意实体。</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/iot/">IoT</a></li>
+      <li><a href="http://localhost:1313/tags/verifiable-credentials/">Verifiable-Credentials</a></li>
+      <li><a href="http://localhost:1313/tags/did/">DID</a></li>
+      <li><a href="http://localhost:1313/tags/revocation/">Revocation</a></li>
+      <li><a href="http://localhost:1313/tags/dlt/">DLT</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
