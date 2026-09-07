@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>STL on Minjie&#39;s Blog</title>
+    <link>https://minjieblog.github.io/tags/stl/</link>
+    <description>Recent content in STL on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sun, 10 May 2026 22:12:18 +0800</lastBuildDate>
+    <atom:link href="https://minjieblog.github.io/tags/stl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; STL 刷题手册</title>
+      <link>https://minjieblog.github.io/interview-notes/cpp-stl-cheatsheet/</link>
+      <pubDate>Sun, 10 May 2026 22:12:18 +0800</pubDate>
+      <guid>https://minjieblog.github.io/interview-notes/cpp-stl-cheatsheet/</guid>
+      <description>C&#43;&#43; STL 容器与刷题算法模板速查手册，涵盖 string、vector、map、priority_queue 等常用容器的核心用法，以及树、图、回溯、动态规划、双指针、单调栈、前缀和等经典算法的代码模板，供 LeetCode 刷题时快速查阅。</description>
+    </item>
+  </channel>
+</rss>

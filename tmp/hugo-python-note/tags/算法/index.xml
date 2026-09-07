@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>算法 on Minjie&#39;s Blog</title>
+    <link>https://minjieblog.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sun, 06 Sep 2026 23:34:32 +0800</lastBuildDate>
+    <atom:link href="https://minjieblog.github.io/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 面试算法手册：数据结构、刷题模板与 AI 算法</title>
+      <link>https://minjieblog.github.io/interview-notes/python-algorithm-cheatsheet/</link>
+      <pubDate>Sun, 06 Sep 2026 23:34:32 +0800</pubDate>
+      <guid>https://minjieblog.github.io/interview-notes/python-algorithm-cheatsheet/</guid>
+      <description>系统整理 Python 容器、二分、双指针、树、图、动态规划，以及线性回归、K-Means、PCA、Attention 等面试手写模板，附复杂度、输入约定和易错点。</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; STL 刷题手册</title>
+      <link>https://minjieblog.github.io/interview-notes/cpp-stl-cheatsheet/</link>
+      <pubDate>Sun, 10 May 2026 22:12:18 +0800</pubDate>
+      <guid>https://minjieblog.github.io/interview-notes/cpp-stl-cheatsheet/</guid>
+      <description>C&#43;&#43; STL 容器与刷题算法模板速查手册，涵盖 string、vector、map、priority_queue 等常用容器的核心用法，以及树、图、回溯、动态规划、双指针、单调栈、前缀和等经典算法的代码模板，供 LeetCode 刷题时快速查阅。</description>
+    </item>
+    <item>
+      <title>数学基础算法篇</title>
+      <link>https://minjieblog.github.io/dase-course/mathematical-algorithms-lecture/</link>
+      <pubDate>Sun, 21 Dec 2025 15:50:54 +0800</pubDate>
+      <guid>https://minjieblog.github.io/dase-course/mathematical-algorithms-lecture/</guid>
+      <description>金老师主讲的研究生课程《数学基础算法篇》完整笔记，从算法分析基础开始，系统介绍相似度搜索、概率不等式、流式数据处理、分布式计算、哈希技术、优化算法、图算法等内容，理论与实践相结合，为解决大规模数据处理问题提供数学和算法基础。
+</description>
+    </item>
+    <item>
+      <title>机器学习习题集</title>
+      <link>https://minjieblog.github.io/dase-course/ml-exercise-set/</link>
+      <pubDate>Sat, 13 Dec 2025 20:26:19 +0800</pubDate>
+      <guid>https://minjieblog.github.io/dase-course/ml-exercise-set/</guid>
+      <description>这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：
+基础理论（梯度下降、交叉熵损失、最大似然估计）、
+判别模型（Logistic回归、GDA、SVM对偶优化）、
+深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
+强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
+大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
+每道题配有完整数学证明和算法原理解析。 
+</description>
+    </item>
+    <item>
+      <title>算法刷题必备：Java集合与算法模板</title>
+      <link>https://minjieblog.github.io/java-notes/algorithm-with-java/</link>
+      <pubDate>Sun, 07 Dec 2025 16:33:25 +0800</pubDate>
+      <guid>https://minjieblog.github.io/java-notes/algorithm-with-java/</guid>
+      <description>Java 集合框架完整使用手册 &#43; 常用算法模板</description>
+    </item>
+  </channel>
+</rss>

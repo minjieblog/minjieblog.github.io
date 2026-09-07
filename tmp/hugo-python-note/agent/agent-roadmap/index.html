@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Agent Roadmap | Minjie&#39;s Blog</title>
+<meta name="keywords" content="笔记, 入门, agent">
+<meta name="description" content="总结了一些 AI Agent 的完整学习路径，包括核心概念、技术栈（如 LLM、工具调用、记忆机制）、以及实践方向，适合入门到进阶的学习参考">
+<meta name="author" content="">
+<link rel="canonical" href="https://minjieblog.github.io/agent/agent-roadmap/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/agent/agent-roadmap/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style><meta property="og:url" content="https://minjieblog.github.io/agent/agent-roadmap/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Agent Roadmap">
+  <meta property="og:description" content="总结了一些 AI Agent 的完整学习路径，包括核心概念、技术栈（如 LLM、工具调用、记忆机制）、以及实践方向，适合入门到进阶的学习参考">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="agent">
+    <meta property="article:published_time" content="2026-04-28T10:00:19+08:00">
+    <meta property="article:modified_time" content="2026-04-28T10:00:19+08:00">
+    <meta property="article:tag" content="笔记">
+    <meta property="article:tag" content="入门">
+    <meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Agent Roadmap">
+<meta name="twitter:description" content="总结了一些 AI Agent 的完整学习路径，包括核心概念、技术栈（如 LLM、工具调用、记忆机制）、以及实践方向，适合入门到进阶的学习参考">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Agents",
+      "item": "https://minjieblog.github.io/agent/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Agent Roadmap",
+      "item": "https://minjieblog.github.io/agent/agent-roadmap/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Agent Roadmap",
+  "name": "Agent Roadmap",
+  "description": "总结了一些 AI Agent 的完整学习路径，包括核心概念、技术栈（如 LLM、工具调用、记忆机制）、以及实践方向，适合入门到进阶的学习参考",
+  "keywords": [
+    "笔记", "入门", "agent"
+  ],
+  "articleBody": "阶段一：零基础入门 微软的《AI Agents for Beginners》 包含有完整的中文教程：(https://github.com/microsoft/ai-agents-for-beginners)\n中文好的教程：B站UP 官方链接：(https://space.bilibili.com/1815948385)\nReAct和CodeAct-Agent调用外部工具的两种方法 官方文档：(https://github.com/KelvinQiu802/ReAct-CodeAct)\n一个很好的教程：(https://www.bilibili.com/video/BV1wXZfYRErX)\nanthropic推出的官方教程（TODO） Course中的：(https://anthropic.skilljar.com/claude-with-the-anthropic-api)\n阶段二：一些常用的框架 LangChain LangGraph LangGraph快速入门与原理刨析：(https://www.bilibili.com/video/BV1HVFLzfEeS)\n多Agent框架 CrewAI:角色分工，任务调度 (https://www.bilibili.com/video/BV1JXawzqEtA) AutoGen: 多轮对话看，人机协同(https://www.bilibili.com/video/BV1mK41147Wx) 阶段三：Agent关键技术 RAG向量检索 手把手搭建RAG系统：(https://www.bilibili.com/video/BV1ei421a7Kc)\n记忆系统 八种常见的记忆系统：(https://www.bilibili.com/video/BV1L31XBRE6m)\n阶段四：Agent项目 手搓Agent: Hello Agent（TODO） 官方文档，据说后续会有视频教程：(https://github.com/datawhalechina/hello-agents)\nClaude Code源代码 深入复盘Claude Code的架构设计：(https://www.bilibili.com/video/BV1U8d8BzEUK)\n",
+  "wordCount" : "836",
+  "inLanguage": "zh",
+  "datePublished": "2026-04-28T10:00:19+08:00",
+  "dateModified": "2026-04-28T10:00:19+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/agent/agent-roadmap/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Agent Roadmap
+    </h1>
+    <div class="post-description">
+      总结了一些 AI Agent 的完整学习路径，包括核心概念、技术栈（如 LLM、工具调用、记忆机制）、以及实践方向，适合入门到进阶的学习参考
+    </div>
+    <div class="post-meta"><span title='2026-04-28 10:00:19 +0800 CST'>2026年4月28日</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e9%98%b6%e6%ae%b5%e4%b8%80%e9%9b%b6%e5%9f%ba%e7%a1%80%e5%85%a5%e9%97%a8" aria-label="阶段一：零基础入门">阶段一：零基础入门</a><ul>
+                        
+                <li>
+                    <a href="#%e5%be%ae%e8%bd%af%e7%9a%84ai-agents-for-beginners" aria-label="微软的《AI Agents for Beginners》">微软的《AI Agents for Beginners》</a></li>
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%87%e5%a5%bd%e7%9a%84%e6%95%99%e7%a8%8bb%e7%ab%99up" aria-label="中文好的教程：B站UP">中文好的教程：B站UP</a></li>
+                <li>
+                    <a href="#react%e5%92%8ccodeact-agent%e8%b0%83%e7%94%a8%e5%a4%96%e9%83%a8%e5%b7%a5%e5%85%b7%e7%9a%84%e4%b8%a4%e7%a7%8d%e6%96%b9%e6%b3%95" aria-label="ReAct和CodeAct-Agent调用外部工具的两种方法">ReAct和CodeAct-Agent调用外部工具的两种方法</a></li>
+                <li>
+                    <a href="#anthropic%e6%8e%a8%e5%87%ba%e7%9a%84%e5%ae%98%e6%96%b9%e6%95%99%e7%a8%8btodo" aria-label="anthropic推出的官方教程（TODO）">anthropic推出的官方教程（TODO）</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e9%98%b6%e6%ae%b5%e4%ba%8c%e4%b8%80%e4%ba%9b%e5%b8%b8%e7%94%a8%e7%9a%84%e6%a1%86%e6%9e%b6" aria-label="阶段二：一些常用的框架">阶段二：一些常用的框架</a><ul>
+                        
+                <li>
+                    <a href="#langchain" aria-label="LangChain">LangChain</a></li>
+                <li>
+                    <a href="#langgraph" aria-label="LangGraph">LangGraph</a></li>
+                <li>
+                    <a href="#%e5%a4%9aagent%e6%a1%86%e6%9e%b6" aria-label="多Agent框架">多Agent框架</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e9%98%b6%e6%ae%b5%e4%b8%89agent%e5%85%b3%e9%94%ae%e6%8a%80%e6%9c%af" aria-label="阶段三：Agent关键技术">阶段三：Agent关键技术</a><ul>
+                        
+                <li>
+                    <a href="#rag%e5%90%91%e9%87%8f%e6%a3%80%e7%b4%a2" aria-label="RAG向量检索">RAG向量检索</a></li>
+                <li>
+                    <a href="#%e8%ae%b0%e5%bf%86%e7%b3%bb%e7%bb%9f" aria-label="记忆系统">记忆系统</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e9%98%b6%e6%ae%b5%e5%9b%9bagent%e9%a1%b9%e7%9b%ae" aria-label="阶段四：Agent项目">阶段四：Agent项目</a><ul>
+                        
+                <li>
+                    <a href="#%e6%89%8b%e6%90%93agent-hello-agenttodo" aria-label="手搓Agent: Hello Agent（TODO）">手搓Agent: Hello Agent（TODO）</a></li>
+                <li>
+                    <a href="#claude-code%e6%ba%90%e4%bb%a3%e7%a0%81" aria-label="Claude Code源代码">Claude Code源代码</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="阶段一零基础入门">阶段一：零基础入门<a hidden class="anchor" aria-hidden="true" href="#阶段一零基础入门">#</a></h2>
+<h3 id="微软的ai-agents-for-beginners">微软的《AI Agents for Beginners》<a hidden class="anchor" aria-hidden="true" href="#微软的ai-agents-for-beginners">#</a></h3>
+<p>包含有完整的中文教程：(<a href="https://github.com/microsoft/ai-agents-for-beginners">https://github.com/microsoft/ai-agents-for-beginners</a>)</p>
+<h3 id="中文好的教程b站up">中文好的教程：B站UP<a hidden class="anchor" aria-hidden="true" href="#中文好的教程b站up">#</a></h3>
+<p>官方链接：(<a href="https://space.bilibili.com/1815948385">https://space.bilibili.com/1815948385</a>)</p>
+<h3 id="react和codeact-agent调用外部工具的两种方法">ReAct和CodeAct-Agent调用外部工具的两种方法<a hidden class="anchor" aria-hidden="true" href="#react和codeact-agent调用外部工具的两种方法">#</a></h3>
+<p>官方文档：(<a href="https://github.com/KelvinQiu802/ReAct-CodeAct">https://github.com/KelvinQiu802/ReAct-CodeAct</a>)</p>
+<p>一个很好的教程：(<a href="https://www.bilibili.com/video/BV1wXZfYRErX">https://www.bilibili.com/video/BV1wXZfYRErX</a>)</p>
+<h3 id="anthropic推出的官方教程todo">anthropic推出的官方教程（TODO）<a hidden class="anchor" aria-hidden="true" href="#anthropic推出的官方教程todo">#</a></h3>
+<p>Course中的：(<a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">https://anthropic.skilljar.com/claude-with-the-anthropic-api</a>)</p>
+<h2 id="阶段二一些常用的框架">阶段二：一些常用的框架<a hidden class="anchor" aria-hidden="true" href="#阶段二一些常用的框架">#</a></h2>
+<h3 id="langchain">LangChain<a hidden class="anchor" aria-hidden="true" href="#langchain">#</a></h3>
+<h3 id="langgraph">LangGraph<a hidden class="anchor" aria-hidden="true" href="#langgraph">#</a></h3>
+<p>LangGraph快速入门与原理刨析：(<a href="https://gw-c.nowcoder.com/api/sparta/jump/link?link=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1HVFLzfEeS%2F%3Fspm_id_from%3D333.337.search-card.all.click%26vd_source%3De029be45bf88fb0e108467d3b4e2f10c">https://www.bilibili.com/video/BV1HVFLzfEeS</a>)</p>
+<h3 id="多agent框架">多Agent框架<a hidden class="anchor" aria-hidden="true" href="#多agent框架">#</a></h3>
+<ul>
+<li>CrewAI:角色分工，任务调度 (<a href="https://gw-c.nowcoder.com/api/sparta/jump/link?link=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1JXawzqEtA%2F%3Fspm_id_from%3D333.337.search-card.all.click">https://www.bilibili.com/video/BV1JXawzqEtA</a>)</li>
+<li>AutoGen: 多轮对话看，人机协同(<a href="https://gw-c.nowcoder.com/api/sparta/jump/link?link=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1mK41147Wx%2F%3Fspm_id_from%3D333.337.search-card.all.click">https://www.bilibili.com/video/BV1mK41147Wx</a>)</li>
+</ul>
+<h2 id="阶段三agent关键技术">阶段三：Agent关键技术<a hidden class="anchor" aria-hidden="true" href="#阶段三agent关键技术">#</a></h2>
+<h3 id="rag向量检索">RAG向量检索<a hidden class="anchor" aria-hidden="true" href="#rag向量检索">#</a></h3>
+<p>手把手搭建RAG系统：(<a href="https://gw-c.nowcoder.com/api/sparta/jump/link?link=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1ei421a7Kc%2F%3Fspm_id_from%3D333.337.search-card.all.click%26vd_source%3De029be45bf88fb0e108467d3b4e2f10c">https://www.bilibili.com/video/BV1ei421a7Kc</a>)</p>
+<h3 id="记忆系统">记忆系统<a hidden class="anchor" aria-hidden="true" href="#记忆系统">#</a></h3>
+<p>八种常见的记忆系统：(<a href="https://gw-c.nowcoder.com/api/sparta/jump/link?link=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1L31XBRE6m%2F%3Fspm_id_from%3D333.337.search-card.all.click">https://www.bilibili.com/video/BV1L31XBRE6m</a>)</p>
+<h2 id="阶段四agent项目">阶段四：Agent项目<a hidden class="anchor" aria-hidden="true" href="#阶段四agent项目">#</a></h2>
+<h3 id="手搓agent-hello-agenttodo">手搓Agent: Hello Agent（TODO）<a hidden class="anchor" aria-hidden="true" href="#手搓agent-hello-agenttodo">#</a></h3>
+<p>官方文档，据说后续会有视频教程：(<a href="https://github.com/datawhalechina/hello-agents">https://github.com/datawhalechina/hello-agents</a>)</p>
+<h3 id="claude-code源代码">Claude Code源代码<a hidden class="anchor" aria-hidden="true" href="#claude-code源代码">#</a></h3>
+<p>深入复盘Claude Code的架构设计：(<a href="https://www.bilibili.com/video/BV1U8d8BzEUK">https://www.bilibili.com/video/BV1U8d8BzEUK</a>)</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://minjieblog.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a></li>
+      <li><a href="https://minjieblog.github.io/tags/%E5%85%A5%E9%97%A8/">入门</a></li>
+      <li><a href="https://minjieblog.github.io/tags/agent/">Agent</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

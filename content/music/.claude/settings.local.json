@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"D:/Minjie/Desktop/MinjieBlog\" status --short)",
+      "Bash(git -C \"D:/Minjie/Desktop/MinjieBlog\" log --oneline -8)"
+    ]
+  }
+}

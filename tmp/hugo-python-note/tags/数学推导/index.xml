@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>数学推导 on Minjie&#39;s Blog</title>
+    <link>https://minjieblog.github.io/tags/%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/</link>
+    <description>Recent content in 数学推导 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sat, 13 Dec 2025 20:26:19 +0800</lastBuildDate>
+    <atom:link href="https://minjieblog.github.io/tags/%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>机器学习习题集</title>
+      <link>https://minjieblog.github.io/dase-course/ml-exercise-set/</link>
+      <pubDate>Sat, 13 Dec 2025 20:26:19 +0800</pubDate>
+      <guid>https://minjieblog.github.io/dase-course/ml-exercise-set/</guid>
+      <description>这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：
+基础理论（梯度下降、交叉熵损失、最大似然估计）、
+判别模型（Logistic回归、GDA、SVM对偶优化）、
+深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
+强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
+大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
+每道题配有完整数学证明和算法原理解析。 
+</description>
+    </item>
+  </channel>
+</rss>

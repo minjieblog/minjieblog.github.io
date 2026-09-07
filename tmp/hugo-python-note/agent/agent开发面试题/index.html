@@ -1,0 +1,4806 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="MewCode 项目面试题库
+
+项目基础介绍
+1. 简单介绍一下这个 MewCode Coding Agent 项目，先用一两句话讲清楚它是什么，能做什么。
+
+
+定位：MewCode 是我独立开发的一个终端 AI 编程助手。">
+<meta name="author" content="">
+<link rel="canonical" href="https://minjieblog.github.io/agent/agent%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/agent/agent%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style><meta property="og:url" content="https://minjieblog.github.io/agent/agent%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="MewCode 项目面试题库 项目基础介绍 1. 简单介绍一下这个 MewCode Coding Agent 项目，先用一两句话讲清楚它是什么，能做什么。
+定位：MewCode 是我独立开发的一个终端 AI 编程助手。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="agent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="MewCode 项目面试题库
+
+项目基础介绍
+1. 简单介绍一下这个 MewCode Coding Agent 项目，先用一两句话讲清楚它是什么，能做什么。
+
+
+定位：MewCode 是我独立开发的一个终端 AI 编程助手。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Agents",
+      "item": "https://minjieblog.github.io/agent/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/agent/agent%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "MewCode 项目面试题库 项目基础介绍 1. 简单介绍一下这个 MewCode Coding Agent 项目，先用一两句话讲清楚它是什么，能做什么。\n定位：MewCode 是我独立开发的一个终端 AI 编程助手。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "MewCode 项目面试题库 项目基础介绍 1. 简单介绍一下这个 MewCode Coding Agent 项目，先用一两句话讲清楚它是什么，能做什么。\n定位：MewCode 是我独立开发的一个终端 AI 编程助手。\n功能：用户用自然语言下指令，Agent 自己读代码、改文件、跑命令，整个过程自主完成，不需要人去盯每一步。\n架构：底层做了五层架构，支持多家模型厂商的 API，有完整的权限控制和上下文压缩机制，还支持多个 Agent 并行协作。\n两点：做这个项目的出发点：每天都在用 Claude Code，但它像个黑盒，想搞清楚 Agent 内部到底怎么决策的，就自己从零造了一个。\n2. 你觉得 Agent 有哪些必要元素？\n大脑：LLM 理解任务，做判断，决定下一步做什么\n手脚：Tool 并非事先编排，而是在循环过程中LLM自主调用工具，目的-\u003e为了感受外部环境\n循环：原因-\u003e任务驱动，和大模型的不同\n环境的反馈：是什么：跑命令能看到输出，改代码测试能看到报错-\u003e驱动下一轮的决策。没有Agent也不知道做的效果怎么样\n不太必要算：安全机制和记忆系统\n工程上，只是起到好不好用的效果。其他四要素则是决定agent能不能跑 这个项目在四要素的基础上做了五层的权限拦截和跨会话记忆 3. Agent 有什么工作模式？\nReAct：Reasoning+Acting 推理-\u003e行动-\u003e观察\n灵活，但是token消耗大 Plan-and-Execute：\n是什么：规划后执行，想清楚完整计划 项目参考：Plan Mode ，只读代码，不执行。token消耗少，因为只规划不写、不产生写操作的反复试错（注意不是「只推理一次」，规划阶段照样多轮读文件） Reflection：\n是什么：做完再检查：两种审查模式，隐式的反思机制 项目参考：额外调一轮Agent，token成本翻倍。测试框架替代 Multi-Agent：Coordinator + Worker\nCoordinator负责拆分任务，Worker在各自独立的Worktree里并行干活，汇总结果 4. 你说 Agent 能自主完成多步任务，那 Agent 怎么知道该停了？万一它一直循环下去怎么办？\nFunction Calling 协议：看模型是否返回工具调用，不调用则结束。\n防止死循环\n给循环轮次加上一个硬上限\ntoken用量监控\n官方做法：\n第一层 硬性限制：设置全局最大步数（如 N 步）、单工具的最大重试次数 第二层 重复检测：监控最近N步的工具调用序列，判断是否出现相同工具+相同描述的调用 第三层 收敛性检测：追踪每步的进展指标，判断是否需要重新规划等 第四层 建模是否需要外部信息的决策边界 太激进：信息不够则反复进入死循环 太保守：信息没有收集够 5. 你在简历里说独立完成整体架构设计，能简单讲一下分了哪几层、每层做什么？\n引擎层：LLM Client、Agent Loop\n工具层：内置工具、MCP 等\n交互层：CLI、Skill系统等\n安全层：危险命令检测、路径沙箱、HITL审批\n记忆层：持久化、上下文压缩\nFunction Calling / 工具调用 6. 你简历写熟悉 Function Calling 协议，能用大白话讲一下这个协议大概是怎么工作的？\n本质：模型 → 调用方的一次结构化通信\nAgent → LLM：工具列表和对话历史发给大模型，包括工具 name、description、input_schema\nLLM → 调用方：名字、调用 id、入参 json（tool_use）\n调用方 → LLM：调用 ID（tool_result），再发下一轮请求\n7. ReAct 范式能用大白话讲一下吗？它和普通 LLM 调用有啥区别？\n是什么：Reasoning + Acting，思考 → 行动 → 反思循环\n区别：关键在于状态的延续。LLM 可以看到之前的行为和结果，基于事实决策，而不是凭空生成\n如果模型思考是错的应该怎么办？\n将工具错误明确标记is_error=True传回给模型，让模型清楚知道刚才哪一步失败了 8. 你的 Agent Loop 一轮里大概会做哪些事？按顺序讲一遍。哪一步容易出 bug？\n检查上下文长度 → 超额则压缩（两层压缩机制）\n拼装输入：LLM 无状态，每轮都要把决策所需的一切重新打包成一次请求；物理上分三块 —— system、tools、messages\nSystem Prompt（→ system）：Agent 的角色、行为规则、输出格式\n工具列表（→ tools）：每个工具的 name / description / input_schema，Function Calling 的基础\n对话历史（→ messages）：历轮的用户消息、模型回复、tool_use、tool_result，是 Agent「状态延续」的载体\n环境信息（→ messages 开头）：cwd、OS、系统时间，让模型知道「跑在哪、什么时间」\n项目指令（→ messages 开头）：CLAUDE.md，人手写的项目约定 / 测试 / lint 命令\n长期记忆（→ messages 开头）：跨会话的用户偏好与纠正反馈，Agent 自动提取\n（环境信息 → 项目指令 → 记忆）会话开头一次性注入到 messages 最前面（见第 21 题），之后每轮主要追加新的对话历史和工具结果\n调用 LLM → 判断是否返回工具调用\n不调用：直接结束本轮\n调用：把模型回复连同工具调用一起塞入历史，进入下一轮\n工具调用过程：各种 hook，方便外部扩展\nMulti-Agent 场景：轮次开始时检查邮箱，把队友发来的消息拼进历史\n容易出 bug\n对话一致性：孤儿调用（orphan tool_use）：\n原因：FC要求有一个结果tool_result。工具执行抛异常没正确返回/ESC中断 解决方案：设计对话链校验逻辑，从持久化日志恢复时也会校验，发现孤儿就截断到最近一个完整边界 Multi-Agent：\n场景描述：Worker A看到WorkerB的消息，商定如何做决定 任务重做 / 任务等待的竞态 9. 工具并行执行你是怎么设计的？怎么判断哪些工具可以并行？\n可并行（只读不修改外部状态）：ReadFile、Glob（查找文件）、Grep（查找文件内容）\n不可并行（写类工具）：WriteFile、EditFile、Bash\nspawn 子 Agent 类工具：本身有副作用（创建 worktree、注册任务等共享状态）→ 不能并发，会竞争；但子 Agent 跑起来后是后台异步的，不阻塞主 Agent。并发能力通过 Background 模式实现，不是工具级并发\n分批算法：\n遍历模型返回的工具调用列表，连续的并发安全工具合并到同一个并发批次，碰到非并发安全工具就开一个新的串行批次\n好处：既保证了并发的安全，有保证了工具执行的效率\n*追问：两个 ReadFile 读同一个文件，并发会有问题吗？\n单次ReadFile是只读IO，并发没有问题 并发批次里有一个工具特别慢，怎么处理？\n给每个工具配备独立超时——避免卡住整批 让慢工具流式产出中间状态 10. Plan Mode 是什么？为什么要专门搞这个模式？\n是什么：只读规划模式，LLM 只能读文件、grep,glob收集信息，bash也能用但是有限制比如ls、find、git log等不会产生副作用的命令\n为什么：自动化执行的边界要交给用户控制，先让用户确认计划再执行，适合复杂多步改动\n如何实现Agent按Plan执行\n切换权限：Agent规划完成后会调用ExitPlanMode工具，用户在UI上确认同意。系统自动恢复到之前的权限模式，权限层立即生效\n工程上\nPlan会自动持久化写到磁盘空间，不怕上下文压缩丢掉 退出Plan Mode的时候，完整的Plan文本会通过工具返回值回滚到模型上下文里 Plan Mode如何保证质量\nSystem prompt 的结构化约束\n模型输出：上下文分析、推荐方案、设计的文件路径、可复用的现有代码、验证方式 Plan出错最常见的原因时没读够代码，Prompt里我强制要求Plan Mode至少调多次工具读相关文件\n11. 你的工具系统是怎么注册和分发的？新加一个工具要改多少地方？\n工具系统核心是一个字典，key-value，每个工具自己声明：叫什么、是干什么的、入参长什么样、属于读还是写、能不能并发\n新加一个工具：写代码继承基类，再把它扔进字典里，剩下的都是自动的\n工具描述从入参定义里直接推出来 权限根据读写命令的设置来定 并发分批根据并发设置来定 MCP 工具更省事，配置即生效。启动时连上MCP Server\n12. 工具执行结果太大，比如一个 grep 跑出来 50MB 输出，怎么避免塞满上下文？\n检查结果大小 → 超过阈值把原始内容写进会话目录下一个专门的工具结果子目录里（文件路径记载）\n模型需要完整内容时，自己调用 ReadFile 去读取这个文件\n每一轮 Loop 开始时遍历历史，把同一条消息里的工具结果按大小排序处理。根据落盘进行处理\n权限与安全 13. 你简历说五层权限拦截，能从内到外讲一遍吗？\n起初：最开始只有 HITL 一层，就是每次工具调用都弹框问用户-\u003eallow太多\n五层（由内到外）：\n危险命令检测：只针对 Bash 类工具，正则匹配 rm -rf/、mkfs、fork bomb 等\n规则引擎：用户级、项目级、本地级三层规则文件，按 Tool + pattern匹配\n路径沙箱：文件类工具，把路径解析成绝对路径，看是不是落在项目根目录里—\u003e防止Agent去改系统级别文件\n权限模式：default（正常询问）、acceptEdits（接受编辑）、plan 几种挡位\nHITL（Human In The Loop）：最外层兜底，人工确认\n组合逻辑（三条铁律，最容易被追问）：\ndeny 短路：任何一层判「拒绝」就立刻中断，后面的层无权翻盘（fail-safe，失败朝安全方向倒）\nallow ≠ 直接执行：某层放行后仍要过后续安全关（规则放行的 Bash，危险命令检测照样拦）\nHITL 是最后手段：能被规则/模式自动判定的就不打扰人，只有「无人能决定」才落到第 5 层\n一个调用的闯关例子（面试时拿这个讲，立刻具体）：\nrm -rf / → ① 直接拦死，到不了后面\nnpm test（规则里有 Bash(npm test:*) allow）→ 过 ①、② 放行，不弹框\n写 ../../../etc/hosts → 过 ①②，③ 沙箱发现跑出项目根，拦\nacceptEdits 模式改项目内文件 → 过 ①②③，④ 自动放行\ndefault 模式跑没见过的命令 → 一路穿到 ⑤ 弹框问人\n加分句：权限拒绝本身会作为 tool_result 回传给模型，让它知道被拦了、换种方式做——呼应 Q43「反馈回路」，用确定性机制兜住模型的不确定性（Harness 思想）\nMCP 14. MCP 是什么？为什么不直接把工具写在 Agent 进程里？\n是什么：Model Context Protocol，把工具放到独立进程里跑，Agent 通过 MCP Client 连上去，拿到工具列表，代理调用\n为什么：配置即生效。用户想加一个新工具，不需要改 Agent 任何代码，编辑一下配置文件指定 MCP Server 启动命令即可\n追问：MCP 引入了进程间通信，性能损耗大吗？\nIPC 开销完全可以忽略，性能瓶颈在工具实现的内部逻辑 15. MCP 都支持哪些通信方式？\n本质：三种传输运的都是 JSON-RPC 2.0 消息，区别只在「Server 跑在哪、走哪条管道」——传输是管道，JSON-RPC 是管道里的内容\n1. stdio（标准输入输出）——最常用\nAgent 直接把 MCP Server 当成一个子进程启动起来，两边通过标准输入/输出（就是程序间最基本的文本流通道）交换 JSON-RPC 格式的消息。\n特点：不需要任何网络配置（因为根本没走网络，就是同一台机器上两个进程对话）；Server 的生命周期完全跟着 Agent 走——Agent 退出，子进程也跟着结束。 适用场景：本地工具，比如读写文件、代码搜索、git 操作这些天然就在本机执行的任务。 优点：最简单、最稳定、延迟极低（微秒级，因为是进程间通信，不走网络）。 2. SSE（Server-Sent Events）\n本质上是基于 HTTP 长连接：客户端用普通的 HTTP POST 发请求，服务端通过 SSE（一种服务器持续向客户端推送数据的技术）把消息流式推回来。\n适用场景：连接已经独立部署在远端的服务，比如公司内部的 RAG 系统、知识库。 优点：一个 Server 可以同时服务多个客户端，适合团队共享同一个工具/服务。 缺点（追问里提到）：走网络，延迟明显比 stdio 高（几十毫秒起步），还要处理认证、网络抖动、超时重连这些复杂问题。 3. Streamable HTTP\n这是 MCP 协议后来新增的，设计目标是逐步替代 SSE。\n和 SSE 的核心区别：不要求服务端维持长连接。每次请求都是独立的 HTTP 调用，服务端可以灵活选择直接返回普通 JSON，或者按需开一个 SSE 流。 优点：对\"无状态部署\"更友好，比如 Serverless 环境（按需启动、用完即关，不适合维持长连接的场景）。 现状：目前生态里大部分 Server 还是用 stdio 或 SSE，Streamable HTTP 还在推广阶段，没完全普及。 16. MCP Server 启动失败，你的 Agent 怎么处理？让 Agent 启动失败还是降级？\n降级，不让 Agent 启动失败\nMCP 管理器在注册阶段对每个 Server 做异常隔离：成功则连上拉取工具，失败则记录日志\nMCP 是扩展能力，不是核心能力，一个 MCP Server 挂掉不应该影响整个 Agent 运行\n17. 你简历写\"MCP 工具延迟加载，Token 占用减少 85%\"，具体是怎么实现的？\n原因：Tool 太多，把完整 schema 全部塞进上下文，200k 窗口很快被工具定义挤占，多聊几轮就触发压缩\n做法：系统提示词告诉模型「有些工具还没加载，需要先通过 ToolSearch 查询才能调用」，注册时只传名称，不传完整 schema，LLM 按需发现后再加载完整定义\n上下文压缩 18. 上下文压缩具体怎么做的？分别什么时机触发？\n落盘：大工具结果放到磁盘，不进历史（单结果超50k字符或者一轮工具总和超200k）-\u003e 只留2K预览 + 文件路径\n开销很低-\u003e完整内容调用ReadFile工具去读那个文件即可 全量压缩：每一轮 Loop 检查上轮输入 token 是否超过阈值，超过则调用 LLM 生成对话摘要+边界提示替换旧历史，CLAUDE的做法是上一轮20K+13K这一轮次\n原因：落盘不够用，上下文依然接近于爆炸，这个时候需要调用LLM自己来生成一份对话摘要 用户主动 compact：用户主动触发压缩命令\n手动compact的安全余量只有3k 自动压缩后，模型忘了用户最初的需求怎么样\n摘要压缩的Prompt里列了9个必须保留的部分：第六项是尽量保留用户的消息原文，prompt里写得是约束语气，本质还是prompt层面的引导 频繁压缩导致的历史对话失真问题\n压缩只会替换内存里的对话历史，磁盘里的日志不会更改\n用户感知生命周期\n19. 摘要本身也要调用 LLM，万一摘要这次调用又超了上下文呢？\n预防：压缩触发时，确保剩余 token 余量足够生成摘要不超限\n失败兜底：检测上下文长度，丢掉最早的1/5，最多重复三次-\u003e三次后触发压缩熔断器，后续就不再自动压缩了\n记忆系统 20. 记忆系统怎么设计的？为什么要分层？\n用户级：/home下，跨项目的用户偏好、纠正反馈等，如编码风格，命名规范\n项目级：.minicoder下/ 项目知识、参考信息，只对当前项目生效\n分层原因：不同知识的作用域不同——跨项目的偏好（编码风格等）放用户级，只对当前项目生效的（技术栈、架构约定等）放项目级，避免互相污染\n分层\n工作记忆：200k token就是Agent的大脑带宽，当前正在处理的所有信息总和 长期记忆：对应到所有持久化到磁盘的信息 会话持久化：和Agent的每次对话 项目指令文件：预先写好的项目知识和编码规范， 自动记忆：Agent在对话中自动累计的经验 21. 记忆什么时候被注入对话？怎么注入？\n注入时机：会话开始或第一次调用时，用一个注入标志位防止重复；压缩之后注入标志重置，下一轮重新注入到摘要后面\n为什么只注一次：记忆内容固定，每轮都塞是浪费 token + 破坏 prompt cache，所以用布尔标志位，注过就跳过\n为什么压缩后要重置：上下文压缩会把旧历史（含之前注入的记忆）换成摘要，记忆可能被压没；所以压缩后把标志重置，下一轮重新注入一次、接在摘要后面，保证记忆不丢\n注入位置：对话历史开头，环境信息之后\n注入顺序：\n环境信息（cwd、OS、系统时间）\n项目指令（CLAUDE.md）\n自动记忆文件内容\n一条假装的助手消息：「已了解项目背景和记忆」\n为什么要伪造这条：FC 对话是 user/assistant 交替的。前面塞的背景信息以 user 消息出现，若紧接着就是真正的用户问题，就成了「user（背景）→ user（真问题）」两条 user 连着，不自然、易混淆；伪造一条 assistant「收到」把对话补成「user（背景）→ assistant（收到）→ user（真问题）」，给模型一个台阶确认接收背景（Claude Code 同款做法） Multi-Agent 22. 为什么需要多 Agent？单 Agent 不够用吗？多 Agent 协作有几种模式？\n单 Agent 瓶颈：\n上下文窗口先触顶\n串行带来的效率低下\n多 Agent 适合的场景：任务可拆分且单任务耗时明显\nAgent Team 模式：\n多个 Agent 共享任务清单和邮箱通信，每个 Agent 独立在 Worktree 里跑\n适合：并行独立推进、不需要频繁协调的场景\nCoordinator 模式：\n一个 Coordinator 统筹，spawn 多个 Worker，自己不写代码，只负责任务拆解和资源协调\nWorker 返回给 Coordinator 的是 XML 格式，更紧凑，对上下文压力更小\n适合：需要频繁协调的场景\n两模式对比（一句话记忆）：\nAgent Team（去中心化） Coordinator（中心化） 结构 多个平等 Agent 1 个 Coordinator + 多个 Worker 谁分工 共享任务清单，自取 Coordinator 派活，自己不写代码 通信 邮箱互发 Worker 把结果（XML）回给 Coordinator 适合 并行独立、不需频繁协调 需频繁协调、要人统筹汇总 23. 多 Agent 之间用邮箱通信，为什么不用直接调用？\n直接调用会出现同步阻塞 → Agent A 调用 Agent B 时整个 Loop 卡住\n邮箱模型：\nA 给 B 发消息立即返回，不阻塞；B 在自己的 Loop 里主动消费邮箱\n消息存储用文件系统，每个消息一个 JSON 文件，天然解耦\n工程综合 24. 你做这个 Agent，最大的工程挑战是什么？\n多 Agent 协作带来的分布式状态同步\n上下文预算管理\n大结果落盘预览 接近上限LLM生成摘要替换历史 摘要本身超限时丢最早的轮次重试+熔断 模型的不确定性\n25. 你的 Skill 系统是怎么设计的？Skill、MCP、Function Calling 三者是什么关系？\nSkill 优先级 项目级放在.minicoder/skills 用户级放home目录 内置的打包在代码里 执行模式 inline模式：Skill的prompt注入当前会话，Agent带着额外指令继续跑 fork模式：开一个独立子Agent，有自己的对话历史和过滤过的工具集 inline vs fork 对比（关键追问点）\ninline fork 怎么跑 Skill 的 prompt 注入当前会话，主 Agent 带着继续 开独立子 Agent 执行 上下文 共用主上下文 自己的对话历史，跑完不污染主上下文 工具 主 Agent 工具集 过滤过的工具集（只给它要的） 适合 轻量、和当前任务连贯 重、独立、想隔离上下文 为什么要 fork：有些 Skill 跑起来产生一堆中间内容，塞主会话会污染上下文 + 烧 token；fork 出去让子 Agent 自己折腾，只把结果带回来——和 Multi-Agent 隔离同思路 Skill、MCP、Function Calling 三者关系（三个层次）\nFunction Calling：最底层的协议——模型↔工具之间怎么通信（tool_use / tool_result）\nMCP：工具的一种来源——把工具放独立进程，最终还是通过 Function Calling 暴露给模型\nSkill：最上层的能力封装——打包的是「知识和工作流」，本身不是工具，而是告诉模型「该用哪些工具、按什么步骤做」，按需加载\n26. 为什么 Agent 需要工具？没有工具的 LLM 不也能回答问题吗？\n感知 -\u003e 决策 -\u003e 行动 循环 工具是越多越好吗\n工具数量影响模型的选择质量\n工具描述的质量比数量更加重要\n27. 为什么 Agent 需要记忆？没有记忆不也能完成任务吗？\n跨会话的知识延续：用户偏好、纠正反馈、等。每次新会话开始时注入回对话历史\n分层原因：因为不同知识的作用域不同。编码风格这种偏好等放用户级、项目的技术栈等放到项目级\nCLAUDE.md这种项目指令文件跟记忆有什么区别？\nCLAUDE.md这种是人写的项目指令，内容是项目约定和工程规范\n记忆则是Agent自动提取的，从对话中抓取用户偏好和反馈，写进记忆文件里\n项目对比与补充 28. 你的 MewCode 项目和 Claude Code 相比，核心差异是什么？有什么是你独有的设计？\n定位和体量：Coding Agent的每一层架构走通作为目标\n生态和精细度：\nCC做了LSP集成、OAuth、MCP官方注册表等。 CC的上下文管理上有五六层压缩策略针对不同的粒度分别优化。MewCode只做了三层 CC的工具数量上有50多个覆盖各种垂直场景。MewCode内置了8个核心工具+MCP扩展 29. 自己做 Agent 的时候，踩过最大的坑是什么？\n对话历史的一致性问题：\nFuction Calling的硬约束：每个tool_use块必须有且仅有一个对应的tool_result块，缺了或多了，下一轮API调用直接报错，整个会话崩掉\n场景：\n用户中断 恢复会话 压缩 30. 从开发者的角度，做 Agent 最难的部分是什么？\n确定性与不确定性混在一起\n确定性问题：对话历史的协议合法性，工具分批的并发控制，权限五层的锻炼库\n不确定性问题：\nPrompt问题：模型给了错误的参数 工程问题：上下文压缩丢了关键信息导致模型做了错误的决策 debug的难题：唯一可靠的方法是回放完整的对话历史，逐轮看模型的推理和工具调用 AI 编程相关 31. 你用的是什么 AI 编程工具？用的哪个模型？\nClaude Code —— 跑在终端里，底层用 Claude Opus 4.8（上下文 200K）\n⚠️ 易错点：1M token 上下文是 Sonnet 的 beta 特性，不是 Opus；版本上也没有「Opus 4.6」（最新 Opus 是 4.8，4.6 是 Sonnet）。按你实际用的模型据实填 加轮次后的工具调用花的tokens数量明显更少\n32. 在使用 Claude Code 时候的心得和技巧？\n写好CLAUDE.md的重要性：写清楚项目的测试命令和lint命令，让Claude改完代码能自己验证\n上下文资源的稀缺性：/clear\n33. 如何用 AI Coding 工具从需求到实现全流程？\n第一阶段：需求对齐（Chat → Spec）：将需求描述清楚，聊完以后让Claude整理成一个spec文件，确认无误再动手\n第二阶段：方案设计（Plan Mode）：需求确认下来就进了Plan Mode出方案，让Claude读完相关代码后出个实施方案\n第三阶段：逐步实施（Spec/SDD 模式 + 小步 Commit）：方案完成后，就用Spec模式，先让Claude生成需求规格和任务拆分，按照SDD的方式一步一步推进，改完一步commit一步。每步完成后让Claude自己跑测试、跑lint，通过了再继续\n34. 你怎么用 AI 做项目的，全部交给 AI 生成还是每次只提一部分？\n三档任务策略\n小活（改名/格式/拼写）：直接让 AI 做，无需前戏\n中等（加功能/修 bug）：给明确范围 + 验收条件，跑完测试收工\n大活（架构/新模块）：三阶段走↓\n第一阶段·需求对齐（Chat → Spec）：聊清楚需求，让 Claude 整理成 spec 文件，确认无误再动手 第二阶段·方案设计（Plan Mode）：进 Plan Mode，让 Claude 读完相关代码后出实施方案，确认后再执行 第三阶段·逐步实施（SDD + 小步 Commit）：Claude 生成任务拆分，每个子任务单独一轮，改完自动跑测试 + lint，通过再 commit，commit 完再继续 35. 你怎么保证 AI 写的代码是正确的？\n三层质量保障\n自动化兜底（Hooks）：测试 + lint 自动跑，拦住大部分明显错误，但拦不住「happy path 写得很对，异常路径漏了」 人工审查（每次改完过 diff）：重点看两个地方——边界条件有没有处理、和现有代码的交互是不是对的 第二个会话审查（关键改动）：写代码的 Claude 已有偏见，换一个全新上下文的视角更容易发现问题 36. Claude Code 有哪些常用命令？\n四个高频命令\n/clear：每个独立任务前清一次上下文——一个会话里做太多事，后面输出质量会明显下降 /compact：长任务必备，上下文涨到 70% 左右手动压缩一下，可带参数指定压缩时重点保留什么 /plan：复杂任务前进 Plan Mode，Claude 只读不写，看完相关代码出方案，确认后再执行——避免上来就改然后方向跑偏 /rewind：救命用，改完发现不对直接回退到上一个检查点，比手动 git checkout 方便 其他会用到的\n命令：/init、/review、/btw、/mcp（非每天必用） 快捷键：Esc 中断、Shift+Tab 切换模式 值得了解的冷门用法\n/btw：任务中途想问不相关的问题，用 /btw 问完直接过去，不进对话历史、不影响后续上下文 claude -c：CLI 参数，继续上一个会话 claude -p \"task\"：非交互模式，可以用在脚本 37. 有没有遇到过 AI 应用或工具无法解决的场景？\n两个真实案例\n流式 parser 问题：让 Claude 写 OpenAI 兼容协议的流式解析器，单工具调用没问题，一遇到多工具交错 delta 就乱——改了三四版都不对。最后自己画状态机理清路由逻辑，手写核心逻辑，只让 Claude 补边界处理和测试 压缩死循环 bug：压缩丢了关键 tool_result，症状是模型反复调同一个工具，因果链很长，AI 只会在症状位置打补丁——最后自己回放 JSONL 日志逐轮对比才找到根因 AI 搞不定的问题类型\n跨多个层面的全局推理 需要隐性知识才能判断的问题（项目背景、历史决策） 这些局限未来能解决吗\n能改善：上下文窗口变大、推理能力变强，「因果链长的 bug」会逐步好转 本质问题：隐性知识不是 AI 的问题，是信息没被显式化——把决策背景写进文档、写进 CLAUDE.md，AI 就能用上 → 这也是 Harness Engineering 强调知识库建设的原因 Claude Code 源码相关 38. 介绍一下 Claude Code 主循环 Query 的流程？\n整体结构\n主循环入口 QueryEngine.submitMessage() → 并行拉取环境信息（系统提示词、CLAUDE.md、git status）拼好上下文 → 进入 queryLoop()\n核心是一个 while(true) + state 对象跨轮传递状态，每轮三步：上下文预处理（裁剪/压缩/摘要，防爆）→ 调模型拿流式响应 → 判断有无 tool_use，有就执行工具把结果拼回对话 continue，没有就 break\n两个设计细节\nStreaming Tool Execution：模型还在流式输出时，前面已完成的 tool_use block 就已经并行执行了，不等整个响应结束——MewCode 实现了同样的思路，多工具场景延迟改善明显 为什么用循环不用递归：递归每轮叠一层帧，长任务几十上百轮有栈溢出风险；循环只在一层帧里跑，内存恒定，也方便断点恢复 终止条件：回复里无 tool_use → break；兜底 maxTurns 防死循环\n39. Claude Code 的记忆架构是什么？\n两套机制：静态注入 + 动态检索\n静态注入——CLAUDE.md 层级加载：从当前目录往上层层遍历，收集各层配置文件全部拼在一起注入上下文：\n项目根目录 CLAUDE.md、.claude/rules/ 规则文件\n用户级 ~/.claude/CLAUDE.md、企业全局配置\n两个额外能力：@include 引入其他文件；paths: frontmatter 条件注入（只有操作到某目录才加载对应规则）→ 让团队把编码规范、架构约定跟代码一起版本管理\n动态检索——Auto Memory 系统\n记忆文件存在 ~/.claude/projects//memory/，MEMORY.md 做索引 每轮用户输入进来时，异步启动 prefetch，用用户消息跟记忆文件 frontmatter 做相关性匹配，选出最相关几条，工具执行后作为 attachment 注入 异步的好处：模型流式输出那段时间刚好把检索做完了，不阻塞主循环 Mewcode的简要实现：每隔几轮用 LLM 提取关键事实存进 auto_memory.json，下次全量注入——记忆条数少时全量反而比相关性检索更简单可靠\n为什么用 LLM 做相关性判断而不是向量搜索？\n关键词匹配搞不定语义差异（「别用 mock」≠「integration tests must hit a real database」）；向量搜索要维护嵌入索引，记忆文件频繁增删改同步是额外负担；记忆文件通常就几十个，Sonnet 直接读 frontmatter 判断，成本低延迟可控\n40. Claude Code 是如何去检索代码之间的相关性的？比如给一个中文需求怎么定位代码？\n三个工具的调用\nGrepTool（正则搜内容） GlobTool（文件名匹配） FileReadTool（读文件） 搜索策略由模型自主决定：直接根据对代码库的理解推理关键词，线索不够就调整策略多轮迭代\n大仓库效率：速度不是瓶颈（ripgrep 百万行只需几百毫秒），消耗在模型选关键词的 LLM 调用次数；好处是零预处理、任何语言通用\nMewCode 实现：Mewcode标准库实现了简化版 GrepTool，核心思路一致，实测两三轮基本能定位目标代码\nHarness 相关 41. Harness Engineering 是什么？\n核心公式：Agent = Model + Harness\nModel = CPU，只管算；Context Window = RAM，断电就没；Harness = 操作系统，管调度、权限、I/O；Agent = 跑在上面的应用程序 裸模型没有记忆、没有工具、没有执行环境——Harness 就是补上这些能力的工程层 Harness 包含什么\n知识库（CLAUDE.md 等项目指令文件） 工具集成（MCP、CLI） 权限约束（allow/deny 规则、沙箱） 自动验证（CI、lint、测试） 反馈回路（错误信号返回 Agent 让它自我修正） 状态管理（跨会话持久化） 核心思想（Mitchell Hashimoto 2026.2 提出）\n每当发现 Agent 犯了一个错误，就花时间工程化一个解决方案，让这个错误结构上不可能再发生——不是靠 prompt 叮嘱它别犯错，而是从工程上让它犯不了 关键数据\nLangChain 在 Terminal Bench 2.0 上，底层模型不动，只优化 Harness → 得分从 52.8% 飙到 66.5%，排名从第 30 跳到第 5\n更好的 Harness 往往比更好的 Model 更重要\n与传统框架/中间件的本质区别\n传统框架面对的执行者是确定性的（代码写什么执行什么）； LLM 行为是概率性的，prompt 说「不要删除文件」，1% 的情况会忘 所以 Harness 必须用确定性工程机制兜底概率性行为——本质是给「不完全可控的执行者」套一套「完全可控的约束系统」 42. 具体描述一下你对 Harness 工程的理解，它与 Context 工程/Prompt 工程的关系？\n三者是包含关系，不是并列\nPrompt 在 Context 里面，Context 在 Harness 里面\nPrompt Engineering：管「怎么跟模型说话」，把指令写清楚写结构化——只作用于单轮对话\nContext Engineering：管「给模型什么信息」，通过 RAG、检索、token 排序把正确知识塞进上下文窗口——但有盲区：信息给够了，模型可能拿着信息干危险的事，Context 层没有任何机制拦它\nHarness Engineering：管「整个系统怎么运转」，在模型外围建确定性的约束、反馈和验证，让 Agent 跨多个 context window 都能稳定工作\nMewCode 的体感\n调 prompt 措辞：效果改善有限\n加权限拦截、错误信息回传、工具输入校验（Harness 层）：Agent 可靠性产生质变\n换模型提升天花板，搭 Harness 提升落地能力：用确定性的工程机制把模型的不确定性兜住——Harness 可细化为约束、反馈、验证三层\n43. 你这个项目有没有用到 Harness 的思想？\n核心理解：Harness = 除了模型本身之外，所有让 Agent 能稳定交付的东西。换模型提升天花板，搭 Harness 提升落地能力。\n三个重点模块\n权限系统：五层权限约束，任何一层 deny 就短路，后面的层不会翻转——不靠 prompt 叮嘱，用工程机制硬拦\n反馈回路：工具执行失败后结构化告诉模型哪一行出了什么问题、该怎么改；权限拒绝也作为 tool_result 返回让模型调整策略——不光「别跑偏」，还要「出了错能自己爬起来」\n知识库系统：MEWCODE.md 写项目规范、架构约定、编码习惯，Agent 启动自动加载；Auto Memory 让 Agent 从对话中提取用户偏好和反馈存下来，下次带上——一个是人写的显式规范，一个是 Agent 自动积累的隐式经验，投入产出比最高\n其他覆盖的方向\n上下文管理：两层压缩，大结果存磁盘只留预览，上下文到 80% 触发 LLM 摘要，预留 20K 压缩空间和 13K 当前轮次 buffer\nSystem Prompt：结构化组装，七个来源三个通道注入，稳定内容走 Prompt Cache，动态信息走 system-reminder 不破坏缓存\n工具系统：每个工具有元信息标记（只读/可开发），注册中心统一管理，分批执行时根据标记决定并行还是串行\nAgent Loop：四种停止条件兜底（迭代上限、连续异常检测等）\nHook 系统：工具执行关键节点挂了 15 个生命周期事件，支持自动化 lint、格式化\n其他：MCP 做 transport 抽象（stdio/HTTP 对上层透明）、会话持久化用 JSONL 追加写入、多 Agent 用 Git Worktree 文件隔离 + 邮箱模式异步通信\nAgent 开发实习生八股题库 01 Agent 入门 1. 什么是大模型 Agent？它与传统的 AI 系统有什么不同？\n基于LLM的决策：大模型的自回归生成能力进行推理\n动态的工具调用：根据任务调用不同的外部工具\n上下文记忆：通过上下文窗口或者外部存储维护长期记忆\n可拓展性：LLM Agent可以无缝适配不同的任务\n2. 🌟【重点】Agent 与 LLM / ChatBot（即 LLM 和 Agent）的本质区别是什么？\n目标驱动性：LLM 是被动应答（你问一句答一句）；Agent 是给定目标后自主推进直到完成\n自主决策性：Agent 能自己决定下一步做什么、调用哪个工具，LLM 只生成文本\n状态持续性：Agent 有记忆和中间状态，能跨多步、多轮维持上下文\n一句话：LLM 是\"大脑/能力本身\"，Agent = LLM + 工具 + 记忆 + 规划 + 循环（Agent Loop），把\"会说\"变成\"会做\"\n3. 🌟【重点】Agent 和 Workflow（工作流）有什么区别？\nWorkflow：用预先写好的代码路径把 LLM 和工具串起来，流程固定、可预测（人定流程，模型填空）\nAgent：由 LLM 自己动态决定下一步、调用哪个工具，路径不预先固定，靠 Agent Loop 循环推进（模型自己定流程）\n控制权差异：Workflow 的控制权在开发者手里，Agent 的控制权交给了模型\n取舍：流程确定、追求稳定可控、可预测成本 → Workflow；任务开放、步骤难以提前规划 → Agent（更灵活但更难控、成本和延迟更高）\n实践建议（Anthropic 观点）：能用 Workflow 解决就别上 Agent，需要灵活性和模型自主决策时才用 Agent\n4. LLM Agent 的基本架构有哪些组成部分？\n大脑：LLM，负责推理决策\n规划：Planning，任务拆解\n工具：Tools，与外部交互\n记忆：Memory，短期上下文 + 长期存储\n反馈：观察执行结果\n5. LLM Agent 如何进行决策？能否使用具体的方法解释？\nCoT\n典型方法 ReAct：思考 → 行动 → 观察循环，拿真实反馈再决策\nSelf-Reflection\n6. 对比 CoT、ReAct、ToT 的核心差异。\nCoT：链式思考，只推理不行动，线性单路径\nReAct：推理 + 行动交替，可调工具拿真实反馈\nToT：树状思考，多路径探索 + 回溯，适合需要搜索的复杂问题\n7. 如何让 LLM Agent 具备长期记忆能力？\n向量数据库+RAG\n分层记忆\n短期记忆：保留最近的记忆 长期记忆：重要的信息进行外部的存储 预训练+知识图谱\n8. LLM Agent 如何进行动态 API 调用？\n通过 Function Calling：把 API 封装成工具，给出 name / description / 参数 schema\nLLM 根据需求生成结构化调用参数（JSON）\n执行后把结果返回 LLM，继续下一轮决策\n9. LLM Agent 在多模态任务中如何执行推理？\n用多模态模型（VLM）统一编码图像 / 音频 / 文本\n或调用专用工具（OCR、ASR、图像识别）把结果转成文本再交给 LLM\nLLM 在统一上下文里融合多模态信息做推理\n10. LLM Agent 主要有哪些局限性？\n幻觉、输出不可靠\n长程任务易跑偏、误差累积\n上下文窗口有限、成本高、延迟大\n缺乏真正的规划与可解释性\n11. 端到端 LLM 规划 vs 模块化 Agent 架构在长程任务中的瓶颈。\n端到端：一次性生成完整计划，长程下误差累积、无法及时纠错\n模块化：规划 / 执行 / 反思解耦，可局部纠错，但模块间协调成本高\n共同瓶颈：上下文长度、状态一致性、错误传播\n12. 除 ReAct 外的推理-行动范式有哪些？\nPlan-and-Execute：先规划完整计划再逐步执行\nReflexion：执行后自我反思、改进重试\nToT / Graph of Thoughts：多路径搜索 + 回溯\nSelf-Ask、Least-to-Most 等分解式范式\n13. 🌟【重点】Agent 有什么工作模式（编排范式）？\n一、单 Agent 内部的推理范式\nReAct：推理 → 行动 → 观察 循环，最常用\nPlan-and-Execute：先规划完整计划，再逐步执行\nReflection / Reflexion：执行后自我反思、改进重试\nToT / GoT：树/图状多路径搜索 + 回溯\n二、Workflow 编排模式（Anthropic《Building Effective Agents》总结）\nPrompt Chaining：链式拆解，前一步输出喂给下一步\nRouting：先分类，再路由到不同处理分支\nParallelization：并行执行多个子任务后聚合\nOrchestrator-Workers：协调者拆任务派给多个 worker，再汇总\nEvaluator-Optimizer：生成 → 评估 → 改进的闭环\n三、多 Agent 协作模式\n中心化：Coordinator + Worker（主管派活）\n去中心化：任务独立、Agent 平等协作\n14. 为什么我们要使用 SDK 进行 Agent 开发？\n封装模型api调用\n提供统一接口调用不同模型，同时封装了认证，参数格式，流式输出等\n15. tokenizer 是什么？\n把文本切分成 token（模型最小处理单元）并映射成 id\n常见算法：BPE、WordPiece\n直接影响上下文长度计算和调用成本\n02 关于主流 Agent 框架 16. 主流的 Agent 编程框架你知道哪些？\nLangChain / LangGraph、LlamaIndex（外部数据结合，RAG）\nAutoGPT（最早的自主任务循环 Agent，单体而非多 Agent）、BabyAGI（最小化的自主Agent）、CrewAI（多个Agent组成团队协作）、AutoGen、MetaGPT\n17. 你为什么要用 LangGraph，而不是写一个普通 Python pipeline？\nLangGraph 用图描述状态流转，天然支持循环、分支、条件路由\n内置状态管理、检查点、可中断恢复\n普通 pipeline 是线性 DAG，难表达 Agent 的循环和回退\n18. 市面上有哪些主流的 LLM Agent 框架？各自的特点是什么？\nLangChain：组件丰富、生态大；LangGraph：图式编排、可控\nLlamaIndex：偏 RAG / 数据接入\nCrewAI / AutoGen：多 Agent 协作\nMetaGPT：SOP 驱动的多角色协作\n19. LangChain 的核心组件有哪些？\nModels：OpenAI、Anthropic、本地LLM\nPrompts Templates：用户创建动态提示词，提高泛化能力\nMemory：\n短期记忆：存储对话上下文 长期记忆：结合向量数据库持久化存储 Chains：链式调用\nSimple Chains：单步任务 Sequential Chains：串联多个步骤 Agents：通过ReAct\nTools：工具，访问API，Google搜索\n20. LangChain Agent 的主要类型有哪些？\nReAct / Zero-shot-ReAct：LLM直接决定工具调用，不使用额外的提示信息\nConversational（带记忆的对话型）：结合会话记忆\nStructured Chat Agent：适用于结构化对话，如表单填充等\nSelf-Reflective Agent：具备自我反馈机制，可修正错误回答\n21. 什么是 LangChain 中的提示模板（Prompt Template）？\n预定义的文本结构 22. 什么是 LangChain 中的链（Chain）？\n把多个组件（Prompt → LLM → 解析器）串成一个可调用流程 23. 什么是 LangChain 中的记忆（Memory）？\n在多轮对话中保存历史并注入下一轮 Prompt\n类型：Buffer、Window、Summary、向量检索记忆\n解决 LLM 本身无状态的问题\n24. 如何为 LangChain Agent 添加新的工具？\n用 @tool 装饰器或继承 BaseTool，定义 name / description / 参数\n把工具加入 tools 列表传给 Agent\ndescription 要写清楚，直接影响调用准确率\n25. LangChain Agent 如何处理复杂的多步骤任务？\n通过 Agent Loop：思考 → 选工具 → 执行 → 观察，循环到完成\n复杂任务可先 Planning 拆解再逐步执行\n借助 Memory 维持中间状态\n26. 解释 LangChain 中的\"思考-行动-观察\"循环，并讨论其在复杂任务解决中的作用。\nThought（推理下一步）→ Action（调工具）→ Observation（看结果），循环往复直到得出答案\n作用：让模型基于真实反馈纠错，而非凭空生成，减少幻觉\n适合需要外部信息、多步推进的复杂任务\n27. LangChain Agent 如何确保输出的安全性和合规性？\n输入 / 输出过滤，敏感词与内容审核\n工具权限限制、人工确认（HITL）\n结构化输出校验、Guardrails 约束\n28. 如何评估 LangChain Agent 的性能？\n任务成功率、步数、token / 成本、延迟\n工具调用准确率、轨迹（trajectory）质量\n用 LangSmith 做 trace 与评测、LLM-as-Judge 打分\n29. LlamaIndex 如何与 LangChain 结合？\nLlamaIndex主要是用于增强LangChain的外部数据访问能力\n数据索引：预处理文档，将内容存入向量数据库\n增强检索RAG：LangChain调用LlamaIndex进行查询\n存储方式：支持FAISS、ChromaDB、Weaviate等\n30. AutoGPT 如何实现自主决策？\n给定目标后自主循环：生成任务 → 执行 → 反思 → 生成新任务\n用记忆和工具持续推进，无需每步人工介入\n缺点：容易跑偏、成本高、可控性差\n31. BabyAGI 如何进行任务管理？\n维护任务队列，按优先级取任务执行\n执行后由 LLM 生成新任务并重排优先级\n三个核心：执行 Agent / 任务创建 Agent / 优先级 Agent\n32. CrewAI 如何管理多个 Agent 之间的协作？\n定义角色（Role）、目标、任务和协作流程\nAgent 间按流程（顺序 / 层级）协作\n支持任务委派和共享上下文\n33. LangChain 如何支持 API 调用？\n把 API 封装成 Tool（如 RequestsTool 或自定义工具）\n或用 OpenAPI / Functions 让 LLM 生成调用参数\nAgent 在 Loop 中按需调用并消费返回结果\n03 RAG 34. 🌟【重点】什么是 RAG？\nRetrieval-Augmented Generation，检索增强生成\n先从外部知识库检索相关内容拼进 Prompt，再让 LLM 生成答案\n解决知识过时、幻觉、私有数据无法覆盖的问题；无需重训即可更新知识、可溯源\n35. 🌟【重点】RAG 的整体工作流程（技术架构）是怎样的？\n离线（建库）：文档加载 → 分块 Chunking → Embedding 向量化 → 存入向量库\n在线（问答）：Query 改写 → 向量化 → 检索 Top-K（常配合 BM25 混合检索）→ Re-rank 重排 → 拼上下文 → LLM 生成（带引用溯源）\n一句话：检索 + 重排决定上下文质量，生成决定表达——“garbage in garbage out”，检索质量是上限\n36. 🌟【重点】RAG 和微调（Fine-tuning）各自的区别？什么场景用哪个？\nRAG：往上下文\"注入外部知识\"，不改模型参数；适合知识频繁更新、需要溯源、私有数据接入；成本低、上线快、可减少幻觉\n微调（含 PEFT / LoRA）：改的是模型\"能力 / 风格 / 领域适配\"，把知识\"焊进参数\"；适合固定领域风格、格式遵循、知识相对稳定\n类比：RAG 像\"开卷考试给资料\"，微调像\"考前把知识背进脑子\"\n实践常组合：微调补能力 + RAG 补知识\n37. RAG 常见的应用场景和数据源有哪些？\n场景：企业知识库问答、智能客服、文档 / 代码助手、搜索增强、带依据的推荐解释\n数据源：PDF / Word / Markdown / 网页；数据库 / API / 知识图谱；代码库、表格数据\n38. 🌟【重点】RAG 中的文档切割（Chunking）策略有哪些？如何权衡？\n为什么要切：适配上下文窗口、提升检索精度（粒度更细）\n常见策略：固定长度切分、按语义 / 结构切（标题 / 段落）、重叠切分（overlap）、父子块（小块检索、大块喂模型）、加 metadata\n权衡：块太小 → 语义不完整、检索碎片化；块太大 → 噪声多、稀释相关信息、浪费 token\n解决\"切断语义\"：重叠 + 父子块 + 语义切分\n39. 在实际工程中，如何验证 Chunking 的质量？你会用哪些指标？\n看检索召回率、答案正确率是否随分块策略变化\n抽样人工检查块的语义完整性\nA/B 对比不同分块策略的端到端指标\n40. 🌟【重点】Embedding 有哪几种算法 / 类型？如何选 Embedding 模型？\n发展脉络：\n静态词向量：Word2Vec、GloVe、FastText（一词一向量，不区分上下文）\n上下文相关：BERT 系（Sentence-BERT）、双塔 / 对比学习训练的句向量\n主流商用 / 开源：OpenAI text-embedding-3、BGE、M3E、GTE、Cohere Embed 等\n选型看：任务领域、语言、向量维度、最大长度、成本\n评估：参考 MTEB 榜单，再用自己业务数据测召回率 / 命中率、相似度区分度、推理速度\n41. 🌟【重点】Re-rank（重排）是什么？为什么需要？\n召回为了快，常用双塔 / 向量近似检索，精度有限、会带回不够相关的块\nRe-rank：在召回 Top-N 之后，用更强的 Cross-Encoder（把 query 和文档拼一起算相关性）重新精排，取 Top-K 给 LLM\n作用：召回保\"广\"（高召回），重排保\"准\"（高精度），两段式提升上下文质量\n常用：BGE-Reranker、Cohere Rerank 等\n42. 🌟【重点】什么是多路召回（混合检索）？具体怎么做？\n多路召回：同时用多种检索方式各取一批候选再融合，互补\"字面\"与\"语义\"\n向量检索：语义相似（换种说法也能命中）\nBM25 / 倒排：关键词精确匹配（产品型号、专有名词、缩写）\n可加：知识图谱、父子块、Query 扩展 / HyDE\n融合：用 RRF（倒数排名融合）或加权求和合并多路结果，再做 Re-rank\n去冗余：MMR（最大边际相关）兼顾相关性与多样性，避免 Top-K 全是高度相似的重复内容\n权重：没有固定值，关键词敏感 → BM25 权重高，用验证集调参\n43. 🌟【重点】什么是向量数据库？如何做技术选型？\n是什么：专门存储和检索高维向量的数据库，用 ANN（近似最近邻，如 HNSW / IVF）做相似度检索，支持元数据过滤\n选型维度：数据规模、QPS、召回精度、是否需元数据过滤、部署方式（自托管 / 云）、成本、生态\n常见对比：\nMilvus：功能全、适合大规模生产\nQdrant：Rust 实现、性能好、过滤强\nWeaviate：模块化、原生支持混合检索\npgvector：复用 Postgres、运维简单、规模中小\nFaiss：是库不是服务、本地高性能、需自己包一层\n44. 🌟【重点】Query 改写是什么？为什么要做？一般怎么做？\n为什么：口语化 / 含指代 / 太短的 query 直接检索效果差\n怎么做：\nLLM 改写：指代消解、补全上下文、拆分子问题\n同义词 / 实体扩展\nHyDE：先让 LLM 生成\"假设答案\"，再用它去检索（向量更接近文档）\n效果：显著提升召回质量\n45. RAG 如何在多轮对话中保持上下文？\n把历史对话纳入 query 改写（指代消解、补全）\n多轮记忆 + 当前 query 一起参与检索\n维护会话状态，必要时摘要历史\n46. 🌟【重点】怎么量化 / 评估 RAG 的效果？\n检索侧：召回率、命中率、MRR / NDCG\n生成侧：忠实度（faithfulness）、答案相关性、正确性\n工具：RAGAS 等 + 人工 / LLM-as-Judge\n排查思路：先分清是\"检索没召回\"还是\"召回了但生成错\"\n47. 🌟【重点】什么是大模型幻觉？怎么降低幻觉？\n是什么：模型生成看似合理但与事实不符 / 无依据的内容（参数化知识有限、过时，按概率\"编\"出来）\n降低方法：\nRAG：给真实依据 + 要求\"基于检索内容作答\"、给引用溯源\n约束：结构化输出、让模型\"不知道就说不知道\"\n校验：用工具 / 外部数据二次核验、多源交叉验证、置信度过滤\n模型侧：换更强模型、降低 temperature、必要时微调\n注意：RAG 能显著减少但不能根除幻觉（检索错 / 读错也会答错）\n48. RAG 有哪些局限性？对效率有何影响？\n受限于检索质量：检索不到就答不对；多跳推理弱、长文档整合难\n引入检索 + 更长上下文 → 延迟、成本上升\n可用缓存、精简上下文、混合检索 + 重排来优化\n49. RAG 系统有问题，一般如何排查和解决？\n分段定位：先判断是检索召回问题还是生成问题\n检索结果不含答案 → 查分块 / embedding / query 改写\n含答案但答错 → 查 Prompt / 模型 / 上下文顺序\n50. 当 TPS 高的情况下，RAG 系统很容易崩，是模型容量不够吗？\n不一定是模型容量；瓶颈常在检索链路（向量库、Embedding 服务、网络）\n高并发下检索排队、显存 / 连接耗尽更先暴露\n解法：缓存、限流、批处理、扩容、异步化\n51. 如果小说长度远超上下文窗口，怎么回答其中的问题？\n分块索引 + 检索相关片段（RAG）\n分层摘要（map-reduce）逐层压缩\n复杂问题做多跳检索 + 迭代回答\n52. RAG 如何保证信息新鲜度？如何处理偏见和错误信息？\n新鲜度：定时 / 增量更新索引、文档加时间戳、检索时按时间加权或优先返回最新版本\n质量：把控数据源、清洗审核；引用溯源让用户可核验；多源交叉验证、置信度过滤\n53. 点积（没有归一化）和余弦相似度的使用场景分别是什么？\n余弦：只看方向、忽略模长，文本相似度常用\n点积：同时受方向和模长影响\n向量已归一化时两者等价，此时用点积更快\n54. 用过哪些开源 RAG 框架（比如 RAGFlow）？如何选择合适场景？\nRAGFlow、Dify、LangChain、LlamaIndex、Haystack\n选型看：要开箱即用产品 vs 灵活自定义编排\nRAGFlow 文档解析强；LlamaIndex 检索灵活；Dify 偏低代码平台\n04 MCP / Function Calling 55. 🌟【重点】Function Calling（函数调用）是什么？\n让 LLM 具备\"调用外部函数/工具\"能力的机制：把工具的 name、description、参数 JSON schema 告诉模型\n模型在推理时判断要不要调用、调用哪个，输出结构化的调用请求（tool_use：工具名 + 调用 id + JSON 参数）\n调用方实际执行函数，把结果（tool_result）拼回上下文，模型据此继续下一步\n本质：模型 ↔ 程序之间的一次结构化通信协议，让\"会说话的模型\"具备\"会动手\"的能力（感知→决策→行动闭环的关键一环）\n56. 🌟【重点】MCP 是什么协议？\nMCP = Model Context Protocol（模型上下文协议），Anthropic 提出的开放标准\n作用：统一\"模型/Agent ↔ 外部工具、数据、资源\"的连接方式，被称为\"AI 应用的 USB-C 接口\"\n解决的问题：每个工具都要为每个框架单独适配的 M×N 难题 → 标准化后变成 M+N\n三大角色：Host（宿主应用，如 IDE/Agent）/ Client（连接器，与 Server 一对一）/ Server（暴露 Tools、Resources、Prompts）\n底层：基于 JSON-RPC 2.0，传输支持 Stdio / SSE / Streamable HTTP\n与 Function Calling 关系：MCP 是工具的标准来源/接入层，工具最终仍通过 Function Calling 暴露给模型\n57. MCP 与\"函数调用/工具调用\"有何关系？\nMCP统一了工具与资源的“发现于描述”\n实践：MCP暴露企业的api之后，Agent框架等可以通过MCP客户端适配层复用这些工具\n58. Tool Calling 的核心机制是什么？\n工具注册：name、description、参数JSON schema\n识别意图：LLM在推理过程中判断是否需要调用工具，以及调用哪个工具。模型输出一个结构化对象（JSON）\n参数解析与校验\n安全执行：沙箱环境中执行工具调用，设置超时、权限和资源限制\n结果注入\n59. 举一个例子来说明 MCP 和 Function Calling 的区别。\n查天气：FC 是在代码里写死 get_weather 函数并注册给模型\nMCP 是把 weather 能力做成独立 Server，任何 Agent 配置即可接入\nFC 是应用内绑定，MCP 是跨应用复用的标准接口\n60. 20+ 工具场景下的工具选择决策维度有哪些？\n工具描述清晰度、命名区分度\n按需加载 / 检索，减少无关工具干扰\n分组、分层，用 router 先粗选再精选\n61. 如何防止工具调用的无限循环？\n第一层 硬性限制：设置全局最大步数（如 N 步）、单工具的最大重试次数\n第二层 重复检测：监控最近N步的工具调用序列，判断是否出现相同工具+相同描述的调用\n第三层 收敛性检测：追踪每步的进展指标，判断是否需要重新规划等\n第四层 建模是否需要外部信息的决策边界\n62. MCP 工具很多，全部塞给大模型可能导致内存池过大的问题，处理方法？\n延迟加载：只注册名称，按需通过检索加载完整 schema\n工具分组 / 命名空间隔离\n按场景动态挂载需要的 Server\n63. MCP 的核心角色有哪些？\nHost：宿主应用（如 IDE、Agent）\nClient：连接器，与 Server 一对一\nServer：提供工具 / 资源 / 提示\n64. MCP Server 能暴露哪些能力？\nTools：可执行操作\nResources：可读数据\nPrompts：提示模板\n65. MCP 与传统 REST / gRPC 的区别是什么？\nMCP 面向 LLM，自带工具发现、schema 描述、提示等语义\nREST / gRPC 是通用 RPC，需自己包装给模型\nMCP 标准化了\"模型↔工具\"的交互层\n66. 什么是\"结构化输出（Structured Output）\"？\n让模型按指定 schema（如 JSON）输出\n便于程序解析和下游处理\n实现：JSON mode、Function Calling、约束解码\n67. MCP 典型落地场景有哪些？\n接数据库 / 文件系统 / API\n接企业内部系统、第三方 SaaS\n给 IDE / 桌面 Agent 扩展能力\n68. MCP 与 OpenAI/Claude 等厂商的函数/工具生态关系？\nMCP 是开放标准，厂商 FC 是各自实现\nMCP 工具可被代理成厂商的 tool 定义\n互补：FC 负责模型侧，MCP 负责工具侧标准化\n69. MCP 的消息/接口是如何组织的？\n基于 JSON-RPC 2.0\n请求 / 响应 / 通知三类消息\n初始化握手时协商 capabilities\n70. 资源（Resource）与工具（Tool）的边界是什么？\nResource：只读数据，由应用决定何时读取（如文件内容）\nTool：可执行动作，由模型决定调用，可能有副作用\n区别在\"读 vs 做\"和\"谁触发\"\n71. 提示（Prompt）在 MCP 中的作用？\nServer 提供可复用的提示模板\n用户 / 应用可显式调用（如 slash command）\n标准化常用交互流程\n72. 结构化输出的协商方式是什么？\n工具定义 input / output schema\n初始化时协商双方 capabilities\n支持返回结构化内容块\n73. 会话/上下文如何跨工具调用传递？\n由 Host / Agent 维护对话历史\n工具结果以 tool_result 拼回上下文\nServer 端一般无状态，状态留在 Client / Host\n74. 服务能力（Capabilities）是什么？客户端如何发现/列举资源与工具？\n初始化握手时双方声明支持的能力\n通过 tools/list、resources/list 列举\n列表变化时发通知更新\n75. 日志与通知在 MCP 协议中的角色？\n日志：Server 向 Client 上报运行信息，便于调试\n通知：单向消息（如列表变更、进度）\n提升系统可观测性\n76. 是否支持图片/二进制内容？支持哪些传输？\n支持文本和二进制（图片等）内容块\n传输方式：Stdio、SSE、Streamable HTTP\n77. 何时选择 Stdio？何时选择 Streamable HTTP？\nStdio：本地子进程，低延迟、部署简单\nStreamable HTTP：远端 / 无状态部署，Serverless 友好\n取决于部署位置和是否需要远程访问\n78. 连接稳定性与超时重试如何设计？\n设超时、重连、指数退避\n异常隔离：单 Server 挂掉不影响整体\n健康检查 + 降级\n79. 如何在 Python 中定义一个最小化 FastMCP 服务器？\n创建 FastMCP 实例\n@mcp.tool() 装饰函数即注册为工具\nmcp.run() 启动（默认 stdio 传输）\n80. 工具的输入/输出如何结构化？\n用类型注解 / Pydantic 定义入参\n返回结构化内容或文本\n框架自动生成 JSON schema 给模型\n81. 如何为 Tool 提供进度与日志？\n通过 Context 对象上报进度（progress）\n用 ctx.info / debug 输出日志\n长任务分阶段反馈\n82. Prompt 的最佳实践？\n参数化、职责单一\n清晰命名和描述\n复用常见工作流\n83. 工具幂等性与重试策略？错误处理与用户提示？\n写操作尽量幂等（带 id / 去重）\n失败明确返回 is_error，让模型感知\n区分可重试 / 不可重试错误，给清晰提示\n05 Agent 进阶以及实际应用 84. 如何设计一个完整的 AI Agent 系统？\n四要素：LLM（大脑）+ 工具 + 记忆 + 规划\n加上 Agent Loop、权限 / 安全、可观测（日志 / trace）\n按场景选单 / 多 Agent，定义工具集与评测\n85. 常见的提示词优化方法有哪些？\n明确角色、任务、输出格式\nfew-shot 示例、CoT 引导\n结构化分区（指令 / 上下文 / 约束）、迭代调优\n86. Prompt 注入是什么？有哪些攻击方式？如何防护？\n用户 / 外部内容注入恶意指令，劫持模型行为\n方式：直接注入、间接注入（污染检索内容 / 网页）\n防护：指令与数据隔离、输入过滤、权限最小化、输出审查\n87. 上下文窗口怎么设计？如何降低 token？怎么评测设计的质量？\n设计：分区（系统 / 历史 / 检索 / 工具），保留关键、裁剪冗余\n降 token：摘要、检索注入、工具结果落盘、延迟加载\n评测：任务成功率、token 用量、关键信息保留率\n88. 工具描述该怎么写能提升调用准确率？\n名称语义化，描述讲清\"做什么、何时用、何时不用\"\n参数 schema 清晰，给约束和示例\n工具间边界明确，避免功能重叠\n89. 如果做一个 Agent，遇到工具调用失败或者 LLM 幻觉怎么办？\n工具失败：明确标 is_error 回传，让模型重试或换路\n幻觉：用工具拿真实数据校验、要求引用、结构化约束\n加重试上限、人工兜底\n90. ReAct 实际怎么落地？提示词怎么设计？\n提示里规定 Thought / Action / Observation 格式\n提供工具列表与调用规范\n框架解析 Action 执行，把 Observation 拼回，循环\n91. 如何衡量 LLM Agent 的性能？\n任务成功率、轨迹质量、步数\n延迟、token / 成本\n工具调用准确率、鲁棒性\n92. 如何优化 LLM Agent 的性能？\n模型选型 + 提示优化\n上下文裁剪、缓存、并行工具\n流式输出、小模型分流、规划减少无效步\n93. Agent 服务的高可用是怎么保证的？\n多副本、限流、降级、熔断\n依赖（模型 / 向量库）超时重试与隔离\n监控告警、灰度发布\n94. 性能优化：LangGraph 的多 Agent 协作会带来延迟，如何通过流式等方式优化？\n流式输出 token，先返回再继续\n工具并行、节点并发执行\n缓存中间结果、减少串行依赖\n95. 构建 Agent 有哪些最佳实践？\n从简单开始，能用单 Agent 就不上多 Agent\n工具描述清晰、系统可观测、可评测\n加边界（权限 / 轮次上限），持续迭代优化\n96. LLM Agent 在企业应用中的典型场景有哪些？\n智能客服、知识库问答\n流程自动化（RPA + LLM）\n数据分析、代码 / 运维助手\n97. Agent 在实际应用中面临哪些挑战？\n可靠性 / 幻觉、成本与延迟\n安全与权限、评测困难\n长程任务稳定性\n98. 怎么做 Agent 的权限管理？\n工具级权限、最小权限原则\n规则引擎 + 危险操作检测\nHITL 人工确认、沙箱隔离\n99. 如果单一智能体的提示词过长，导致性能下降，如何将其拆分为多个智能体？\n按职责 / 领域拆分，每个 Agent 提示精简\n主 Agent 负责协调、分发子任务\n子 Agent 各自独立上下文，减少干扰\n100. 单 Agent 输出不可靠时的鲁棒性保障机制有哪些？\n结构化输出校验 + 重试\n自我反思 / 多次采样投票\n工具校验、人工兜底\n101. 单 Agent 和 Multi-Agent 你什么时候选哪个？怎么协作？\n任务简单 / 串行 → 单 Agent\n可拆分、需并行或不同专长 → 多 Agent\n协作：共享任务清单 + 消息通信 / 主从协调\n102. 多 Agent 相比单 Agent 有什么优势？如何选择？\n优势：突破单上下文、并行提效、专业分工\n代价：协调复杂、状态同步难\n选择：收益大于协调成本时才用\n103. 介绍一下多 Agent 系统的角色分工、通信与冲突协调。\n分工：按角色 / 专长（规划、执行、审查）\n通信：消息 / 共享内存 / 黑板模式\n冲突协调：协调者仲裁、加锁 / 任务隔离\n104. 中心化协调 vs 去中心化协作的适用条件？\n中心化：需强一致、频繁协调 → Coordinator 统筹\n去中心化：任务独立、并行推进 → Agent 平等协作\n看协调频率和一致性要求\n105. Multi Agent 子 Agent 需要把哪些信息传递给主 Agent，哪些没必要传？\n传：任务结果、关键结论、状态 / 错误\n不传：中间推理细节、冗长过程日志\n原则：紧凑结构化，减轻主 Agent 上下文压力\n106. Multi-Agent 如何实现团队协作？\n共享任务清单 + 邮箱 / 消息通信\n每个 Agent 独立工作区（如 Worktree）\n通过协调者或自组织推进\n107. 拆分多 Agent 之后，链路失败或局部失败时怎么处理？\n局部重试、超时、降级\n失败隔离，不拖垮整体\n协调者感知并重新分配 / 兜底\n108. 多 Agent 场景下，上下文传递为什么用 JSON / Slot 这类结构化方式？\n结构化更紧凑、无歧义、易解析\n减少上下文体积和误解\n便于校验和路由\n109. 多 Agent 的上下文污染怎么解决？\n各 Agent 上下文隔离，只传必要信息\n用结构化接口而非整段历史\n清晰边界 + 摘要压缩\n110. Planning 有哪些方法可以实现？分别讲一讲。\n任务分解（Decomposition）：拆成子任务逐个解决\nPlan-and-Execute：先出完整计划再执行；ReAct：边做边规划\nToT / 反思迭代、层级规划\n111. Agent 的 Memory 你怎么设计？\n短期：对话历史 / 工作记忆（上下文）\n长期：向量库 / 文件持久化 + 检索注入\n加摘要、分层（用户级 / 项目级）\n112. 你在写 Agent 的时候有用过长期记忆和短期记忆吗？\n短期：当前对话上下文，存近期交互\n长期：跨会话偏好 / 知识，持久化到外部存储\n两者配合：短期负责工作，长期负责沉淀\n113. Agent 短期记忆如何转化为长期记忆？\n触发条件（重要 / 重复 / 用户指定）下提取\n摘要成事实 / 偏好写入持久化存储\n下次按相关性检索注入\n114. 你觉得短期记忆里会存储 Function Call 的内容吗？如果不放进短期记忆会有什么问题？\n会，tool_use 和 tool_result 都要留在历史\n不放：模型不知道调过什么、拿到什么结果\n后果：重复调用、配对断裂、上下文不一致\n115. 如何界定短期记忆和长期记忆的边界，以及这两个记忆的存储方式还有存储什么？\n短期：当前会话相关，存上下文窗口 / 内存\n长期：跨会话有价值，存数据库 / 向量库 / 文件\n内容：短期存对话细节，长期存提炼后的事实 / 偏好\n116. 长上下文场景下的外部记忆增强机制有哪些？\n向量检索（RAG）按需调取\n摘要 / 分层记忆\n落盘 + 引用、KV 缓存\n117. 用户偏好是怎么得来的？\n显式：用户直接设置 / 反馈\n隐式：从历史行为 / 对话中提取\n持久化并在相关场景注入\n118. 记忆摘要的触发机制应考虑哪些指标？\n上下文 token 占用 / 轮次\n信息重要性 / 重复度\n成本与延迟阈值\n119. 意图识别阶段 Query 改写可能把关键信息改丢，你怎么发现这种问题？\n对比改写前后语义 / 实体是否丢失\n监控召回率下降、答非所问\n加校验：保留原 query 做兜底检索\n120. 如果记忆信息和当前聊天上下文冲突，你们怎么处理？以谁为准？\n一般以当前对话 / 最新信息为准\n记忆作为背景参考，冲突时降权\n必要时向用户确认\n121. 请介绍几个目前行业内广泛使用的 LLM 综合性基准测试，并说明它们各自的侧重点。\nMMLU：多学科知识；GSM8K / MATH：数学推理\nHumanEval：代码生成；HellaSwag：常识推理\nMT-Bench / Chatbot Arena：对话与人类偏好\n122. 什么是\"LLM-as-a-Judge\"？使用 LLM 来评估另一个 LLM 的输出，有哪些注意事项？\n用强 LLM 给另一个模型输出打分 / 比较\n注意：位置偏见、长度偏见、自我偏好\n缓解：随机顺序、明确评分标准、多次投票\n123. 你了解哪些专门用于评估 Agent 能力的基准测试？这些基准通常如何构建？\n如 AgentBench、WebArena、GAIA、SWE-bench\n构建：真实任务 + 可验证的成功判定\n覆盖工具使用、多步推理、环境交互\n124. 评估一个 Agent 的任务完成情况时，除了最终结果的正确性，还应该看哪些维度？\n效率（步数 / token / 时间）\n鲁棒性、安全合规\n轨迹合理性、成本\n125. 如何持续监控和评估一个已经部署上线的 LLM 应用或 Agent 服务的表现？\n采集 trace、token、延迟、错误率\n采样 + LLM-as-Judge 评质量\nBad case 回流、告警、定期评测\n126. 不同 Agent 架构差别比较（单体/分层/多 Agent）。\n单体：简单直接，复杂任务上下文吃紧\n分层：规划 / 执行解耦，可控但有协调成本\n多 Agent：并行专业分工，状态同步复杂\n127. 项目中 Agent 执行一个进程有哪几种方式？\n前台同步执行\n后台异步 / Background 模式\n子进程 / 子 Agent spawn\n128. 什么时候使用图数据库或知识图谱来增强或替代传统的向量检索？\n需要多跳关系推理、实体关联时\n结构化、关系密集的领域知识\n与向量检索结合做 GraphRAG\n129. 如何选取使用具体哪个大模型？\n看任务难度、上下文长度、成本、延迟\n能力（推理 / 代码 / 多模态）匹配场景\n闭源强但贵，开源可控可私有化；先评测再定\n130. 知识图谱数据如何构造？\n实体 / 关系抽取（规则 + LLM）\nschema 设计、实体对齐去重\n存入图数据库，持续更新维护\n06 Agent 实际场景题 131. 你是如何利用 LangSmith 或类似工具进行 Trace 跟踪，定位 Agent 在哪一步出问题的？\n全链路记录每步：输入、思考、工具调用、输出\n定位：是检索没召回 / 工具参数错 / 模型决策偏\n结合 token、延迟、错误标记逐步排查\n132. 你监控了哪些指标？\n质量：成功率、工具调用准确率、Bad case 率\n性能：延迟（首 token / 端到端）、token / 成本\n稳定：错误率、超时、重试次数\n133. 你怎么设计的 Agent 循环执行？\nwhile 循环 + 状态对象跨轮传递\n每轮：拼上下文 → 调模型 → 判断有无工具调用 → 执行回填\n终止：无 tool_use 或达 maxTurns\n134. 多 Agent 架构：每个子 Agent 的模型选型是什么？为什么要这么选？\n简单 / 高频任务用小快模型（省成本、降延迟）\n复杂推理 / 规划用强模型\n按任务难度分级，平衡效果与成本\n135. System Prompt 怎么设计的？\n角色定位、能力边界、行为准则\n工具使用规范、输出格式\n分区清晰、精简、必要约束\n136. 端到端的延迟是多少？（肯定是不短的，只是好奇 Agent 方向的延迟）\n取决于轮数 × 单轮（模型推理 + 工具）时间\n多步 Agent 通常几秒到几十秒\n优化：流式、并行工具、缓存、小模型分流\n137. 你们是如何分析 Bad Case 的？\n收集 + 分类（检索 / 工具 / 模型 / 提示问题）\n回放 trace 定位根因\n闭环：修提示 / 加规则 / 补数据，回归验证\n138. Bad Case 闭环处理：“当用户说我睡不着，想听恐怖故事”（非法请求），Agent 怎么处理？\n先判断意图与安全边界\n不生硬拒绝，可共情 + 引导（讲轻松内容助眠）\n涉违规明确拒绝并给替代方案\n139. 手机里有个 Chatbot，我跟他说帮我点一份外卖，那么这个时候只有 Function A，那这个 Agent 该怎么处理？\n能力不匹配时不能硬调 Function A\n坦诚告知做不到，或用 A 能覆盖的部分\n必要时引导到正确渠道，避免幻觉式乱调\n140. 如果让你设计一个点外卖 Agent，你会怎么设计？【美团真题】如果用户说\"随便\"，Agent 怎么处理？\n组件：意图理解 + 槽位填充 + 推荐 + 下单工具\n“随便”：用历史偏好 / 热门 / 场景推荐，给 2-3 个选项让确认\n主动澄清而非瞎下单\n141. 如果让你设计一个千问点奶茶的 Agent，你如何设计？\n槽位：品类、规格、糖度、温度、加料\n多轮澄清补全槽位 + 推荐\n调下单 API，确认后提交\n142. 请设计一个 LLM Agent，用于医学问答，它需要具备哪些关键组件？\n权威知识库 + RAG（可溯源）\n安全审查、免责声明、不替代诊断\n意图识别，敏感场景转人工 / 就医提示\n143. 关于对话历史，为什么要保留最近 20 轮对话，而不是 10 轮、30 轮？\n平衡上下文完整性与 token 成本 / 延迟\n太少丢上下文，太多噪声 + 贵 + 降智\n20 是经验折中，可配合摘要保留更早信息\n144. 如何构建一个 AI 照片助手，能够对用户上万张照片进行索引，并根据用户描述检索？\n用多模态模型给图片生成 embedding / 标签\n存向量库，支持以文搜图\n加元数据（时间 / 地点）过滤，增量索引\n145. Prompt 怎么知道效果好不好，怎么调优？\n用评测集 + 指标（准确率 / 格式合规）\nA/B 对比、case 分析\n迭代：加约束 / 示例 / 调结构\n146. 对大模型进行提示时有没有它的输出不符合指令的现象，是怎么解决的？\n明确格式要求 + few-shot 示例\n结构化输出 / JSON mode 约束\n输出校验，不合规则重试\n07 Skills 147. Skills 相比于传统 Agent 好处在哪里？工具 Skills 和产品 Skills 如何理解？\n好处：能力按需加载，不占满上下文，可复用、可组合\n工具 Skills：封装具体操作能力\n产品 Skills：封装某产品 / 领域的方法论、规范和输出模板，偏业务任务\n148. 🌟【重点】什么是 Skills？\n把领域知识 / 工作流打包成可被 Agent 按需加载的能力包\n核心是 SKILL.md + 脚本 / 参考资料\n渐进式披露，用到才加载\n149. Skills VS MCP：从工程视角理解差异；上下文管理策略的本质差异；互补而非竞争：Skills + MCP 的混合架构。\nMCP：连接外部工具 / 数据（连接协议）\nSkills：注入知识与流程（指导模型怎么做）\n互补：MCP 给能力，Skills 给方法，可混合架构\n150. 🌟【重点】Function Calling、MCP、Skills 三者有什么区别？\nFunction Calling：最底层的通信协议——规定模型↔工具之间怎么对话（tool_use / tool_result）\nMCP：工具的一种标准来源/接入方式——把工具放到独立进程/服务，通过标准协议接入，最终仍通过 Function Calling 暴露给模型\nSkills：最上层的能力/知识封装——打包的是\"知识 + 工作流\"，告诉模型\"该用哪些工具、按什么步骤做\"，渐进式按需加载\n一句话：FC 是地基（怎么通信），MCP 是标准插座（从哪接工具），Skills 是说明书（教模型怎么把工具组合起来干活）\n三者是分层、互补关系，不是竞争\n151. Skills 的主要组成部分：SKILL.md 是什么？references/ 是什么？scripts/ 是什么？assets/ 是什么？四件套配合起来的样子。\nSKILL.md：技能的工作手册\nreferences/：参考资料；\napi doc等 style-guide.md troubleshooting.md scripts/：可执行脚本；\npython脚本/shell脚本：解析pdf/发邮件/查天气 assets/：模板 / 资源\nppt模板，logo 字体，图片等 152. Skills 的渐进式加载机制：第一层元数据（Metadata）；第二层技能主体（Instructions）；第三层附加资源（Scripts \u0026 References）；渐进式披露的效果：从 16k 到 500 Token。\n一层元数据：name + description，常驻、占用极小\n二层指令主体：命中后才加载 SKILL.md\n三层附加资源：用到才读 scripts / references → 整体从一次性 16k 降到约 500 token\n153. 大模型如何理解一个 Skill 的好与不好，Skill 该如何做评测？\n看是否在该用时被正确触发、用对\n评测：触发准确率、任务成功率、对比有无 Skill\n收集 bad case 迭代 description 与内容\n154. Skills 实战案例——员工分析 SQL 查询：技能文件结构；SKILL.md 核心内容示例；技能的使用效果。\n文件结构：SKILL.md + 表结构 references + 查询脚本\nSKILL.md 核心：说明何时用、库表 schema、SQL 规范\n效果：模型按规范生成正确查询，少出错\n155. skill_creator：使用案例。\n一个用来创建 Skill 的 Skill\n引导用户描述需求，自动生成 SKILL.md 与目录结构\n降低手写 Skill 的门槛\n156. 你自己有手搓过哪些 Skills？\n可举：代码审查、提交规范、项目专用查询 / 部署流程\n动机：把重复工作流和团队规范沉淀成 Skill\n强调评测与迭代（按真实经历作答）\n08 开放性问题 \u0026 前沿知识 157. 平常会用 Vibe Coding 吗？使用过哪些工具？有哪些经验总结？\n用过，如 Claude Code / Cursor\n经验：明确需求、小步迭代、及时审查\n不盲信，关键逻辑自己把关\n158. 你觉得使用 AI Coding 工具后，程序员应该更关注的点是哪些？【美团】\n需求拆解、架构设计、问题定义\n代码审查与质量把关\n系统思维、领域知识，而非纯敲码\n159. 平常 AI Coding 时，如何减少 token 用量？\n精准上下文、按需提供文件\n及时 /clear、/compact\n复用规则文件（CLAUDE.md），避免重复解释\n160. 怎么让 AI Coding 工具符合团队的代码规范，减少幻觉？\n把规范写进 CLAUDE.md / 规则文件\n提供示例和约束，让它先读现有代码\n测试 + 审查兜底\n161. SDD 了解吗？\nSpec-Driven Development，规范 / 规格驱动开发\n先写清晰规格 / 设计再让 AI 实现\n减少跑偏，便于验证\n162. 怎么接触 AI 前沿知识的？\n论文（arXiv）、官方博客、技术社区\nTwitter / X、GitHub trending\n动手复现 + 实践\n163. 哪些可以看最新模型榜单的地方？\nLMArena（Chatbot Arena）、OpenLLM Leaderboard\n各 benchmark 官网、SWE-bench\n厂商发布与第三方评测\n164. Codex 上下文窗口过大后降智了怎么办？\n及时压缩 / 清理上下文\n拆任务、分多个会话\n只给相关上下文，避免噪声\n165. 如不知道最近的 Harness Engineering，结合具体场景讲讲。\n围绕模型搭的\"脚手架\"：上下文、工具、记忆、反馈、约束\n让模型在真实任务里稳定发挥\n场景：把项目知识 / 流程 / 规则喂给 Agent 提升可靠性\n166. 🌟【重点】什么是 A2A 协议？\nA2A = Agent-to-Agent Protocol，Google 于 2025 年提出的开放协议（后捐给 Linux 基金会），用于不同 Agent 之间互相通信、协作\n解决的问题：不同厂商/框架做的 Agent 彼此孤立，A2A 让它们能跨平台发现、对话、协同完成任务\n核心概念：\nAgent Card：用 JSON 描述 Agent 的能力、地址、认证方式（通常放在 /.well-known/agent.json，用于\"发现\"） Task：A2A 以任务为单位，支持长任务、流式更新和状态同步 Client Agent / Remote Agent：发起方与执行方 底层：基于 HTTP + JSON-RPC 2.0，流式用 SSE\n与 MCP 的区别（高频）：MCP 解决\"Agent ↔ 工具/数据\"的连接；A2A 解决\"Agent ↔ Agent\"的协作，两者互补，常一起用\n167. 如果现在用 Harness Engineering，你的 Agent 项目会怎么做？\n完善上下文工程（记忆 / 规则 / 检索）\n强化工具与反馈闭环、可观测\n把隐性知识显式化进知识库\n168. 如何看待 AI 的发展？如何不被 AI 淘汰？\nAI 是放大器，替代重复劳动\n提升不可替代能力：判断、设计、跨域整合\n学会用 AI、驾驭 AI\n169. 如果用 AI Coding 来重做项目，你会怎么做？\n先理清需求与架构（Spec / Plan）\n模块化、小步迭代 + 测试\n用规则文件约束、关键处人工把关\n170. Claude Code 的 Memory 三层逻辑设计，为什么这么设计？\n用户级（跨项目偏好）、项目级（项目知识）、本地级\n分层匹配作用域，避免污染、便于共享与版本管理\n按需注入，控制上下文成本\n171. 未来 LLM Agent 可能有哪些技术突破？\n更强长程规划与记忆\n更可靠的工具使用与自我纠错\n多模态、具身、低成本与可控性\n172. 平常使用 AI 吗，都用来干嘛？如果我想使用 AI，比如 Coding 领域，你有何建议？\n编码、查资料、写作、总结\n建议：从小任务上手、明确需求、审查产出\n边用边学原理，别当黑盒\n173. Cursor 如果上下文过长有没有性能下降的现象？千问的上下文窗口多大？\n会，过长会注意力稀释 / 降智，应精简上下文\n千问（Qwen）多数版本支持 128K，长上下文版本更大\n实际看具体型号\n174. 对于 Agent 未来 to C 和 to B 在技术和架构上觉得未来可能会有什么发展？\nto C：个人助理，强调体验 / 隐私 / 个性化\nto B：流程自动化，强调可靠 / 安全 / 集成\n架构上 to B 更重权限、审计、私有化\n175. 你认为当前 LLM 距通用人工智能（AGI）还有多远？最关键的缺失能力是什么？\n仍有距离，难给确切时间\n缺：可靠推理 / 规划、持续学习、真正理解与因果\n自主性与可信度仍不足\n176. 你如何看待开源模型和闭源模型生态系统的竞争与共存？\n闭源领先能力，开源追赶且可控可私有\n长期共存、互相促进\n选型按场景：能力 vs 成本 / 可控\n177. 具身智能（Embodied AI），即 LLM 与机器人的结合，被认为是 AI 的下一个浪潮。你认为 LLM 将如何赋能机器人？\n当\"大脑\"做高层理解、规划、指令分解\n结合感知与底层控制\n挑战：实时性、安全、物理世界泛化\n178. 了解过哪些模型吗？\n闭源：GPT / Claude / Gemini\n开源：Llama、Qwen、DeepSeek、Mistral\n按能力 / 成本 / 场景选型\n179. 你认为目前限制 Agent 能力和普及的最大瓶颈是什么？\n可靠性 / 幻觉，长程稳定性\n成本与延迟、安全与信任\n评测与可控性\n180. 你对大模型时代的 AI 安全怎么看？\n内容安全（有害 / 偏见）、对齐问题\n隐私与数据安全、滥用风险\nPrompt 注入等新型攻击，需纵深防御\n181. 个性化是 LLM 应用的重要方向。在实现高度个性化的 Agent 或助手的过程中，我们应如何平衡效果、隐私和安全？\n数据最小化、本地 / 脱敏处理\n用户可控（授权 / 删除）\n分层存储 + 权限，在效果与隐私间权衡\n182. 展望未来 3-5 年，你认为 LLM 和 Agent 技术最有可能在哪个行业或领域率先实现颠覆性应用？为什么？\n软件开发、客服、内容创作较快落地\n原因：数字化程度高、可验证、ROI 明显\n言之有理即可\n183. 你如何看待 Agent 领域的\"涌现能力\"？我们应该追求更强大的基础模型，还是更精巧的 Agent 架构？\n二者都要：强基础模型是上限，精巧架构是发挥\n当前阶段架构 / Harness 工程能显著提效\n长期靠模型能力突破\n09 OpenClaw 184. 🌟【重点】什么是 OpenClaw？（用过吗？写过 Skills 吗？）\n开源的通用型 Agent（智能体），把\"模型 + 工具 + 记忆 + Skills + MCP\"这套 Harness 工程做成了开箱即用的产品\n定位：用自然语言驱动 Agent 自主完成多步任务（写代码、查资料、操作文件 / 浏览器等）\n作答提示：用过就举真实例子（写过哪些 Skill、接过哪些 MCP）；没用过则讲对其机制的理解\n185. 🌟【重点】OpenClaw 的核心亮点是什么？\n开源 + 开放生态：Skills（能力包）+ MCP（接外部工具）可自由扩展、社区共建\nHarness 工程成熟：上下文工程、记忆、工具反馈闭环、权限 / 安全做得完整\n渐进式能力加载：Skills 渐进披露，用到才加载，省上下文\n模型能力到位 + 工程打磨：体验好、可自托管、数据可控\n186. 🌟【重点】OpenClaw 与传统 Agent 有什么区别？\n传统 Agent（如早期 AutoGPT）：流程脆弱、容易跑偏、生态封闭、扩展难\nOpenClaw：以 Harness 为核心——强调上下文工程 + Skills / MCP 开放生态 + 文件式记忆\n可扩展性：能力按需挂载（Skills / MCP），而不是把所有逻辑写死在代码里\n工程化：完整的权限、可观测、上下文压缩，长程任务更稳\n187. 🌟【重点】OpenClaw 的记忆机制是怎么实现的？\n分层 + 文件式（markdown）记忆：\n短期：当前会话上下文，超长就上下文压缩 / 摘要\n长期：写进项目级 / 用户级 markdown 记忆文件，新会话开始时注入\n作用域分层：项目级（放仓库、团队共享约定）vs 用户级（个人偏好）vs 内置\n与项目指令文件（类 CLAUDE.md）区别：指令是人写的工程规范；记忆是 Agent 自动从对话里提取的偏好 / 反馈\n知识多时配合向量库 / RAG 召回相关记忆\n188. OpenClaw 到底解决了什么痛点？为什么爆火？\n痛点：之前 Agent 要么能力弱、要么闭源 / 不可控、要么扩展难，落地体验差\n解法：开源可自托管（数据可控）+ 生态可扩展（Skills / MCP）+ 工程成熟（稳定可用）\n爆火时机：模型能力到位 + Harness 工程成熟 + 开源社区共建，正好凑齐\n189. 🌟【重点】OpenClaw 有什么缺点？为什么那么烧 token？\n烧 token 的原因：\nAgentic Loop 多轮\"思考-行动-观察\"，每轮都带着完整上下文重复进模型\n大系统提示 + 工具定义 + 记忆 / 检索内容长期占用上下文\n多工具结果、长文件内容回灌上下文，越滚越大\n其他缺点：成本 / 延迟高、长程任务仍会跑偏、对模型能力依赖强、自主执行命令的安全性需兜底\n缓解：上下文压缩、Skills 渐进加载、按需挂载工具、缓存、及时清理上下文\n190. OpenClaw 的文件目录结构是怎样的？\n大致：配置文件（模型 / 权限 / MCP 配置）+ skills/（每个技能一个目录，含 SKILL.md、scripts/、references/、assets/）+ markdown 记忆文件 + 项目指令文件\n优先级：项目级放仓库目录、用户级放 home 目录、内置打包在代码里\n（以实际使用版本为准，作答时结合自己跑过的目录讲）\n191. Coze、n8n 和 OpenClaw 的区别在哪里？\nCoze：字节的低代码 Agent / Bot 搭建平台，可视化、偏 SaaS，上手快但灵活性 / 可控性有限\nn8n：通用工作流自动化（iPaaS），节点编排、确定性流程，不以 LLM 自主决策为核心\nOpenClaw：代码级、开源，以 LLM 自主决策 + Skills / MCP 生态为核心，更灵活、可自托管，但更吃工程能力和 token\n一句话：n8n 是\"固定工作流\"，Coze 是\"低代码搭 Bot\"，OpenClaw 是\"开源自主 Agent\"\nMewCode 项目学习 目录 初识 Coding Agent 让 AI 开口说话 工具系统 让 Agent 自己干活 System Prompt 设计 权限系统 —— 给 Agent 装上安全刹车 MCP 协议 —— 开放式工具生态 上下文管理 —— 当 Token 开始烧钱 记忆系统 —— 跨会话的 Agent 记忆 Slash Command —— 内置命令框架 Skill 系统 —— 可复用的技能包 Hook 系统 —— 生命周期钩子与自动化 SubAgent —— 子 Agent 与任务分发 Worktree —— Git 工作树并行开发 Agent Teams —— 从一次性子任务到长期协作团队 回顾与展望 —— 从一个空壳到一支团队 1. 初识 Coding Agent 用户：通过自然语言下命令 2. 让 AI 开口说话 做什么：完成模型接入，让 CLI 能接收用户输入、调用大模型并流式展示回复。 怎么实现：抽象统一的模型 Provider 和消息结构，处理鉴权、模型配置、流式事件、错误与重试。 关键设计 / 取舍：统一接口与厂商特性的平衡；流式输出与非流式输出的差异；配置和密钥如何安全管理。 面试追问点：一次模型请求由哪些消息组成？流式响应如何拼接？如何适配不同模型服务？网络异常和限流如何处理？ 3. 工具系统 工具描述决定工具使用的质量：\n例如：1. 做什么；2. 什么时候使用；3. 什么时候不该使用；4. 参数约束；5. 返回格式；6. 与其他工具如何配合。大文件可先用 Grep 定位，再用 ReadFile 读取指定范围。 工具接口设计不能只有名字和执行方法：\n用 JSON Schema 描述参数，让模型能够稳定地产生结构化调用。 执行结果和错误都要结构化返回，因为错误也是 Agent 后续决策的有效信息。 抽取通用基础实现，避免每个工具重复处理校验、超时、截断和日志。 不同语言中采用各自惯用的接口与错误处理模式。 工具注册中心：通过统一的 toAPIFormat() 遍历所有启用工具，把名称、描述和入参 Schema 转换成模型 API 所需格式；同时负责工具查找、启停和执行分发。\n4. 让 Agent 自己干活 Function Calling：告诉模型怎么来调用工具\n告诉模型有哪些工具：通过tools参数来告诉模型工具的列表（每个工具有名字、描述、参数格式） 模型决定调用工具role:assistant：他会在回复里输出一个结构化的请求，想调哪些工具，参数有哪些——tool_use 进行工具的执行role:user，把结果告诉模型：tool_use-\u003etool_result返回给模型 模型继续 Agent Loop：用户输入 → 模型决策 → 执行一个或多个工具 → 将 tool_result 回填消息历史 → 模型继续判断，直到输出最终答案。\n循环终止条件：模型不再请求工具、达到最大轮数、用户取消、出现不可恢复错误，或权限系统拒绝关键操作。\n关键设计 / 取舍：并行工具调用的收益与冲突风险；工具结果顺序和 tool_use_id 配对；如何避免死循环与重复调用。\n面试追问点：完整的一轮 Agent Loop 怎么走？模型为什么知道该调用哪个工具？多个工具能否并行？如何处理中断、超时和失败？\n5. System Prompt 设计 做什么： 怎么实现： 关键设计 / 取舍： 面试追问点： 6. 权限系统 —— 给 Agent 装上安全刹车 做什么： 怎么实现： 关键设计 / 取舍： 面试追问点： 7. MCP 协议 —— 开放式工具生态 由哪些部分构成：\n运行时的角色\nHost: 真正的AI应用本体 Client: Host里的一个连接组件，负责和某一个Server建立连接、发送请求、接收相应。可声明支持的能力 Root: 告诉Server当前项目的工作目录 Stampling 允许Server反过来请求Host调用LLM Elicitation:允许Server请求Host追问用户额外信息 Server: 对外暴露能力的程序，有可能在本地or远程 协议层\nData Layer层：定义消息长什么样，怎么列工具、调用工具等等——JSON-RPC 2.0\nRequest: Client-\u003eServer id,method,params Response: Server-\u003eClient id,result,error Notification: 通知不需要响应 method Transport Layer：定义消息怎么在两边传过去\nstdio: 项目启动一个子进程来运行MCP Server。然后通过这个子进程的stdin和stdout的管道来通信，消息是UTF-8编码的JSON-RPC消息 stdout:读取相应 JSON-RPC 推送给Host stderr:调式日志，不参与协议。负责调试与排查 Streamable HTTP: 依靠HTTP请求post给远程Server，然后Server返回json相应 Accept声明：application/json,text/event-stream MCP双方提供什么东西\nTools：暴露一组工具（名字、描述和参数的JSON Schema）。项目的工具在进程内执行，MCP的tool使用则是在外部工具中执行 Resources：可读取的数据源：url/name/mimeType等。有点类似RAG中的上下文源 Prompts：预定义提示词模板，是由工具定义方提供 一次完成的MCP会话\n初始化握手：Client\u003c-\u003eServer 请求和回应声明协议版本，支持的能力，身份的信息 工具发现：Client发送tools/list请求，获取Server提供的所有工具定义 工具调用：Client决定使用某个MCP工具时，Client发送tools/call请求 项目的具体做法\n请求——响应的异步：使用map来管理等待中的请求，id号进行匹配 工具包装：适配器模式，MCP工具包装成Tool接口（设计模式） Host可以连接Server列表：用户配置。yaml中（项目级/用户级） 完整流程 启动：读取配置文件获取MCP Server列表 2.选择Transport 根据Server配置 3.后台连接：启动时异步连接所有配置的Server 4.初始化：发送initialize+notifications 5.工具发现：tools/list 6.包装注册：MCPToolWrapper,注册到ToolRegistry，也就是适配器模式 7.Agent使用：Agent决定是否调用MCP工具 8.工具调用：Agent调用-\u003eMCPToolWrapper.execute-\u003eMCP Client-\u003eMCP Server 9.结果返回: MCP Server返回结果-\u003eMCPToolWrapper转换-\u003eAgent处理 工具延迟加载： 1.MCP工具注册时标记自己为延迟工具 MCPToolWrapper.ShouldDefer() = true 2.Agent Loop每轮生成工具列表时跳过延迟工具的完整schema，只列名字 3.模型看到名字列表，先调用ToolSearch拉取完整的定义 4.在客户端的Registry里找到工具，返回完整schema，标记为已发现 8. 上下文管理 —— 当 Token 开始烧钱 目的：让Agent在有限的Token窗口里长时间工作\n两层压缩（自动）\n大结果落盘：原因（工具结果超阈值）预防\n单个结果超出阈值50KB：完整结果写磁盘文件，对话历史放预览+文件路径，ReadFile读取该文件即可\n每条消息的聚合限制：每个工具都是40k,加起来超过了200k。超过聚合限制的最大结果集已被存盘，剩余结果合计大小低于限制200k\n幂等写入：文件名tool_use_id，而且用wx模式写入（文件已存在则跳过） 防止每一轮重写同样的文件\nPrompt Cache\n原理：新一轮请求的消息列表前缀和前一轮完全一样，api可以跳过前缀部分的处理。cache持续命中，则处理增量，如果cache反复失效，每轮都要重新处理几万甚至十几万token前缀\n决策冻结（项目做法）：系统维护一个ContentReplacementState，记录每个tool_use_id的替换决策。seenIds,replacements\n已替换过的：缓存的预览字符串原样重放 已决定不替换的：永远保留原文，不再评估 正常评估是否需要替换，做出决策后冻结 全量压缩 兜底\n触发时机：第一层落盘不够用了，上下文仍然接近爆炸，调用LLM自己来生成一份对话摘要，替换旧消息 依旧20k对话历史+13k预留空间\n为什么是写死固定值13k：\n因为ReadFile工具读取的内容都是那么大，buffer要防止的风险是下一轮突然多了一个大工具结果，这个风险取决于单次工具结果有多大，和总窗口无关 防止两次检查之间一个意外偏大的工具结果出现把上下文撑爆 预留的20k给摘要输出\n9个的结构化部分 摘要Prompt设计\n手动/compat\n9. 记忆系统 —— 跨会话的 Agent 记忆 工作记忆：200k token就是Agent的大脑带宽，当前正在处理的所有信息总和\n长期记忆：对应到所有持久化到磁盘的信息\n会话持久化：和Agent的每次对话\n存储格式：JSONL格式（role,content,timespan）。好处：追加写入、奔溃安全、增量加载 文件组织：.minicoder/sessions/yyyymmdd-hhmmss-xxxx 后缀随机防止冲突 会话管理器：一个SessionManager进行管理，他维护.minicoder/sessions/目录，提供所有会话操作的入口，进行会话的创建、恢复、列表、删除 恢复会话： 逐行解析JSONL：逐行读取，遇到解析失败则跳过 验证消息链完整性：JSONL文件可能因为崩溃而截断。所以需要追踪未完成的工具调用-tool_result 检查token量，如果恢复的会话很长，token量可能已经超过压缩阈值，进行压缩 插入时间跨度prompt: 上次会话是什么时候，中间可能有代码变更，建议重新读取相关文件 过期会话清理：sessions目录会堆积大量的旧会话文件。超过30天没有活跃的会话，在启动时会自动清理。会话列表按照最后活跃时间倒序排列 项目指令文件：预先写好的项目知识和编码规范，\n优先级排列：项目级-\u003e.minicoder级别-\u003e用户级 。流程：检查文件-\u003e—分割线拼接-\u003esystem-reminder注入到messages中\n@include:如果所有指令都在minicoder.md中会变得很臃肿，比如一个微服务项目，每个服务的编码规范可能不一样，让他可以在minicoder.md中引入其他文件的内容\n自动记忆：Agent在对话中自动累计的经验\n用户偏好：用户的编码习惯和风格要求 纠正反馈：用户明确指出的反馈 项目知识：当前项目的具体技术信息 参考信息：外部链接和资料（API文档等） 10. Slash Command —— 内置命令框架 做什么： 怎么实现： 关键设计 / 取舍： 面试追问点： 11. Skill 系统 —— 可复用的技能包 是什么: 写给Agent的SOP（标准操作流程）\n面试回答：最上层的能力封装——打包的是「知识和工作流」，本身不是工具，而是告诉模型「该用哪些工具、按什么步骤做」，按需加载\nAnthropic的定义：【把专家经验、操作流程和最佳实践打包成可复用的能力】\n特点：一致性（行为一致）、知识固化（定下的规范）、跨平台复用\n和Slash Command\n相同点：都是把一端固定的Prompt模板交给Agent来执行，而且prompt经过精心设计后质量会更加稳定\nskill：把prompt从源码搬进独立的markdown文件，任何用户都能新增和修改\nSkill自动注册成命令：遍历所有的skill，在Slash中心新建一个【PROMPT】类型指令，命令名取frontmatter里的name，描述取description+【skill】\nSkill设计\nMd文件：yaml方便解析结构化数据。LLM可以直接理解prompt body。方便更改和新增\nFrontMatter中的字段：name、description、allowedTools、model、mode(inline or fork)、content（full/recent/none）\n分级：项目级（.minicoder/skills）,用户级（~/.minicoder/skills）\ninline/fork:\ninline：默认的模式：skill的prompt注入到当前对话中。和之前的消息一样走Agent Loop\nfork：隔离上下文进行执行，不影响也不受当前对话影响。执行完后只把结果摘要返回到主对话。适合/review\nARGUMENTS：让Skill接受用户参数\nAgent选择Skill流程\n两阶段加载\n轻量注册：启动时只加载每个Skill的frontmatter（name、description），不加载完整的prompt body和专属工具。放在system prompt里，可以放到prompt cache的稳定前缀区，但每轮要多带一段token\n按需加载：判断匹配上的Skill时，调用LoadSkill工具，把Skill.md的完整prompt body激活到Agent的环境上下文。加载tool.json里申明的专属工具并注册到当前会话\n目录Skill：支持意图识别和专属工具的Skill。多一个tool.json文件（注册工具）。具备一个好处（整套能力的打包移植：单元，sop，工具schema，工具实现代码，长文档参考，辅助脚本等）\n完整流程：\n启动：扫描skill目录，加载所有的Skill的frontmatter轻量 注入messages：告诉Agent有哪些Skill可用（name+description） 注册命令：注册为Slash Command，支持/commit显式调用 用户输入 意图识别：Agent判断匹配 skill Agent调用loadSkill 完整SKILL.md+工具加载到user message动态上下文之前 执行 三个内置的skill：资源嵌入机制编译进二进制，跟MewCode一起进行分发\ncommit：分析diff生成规范提交 review：在隔离上下文做客观审查 test：负责测试并分析结果 12. Hook 系统 —— 生命周期钩子与自动化 做什么： 怎么实现： 关键设计 / 取舍： 面试追问点： 13. SubAgent —— 子 Agent 与任务分发 做什么： 怎么实现： 关键设计 / 取舍： 面试追问点： 14. Worktree —— Git 工作树并行开发 做什么： 怎么实现： 关键设计 / 取舍： 面试追问点： 15. Agent Teams —— 从一次性子任务到长期协作团队 做什么： 怎么实现： 关键设计 / 取舍： 面试追问点： 16. 回顾与展望 —— 从一个空壳到一支团队 做什么：回顾 MewCode 从模型对话、工具调用到多 Agent 协作的完整演进路径，总结当前能力边界。 怎么实现：串联各子系统的数据流和控制流，形成端到端架构视图，并用真实任务复盘系统如何协同工作。 关键设计 / 取舍：功能复杂度、可靠性、成本和用户控制权之间如何平衡；哪些设计已稳定，哪些仍需实验验证。 面试追问点：项目中最难的问题是什么？做过哪些重构？目前最大的局限是什么？下一步会如何改进和评估？ ",
+  "wordCount" : "36044",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/agent/agent%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#mewcode-%e9%a1%b9%e7%9b%ae%e9%9d%a2%e8%af%95%e9%a2%98%e5%ba%93" aria-label="MewCode 项目面试题库">MewCode 项目面试题库</a><ul>
+                        
+                <li>
+                    <a href="#%e9%a1%b9%e7%9b%ae%e5%9f%ba%e7%a1%80%e4%bb%8b%e7%bb%8d" aria-label="项目基础介绍">项目基础介绍</a></li>
+                <li>
+                    <a href="#function-calling--%e5%b7%a5%e5%85%b7%e8%b0%83%e7%94%a8" aria-label="Function Calling / 工具调用">Function Calling / 工具调用</a></li>
+                <li>
+                    <a href="#%e6%9d%83%e9%99%90%e4%b8%8e%e5%ae%89%e5%85%a8" aria-label="权限与安全">权限与安全</a></li>
+                <li>
+                    <a href="#mcp" aria-label="MCP">MCP</a></li>
+                <li>
+                    <a href="#%e4%b8%8a%e4%b8%8b%e6%96%87%e5%8e%8b%e7%bc%a9" aria-label="上下文压缩">上下文压缩</a></li>
+                <li>
+                    <a href="#%e8%ae%b0%e5%bf%86%e7%b3%bb%e7%bb%9f" aria-label="记忆系统">记忆系统</a></li>
+                <li>
+                    <a href="#multi-agent" aria-label="Multi-Agent">Multi-Agent</a></li>
+                <li>
+                    <a href="#%e5%b7%a5%e7%a8%8b%e7%bb%bc%e5%90%88" aria-label="工程综合">工程综合</a></li>
+                <li>
+                    <a href="#%e9%a1%b9%e7%9b%ae%e5%af%b9%e6%af%94%e4%b8%8e%e8%a1%a5%e5%85%85" aria-label="项目对比与补充">项目对比与补充</a></li>
+                <li>
+                    <a href="#ai-%e7%bc%96%e7%a8%8b%e7%9b%b8%e5%85%b3" aria-label="AI 编程相关">AI 编程相关</a></li>
+                <li>
+                    <a href="#claude-code-%e6%ba%90%e7%a0%81%e7%9b%b8%e5%85%b3" aria-label="Claude Code 源码相关">Claude Code 源码相关</a></li>
+                <li>
+                    <a href="#harness-%e7%9b%b8%e5%85%b3" aria-label="Harness 相关">Harness 相关</a></li></ul>
+                </li>
+                <li>
+                    <a href="#agent-%e5%bc%80%e5%8f%91%e5%ae%9e%e4%b9%a0%e7%94%9f%e5%85%ab%e8%82%a1%e9%a2%98%e5%ba%93" aria-label="Agent 开发实习生八股题库">Agent 开发实习生八股题库</a><ul>
+                        
+                <li>
+                    <a href="#01-agent-%e5%85%a5%e9%97%a8" aria-label="01 Agent 入门">01 Agent 入门</a></li>
+                <li>
+                    <a href="#02-%e5%85%b3%e4%ba%8e%e4%b8%bb%e6%b5%81-agent-%e6%a1%86%e6%9e%b6" aria-label="02 关于主流 Agent 框架">02 关于主流 Agent 框架</a></li>
+                <li>
+                    <a href="#03-rag" aria-label="03 RAG">03 RAG</a></li>
+                <li>
+                    <a href="#04-mcp--function-calling" aria-label="04 MCP / Function Calling">04 MCP / Function Calling</a></li>
+                <li>
+                    <a href="#05-agent-%e8%bf%9b%e9%98%b6%e4%bb%a5%e5%8f%8a%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8" aria-label="05 Agent 进阶以及实际应用">05 Agent 进阶以及实际应用</a></li>
+                <li>
+                    <a href="#06-agent-%e5%ae%9e%e9%99%85%e5%9c%ba%e6%99%af%e9%a2%98" aria-label="06 Agent 实际场景题">06 Agent 实际场景题</a></li>
+                <li>
+                    <a href="#07-skills" aria-label="07 Skills">07 Skills</a></li>
+                <li>
+                    <a href="#08-%e5%bc%80%e6%94%be%e6%80%a7%e9%97%ae%e9%a2%98--%e5%89%8d%e6%b2%bf%e7%9f%a5%e8%af%86" aria-label="08 开放性问题 &amp; 前沿知识">08 开放性问题 &amp; 前沿知识</a></li>
+                <li>
+                    <a href="#09-openclaw" aria-label="09 OpenClaw">09 OpenClaw</a></li></ul>
+                </li>
+                <li>
+                    <a href="#mewcode-%e9%a1%b9%e7%9b%ae%e5%ad%a6%e4%b9%a0" aria-label="MewCode 项目学习">MewCode 项目学习</a><ul>
+                        
+                <li>
+                    <a href="#%e7%9b%ae%e5%bd%95" aria-label="目录">目录</a></li>
+                <li>
+                    <a href="#1-%e5%88%9d%e8%af%86-coding-agent" aria-label="1. 初识 Coding Agent">1. 初识 Coding Agent</a></li>
+                <li>
+                    <a href="#2-%e8%ae%a9-ai-%e5%bc%80%e5%8f%a3%e8%af%b4%e8%af%9d" aria-label="2. 让 AI 开口说话">2. 让 AI 开口说话</a></li>
+                <li>
+                    <a href="#3-%e5%b7%a5%e5%85%b7%e7%b3%bb%e7%bb%9f" aria-label="3. 工具系统">3. 工具系统</a></li>
+                <li>
+                    <a href="#4-%e8%ae%a9-agent-%e8%87%aa%e5%b7%b1%e5%b9%b2%e6%b4%bb" aria-label="4. 让 Agent 自己干活">4. 让 Agent 自己干活</a></li>
+                <li>
+                    <a href="#5-system-prompt-%e8%ae%be%e8%ae%a1" aria-label="5. System Prompt 设计">5. System Prompt 设计</a></li>
+                <li>
+                    <a href="#6-%e6%9d%83%e9%99%90%e7%b3%bb%e7%bb%9f--%e7%bb%99-agent-%e8%a3%85%e4%b8%8a%e5%ae%89%e5%85%a8%e5%88%b9%e8%bd%a6" aria-label="6. 权限系统 —— 给 Agent 装上安全刹车">6. 权限系统 —— 给 Agent 装上安全刹车</a></li>
+                <li>
+                    <a href="#7-mcp-%e5%8d%8f%e8%ae%ae--%e5%bc%80%e6%94%be%e5%bc%8f%e5%b7%a5%e5%85%b7%e7%94%9f%e6%80%81" aria-label="7. MCP 协议 —— 开放式工具生态">7. MCP 协议 —— 开放式工具生态</a></li>
+                <li>
+                    <a href="#8-%e4%b8%8a%e4%b8%8b%e6%96%87%e7%ae%a1%e7%90%86--%e5%bd%93-token-%e5%bc%80%e5%a7%8b%e7%83%a7%e9%92%b1" aria-label="8. 上下文管理 —— 当 Token 开始烧钱">8. 上下文管理 —— 当 Token 开始烧钱</a></li>
+                <li>
+                    <a href="#9-%e8%ae%b0%e5%bf%86%e7%b3%bb%e7%bb%9f--%e8%b7%a8%e4%bc%9a%e8%af%9d%e7%9a%84-agent-%e8%ae%b0%e5%bf%86" aria-label="9. 记忆系统 —— 跨会话的 Agent 记忆">9. 记忆系统 —— 跨会话的 Agent 记忆</a></li>
+                <li>
+                    <a href="#10-slash-command--%e5%86%85%e7%bd%ae%e5%91%bd%e4%bb%a4%e6%a1%86%e6%9e%b6" aria-label="10. Slash Command —— 内置命令框架">10. Slash Command —— 内置命令框架</a></li>
+                <li>
+                    <a href="#11-skill-%e7%b3%bb%e7%bb%9f--%e5%8f%af%e5%a4%8d%e7%94%a8%e7%9a%84%e6%8a%80%e8%83%bd%e5%8c%85" aria-label="11. Skill 系统 —— 可复用的技能包">11. Skill 系统 —— 可复用的技能包</a></li>
+                <li>
+                    <a href="#12-hook-%e7%b3%bb%e7%bb%9f--%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e9%92%a9%e5%ad%90%e4%b8%8e%e8%87%aa%e5%8a%a8%e5%8c%96" aria-label="12. Hook 系统 —— 生命周期钩子与自动化">12. Hook 系统 —— 生命周期钩子与自动化</a></li>
+                <li>
+                    <a href="#13-subagent--%e5%ad%90-agent-%e4%b8%8e%e4%bb%bb%e5%8a%a1%e5%88%86%e5%8f%91" aria-label="13. SubAgent —— 子 Agent 与任务分发">13. SubAgent —— 子 Agent 与任务分发</a></li>
+                <li>
+                    <a href="#14-worktree--git-%e5%b7%a5%e4%bd%9c%e6%a0%91%e5%b9%b6%e8%a1%8c%e5%bc%80%e5%8f%91" aria-label="14. Worktree —— Git 工作树并行开发">14. Worktree —— Git 工作树并行开发</a></li>
+                <li>
+                    <a href="#15-agent-teams--%e4%bb%8e%e4%b8%80%e6%ac%a1%e6%80%a7%e5%ad%90%e4%bb%bb%e5%8a%a1%e5%88%b0%e9%95%bf%e6%9c%9f%e5%8d%8f%e4%bd%9c%e5%9b%a2%e9%98%9f" aria-label="15. Agent Teams —— 从一次性子任务到长期协作团队">15. Agent Teams —— 从一次性子任务到长期协作团队</a></li>
+                <li>
+                    <a href="#16-%e5%9b%9e%e9%a1%be%e4%b8%8e%e5%b1%95%e6%9c%9b--%e4%bb%8e%e4%b8%80%e4%b8%aa%e7%a9%ba%e5%a3%b3%e5%88%b0%e4%b8%80%e6%94%af%e5%9b%a2%e9%98%9f" aria-label="16. 回顾与展望 —— 从一个空壳到一支团队">16. 回顾与展望 —— 从一个空壳到一支团队</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="mewcode-项目面试题库">MewCode 项目面试题库<a hidden class="anchor" aria-hidden="true" href="#mewcode-项目面试题库">#</a></h1>
+<hr>
+<h2 id="项目基础介绍">项目基础介绍<a hidden class="anchor" aria-hidden="true" href="#项目基础介绍">#</a></h2>
+<p><strong>1. 简单介绍一下这个 MewCode Coding Agent 项目，先用一两句话讲清楚它是什么，能做什么。</strong></p>
+<ul>
+<li>
+<p>定位：MewCode 是我独立开发的一个终端 AI 编程助手。</p>
+</li>
+<li>
+<p>功能：用户用<strong>自然语言</strong>下指令，Agent 自己<strong>读代码、改文件、跑命令</strong>，整个过程<strong>自主完成</strong>，不需要人去盯每一步。</p>
+</li>
+<li>
+<p>架构：底层做了<strong>五层架构</strong>，支持<strong>多家模型厂商的 API</strong>，有完整的<strong>权限控制</strong>和<strong>上下文压缩机制</strong>，还支持<strong>多个 Agent 并行</strong>协作。</p>
+</li>
+<li>
+<p>两点：做这个项目的出发点：每天都在用 Claude Code，但它像个黑盒，想搞清楚 Agent 内部到底怎么决策的，就自己从零造了一个。</p>
+</li>
+</ul>
+<hr>
+<p><strong>2. 你觉得 Agent 有哪些必要元素？</strong></p>
+<ul>
+<li>
+<p>大脑：LLM 理解任务，做判断，决定下一步做什么</p>
+</li>
+<li>
+<p>手脚：Tool 并非事先编排，而是在循环过程中LLM自主调用工具，目的-&gt;为了感受外部环境</p>
+</li>
+<li>
+<p>循环：原因-&gt;任务驱动，和大模型的不同</p>
+</li>
+<li>
+<p>环境的反馈：是什么：跑命令能看到输出，改代码测试能看到报错-&gt;驱动下一轮的决策。没有Agent也不知道做的效果怎么样</p>
+</li>
+<li>
+<p>不太必要算：安全机制和记忆系统</p>
+<ul>
+<li>工程上，只是起到好不好用的效果。其他四要素则是决定agent能不能跑</li>
+<li>这个项目在四要素的基础上做了<strong>五层的权限拦截</strong>和<strong>跨会话记忆</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>3. Agent 有什么工作模式？</strong></p>
+<ul>
+<li>
+<p>ReAct：Reasoning+Acting 推理-&gt;行动-&gt;观察</p>
+<ul>
+<li>灵活，但是token消耗大</li>
+</ul>
+</li>
+<li>
+<p>Plan-and-Execute：</p>
+<ul>
+<li>是什么：规划后执行，想清楚完整计划</li>
+<li>项目参考：Plan Mode ，只读代码，不执行。token消耗少，因为只规划不写、不产生写操作的反复试错（注意不是「只推理一次」，规划阶段照样多轮读文件）</li>
+</ul>
+</li>
+<li>
+<p>Reflection：</p>
+<ul>
+<li>是什么：做完再检查：两种审查模式，隐式的反思机制</li>
+<li>项目参考：额外调一轮Agent，token成本翻倍。测试框架替代</li>
+</ul>
+</li>
+<li>
+<p>Multi-Agent：Coordinator + Worker</p>
+<ul>
+<li>Coordinator负责拆分任务，Worker在各自独立的Worktree里并行干活，汇总结果</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>4. 你说 Agent 能自主完成多步任务，那 Agent 怎么知道该停了？万一它一直循环下去怎么办？</strong></p>
+<ul>
+<li>
+<p><strong>Function Calling 协议</strong>：看模型是否返回工具调用，不调用则结束。</p>
+</li>
+<li>
+<p>防止死循环</p>
+<ul>
+<li>
+<p>给循环轮次加上一个<strong>硬上限</strong></p>
+</li>
+<li>
+<p>token用量监控</p>
+</li>
+<li>
+<p>官方做法：</p>
+<ul>
+<li>第一层 <strong>硬性限制</strong>：设置<strong>全局最大步数</strong>（如 N 步）、<strong>单工具的最大重试次数</strong></li>
+<li>第二层 <strong>重复检测</strong>：监控最近N步的工具调用序列，判断是否出现<strong>相同工具+相同描述</strong>的调用</li>
+<li>第三层 <strong>收敛性检测</strong>：追踪每步的<strong>进展指标</strong>，判断是否需要重新规划等</li>
+<li>第四层 建模是否需要外部<strong>信息的决策边界</strong>
+<ul>
+<li>太激进：信息不够则反复<strong>进入死循环</strong></li>
+<li>太保守：信息没有收集够</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>5. 你在简历里说独立完成整体架构设计，能简单讲一下分了哪几层、每层做什么？</strong></p>
+<ul>
+<li>
+<p>引擎层：LLM Client、Agent Loop</p>
+</li>
+<li>
+<p>工具层：内置工具、MCP 等</p>
+</li>
+<li>
+<p>交互层：CLI、Skill系统等</p>
+</li>
+<li>
+<p>安全层：危险命令检测、路径沙箱、HITL审批</p>
+</li>
+<li>
+<p>记忆层：持久化、上下文压缩</p>
+</li>
+</ul>
+<hr>
+<h2 id="function-calling--工具调用">Function Calling / 工具调用<a hidden class="anchor" aria-hidden="true" href="#function-calling--工具调用">#</a></h2>
+<p><strong>6. 你简历写熟悉 Function Calling 协议，能用大白话讲一下这个协议大概是怎么工作的？</strong></p>
+<ul>
+<li>
+<p>本质：模型 → 调用方的一次结构化通信</p>
+</li>
+<li>
+<p>Agent → LLM：<strong>工具列表和对话历史</strong>发给大模型，包括工具 name、description、input_schema</p>
+</li>
+<li>
+<p>LLM → 调用方：名字、调用 id、入参 json（tool_use）</p>
+</li>
+<li>
+<p>调用方 → LLM：调用 ID（tool_result），再发下一轮请求</p>
+</li>
+</ul>
+<hr>
+<p><strong>7. ReAct 范式能用大白话讲一下吗？它和普通 LLM 调用有啥区别？</strong></p>
+<ul>
+<li>
+<p>是什么：Reasoning + Acting，思考 → 行动 → 反思循环</p>
+</li>
+<li>
+<p>区别：关键在于<strong>状态的延续</strong>。LLM 可以看到之前的行为和结果，基于<strong>事实决策</strong>，而不是凭空生成</p>
+</li>
+</ul>
+<p><em>如果模型思考是错的应该怎么办？</em></p>
+<ul>
+<li>将工具错误明确标记<code>is_error=True</code>传回给模型，让模型清楚知道<strong>刚才哪一步失败了</strong></li>
+</ul>
+<hr>
+<p><strong>8. 你的 Agent Loop 一轮里大概会做哪些事？按顺序讲一遍。哪一步容易出 bug？</strong></p>
+<ol>
+<li>
+<p>检查上下文长度 → 超额则<strong>压缩</strong>（两层压缩机制）</p>
+</li>
+<li>
+<p>拼装输入：LLM 无状态，每轮都要把决策所需的一切重新打包成一次请求；物理上分三块 —— <code>system</code>、<code>tools</code>、<code>messages</code></p>
+<ul>
+<li>
+<p><strong>System Prompt</strong>（→ <code>system</code>）：Agent 的<strong>角色</strong>、<strong>行为规则</strong>、<strong>输出格式</strong></p>
+</li>
+<li>
+<p><strong>工具列表</strong>（→ <code>tools</code>）：每个工具的 name / description / input_schema，Function Calling 的基础</p>
+</li>
+<li>
+<p><strong>对话历史</strong>（→ <code>messages</code>）：历轮的<strong>用户消息</strong>、<strong>模型回复</strong>、<strong>tool_use</strong>、<strong>tool_result</strong>，是 Agent「<strong>状态延续</strong>」的载体</p>
+<ul>
+<li>
+<p><strong>环境信息</strong>（→ <code>messages</code> 开头）：cwd、OS、系统时间，让模型知道「跑在哪、什么时间」</p>
+</li>
+<li>
+<p><strong>项目指令</strong>（→ <code>messages</code> 开头）：<strong>CLAUDE.md</strong>，人手写的<strong>项目约定</strong> / 测试 / lint 命令</p>
+</li>
+<li>
+<p><strong>长期记忆</strong>（→ <code>messages</code> 开头）：跨会话的<strong>用户偏好</strong>与<strong>纠正反馈</strong>，Agent 自动提取</p>
+</li>
+<li>
+<p>（环境信息 → 项目指令 → 记忆）会话开头一次性注入到 <code>messages</code> 最前面（见第 21 题），之后每轮主要追加新的对话历史和工具结果</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>调用 LLM → 判断是否返回工具调用</p>
+<ul>
+<li>
+<p>不调用：直接结束本轮</p>
+</li>
+<li>
+<p>调用：把模型回复连同工具调用一起塞入历史，进入下一轮</p>
+</li>
+</ul>
+</li>
+<li>
+<p>工具调用过程：各种 <strong>hook</strong>，方便外部扩展</p>
+</li>
+<li>
+<p>Multi-Agent 场景：轮次开始时<strong>检查邮箱</strong>，把队友发来的<strong>消息拼进历史</strong></p>
+</li>
+</ol>
+<p><em>容易出 bug</em></p>
+<ul>
+<li>
+<p>对话一致性：孤儿调用（orphan tool_use）：</p>
+<ul>
+<li>原因：FC要求有一个结果tool_result。工具执行抛异常没正确返回/ESC中断</li>
+<li>解决方案：设计对话链校验逻辑，从<strong>持久化日志恢复</strong>时也会校验，发现孤儿就<strong>截断到最近一个完整边界</strong></li>
+</ul>
+</li>
+<li>
+<p>Multi-Agent：</p>
+<ul>
+<li>场景描述：Worker A看到WorkerB的消息，商定如何做决定</li>
+<li>任务重做 / 任务等待的竞态</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>9. 工具并行执行你是怎么设计的？怎么判断哪些工具可以并行？</strong></p>
+<ul>
+<li>
+<p><strong>可并行（只读不修改外部状态）</strong>：ReadFile、Glob（查找文件）、Grep（查找文件内容）</p>
+</li>
+<li>
+<p><strong>不可并行（写类工具）</strong>：WriteFile、EditFile、Bash</p>
+</li>
+<li>
+<p><strong>spawn 子 Agent 类工具</strong>：本身有副作用（<strong>创建 worktree、注册任务</strong>等共享状态）→ 不能并发，会竞争；但子 Agent 跑起来后是后台异步的，不阻塞主 Agent。并发能力通过 <strong>Background 模式</strong>实现，不是<strong>工具级并发</strong></p>
+</li>
+</ul>
+<p><em>分批算法：</em></p>
+<ul>
+<li>
+<p>遍历模型返回的工具调用列表，连续的<strong>并发安全工具合并到同一个并发批次</strong>，碰到非并发安全工具就开一个新的<strong>串行批次</strong></p>
+</li>
+<li>
+<p>好处：既保证了并发的安全，有保证了工具执行的效率</p>
+</li>
+</ul>
+<p>*追问：两个 ReadFile 读同一个文件，并发会有问题吗？</p>
+<ul>
+<li>单次ReadFile是只读IO，并发没有问题</li>
+</ul>
+<p><em>并发批次里有一个工具特别慢，怎么处理？</em></p>
+<ul>
+<li>给每个工具配备独立超时——避免卡住整批</li>
+<li>让慢工具流式产出中间状态</li>
+</ul>
+<hr>
+<p><strong>10. Plan Mode 是什么？为什么要专门搞这个模式？</strong></p>
+<ul>
+<li>
+<p>是什么：<strong>只读规划模式</strong>，LLM 只能读文件、grep,glob收集信息，bash也能用但是有限制比如ls、find、git log等不会产生副作用的命令</p>
+</li>
+<li>
+<p>为什么：自动化执行的边界要交给<strong>用户控制</strong>，先让用户确认计划再执行，适合复杂多步改动</p>
+</li>
+</ul>
+<p><em>如何实现Agent按Plan执行</em></p>
+<ul>
+<li>
+<p><strong>切换权限</strong>：Agent规划完成后会调用ExitPlanMode工具，用户在UI上确认同意。系统自动恢复到之前的权限模式，权限层立即生效</p>
+</li>
+<li>
+<p>工程上</p>
+<ul>
+<li>Plan会自动<strong>持久化写到磁盘空间</strong>，不怕<strong>上下文压缩丢掉</strong></li>
+<li>退出<strong>Plan Mode的时候</strong>，完整的<strong>Plan文本</strong>会通过<strong>工具返回值</strong>回滚到模型上下文里</li>
+</ul>
+</li>
+</ul>
+<p><em>Plan Mode如何保证质量</em></p>
+<ul>
+<li>
+<p>System prompt 的结构化约束</p>
+<ul>
+<li>模型输出：<strong>上下文分析、推荐方案、设计的文件路径、可复用的现有代码、验证方式</strong></li>
+</ul>
+</li>
+<li>
+<p>Plan出错最常见的原因时没读够代码，Prompt里我强制要求Plan Mode至少调多次工具读相关文件</p>
+</li>
+</ul>
+<hr>
+<p><strong>11. 你的工具系统是怎么注册和分发的？新加一个工具要改多少地方？</strong></p>
+<ul>
+<li>
+<p>工具系统核心是一个字典，<strong>key-value</strong>，每个工具自己声明：<strong>叫什么、是干什么的、入参长什么样、属于读还是写、能不能并发</strong></p>
+</li>
+<li>
+<p>新加一个工具：写<strong>代码继承基类</strong>，再把它扔进字典里，剩下的都是自动的</p>
+<ul>
+<li>工具描述从入参定义里直接推出来</li>
+<li>权限根据<strong>读写命令的设置</strong>来定</li>
+<li>并发分批根据并发设置来定</li>
+</ul>
+</li>
+<li>
+<p>MCP 工具更省事，配置即生效。启动时连上MCP Server</p>
+</li>
+</ul>
+<hr>
+<p><strong>12. 工具执行结果太大，比如一个 grep 跑出来 50MB 输出，怎么避免塞满上下文？</strong></p>
+<ul>
+<li>
+<p>检查结果大小 → 超过阈值把原始内容写进会话目录下一个专门的工具结果子目录里（<strong>文件路径记载</strong>）</p>
+</li>
+<li>
+<p>模型需要完整内容时，自己调用 <strong>ReadFile</strong> 去读取这个文件</p>
+</li>
+<li>
+<p>每一轮 Loop 开始时遍历历史，把同一条消息里的工具结果按<strong>大小排序</strong>处理。根据<strong>落盘</strong>进行处理</p>
+</li>
+</ul>
+<hr>
+<h2 id="权限与安全">权限与安全<a hidden class="anchor" aria-hidden="true" href="#权限与安全">#</a></h2>
+<p><strong>13. 你简历说五层权限拦截，能从内到外讲一遍吗？</strong></p>
+<ul>
+<li>
+<p><strong>起初</strong>：最开始只有 HITL 一层，就是每次工具调用都弹框问用户-&gt;allow太多</p>
+</li>
+<li>
+<p><strong>五层（由内到外）：</strong></p>
+<ol>
+<li>
+<p><strong>危险命令检测</strong>：只针对 Bash 类工具，正则匹配 <code>rm -rf/</code>、<code>mkfs</code>、fork bomb 等</p>
+</li>
+<li>
+<p><strong>规则引擎</strong>：用户级、项目级、本地级三层规则文件，按 Tool + pattern匹配</p>
+</li>
+<li>
+<p><strong>路径沙箱</strong>：文件类工具，把路径解析成<strong>绝对路径</strong>，看是不是落在项目根目录里—&gt;防止Agent去改系统级别文件</p>
+</li>
+<li>
+<p><strong>权限模式</strong>：default（正常询问）、acceptEdits（接受编辑）、plan 几种挡位</p>
+</li>
+<li>
+<p><strong>HITL</strong>（Human In The Loop）：最外层兜底，人工确认</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>组合逻辑（三条铁律，最容易被追问）：</strong></p>
+<ol>
+<li>
+<p><strong>deny 短路</strong>：任何一层判「拒绝」就立刻中断，后面的层无权翻盘（fail-safe，失败朝安全方向倒）</p>
+</li>
+<li>
+<p><strong>allow ≠ 直接执行</strong>：某层放行后仍要过后续安全关（规则放行的 Bash，危险命令检测照样拦）</p>
+</li>
+<li>
+<p><strong>HITL 是最后手段</strong>：能被规则/模式自动判定的就不打扰人，只有「无人能决定」才落到第 5 层</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>一个调用的闯关例子（面试时拿这个讲，立刻具体）：</strong></p>
+<ul>
+<li>
+<p><code>rm -rf /</code> → ① 直接拦死，到不了后面</p>
+</li>
+<li>
+<p><code>npm test</code>（规则里有 <code>Bash(npm test:*)</code> allow）→ 过 ①、② 放行，不弹框</p>
+</li>
+<li>
+<p>写 <code>../../../etc/hosts</code> → 过 ①②，③ 沙箱发现跑出项目根，拦</p>
+</li>
+<li>
+<p>acceptEdits 模式改项目内文件 → 过 ①②③，④ 自动放行</p>
+</li>
+<li>
+<p>default 模式跑没见过的命令 → 一路穿到 ⑤ 弹框问人</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>加分句</strong>：权限拒绝本身会作为 <code>tool_result</code> 回传给模型，让它知道被拦了、换种方式做——呼应 Q43「反馈回路」，用确定性机制兜住模型的不确定性（Harness 思想）</p>
+</li>
+</ul>
+<hr>
+<h2 id="mcp">MCP<a hidden class="anchor" aria-hidden="true" href="#mcp">#</a></h2>
+<p><strong>14. MCP 是什么？为什么不直接把工具写在 Agent 进程里？</strong></p>
+<ul>
+<li>
+<p>是什么：Model Context Protocol，把工具放到<strong>独立进程</strong>里跑，Agent 通过 MCP Client 连上去，拿到工具列表，代理调用</p>
+</li>
+<li>
+<p>为什么：<strong>配置即生效</strong>。用户想加一个新工具，不需要改 Agent 任何代码，编辑一下配置文件指定 MCP <strong>Server</strong> 启动命令即可</p>
+</li>
+</ul>
+<p><em>追问：MCP 引入了进程间通信，性能损耗大吗？</em></p>
+<ul>
+<li><strong>IPC</strong> 开销完全可以忽略，性能瓶颈在工具实现的内部逻辑</li>
+</ul>
+<hr>
+<p><strong>15. MCP 都支持哪些通信方式？</strong></p>
+<ul>
+<li>
+<p><strong>本质</strong>：三种传输运的都是 <strong>JSON-RPC 2.0</strong> 消息，区别只在「<strong>Server</strong> 跑在哪、走哪条管道」——<strong>传输是管道，JSON-RPC 是管道里的内容</strong></p>
+</li>
+<li>
+<p><strong>1. stdio（标准输入输出）——最常用</strong></p>
+<p>Agent 直接把 MCP Server 当成一个<strong>子进程</strong>启动起来，两边通过标准输入/输出（就是程序间最基本的文本流通道）交换 JSON-RPC 格式的消息。</p>
+<ul>
+<li>特点：不需要任何网络配置（因为根本没走网络，就是同一台机器上两个进程对话）；Server 的生命周期完全跟着 Agent 走——Agent 退出，子进程也跟着结束。</li>
+<li>适用场景：本地工具，比如读写文件、代码搜索、git 操作这些天然就在本机执行的任务。</li>
+<li>优点：最简单、最稳定、延迟极低（微秒级，因为是进程间通信，不走网络）。</li>
+</ul>
+</li>
+<li>
+<p><strong>2. SSE（Server-Sent Events）</strong></p>
+<p>本质上是基于 <strong>HTTP 长连接</strong>：客户端用普通的 HTTP POST 发请求，服务端通过 SSE（一种服务器持续向客户端推送数据的技术）把消息流式推回来。</p>
+<ul>
+<li>适用场景：连接已经独立部署在<strong>远端的服务</strong>，比如公司内部的 <strong>RAG 系统、知识库。</strong></li>
+<li>优点：一个 Server 可以<strong>同时服务多个客户端</strong>，适合团队共享同一个工具/服务。</li>
+<li>缺点（追问里提到）：走网络，延迟明显比 stdio 高（几十毫秒起步），还要处理认证、网络抖动、超时重连这些复杂问题。</li>
+</ul>
+</li>
+<li>
+<p><strong>3. Streamable HTTP</strong></p>
+<p>这是 MCP 协议<strong>后来新增的</strong>，设计目标是逐步替代 SSE。</p>
+<ul>
+<li>和 SSE 的核心区别：<strong>不要求服务端维持长连接</strong>。每次请求都是独立的 HTTP 调用，服务端可以灵活选择直接返回普通 JSON，或者按需开一个 SSE 流。</li>
+<li>优点：对&quot;无状态部署&quot;更友好，比如 <strong>Serverless 环境</strong>（按需启动、用完即关，不适合维持长连接的场景）。</li>
+<li>现状：目前生态里大部分 Server 还是用 stdio 或 SSE，Streamable HTTP 还在推广阶段，没完全普及。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>16. MCP Server 启动失败，你的 Agent 怎么处理？让 Agent 启动失败还是降级？</strong></p>
+<ul>
+<li>
+<p>降级，不让 Agent 启动失败</p>
+</li>
+<li>
+<p>MCP 管理器在注册阶段对每个 Server 做<strong>异常隔离</strong>：成功则连上拉取工具，失败则<strong>记录日志</strong></p>
+</li>
+<li>
+<p>MCP 是扩展能力，不是核心能力，一个 MCP Server 挂掉不应该影响整个 Agent 运行</p>
+</li>
+</ul>
+<hr>
+<p><strong>17. 你简历写&quot;MCP 工具延迟加载，Token 占用减少 85%&quot;，具体是怎么实现的？</strong></p>
+<ul>
+<li>
+<p>原因：<strong>Tool 太多</strong>，把完整 schema 全部塞进上下文，200k 窗口很快被工具定义挤占，多聊几轮就触发压缩</p>
+</li>
+<li>
+<p>做法：系统提示词告诉模型「<strong>有些工具还没加载，需要先通过 ToolSearch 查询才能调用</strong>」，注册时只传<strong>名称</strong>，不传完整 schema，LLM 按需发现后再加载完整定义</p>
+</li>
+</ul>
+<hr>
+<h2 id="上下文压缩">上下文压缩<a hidden class="anchor" aria-hidden="true" href="#上下文压缩">#</a></h2>
+<p><strong>18. 上下文压缩具体怎么做的？分别什么时机触发？</strong></p>
+<ul>
+<li>
+<p><strong>落盘</strong>：大工具结果放到磁盘，不进历史（单结果超50k字符或者一轮工具总和超200k）-&gt; 只留2K预览 + 文件路径</p>
+<ul>
+<li>开销很低-&gt;完整内容调用ReadFile工具去读那个文件即可</li>
+</ul>
+</li>
+<li>
+<p><strong>全量压缩</strong>：每一轮 Loop 检查上轮输入 <strong>token</strong> 是否超过阈值，超过则调用 LLM 生成<strong>对话摘要+边界提示</strong>替换<strong>旧历史</strong>，CLAUDE的做法是上一轮20K+13K这一轮次</p>
+<ul>
+<li>原因：落盘不够用，上下文依然接近于爆炸，这个时候需要调用LLM自己来生成一份对话摘要</li>
+</ul>
+</li>
+<li>
+<p><strong>用户主动 compact</strong>：用户主动触发压缩命令</p>
+<ul>
+<li>手动compact的安全余量只有3k</li>
+</ul>
+</li>
+</ul>
+<p><em>自动压缩后，模型忘了用户最初的需求怎么样</em></p>
+<ul>
+<li>摘要压缩的Prompt里列了9个必须保留的部分：第六项是尽量保留用户的消息原文，prompt里写得是约束语气，本质还是prompt层面的引导</li>
+</ul>
+<p><em>频繁压缩导致的历史对话失真问题</em></p>
+<ul>
+<li>
+<p>压缩只会替换内存里的对话历史，磁盘里的日志不会更改</p>
+</li>
+<li>
+<p>用户感知生命周期</p>
+</li>
+</ul>
+<hr>
+<p><strong>19. 摘要本身也要调用 LLM，万一摘要这次调用又超了上下文呢？</strong></p>
+<ul>
+<li>
+<p><strong>预防</strong>：压缩触发时，<strong>确保剩余 token 余量</strong>足够生成摘要不超限</p>
+</li>
+<li>
+<p><strong>失败兜底</strong>：检测上下文长度，丢掉最早的1/5，最多重复三次-&gt;三次后触发压缩熔断器，后续就不再自动压缩了</p>
+</li>
+</ul>
+<hr>
+<h2 id="记忆系统">记忆系统<a hidden class="anchor" aria-hidden="true" href="#记忆系统">#</a></h2>
+<p><strong>20. 记忆系统怎么设计的？为什么要分层？</strong></p>
+<ul>
+<li>
+<p>用户级：/home下，跨项目的用户偏好、纠正反馈等，如<strong>编码风格，命名规范</strong></p>
+</li>
+<li>
+<p>项目级：.minicoder下/ 项目知识、参考信息，只对<strong>当前项目生效</strong></p>
+</li>
+<li>
+<p>分层原因：不同知识的作用域不同——跨项目的偏好（编码风格等）放<strong>用户级</strong>，只对当前项目生效的（技术栈、架构约定等）放<strong>项目级</strong>，避免互相污染</p>
+</li>
+<li>
+<p>分层</p>
+<ul>
+<li>工作记忆：200k token就是Agent的大脑带宽，当前正在处理的所有信息总和</li>
+<li>长期记忆：对应到所有持久化到磁盘的信息
+<ul>
+<li><strong>会话持久化</strong>：和Agent的每次对话</li>
+<li><strong>项目指令文件</strong>：预先写好的项目知识和编码规范，</li>
+<li><strong>自动记忆</strong>：Agent在对话中自动累计的经验</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>21. 记忆什么时候被注入对话？怎么注入？</strong></p>
+<ul>
+<li>
+<p><strong>注入时机</strong>：会话开始或第一次调用时，用一个<strong>注入标志位</strong>防止重复；压缩之后注入标志重置，下一轮重新注入到摘要后面</p>
+<ul>
+<li>
+<p><em>为什么只注一次</em>：记忆内容固定，每轮都塞是浪费 token + 破坏 prompt cache，所以用布尔标志位，注过就跳过</p>
+</li>
+<li>
+<p><em>为什么压缩后要重置</em>：上下文压缩会把旧历史（含之前注入的记忆）换成摘要，记忆可能被压没；所以压缩后把标志重置，下一轮重新注入一次、接在摘要后面，保证记忆不丢</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>注入位置</strong>：对话历史开头，环境信息之后</p>
+</li>
+<li>
+<p><strong>注入顺序</strong>：</p>
+<ol>
+<li>
+<p>环境信息（cwd、OS、系统时间）</p>
+</li>
+<li>
+<p>项目指令（CLAUDE.md）</p>
+</li>
+<li>
+<p>自动记忆文件内容</p>
+</li>
+<li>
+<p>一条假装的助手消息：「已了解项目背景和记忆」</p>
+<ul>
+<li><em>为什么要伪造这条</em>：FC 对话是 user/assistant 交替的。前面塞的背景信息以 user 消息出现，若紧接着就是真正的用户问题，就成了「user（背景）→ user（真问题）」两条 user 连着，不自然、易混淆；伪造一条 assistant「收到」把对话补成「user（背景）→ assistant（收到）→ user（真问题）」，给模型一个台阶确认接收背景（Claude Code 同款做法）</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="multi-agent">Multi-Agent<a hidden class="anchor" aria-hidden="true" href="#multi-agent">#</a></h2>
+<p><strong>22. 为什么需要多 Agent？单 Agent 不够用吗？多 Agent 协作有几种模式？</strong></p>
+<ul>
+<li>
+<p><strong>单 Agent 瓶颈：</strong></p>
+<ul>
+<li>
+<p>上下文窗口先触顶</p>
+</li>
+<li>
+<p>串行带来的效率低下</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>多 Agent 适合的场景</strong>：<strong>任务可拆分且单任务耗时明显</strong></p>
+</li>
+<li>
+<p><strong>Agent Team 模式：</strong></p>
+<ul>
+<li>
+<p>多个 Agent 共享<strong>任务清单和邮箱通信</strong>，每个 Agent 独立在 <strong>Worktree</strong> 里跑</p>
+</li>
+<li>
+<p>适合：并行独立推进、不需要频繁协调的场景</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Coordinator 模式：</strong></p>
+<ul>
+<li>
+<p>一个 <strong>Coordinator 统筹</strong>，spawn 多个 Worker，自己不写代码，只负责任务拆解和资源协调</p>
+</li>
+<li>
+<p>Worker 返回给 Coordinator 的是 XML 格式，更紧凑，对上下文压力更小</p>
+</li>
+<li>
+<p>适合：需要<strong>频繁协调</strong>的场景</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>两模式对比（一句话记忆）：</strong></p>
+</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Agent Team（去中心化）</th>
+          <th>Coordinator（中心化）</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>结构</td>
+          <td>多个平等 Agent</td>
+          <td>1 个 Coordinator + 多个 Worker</td>
+      </tr>
+      <tr>
+          <td>谁分工</td>
+          <td>共享任务清单，自取</td>
+          <td>Coordinator 派活，自己不写代码</td>
+      </tr>
+      <tr>
+          <td>通信</td>
+          <td>邮箱互发</td>
+          <td>Worker 把结果（XML）回给 Coordinator</td>
+      </tr>
+      <tr>
+          <td>适合</td>
+          <td>并行独立、<strong>不需频繁协调</strong></td>
+          <td><strong>需频繁协调</strong>、要人统筹汇总</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<p><strong>23. 多 Agent 之间用邮箱通信，为什么不用直接调用？</strong></p>
+<ul>
+<li>
+<p>直接调用会出现<strong>同步阻塞</strong> → Agent A 调用 Agent B 时整个 Loop 卡住</p>
+</li>
+<li>
+<p><strong>邮箱模型：</strong></p>
+<ul>
+<li>
+<p>A 给 B 发消息立即返回，不阻塞；B 在自己的 Loop 里<strong>主动消费邮箱</strong></p>
+</li>
+<li>
+<p>消息存储用<strong>文件系统</strong>，每个消息一个 JSON 文件，天然解耦</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="工程综合">工程综合<a hidden class="anchor" aria-hidden="true" href="#工程综合">#</a></h2>
+<p><strong>24. 你做这个 Agent，最大的工程挑战是什么？</strong></p>
+<ul>
+<li>
+<p>多 Agent 协作带来的分布式状态同步</p>
+</li>
+<li>
+<p>上下文预算管理</p>
+<ul>
+<li>大结果落盘预览</li>
+<li>接近上限LLM生成摘要替换历史</li>
+<li>摘要本身超限时丢最早的轮次重试+熔断</li>
+</ul>
+</li>
+<li>
+<p>模型的不确定性</p>
+</li>
+</ul>
+<hr>
+<p><strong>25. 你的 Skill 系统是怎么设计的？Skill、MCP、Function Calling 三者是什么关系？</strong></p>
+<ul>
+<li>Skill
+<ul>
+<li>优先级
+<ul>
+<li>项目级放在.minicoder/skills</li>
+<li>用户级放home目录</li>
+<li>内置的打包在代码里</li>
+</ul>
+</li>
+<li>执行模式
+<ul>
+<li>inline模式：Skill的prompt注入当前会话，Agent带着额外指令继续跑</li>
+<li>fork模式：开一个独立子Agent，有自己的对话历史和过滤过的工具集</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>inline vs fork 对比（关键追问点）</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>inline</th>
+          <th>fork</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>怎么跑</td>
+          <td>Skill 的 prompt <strong>注入当前会话</strong>，主 Agent 带着继续</td>
+          <td><strong>开独立子 Agent</strong> 执行</td>
+      </tr>
+      <tr>
+          <td>上下文</td>
+          <td>共用主上下文</td>
+          <td><strong>自己的对话历史</strong>，跑完不污染主上下文</td>
+      </tr>
+      <tr>
+          <td>工具</td>
+          <td>主 Agent 工具集</td>
+          <td><strong>过滤过的工具集</strong>（只给它要的）</td>
+      </tr>
+      <tr>
+          <td>适合</td>
+          <td>轻量、和当前任务连贯</td>
+          <td>重、独立、想隔离上下文</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>为什么要 fork：有些 Skill 跑起来产生一堆中间内容，塞主会话会<strong>污染上下文 + 烧 token</strong>；fork 出去让子 Agent 自己折腾，只把<strong>结果</strong>带回来——和 Multi-Agent 隔离同思路</li>
+</ul>
+<p><strong>Skill、MCP、Function Calling 三者关系（三个层次）</strong></p>
+<ul>
+<li>
+<p>Function Calling：最底层的协议——<strong>模型↔工具之间怎么通信</strong>（tool_use / tool_result）</p>
+</li>
+<li>
+<p>MCP：工具的一种来源——把工具放<strong>独立进程</strong>，最终还是通过 <strong>Function Calling</strong> 暴露给模型</p>
+</li>
+<li>
+<p>Skill：最上层的能力封装——打包的是「知识和工作流」，本身不是工具，而是告诉模型「该用哪些工具、按什么步骤做」，按需加载</p>
+</li>
+</ul>
+<hr>
+<p><strong>26. 为什么 Agent 需要工具？没有工具的 LLM 不也能回答问题吗？</strong></p>
+<ul>
+<li>感知 -&gt; 决策 -&gt; 行动 循环</li>
+</ul>
+<p><em>工具是越多越好吗</em></p>
+<ul>
+<li>
+<p>工具数量影响模型的选择质量</p>
+</li>
+<li>
+<p>工具描述的质量比数量更加重要</p>
+</li>
+</ul>
+<hr>
+<p><strong>27. 为什么 Agent 需要记忆？没有记忆不也能完成任务吗？</strong></p>
+<ul>
+<li>
+<p>跨会话的知识延续：用户偏好、纠正反馈、等。每次新会话开始时注入回对话历史</p>
+</li>
+<li>
+<p>分层原因：因为不同知识的作用域不同。编码风格这种偏好等放<strong>用户级</strong>、项目的技术栈等放到<strong>项目级</strong></p>
+</li>
+</ul>
+<p><em>CLAUDE.md这种项目指令文件跟记忆有什么区别？</em></p>
+<ul>
+<li>
+<p>CLAUDE.md这种是人写的项目指令，内容是项目约定和工程规范</p>
+</li>
+<li>
+<p>记忆则是Agent自动提取的，从对话中抓取用户偏好和反馈，写进记忆文件里</p>
+</li>
+</ul>
+<hr>
+<h2 id="项目对比与补充">项目对比与补充<a hidden class="anchor" aria-hidden="true" href="#项目对比与补充">#</a></h2>
+<p><strong>28. 你的 MewCode 项目和 Claude Code 相比，核心差异是什么？有什么是你独有的设计？</strong></p>
+<ul>
+<li>
+<p>定位和体量：Coding Agent的每一层架构走通作为目标</p>
+</li>
+<li>
+<p>生态和精细度：</p>
+<ul>
+<li>CC做了LSP集成、OAuth、MCP官方注册表等。</li>
+<li>CC的上下文管理上有五六层压缩策略针对不同的粒度分别优化。MewCode只做了三层</li>
+<li>CC的工具数量上有50多个覆盖各种垂直场景。MewCode内置了8个核心工具+MCP扩展</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>29. 自己做 Agent 的时候，踩过最大的坑是什么？</strong></p>
+<ul>
+<li>
+<p>对话历史的<strong>一致性问题</strong>：</p>
+<ul>
+<li>
+<p>Fuction Calling的硬约束：每个tool_use块必须有且仅有一个对应的tool_result块，缺了或多了，下一轮API调用直接报错，整个会话崩掉</p>
+</li>
+<li>
+<p>场景：</p>
+<ul>
+<li>用户中断</li>
+<li>恢复会话</li>
+<li>压缩</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>30. 从开发者的角度，做 Agent 最难的部分是什么？</strong></p>
+<ul>
+<li>
+<p>确定性与不确定性混在一起</p>
+<ul>
+<li>
+<p>确定性问题：对话历史的协议合法性，工具分批的并发控制，权限五层的锻炼库</p>
+</li>
+<li>
+<p>不确定性问题：</p>
+<ul>
+<li>Prompt问题：模型给了错误的参数</li>
+<li>工程问题：上下文压缩丢了关键信息导致模型做了错误的决策</li>
+<li>debug的难题：唯一可靠的方法是回放完整的对话历史，逐轮看模型的推理和工具调用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="ai-编程相关">AI 编程相关<a hidden class="anchor" aria-hidden="true" href="#ai-编程相关">#</a></h2>
+<p><strong>31. 你用的是什么 AI 编程工具？用的哪个模型？</strong></p>
+<ul>
+<li>
+<p>Claude Code —— 跑在终端里，底层用 Claude Opus 4.8（上下文 200K）</p>
+<ul>
+<li>⚠️ 易错点：1M token 上下文是 <strong>Sonnet</strong> 的 beta 特性，不是 Opus；版本上也没有「Opus 4.6」（最新 Opus 是 4.8，4.6 是 Sonnet）。按你实际用的模型据实填</li>
+</ul>
+</li>
+<li>
+<p>加轮次后的工具调用花的tokens数量明显更少</p>
+</li>
+</ul>
+<hr>
+<p><strong>32. 在使用 Claude Code 时候的心得和技巧？</strong></p>
+<ul>
+<li>
+<p>写好CLAUDE.md的重要性：写清楚项目的测试命令和lint命令，让Claude改完代码能自己验证</p>
+</li>
+<li>
+<p>上下文资源的稀缺性：<code>/clear</code></p>
+</li>
+</ul>
+<hr>
+<p><strong>33. 如何用 AI Coding 工具从需求到实现全流程？</strong></p>
+<ul>
+<li>
+<p>第一阶段：<strong>需求对齐（Chat → Spec）</strong>：将需求描述清楚，聊完以后让Claude整理成一个spec文件，确认无误再动手</p>
+</li>
+<li>
+<p>第二阶段：<strong>方案设计（Plan Mode）</strong>：需求确认下来就进了<strong>Plan Mode</strong>出方案，让Claude读完相关代码后出个<strong>实施方案</strong></p>
+</li>
+<li>
+<p>第三阶段：<strong>逐步实施（Spec/SDD 模式 + 小步 Commit）</strong>：方案完成后，就用Spec模式，先让Claude生成需求规格和任务拆分，按照SDD的方式一步一步推进，改完一步commit一步。每步完成后让Claude自己跑测试、跑lint，通过了再继续</p>
+</li>
+</ul>
+<hr>
+<p><strong>34. 你怎么用 AI 做项目的，全部交给 AI 生成还是每次只提一部分？</strong></p>
+<p><strong>三档任务策略</strong></p>
+<ul>
+<li>
+<p><strong>小活</strong>（改名/格式/拼写）：直接让 AI 做，无需前戏</p>
+</li>
+<li>
+<p><strong>中等</strong>（加功能/修 bug）：给明确范围 + 验收条件，跑完测试收工</p>
+</li>
+<li>
+<p><strong>大活</strong>（架构/新模块）：三阶段走↓</p>
+<ul>
+<li><strong>第一阶段·需求对齐</strong>（Chat → Spec）：聊清楚需求，让 Claude 整理成 spec 文件，确认无误再动手</li>
+<li><strong>第二阶段·方案设计</strong>（Plan Mode）：进 Plan Mode，让 Claude 读完相关代码后出实施方案，确认后再执行</li>
+<li><strong>第三阶段·逐步实施</strong>（SDD + 小步 Commit）：Claude 生成任务拆分，每个子任务单独一轮，改完自动跑测试 + lint，通过再 commit，commit 完再继续</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>35. 你怎么保证 AI 写的代码是正确的？</strong></p>
+<p><strong>三层质量保障</strong></p>
+<ul>
+<li><strong>自动化兜底</strong>（Hooks）：测试 + lint 自动跑，拦住大部分明显错误，但拦不住「happy path 写得很对，异常路径漏了」</li>
+<li><strong>人工审查</strong>（每次改完过 diff）：重点看两个地方——边界条件有没有处理、和现有代码的交互是不是对的</li>
+<li><strong>第二个会话审查</strong>（关键改动）：写代码的 Claude 已有偏见，换一个全新上下文的视角更容易发现问题</li>
+</ul>
+<hr>
+<p><strong>36. Claude Code 有哪些常用命令？</strong></p>
+<p><strong>四个高频命令</strong></p>
+<ul>
+<li><strong><code>/clear</code></strong>：每个独立任务前清一次上下文——一个会话里做太多事，后面输出质量会明显下降</li>
+<li><strong><code>/compact</code></strong>：长任务必备，上下文涨到 70% 左右手动压缩一下，可带参数指定压缩时重点保留什么</li>
+<li><strong><code>/plan</code></strong>：复杂任务前进 Plan Mode，Claude 只读不写，看完相关代码出方案，确认后再执行——避免上来就改然后方向跑偏</li>
+<li><strong><code>/rewind</code></strong>：救命用，改完发现不对直接回退到上一个检查点，比手动 <code>git checkout</code> 方便</li>
+</ul>
+<p><strong>其他会用到的</strong></p>
+<ul>
+<li>命令：<code>/init</code>、<code>/review</code>、<code>/btw</code>、<code>/mcp</code>（非每天必用）</li>
+<li>快捷键：<code>Esc</code> 中断、<code>Shift+Tab</code> 切换模式</li>
+</ul>
+<p><strong>值得了解的冷门用法</strong></p>
+<ul>
+<li><strong><code>/btw</code></strong>：任务中途想问不相关的问题，用 <code>/btw</code> 问完直接过去，不进对话历史、不影响后续上下文</li>
+<li><strong><code>claude -c</code></strong>：CLI 参数，继续上一个会话</li>
+<li><strong><code>claude -p &quot;task&quot;</code></strong>：非交互模式，可以用在脚本</li>
+</ul>
+<hr>
+<p><strong>37. 有没有遇到过 AI 应用或工具无法解决的场景？</strong></p>
+<p><strong>两个真实案例</strong></p>
+<ul>
+<li><strong>流式 parser 问题</strong>：让 Claude 写 OpenAI 兼容协议的流式解析器，单工具调用没问题，一遇到多工具交错 delta 就乱——改了三四版都不对。最后自己画状态机理清路由逻辑，手写核心逻辑，只让 Claude 补边界处理和测试</li>
+<li><strong>压缩死循环 bug</strong>：压缩丢了关键 <code>tool_result</code>，症状是模型反复调同一个工具，因果链很长，AI 只会在症状位置打补丁——最后自己回放 JSONL 日志逐轮对比才找到根因</li>
+</ul>
+<p><strong>AI 搞不定的问题类型</strong></p>
+<ul>
+<li>跨多个层面的<strong>全局推理</strong></li>
+<li>需要<strong>隐性知识</strong>才能判断的问题（项目背景、历史决策）</li>
+</ul>
+<p><strong>这些局限未来能解决吗</strong></p>
+<ul>
+<li><strong>能改善</strong>：上下文窗口变大、推理能力变强，「因果链长的 bug」会逐步好转</li>
+<li><strong>本质问题</strong>：隐性知识不是 AI 的问题，是信息没被显式化——把决策背景写进文档、写进 <code>CLAUDE.md</code>，AI 就能用上 → 这也是 Harness Engineering 强调知识库建设的原因</li>
+</ul>
+<hr>
+<h2 id="claude-code-源码相关">Claude Code 源码相关<a hidden class="anchor" aria-hidden="true" href="#claude-code-源码相关">#</a></h2>
+<p><strong>38. 介绍一下 Claude Code 主循环 Query 的流程？</strong></p>
+<p><strong>整体结构</strong></p>
+<ul>
+<li>
+<p>主循环入口 <code>QueryEngine.submitMessage()</code> → 并行拉取环境信息（系统提示词、<code>CLAUDE.md</code>、git status）拼好上下文 → 进入 <code>queryLoop()</code></p>
+</li>
+<li>
+<p>核心是一个 <code>while(true)</code> + state 对象跨轮传递状态，每轮三步：<strong>上下文预处理</strong>（裁剪/压缩/摘要，防爆）→ <strong>调模型</strong>拿流式响应 → <strong>判断有无 <code>tool_use</code></strong>，有就执行工具把结果拼回对话 continue，没有就 break</p>
+</li>
+</ul>
+<p><strong>两个设计细节</strong></p>
+<ul>
+<li><strong>Streaming Tool Execution</strong>：模型还在流式输出时，前面已完成的 <code>tool_use block</code> 就已经并行执行了，不等整个响应结束——MewCode 实现了同样的思路，多工具场景延迟改善明显</li>
+<li><strong>为什么用循环不用递归</strong>：递归每轮叠一层帧，长任务几十上百轮有栈溢出风险；循环只在一层帧里跑，内存恒定，也方便断点恢复</li>
+</ul>
+<p><strong>终止条件</strong>：回复里无 <code>tool_use</code> → break；兜底 <code>maxTurns</code> 防死循环</p>
+<hr>
+<p><strong>39. Claude Code 的记忆架构是什么？</strong></p>
+<p><strong>两套机制：静态注入 + 动态检索</strong></p>
+<ul>
+<li>
+<p><strong>静态注入——CLAUDE.md 层级加载</strong>：从当前目录往上层层遍历，收集各层配置文件全部拼在一起注入上下文：</p>
+<ul>
+<li>
+<p>项目根目录 <code>CLAUDE.md</code>、<code>.claude/rules/</code> 规则文件</p>
+</li>
+<li>
+<p>用户级 <code>~/.claude/CLAUDE.md</code>、企业全局配置</p>
+</li>
+<li>
+<p>两个额外能力：<code>@include</code> 引入其他文件；<code>paths: frontmatter</code> 条件注入（只有操作到某目录才加载对应规则）→ 让团队把编码规范、架构约定跟代码一起版本管理</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>动态检索——Auto Memory 系统</strong></p>
+<ul>
+<li>记忆文件存在 <code>~/.claude/projects/&lt;slug&gt;/memory/</code>，<code>MEMORY.md</code> 做索引</li>
+<li>每轮用户输入进来时，<strong>异步</strong>启动 prefetch，用用户消息跟记忆文件 frontmatter 做相关性匹配，选出最相关几条，工具执行后作为 attachment 注入</li>
+<li>异步的好处：模型流式输出那段时间刚好把检索做完了，不阻塞主循环</li>
+</ul>
+</li>
+<li>
+<p>Mewcode的简要实现：每隔几轮用 LLM 提取关键事实存进 <code>auto_memory.json</code>，下次全量注入——记忆条数少时全量反而比相关性检索更简单可靠</p>
+</li>
+</ul>
+<p><strong>为什么用 LLM 做相关性判断而不是向量搜索？</strong></p>
+<blockquote>
+<p>关键词匹配搞不定语义差异（「别用 mock」≠「integration tests must hit a real database」）；向量搜索要维护嵌入索引，记忆文件频繁增删改同步是额外负担；记忆文件通常就几十个，Sonnet 直接读 frontmatter 判断，成本低延迟可控</p></blockquote>
+<hr>
+<p><strong>40. Claude Code 是如何去检索代码之间的相关性的？比如给一个中文需求怎么定位代码？</strong></p>
+<ul>
+<li>
+<p><strong>三个工具</strong>的调用</p>
+<ul>
+<li>GrepTool（正则搜内容）</li>
+<li>GlobTool（文件名匹配）</li>
+<li>FileReadTool（读文件）</li>
+</ul>
+</li>
+<li>
+<p><strong>搜索策略由模型自主决定</strong>：直接根据对代码库的理解推理关键词，线索不够就调整策略多轮迭代</p>
+</li>
+<li>
+<p><strong>大仓库效率</strong>：速度不是瓶颈（ripgrep 百万行只需几百毫秒），消耗在模型选关键词的 LLM 调用次数；好处是零预处理、任何语言通用</p>
+</li>
+<li>
+<p><strong>MewCode 实现</strong>：Mewcode标准库实现了简化版 GrepTool，核心思路一致，实测两三轮基本能定位目标代码</p>
+</li>
+</ul>
+<hr>
+<h2 id="harness-相关">Harness 相关<a hidden class="anchor" aria-hidden="true" href="#harness-相关">#</a></h2>
+<p><strong>41. Harness Engineering 是什么？</strong></p>
+<ul>
+<li>
+<p><strong>核心公式：Agent = Model + Harness</strong></p>
+<ul>
+<li>Model = CPU，只管算；Context Window = RAM，断电就没；Harness = 操作系统，管调度、权限、I/O；Agent = 跑在上面的应用程序</li>
+<li>裸模型没有记忆、没有工具、没有执行环境——Harness 就是补上这些能力的工程层</li>
+</ul>
+</li>
+<li>
+<p><strong>Harness 包含什么</strong></p>
+<ul>
+<li>知识库（CLAUDE.md 等项目指令文件）</li>
+<li>工具集成（MCP、CLI）</li>
+<li>权限约束（allow/deny 规则、沙箱）</li>
+<li>自动验证（CI、lint、测试）</li>
+<li>反馈回路（错误信号返回 Agent 让它自我修正）</li>
+<li>状态管理（跨会话持久化）</li>
+</ul>
+</li>
+<li>
+<p><strong>核心思想（Mitchell Hashimoto 2026.2 提出）</strong></p>
+<ul>
+<li>每当发现 Agent 犯了一个错误，就花时间工程化一个解决方案，让这个错误结构上不可能再发生——不是靠 prompt 叮嘱它别犯错，而是从工程上让它犯不了</li>
+</ul>
+</li>
+<li>
+<p><strong>关键数据</strong></p>
+<ul>
+<li>
+<p>LangChain 在 Terminal Bench 2.0 上，底层模型不动，只优化 Harness → 得分从 52.8% 飙到 66.5%，排名从第 30 跳到第 5</p>
+</li>
+<li>
+<p><strong>更好的 Harness 往往比更好的 Model 更重要</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>与传统框架/中间件的本质区别</strong></p>
+<ul>
+<li>传统框架面对的执行者是确定性的（代码写什么执行什么）；</li>
+<li>LLM 行为是概率性的，prompt 说「不要删除文件」，1% 的情况会忘</li>
+<li>所以 Harness 必须用确定性工程机制兜底概率性行为——本质是给「不完全可控的执行者」套一套「完全可控的约束系统」</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>42. 具体描述一下你对 Harness 工程的理解，它与 Context 工程/Prompt 工程的关系？</strong></p>
+<ul>
+<li>
+<p><strong>三者是包含关系，不是并列</strong></p>
+<ul>
+<li>
+<p>Prompt 在 Context 里面，Context 在 Harness 里面</p>
+</li>
+<li>
+<p><strong>Prompt Engineering</strong>：管「怎么跟模型说话」，把指令写清楚写结构化——只作用于单轮对话</p>
+</li>
+<li>
+<p><strong>Context Engineering</strong>：管「给模型什么信息」，通过 RAG、检索、token 排序把正确知识塞进上下文窗口——但有盲区：信息给够了，模型可能拿着信息干危险的事，Context 层没有任何机制拦它</p>
+</li>
+<li>
+<p><strong>Harness Engineering</strong>：管「整个系统怎么运转」，在模型外围建确定性的约束、反馈和验证，让 Agent 跨多个 context window 都能稳定工作</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>MewCode 的体感</strong></p>
+<ul>
+<li>
+<p>调 prompt 措辞：效果改善有限</p>
+</li>
+<li>
+<p>加权限拦截、错误信息回传、工具输入校验（Harness 层）：Agent 可靠性产生质变</p>
+</li>
+</ul>
+</li>
+<li>
+<p>换模型提升天花板，搭 Harness 提升落地能力：用确定性的工程机制把模型的不确定性兜住——Harness 可细化为<strong>约束、反馈、验证</strong>三层</p>
+</li>
+</ul>
+<hr>
+<p><strong>43. 你这个项目有没有用到 Harness 的思想？</strong></p>
+<ul>
+<li>
+<p><strong>核心理解</strong>：Harness = 除了模型本身之外，所有让 Agent 能稳定交付的东西。换模型提升天花板，搭 Harness <strong>提升落地能力</strong>。</p>
+</li>
+<li>
+<p><strong>三个重点模块</strong></p>
+<ul>
+<li>
+<p><strong>权限系统</strong>：五层权限约束，任何一层 deny 就短路，后面的层不会翻转——不靠 prompt 叮嘱，用工程机制硬拦</p>
+</li>
+<li>
+<p><strong>反馈回路</strong>：工具执行失败后结构化告诉模型哪一行出了什么问题、该怎么改；权限拒绝也作为 <code>tool_result</code> 返回让模型调整策略——不光「别跑偏」，还要「出了错能自己爬起来」</p>
+</li>
+<li>
+<p><strong>知识库系统</strong>：<code>MEWCODE.md</code> 写项目规范、架构约定、编码习惯，Agent 启动自动加载；Auto Memory 让 Agent 从对话中提取用户偏好和反馈存下来，下次带上——一个是人写的显式规范，一个是 Agent 自动积累的隐式经验，投入产出比最高</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>其他覆盖的方向</strong></p>
+<ul>
+<li>
+<p><strong>上下文管理</strong>：两层压缩，大结果存磁盘只留预览，上下文到 80% 触发 LLM 摘要，预留 20K 压缩空间和 13K 当前轮次 buffer</p>
+</li>
+<li>
+<p><strong>System Prompt</strong>：结构化组装，七个来源三个通道注入，稳定内容走 Prompt Cache，动态信息走 system-reminder 不破坏缓存</p>
+</li>
+<li>
+<p><strong>工具系统</strong>：每个工具有元信息标记（只读/可开发），注册中心统一管理，分批执行时根据标记决定并行还是串行</p>
+</li>
+<li>
+<p><strong>Agent Loop</strong>：四种停止条件兜底（迭代上限、连续异常检测等）</p>
+</li>
+<li>
+<p><strong>Hook 系统</strong>：工具执行关键节点挂了 15 个生命周期事件，支持自动化 lint、格式化</p>
+</li>
+<li>
+<p><strong>其他</strong>：MCP 做 transport 抽象（stdio/HTTP 对上层透明）、会话持久化用 JSONL 追加写入、多 Agent 用 Git Worktree 文件隔离 + 邮箱模式异步通信</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="agent-开发实习生八股题库">Agent 开发实习生八股题库<a hidden class="anchor" aria-hidden="true" href="#agent-开发实习生八股题库">#</a></h1>
+<hr>
+<h2 id="01-agent-入门">01 Agent 入门<a hidden class="anchor" aria-hidden="true" href="#01-agent-入门">#</a></h2>
+<p><strong>1. 什么是大模型 Agent？它与传统的 AI 系统有什么不同？</strong></p>
+<ul>
+<li>
+<p>基于LLM的决策：大模型的自回归生成能力进行推理</p>
+</li>
+<li>
+<p>动态的工具调用：根据任务调用不同的外部工具</p>
+</li>
+<li>
+<p>上下文记忆：通过上下文窗口或者外部存储维护长期记忆</p>
+</li>
+<li>
+<p>可拓展性：LLM Agent可以无缝适配不同的任务</p>
+</li>
+</ul>
+<hr>
+<p><strong>2. 🌟【重点】Agent 与 LLM / ChatBot（即 LLM 和 Agent）的本质区别是什么？</strong></p>
+<ul>
+<li>
+<p>目标驱动性：LLM 是被动应答（你问一句答一句）；Agent 是给定目标后自主推进直到完成</p>
+</li>
+<li>
+<p>自主决策性：Agent 能自己决定下一步做什么、调用哪个工具，LLM 只生成文本</p>
+</li>
+<li>
+<p>状态持续性：Agent 有记忆和中间状态，能跨多步、多轮维持上下文</p>
+</li>
+<li>
+<p>一句话：LLM 是&quot;大脑/能力本身&quot;，Agent = LLM + 工具 + 记忆 + 规划 + 循环（Agent Loop），把&quot;会说&quot;变成&quot;会做&quot;</p>
+</li>
+</ul>
+<hr>
+<p><strong>3. 🌟【重点】Agent 和 Workflow（工作流）有什么区别？</strong></p>
+<ul>
+<li>
+<p>Workflow：用<strong>预先写好的代码路径</strong>把 LLM 和工具串起来，流程固定、可预测（人定流程，模型填空）</p>
+</li>
+<li>
+<p>Agent：由 <strong>LLM 自己动态决定</strong>下一步、调用哪个工具，路径不预先固定，靠 Agent Loop 循环推进（模型自己定流程）</p>
+</li>
+<li>
+<p>控制权差异：Workflow 的控制权在开发者手里，Agent 的控制权交给了模型</p>
+</li>
+<li>
+<p>取舍：流程确定、追求稳定可控、可预测成本 → Workflow；任务开放、步骤难以提前规划 → Agent（更灵活但更难控、成本和延迟更高）</p>
+</li>
+<li>
+<p>实践建议（Anthropic 观点）：能用 Workflow 解决就别上 Agent，需要灵活性和模型自主决策时才用 Agent</p>
+</li>
+</ul>
+<hr>
+<p><strong>4. LLM Agent 的基本架构有哪些组成部分？</strong></p>
+<ul>
+<li>
+<p>大脑：LLM，负责推理决策</p>
+</li>
+<li>
+<p>规划：Planning，任务拆解</p>
+</li>
+<li>
+<p>工具：Tools，与外部交互</p>
+</li>
+<li>
+<p>记忆：Memory，短期上下文 + 长期存储</p>
+</li>
+<li>
+<p>反馈：观察执行结果</p>
+</li>
+</ul>
+<hr>
+<p><strong>5. LLM Agent 如何进行决策？能否使用具体的方法解释？</strong></p>
+<ul>
+<li>
+<p>CoT</p>
+</li>
+<li>
+<p>典型方法 ReAct：思考 → 行动 → 观察循环，拿真实反馈再决策</p>
+</li>
+<li>
+<p>Self-Reflection</p>
+</li>
+</ul>
+<hr>
+<p><strong>6. 对比 CoT、ReAct、ToT 的核心差异。</strong></p>
+<ul>
+<li>
+<p>CoT：链式思考，只推理不行动，线性单路径</p>
+</li>
+<li>
+<p>ReAct：推理 + 行动交替，可调工具拿真实反馈</p>
+</li>
+<li>
+<p>ToT：树状思考，多路径探索 + 回溯，适合需要搜索的复杂问题</p>
+</li>
+</ul>
+<hr>
+<p><strong>7. 如何让 LLM Agent 具备长期记忆能力？</strong></p>
+<ul>
+<li>
+<p>向量数据库+RAG</p>
+</li>
+<li>
+<p>分层记忆</p>
+<ul>
+<li>短期记忆：保留最近的记忆</li>
+<li>长期记忆：重要的信息进行外部的存储</li>
+</ul>
+</li>
+<li>
+<p>预训练+知识图谱</p>
+</li>
+</ul>
+<hr>
+<p><strong>8. LLM Agent 如何进行动态 API 调用？</strong></p>
+<ul>
+<li>
+<p>通过 Function Calling：把 API 封装成工具，给出 name / description / 参数 schema</p>
+</li>
+<li>
+<p>LLM 根据需求生成结构化调用参数（JSON）</p>
+</li>
+<li>
+<p>执行后把结果返回 LLM，继续下一轮决策</p>
+</li>
+</ul>
+<hr>
+<p><strong>9. LLM Agent 在多模态任务中如何执行推理？</strong></p>
+<ul>
+<li>
+<p>用多模态模型（VLM）统一编码图像 / 音频 / 文本</p>
+</li>
+<li>
+<p>或调用专用工具（OCR、ASR、图像识别）把结果转成文本再交给 LLM</p>
+</li>
+<li>
+<p>LLM 在统一上下文里融合多模态信息做推理</p>
+</li>
+</ul>
+<hr>
+<p><strong>10. LLM Agent 主要有哪些局限性？</strong></p>
+<ul>
+<li>
+<p>幻觉、输出不可靠</p>
+</li>
+<li>
+<p>长程任务易跑偏、误差累积</p>
+</li>
+<li>
+<p>上下文窗口有限、成本高、延迟大</p>
+</li>
+<li>
+<p>缺乏真正的规划与可解释性</p>
+</li>
+</ul>
+<hr>
+<p><strong>11. 端到端 LLM 规划 vs 模块化 Agent 架构在长程任务中的瓶颈。</strong></p>
+<ul>
+<li>
+<p>端到端：一次性生成完整计划，长程下误差累积、无法及时纠错</p>
+</li>
+<li>
+<p>模块化：规划 / 执行 / 反思解耦，可局部纠错，但模块间协调成本高</p>
+</li>
+<li>
+<p>共同瓶颈：上下文长度、状态一致性、错误传播</p>
+</li>
+</ul>
+<hr>
+<p><strong>12. 除 ReAct 外的推理-行动范式有哪些？</strong></p>
+<ul>
+<li>
+<p>Plan-and-Execute：先规划完整计划再逐步执行</p>
+</li>
+<li>
+<p>Reflexion：执行后自我反思、改进重试</p>
+</li>
+<li>
+<p>ToT / Graph of Thoughts：多路径搜索 + 回溯</p>
+</li>
+<li>
+<p>Self-Ask、Least-to-Most 等分解式范式</p>
+</li>
+</ul>
+<hr>
+<p><strong>13. 🌟【重点】Agent 有什么工作模式（编排范式）？</strong></p>
+<p><strong>一、单 Agent 内部的推理范式</strong></p>
+<ul>
+<li>
+<p>ReAct：推理 → 行动 → 观察 循环，最常用</p>
+</li>
+<li>
+<p>Plan-and-Execute：先规划完整计划，再逐步执行</p>
+</li>
+<li>
+<p>Reflection / Reflexion：执行后自我反思、改进重试</p>
+</li>
+<li>
+<p>ToT / GoT：树/图状多路径搜索 + 回溯</p>
+</li>
+</ul>
+<p><strong>二、Workflow 编排模式（Anthropic《Building Effective Agents》总结）</strong></p>
+<ul>
+<li>
+<p>Prompt Chaining：链式拆解，前一步输出喂给下一步</p>
+</li>
+<li>
+<p>Routing：先分类，再路由到不同处理分支</p>
+</li>
+<li>
+<p>Parallelization：并行执行多个子任务后聚合</p>
+</li>
+<li>
+<p>Orchestrator-Workers：协调者拆任务派给多个 worker，再汇总</p>
+</li>
+<li>
+<p>Evaluator-Optimizer：生成 → 评估 → 改进的闭环</p>
+</li>
+</ul>
+<p><strong>三、多 Agent 协作模式</strong></p>
+<ul>
+<li>
+<p>中心化：Coordinator + Worker（主管派活）</p>
+</li>
+<li>
+<p>去中心化：任务独立、Agent 平等协作</p>
+</li>
+</ul>
+<hr>
+<p><strong>14. 为什么我们要使用 SDK 进行 Agent 开发？</strong></p>
+<ul>
+<li>
+<p>封装模型api调用</p>
+</li>
+<li>
+<p>提供统一接口调用不同模型，同时封装了认证，参数格式，流式输出等</p>
+</li>
+</ul>
+<hr>
+<p><strong>15. tokenizer 是什么？</strong></p>
+<ul>
+<li>
+<p>把文本切分成 token（模型最小处理单元）并映射成 id</p>
+</li>
+<li>
+<p>常见算法：BPE、WordPiece</p>
+</li>
+<li>
+<p>直接影响上下文长度计算和调用成本</p>
+</li>
+</ul>
+<hr>
+<h2 id="02-关于主流-agent-框架">02 关于主流 Agent 框架<a hidden class="anchor" aria-hidden="true" href="#02-关于主流-agent-框架">#</a></h2>
+<p><strong>16. 主流的 Agent 编程框架你知道哪些？</strong></p>
+<ul>
+<li>
+<p>LangChain / LangGraph、LlamaIndex（外部数据结合，RAG）</p>
+</li>
+<li>
+<p>AutoGPT（最早的自主任务循环 Agent，单体而非多 Agent）、BabyAGI（最小化的自主Agent）、CrewAI（多个Agent组成团队协作）、AutoGen、MetaGPT</p>
+</li>
+</ul>
+<hr>
+<p><strong>17. 你为什么要用 LangGraph，而不是写一个普通 Python pipeline？</strong></p>
+<ul>
+<li>
+<p>LangGraph 用<strong>图</strong>描述状态流转，天然支持循环、分支、条件路由</p>
+</li>
+<li>
+<p>内置<strong>状态管理</strong>、<strong>检查点、可中断恢复</strong></p>
+</li>
+<li>
+<p>普通 pipeline 是线性 DAG，难表达 Agent 的循环和回退</p>
+</li>
+</ul>
+<hr>
+<p><strong>18. 市面上有哪些主流的 LLM Agent 框架？各自的特点是什么？</strong></p>
+<ul>
+<li>
+<p>LangChain：组件丰富、生态大；LangGraph：图式编排、可控</p>
+</li>
+<li>
+<p>LlamaIndex：偏 RAG / 数据接入</p>
+</li>
+<li>
+<p>CrewAI / AutoGen：多 Agent 协作</p>
+</li>
+<li>
+<p>MetaGPT：SOP 驱动的多角色协作</p>
+</li>
+</ul>
+<hr>
+<p><strong>19. LangChain 的核心组件有哪些？</strong></p>
+<ul>
+<li>
+<p>Models：OpenAI、Anthropic、本地LLM</p>
+</li>
+<li>
+<p>Prompts Templates：用户创建动态提示词，提高泛化能力</p>
+</li>
+<li>
+<p>Memory：</p>
+<ul>
+<li>短期记忆：存储对话上下文</li>
+<li>长期记忆：结合向量数据库持久化存储</li>
+</ul>
+</li>
+<li>
+<p>Chains：链式调用</p>
+<ul>
+<li>Simple Chains：单步任务</li>
+<li>Sequential Chains：串联多个步骤</li>
+</ul>
+</li>
+<li>
+<p>Agents：通过ReAct</p>
+</li>
+<li>
+<p>Tools：工具，访问API，Google搜索</p>
+</li>
+</ul>
+<hr>
+<p><strong>20. LangChain Agent 的主要类型有哪些？</strong></p>
+<ul>
+<li>
+<p>ReAct / Zero-shot-ReAct：LLM直接决定工具调用，不使用额外的提示信息</p>
+</li>
+<li>
+<p>Conversational（带记忆的对话型）：结合会话记忆</p>
+</li>
+<li>
+<p>Structured Chat Agent：适用于结构化对话，如表单填充等</p>
+</li>
+<li>
+<p>Self-Reflective Agent：具备自我反馈机制，可修正错误回答</p>
+</li>
+</ul>
+<hr>
+<p><strong>21. 什么是 LangChain 中的提示模板（Prompt Template）？</strong></p>
+<ul>
+<li>预定义的文本结构</li>
+</ul>
+<hr>
+<p><strong>22. 什么是 LangChain 中的链（Chain）？</strong></p>
+<ul>
+<li>把多个组件（Prompt → LLM → 解析器）串成一个可调用流程</li>
+</ul>
+<hr>
+<p><strong>23. 什么是 LangChain 中的记忆（Memory）？</strong></p>
+<ul>
+<li>
+<p>在多轮对话中保存历史并注入下一轮 Prompt</p>
+</li>
+<li>
+<p>类型：Buffer、Window、Summary、向量检索记忆</p>
+</li>
+<li>
+<p>解决 LLM 本身无状态的问题</p>
+</li>
+</ul>
+<hr>
+<p><strong>24. 如何为 LangChain Agent 添加新的工具？</strong></p>
+<ul>
+<li>
+<p>用 <code>@tool</code> 装饰器或继承 <code>BaseTool</code>，定义 name / description / 参数</p>
+</li>
+<li>
+<p>把工具加入 tools 列表传给 Agent</p>
+</li>
+<li>
+<p>description 要写清楚，直接影响调用准确率</p>
+</li>
+</ul>
+<hr>
+<p><strong>25. LangChain Agent 如何处理复杂的多步骤任务？</strong></p>
+<ul>
+<li>
+<p>通过 Agent Loop：思考 → 选工具 → 执行 → 观察，循环到完成</p>
+</li>
+<li>
+<p>复杂任务可先 Planning 拆解再逐步执行</p>
+</li>
+<li>
+<p>借助 Memory 维持中间状态</p>
+</li>
+</ul>
+<hr>
+<p><strong>26. 解释 LangChain 中的&quot;思考-行动-观察&quot;循环，并讨论其在复杂任务解决中的作用。</strong></p>
+<ul>
+<li>
+<p>Thought（推理下一步）→ Action（调工具）→ Observation（看结果），循环往复直到得出答案</p>
+</li>
+<li>
+<p>作用：让模型基于真实反馈纠错，而非凭空生成，减少幻觉</p>
+</li>
+<li>
+<p>适合需要外部信息、多步推进的复杂任务</p>
+</li>
+</ul>
+<hr>
+<p><strong>27. LangChain Agent 如何确保输出的安全性和合规性？</strong></p>
+<ul>
+<li>
+<p>输入 / 输出过滤，敏感词与内容审核</p>
+</li>
+<li>
+<p>工具权限限制、人工确认（HITL）</p>
+</li>
+<li>
+<p>结构化输出校验、Guardrails 约束</p>
+</li>
+</ul>
+<hr>
+<p><strong>28. 如何评估 LangChain Agent 的性能？</strong></p>
+<ul>
+<li>
+<p>任务成功率、步数、token / 成本、延迟</p>
+</li>
+<li>
+<p>工具调用准确率、轨迹（trajectory）质量</p>
+</li>
+<li>
+<p>用 LangSmith 做 trace 与评测、LLM-as-Judge 打分</p>
+</li>
+</ul>
+<hr>
+<p><strong>29. LlamaIndex 如何与 LangChain 结合？</strong></p>
+<p>LlamaIndex主要是用于增强LangChain的外部数据访问能力</p>
+<ul>
+<li>
+<p><strong>数据索引</strong>：预处理文档，将内容存入向量数据库</p>
+</li>
+<li>
+<p><strong>增强检索RAG</strong>：LangChain调用LlamaIndex进行查询</p>
+</li>
+<li>
+<p><strong>存储方式</strong>：支持FAISS、ChromaDB、Weaviate等</p>
+</li>
+</ul>
+<hr>
+<p><strong>30. AutoGPT 如何实现自主决策？</strong></p>
+<ul>
+<li>
+<p>给定目标后自主循环：生成任务 → 执行 → 反思 → 生成新任务</p>
+</li>
+<li>
+<p>用记忆和工具持续推进，无需每步人工介入</p>
+</li>
+<li>
+<p>缺点：容易跑偏、成本高、可控性差</p>
+</li>
+</ul>
+<hr>
+<p><strong>31. BabyAGI 如何进行任务管理？</strong></p>
+<ul>
+<li>
+<p>维护任务队列，按优先级取任务执行</p>
+</li>
+<li>
+<p>执行后由 LLM 生成新任务并重排优先级</p>
+</li>
+<li>
+<p>三个核心：执行 Agent / 任务创建 Agent / 优先级 Agent</p>
+</li>
+</ul>
+<hr>
+<p><strong>32. CrewAI 如何管理多个 Agent 之间的协作？</strong></p>
+<ul>
+<li>
+<p>定义角色（Role）、目标、任务和协作流程</p>
+</li>
+<li>
+<p>Agent 间按流程（顺序 / 层级）协作</p>
+</li>
+<li>
+<p>支持任务委派和共享上下文</p>
+</li>
+</ul>
+<hr>
+<p><strong>33. LangChain 如何支持 API 调用？</strong></p>
+<ul>
+<li>
+<p>把 API 封装成 Tool（如 RequestsTool 或自定义工具）</p>
+</li>
+<li>
+<p>或用 OpenAPI / Functions 让 LLM 生成调用参数</p>
+</li>
+<li>
+<p>Agent 在 Loop 中按需调用并消费返回结果</p>
+</li>
+</ul>
+<hr>
+<h2 id="03-rag">03 RAG<a hidden class="anchor" aria-hidden="true" href="#03-rag">#</a></h2>
+<p><strong>34. 🌟【重点】什么是 RAG？</strong></p>
+<ul>
+<li>
+<p>Retrieval-Augmented Generation，检索增强生成</p>
+</li>
+<li>
+<p>先从外部知识库检索相关内容拼进 Prompt，再让 LLM 生成答案</p>
+</li>
+<li>
+<p>解决知识过时、幻觉、私有数据无法覆盖的问题；无需重训即可更新知识、可溯源</p>
+</li>
+</ul>
+<hr>
+<p><strong>35. 🌟【重点】RAG 的整体工作流程（技术架构）是怎样的？</strong></p>
+<ul>
+<li>
+<p>离线（建库）：文档加载 → 分块 Chunking → Embedding 向量化 → 存入向量库</p>
+</li>
+<li>
+<p>在线（问答）：Query 改写 → 向量化 → 检索 Top-K（常配合 BM25 混合检索）→ Re-rank 重排 → 拼上下文 → LLM 生成（带引用溯源）</p>
+</li>
+<li>
+<p>一句话：检索 + 重排决定上下文质量，生成决定表达——&ldquo;garbage in garbage out&rdquo;，检索质量是上限</p>
+</li>
+</ul>
+<hr>
+<p><strong>36. 🌟【重点】RAG 和微调（Fine-tuning）各自的区别？什么场景用哪个？</strong></p>
+<ul>
+<li>
+<p>RAG：往上下文&quot;注入外部知识&quot;，不改模型参数；适合知识频繁更新、需要溯源、私有数据接入；成本低、上线快、可减少幻觉</p>
+</li>
+<li>
+<p>微调（含 PEFT / LoRA）：改的是模型&quot;能力 / 风格 / 领域适配&quot;，把知识&quot;焊进参数&quot;；适合固定领域风格、格式遵循、知识相对稳定</p>
+</li>
+<li>
+<p>类比：RAG 像&quot;开卷考试给资料&quot;，微调像&quot;考前把知识背进脑子&quot;</p>
+</li>
+<li>
+<p>实践常组合：微调补能力 + RAG 补知识</p>
+</li>
+</ul>
+<hr>
+<p><strong>37. RAG 常见的应用场景和数据源有哪些？</strong></p>
+<ul>
+<li>
+<p>场景：企业知识库问答、智能客服、文档 / 代码助手、搜索增强、带依据的推荐解释</p>
+</li>
+<li>
+<p>数据源：PDF / Word / Markdown / 网页；数据库 / API / 知识图谱；代码库、表格数据</p>
+</li>
+</ul>
+<hr>
+<p><strong>38. 🌟【重点】RAG 中的文档切割（Chunking）策略有哪些？如何权衡？</strong></p>
+<ul>
+<li>
+<p>为什么要切：适配上下文窗口、提升检索精度（粒度更细）</p>
+</li>
+<li>
+<p>常见策略：固定长度切分、按语义 / 结构切（标题 / 段落）、重叠切分（overlap）、父子块（小块检索、大块喂模型）、加 metadata</p>
+</li>
+<li>
+<p>权衡：块太小 → 语义不完整、检索碎片化；块太大 → 噪声多、稀释相关信息、浪费 token</p>
+</li>
+<li>
+<p>解决&quot;切断语义&quot;：重叠 + 父子块 + 语义切分</p>
+</li>
+</ul>
+<hr>
+<p><strong>39. 在实际工程中，如何验证 Chunking 的质量？你会用哪些指标？</strong></p>
+<ul>
+<li>
+<p>看检索召回率、答案正确率是否随分块策略变化</p>
+</li>
+<li>
+<p>抽样人工检查块的语义完整性</p>
+</li>
+<li>
+<p>A/B 对比不同分块策略的端到端指标</p>
+</li>
+</ul>
+<hr>
+<p><strong>40. 🌟【重点】Embedding 有哪几种算法 / 类型？如何选 Embedding 模型？</strong></p>
+<ul>
+<li>
+<p>发展脉络：</p>
+<ul>
+<li>
+<p>静态词向量：Word2Vec、GloVe、FastText（一词一向量，不区分上下文）</p>
+</li>
+<li>
+<p>上下文相关：BERT 系（Sentence-BERT）、双塔 / 对比学习训练的句向量</p>
+</li>
+<li>
+<p>主流商用 / 开源：OpenAI text-embedding-3、BGE、M3E、GTE、Cohere Embed 等</p>
+</li>
+</ul>
+</li>
+<li>
+<p>选型看：任务领域、语言、向量维度、最大长度、成本</p>
+</li>
+<li>
+<p>评估：参考 MTEB 榜单，再用自己业务数据测召回率 / 命中率、相似度区分度、推理速度</p>
+</li>
+</ul>
+<hr>
+<p><strong>41. 🌟【重点】Re-rank（重排）是什么？为什么需要？</strong></p>
+<ul>
+<li>
+<p>召回为了快，常用双塔 / 向量近似检索，精度有限、会带回不够相关的块</p>
+</li>
+<li>
+<p>Re-rank：在召回 Top-N 之后，用更强的 Cross-Encoder（把 query 和文档拼一起算相关性）重新精排，取 Top-K 给 LLM</p>
+</li>
+<li>
+<p>作用：召回保&quot;广&quot;（高召回），重排保&quot;准&quot;（高精度），两段式提升上下文质量</p>
+</li>
+<li>
+<p>常用：BGE-Reranker、Cohere Rerank 等</p>
+</li>
+</ul>
+<hr>
+<p><strong>42. 🌟【重点】什么是多路召回（混合检索）？具体怎么做？</strong></p>
+<ul>
+<li>
+<p>多路召回：同时用多种检索方式各取一批候选再融合，互补&quot;字面&quot;与&quot;语义&quot;</p>
+<ul>
+<li>
+<p>向量检索：语义相似（换种说法也能命中）</p>
+</li>
+<li>
+<p>BM25 / 倒排：关键词精确匹配（产品型号、专有名词、缩写）</p>
+</li>
+<li>
+<p>可加：知识图谱、父子块、Query 扩展 / HyDE</p>
+</li>
+</ul>
+</li>
+<li>
+<p>融合：用 RRF（倒数排名融合）或加权求和合并多路结果，再做 Re-rank</p>
+</li>
+<li>
+<p>去冗余：MMR（最大边际相关）兼顾相关性与多样性，避免 Top-K 全是高度相似的重复内容</p>
+</li>
+<li>
+<p>权重：没有固定值，关键词敏感 → BM25 权重高，用验证集调参</p>
+</li>
+</ul>
+<hr>
+<p><strong>43. 🌟【重点】什么是向量数据库？如何做技术选型？</strong></p>
+<ul>
+<li>
+<p>是什么：专门存储和检索高维向量的数据库，用 ANN（近似最近邻，如 HNSW / IVF）做相似度检索，支持元数据过滤</p>
+</li>
+<li>
+<p>选型维度：数据规模、QPS、召回精度、是否需元数据过滤、部署方式（自托管 / 云）、成本、生态</p>
+</li>
+<li>
+<p>常见对比：</p>
+<ul>
+<li>
+<p>Milvus：功能全、适合大规模生产</p>
+</li>
+<li>
+<p>Qdrant：Rust 实现、性能好、过滤强</p>
+</li>
+<li>
+<p>Weaviate：模块化、原生支持混合检索</p>
+</li>
+<li>
+<p>pgvector：复用 Postgres、运维简单、规模中小</p>
+</li>
+<li>
+<p>Faiss：是库不是服务、本地高性能、需自己包一层</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>44. 🌟【重点】Query 改写是什么？为什么要做？一般怎么做？</strong></p>
+<ul>
+<li>
+<p>为什么：口语化 / 含指代 / 太短的 query 直接检索效果差</p>
+</li>
+<li>
+<p>怎么做：</p>
+<ul>
+<li>
+<p>LLM 改写：指代消解、补全上下文、拆分子问题</p>
+</li>
+<li>
+<p>同义词 / 实体扩展</p>
+</li>
+<li>
+<p>HyDE：先让 LLM 生成&quot;假设答案&quot;，再用它去检索（向量更接近文档）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>效果：显著提升召回质量</p>
+</li>
+</ul>
+<hr>
+<p><strong>45. RAG 如何在多轮对话中保持上下文？</strong></p>
+<ul>
+<li>
+<p>把历史对话纳入 query 改写（指代消解、补全）</p>
+</li>
+<li>
+<p>多轮记忆 + 当前 query 一起参与检索</p>
+</li>
+<li>
+<p>维护会话状态，必要时摘要历史</p>
+</li>
+</ul>
+<hr>
+<p><strong>46. 🌟【重点】怎么量化 / 评估 RAG 的效果？</strong></p>
+<ul>
+<li>
+<p>检索侧：召回率、命中率、MRR / NDCG</p>
+</li>
+<li>
+<p>生成侧：忠实度（faithfulness）、答案相关性、正确性</p>
+</li>
+<li>
+<p>工具：RAGAS 等 + 人工 / LLM-as-Judge</p>
+</li>
+<li>
+<p>排查思路：先分清是&quot;检索没召回&quot;还是&quot;召回了但生成错&quot;</p>
+</li>
+</ul>
+<hr>
+<p><strong>47. 🌟【重点】什么是大模型幻觉？怎么降低幻觉？</strong></p>
+<ul>
+<li>
+<p>是什么：模型生成看似合理但与事实不符 / 无依据的内容（参数化知识有限、过时，按概率&quot;编&quot;出来）</p>
+</li>
+<li>
+<p>降低方法：</p>
+<ul>
+<li>
+<p>RAG：给真实依据 + 要求&quot;基于检索内容作答&quot;、给引用溯源</p>
+</li>
+<li>
+<p>约束：结构化输出、让模型&quot;不知道就说不知道&quot;</p>
+</li>
+<li>
+<p>校验：用工具 / 外部数据二次核验、多源交叉验证、置信度过滤</p>
+</li>
+<li>
+<p>模型侧：换更强模型、降低 temperature、必要时微调</p>
+</li>
+</ul>
+</li>
+<li>
+<p>注意：RAG 能显著减少但不能根除幻觉（检索错 / 读错也会答错）</p>
+</li>
+</ul>
+<hr>
+<p><strong>48. RAG 有哪些局限性？对效率有何影响？</strong></p>
+<ul>
+<li>
+<p>受限于检索质量：检索不到就答不对；多跳推理弱、长文档整合难</p>
+</li>
+<li>
+<p>引入检索 + 更长上下文 → 延迟、成本上升</p>
+</li>
+<li>
+<p>可用缓存、精简上下文、混合检索 + 重排来优化</p>
+</li>
+</ul>
+<hr>
+<p><strong>49. RAG 系统有问题，一般如何排查和解决？</strong></p>
+<ul>
+<li>
+<p>分段定位：先判断是检索召回问题还是生成问题</p>
+</li>
+<li>
+<p>检索结果不含答案 → 查分块 / embedding / query 改写</p>
+</li>
+<li>
+<p>含答案但答错 → 查 Prompt / 模型 / 上下文顺序</p>
+</li>
+</ul>
+<hr>
+<p><strong>50. 当 TPS 高的情况下，RAG 系统很容易崩，是模型容量不够吗？</strong></p>
+<ul>
+<li>
+<p>不一定是模型容量；瓶颈常在检索链路（向量库、Embedding 服务、网络）</p>
+</li>
+<li>
+<p>高并发下检索排队、显存 / 连接耗尽更先暴露</p>
+</li>
+<li>
+<p>解法：缓存、限流、批处理、扩容、异步化</p>
+</li>
+</ul>
+<hr>
+<p><strong>51. 如果小说长度远超上下文窗口，怎么回答其中的问题？</strong></p>
+<ul>
+<li>
+<p>分块索引 + 检索相关片段（RAG）</p>
+</li>
+<li>
+<p>分层摘要（map-reduce）逐层压缩</p>
+</li>
+<li>
+<p>复杂问题做多跳检索 + 迭代回答</p>
+</li>
+</ul>
+<hr>
+<p><strong>52. RAG 如何保证信息新鲜度？如何处理偏见和错误信息？</strong></p>
+<ul>
+<li>
+<p>新鲜度：定时 / 增量更新索引、文档加时间戳、检索时按时间加权或优先返回最新版本</p>
+</li>
+<li>
+<p>质量：把控数据源、清洗审核；引用溯源让用户可核验；多源交叉验证、置信度过滤</p>
+</li>
+</ul>
+<hr>
+<p><strong>53. 点积（没有归一化）和余弦相似度的使用场景分别是什么？</strong></p>
+<ul>
+<li>
+<p>余弦：只看方向、忽略模长，文本相似度常用</p>
+</li>
+<li>
+<p>点积：同时受方向和模长影响</p>
+</li>
+<li>
+<p>向量已归一化时两者等价，此时用点积更快</p>
+</li>
+</ul>
+<hr>
+<p><strong>54. 用过哪些开源 RAG 框架（比如 RAGFlow）？如何选择合适场景？</strong></p>
+<ul>
+<li>
+<p>RAGFlow、Dify、LangChain、LlamaIndex、Haystack</p>
+</li>
+<li>
+<p>选型看：要开箱即用产品 vs 灵活自定义编排</p>
+</li>
+<li>
+<p>RAGFlow 文档解析强；LlamaIndex 检索灵活；Dify 偏低代码平台</p>
+</li>
+</ul>
+<hr>
+<h2 id="04-mcp--function-calling">04 MCP / Function Calling<a hidden class="anchor" aria-hidden="true" href="#04-mcp--function-calling">#</a></h2>
+<p><strong>55. 🌟【重点】Function Calling（函数调用）是什么？</strong></p>
+<ul>
+<li>
+<p>让 LLM 具备&quot;调用外部函数/工具&quot;能力的机制：把工具的 name、description、参数 JSON schema 告诉模型</p>
+</li>
+<li>
+<p>模型在推理时判断要不要调用、调用哪个，输出<strong>结构化的调用请求</strong>（tool_use：工具名 + 调用 id + JSON 参数）</p>
+</li>
+<li>
+<p>调用方实际执行函数，把结果（tool_result）拼回上下文，模型据此继续下一步</p>
+</li>
+<li>
+<p>本质：模型 ↔ 程序之间的一次<strong>结构化通信协议</strong>，让&quot;会说话的模型&quot;具备&quot;会动手&quot;的能力（感知→决策→行动闭环的关键一环）</p>
+</li>
+</ul>
+<hr>
+<p><strong>56. 🌟【重点】MCP 是什么协议？</strong></p>
+<ul>
+<li>
+<p>MCP = Model Context Protocol（模型上下文协议），Anthropic 提出的<strong>开放标准</strong></p>
+</li>
+<li>
+<p>作用：统一&quot;模型/Agent ↔ 外部工具、数据、资源&quot;的连接方式，被称为&quot;AI 应用的 USB-C 接口&quot;</p>
+</li>
+<li>
+<p>解决的问题：每个工具都要为每个框架单独适配的 M×N 难题 → 标准化后变成 M+N</p>
+</li>
+<li>
+<p>三大角色：Host（宿主应用，如 IDE/Agent）/ Client（连接器，与 Server 一对一）/ Server（暴露 Tools、Resources、Prompts）</p>
+</li>
+<li>
+<p>底层：基于 JSON-RPC 2.0，传输支持 Stdio / SSE / Streamable HTTP</p>
+</li>
+<li>
+<p>与 Function Calling 关系：MCP 是工具的<strong>标准来源/接入层</strong>，工具最终仍通过 Function Calling 暴露给模型</p>
+</li>
+</ul>
+<hr>
+<p><strong>57. MCP 与&quot;函数调用/工具调用&quot;有何关系？</strong></p>
+<ul>
+<li>
+<p>MCP统一了工具与资源的“发现于描述”</p>
+</li>
+<li>
+<p>实践：MCP暴露企业的api之后，Agent框架等可以通过MCP客户端适配层复用这些工具</p>
+</li>
+</ul>
+<hr>
+<p><strong>58. Tool Calling 的核心机制是什么？</strong></p>
+<ul>
+<li>
+<p>工具注册：name、description、参数JSON schema</p>
+</li>
+<li>
+<p>识别意图：LLM在推理过程中判断是否需要调用工具，以及调用哪个工具。模型输出一个结构化对象（JSON）</p>
+</li>
+<li>
+<p>参数解析与校验</p>
+</li>
+<li>
+<p>安全执行：沙箱环境中执行工具调用，设置超时、权限和资源限制</p>
+</li>
+<li>
+<p>结果注入</p>
+</li>
+</ul>
+<hr>
+<p><strong>59. 举一个例子来说明 MCP 和 Function Calling 的区别。</strong></p>
+<ul>
+<li>
+<p>查天气：FC 是在代码里写死 <code>get_weather</code> 函数并注册给模型</p>
+</li>
+<li>
+<p>MCP 是把 weather 能力做成独立 Server，任何 Agent 配置即可接入</p>
+</li>
+<li>
+<p>FC 是应用内绑定，MCP 是跨应用复用的标准接口</p>
+</li>
+</ul>
+<hr>
+<p><strong>60. 20+ 工具场景下的工具选择决策维度有哪些？</strong></p>
+<ul>
+<li>
+<p>工具描述清晰度、命名区分度</p>
+</li>
+<li>
+<p>按需加载 / 检索，减少无关工具干扰</p>
+</li>
+<li>
+<p>分组、分层，用 router 先粗选再精选</p>
+</li>
+</ul>
+<hr>
+<p><strong>61. 如何防止工具调用的无限循环？</strong></p>
+<ul>
+<li>
+<p>第一层 硬性限制：设置全局最大步数（如 N 步）、单工具的最大重试次数</p>
+</li>
+<li>
+<p>第二层 重复检测：监控最近N步的工具调用序列，判断是否出现相同工具+相同描述的调用</p>
+</li>
+<li>
+<p>第三层 收敛性检测：追踪每步的进展指标，判断是否需要重新规划等</p>
+</li>
+<li>
+<p>第四层 建模是否需要外部信息的决策边界</p>
+</li>
+</ul>
+<hr>
+<p><strong>62. MCP 工具很多，全部塞给大模型可能导致内存池过大的问题，处理方法？</strong></p>
+<ul>
+<li>
+<p>延迟加载：只注册名称，按需通过检索加载完整 schema</p>
+</li>
+<li>
+<p>工具分组 / 命名空间隔离</p>
+</li>
+<li>
+<p>按场景动态挂载需要的 Server</p>
+</li>
+</ul>
+<hr>
+<p><strong>63. MCP 的核心角色有哪些？</strong></p>
+<ul>
+<li>
+<p>Host：宿主应用（如 IDE、Agent）</p>
+</li>
+<li>
+<p>Client：连接器，与 Server 一对一</p>
+</li>
+<li>
+<p>Server：提供工具 / 资源 / 提示</p>
+</li>
+</ul>
+<hr>
+<p><strong>64. MCP Server 能暴露哪些能力？</strong></p>
+<ul>
+<li>
+<p>Tools：可执行操作</p>
+</li>
+<li>
+<p>Resources：可读数据</p>
+</li>
+<li>
+<p>Prompts：提示模板</p>
+</li>
+</ul>
+<hr>
+<p><strong>65. MCP 与传统 REST / gRPC 的区别是什么？</strong></p>
+<ul>
+<li>
+<p>MCP 面向 LLM，自带工具发现、schema 描述、提示等语义</p>
+</li>
+<li>
+<p>REST / gRPC 是通用 RPC，需自己包装给模型</p>
+</li>
+<li>
+<p>MCP 标准化了&quot;模型↔工具&quot;的交互层</p>
+</li>
+</ul>
+<hr>
+<p><strong>66. 什么是&quot;结构化输出（Structured Output）&quot;？</strong></p>
+<ul>
+<li>
+<p>让模型按指定 schema（如 JSON）输出</p>
+</li>
+<li>
+<p>便于程序解析和下游处理</p>
+</li>
+<li>
+<p>实现：JSON mode、Function Calling、约束解码</p>
+</li>
+</ul>
+<hr>
+<p><strong>67. MCP 典型落地场景有哪些？</strong></p>
+<ul>
+<li>
+<p>接数据库 / 文件系统 / API</p>
+</li>
+<li>
+<p>接企业内部系统、第三方 SaaS</p>
+</li>
+<li>
+<p>给 IDE / 桌面 Agent 扩展能力</p>
+</li>
+</ul>
+<hr>
+<p><strong>68. MCP 与 OpenAI/Claude 等厂商的函数/工具生态关系？</strong></p>
+<ul>
+<li>
+<p>MCP 是开放标准，厂商 FC 是各自实现</p>
+</li>
+<li>
+<p>MCP 工具可被代理成厂商的 tool 定义</p>
+</li>
+<li>
+<p>互补：FC 负责模型侧，MCP 负责工具侧标准化</p>
+</li>
+</ul>
+<hr>
+<p><strong>69. MCP 的消息/接口是如何组织的？</strong></p>
+<ul>
+<li>
+<p>基于 JSON-RPC 2.0</p>
+</li>
+<li>
+<p>请求 / 响应 / 通知三类消息</p>
+</li>
+<li>
+<p>初始化握手时协商 capabilities</p>
+</li>
+</ul>
+<hr>
+<p><strong>70. 资源（Resource）与工具（Tool）的边界是什么？</strong></p>
+<ul>
+<li>
+<p>Resource：只读数据，由应用决定何时读取（如文件内容）</p>
+</li>
+<li>
+<p>Tool：可执行动作，由模型决定调用，可能有副作用</p>
+</li>
+<li>
+<p>区别在&quot;读 vs 做&quot;和&quot;谁触发&quot;</p>
+</li>
+</ul>
+<hr>
+<p><strong>71. 提示（Prompt）在 MCP 中的作用？</strong></p>
+<ul>
+<li>
+<p>Server 提供可复用的提示模板</p>
+</li>
+<li>
+<p>用户 / 应用可显式调用（如 slash command）</p>
+</li>
+<li>
+<p>标准化常用交互流程</p>
+</li>
+</ul>
+<hr>
+<p><strong>72. 结构化输出的协商方式是什么？</strong></p>
+<ul>
+<li>
+<p>工具定义 input / output schema</p>
+</li>
+<li>
+<p>初始化时协商双方 capabilities</p>
+</li>
+<li>
+<p>支持返回结构化内容块</p>
+</li>
+</ul>
+<hr>
+<p><strong>73. 会话/上下文如何跨工具调用传递？</strong></p>
+<ul>
+<li>
+<p>由 Host / Agent 维护对话历史</p>
+</li>
+<li>
+<p>工具结果以 tool_result 拼回上下文</p>
+</li>
+<li>
+<p>Server 端一般无状态，状态留在 Client / Host</p>
+</li>
+</ul>
+<hr>
+<p><strong>74. 服务能力（Capabilities）是什么？客户端如何发现/列举资源与工具？</strong></p>
+<ul>
+<li>
+<p>初始化握手时双方声明支持的能力</p>
+</li>
+<li>
+<p>通过 tools/list、resources/list 列举</p>
+</li>
+<li>
+<p>列表变化时发通知更新</p>
+</li>
+</ul>
+<hr>
+<p><strong>75. 日志与通知在 MCP 协议中的角色？</strong></p>
+<ul>
+<li>
+<p>日志：Server 向 Client 上报运行信息，便于调试</p>
+</li>
+<li>
+<p>通知：单向消息（如列表变更、进度）</p>
+</li>
+<li>
+<p>提升系统可观测性</p>
+</li>
+</ul>
+<hr>
+<p><strong>76. 是否支持图片/二进制内容？支持哪些传输？</strong></p>
+<ul>
+<li>
+<p>支持文本和二进制（图片等）内容块</p>
+</li>
+<li>
+<p>传输方式：Stdio、SSE、Streamable HTTP</p>
+</li>
+</ul>
+<hr>
+<p><strong>77. 何时选择 Stdio？何时选择 Streamable HTTP？</strong></p>
+<ul>
+<li>
+<p>Stdio：本地子进程，低延迟、部署简单</p>
+</li>
+<li>
+<p>Streamable HTTP：远端 / 无状态部署，Serverless 友好</p>
+</li>
+<li>
+<p>取决于部署位置和是否需要远程访问</p>
+</li>
+</ul>
+<hr>
+<p><strong>78. 连接稳定性与超时重试如何设计？</strong></p>
+<ul>
+<li>
+<p>设超时、重连、指数退避</p>
+</li>
+<li>
+<p>异常隔离：单 Server 挂掉不影响整体</p>
+</li>
+<li>
+<p>健康检查 + 降级</p>
+</li>
+</ul>
+<hr>
+<p><strong>79. 如何在 Python 中定义一个最小化 FastMCP 服务器？</strong></p>
+<ul>
+<li>
+<p>创建 <code>FastMCP</code> 实例</p>
+</li>
+<li>
+<p><code>@mcp.tool()</code> 装饰函数即注册为工具</p>
+</li>
+<li>
+<p><code>mcp.run()</code> 启动（默认 stdio 传输）</p>
+</li>
+</ul>
+<hr>
+<p><strong>80. 工具的输入/输出如何结构化？</strong></p>
+<ul>
+<li>
+<p>用类型注解 / Pydantic 定义入参</p>
+</li>
+<li>
+<p>返回结构化内容或文本</p>
+</li>
+<li>
+<p>框架自动生成 JSON schema 给模型</p>
+</li>
+</ul>
+<hr>
+<p><strong>81. 如何为 Tool 提供进度与日志？</strong></p>
+<ul>
+<li>
+<p>通过 Context 对象上报进度（progress）</p>
+</li>
+<li>
+<p>用 <code>ctx.info / debug</code> 输出日志</p>
+</li>
+<li>
+<p>长任务分阶段反馈</p>
+</li>
+</ul>
+<hr>
+<p><strong>82. Prompt 的最佳实践？</strong></p>
+<ul>
+<li>
+<p>参数化、职责单一</p>
+</li>
+<li>
+<p>清晰命名和描述</p>
+</li>
+<li>
+<p>复用常见工作流</p>
+</li>
+</ul>
+<hr>
+<p><strong>83. 工具幂等性与重试策略？错误处理与用户提示？</strong></p>
+<ul>
+<li>
+<p>写操作尽量幂等（带 id / 去重）</p>
+</li>
+<li>
+<p>失败明确返回 is_error，让模型感知</p>
+</li>
+<li>
+<p>区分可重试 / 不可重试错误，给清晰提示</p>
+</li>
+</ul>
+<hr>
+<h2 id="05-agent-进阶以及实际应用">05 Agent 进阶以及实际应用<a hidden class="anchor" aria-hidden="true" href="#05-agent-进阶以及实际应用">#</a></h2>
+<p><strong>84. 如何设计一个完整的 AI Agent 系统？</strong></p>
+<ul>
+<li>
+<p>四要素：LLM（大脑）+ 工具 + 记忆 + 规划</p>
+</li>
+<li>
+<p>加上 Agent Loop、权限 / 安全、可观测（日志 / trace）</p>
+</li>
+<li>
+<p>按场景选单 / 多 Agent，定义工具集与评测</p>
+</li>
+</ul>
+<hr>
+<p><strong>85. 常见的提示词优化方法有哪些？</strong></p>
+<ul>
+<li>
+<p>明确角色、任务、输出格式</p>
+</li>
+<li>
+<p>few-shot 示例、CoT 引导</p>
+</li>
+<li>
+<p>结构化分区（指令 / 上下文 / 约束）、迭代调优</p>
+</li>
+</ul>
+<hr>
+<p><strong>86. Prompt 注入是什么？有哪些攻击方式？如何防护？</strong></p>
+<ul>
+<li>
+<p>用户 / 外部内容注入恶意指令，劫持模型行为</p>
+</li>
+<li>
+<p>方式：直接注入、间接注入（污染检索内容 / 网页）</p>
+</li>
+<li>
+<p>防护：指令与数据隔离、输入过滤、权限最小化、输出审查</p>
+</li>
+</ul>
+<hr>
+<p><strong>87. 上下文窗口怎么设计？如何降低 token？怎么评测设计的质量？</strong></p>
+<ul>
+<li>
+<p>设计：分区（系统 / 历史 / 检索 / 工具），保留关键、裁剪冗余</p>
+</li>
+<li>
+<p>降 token：摘要、检索注入、工具结果落盘、延迟加载</p>
+</li>
+<li>
+<p>评测：任务成功率、token 用量、关键信息保留率</p>
+</li>
+</ul>
+<hr>
+<p><strong>88. 工具描述该怎么写能提升调用准确率？</strong></p>
+<ul>
+<li>
+<p>名称语义化，描述讲清&quot;做什么、何时用、何时不用&quot;</p>
+</li>
+<li>
+<p>参数 schema 清晰，给约束和示例</p>
+</li>
+<li>
+<p>工具间边界明确，避免功能重叠</p>
+</li>
+</ul>
+<hr>
+<p><strong>89. 如果做一个 Agent，遇到工具调用失败或者 LLM 幻觉怎么办？</strong></p>
+<ul>
+<li>
+<p>工具失败：明确标 is_error 回传，让模型重试或换路</p>
+</li>
+<li>
+<p>幻觉：用工具拿真实数据校验、要求引用、结构化约束</p>
+</li>
+<li>
+<p>加重试上限、人工兜底</p>
+</li>
+</ul>
+<hr>
+<p><strong>90. ReAct 实际怎么落地？提示词怎么设计？</strong></p>
+<ul>
+<li>
+<p>提示里规定 Thought / Action / Observation 格式</p>
+</li>
+<li>
+<p>提供工具列表与调用规范</p>
+</li>
+<li>
+<p>框架解析 Action 执行，把 Observation 拼回，循环</p>
+</li>
+</ul>
+<hr>
+<p><strong>91. 如何衡量 LLM Agent 的性能？</strong></p>
+<ul>
+<li>
+<p>任务成功率、轨迹质量、步数</p>
+</li>
+<li>
+<p>延迟、token / 成本</p>
+</li>
+<li>
+<p>工具调用准确率、鲁棒性</p>
+</li>
+</ul>
+<hr>
+<p><strong>92. 如何优化 LLM Agent 的性能？</strong></p>
+<ul>
+<li>
+<p>模型选型 + 提示优化</p>
+</li>
+<li>
+<p>上下文裁剪、缓存、并行工具</p>
+</li>
+<li>
+<p>流式输出、小模型分流、规划减少无效步</p>
+</li>
+</ul>
+<hr>
+<p><strong>93. Agent 服务的高可用是怎么保证的？</strong></p>
+<ul>
+<li>
+<p>多副本、限流、降级、熔断</p>
+</li>
+<li>
+<p>依赖（模型 / 向量库）超时重试与隔离</p>
+</li>
+<li>
+<p>监控告警、灰度发布</p>
+</li>
+</ul>
+<hr>
+<p><strong>94. 性能优化：LangGraph 的多 Agent 协作会带来延迟，如何通过流式等方式优化？</strong></p>
+<ul>
+<li>
+<p>流式输出 token，先返回再继续</p>
+</li>
+<li>
+<p>工具并行、节点并发执行</p>
+</li>
+<li>
+<p>缓存中间结果、减少串行依赖</p>
+</li>
+</ul>
+<hr>
+<p><strong>95. 构建 Agent 有哪些最佳实践？</strong></p>
+<ul>
+<li>
+<p>从简单开始，能用单 Agent 就不上多 Agent</p>
+</li>
+<li>
+<p>工具描述清晰、系统可观测、可评测</p>
+</li>
+<li>
+<p>加边界（权限 / 轮次上限），持续迭代优化</p>
+</li>
+</ul>
+<hr>
+<p><strong>96. LLM Agent 在企业应用中的典型场景有哪些？</strong></p>
+<ul>
+<li>
+<p>智能客服、知识库问答</p>
+</li>
+<li>
+<p>流程自动化（RPA + LLM）</p>
+</li>
+<li>
+<p>数据分析、代码 / 运维助手</p>
+</li>
+</ul>
+<hr>
+<p><strong>97. Agent 在实际应用中面临哪些挑战？</strong></p>
+<ul>
+<li>
+<p>可靠性 / 幻觉、成本与延迟</p>
+</li>
+<li>
+<p>安全与权限、评测困难</p>
+</li>
+<li>
+<p>长程任务稳定性</p>
+</li>
+</ul>
+<hr>
+<p><strong>98. 怎么做 Agent 的权限管理？</strong></p>
+<ul>
+<li>
+<p>工具级权限、最小权限原则</p>
+</li>
+<li>
+<p>规则引擎 + 危险操作检测</p>
+</li>
+<li>
+<p>HITL 人工确认、沙箱隔离</p>
+</li>
+</ul>
+<hr>
+<p><strong>99. 如果单一智能体的提示词过长，导致性能下降，如何将其拆分为多个智能体？</strong></p>
+<ul>
+<li>
+<p>按职责 / 领域拆分，每个 Agent 提示精简</p>
+</li>
+<li>
+<p>主 Agent 负责协调、分发子任务</p>
+</li>
+<li>
+<p>子 Agent 各自独立上下文，减少干扰</p>
+</li>
+</ul>
+<hr>
+<p><strong>100. 单 Agent 输出不可靠时的鲁棒性保障机制有哪些？</strong></p>
+<ul>
+<li>
+<p>结构化输出校验 + 重试</p>
+</li>
+<li>
+<p>自我反思 / 多次采样投票</p>
+</li>
+<li>
+<p>工具校验、人工兜底</p>
+</li>
+</ul>
+<hr>
+<p><strong>101. 单 Agent 和 Multi-Agent 你什么时候选哪个？怎么协作？</strong></p>
+<ul>
+<li>
+<p>任务简单 / 串行 → 单 Agent</p>
+</li>
+<li>
+<p>可拆分、需并行或不同专长 → 多 Agent</p>
+</li>
+<li>
+<p>协作：共享任务清单 + 消息通信 / 主从协调</p>
+</li>
+</ul>
+<hr>
+<p><strong>102. 多 Agent 相比单 Agent 有什么优势？如何选择？</strong></p>
+<ul>
+<li>
+<p>优势：突破单上下文、并行提效、专业分工</p>
+</li>
+<li>
+<p>代价：协调复杂、状态同步难</p>
+</li>
+<li>
+<p>选择：收益大于协调成本时才用</p>
+</li>
+</ul>
+<hr>
+<p><strong>103. 介绍一下多 Agent 系统的角色分工、通信与冲突协调。</strong></p>
+<ul>
+<li>
+<p>分工：按角色 / 专长（规划、执行、审查）</p>
+</li>
+<li>
+<p>通信：消息 / 共享内存 / 黑板模式</p>
+</li>
+<li>
+<p>冲突协调：协调者仲裁、加锁 / 任务隔离</p>
+</li>
+</ul>
+<hr>
+<p><strong>104. 中心化协调 vs 去中心化协作的适用条件？</strong></p>
+<ul>
+<li>
+<p>中心化：需强一致、频繁协调 → Coordinator 统筹</p>
+</li>
+<li>
+<p>去中心化：任务独立、并行推进 → Agent 平等协作</p>
+</li>
+<li>
+<p>看协调频率和一致性要求</p>
+</li>
+</ul>
+<hr>
+<p><strong>105. Multi Agent 子 Agent 需要把哪些信息传递给主 Agent，哪些没必要传？</strong></p>
+<ul>
+<li>
+<p>传：任务结果、关键结论、状态 / 错误</p>
+</li>
+<li>
+<p>不传：中间推理细节、冗长过程日志</p>
+</li>
+<li>
+<p>原则：紧凑结构化，减轻主 Agent 上下文压力</p>
+</li>
+</ul>
+<hr>
+<p><strong>106. Multi-Agent 如何实现团队协作？</strong></p>
+<ul>
+<li>
+<p>共享任务清单 + 邮箱 / 消息通信</p>
+</li>
+<li>
+<p>每个 Agent 独立工作区（如 Worktree）</p>
+</li>
+<li>
+<p>通过协调者或自组织推进</p>
+</li>
+</ul>
+<hr>
+<p><strong>107. 拆分多 Agent 之后，链路失败或局部失败时怎么处理？</strong></p>
+<ul>
+<li>
+<p>局部重试、超时、降级</p>
+</li>
+<li>
+<p>失败隔离，不拖垮整体</p>
+</li>
+<li>
+<p>协调者感知并重新分配 / 兜底</p>
+</li>
+</ul>
+<hr>
+<p><strong>108. 多 Agent 场景下，上下文传递为什么用 JSON / Slot 这类结构化方式？</strong></p>
+<ul>
+<li>
+<p>结构化更紧凑、无歧义、易解析</p>
+</li>
+<li>
+<p>减少上下文体积和误解</p>
+</li>
+<li>
+<p>便于校验和路由</p>
+</li>
+</ul>
+<hr>
+<p><strong>109. 多 Agent 的上下文污染怎么解决？</strong></p>
+<ul>
+<li>
+<p>各 Agent 上下文隔离，只传必要信息</p>
+</li>
+<li>
+<p>用结构化接口而非整段历史</p>
+</li>
+<li>
+<p>清晰边界 + 摘要压缩</p>
+</li>
+</ul>
+<hr>
+<p><strong>110. Planning 有哪些方法可以实现？分别讲一讲。</strong></p>
+<ul>
+<li>
+<p>任务分解（Decomposition）：拆成子任务逐个解决</p>
+</li>
+<li>
+<p>Plan-and-Execute：先出完整计划再执行；ReAct：边做边规划</p>
+</li>
+<li>
+<p>ToT / 反思迭代、层级规划</p>
+</li>
+</ul>
+<hr>
+<p><strong>111. Agent 的 Memory 你怎么设计？</strong></p>
+<ul>
+<li>
+<p>短期：对话历史 / 工作记忆（上下文）</p>
+</li>
+<li>
+<p>长期：向量库 / 文件持久化 + 检索注入</p>
+</li>
+<li>
+<p>加摘要、分层（用户级 / 项目级）</p>
+</li>
+</ul>
+<hr>
+<p><strong>112. 你在写 Agent 的时候有用过长期记忆和短期记忆吗？</strong></p>
+<ul>
+<li>
+<p>短期：当前对话上下文，存近期交互</p>
+</li>
+<li>
+<p>长期：跨会话偏好 / 知识，持久化到外部存储</p>
+</li>
+<li>
+<p>两者配合：短期负责工作，长期负责沉淀</p>
+</li>
+</ul>
+<hr>
+<p><strong>113. Agent 短期记忆如何转化为长期记忆？</strong></p>
+<ul>
+<li>
+<p>触发条件（重要 / 重复 / 用户指定）下提取</p>
+</li>
+<li>
+<p>摘要成事实 / 偏好写入持久化存储</p>
+</li>
+<li>
+<p>下次按相关性检索注入</p>
+</li>
+</ul>
+<hr>
+<p><strong>114. 你觉得短期记忆里会存储 Function Call 的内容吗？如果不放进短期记忆会有什么问题？</strong></p>
+<ul>
+<li>
+<p>会，tool_use 和 tool_result 都要留在历史</p>
+</li>
+<li>
+<p>不放：模型不知道调过什么、拿到什么结果</p>
+</li>
+<li>
+<p>后果：重复调用、配对断裂、上下文不一致</p>
+</li>
+</ul>
+<hr>
+<p><strong>115. 如何界定短期记忆和长期记忆的边界，以及这两个记忆的存储方式还有存储什么？</strong></p>
+<ul>
+<li>
+<p>短期：当前会话相关，存上下文窗口 / 内存</p>
+</li>
+<li>
+<p>长期：跨会话有价值，存数据库 / 向量库 / 文件</p>
+</li>
+<li>
+<p>内容：短期存对话细节，长期存提炼后的事实 / 偏好</p>
+</li>
+</ul>
+<hr>
+<p><strong>116. 长上下文场景下的外部记忆增强机制有哪些？</strong></p>
+<ul>
+<li>
+<p>向量检索（RAG）按需调取</p>
+</li>
+<li>
+<p>摘要 / 分层记忆</p>
+</li>
+<li>
+<p>落盘 + 引用、KV 缓存</p>
+</li>
+</ul>
+<hr>
+<p><strong>117. 用户偏好是怎么得来的？</strong></p>
+<ul>
+<li>
+<p>显式：用户直接设置 / 反馈</p>
+</li>
+<li>
+<p>隐式：从历史行为 / 对话中提取</p>
+</li>
+<li>
+<p>持久化并在相关场景注入</p>
+</li>
+</ul>
+<hr>
+<p><strong>118. 记忆摘要的触发机制应考虑哪些指标？</strong></p>
+<ul>
+<li>
+<p>上下文 token 占用 / 轮次</p>
+</li>
+<li>
+<p>信息重要性 / 重复度</p>
+</li>
+<li>
+<p>成本与延迟阈值</p>
+</li>
+</ul>
+<hr>
+<p><strong>119. 意图识别阶段 Query 改写可能把关键信息改丢，你怎么发现这种问题？</strong></p>
+<ul>
+<li>
+<p>对比改写前后语义 / 实体是否丢失</p>
+</li>
+<li>
+<p>监控召回率下降、答非所问</p>
+</li>
+<li>
+<p>加校验：保留原 query 做兜底检索</p>
+</li>
+</ul>
+<hr>
+<p><strong>120. 如果记忆信息和当前聊天上下文冲突，你们怎么处理？以谁为准？</strong></p>
+<ul>
+<li>
+<p>一般以当前对话 / 最新信息为准</p>
+</li>
+<li>
+<p>记忆作为背景参考，冲突时降权</p>
+</li>
+<li>
+<p>必要时向用户确认</p>
+</li>
+</ul>
+<hr>
+<p><strong>121. 请介绍几个目前行业内广泛使用的 LLM 综合性基准测试，并说明它们各自的侧重点。</strong></p>
+<ul>
+<li>
+<p>MMLU：多学科知识；GSM8K / MATH：数学推理</p>
+</li>
+<li>
+<p>HumanEval：代码生成；HellaSwag：常识推理</p>
+</li>
+<li>
+<p>MT-Bench / Chatbot Arena：对话与人类偏好</p>
+</li>
+</ul>
+<hr>
+<p><strong>122. 什么是&quot;LLM-as-a-Judge&quot;？使用 LLM 来评估另一个 LLM 的输出，有哪些注意事项？</strong></p>
+<ul>
+<li>
+<p>用强 LLM 给另一个模型输出打分 / 比较</p>
+</li>
+<li>
+<p>注意：位置偏见、长度偏见、自我偏好</p>
+</li>
+<li>
+<p>缓解：随机顺序、明确评分标准、多次投票</p>
+</li>
+</ul>
+<hr>
+<p><strong>123. 你了解哪些专门用于评估 Agent 能力的基准测试？这些基准通常如何构建？</strong></p>
+<ul>
+<li>
+<p>如 AgentBench、WebArena、GAIA、SWE-bench</p>
+</li>
+<li>
+<p>构建：真实任务 + 可验证的成功判定</p>
+</li>
+<li>
+<p>覆盖工具使用、多步推理、环境交互</p>
+</li>
+</ul>
+<hr>
+<p><strong>124. 评估一个 Agent 的任务完成情况时，除了最终结果的正确性，还应该看哪些维度？</strong></p>
+<ul>
+<li>
+<p>效率（步数 / token / 时间）</p>
+</li>
+<li>
+<p>鲁棒性、安全合规</p>
+</li>
+<li>
+<p>轨迹合理性、成本</p>
+</li>
+</ul>
+<hr>
+<p><strong>125. 如何持续监控和评估一个已经部署上线的 LLM 应用或 Agent 服务的表现？</strong></p>
+<ul>
+<li>
+<p>采集 trace、token、延迟、错误率</p>
+</li>
+<li>
+<p>采样 + LLM-as-Judge 评质量</p>
+</li>
+<li>
+<p>Bad case 回流、告警、定期评测</p>
+</li>
+</ul>
+<hr>
+<p><strong>126. 不同 Agent 架构差别比较（单体/分层/多 Agent）。</strong></p>
+<ul>
+<li>
+<p>单体：简单直接，复杂任务上下文吃紧</p>
+</li>
+<li>
+<p>分层：规划 / 执行解耦，可控但有协调成本</p>
+</li>
+<li>
+<p>多 Agent：并行专业分工，状态同步复杂</p>
+</li>
+</ul>
+<hr>
+<p><strong>127. 项目中 Agent 执行一个进程有哪几种方式？</strong></p>
+<ul>
+<li>
+<p>前台同步执行</p>
+</li>
+<li>
+<p>后台异步 / Background 模式</p>
+</li>
+<li>
+<p>子进程 / 子 Agent spawn</p>
+</li>
+</ul>
+<hr>
+<p><strong>128. 什么时候使用图数据库或知识图谱来增强或替代传统的向量检索？</strong></p>
+<ul>
+<li>
+<p>需要多跳关系推理、实体关联时</p>
+</li>
+<li>
+<p>结构化、关系密集的领域知识</p>
+</li>
+<li>
+<p>与向量检索结合做 GraphRAG</p>
+</li>
+</ul>
+<hr>
+<p><strong>129. 如何选取使用具体哪个大模型？</strong></p>
+<ul>
+<li>
+<p>看任务难度、上下文长度、成本、延迟</p>
+</li>
+<li>
+<p>能力（推理 / 代码 / 多模态）匹配场景</p>
+</li>
+<li>
+<p>闭源强但贵，开源可控可私有化；先评测再定</p>
+</li>
+</ul>
+<hr>
+<p><strong>130. 知识图谱数据如何构造？</strong></p>
+<ul>
+<li>
+<p>实体 / 关系抽取（规则 + LLM）</p>
+</li>
+<li>
+<p>schema 设计、实体对齐去重</p>
+</li>
+<li>
+<p>存入图数据库，持续更新维护</p>
+</li>
+</ul>
+<hr>
+<h2 id="06-agent-实际场景题">06 Agent 实际场景题<a hidden class="anchor" aria-hidden="true" href="#06-agent-实际场景题">#</a></h2>
+<p><strong>131. 你是如何利用 LangSmith 或类似工具进行 Trace 跟踪，定位 Agent 在哪一步出问题的？</strong></p>
+<ul>
+<li>
+<p>全链路记录每步：输入、思考、工具调用、输出</p>
+</li>
+<li>
+<p>定位：是检索没召回 / 工具参数错 / 模型决策偏</p>
+</li>
+<li>
+<p>结合 token、延迟、错误标记逐步排查</p>
+</li>
+</ul>
+<hr>
+<p><strong>132. 你监控了哪些指标？</strong></p>
+<ul>
+<li>
+<p>质量：成功率、工具调用准确率、Bad case 率</p>
+</li>
+<li>
+<p>性能：延迟（首 token / 端到端）、token / 成本</p>
+</li>
+<li>
+<p>稳定：错误率、超时、重试次数</p>
+</li>
+</ul>
+<hr>
+<p><strong>133. 你怎么设计的 Agent 循环执行？</strong></p>
+<ul>
+<li>
+<p>while 循环 + 状态对象跨轮传递</p>
+</li>
+<li>
+<p>每轮：拼上下文 → 调模型 → 判断有无工具调用 → 执行回填</p>
+</li>
+<li>
+<p>终止：无 tool_use 或达 maxTurns</p>
+</li>
+</ul>
+<hr>
+<p><strong>134. 多 Agent 架构：每个子 Agent 的模型选型是什么？为什么要这么选？</strong></p>
+<ul>
+<li>
+<p>简单 / 高频任务用小快模型（省成本、降延迟）</p>
+</li>
+<li>
+<p>复杂推理 / 规划用强模型</p>
+</li>
+<li>
+<p>按任务难度分级，平衡效果与成本</p>
+</li>
+</ul>
+<hr>
+<p><strong>135. System Prompt 怎么设计的？</strong></p>
+<ul>
+<li>
+<p>角色定位、能力边界、行为准则</p>
+</li>
+<li>
+<p>工具使用规范、输出格式</p>
+</li>
+<li>
+<p>分区清晰、精简、必要约束</p>
+</li>
+</ul>
+<hr>
+<p><strong>136. 端到端的延迟是多少？（肯定是不短的，只是好奇 Agent 方向的延迟）</strong></p>
+<ul>
+<li>
+<p>取决于轮数 × 单轮（模型推理 + 工具）时间</p>
+</li>
+<li>
+<p>多步 Agent 通常几秒到几十秒</p>
+</li>
+<li>
+<p>优化：流式、并行工具、缓存、小模型分流</p>
+</li>
+</ul>
+<hr>
+<p><strong>137. 你们是如何分析 Bad Case 的？</strong></p>
+<ul>
+<li>
+<p>收集 + 分类（检索 / 工具 / 模型 / 提示问题）</p>
+</li>
+<li>
+<p>回放 trace 定位根因</p>
+</li>
+<li>
+<p>闭环：修提示 / 加规则 / 补数据，回归验证</p>
+</li>
+</ul>
+<hr>
+<p><strong>138. Bad Case 闭环处理：&ldquo;当用户说我睡不着，想听恐怖故事&rdquo;（非法请求），Agent 怎么处理？</strong></p>
+<ul>
+<li>
+<p>先判断意图与安全边界</p>
+</li>
+<li>
+<p>不生硬拒绝，可共情 + 引导（讲轻松内容助眠）</p>
+</li>
+<li>
+<p>涉违规明确拒绝并给替代方案</p>
+</li>
+</ul>
+<hr>
+<p><strong>139. 手机里有个 Chatbot，我跟他说帮我点一份外卖，那么这个时候只有 Function A，那这个 Agent 该怎么处理？</strong></p>
+<ul>
+<li>
+<p>能力不匹配时不能硬调 Function A</p>
+</li>
+<li>
+<p>坦诚告知做不到，或用 A 能覆盖的部分</p>
+</li>
+<li>
+<p>必要时引导到正确渠道，避免幻觉式乱调</p>
+</li>
+</ul>
+<hr>
+<p><strong>140. 如果让你设计一个点外卖 Agent，你会怎么设计？【美团真题】如果用户说&quot;随便&quot;，Agent 怎么处理？</strong></p>
+<ul>
+<li>
+<p>组件：意图理解 + 槽位填充 + 推荐 + 下单工具</p>
+</li>
+<li>
+<p>&ldquo;随便&rdquo;：用历史偏好 / 热门 / 场景推荐，给 2-3 个选项让确认</p>
+</li>
+<li>
+<p>主动澄清而非瞎下单</p>
+</li>
+</ul>
+<hr>
+<p><strong>141. 如果让你设计一个千问点奶茶的 Agent，你如何设计？</strong></p>
+<ul>
+<li>
+<p>槽位：品类、规格、糖度、温度、加料</p>
+</li>
+<li>
+<p>多轮澄清补全槽位 + 推荐</p>
+</li>
+<li>
+<p>调下单 API，确认后提交</p>
+</li>
+</ul>
+<hr>
+<p><strong>142. 请设计一个 LLM Agent，用于医学问答，它需要具备哪些关键组件？</strong></p>
+<ul>
+<li>
+<p>权威知识库 + RAG（可溯源）</p>
+</li>
+<li>
+<p>安全审查、免责声明、不替代诊断</p>
+</li>
+<li>
+<p>意图识别，敏感场景转人工 / 就医提示</p>
+</li>
+</ul>
+<hr>
+<p><strong>143. 关于对话历史，为什么要保留最近 20 轮对话，而不是 10 轮、30 轮？</strong></p>
+<ul>
+<li>
+<p>平衡上下文完整性与 token 成本 / 延迟</p>
+</li>
+<li>
+<p>太少丢上下文，太多噪声 + 贵 + 降智</p>
+</li>
+<li>
+<p>20 是经验折中，可配合摘要保留更早信息</p>
+</li>
+</ul>
+<hr>
+<p><strong>144. 如何构建一个 AI 照片助手，能够对用户上万张照片进行索引，并根据用户描述检索？</strong></p>
+<ul>
+<li>
+<p>用多模态模型给图片生成 embedding / 标签</p>
+</li>
+<li>
+<p>存向量库，支持以文搜图</p>
+</li>
+<li>
+<p>加元数据（时间 / 地点）过滤，增量索引</p>
+</li>
+</ul>
+<hr>
+<p><strong>145. Prompt 怎么知道效果好不好，怎么调优？</strong></p>
+<ul>
+<li>
+<p>用评测集 + 指标（准确率 / 格式合规）</p>
+</li>
+<li>
+<p>A/B 对比、case 分析</p>
+</li>
+<li>
+<p>迭代：加约束 / 示例 / 调结构</p>
+</li>
+</ul>
+<hr>
+<p><strong>146. 对大模型进行提示时有没有它的输出不符合指令的现象，是怎么解决的？</strong></p>
+<ul>
+<li>
+<p>明确格式要求 + few-shot 示例</p>
+</li>
+<li>
+<p>结构化输出 / JSON mode 约束</p>
+</li>
+<li>
+<p>输出校验，不合规则重试</p>
+</li>
+</ul>
+<hr>
+<h2 id="07-skills">07 Skills<a hidden class="anchor" aria-hidden="true" href="#07-skills">#</a></h2>
+<p><strong>147. Skills 相比于传统 Agent 好处在哪里？工具 Skills 和产品 Skills 如何理解？</strong></p>
+<ul>
+<li>
+<p>好处：能力按需加载，不占满上下文，可复用、可组合</p>
+</li>
+<li>
+<p>工具 Skills：封装具体操作能力</p>
+</li>
+<li>
+<p>产品 Skills：封装某产品 / 领域的方法论、规范和输出模板，偏业务任务</p>
+</li>
+</ul>
+<hr>
+<p><strong>148. 🌟【重点】什么是 Skills？</strong></p>
+<ul>
+<li>
+<p>把领域知识 / 工作流打包成可被 Agent 按需加载的能力包</p>
+</li>
+<li>
+<p>核心是 SKILL.md + 脚本 / 参考资料</p>
+</li>
+<li>
+<p>渐进式披露，用到才加载</p>
+</li>
+</ul>
+<hr>
+<p><strong>149. Skills VS MCP：从工程视角理解差异；上下文管理策略的本质差异；互补而非竞争：Skills + MCP 的混合架构。</strong></p>
+<ul>
+<li>
+<p>MCP：连接外部工具 / 数据（连接协议）</p>
+</li>
+<li>
+<p>Skills：注入知识与流程（指导模型怎么做）</p>
+</li>
+<li>
+<p>互补：MCP 给能力，Skills 给方法，可混合架构</p>
+</li>
+</ul>
+<hr>
+<p><strong>150. 🌟【重点】Function Calling、MCP、Skills 三者有什么区别？</strong></p>
+<ul>
+<li>
+<p><strong>Function Calling</strong>：最底层的<strong>通信协议</strong>——规定模型↔工具之间怎么对话（tool_use / tool_result）</p>
+</li>
+<li>
+<p><strong>MCP</strong>：工具的一种<strong>标准来源/接入方式</strong>——把工具放到独立进程/服务，通过标准协议接入，最终仍通过 Function Calling 暴露给模型</p>
+</li>
+<li>
+<p><strong>Skills</strong>：最上层的<strong>能力/知识封装</strong>——打包的是&quot;知识 + 工作流&quot;，告诉模型&quot;该用哪些工具、按什么步骤做&quot;，渐进式按需加载</p>
+</li>
+<li>
+<p>一句话：FC 是地基（怎么通信），MCP 是标准插座（从哪接工具），Skills 是说明书（教模型怎么把工具组合起来干活）</p>
+</li>
+<li>
+<p>三者是<strong>分层、互补</strong>关系，不是竞争</p>
+</li>
+</ul>
+<hr>
+<p><strong>151. Skills 的主要组成部分：SKILL.md 是什么？references/ 是什么？scripts/ 是什么？assets/ 是什么？四件套配合起来的样子。</strong></p>
+<ul>
+<li>
+<p>SKILL.md：技能的工作手册</p>
+</li>
+<li>
+<p>references/：参考资料；</p>
+<ul>
+<li>api doc等</li>
+<li>style-guide.md</li>
+<li>troubleshooting.md</li>
+</ul>
+</li>
+<li>
+<p>scripts/：可执行脚本；</p>
+<ul>
+<li>python脚本/shell脚本：解析pdf/发邮件/查天气</li>
+</ul>
+</li>
+<li>
+<p>assets/：模板 / 资源</p>
+<ul>
+<li>ppt模板，logo</li>
+<li>字体，图片等</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>152. Skills 的渐进式加载机制：第一层元数据（Metadata）；第二层技能主体（Instructions）；第三层附加资源（Scripts &amp; References）；渐进式披露的效果：从 16k 到 500 Token。</strong></p>
+<ul>
+<li>
+<p>一层元数据：name + description，常驻、占用极小</p>
+</li>
+<li>
+<p>二层指令主体：命中后才加载 SKILL.md</p>
+</li>
+<li>
+<p>三层附加资源：用到才读 scripts / references → 整体从一次性 16k 降到约 500 token</p>
+</li>
+</ul>
+<hr>
+<p><strong>153. 大模型如何理解一个 Skill 的好与不好，Skill 该如何做评测？</strong></p>
+<ul>
+<li>
+<p>看是否在该用时被正确触发、用对</p>
+</li>
+<li>
+<p>评测：触发准确率、任务成功率、对比有无 Skill</p>
+</li>
+<li>
+<p>收集 bad case 迭代 description 与内容</p>
+</li>
+</ul>
+<hr>
+<p><strong>154. Skills 实战案例——员工分析 SQL 查询：技能文件结构；SKILL.md 核心内容示例；技能的使用效果。</strong></p>
+<ul>
+<li>
+<p>文件结构：SKILL.md + 表结构 references + 查询脚本</p>
+</li>
+<li>
+<p>SKILL.md 核心：说明何时用、库表 schema、SQL 规范</p>
+</li>
+<li>
+<p>效果：模型按规范生成正确查询，少出错</p>
+</li>
+</ul>
+<hr>
+<p><strong>155. skill_creator：使用案例。</strong></p>
+<ul>
+<li>
+<p>一个用来创建 Skill 的 Skill</p>
+</li>
+<li>
+<p>引导用户描述需求，自动生成 SKILL.md 与目录结构</p>
+</li>
+<li>
+<p>降低手写 Skill 的门槛</p>
+</li>
+</ul>
+<hr>
+<p><strong>156. 你自己有手搓过哪些 Skills？</strong></p>
+<ul>
+<li>
+<p>可举：代码审查、提交规范、项目专用查询 / 部署流程</p>
+</li>
+<li>
+<p>动机：把重复工作流和团队规范沉淀成 Skill</p>
+</li>
+<li>
+<p>强调评测与迭代（按真实经历作答）</p>
+</li>
+</ul>
+<hr>
+<h2 id="08-开放性问题--前沿知识">08 开放性问题 &amp; 前沿知识<a hidden class="anchor" aria-hidden="true" href="#08-开放性问题--前沿知识">#</a></h2>
+<p><strong>157. 平常会用 Vibe Coding 吗？使用过哪些工具？有哪些经验总结？</strong></p>
+<ul>
+<li>
+<p>用过，如 Claude Code / Cursor</p>
+</li>
+<li>
+<p>经验：明确需求、小步迭代、及时审查</p>
+</li>
+<li>
+<p>不盲信，关键逻辑自己把关</p>
+</li>
+</ul>
+<hr>
+<p><strong>158. 你觉得使用 AI Coding 工具后，程序员应该更关注的点是哪些？【美团】</strong></p>
+<ul>
+<li>
+<p>需求拆解、架构设计、问题定义</p>
+</li>
+<li>
+<p>代码审查与质量把关</p>
+</li>
+<li>
+<p>系统思维、领域知识，而非纯敲码</p>
+</li>
+</ul>
+<hr>
+<p><strong>159. 平常 AI Coding 时，如何减少 token 用量？</strong></p>
+<ul>
+<li>
+<p>精准上下文、按需提供文件</p>
+</li>
+<li>
+<p>及时 <code>/clear</code>、<code>/compact</code></p>
+</li>
+<li>
+<p>复用规则文件（CLAUDE.md），避免重复解释</p>
+</li>
+</ul>
+<hr>
+<p><strong>160. 怎么让 AI Coding 工具符合团队的代码规范，减少幻觉？</strong></p>
+<ul>
+<li>
+<p>把规范写进 CLAUDE.md / 规则文件</p>
+</li>
+<li>
+<p>提供示例和约束，让它先读现有代码</p>
+</li>
+<li>
+<p>测试 + 审查兜底</p>
+</li>
+</ul>
+<hr>
+<p><strong>161. SDD 了解吗？</strong></p>
+<ul>
+<li>
+<p>Spec-Driven Development，规范 / 规格驱动开发</p>
+</li>
+<li>
+<p>先写清晰规格 / 设计再让 AI 实现</p>
+</li>
+<li>
+<p>减少跑偏，便于验证</p>
+</li>
+</ul>
+<hr>
+<p><strong>162. 怎么接触 AI 前沿知识的？</strong></p>
+<ul>
+<li>
+<p>论文（arXiv）、官方博客、技术社区</p>
+</li>
+<li>
+<p>Twitter / X、GitHub trending</p>
+</li>
+<li>
+<p>动手复现 + 实践</p>
+</li>
+</ul>
+<hr>
+<p><strong>163. 哪些可以看最新模型榜单的地方？</strong></p>
+<ul>
+<li>
+<p>LMArena（Chatbot Arena）、OpenLLM Leaderboard</p>
+</li>
+<li>
+<p>各 benchmark 官网、SWE-bench</p>
+</li>
+<li>
+<p>厂商发布与第三方评测</p>
+</li>
+</ul>
+<hr>
+<p><strong>164. Codex 上下文窗口过大后降智了怎么办？</strong></p>
+<ul>
+<li>
+<p>及时压缩 / 清理上下文</p>
+</li>
+<li>
+<p>拆任务、分多个会话</p>
+</li>
+<li>
+<p>只给相关上下文，避免噪声</p>
+</li>
+</ul>
+<hr>
+<p><strong>165. 如不知道最近的 Harness Engineering，结合具体场景讲讲。</strong></p>
+<ul>
+<li>
+<p>围绕模型搭的&quot;脚手架&quot;：上下文、工具、记忆、反馈、约束</p>
+</li>
+<li>
+<p>让模型在真实任务里稳定发挥</p>
+</li>
+<li>
+<p>场景：把项目知识 / 流程 / 规则喂给 Agent 提升可靠性</p>
+</li>
+</ul>
+<hr>
+<p><strong>166. 🌟【重点】什么是 A2A 协议？</strong></p>
+<ul>
+<li>
+<p>A2A = Agent-to-Agent Protocol，Google 于 2025 年提出的<strong>开放协议</strong>（后捐给 Linux 基金会），用于<strong>不同 Agent 之间互相通信、协作</strong></p>
+</li>
+<li>
+<p>解决的问题：不同厂商/框架做的 Agent 彼此孤立，A2A 让它们能跨平台<strong>发现、对话、协同</strong>完成任务</p>
+</li>
+<li>
+<p>核心概念：</p>
+<ul>
+<li>Agent Card：用 JSON 描述 Agent 的能力、地址、认证方式（通常放在 <code>/.well-known/agent.json</code>，用于&quot;发现&quot;）</li>
+<li>Task：A2A 以任务为单位，支持长任务、流式更新和状态同步</li>
+<li>Client Agent / Remote Agent：发起方与执行方</li>
+</ul>
+</li>
+<li>
+<p>底层：基于 HTTP + JSON-RPC 2.0，流式用 SSE</p>
+</li>
+<li>
+<p>与 MCP 的区别（高频）：<strong>MCP 解决&quot;Agent ↔ 工具/数据&quot;的连接；A2A 解决&quot;Agent ↔ Agent&quot;的协作</strong>，两者互补，常一起用</p>
+</li>
+</ul>
+<hr>
+<p><strong>167. 如果现在用 Harness Engineering，你的 Agent 项目会怎么做？</strong></p>
+<ul>
+<li>
+<p>完善上下文工程（记忆 / 规则 / 检索）</p>
+</li>
+<li>
+<p>强化工具与反馈闭环、可观测</p>
+</li>
+<li>
+<p>把隐性知识显式化进知识库</p>
+</li>
+</ul>
+<hr>
+<p><strong>168. 如何看待 AI 的发展？如何不被 AI 淘汰？</strong></p>
+<ul>
+<li>
+<p>AI 是放大器，替代重复劳动</p>
+</li>
+<li>
+<p>提升不可替代能力：判断、设计、跨域整合</p>
+</li>
+<li>
+<p>学会用 AI、驾驭 AI</p>
+</li>
+</ul>
+<hr>
+<p><strong>169. 如果用 AI Coding 来重做项目，你会怎么做？</strong></p>
+<ul>
+<li>
+<p>先理清需求与架构（Spec / Plan）</p>
+</li>
+<li>
+<p>模块化、小步迭代 + 测试</p>
+</li>
+<li>
+<p>用规则文件约束、关键处人工把关</p>
+</li>
+</ul>
+<hr>
+<p><strong>170. Claude Code 的 Memory 三层逻辑设计，为什么这么设计？</strong></p>
+<ul>
+<li>
+<p>用户级（跨项目偏好）、项目级（项目知识）、本地级</p>
+</li>
+<li>
+<p>分层匹配作用域，避免污染、便于共享与版本管理</p>
+</li>
+<li>
+<p>按需注入，控制上下文成本</p>
+</li>
+</ul>
+<hr>
+<p><strong>171. 未来 LLM Agent 可能有哪些技术突破？</strong></p>
+<ul>
+<li>
+<p>更强长程规划与记忆</p>
+</li>
+<li>
+<p>更可靠的工具使用与自我纠错</p>
+</li>
+<li>
+<p>多模态、具身、低成本与可控性</p>
+</li>
+</ul>
+<hr>
+<p><strong>172. 平常使用 AI 吗，都用来干嘛？如果我想使用 AI，比如 Coding 领域，你有何建议？</strong></p>
+<ul>
+<li>
+<p>编码、查资料、写作、总结</p>
+</li>
+<li>
+<p>建议：从小任务上手、明确需求、审查产出</p>
+</li>
+<li>
+<p>边用边学原理，别当黑盒</p>
+</li>
+</ul>
+<hr>
+<p><strong>173. Cursor 如果上下文过长有没有性能下降的现象？千问的上下文窗口多大？</strong></p>
+<ul>
+<li>
+<p>会，过长会注意力稀释 / 降智，应精简上下文</p>
+</li>
+<li>
+<p>千问（Qwen）多数版本支持 128K，长上下文版本更大</p>
+</li>
+<li>
+<p>实际看具体型号</p>
+</li>
+</ul>
+<hr>
+<p><strong>174. 对于 Agent 未来 to C 和 to B 在技术和架构上觉得未来可能会有什么发展？</strong></p>
+<ul>
+<li>
+<p>to C：个人助理，强调体验 / 隐私 / 个性化</p>
+</li>
+<li>
+<p>to B：流程自动化，强调可靠 / 安全 / 集成</p>
+</li>
+<li>
+<p>架构上 to B 更重权限、审计、私有化</p>
+</li>
+</ul>
+<hr>
+<p><strong>175. 你认为当前 LLM 距通用人工智能（AGI）还有多远？最关键的缺失能力是什么？</strong></p>
+<ul>
+<li>
+<p>仍有距离，难给确切时间</p>
+</li>
+<li>
+<p>缺：可靠推理 / 规划、持续学习、真正理解与因果</p>
+</li>
+<li>
+<p>自主性与可信度仍不足</p>
+</li>
+</ul>
+<hr>
+<p><strong>176. 你如何看待开源模型和闭源模型生态系统的竞争与共存？</strong></p>
+<ul>
+<li>
+<p>闭源领先能力，开源追赶且可控可私有</p>
+</li>
+<li>
+<p>长期共存、互相促进</p>
+</li>
+<li>
+<p>选型按场景：能力 vs 成本 / 可控</p>
+</li>
+</ul>
+<hr>
+<p><strong>177. 具身智能（Embodied AI），即 LLM 与机器人的结合，被认为是 AI 的下一个浪潮。你认为 LLM 将如何赋能机器人？</strong></p>
+<ul>
+<li>
+<p>当&quot;大脑&quot;做高层理解、规划、指令分解</p>
+</li>
+<li>
+<p>结合感知与底层控制</p>
+</li>
+<li>
+<p>挑战：实时性、安全、物理世界泛化</p>
+</li>
+</ul>
+<hr>
+<p><strong>178. 了解过哪些模型吗？</strong></p>
+<ul>
+<li>
+<p>闭源：GPT / Claude / Gemini</p>
+</li>
+<li>
+<p>开源：Llama、Qwen、DeepSeek、Mistral</p>
+</li>
+<li>
+<p>按能力 / 成本 / 场景选型</p>
+</li>
+</ul>
+<hr>
+<p><strong>179. 你认为目前限制 Agent 能力和普及的最大瓶颈是什么？</strong></p>
+<ul>
+<li>
+<p>可靠性 / 幻觉，长程稳定性</p>
+</li>
+<li>
+<p>成本与延迟、安全与信任</p>
+</li>
+<li>
+<p>评测与可控性</p>
+</li>
+</ul>
+<hr>
+<p><strong>180. 你对大模型时代的 AI 安全怎么看？</strong></p>
+<ul>
+<li>
+<p>内容安全（有害 / 偏见）、对齐问题</p>
+</li>
+<li>
+<p>隐私与数据安全、滥用风险</p>
+</li>
+<li>
+<p>Prompt 注入等新型攻击，需纵深防御</p>
+</li>
+</ul>
+<hr>
+<p><strong>181. 个性化是 LLM 应用的重要方向。在实现高度个性化的 Agent 或助手的过程中，我们应如何平衡效果、隐私和安全？</strong></p>
+<ul>
+<li>
+<p>数据最小化、本地 / 脱敏处理</p>
+</li>
+<li>
+<p>用户可控（授权 / 删除）</p>
+</li>
+<li>
+<p>分层存储 + 权限，在效果与隐私间权衡</p>
+</li>
+</ul>
+<hr>
+<p><strong>182. 展望未来 3-5 年，你认为 LLM 和 Agent 技术最有可能在哪个行业或领域率先实现颠覆性应用？为什么？</strong></p>
+<ul>
+<li>
+<p>软件开发、客服、内容创作较快落地</p>
+</li>
+<li>
+<p>原因：数字化程度高、可验证、ROI 明显</p>
+</li>
+<li>
+<p>言之有理即可</p>
+</li>
+</ul>
+<hr>
+<p><strong>183. 你如何看待 Agent 领域的&quot;涌现能力&quot;？我们应该追求更强大的基础模型，还是更精巧的 Agent 架构？</strong></p>
+<ul>
+<li>
+<p>二者都要：强基础模型是上限，精巧架构是发挥</p>
+</li>
+<li>
+<p>当前阶段架构 / Harness 工程能显著提效</p>
+</li>
+<li>
+<p>长期靠模型能力突破</p>
+</li>
+</ul>
+<hr>
+<h2 id="09-openclaw">09 OpenClaw<a hidden class="anchor" aria-hidden="true" href="#09-openclaw">#</a></h2>
+<p><strong>184. 🌟【重点】什么是 OpenClaw？（用过吗？写过 Skills 吗？）</strong></p>
+<ul>
+<li>
+<p>开源的通用型 Agent（智能体），把&quot;模型 + 工具 + 记忆 + Skills + MCP&quot;这套 Harness 工程做成了开箱即用的产品</p>
+</li>
+<li>
+<p>定位：用自然语言驱动 Agent 自主完成多步任务（写代码、查资料、操作文件 / 浏览器等）</p>
+</li>
+<li>
+<p>作答提示：用过就举真实例子（写过哪些 Skill、接过哪些 MCP）；没用过则讲对其机制的理解</p>
+</li>
+</ul>
+<hr>
+<p><strong>185. 🌟【重点】OpenClaw 的核心亮点是什么？</strong></p>
+<ul>
+<li>
+<p>开源 + 开放生态：Skills（能力包）+ MCP（接外部工具）可自由扩展、社区共建</p>
+</li>
+<li>
+<p>Harness 工程成熟：上下文工程、记忆、工具反馈闭环、权限 / 安全做得完整</p>
+</li>
+<li>
+<p>渐进式能力加载：Skills 渐进披露，用到才加载，省上下文</p>
+</li>
+<li>
+<p>模型能力到位 + 工程打磨：体验好、可自托管、数据可控</p>
+</li>
+</ul>
+<hr>
+<p><strong>186. 🌟【重点】OpenClaw 与传统 Agent 有什么区别？</strong></p>
+<ul>
+<li>
+<p>传统 Agent（如早期 AutoGPT）：流程脆弱、容易跑偏、生态封闭、扩展难</p>
+</li>
+<li>
+<p>OpenClaw：以 Harness 为核心——强调上下文工程 + Skills / MCP 开放生态 + 文件式记忆</p>
+</li>
+<li>
+<p>可扩展性：能力按需挂载（Skills / MCP），而不是把所有逻辑写死在代码里</p>
+</li>
+<li>
+<p>工程化：完整的权限、可观测、上下文压缩，长程任务更稳</p>
+</li>
+</ul>
+<hr>
+<p><strong>187. 🌟【重点】OpenClaw 的记忆机制是怎么实现的？</strong></p>
+<ul>
+<li>
+<p>分层 + 文件式（markdown）记忆：</p>
+<ul>
+<li>
+<p>短期：当前会话上下文，超长就上下文压缩 / 摘要</p>
+</li>
+<li>
+<p>长期：写进项目级 / 用户级 markdown 记忆文件，新会话开始时注入</p>
+</li>
+</ul>
+</li>
+<li>
+<p>作用域分层：项目级（放仓库、团队共享约定）vs 用户级（个人偏好）vs 内置</p>
+</li>
+<li>
+<p>与项目指令文件（类 CLAUDE.md）区别：指令是人写的工程规范；记忆是 Agent 自动从对话里提取的偏好 / 反馈</p>
+</li>
+<li>
+<p>知识多时配合向量库 / RAG 召回相关记忆</p>
+</li>
+</ul>
+<hr>
+<p><strong>188. OpenClaw 到底解决了什么痛点？为什么爆火？</strong></p>
+<ul>
+<li>
+<p>痛点：之前 Agent 要么能力弱、要么闭源 / 不可控、要么扩展难，落地体验差</p>
+</li>
+<li>
+<p>解法：开源可自托管（数据可控）+ 生态可扩展（Skills / MCP）+ 工程成熟（稳定可用）</p>
+</li>
+<li>
+<p>爆火时机：模型能力到位 + Harness 工程成熟 + 开源社区共建，正好凑齐</p>
+</li>
+</ul>
+<hr>
+<p><strong>189. 🌟【重点】OpenClaw 有什么缺点？为什么那么烧 token？</strong></p>
+<ul>
+<li>
+<p>烧 token 的原因：</p>
+<ul>
+<li>
+<p>Agentic Loop 多轮&quot;思考-行动-观察&quot;，每轮都带着完整上下文重复进模型</p>
+</li>
+<li>
+<p>大系统提示 + 工具定义 + 记忆 / 检索内容长期占用上下文</p>
+</li>
+<li>
+<p>多工具结果、长文件内容回灌上下文，越滚越大</p>
+</li>
+</ul>
+</li>
+<li>
+<p>其他缺点：成本 / 延迟高、长程任务仍会跑偏、对模型能力依赖强、自主执行命令的安全性需兜底</p>
+</li>
+<li>
+<p>缓解：上下文压缩、Skills 渐进加载、按需挂载工具、缓存、及时清理上下文</p>
+</li>
+</ul>
+<hr>
+<p><strong>190. OpenClaw 的文件目录结构是怎样的？</strong></p>
+<ul>
+<li>
+<p>大致：配置文件（模型 / 权限 / MCP 配置）+ skills/（每个技能一个目录，含 SKILL.md、scripts/、references/、assets/）+ markdown 记忆文件 + 项目指令文件</p>
+</li>
+<li>
+<p>优先级：项目级放仓库目录、用户级放 home 目录、内置打包在代码里</p>
+</li>
+<li>
+<p>（以实际使用版本为准，作答时结合自己跑过的目录讲）</p>
+</li>
+</ul>
+<hr>
+<p><strong>191. Coze、n8n 和 OpenClaw 的区别在哪里？</strong></p>
+<ul>
+<li>
+<p>Coze：字节的低代码 Agent / Bot 搭建平台，可视化、偏 SaaS，上手快但灵活性 / 可控性有限</p>
+</li>
+<li>
+<p>n8n：通用工作流自动化（iPaaS），节点编排、确定性流程，不以 LLM 自主决策为核心</p>
+</li>
+<li>
+<p>OpenClaw：代码级、开源，以 LLM 自主决策 + Skills / MCP 生态为核心，更灵活、可自托管，但更吃工程能力和 token</p>
+</li>
+<li>
+<p>一句话：n8n 是&quot;固定工作流&quot;，Coze 是&quot;低代码搭 Bot&quot;，OpenClaw 是&quot;开源自主 Agent&quot;</p>
+</li>
+</ul>
+<hr>
+<h1 id="mewcode-项目学习">MewCode 项目学习<a hidden class="anchor" aria-hidden="true" href="#mewcode-项目学习">#</a></h1>
+<h2 id="目录">目录<a hidden class="anchor" aria-hidden="true" href="#目录">#</a></h2>
+<ol>
+<li>初识 Coding Agent</li>
+<li>让 AI 开口说话</li>
+<li>工具系统</li>
+<li>让 Agent 自己干活</li>
+<li>System Prompt 设计</li>
+<li>权限系统 —— 给 Agent 装上安全刹车</li>
+<li>MCP 协议 —— 开放式工具生态</li>
+<li>上下文管理 —— 当 Token 开始烧钱</li>
+<li>记忆系统 —— 跨会话的 Agent 记忆</li>
+<li>Slash Command —— 内置命令框架</li>
+<li>Skill 系统 —— 可复用的技能包</li>
+<li>Hook 系统 —— 生命周期钩子与自动化</li>
+<li>SubAgent —— 子 Agent 与任务分发</li>
+<li>Worktree —— Git 工作树并行开发</li>
+<li>Agent Teams —— 从一次性子任务到长期协作团队</li>
+<li>回顾与展望 —— 从一个空壳到一支团队</li>
+</ol>
+<hr>
+<h2 id="1-初识-coding-agent">1. 初识 Coding Agent<a hidden class="anchor" aria-hidden="true" href="#1-初识-coding-agent">#</a></h2>
+<ul>
+<li>用户：通过自然语言下命令</li>
+</ul>
+<hr>
+<h2 id="2-让-ai-开口说话">2. 让 AI 开口说话<a hidden class="anchor" aria-hidden="true" href="#2-让-ai-开口说话">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：完成模型接入，让 CLI 能接收用户输入、调用大模型并流式展示回复。</li>
+<li><strong>怎么实现</strong>：抽象统一的模型 Provider 和消息结构，处理鉴权、模型配置、流式事件、错误与重试。</li>
+<li><strong>关键设计 / 取舍</strong>：统一接口与厂商特性的平衡；流式输出与非流式输出的差异；配置和密钥如何安全管理。</li>
+<li><strong>面试追问点</strong>：一次模型请求由哪些消息组成？流式响应如何拼接？如何适配不同模型服务？网络异常和限流如何处理？</li>
+</ul>
+<hr>
+<h2 id="3-工具系统">3. 工具系统<a hidden class="anchor" aria-hidden="true" href="#3-工具系统">#</a></h2>
+<ul>
+<li>
+<p>工具描述决定工具使用的质量：</p>
+<ul>
+<li>例如：1. 做什么；2. 什么时候使用；3. 什么时候不该使用；4. 参数约束；5. 返回格式；6. 与其他工具如何配合。大文件可先用 Grep 定位，再用 ReadFile 读取指定范围。</li>
+</ul>
+</li>
+<li>
+<p>工具接口设计不能只有名字和执行方法：</p>
+<ul>
+<li>用 JSON Schema 描述参数，让模型能够稳定地产生结构化调用。</li>
+<li>执行结果和错误都要结构化返回，因为错误也是 Agent 后续决策的有效信息。</li>
+<li>抽取通用基础实现，避免每个工具重复处理校验、超时、截断和日志。</li>
+<li>不同语言中采用各自惯用的接口与错误处理模式。</li>
+</ul>
+</li>
+<li>
+<p>工具注册中心：通过统一的 <code>toAPIFormat()</code> 遍历所有启用工具，把名称、描述和入参 Schema 转换成模型 API 所需格式；同时负责工具查找、启停和执行分发。</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-让-agent-自己干活">4. 让 Agent 自己干活<a hidden class="anchor" aria-hidden="true" href="#4-让-agent-自己干活">#</a></h2>
+<ul>
+<li>
+<p><strong>Function Calling</strong>：告诉模型怎么来调用工具</p>
+<ul>
+<li>告诉模型有哪些工具：通过<code>tools参数</code>来告诉模型工具的列表（每个工具有名字、描述、参数格式）</li>
+<li>模型决定调用工具<code>role:assistant</code>：他会在回复里输出一个<strong>结构化的请求</strong>，想调哪些工具，参数有哪些——<code>tool_use</code></li>
+<li>进行工具的执行<code>role:user</code>，把结果告诉模型：<code>tool_use-&gt;tool_result</code>返回给模型</li>
+<li>模型继续</li>
+</ul>
+</li>
+<li>
+<p><strong>Agent Loop</strong>：用户输入 → 模型决策 → 执行一个或多个工具 → 将 <code>tool_result</code> 回填消息历史 → 模型继续判断，直到输出最终答案。</p>
+</li>
+<li>
+<p><strong>循环终止条件</strong>：模型不再请求工具、达到最大轮数、用户取消、出现不可恢复错误，或权限系统拒绝关键操作。</p>
+</li>
+<li>
+<p><strong>关键设计 / 取舍</strong>：并行工具调用的收益与冲突风险；工具结果顺序和 <code>tool_use_id</code> 配对；如何避免死循环与重复调用。</p>
+</li>
+<li>
+<p><strong>面试追问点</strong>：完整的一轮 Agent Loop 怎么走？模型为什么知道该调用哪个工具？多个工具能否并行？如何处理中断、超时和失败？</p>
+</li>
+</ul>
+<hr>
+<h2 id="5-system-prompt-设计">5. System Prompt 设计<a hidden class="anchor" aria-hidden="true" href="#5-system-prompt-设计">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：</li>
+<li><strong>怎么实现</strong>：</li>
+<li><strong>关键设计 / 取舍</strong>：</li>
+<li><strong>面试追问点</strong>：</li>
+</ul>
+<hr>
+<h2 id="6-权限系统--给-agent-装上安全刹车">6. 权限系统 —— 给 Agent 装上安全刹车<a hidden class="anchor" aria-hidden="true" href="#6-权限系统--给-agent-装上安全刹车">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：</li>
+<li><strong>怎么实现</strong>：</li>
+<li><strong>关键设计 / 取舍</strong>：</li>
+<li><strong>面试追问点</strong>：</li>
+</ul>
+<hr>
+<h2 id="7-mcp-协议--开放式工具生态">7. MCP 协议 —— 开放式工具生态<a hidden class="anchor" aria-hidden="true" href="#7-mcp-协议--开放式工具生态">#</a></h2>
+<ul>
+<li>
+<p>由哪些部分构成：</p>
+<ul>
+<li>
+<p>运行时的角色</p>
+<ul>
+<li>Host: 真正的AI应用本体</li>
+<li>Client: Host里的一个连接组件，负责和某一个Server建立连接、发送请求、接收相应。可声明支持的能力
+<ul>
+<li>Root: 告诉Server当前项目的工作目录</li>
+<li>Stampling 允许Server反过来请求Host调用LLM</li>
+<li>Elicitation:允许Server请求Host追问用户额外信息</li>
+</ul>
+</li>
+<li>Server: 对外暴露能力的程序，有可能在本地or远程</li>
+</ul>
+</li>
+<li>
+<p>协议层</p>
+<ul>
+<li>
+<p>Data Layer层：定义消息长什么样，怎么列工具、调用工具等等——<strong>JSON-RPC 2.0</strong></p>
+<ul>
+<li>Request: Client-&gt;Server <code>id,method,params</code></li>
+<li>Response: Server-&gt;Client <code>id,result,error</code></li>
+<li>Notification: 通知不需要响应 <code>method</code></li>
+</ul>
+</li>
+<li>
+<p>Transport Layer：定义消息怎么在两边传过去</p>
+<ul>
+<li>stdio: 项目启动一个子进程来运行MCP Server。然后通过这个子进程的<strong>stdin和stdout的管道</strong>来通信，消息是UTF-8编码的JSON-RPC消息
+<ul>
+<li>stdout:读取相应 JSON-RPC 推送给Host</li>
+<li>stderr:调式日志，不参与协议。负责调试与排查</li>
+</ul>
+</li>
+<li>Streamable HTTP: 依靠<strong>HTTP</strong>请求post给远程Server，然后Server返回json相应
+<ul>
+<li>Accept声明：<code>application/json,text/event-stream</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>MCP双方提供什么东西</p>
+<ul>
+<li>Tools：暴露一组工具（名字、描述和参数的JSON Schema）。项目的工具在进程内执行，MCP的tool使用则是在外部工具中执行</li>
+<li>Resources：可读取的数据源：url/name/mimeType等。有点类似RAG中的上下文源</li>
+<li>Prompts：预定义提示词模板，是由工具定义方提供</li>
+</ul>
+</li>
+<li>
+<p>一次完成的MCP会话</p>
+<ul>
+<li>初始化握手：Client&lt;-&gt;Server 请求和回应声明<strong>协议版本</strong>，<strong>支持的能力，身份的信息</strong></li>
+<li>工具发现：Client发送<code>tools/list</code>请求，获取Server提供的所有工具定义</li>
+<li>工具调用：Client决定使用某个MCP工具时，Client发送<code>tools/call</code>请求</li>
+</ul>
+</li>
+<li>
+<p>项目的具体做法</p>
+<ul>
+<li>请求——响应的<strong>异步</strong>：使用map来管理等待中的请求，id号进行匹配</li>
+<li>工具包装：适配器模式，MCP工具包装成Tool接口（设计模式）</li>
+<li>Host可以连接Server列表：用户配置。yaml中（项目级/用户级）</li>
+<li>完整流程
+<ul>
+<li>
+<ol>
+<li>启动：读取配置文件获取MCP Server列表</li>
+</ol>
+</li>
+<li>2.选择Transport 根据Server配置</li>
+<li>3.后台连接：启动时异步连接所有配置的Server</li>
+<li>4.初始化：发送initialize+notifications</li>
+<li>5.工具发现：tools/list</li>
+<li>6.包装注册：MCPToolWrapper,注册到ToolRegistry，也就是适配器模式</li>
+<li>7.Agent使用：Agent决定是否调用MCP工具</li>
+<li>8.工具调用：Agent调用-&gt;MCPToolWrapper.execute-&gt;MCP Client-&gt;MCP Server</li>
+<li>9.结果返回: MCP Server返回结果-&gt;MCPToolWrapper转换-&gt;Agent处理</li>
+</ul>
+</li>
+<li>工具延迟加载：
+<ul>
+<li>1.MCP工具注册时标记自己为延迟工具<code> MCPToolWrapper.ShouldDefer() = true</code></li>
+<li>2.Agent Loop每轮生成工具列表时跳过延迟工具的完整schema，只列名字</li>
+<li>3.模型看到名字列表，先调用ToolSearch拉取完整的定义</li>
+<li>4.在客户端的Registry里找到工具，返回完整schema，标记为已发现</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="8-上下文管理--当-token-开始烧钱">8. 上下文管理 —— 当 Token 开始烧钱<a hidden class="anchor" aria-hidden="true" href="#8-上下文管理--当-token-开始烧钱">#</a></h2>
+<p>目的：让Agent在有限的Token窗口里长时间工作</p>
+<ul>
+<li>
+<p>两层压缩（自动）</p>
+<ul>
+<li>
+<p>大结果落盘：原因（工具结果超阈值）预防</p>
+<ul>
+<li>
+<p><strong>单个结果</strong>超出阈值50KB：<strong>完整结果写磁盘文件</strong>，对话历史放<strong>预览+文件路径</strong>，ReadFile读取该文件即可</p>
+</li>
+<li>
+<p>每条消息的<strong>聚合限制</strong>：每个工具都是40k,加起来超过了200k。超过<strong>聚合限制的最大结果集已被存盘</strong>，剩余结果合计大小低于限制200k</p>
+</li>
+<li>
+<p><strong>幂等写入</strong>：文件名<code>tool_use_id</code>，而且用wx模式写入（文件已存在则跳过） 防止每一轮重写同样的文件</p>
+</li>
+<li>
+<p><strong>Prompt Cache</strong></p>
+<ul>
+<li>
+<p>原理：新一轮请求的消息列表前缀和前一轮完全一样，api可以跳过前缀部分的处理。cache持续命中，则处理增量，如果cache反复失效，每轮都要重新处理几万甚至十几万token前缀</p>
+</li>
+<li>
+<p><strong>决策冻结</strong>（项目做法）：系统维护一个<strong>ContentReplacementState</strong>，记录每个tool_use_id的替换决策。<code>seenIds,replacements</code></p>
+<ul>
+<li>已替换过的：缓存的预览字符串原样重放</li>
+<li>已决定不替换的：永远保留原文，不再评估</li>
+<li>正常评估是否需要替换，做出决策后冻结</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>全量压缩 兜底</p>
+<ul>
+<li>
+<p><strong>触发时机</strong>：第一层落盘不够用了，上下文仍然接近爆炸，调用LLM自己来生成一份<strong>对话摘要</strong>，替换旧消息 依旧20k对话历史+13k预留空间</p>
+</li>
+<li>
+<p>为什么是写死<strong>固定值13k</strong>：</p>
+<ul>
+<li>因为ReadFile工具读取的内容都是那么大，buffer要防止的风险是下一轮突然多了一个大工具结果，这个风险取决于单次工具结果有多大，和<strong>总窗口</strong>无关</li>
+<li>防止两次检查之间一个意外偏大的工具结果出现把上下文撑爆</li>
+</ul>
+</li>
+<li>
+<p>预留的20k给摘要输出</p>
+<ul>
+<li>9个的结构化部分</li>
+</ul>
+</li>
+<li>
+<p>摘要Prompt设计</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>手动/compat</p>
+</li>
+</ul>
+<hr>
+<h2 id="9-记忆系统--跨会话的-agent-记忆">9. 记忆系统 —— 跨会话的 Agent 记忆<a hidden class="anchor" aria-hidden="true" href="#9-记忆系统--跨会话的-agent-记忆">#</a></h2>
+<ul>
+<li>
+<p>工作记忆：200k token就是Agent的大脑带宽，当前正在处理的所有信息总和</p>
+</li>
+<li>
+<p>长期记忆：对应到所有持久化到磁盘的信息</p>
+<ul>
+<li>
+<p><strong>会话持久化</strong>：和Agent的每次对话</p>
+<ul>
+<li>存储格式：JSONL格式（<code>role,content,timespan</code>）。好处：<strong>追加写入、奔溃安全、增量加载</strong></li>
+<li>文件组织：<code>.minicoder/sessions/yyyymmdd-hhmmss-xxxx</code> 后缀随机防止冲突</li>
+<li>会话管理器：一个<code>SessionManager</code>进行管理，他维护<code>.minicoder/sessions/</code>目录，提供所有会话操作的入口，进行会话的<strong>创建、恢复、列表、删除</strong>
+<ul>
+<li><strong>恢复会话</strong>：
+<ul>
+<li>逐行解析JSONL：逐行读取，遇到解析失败则跳过</li>
+<li>验证消息链完整性：JSONL文件可能因为<strong>崩溃</strong>而截断。所以需要追踪未完成的<strong>工具调用</strong>-<code>tool_result</code></li>
+<li>检查<code>token</code>量，如果恢复的会话很长，token量可能已经超过压缩阈值，进行压缩</li>
+<li>插入时间跨度prompt: <strong>上次会话是什么时候，中间可能有代码变更，建议重新读取相关文件</strong></li>
+</ul>
+</li>
+<li>过期会话清理：sessions目录会堆积大量的旧会话文件。超过30天没有活跃的会话，在启动时会自动清理。会话列表按照<strong>最后活跃时间</strong>倒序排列</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>项目指令文件</strong>：预先写好的项目知识和编码规范，</p>
+<ul>
+<li>
+<p>优先级排列：项目级-&gt;.minicoder级别-&gt;用户级 。流程：检查文件-&gt;&mdash;分割线拼接-&gt;system-reminder注入到messages中</p>
+</li>
+<li>
+<p><strong>@include</strong>:如果所有指令都在minicoder.md中会变得很臃肿，比如一个微服务项目，每个服务的编码规范可能不一样，让他可以在minicoder.md中引入其他文件的内容</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>自动记忆</strong>：Agent在对话中<strong>自动累计</strong>的经验</p>
+<ul>
+<li>用户偏好：用户的编码习惯和风格要求</li>
+<li>纠正反馈：用户明确指出的反馈</li>
+<li>项目知识：当前项目的具体技术信息</li>
+<li>参考信息：外部链接和资料（API文档等）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="10-slash-command--内置命令框架">10. Slash Command —— 内置命令框架<a hidden class="anchor" aria-hidden="true" href="#10-slash-command--内置命令框架">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：</li>
+<li><strong>怎么实现</strong>：</li>
+<li><strong>关键设计 / 取舍</strong>：</li>
+<li><strong>面试追问点</strong>：</li>
+</ul>
+<hr>
+<h2 id="11-skill-系统--可复用的技能包">11. Skill 系统 —— 可复用的技能包<a hidden class="anchor" aria-hidden="true" href="#11-skill-系统--可复用的技能包">#</a></h2>
+<ul>
+<li>
+<p>是什么: 写给Agent的SOP（标准操作流程）</p>
+<ul>
+<li>
+<p>面试回答：最上层的能力封装——打包的是「知识和工作流」，本身不是工具，而是告诉模型「该用哪些工具、按什么步骤做」，按需加载</p>
+</li>
+<li>
+<p>Anthropic的定义：【把专家经验、操作流程和最佳实践打包成<strong>可复用的能力</strong>】</p>
+</li>
+<li>
+<p>特点：一致性（行为一致）、知识固化（定下的规范）、跨平台复用</p>
+</li>
+<li>
+<p>和<strong>Slash Command</strong></p>
+<ul>
+<li>
+<p>相同点：都是把一端固定的Prompt模板交给Agent来执行，而且prompt经过精心设计后质量会更加稳定</p>
+</li>
+<li>
+<p>skill：把prompt从源码搬进独立的markdown文件，任何用户都能新增和修改</p>
+</li>
+<li>
+<p>Skill<strong>自动注册成命令</strong>：遍历所有的skill，在Slash中心新建一个【PROMPT】类型指令，命令名取frontmatter里的<code>name</code>，描述取<code>description</code>+【skill】</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Skill设计</p>
+<ul>
+<li>
+<p>Md文件：yaml方便解析结构化数据。LLM可以直接理解prompt body。方便更改和新增</p>
+<ul>
+<li>
+<p>FrontMatter中的字段：name、description、allowedTools、model、mode(inline or fork)、content（full/recent/none）</p>
+</li>
+<li>
+<p>分级：项目级（.minicoder/skills）,用户级（~/.minicoder/skills）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>inline/fork:</p>
+<ul>
+<li>
+<p>inline：默认的模式：skill的prompt注入到当前对话中。和之前的消息一样走Agent Loop</p>
+</li>
+<li>
+<p>fork：隔离上下文进行执行，不影响也不受当前对话影响。执行完后只把结果摘要返回到主对话。适合/review</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>ARGUMENTS</code>：让Skill接受用户参数</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Agent选择Skill流程</p>
+<ul>
+<li>
+<p>两阶段加载</p>
+<ul>
+<li>
+<p>轻量注册：启动时只加载每个Skill的frontmatter（name、description），不加载完整的prompt body和专属工具。放在system prompt里，可以放到prompt cache的稳定前缀区，但每轮要多带一段token</p>
+</li>
+<li>
+<p>按需加载：判断匹配上的Skill时，调用LoadSkill工具，把Skill.md的完整prompt body激活到Agent的环境上下文。加载tool.json里申明的专属工具并注册到当前会话</p>
+</li>
+</ul>
+</li>
+<li>
+<p>目录Skill：支持意图识别和<strong>专属工具</strong>的Skill。多一个<code>tool.json</code>文件（注册工具）。具备一个好处（整套能力的打包移植：单元，sop，工具schema，工具实现代码，长文档参考，辅助脚本等）</p>
+</li>
+<li>
+<p>完整流程：</p>
+<ul>
+<li>启动：扫描skill目录，加载所有的Skill的frontmatter轻量</li>
+<li>注入messages：告诉Agent有哪些Skill可用（name+description）</li>
+<li>注册命令：注册为Slash Command，支持/commit显式调用</li>
+<li>用户输入</li>
+<li>意图识别：Agent判断匹配 skill</li>
+<li>Agent调用loadSkill</li>
+<li>完整SKILL.md+工具加载到user message动态上下文之前</li>
+<li>执行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>三个内置的skill：资源嵌入机制编译进二进制，跟MewCode一起进行分发</p>
+<ul>
+<li>commit：分析diff生成规范提交</li>
+<li>review：在隔离上下文做客观审查</li>
+<li>test：负责测试并分析结果</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="12-hook-系统--生命周期钩子与自动化">12. Hook 系统 —— 生命周期钩子与自动化<a hidden class="anchor" aria-hidden="true" href="#12-hook-系统--生命周期钩子与自动化">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：</li>
+<li><strong>怎么实现</strong>：</li>
+<li><strong>关键设计 / 取舍</strong>：</li>
+<li><strong>面试追问点</strong>：</li>
+</ul>
+<hr>
+<h2 id="13-subagent--子-agent-与任务分发">13. SubAgent —— 子 Agent 与任务分发<a hidden class="anchor" aria-hidden="true" href="#13-subagent--子-agent-与任务分发">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：</li>
+<li><strong>怎么实现</strong>：</li>
+<li><strong>关键设计 / 取舍</strong>：</li>
+<li><strong>面试追问点</strong>：</li>
+</ul>
+<hr>
+<h2 id="14-worktree--git-工作树并行开发">14. Worktree —— Git 工作树并行开发<a hidden class="anchor" aria-hidden="true" href="#14-worktree--git-工作树并行开发">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：</li>
+<li><strong>怎么实现</strong>：</li>
+<li><strong>关键设计 / 取舍</strong>：</li>
+<li><strong>面试追问点</strong>：</li>
+</ul>
+<hr>
+<h2 id="15-agent-teams--从一次性子任务到长期协作团队">15. Agent Teams —— 从一次性子任务到长期协作团队<a hidden class="anchor" aria-hidden="true" href="#15-agent-teams--从一次性子任务到长期协作团队">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：</li>
+<li><strong>怎么实现</strong>：</li>
+<li><strong>关键设计 / 取舍</strong>：</li>
+<li><strong>面试追问点</strong>：</li>
+</ul>
+<hr>
+<h2 id="16-回顾与展望--从一个空壳到一支团队">16. 回顾与展望 —— 从一个空壳到一支团队<a hidden class="anchor" aria-hidden="true" href="#16-回顾与展望--从一个空壳到一支团队">#</a></h2>
+<ul>
+<li><strong>做什么</strong>：回顾 MewCode 从模型对话、工具调用到多 Agent 协作的完整演进路径，总结当前能力边界。</li>
+<li><strong>怎么实现</strong>：串联各子系统的数据流和控制流，形成端到端架构视图，并用真实任务复盘系统如何协同工作。</li>
+<li><strong>关键设计 / 取舍</strong>：功能复杂度、可靠性、成本和用户控制权之间如何平衡；哪些设计已稳定，哪些仍需实验验证。</li>
+<li><strong>面试追问点</strong>：项目中最难的问题是什么？做过哪些重构？目前最大的局限是什么？下一步会如何改进和评估？</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

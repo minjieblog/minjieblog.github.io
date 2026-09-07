@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Prevoke：一种保护隐私的可配置可验证凭证撤销方案 | Minjie&#39;s Blog</title>
+<meta name="keywords" content="SSI, VC, Revocation, 隐私保护, 布隆过滤器, 默克尔树">
+<meta name="description" content="Prevoke 是一种面向自我主权身份（SSI）系统的可验证凭证撤销方案，通过将布隆过滤器（Bloom Filter）与默克尔树累加器（Merkle Tree Accumulator）结合，并部署在以太坊智能合约上，首次同时满足了 PR1（不暴露持有者与验证者关联）、PR2（不泄露被撤销持有者身份）、PR3（不泄露撤销率）三大隐私需求。本文从背景知识、隐私需求、系统设计、算法流程到实验评估进行了全面介绍，适合区块链与身份认证领域的初学者阅读。">
+<meta name="author" content="">
+<link rel="canonical" href="https://minjieblog.github.io/blockchain/prevoke-privacy-preserving-vc-revocation/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/blockchain/prevoke-privacy-preserving-vc-revocation/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style><meta property="og:url" content="https://minjieblog.github.io/blockchain/prevoke-privacy-preserving-vc-revocation/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Prevoke：一种保护隐私的可配置可验证凭证撤销方案">
+  <meta property="og:description" content="Prevoke 是一种面向自我主权身份（SSI）系统的可验证凭证撤销方案，通过将布隆过滤器（Bloom Filter）与默克尔树累加器（Merkle Tree Accumulator）结合，并部署在以太坊智能合约上，首次同时满足了 PR1（不暴露持有者与验证者关联）、PR2（不泄露被撤销持有者身份）、PR3（不泄露撤销率）三大隐私需求。本文从背景知识、隐私需求、系统设计、算法流程到实验评估进行了全面介绍，适合区块链与身份认证领域的初学者阅读。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blockchain">
+    <meta property="article:published_time" content="2026-04-06T12:11:32+08:00">
+    <meta property="article:modified_time" content="2026-04-06T12:11:32+08:00">
+    <meta property="article:tag" content="SSI">
+    <meta property="article:tag" content="VC">
+    <meta property="article:tag" content="Revocation">
+    <meta property="article:tag" content="隐私保护">
+    <meta property="article:tag" content="布隆过滤器">
+    <meta property="article:tag" content="默克尔树">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Prevoke：一种保护隐私的可配置可验证凭证撤销方案">
+<meta name="twitter:description" content="Prevoke 是一种面向自我主权身份（SSI）系统的可验证凭证撤销方案，通过将布隆过滤器（Bloom Filter）与默克尔树累加器（Merkle Tree Accumulator）结合，并部署在以太坊智能合约上，首次同时满足了 PR1（不暴露持有者与验证者关联）、PR2（不泄露被撤销持有者身份）、PR3（不泄露撤销率）三大隐私需求。本文从背景知识、隐私需求、系统设计、算法流程到实验评估进行了全面介绍，适合区块链与身份认证领域的初学者阅读。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blockchains",
+      "item": "https://minjieblog.github.io/blockchain/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Prevoke：一种保护隐私的可配置可验证凭证撤销方案",
+      "item": "https://minjieblog.github.io/blockchain/prevoke-privacy-preserving-vc-revocation/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Prevoke：一种保护隐私的可配置可验证凭证撤销方案",
+  "name": "Prevoke：一种保护隐私的可配置可验证凭证撤销方案",
+  "description": "Prevoke 是一种面向自我主权身份（SSI）系统的可验证凭证撤销方案，通过将布隆过滤器（Bloom Filter）与默克尔树累加器（Merkle Tree Accumulator）结合，并部署在以太坊智能合约上，首次同时满足了 PR1（不暴露持有者与验证者关联）、PR2（不泄露被撤销持有者身份）、PR3（不泄露撤销率）三大隐私需求。本文从背景知识、隐私需求、系统设计、算法流程到实验评估进行了全面介绍，适合区块链与身份认证领域的初学者阅读。",
+  "keywords": [
+    "SSI", "VC", "Revocation", "隐私保护", "布隆过滤器", "默克尔树"
+  ],
+  "articleBody": " Prevoke：一种保护隐私的可配置可验证凭证撤销方案 论文来源：2024 IEEE International Conference on Blockchain (Blockchain)\n作者：Praveensankar Manimaran 等，挪威奥斯陆大学 \u0026 巴西圣保罗联邦大学\n一、背景知识 在正式进入论文内容之前，我们需要先建立几个基础概念。\n1.1 自我主权身份（SSI） 自我主权身份（Self-Sovereign Identity，SSI） 是一种新型数字身份管理理念，核心思想是：个人应该完全拥有并自主控制自己的身份数据，不需要依赖任何中央机构（如政府、银行、平台）来管理。\n举个现实中的类比：\n传统身份：你的身份证由政府颁发并管理，你无法自主决定谁能查看你的信息。 SSI 身份：你持有自己的数字身份凭证，可以自主决定把哪些信息分享给谁，就像你自己保管实体证件一样。 SSI 系统中有四种角色：\n角色 说明 现实类比 Issuer（发行者） 颁发数字凭证的机构 大学（颁发毕业证）、雇主（颁发工牌） Holder（持有者） 持有并保管凭证的个人 毕业生、员工 Verifier（验证者） 验证凭证真实性的机构 银行、新雇主 Registry（注册中心） 存储凭证相关元数据和撤销信息的公共账本 区块链 / DLT 1.2 可验证凭证（VC） 可验证凭证（Verifiable Credential，VC） 是传统实体证件（护照、文凭、驾照等）的数字化形式，具有以下特点：\n密码学安全：通过数字签名保证内容不可篡改 机器可验证：验证方可以用程序自动核验其真实性 隐私友好：持有者可以只披露凭证中的部分信息（选择性披露） 一张典型的 VC 包含：\n发行者信息（谁签发的） 声明（claims）：如姓名、年龄、职位、薪资等 证明（proof）：如数字签名 可验证展示（Verifiable Presentation，VP） 是在 VC 基础上的进一步封装，允许持有者只展示 VC 中的部分字段，保护更多隐私。\n1.3 分布式账本技术（DLT） 分布式账本技术（Distributed Ledger Technology，DLT） 是区块链的更广泛概念，是一种去中心化的数据存储方式。数据一旦写入，不可篡改，并对所有参与节点公开。论文中使用以太坊（Ethereum） 作为 DLT 基础设施。\n1.4 布隆过滤器（Bloom Filter） 布隆过滤器 是一种空间效率极高的概率型数据结构，用于判断某个元素是否在集合中。\n✅ 确定性结论：如果布隆过滤器说\"不在集合中\"，那一定不在（无假阴性） ⚠️ 概率性误差：如果布隆过滤器说\"在集合中\"，有一定概率是误判（存在假阳性） 工作原理简述：\n使用 $k$ 个哈希函数，将每个元素映射到长度为 $m$ 的位数组上的 $k$ 个位置，将这些位置设为 1 查询时，计算同样的 $k$ 个哈希位置，若全为 1 则\"可能存在\"，若有任何一个为 0 则\"一定不存在\" 关键参数：\n$m$：位数组长度 $k$：哈希函数个数 $p$：假阳性率（False Positive Rate），可配置 1.5 默克尔树累加器（Merkle Tree Accumulator，MTAcc） 默克尔树（Merkle Tree） 是一种树形数据结构，其中：\n叶子节点存储数据的哈希值 非叶子节点存储其子节点哈希值的合并哈希 根节点（Root）是整棵树的\"摘要\"，任何数据的改变都会导致根节点变化 默克尔树累加器（MTAcc） 将默克尔树的根哈希作为整个数据集的\"累加器\"（摘要），可以用来：\n成员证明（Membership Proof）：证明某个元素确实在集合中，且结果是确定性的（无假阳性） 见证值（Witness）：每个元素都有一个\"见证值\"，包含从该叶子节点到根的路径上所有兄弟节点的哈希值 与布隆过滤器的核心区别：MTAcc 的成员查询是完全确定的，不存在误判；但每次 MTAcc 更新时，所有元素都需要更新自己的见证值，代价较高。\n1.6 BBS 签名方案 BBS 签名方案 是一种特殊的数字签名方案，支持：\n批量签名：一次签名可以覆盖多条消息 选择性披露：持有者可以只出示部分已签名的消息，同时用零知识证明证明其余消息的存在性 不可关联性：每次生成的零知识证明都是随机的，不同验证者无法将同一持有者的多次证明关联起来 BBS 方案的核心算法包括：\n算法 说明 BBS-KeyGen 生成密钥对 $(sk, pk)$ BBS-Sign 用私钥对一组消息签名 BBS-Verify 用公钥验证签名 BBS-ProofGen 生成零知识证明（只披露部分消息） BBS-ProofVerify 验证零知识证明 二、问题背景：VC 撤销面临哪些隐私挑战？ 2.1 为什么需要撤销？ 可验证凭证可能因以下原因需要撤销：\n取消：员工离职，需要撤销其工作证明 VC 更新：员工信息（如薪资、职位）变更，旧 VC 需要作废 私钥丢失：发行者或持有者的私钥丢失，相关 VC 需要全部撤销 2.2 撤销带来的隐私问题 撤销信息通常存储在公开的注册中心（如区块链上），这会暴露敏感信息。论文通过一个**职场身份（Workforce Identity）**的用例来说明：\n场景：Employer 1（雇主1）给员工 Bob 颁发了一张员工 VC，Bob 想去 Employer 2 应聘，于是向 Employer 2 出示了这张 VC。\n在这个场景下，论文识别出以下三条隐私需求（Privacy Requirements，PR）：\n三、三大隐私需求（核心概念） PR1：不暴露持有者与验证者的关联 问题描述：如果 Employer 2（验证者）在验证 Bob 的 VC 时，需要直接联系 Employer 1（发行者），那么 Employer 1 就会知道\"Bob 正在找其他工作\"——这可能直接损害 Bob 的工作状态。\n这个问题也被称为 “Phone Home\"问题：验证者每次验证都要\"打电话\"给发行者，从而让发行者获悉持有者的动向。\n解决思路：将撤销状态存储在公开账本（智能合约），验证者直接查询账本，不与发行者交互。\nPR2：不泄露被撤销持有者的身份 问题描述：当 Employer 1 撤销 Bob 的 VC 时，如果撤销记录中包含 Bob 的可识别信息（如姓名、员工ID等），第三方观察者就能推断出\"Bob 离职了”——如果 Bob 是高管，这可能影响公司股价。\n解决思路：撤销信息只存储哈希值或随机化后的数据，不直接暴露个人信息。\nPR3：不泄露撤销率 问题描述：即使不知道谁被撤销，如果第三方能观察到每段时间内的撤销数量，就可以推算出\"员工流失率（churn rate）\"。这是商业敏感信息，可能暗示公司管理不善或工作环境恶劣。\n解决思路：通过概率数据结构（布隆过滤器）和只存储部分树层级，隐藏精确的撤销数量。\n四、现有方案的不足 论文对比了三种现有方案：\n方案 PR1 PR2 PR3 主要缺陷 IOTA Id ✅ ❌ ❌ 使用 bitmap，直接暴露撤销数量和身份索引 Indy ✅ ✅ ❌ 使用双线性累加器；每次撤销后所有持有者需更新见证值，性能差；最多支持 32768 张 VC Schumm et al. ✅ ❌ ❌ 每次撤销对应一笔独立交易，直接暴露撤销次数；不处理假阳性 结论：没有任何现有方案同时满足三大隐私需求。\n五、Prevoke 方案设计 5.1 核心思路 Prevoke 的核心是两阶段验证：\n┌─────────────────────────────────────┐ │ 智能合约（DLT） │ │ ┌─────────────┐ ┌──────────────┐ │ │ │ Bloom Filter │ │ MTAcc（前z层）│ │ │ │（存已撤销VC）│ │（存有效VC） │ │ │ └─────────────┘ └──────────────┘ │ └─────────────────────────────────────┘ ↑查询 验证者 ──── Phase 1 ──→ 查布隆过滤器 │ │ 在过滤器中？（可能已撤销或假阳性） │ └── Phase 2 ──→ 查 MTAcc（确定性验证） 布隆过滤器：只存储已撤销的 VC（的哈希索引） MTAcc：只存储有效的 VC（的哈希摘要） 验证时，先查布隆过滤器： 如果不在过滤器中 → VC 有效（布隆过滤器无假阴性，可信） 如果在过滤器中 → 可能已撤销，也可能是假阳性 → 进入第二阶段查 MTAcc 确认 5.2 四大流程详解 流程一：Setup（初始化） 发行者在系统启动时执行一次，主要完成：\n根据参数计算布隆过滤器的大小 $m$ 和哈希函数数量 $k$： $$m = -\\frac{r \\ln p}{(\\ln 2)^2}, \\quad k = \\frac{m}{r} \\ln 2$$其中：\n$n$：预计发行 VC 总数 $r$：预计撤销 VC 数量 $p$：可接受的假阳性率 $z$：在智能合约中存储 MTAcc 的层数（从根节点第0层开始） 初始化空的布隆过滤器和 MTAcc\n使用 BLS12-381 密码套件生成 BBS 密钥对 $(sk, pk)$\n部署以太坊智能合约，将 $pk$ 和空数据结构写入合约\n$z$ 参数的意义：智能合约只存储 MTAcc 的前 $z$ 层（根节点为第 0 层）。$z$ 越大，存储的层数越多，持有者更新见证值时越能自给自足（不需要联系发行者），但费用也越高。\n流程二：Issuance（发行） 每次为持有者发行一张 VC：\n发行者为 VC 生成唯一标识符 vcID（随机字符串） 用 vcID 通过 $k$ 个哈希函数计算布隆过滤器索引 bfIndexes（注意：此时不更新过滤器，因为 VC 尚未撤销） 将 H(vcID)（vcID 的哈希）插入 MTAcc 的对应叶子节点（leafIndex 递增） 计算该叶子的见证值 witness，以及在第 $z$ 层的祖先节点值 ancestor 用 BBS 签名对以下内容签名：vcID、H(vcID)、bfIndexes、claims 构造 VC 并连同 witness 和 ancestor 发送给持有者 将更新后的 MTAcc 前 $z$ 层写入智能合约 持有者收到 VC 后：\n用 BBS-Verify 验证签名 用见证值验证 VC 确实已被纳入 MTAcc 流程三：Revocation（撤销） 发行者撤销一张或多张 VC（支持批量撤销，这是满足 PR3 的关键）：\n对每张待撤销的 VC： 用 vcID 计算 bfIndexes，将对应位设为 1（更新布隆过滤器） 在 MTAcc 中找到该 VC 对应的叶子节点，将其内容替换为随机字符串的哈希 H(r)（使该叶子\"失效\"） 将更新后的布隆过滤器和 MTAcc 前 $z$ 层写入智能合约 批量撤销的隐私作用：一次交易可以撤销多张 VC，使第三方无法通过交易数量推断撤销率，（PR3）。因为只能看到前z层的默克尔树。\n流程四：Verification（验证） 第一步（持有者生成证明）：\n生成随机 nonce（防止证明被重放） 用 BBS-ProofGen 生成零知识证明 $\\pi$，其中： 选择性披露部分 claims（子集 $C$） 同时包含 bfIndexes 和 H(vcID)（但不暴露原始 vcID 和完整 claims） 将 VP（包含 $\\pi$、nonce、bfIndexes、H(vcID)、披露的 $C$）发送给验证者 第二步（Phase 1 验证）：\n验证者用 BBS-ProofVerify 验证零知识证明的有效性 将 bfIndexes 发送给智能合约，查询布隆过滤器 若不在过滤器中 → ✅ VC 有效，验证完成 若在过滤器中 → 进入 Phase 2 第三步（Phase 2 验证，仅当 Phase 1 结果为\"可能撤销\"时触发）：\n验证者向持有者请求 MTAcc 证明 持有者检查智能合约中第 $z$ 层的祖先节点是否与发行时收到的 ancestor 一致： 一致：说明该 VC 的 co-path 上没有其他 VC 被撤销，可以从智能合约中计算出最新见证值 不一致：说明 co-path 上有 VC 被撤销，需要联系发行者获取最新见证值 持有者构造 MTAcc 证明并发送给验证者 验证者从智能合约获取 MTAcc 根哈希，验证 MTAcc 证明： 证明有效 → ✅ VC 未被撤销（Phase 1 是假阳性） 证明无效 → ❌ VC 已被撤销 六、隐私分析：Prevoke 如何满足三大需求？ PR1 满足情况 验证者直接从智能合约（公开账本）查询布隆过滤器和 MTAcc，全程不与发行者交互，因此发行者无法得知持有者的验证行为。\nPR2 满足情况 布隆过滤器和 MTAcc 中只存储 vcID 的哈希值（H(vcID)），而非原始标识符 由哈希函数的单向性保证，无法从哈希反推出 vcID 或持有者身份 持有者通过 BBS 零知识证明分享数据，不暴露完整 VC PR3 满足情况 两个机制共同保障：\n布隆过滤器的概率性：多张 VC 共享同一组布隆索引位，无法从过滤器中直接数出撤销了多少张 VC 只存储 $z$ 层 MTAcc：MTAcc 中第 $z$ 层的每个节点覆盖 $2^{h-z}$ 张 VC（$h$ 为树的高度）。观察者只能推断某次更新影响了 1 到 $2^{h-z}$ 张 VC，无法得知精确数量 七、实验评估 7.1 实验配置 编程语言：Go 区块链：私有以太坊网络（Ganache v7.9.1） 部署环境：挪威 NREC 云服务（32核 AMD EPYC CPU，128GB 内存） 7.2 Q1：Phase 1 vs Phase 2 效率对比 配置：$n=1000$，$r=100$，$p=0.1$，$z$ 从 0 到 10 变化\n结论：\nPhase 1（布隆过滤器查询）：耗时稳定在 13~16 ms，与 $z$ 无关 Phase 2 总耗时：随 $z$ 增大从 40 ms 增长到 3200 ms 原因：$z$ 越大，持有者需要从智能合约下载的数据呈指数级增长 实践建议：不要把 $z$ 设得过大，否则 Phase 2 会非常缓慢。\n7.3 Q2：撤销效率 撤销时间随撤销数量线性增长，因为每次撤销只需更新 $k$ 个布隆索引和 $z$ 个 MTAcc 节点，是可预期的稳定开销。\n7.4 Q3 \u0026 Q4：$z$ 值和撤销模式对见证值更新的影响 配置：$n=100,000$，$r=10,000$，$p=0.001$（预计约 100 个假阳性）\n两种撤销模式对比：\n随机模式（random）：随机选择 VC 撤销 → MTAcc 中变化分散，即使存储超过一半的层（$z=16$），仍有部分持有者需联系发行者更新见证值 最旧优先模式（oldest-first）：总是撤销最早发行的未撤销 VC → MTAcc 中变化集中，只需存储少量层（$z=4$）就能让大多数持有者自行更新 实践建议：如果应用场景的撤销模式较为规律（如按序撤销），$z$ 可以设置较小以节省费用；若撤销是随机的，需要更大的 $z$ 或完善的发行者基础设施。\n7.5 Q5：Gas 费用与参数关系 配置：$r=10,000$，$z$ 从 0 到 20，不同 $p$ 值\n结论：\n$z$ 增大 → Gas 线性增加（每次撤销多更新 $z$ 个节点） $p$ 减小（假阳性率降低）→ 布隆过滤器变大（$m$ 和 $k$ 增大）→ Gas 线性增加 实际费用参考（以 Gas 价格 12 Gwei、ETH 价格 3,037 USD 计算）：\n$p$ 值 费用区间（每次撤销） $p = 0.1$ $2.9 \\sim 7.45$ USD $p = 0.0001$ $7.64 \\sim 12.2$ USD 7.6 Q6：假阳性数量随撤销增长的变化 结论：\n假阳性数量随撤销数增加而增加，在 $r$ 达到设计容量时接近 $p \\times n$ 超过设计容量后，假阳性数量指数级增长 布隆过滤器稀疏时（撤销数量少），假阳性极少（如 $p=0.001$ 时，撤销 6000 张以前几乎没有假阳性） 实践建议：根据预估撤销数量合理配置 $r$，避免布隆过滤器\"溢出\"。\n八、方案对比总结 九、方案的优势与局限 优势 布隆过滤器无假阴性：有效 VC 的验证基本只需 Phase 1，效率极高 见证值更新频率低：只有\"假阳性\"的 VC 和已撤销的 VC 需要更新见证值；通过 $z$ 参数可以让大多数更新直接从智能合约完成，减少对发行者的依赖 验证免费：验证过程只读取智能合约状态，在以太坊上不产生 Gas 费 高可用性：以太坊网络拥有 7000+ 活跃节点，数据高度可用 可配置性：通过调整 $n$、$r$、$p$、$z$ 参数适应不同业务场景 局限 发行和撤销产生 Gas 费：更新布隆过滤器和 MTAcc 都需要支付以太坊费用 见证值无法完全消除：虽然频率大幅降低，仍有少数情况需要持有者联系发行者 存储更多层 MTAcc 费用高：$z$ 越大，费用越贵 未来待解问题：验证者可以无限期监控某张 VC 的撤销状态，这是一个尚未解决的隐私隐患 十、结论 Prevoke 是目前首个同时满足 PR1、PR2、PR3 三大隐私需求的 VC 撤销方案。通过将布隆过滤器与默克尔树累加器结合，并部署在以太坊智能合约上，Prevoke 在保护隐私的同时保持了良好的性能。其高度可配置性使其可以适应从员工身份管理到学历认证等多种实际场景。\n参考文献 [论文原文] Manimaran et al., “Prevoke: Privacy-Preserving Configurable Method for Revoking Verifiable Credentials,” 2024 IEEE International Conference on Blockchain. [BBS 签名] Tessaro \u0026 Zhu, “Revisiting BBS Signatures,” Advances in Cryptology, Springer, 2023. [布隆过滤器] Tarkoma et al., “Theory and Practice of Bloom Filters for Distributed Systems,” IEEE Communications Surveys \u0026 Tutorials, 2011. [MTAcc] Loporchio et al., “A Survey of Set Accumulators for Blockchain Systems,” Computer Science Review, 2023. [W3C VC 标准] Sporny et al., “Verifiable Credentials Data Model v2.0,” W3C. [以太坊] “Ethereum Whitepaper,” ethereum.org. [源码] https://github.com/praveensankar/Prevoke ",
+  "wordCount" : "6050",
+  "inLanguage": "zh",
+  "datePublished": "2026-04-06T12:11:32+08:00",
+  "dateModified": "2026-04-06T12:11:32+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/blockchain/prevoke-privacy-preserving-vc-revocation/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Prevoke：一种保护隐私的可配置可验证凭证撤销方案
+    </h1>
+    <div class="post-description">
+      Prevoke 是一种面向自我主权身份（SSI）系统的可验证凭证撤销方案，通过将布隆过滤器（Bloom Filter）与默克尔树累加器（Merkle Tree Accumulator）结合，并部署在以太坊智能合约上，首次同时满足了 PR1（不暴露持有者与验证者关联）、PR2（不泄露被撤销持有者身份）、PR3（不泄露撤销率）三大隐私需求。本文从背景知识、隐私需求、系统设计、算法流程到实验评估进行了全面介绍，适合区块链与身份认证领域的初学者阅读。
+    </div>
+    <div class="post-meta"><span title='2026-04-06 12:11:32 +0800 CST'>2026年4月6日</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#prevoke%e4%b8%80%e7%a7%8d%e4%bf%9d%e6%8a%a4%e9%9a%90%e7%a7%81%e7%9a%84%e5%8f%af%e9%85%8d%e7%bd%ae%e5%8f%af%e9%aa%8c%e8%af%81%e5%87%ad%e8%af%81%e6%92%a4%e9%94%80%e6%96%b9%e6%a1%88" aria-label="Prevoke：一种保护隐私的可配置可验证凭证撤销方案">Prevoke：一种保护隐私的可配置可验证凭证撤销方案</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%80%e8%83%8c%e6%99%af%e7%9f%a5%e8%af%86" aria-label="一、背景知识">一、背景知识</a><ul>
+                        
+                <li>
+                    <a href="#11-%e8%87%aa%e6%88%91%e4%b8%bb%e6%9d%83%e8%ba%ab%e4%bb%bdssi" aria-label="1.1 自我主权身份（SSI）">1.1 自我主权身份（SSI）</a></li>
+                <li>
+                    <a href="#12-%e5%8f%af%e9%aa%8c%e8%af%81%e5%87%ad%e8%af%81vc" aria-label="1.2 可验证凭证（VC）">1.2 可验证凭证（VC）</a></li>
+                <li>
+                    <a href="#13-%e5%88%86%e5%b8%83%e5%bc%8f%e8%b4%a6%e6%9c%ac%e6%8a%80%e6%9c%afdlt" aria-label="1.3 分布式账本技术（DLT）">1.3 分布式账本技术（DLT）</a></li>
+                <li>
+                    <a href="#14-%e5%b8%83%e9%9a%86%e8%bf%87%e6%bb%a4%e5%99%a8bloom-filter" aria-label="1.4 布隆过滤器（Bloom Filter）">1.4 布隆过滤器（Bloom Filter）</a></li>
+                <li>
+                    <a href="#15-%e9%bb%98%e5%85%8b%e5%b0%94%e6%a0%91%e7%b4%af%e5%8a%a0%e5%99%a8merkle-tree-accumulatormtacc" aria-label="1.5 默克尔树累加器（Merkle Tree Accumulator，MTAcc）">1.5 默克尔树累加器（Merkle Tree Accumulator，MTAcc）</a></li>
+                <li>
+                    <a href="#16-bbs-%e7%ad%be%e5%90%8d%e6%96%b9%e6%a1%88" aria-label="1.6 BBS 签名方案">1.6 BBS 签名方案</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%8c%e9%97%ae%e9%a2%98%e8%83%8c%e6%99%afvc-%e6%92%a4%e9%94%80%e9%9d%a2%e4%b8%b4%e5%93%aa%e4%ba%9b%e9%9a%90%e7%a7%81%e6%8c%91%e6%88%98" aria-label="二、问题背景：VC 撤销面临哪些隐私挑战？">二、问题背景：VC 撤销面临哪些隐私挑战？</a><ul>
+                        
+                <li>
+                    <a href="#21-%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e6%92%a4%e9%94%80" aria-label="2.1 为什么需要撤销？">2.1 为什么需要撤销？</a></li>
+                <li>
+                    <a href="#22-%e6%92%a4%e9%94%80%e5%b8%a6%e6%9d%a5%e7%9a%84%e9%9a%90%e7%a7%81%e9%97%ae%e9%a2%98" aria-label="2.2 撤销带来的隐私问题">2.2 撤销带来的隐私问题</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%89%e4%b8%89%e5%a4%a7%e9%9a%90%e7%a7%81%e9%9c%80%e6%b1%82%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5" aria-label="三、三大隐私需求（核心概念）">三、三大隐私需求（核心概念）</a><ul>
+                        
+                <li>
+                    <a href="#pr1%e4%b8%8d%e6%9a%b4%e9%9c%b2%e6%8c%81%e6%9c%89%e8%80%85%e4%b8%8e%e9%aa%8c%e8%af%81%e8%80%85%e7%9a%84%e5%85%b3%e8%81%94" aria-label="PR1：不暴露持有者与验证者的关联">PR1：不暴露持有者与验证者的关联</a></li>
+                <li>
+                    <a href="#pr2%e4%b8%8d%e6%b3%84%e9%9c%b2%e8%a2%ab%e6%92%a4%e9%94%80%e6%8c%81%e6%9c%89%e8%80%85%e7%9a%84%e8%ba%ab%e4%bb%bd" aria-label="PR2：不泄露被撤销持有者的身份">PR2：不泄露被撤销持有者的身份</a></li>
+                <li>
+                    <a href="#pr3%e4%b8%8d%e6%b3%84%e9%9c%b2%e6%92%a4%e9%94%80%e7%8e%87" aria-label="PR3：不泄露撤销率">PR3：不泄露撤销率</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%9b%9b%e7%8e%b0%e6%9c%89%e6%96%b9%e6%a1%88%e7%9a%84%e4%b8%8d%e8%b6%b3" aria-label="四、现有方案的不足">四、现有方案的不足</a></li>
+                <li>
+                    <a href="#%e4%ba%94prevoke-%e6%96%b9%e6%a1%88%e8%ae%be%e8%ae%a1" aria-label="五、Prevoke 方案设计">五、Prevoke 方案设计</a><ul>
+                        
+                <li>
+                    <a href="#51-%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af" aria-label="5.1 核心思路">5.1 核心思路</a></li>
+                <li>
+                    <a href="#52-%e5%9b%9b%e5%a4%a7%e6%b5%81%e7%a8%8b%e8%af%a6%e8%a7%a3" aria-label="5.2 四大流程详解">5.2 四大流程详解</a><ul>
+                        
+                <li>
+                    <a href="#%e6%b5%81%e7%a8%8b%e4%b8%80setup%e5%88%9d%e5%a7%8b%e5%8c%96" aria-label="流程一：Setup（初始化）">流程一：Setup（初始化）</a></li>
+                <li>
+                    <a href="#%e6%b5%81%e7%a8%8b%e4%ba%8cissuance%e5%8f%91%e8%a1%8c" aria-label="流程二：Issuance（发行）">流程二：Issuance（发行）</a></li>
+                <li>
+                    <a href="#%e6%b5%81%e7%a8%8b%e4%b8%89revocation%e6%92%a4%e9%94%80" aria-label="流程三：Revocation（撤销）">流程三：Revocation（撤销）</a></li>
+                <li>
+                    <a href="#%e6%b5%81%e7%a8%8b%e5%9b%9bverification%e9%aa%8c%e8%af%81" aria-label="流程四：Verification（验证）">流程四：Verification（验证）</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%ad%e9%9a%90%e7%a7%81%e5%88%86%e6%9e%90prevoke-%e5%a6%82%e4%bd%95%e6%bb%a1%e8%b6%b3%e4%b8%89%e5%a4%a7%e9%9c%80%e6%b1%82" aria-label="六、隐私分析：Prevoke 如何满足三大需求？">六、隐私分析：Prevoke 如何满足三大需求？</a><ul>
+                        
+                <li>
+                    <a href="#pr1-%e6%bb%a1%e8%b6%b3%e6%83%85%e5%86%b5" aria-label="PR1 满足情况">PR1 满足情况</a></li>
+                <li>
+                    <a href="#pr2-%e6%bb%a1%e8%b6%b3%e6%83%85%e5%86%b5" aria-label="PR2 满足情况">PR2 满足情况</a></li>
+                <li>
+                    <a href="#pr3-%e6%bb%a1%e8%b6%b3%e6%83%85%e5%86%b5" aria-label="PR3 满足情况">PR3 满足情况</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%83%e5%ae%9e%e9%aa%8c%e8%af%84%e4%bc%b0" aria-label="七、实验评估">七、实验评估</a><ul>
+                        
+                <li>
+                    <a href="#71-%e5%ae%9e%e9%aa%8c%e9%85%8d%e7%bd%ae" aria-label="7.1 实验配置">7.1 实验配置</a></li>
+                <li>
+                    <a href="#72-q1phase-1-vs-phase-2-%e6%95%88%e7%8e%87%e5%af%b9%e6%af%94" aria-label="7.2 Q1：Phase 1 vs Phase 2 效率对比">7.2 Q1：Phase 1 vs Phase 2 效率对比</a></li>
+                <li>
+                    <a href="#73-q2%e6%92%a4%e9%94%80%e6%95%88%e7%8e%87" aria-label="7.3 Q2：撤销效率">7.3 Q2：撤销效率</a></li>
+                <li>
+                    <a href="#74-q3--q4-%e5%80%bc%e5%92%8c%e6%92%a4%e9%94%80%e6%a8%a1%e5%bc%8f%e5%af%b9%e8%a7%81%e8%af%81%e5%80%bc%e6%9b%b4%e6%96%b0%e7%9a%84%e5%bd%b1%e5%93%8d" aria-label="7.4 Q3 &amp; Q4：$z$ 值和撤销模式对见证值更新的影响">7.4 Q3 &amp; Q4：$z$ 值和撤销模式对见证值更新的影响</a></li>
+                <li>
+                    <a href="#75-q5gas-%e8%b4%b9%e7%94%a8%e4%b8%8e%e5%8f%82%e6%95%b0%e5%85%b3%e7%b3%bb" aria-label="7.5 Q5：Gas 费用与参数关系">7.5 Q5：Gas 费用与参数关系</a></li>
+                <li>
+                    <a href="#76-q6%e5%81%87%e9%98%b3%e6%80%a7%e6%95%b0%e9%87%8f%e9%9a%8f%e6%92%a4%e9%94%80%e5%a2%9e%e9%95%bf%e7%9a%84%e5%8f%98%e5%8c%96" aria-label="7.6 Q6：假阳性数量随撤销增长的变化">7.6 Q6：假阳性数量随撤销增长的变化</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%ab%e6%96%b9%e6%a1%88%e5%af%b9%e6%af%94%e6%80%bb%e7%bb%93" aria-label="八、方案对比总结">八、方案对比总结</a></li>
+                <li>
+                    <a href="#%e4%b9%9d%e6%96%b9%e6%a1%88%e7%9a%84%e4%bc%98%e5%8a%bf%e4%b8%8e%e5%b1%80%e9%99%90" aria-label="九、方案的优势与局限">九、方案的优势与局限</a><ul>
+                        
+                <li>
+                    <a href="#%e4%bc%98%e5%8a%bf" aria-label="优势">优势</a></li>
+                <li>
+                    <a href="#%e5%b1%80%e9%99%90" aria-label="局限">局限</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8d%81%e7%bb%93%e8%ae%ba" aria-label="十、结论">十、结论</a></li>
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" aria-label="参考文献">参考文献</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><hr>
+<h1 id="prevoke一种保护隐私的可配置可验证凭证撤销方案">Prevoke：一种保护隐私的可配置可验证凭证撤销方案<a hidden class="anchor" aria-hidden="true" href="#prevoke一种保护隐私的可配置可验证凭证撤销方案">#</a></h1>
+<blockquote>
+<p>论文来源：2024 IEEE International Conference on Blockchain (Blockchain)<br>
+作者：Praveensankar Manimaran 等，挪威奥斯陆大学 &amp; 巴西圣保罗联邦大学</p></blockquote>
+<hr>
+<h2 id="一背景知识">一、背景知识<a hidden class="anchor" aria-hidden="true" href="#一背景知识">#</a></h2>
+<p>在正式进入论文内容之前，我们需要先建立几个基础概念。</p>
+<h3 id="11-自我主权身份ssi">1.1 自我主权身份（SSI）<a hidden class="anchor" aria-hidden="true" href="#11-自我主权身份ssi">#</a></h3>
+<p><strong>自我主权身份（Self-Sovereign Identity，SSI）</strong> 是一种新型数字身份管理理念，核心思想是：<strong>个人应该完全拥有并自主控制自己的身份数据，不需要依赖任何中央机构（如政府、银行、平台）来管理</strong>。</p>
+<p>举个现实中的类比：</p>
+<ul>
+<li><strong>传统身份</strong>：你的身份证由政府颁发并管理，你无法自主决定谁能查看你的信息。</li>
+<li><strong>SSI 身份</strong>：你持有自己的数字身份凭证，可以自主决定把哪些信息分享给谁，就像你自己保管实体证件一样。</li>
+</ul>
+<p>SSI 系统中有四种角色：</p>
+<table>
+  <thead>
+      <tr>
+          <th>角色</th>
+          <th>说明</th>
+          <th>现实类比</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Issuer（发行者）</strong></td>
+          <td>颁发数字凭证的机构</td>
+          <td>大学（颁发毕业证）、雇主（颁发工牌）</td>
+      </tr>
+      <tr>
+          <td><strong>Holder（持有者）</strong></td>
+          <td>持有并保管凭证的个人</td>
+          <td>毕业生、员工</td>
+      </tr>
+      <tr>
+          <td><strong>Verifier（验证者）</strong></td>
+          <td>验证凭证真实性的机构</td>
+          <td>银行、新雇主</td>
+      </tr>
+      <tr>
+          <td><strong>Registry（注册中心）</strong></td>
+          <td>存储凭证相关元数据和撤销信息的公共账本</td>
+          <td>区块链 / DLT</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="12-可验证凭证vc">1.2 可验证凭证（VC）<a hidden class="anchor" aria-hidden="true" href="#12-可验证凭证vc">#</a></h3>
+<p><strong>可验证凭证（Verifiable Credential，VC）</strong> 是传统实体证件（护照、文凭、驾照等）的数字化形式，具有以下特点：</p>
+<ul>
+<li><strong>密码学安全</strong>：通过数字签名保证内容不可篡改</li>
+<li><strong>机器可验证</strong>：验证方可以用程序自动核验其真实性</li>
+<li><strong>隐私友好</strong>：持有者可以只披露凭证中的部分信息（选择性披露）</li>
+</ul>
+<p>一张典型的 VC 包含：</p>
+<ol>
+<li>发行者信息（谁签发的）</li>
+<li>声明（claims）：如姓名、年龄、职位、薪资等</li>
+<li>证明（proof）：如数字签名</li>
+</ol>
+<p><strong>可验证展示（Verifiable Presentation，VP）</strong> 是在 VC 基础上的进一步封装，允许持有者只展示 VC 中的部分字段，保护更多隐私。</p>
+<h3 id="13-分布式账本技术dlt">1.3 分布式账本技术（DLT）<a hidden class="anchor" aria-hidden="true" href="#13-分布式账本技术dlt">#</a></h3>
+<p><strong>分布式账本技术（Distributed Ledger Technology，DLT）</strong> 是区块链的更广泛概念，是一种去中心化的数据存储方式。数据一旦写入，不可篡改，并对所有参与节点公开。论文中使用<strong>以太坊（Ethereum）</strong> 作为 DLT 基础设施。</p>
+<h3 id="14-布隆过滤器bloom-filter">1.4 布隆过滤器（Bloom Filter）<a hidden class="anchor" aria-hidden="true" href="#14-布隆过滤器bloom-filter">#</a></h3>
+<p><strong>布隆过滤器</strong> 是一种空间效率极高的概率型数据结构，用于判断某个元素<strong>是否在集合中</strong>。</p>
+<ul>
+<li>✅ <strong>确定性结论</strong>：如果布隆过滤器说&quot;不在集合中&quot;，那一定不在（<strong>无假阴性</strong>）</li>
+<li>⚠️ <strong>概率性误差</strong>：如果布隆过滤器说&quot;在集合中&quot;，有一定概率是误判（<strong>存在假阳性</strong>）</li>
+</ul>
+<p><strong>工作原理简述</strong>：</p>
+<ol>
+<li>使用 <strong>$k$ 个哈希函数</strong>，将每个元素映射到长度为 $m$ 的位数组上的 $k$ 个位置，将这些位置设为 1</li>
+<li>查询时，计算同样的 $k$ 个哈希位置，若全为 1 则&quot;可能存在&quot;，若有任何一个为 0 则&quot;一定不存在&quot;</li>
+</ol>
+<p><strong>关键参数</strong>：</p>
+<ul>
+<li>$m$：位数组长度</li>
+<li>$k$：哈希函数个数</li>
+<li>$p$：假阳性率（False Positive Rate），可配置</li>
+</ul>
+<h3 id="15-默克尔树累加器merkle-tree-accumulatormtacc">1.5 默克尔树累加器（Merkle Tree Accumulator，MTAcc）<a hidden class="anchor" aria-hidden="true" href="#15-默克尔树累加器merkle-tree-accumulatormtacc">#</a></h3>
+<p><strong>默克尔树（Merkle Tree）</strong> 是一种树形数据结构，其中：</p>
+<ul>
+<li>叶子节点存储数据的哈希值</li>
+<li>非叶子节点存储其子节点哈希值的合并哈希</li>
+<li>根节点（Root）是整棵树的&quot;摘要&quot;，任何数据的改变都会导致根节点变化</li>
+</ul>
+<p><strong>默克尔树累加器（MTAcc）</strong> 将默克尔树的根哈希作为整个数据集的&quot;累加器&quot;（摘要），可以用来：</p>
+<ul>
+<li><strong>成员证明（Membership Proof）</strong>：证明某个元素确实在集合中，且结果是确定性的（无假阳性）</li>
+<li><strong>见证值（Witness）</strong>：每个元素都有一个&quot;见证值&quot;，包含从该叶子节点到根的路径上所有兄弟节点的哈希值</li>
+</ul>
+<blockquote>
+<p><strong>与布隆过滤器的核心区别</strong>：MTAcc 的成员查询是<strong>完全确定</strong>的，不存在误判；但每次 MTAcc 更新时，所有元素都需要更新自己的见证值，代价较高。</p></blockquote>
+<h3 id="16-bbs-签名方案">1.6 BBS 签名方案<a hidden class="anchor" aria-hidden="true" href="#16-bbs-签名方案">#</a></h3>
+<p><strong>BBS 签名方案</strong> 是一种特殊的数字签名方案，支持：</p>
+<ol>
+<li><strong>批量签名</strong>：一次签名可以覆盖多条消息</li>
+<li><strong>选择性披露</strong>：持有者可以只出示部分已签名的消息，同时用零知识证明证明其余消息的存在性</li>
+<li><strong>不可关联性</strong>：每次生成的零知识证明都是随机的，不同验证者无法将同一持有者的多次证明关联起来</li>
+</ol>
+<p>BBS 方案的核心算法包括：</p>
+<table>
+  <thead>
+      <tr>
+          <th>算法</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>BBS-KeyGen</code></td>
+          <td>生成密钥对 $(sk, pk)$</td>
+      </tr>
+      <tr>
+          <td><code>BBS-Sign</code></td>
+          <td>用私钥对一组消息签名</td>
+      </tr>
+      <tr>
+          <td><code>BBS-Verify</code></td>
+          <td>用公钥验证签名</td>
+      </tr>
+      <tr>
+          <td><code>BBS-ProofGen</code></td>
+          <td>生成零知识证明（只披露部分消息）</td>
+      </tr>
+      <tr>
+          <td><code>BBS-ProofVerify</code></td>
+          <td>验证零知识证明</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="二问题背景vc-撤销面临哪些隐私挑战">二、问题背景：VC 撤销面临哪些隐私挑战？<a hidden class="anchor" aria-hidden="true" href="#二问题背景vc-撤销面临哪些隐私挑战">#</a></h2>
+<h3 id="21-为什么需要撤销">2.1 为什么需要撤销？<a hidden class="anchor" aria-hidden="true" href="#21-为什么需要撤销">#</a></h3>
+<p>可验证凭证可能因以下原因需要撤销：</p>
+<ol>
+<li><strong>取消</strong>：员工离职，需要撤销其工作证明 VC</li>
+<li><strong>更新</strong>：员工信息（如薪资、职位）变更，旧 VC 需要作废</li>
+<li><strong>私钥丢失</strong>：发行者或持有者的私钥丢失，相关 VC 需要全部撤销</li>
+</ol>
+<h3 id="22-撤销带来的隐私问题">2.2 撤销带来的隐私问题<a hidden class="anchor" aria-hidden="true" href="#22-撤销带来的隐私问题">#</a></h3>
+<p>撤销信息通常存储在公开的注册中心（如区块链上），这会暴露敏感信息。论文通过一个**职场身份（Workforce Identity）**的用例来说明：</p>
+<blockquote>
+<p><strong>场景</strong>：Employer 1（雇主1）给员工 Bob 颁发了一张员工 VC，Bob 想去 Employer 2 应聘，于是向 Employer 2 出示了这张 VC。</p></blockquote>
+<p>在这个场景下，论文识别出以下三条<strong>隐私需求（Privacy Requirements，PR）</strong>：</p>
+<hr>
+<h2 id="三三大隐私需求核心概念">三、三大隐私需求（核心概念）<a hidden class="anchor" aria-hidden="true" href="#三三大隐私需求核心概念">#</a></h2>
+<h3 id="pr1不暴露持有者与验证者的关联">PR1：不暴露持有者与验证者的关联<a hidden class="anchor" aria-hidden="true" href="#pr1不暴露持有者与验证者的关联">#</a></h3>
+<p><strong>问题描述</strong>：如果 Employer 2（验证者）在验证 Bob 的 VC 时，需要直接联系 Employer 1（发行者），那么 Employer 1 就会知道&quot;Bob 正在找其他工作&quot;——这可能直接损害 Bob 的工作状态。</p>
+<p>这个问题也被称为 <strong>&ldquo;Phone Home&quot;问题</strong>：验证者每次验证都要&quot;打电话&quot;给发行者，从而让发行者获悉持有者的动向。</p>
+<p><strong>解决思路</strong>：将撤销状态存储在公开账本（智能合约），验证者直接查询账本，<strong>不与发行者交互</strong>。</p>
+<h3 id="pr2不泄露被撤销持有者的身份">PR2：不泄露被撤销持有者的身份<a hidden class="anchor" aria-hidden="true" href="#pr2不泄露被撤销持有者的身份">#</a></h3>
+<p><strong>问题描述</strong>：当 Employer 1 撤销 Bob 的 VC 时，如果撤销记录中包含 Bob 的可识别信息（如姓名、员工ID等），第三方观察者就能推断出&quot;Bob 离职了&rdquo;——如果 Bob 是高管，这可能影响公司股价。</p>
+<p><strong>解决思路</strong>：撤销信息只存储<strong>哈希值</strong>或随机化后的数据，不直接暴露个人信息。</p>
+<h3 id="pr3不泄露撤销率">PR3：不泄露撤销率<a hidden class="anchor" aria-hidden="true" href="#pr3不泄露撤销率">#</a></h3>
+<p><strong>问题描述</strong>：即使不知道谁被撤销，如果第三方能观察到每段时间内的<strong>撤销数量</strong>，就可以推算出&quot;员工流失率（churn rate）&quot;。这是商业敏感信息，可能暗示公司管理不善或工作环境恶劣。</p>
+<p><strong>解决思路</strong>：通过概率数据结构（布隆过滤器）和只存储部分树层级，隐藏精确的撤销数量。</p>
+<hr>
+<h2 id="四现有方案的不足">四、现有方案的不足<a hidden class="anchor" aria-hidden="true" href="#四现有方案的不足">#</a></h2>
+<p>论文对比了三种现有方案：</p>
+<table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>PR1</th>
+          <th>PR2</th>
+          <th>PR3</th>
+          <th>主要缺陷</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>IOTA Id</strong></td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>使用 bitmap，直接暴露撤销数量和身份索引</td>
+      </tr>
+      <tr>
+          <td><strong>Indy</strong></td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>使用双线性累加器；每次撤销后所有持有者需更新见证值，性能差；最多支持 32768 张 VC</td>
+      </tr>
+      <tr>
+          <td><strong>Schumm et al.</strong></td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>每次撤销对应一笔独立交易，直接暴露撤销次数；不处理假阳性</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>结论</strong>：没有任何现有方案同时满足三大隐私需求。</p>
+<hr>
+<h2 id="五prevoke-方案设计">五、Prevoke 方案设计<a hidden class="anchor" aria-hidden="true" href="#五prevoke-方案设计">#</a></h2>
+<h3 id="51-核心思路">5.1 核心思路<a hidden class="anchor" aria-hidden="true" href="#51-核心思路">#</a></h3>
+<p>Prevoke 的核心是<strong>两阶段验证</strong>：</p>
+<pre tabindex="0"><code>                ┌─────────────────────────────────────┐
+                │           智能合约（DLT）              │
+                │  ┌─────────────┐  ┌──────────────┐  │
+                │  │ Bloom Filter │  │ MTAcc（前z层）│  │
+                │  │（存已撤销VC）│  │（存有效VC）   │  │
+                │  └─────────────┘  └──────────────┘  │
+                └─────────────────────────────────────┘
+                           ↑查询
+验证者 ──── Phase 1 ──→ 查布隆过滤器
+               │
+               │ 在过滤器中？（可能已撤销或假阳性）
+               │
+               └── Phase 2 ──→ 查 MTAcc（确定性验证）
+</code></pre><ul>
+<li><strong>布隆过滤器</strong>：只存储<strong>已撤销</strong>的 VC（的哈希索引）</li>
+<li><strong>MTAcc</strong>：只存储<strong>有效</strong>的 VC（的哈希摘要）</li>
+<li>验证时，先查布隆过滤器：
+<ul>
+<li>如果<strong>不在</strong>过滤器中 → VC 有效（布隆过滤器无假阴性，可信）</li>
+<li>如果<strong>在</strong>过滤器中 → 可能已撤销，也可能是假阳性 → 进入第二阶段查 MTAcc 确认</li>
+</ul>
+</li>
+</ul>
+<h3 id="52-四大流程详解">5.2 四大流程详解<a hidden class="anchor" aria-hidden="true" href="#52-四大流程详解">#</a></h3>
+<h4 id="流程一setup初始化">流程一：Setup（初始化）<a hidden class="anchor" aria-hidden="true" href="#流程一setup初始化">#</a></h4>
+<p>发行者在系统启动时执行一次，主要完成：</p>
+<ol>
+<li>
+<p>根据参数计算布隆过滤器的大小 $m$ 和哈希函数数量 $k$： </p>
+$$m = -\frac{r \ln p}{(\ln 2)^2}, \quad k = \frac{m}{r} \ln 2$$<p>其中：</p>
+<ul>
+<li>$n$：预计发行 VC 总数</li>
+<li>$r$：预计撤销 VC 数量</li>
+<li>$p$：可接受的假阳性率</li>
+<li>$z$：在智能合约中存储 MTAcc 的层数（从根节点第0层开始）</li>
+</ul>
+</li>
+<li>
+<p>初始化空的布隆过滤器和 MTAcc</p>
+</li>
+<li>
+<p>使用 BLS12-381 密码套件生成 BBS 密钥对 $(sk, pk)$</p>
+</li>
+<li>
+<p>部署以太坊智能合约，将 $pk$ 和空数据结构写入合约</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>$z$ 参数的意义</strong>：智能合约只存储 MTAcc 的前 $z$ 层（根节点为第 0 层）。$z$ 越大，存储的层数越多，持有者更新见证值时越能自给自足（不需要联系发行者），但费用也越高。</p></blockquote>
+<h4 id="流程二issuance发行">流程二：Issuance（发行）<a hidden class="anchor" aria-hidden="true" href="#流程二issuance发行">#</a></h4>
+<p>每次为持有者发行一张 VC：</p>
+<ol>
+<li>发行者为 VC 生成唯一标识符 <code>vcID</code>（随机字符串）</li>
+<li>用 <code>vcID</code> 通过 $k$ 个哈希函数计算布隆过滤器索引 <code>bfIndexes</code>（注意：此时<strong>不更新</strong>过滤器，因为 VC 尚未撤销）</li>
+<li>将 <code>H(vcID)</code>（vcID 的哈希）插入 MTAcc 的对应叶子节点（<code>leafIndex</code> 递增）</li>
+<li>计算该叶子的见证值 <code>witness</code>，以及在第 $z$ 层的祖先节点值 <code>ancestor</code></li>
+<li>用 BBS 签名对以下内容签名：<code>vcID</code>、<code>H(vcID)</code>、<code>bfIndexes</code>、<code>claims</code></li>
+<li>构造 VC 并连同 <code>witness</code> 和 <code>ancestor</code> 发送给持有者</li>
+<li>将更新后的 MTAcc 前 $z$ 层写入智能合约</li>
+</ol>
+<p>持有者收到 VC 后：</p>
+<ul>
+<li>用 BBS-Verify 验证签名</li>
+<li>用见证值验证 VC 确实已被纳入 MTAcc</li>
+</ul>
+<h4 id="流程三revocation撤销">流程三：Revocation（撤销）<a hidden class="anchor" aria-hidden="true" href="#流程三revocation撤销">#</a></h4>
+<p>发行者撤销一张或多张 VC（<strong>支持批量撤销，这是满足 PR3 的关键</strong>）：</p>
+<ol>
+<li>对每张待撤销的 VC：
+<ul>
+<li>用 <code>vcID</code> 计算 <code>bfIndexes</code>，将对应位设为 1（更新布隆过滤器）</li>
+<li>在 MTAcc 中找到该 VC 对应的叶子节点，将其内容替换为<strong>随机字符串的哈希</strong> <code>H(r)</code>（使该叶子&quot;失效&quot;）</li>
+</ul>
+</li>
+<li>将更新后的布隆过滤器和 MTAcc 前 $z$ 层写入智能合约</li>
+</ol>
+<blockquote>
+<p><strong>批量撤销的隐私作用</strong>：一次交易可以撤销多张 VC，使第三方无法通过交易数量推断撤销率，（PR3）。因为只能看到前z层的默克尔树。</p></blockquote>
+<h4 id="流程四verification验证">流程四：Verification（验证）<a hidden class="anchor" aria-hidden="true" href="#流程四verification验证">#</a></h4>
+<p><strong>第一步（持有者生成证明）</strong>：</p>
+<ol>
+<li>生成随机 <code>nonce</code>（防止证明被重放）</li>
+<li>用 BBS-ProofGen 生成零知识证明 $\pi$，其中：
+<ul>
+<li>选择性披露部分 <code>claims</code>（子集 $C$）</li>
+<li>同时包含 <code>bfIndexes</code> 和 <code>H(vcID)</code>（但不暴露原始 <code>vcID</code> 和完整 <code>claims</code>）</li>
+</ul>
+</li>
+<li>将 VP（包含 $\pi$、<code>nonce</code>、<code>bfIndexes</code>、<code>H(vcID)</code>、披露的 $C$）发送给验证者</li>
+</ol>
+<p><strong>第二步（Phase 1 验证）</strong>：</p>
+<ol>
+<li>验证者用 BBS-ProofVerify 验证零知识证明的有效性</li>
+<li>将 <code>bfIndexes</code> 发送给智能合约，查询布隆过滤器</li>
+<li>若<strong>不在</strong>过滤器中 → ✅ VC 有效，验证完成</li>
+<li>若<strong>在</strong>过滤器中 → 进入 Phase 2</li>
+</ol>
+<p><strong>第三步（Phase 2 验证，仅当 Phase 1 结果为&quot;可能撤销&quot;时触发）</strong>：</p>
+<ol>
+<li>验证者向持有者请求 MTAcc 证明</li>
+<li>持有者检查智能合约中第 $z$ 层的祖先节点是否与发行时收到的 <code>ancestor</code> 一致：
+<ul>
+<li><strong>一致</strong>：说明该 VC 的 co-path 上没有其他 VC 被撤销，可以从智能合约中计算出最新见证值</li>
+<li><strong>不一致</strong>：说明 co-path 上有 VC 被撤销，需要联系发行者获取最新见证值</li>
+</ul>
+</li>
+<li>持有者构造 MTAcc 证明并发送给验证者</li>
+<li>验证者从智能合约获取 MTAcc 根哈希，验证 MTAcc 证明：
+<ul>
+<li>证明有效 → ✅ VC 未被撤销（Phase 1 是假阳性）</li>
+<li>证明无效 → ❌ VC 已被撤销</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六隐私分析prevoke-如何满足三大需求">六、隐私分析：Prevoke 如何满足三大需求？<a hidden class="anchor" aria-hidden="true" href="#六隐私分析prevoke-如何满足三大需求">#</a></h2>
+<h3 id="pr1-满足情况">PR1 满足情况<a hidden class="anchor" aria-hidden="true" href="#pr1-满足情况">#</a></h3>
+<p>验证者直接从智能合约（公开账本）查询布隆过滤器和 MTAcc，<strong>全程不与发行者交互</strong>，因此发行者无法得知持有者的验证行为。</p>
+<h3 id="pr2-满足情况">PR2 满足情况<a hidden class="anchor" aria-hidden="true" href="#pr2-满足情况">#</a></h3>
+<ul>
+<li>布隆过滤器和 MTAcc 中只存储 <code>vcID</code> 的<strong>哈希值</strong>（<code>H(vcID)</code>），而非原始标识符</li>
+<li>由哈希函数的<strong>单向性</strong>保证，无法从哈希反推出 <code>vcID</code> 或持有者身份</li>
+<li>持有者通过 BBS 零知识证明分享数据，不暴露完整 VC</li>
+</ul>
+<h3 id="pr3-满足情况">PR3 满足情况<a hidden class="anchor" aria-hidden="true" href="#pr3-满足情况">#</a></h3>
+<p>两个机制共同保障：</p>
+<ol>
+<li><strong>布隆过滤器的概率性</strong>：多张 VC 共享同一组布隆索引位，无法从过滤器中直接数出撤销了多少张 VC</li>
+<li><strong>只存储 $z$ 层 MTAcc</strong>：MTAcc 中第 $z$ 层的每个节点覆盖 $2^{h-z}$ 张 VC（$h$ 为树的高度）。观察者只能推断某次更新影响了 1 到 $2^{h-z}$ 张 VC，无法得知精确数量</li>
+</ol>
+<hr>
+<h2 id="七实验评估">七、实验评估<a hidden class="anchor" aria-hidden="true" href="#七实验评估">#</a></h2>
+<h3 id="71-实验配置">7.1 实验配置<a hidden class="anchor" aria-hidden="true" href="#71-实验配置">#</a></h3>
+<ul>
+<li>编程语言：Go</li>
+<li>区块链：私有以太坊网络（Ganache v7.9.1）</li>
+<li>部署环境：挪威 NREC 云服务（32核 AMD EPYC CPU，128GB 内存）</li>
+</ul>
+<h3 id="72-q1phase-1-vs-phase-2-效率对比">7.2 Q1：Phase 1 vs Phase 2 效率对比<a hidden class="anchor" aria-hidden="true" href="#72-q1phase-1-vs-phase-2-效率对比">#</a></h3>
+<p><strong>配置</strong>：$n=1000$，$r=100$，$p=0.1$，$z$ 从 0 到 10 变化</p>
+<p><strong>结论</strong>：</p>
+<ul>
+<li>Phase 1（布隆过滤器查询）：耗时稳定在 <strong>13~16 ms</strong>，与 $z$ 无关</li>
+<li>Phase 2 总耗时：随 $z$ 增大从 <strong>40 ms 增长到 3200 ms</strong>
+<ul>
+<li>原因：$z$ 越大，持有者需要从智能合约下载的数据呈<strong>指数级增长</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>实践建议</strong>：不要把 $z$ 设得过大，否则 Phase 2 会非常缓慢。</p></blockquote>
+<h3 id="73-q2撤销效率">7.3 Q2：撤销效率<a hidden class="anchor" aria-hidden="true" href="#73-q2撤销效率">#</a></h3>
+<p>撤销时间随撤销数量<strong>线性增长</strong>，因为每次撤销只需更新 $k$ 个布隆索引和 $z$ 个 MTAcc 节点，是可预期的稳定开销。</p>
+<h3 id="74-q3--q4-值和撤销模式对见证值更新的影响">7.4 Q3 &amp; Q4：$z$ 值和撤销模式对见证值更新的影响<a hidden class="anchor" aria-hidden="true" href="#74-q3--q4-值和撤销模式对见证值更新的影响">#</a></h3>
+<p><strong>配置</strong>：$n=100,000$，$r=10,000$，$p=0.001$（预计约 100 个假阳性）</p>
+<p>两种撤销模式对比：</p>
+<ul>
+<li><strong>随机模式（random）</strong>：随机选择 VC 撤销 → MTAcc 中变化分散，即使存储超过一半的层（$z=16$），仍有部分持有者需联系发行者更新见证值</li>
+<li><strong>最旧优先模式（oldest-first）</strong>：总是撤销最早发行的未撤销 VC → MTAcc 中变化集中，只需存储少量层（$z=4$）就能让大多数持有者自行更新</li>
+</ul>
+<blockquote>
+<p><strong>实践建议</strong>：如果应用场景的撤销模式较为规律（如按序撤销），$z$ 可以设置较小以节省费用；若撤销是随机的，需要更大的 $z$ 或完善的发行者基础设施。</p></blockquote>
+<h3 id="75-q5gas-费用与参数关系">7.5 Q5：Gas 费用与参数关系<a hidden class="anchor" aria-hidden="true" href="#75-q5gas-费用与参数关系">#</a></h3>
+<p><strong>配置</strong>：$r=10,000$，$z$ 从 0 到 20，不同 $p$ 值</p>
+<p><strong>结论</strong>：</p>
+<ul>
+<li>$z$ 增大 → Gas 线性增加（每次撤销多更新 $z$ 个节点）</li>
+<li>$p$ 减小（假阳性率降低）→ 布隆过滤器变大（$m$ 和 $k$ 增大）→ Gas 线性增加</li>
+</ul>
+<p><strong>实际费用参考</strong>（以 Gas 价格 12 Gwei、ETH 价格 3,037 USD 计算）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>$p$ 值</th>
+          <th>费用区间（每次撤销）</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$p = 0.1$</td>
+          <td>$2.9 \sim 7.45$ USD</td>
+      </tr>
+      <tr>
+          <td>$p = 0.0001$</td>
+          <td>$7.64 \sim 12.2$ USD</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="76-q6假阳性数量随撤销增长的变化">7.6 Q6：假阳性数量随撤销增长的变化<a hidden class="anchor" aria-hidden="true" href="#76-q6假阳性数量随撤销增长的变化">#</a></h3>
+<p><strong>结论</strong>：</p>
+<ul>
+<li>假阳性数量随撤销数增加而增加，在 $r$ 达到设计容量时接近 $p \times n$</li>
+<li>超过设计容量后，假阳性数量<strong>指数级增长</strong></li>
+<li>布隆过滤器稀疏时（撤销数量少），假阳性极少（如 $p=0.001$ 时，撤销 6000 张以前几乎没有假阳性）</li>
+</ul>
+<blockquote>
+<p><strong>实践建议</strong>：根据预估撤销数量合理配置 $r$，避免布隆过滤器&quot;溢出&quot;。</p></blockquote>
+<hr>
+<h2 id="八方案对比总结">八、方案对比总结<a hidden class="anchor" aria-hidden="true" href="#八方案对比总结">#</a></h2>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAPJadNZLUvFUP54KqF-7aw-9yzD4MYAAmkNaxvXnJhWz9jI85QVAy8BAAMCAAN3AAM7BA.png"></p>
+<hr>
+<h2 id="九方案的优势与局限">九、方案的优势与局限<a hidden class="anchor" aria-hidden="true" href="#九方案的优势与局限">#</a></h2>
+<h3 id="优势">优势<a hidden class="anchor" aria-hidden="true" href="#优势">#</a></h3>
+<ol>
+<li><strong>布隆过滤器无假阴性</strong>：有效 VC 的验证基本只需 Phase 1，效率极高</li>
+<li><strong>见证值更新频率低</strong>：只有&quot;假阳性&quot;的 VC 和已撤销的 VC 需要更新见证值；通过 $z$ 参数可以让大多数更新直接从智能合约完成，减少对发行者的依赖</li>
+<li><strong>验证免费</strong>：验证过程只读取智能合约状态，在以太坊上<strong>不产生 Gas 费</strong></li>
+<li><strong>高可用性</strong>：以太坊网络拥有 7000+ 活跃节点，数据高度可用</li>
+<li><strong>可配置性</strong>：通过调整 $n$、$r$、$p$、$z$ 参数适应不同业务场景</li>
+</ol>
+<h3 id="局限">局限<a hidden class="anchor" aria-hidden="true" href="#局限">#</a></h3>
+<ol>
+<li><strong>发行和撤销产生 Gas 费</strong>：更新布隆过滤器和 MTAcc 都需要支付以太坊费用</li>
+<li><strong>见证值无法完全消除</strong>：虽然频率大幅降低，仍有少数情况需要持有者联系发行者</li>
+<li><strong>存储更多层 MTAcc 费用高</strong>：$z$ 越大，费用越贵</li>
+<li><strong>未来待解问题</strong>：验证者可以<strong>无限期监控</strong>某张 VC 的撤销状态，这是一个尚未解决的隐私隐患</li>
+</ol>
+<hr>
+<h2 id="十结论">十、结论<a hidden class="anchor" aria-hidden="true" href="#十结论">#</a></h2>
+<p>Prevoke 是目前<strong>首个同时满足 PR1、PR2、PR3 三大隐私需求</strong>的 VC 撤销方案。通过将布隆过滤器与默克尔树累加器结合，并部署在以太坊智能合约上，Prevoke 在保护隐私的同时保持了良好的性能。其高度可配置性使其可以适应从员工身份管理到学历认证等多种实际场景。</p>
+<hr>
+<h2 id="参考文献">参考文献<a hidden class="anchor" aria-hidden="true" href="#参考文献">#</a></h2>
+<ul>
+<li>[论文原文] Manimaran et al., &ldquo;Prevoke: Privacy-Preserving Configurable Method for Revoking Verifiable Credentials,&rdquo; 2024 IEEE International Conference on Blockchain.</li>
+<li>[BBS 签名] Tessaro &amp; Zhu, &ldquo;Revisiting BBS Signatures,&rdquo; Advances in Cryptology, Springer, 2023.</li>
+<li>[布隆过滤器] Tarkoma et al., &ldquo;Theory and Practice of Bloom Filters for Distributed Systems,&rdquo; IEEE Communications Surveys &amp; Tutorials, 2011.</li>
+<li>[MTAcc] Loporchio et al., &ldquo;A Survey of Set Accumulators for Blockchain Systems,&rdquo; Computer Science Review, 2023.</li>
+<li>[W3C VC 标准] Sporny et al., &ldquo;Verifiable Credentials Data Model v2.0,&rdquo; W3C.</li>
+<li>[以太坊] &ldquo;Ethereum Whitepaper,&rdquo; ethereum.org.</li>
+<li>[源码] <a href="https://github.com/praveensankar/Prevoke">https://github.com/praveensankar/Prevoke</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://minjieblog.github.io/tags/ssi/">SSI</a></li>
+      <li><a href="https://minjieblog.github.io/tags/vc/">VC</a></li>
+      <li><a href="https://minjieblog.github.io/tags/revocation/">Revocation</a></li>
+      <li><a href="https://minjieblog.github.io/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/">隐私保护</a></li>
+      <li><a href="https://minjieblog.github.io/tags/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">布隆过滤器</a></li>
+      <li><a href="https://minjieblog.github.io/tags/%E9%BB%98%E5%85%8B%E5%B0%94%E6%A0%91/">默克尔树</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

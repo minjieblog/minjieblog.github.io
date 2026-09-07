@@ -1,0 +1,274 @@
+{
+  "main": {
+    "id": "6d30a120dfcf556d",
+    "type": "split",
+    "children": [
+      {
+        "id": "8f1d524c65d47236",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aae9a7aacae22e8b",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f7bd3a8c86b435c7",
+    "type": "split",
+    "children": [
+      {
+        "id": "1227e4e3439d0820",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1ebc47ebac23f6d9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "99013b2a7c6b52ad",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "大纲",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "dfc8245d89f7705b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 357.5
+  },
+  "right": {
+    "id": "b3c7a00882fee122",
+    "type": "split",
+    "children": [
+      {
+        "id": "d8afcdfbeb05b48d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fdda07a422b51bcb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          },
+          {
+            "id": "74561310361cc6f7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "agent/resume-zh_CN.pdf",
+                "collapseAll": false,
+                "extraContext": true,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "resume-zh_CN 的反向链接列表"
+            }
+          },
+          {
+            "id": "de4418a21364cb14",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "calendar"
+            }
+          },
+          {
+            "id": "7a8c8b61051610e9",
+            "type": "leaf",
+            "state": {
+              "type": "reminder-list",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "reminder-list"
+            }
+          },
+          {
+            "id": "5b9091e5d7b73e43",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "a019a3bd0822547b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "80a23b6550776dfa",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "25813fed8321ee17",
+            "type": "leaf",
+            "state": {
+              "type": "planner-timeline",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "planner-timeline"
+            }
+          },
+          {
+            "id": "2cde68a9813a13c4",
+            "type": "leaf",
+            "state": {
+              "type": "planner-timeline",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Timeline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 492.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "bases:新建数据库": false,
+      "command-palette:打开命令面板": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-day-planner:Open Timeline": false,
+      "obsidian-day-planner:Open Multi-Day View": false
+    }
+  },
+  "active": "1ebc47ebac23f6d9",
+  "lastOpenFiles": [
+    "agent/resume-zh_CN.pdf",
+    "doc-intro/codex-ref.md",
+    "doc-intro/hugo-readme.md",
+    "java-notes/hmdp.md",
+    "doc-intro/mcp-ref.md",
+    "agent/Agent全栈开发.md",
+    "doc-intro/command-reference.md",
+    "doc-intro/test.md",
+    "agent/Agent面试汇总——解答版.md",
+    "agent/Agent面经汇总.md",
+    "agent/agent-roadmap.md",
+    "agent/Agent LAB.md",
+    "agent/牛客agent面试.md",
+    "interview-notes/cpp-stl-cheatsheet.md",
+    "agent/Agent开发面试题.md",
+    "blockchain/VCER-certificate-validation-constrained-networks.md",
+    "blockchain/ssi-credential-revocation-did-deactivation-survey.md",
+    "blockchain/prevoke-privacy-preserving-vc-revocation.md",
+    "blockchain/identity-management-systems-survey.md",
+    "blockchain/Evoke Efficient Revocation Verifiable Credentials Iot.md",
+    "blockchain/did-vc-survey-2025.md",
+    "blockchain/decentralized-identity-systems-2020.md",
+    "blockchain/crset-private-vc-revocation.md",
+    "blockchain/zklogin.md",
+    "blockchain/Linking-Souls-to-Humans.md",
+    "game-guide/sichuan-mahjong-guide.md",
+    "agent/Agent面经汇总.md.tmp.28452.0e7843977268",
+    "agent/Agent面经汇总.md.tmp.28452.e0b61247aacb",
+    "agent/上海沃橙信息一面.m4a",
+    "agent/Agent面试汇总——解答版.md.tmp.28452.8576fe0a284b",
+    "agent/Agent面经汇总.md.tmp.28452.44964ba8c484",
+    "agent/Agent面经汇总.md.tmp.28452.fa766b129622",
+    "agent/Agent面经汇总.md.tmp.28452.0dd35717b804",
+    "agent/Agent面试汇总——解答版.md.tmp.28452.9f48183f4266",
+    "agent/Agent面试汇总——解答版.md.tmp.28452.f2cad942650b",
+    "music/彩虹/640.jpg",
+    "music/刻在我心底的名字/微信图片_2026-06-27_183634_219.png",
+    "music/Pasted image 20260622105845.png",
+    "music/为何我/20251026020203_826.jpg",
+    "music/为何我/20251026020203_256.jpg",
+    "music/为何我/20251026020339_771.jpg",
+    "music/sound-of-slinence/20250905114754763745bf.webp",
+    "music/sound-of-slinence/2025090511475485fdb9d0.webp",
+    "music/sound-of-slinence/2025090511475475a9f1b2.webp",
+    "music/sound-of-slinence/2025090511475316e23424.webp"
+  ]
+}

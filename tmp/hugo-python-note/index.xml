@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Minjie&#39;s Blog</title>
+    <link>https://minjieblog.github.io/</link>
+    <description>Recent content on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sun, 06 Sep 2026 23:34:32 +0800</lastBuildDate>
+    <atom:link href="https://minjieblog.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 面试算法手册：数据结构、刷题模板与 AI 算法</title>
+      <link>https://minjieblog.github.io/interview-notes/python-algorithm-cheatsheet/</link>
+      <pubDate>Sun, 06 Sep 2026 23:34:32 +0800</pubDate>
+      <guid>https://minjieblog.github.io/interview-notes/python-algorithm-cheatsheet/</guid>
+      <description>系统整理 Python 容器、二分、双指针、树、图、动态规划，以及线性回归、K-Means、PCA、Attention 等面试手写模板，附复杂度、输入约定和易错点。</description>
+    </item>
+    <item>
+      <title>Codex 完整使用指南：安装、控制、代码管理与自动化</title>
+      <link>https://minjieblog.github.io/doc-intro/codex-ref/</link>
+      <pubDate>Wed, 02 Sep 2026 11:12:43 +0800</pubDate>
+      <guid>https://minjieblog.github.io/doc-intro/codex-ref/</guid>
+      <description>一份面向实际开发的 Codex 中文参考手册，覆盖 CLI、IDE、桌面端、权限配置、AGENTS.md、Git Worktree、MCP、Hooks、计划任务与 Skills。</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; STL 刷题手册</title>
+      <link>https://minjieblog.github.io/interview-notes/cpp-stl-cheatsheet/</link>
+      <pubDate>Sun, 10 May 2026 22:12:18 +0800</pubDate>
+      <guid>https://minjieblog.github.io/interview-notes/cpp-stl-cheatsheet/</guid>
+      <description>C&#43;&#43; STL 容器与刷题算法模板速查手册，涵盖 string、vector、map、priority_queue 等常用容器的核心用法，以及树、图、回溯、动态规划、双指针、单调栈、前缀和等经典算法的代码模板，供 LeetCode 刷题时快速查阅。</description>
+    </item>
+    <item>
+      <title>Agent Roadmap</title>
+      <link>https://minjieblog.github.io/agent/agent-roadmap/</link>
+      <pubDate>Tue, 28 Apr 2026 10:00:19 +0800</pubDate>
+      <guid>https://minjieblog.github.io/agent/agent-roadmap/</guid>
+      <description>总结了一些 AI Agent 的完整学习路径，包括核心概念、技术栈（如 LLM、工具调用、记忆机制）、以及实践方向，适合入门到进阶的学习参考</description>
+    </item>
+    <item>
+      <title>Prevoke：一种保护隐私的可配置可验证凭证撤销方案</title>
+      <link>https://minjieblog.github.io/blockchain/prevoke-privacy-preserving-vc-revocation/</link>
+      <pubDate>Mon, 06 Apr 2026 12:11:32 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/prevoke-privacy-preserving-vc-revocation/</guid>
+      <description>Prevoke 是一种面向自我主权身份（SSI）系统的可验证凭证撤销方案，通过将布隆过滤器（Bloom Filter）与默克尔树累加器（Merkle Tree Accumulator）结合，并部署在以太坊智能合约上，首次同时满足了 PR1（不暴露持有者与验证者关联）、PR2（不泄露被撤销持有者身份）、PR3（不泄露撤销率）三大隐私需求。本文从背景知识、隐私需求、系统设计、算法流程到实验评估进行了全面介绍，适合区块链与身份认证领域的初学者阅读。</description>
+    </item>
+    <item>
+      <title>SSI 中的VC撤销与 DID 注销</title>
+      <link>https://minjieblog.github.io/blockchain/ssi-credential-revocation-did-deactivation-survey/</link>
+      <pubDate>Mon, 30 Mar 2026 14:01:58 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/ssi-credential-revocation-did-deactivation-survey/</guid>
+      <description>本文是对 IEEE Access 2026 综述论文《A Survey on Credential Revocation and DID Deactivation in Self-Sovereign Identity Systems》的系统性解析笔记。论文提出 SSI 撤销机制的四大类分类框架（列表式、密码学累加器、正向确认、治理感知），并独立分析 DID 注销层。笔记按原文结构展开，重点覆盖各类机制的技术细节、隐私分析、可扩展性对比以及开放挑战。</description>
+    </item>
+    <item>
+      <title>V&#39;CER: 约束网络中的高效证书验证</title>
+      <link>https://minjieblog.github.io/blockchain/vcer-certificate-validation-constrained-networks/</link>
+      <pubDate>Sat, 28 Mar 2026 15:06:30 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/vcer-certificate-validation-constrained-networks/</guid>
+      <description>no description</description>
+    </item>
+    <item>
+      <title>Crset Private Vc Revocation</title>
+      <link>https://minjieblog.github.io/blockchain/crset-private-vc-revocation/</link>
+      <pubDate>Thu, 26 Mar 2026 19:25:03 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/crset-private-vc-revocation/</guid>
+      <description>本文是对论文《CRSet: Private Non-Interactive Verifiable Credential Revocation》的详细阅读笔记。论文识别了现有 SSI 撤销机制（如 Bitstring Status List、AnonCreds）在签发方活动隐私上的根本缺陷，提出并形式化证明了「选择计数不可区分性」这一隐私定义，并设计实现了满足该定义的 CRSet 机制，每个以太坊 Blob 可支持约 17 万张凭证的撤销数据。</description>
+    </item>
+    <item>
+      <title>EVOKE：面向物联网的高效可验证凭证吊销机制</title>
+      <link>https://minjieblog.github.io/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/</link>
+      <pubDate>Thu, 26 Mar 2026 12:30:54 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/</guid>
+      <description>EVOKE 针对 IoT 环境下 VC 吊销机制在存储、连通性与可扩展性方面的不足，提出一种基于密码学累加器的高效撤销方案。相比传统 PKI 吊销方法（OCSP、CRL）及 W3C Revocation List 2020，EVOKE 通过 ECC 正向累加器将有效凭证集合压缩为常数大小，并结合 witness 实现本地可验证性，从而避免在线查询需求；同时借助 DAG 分布式账本实现吊销信息的高效传播与离线同步。实验结果表明，该方案在资源受限设备上具有较低的计算开销，并在大规模网络中表现出优良的同步性能，体现了在低存储、离线验证与批量吊销之间的良好权衡。</description>
+    </item>
+    <item>
+      <title>去中心化标识符（DID）与可验证凭证（VC）综述</title>
+      <link>https://minjieblog.github.io/blockchain/did-vc-survey-2025/</link>
+      <pubDate>Sun, 22 Mar 2026 15:00:06 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/did-vc-survey-2025/</guid>
+      <description>系统梳理 IEEE 2025 年综述论文《A Survey on Decentralized Identifiers and Verifiable Credentials》的核心内容，包括数字身份演进历史、DID/VC 技术架构、安全威胁与缓解策略、五大主流实现框架对比、跨领域应用案例（智能交通/医疗/工业/教育等）、全球监管项目动态，以及标准化、可扩展性、隐私合规等关键挑战与未来研究方向。</description>
+    </item>
+    <item>
+      <title>Decentralized Identity Systems: Architecture, Challenges, Solutions and Future Directions</title>
+      <link>https://minjieblog.github.io/blockchain/decentralized-identity-systems-2020/</link>
+      <pubDate>Fri, 20 Mar 2026 14:12:28 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/decentralized-identity-systems-2020/</guid>
+      <description>本文对数字身份管理系统进行了全面综述，重点分析基于区块链的去中心化身份（SSI）范式——包括其架构、组件、生命周期与工作流程，并依据自主主权身份的十项原则对现有解决方案进行评估，最后讨论了阻碍去中心化身份全面落地的技术与非技术挑战。</description>
+    </item>
+    <item>
+      <title>数学基础——数学篇作业集</title>
+      <link>https://minjieblog.github.io/dase-course/math-homework/</link>
+      <pubDate>Mon, 29 Dec 2025 13:25:26 +0800</pubDate>
+      <guid>https://minjieblog.github.io/dase-course/math-homework/</guid>
+      <description>本作业集包含四次数学基础作业的完整解答，涵盖：
+矩阵范数理论、特征值与特征多项式、正交投影、
+LU分解、Cholesky分解、QR分解、SVD奇异值分解、
+最小二乘法、图像处理应用（旋转与压缩）、
+以及 kNN 分类器的实现。每道题目都配有详细的
+数学推导过程和部分编程实现代码。
+</description>
+    </item>
+    <item>
+      <title>xRWA: 真实世界资产的跨链互操作性框架</title>
+      <link>https://minjieblog.github.io/blockchain/xrwa-cross-chain-real-world-assets/</link>
+      <pubDate>Thu, 25 Dec 2025 03:52:02 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/xrwa-cross-chain-real-world-assets/</guid>
+      <description>2025年预印本论文解读:随着RWA代币化市场从2025年初的86亿美元激增至230亿美元(增长260%),Citibank预测2030年将达到4万亿美元规模。xRWA框架通过创新性地结合DID/VC身份管理、SPV跨链认证和无需关闭的跨链通道,首次系统性地解决了RWA在异构区块链间的互操作性挑战。本文详细解析了RWA复合凭证(RWA-CC)的四模块设计、SPV认证协议如何避免重复验证、跨链通道如何实现批量结算,以及在房地产、稳定币、私募信贷等场景的应用价值。
+</description>
+    </item>
+    <item>
+      <title>Web3.0 身份认证系统综述：中心化与去中心化方案对比分析</title>
+      <link>https://minjieblog.github.io/blockchain/identity-management-systems-survey/</link>
+      <pubDate>Wed, 24 Dec 2025 15:03:41 +0800</pubDate>
+      <guid>https://minjieblog.github.io/blockchain/identity-management-systems-survey/</guid>
+      <description>基于 Future Internet 2025 年发表的综述论文，系统分析传统中心化身份管理系统与新兴去中心化方案在可扩展性、安全性、可靠性、适应性和成本方面的对比，为 Web3.0 身份认证研究提供全面参考
+</description>
+    </item>
+    <item>
+      <title>数学基础算法篇</title>
+      <link>https://minjieblog.github.io/dase-course/mathematical-algorithms-lecture/</link>
+      <pubDate>Sun, 21 Dec 2025 15:50:54 +0800</pubDate>
+      <guid>https://minjieblog.github.io/dase-course/mathematical-algorithms-lecture/</guid>
+      <description>金老师主讲的研究生课程《数学基础算法篇》完整笔记，从算法分析基础开始，系统介绍相似度搜索、概率不等式、流式数据处理、分布式计算、哈希技术、优化算法、图算法等内容，理论与实践相结合，为解决大规模数据处理问题提供数学和算法基础。
+</description>
+    </item>
+    <item>
+      <title>黑马点评项目笔记</title>
+      <link>https://minjieblog.github.io/java-notes/hmdp/</link>
+      <pubDate>Wed, 17 Dec 2025 21:01:53 +0800</pubDate>
+      <guid>https://minjieblog.github.io/java-notes/hmdp/</guid>
+      <description>&amp;#34;记录黑马点评项目的学习过程，包括 Redis 的多种应用场景、缓存穿透/击穿/雪崩解决方案、分布式锁实现、UV 统计、好友关注等功能的技术实现细节&amp;#34;
+</description>
+    </item>
+    <item>
+      <title>机器学习习题集</title>
+      <link>https://minjieblog.github.io/dase-course/ml-exercise-set/</link>
+      <pubDate>Sat, 13 Dec 2025 20:26:19 +0800</pubDate>
+      <guid>https://minjieblog.github.io/dase-course/ml-exercise-set/</guid>
+      <description>这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：
+基础理论（梯度下降、交叉熵损失、最大似然估计）、
+判别模型（Logistic回归、GDA、SVM对偶优化）、
+深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
+强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
+大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
+每道题配有完整数学证明和算法原理解析。 
+</description>
+    </item>
+    <item>
+      <title>四川麻将指南</title>
+      <link>https://minjieblog.github.io/game-guide/sichuan-mahjong-guide/</link>
+      <pubDate>Sat, 13 Dec 2025 12:16:13 +0800</pubDate>
+      <guid>https://minjieblog.github.io/game-guide/sichuan-mahjong-guide/</guid>
+      <description>详细介绍四川麻将的规则、技巧和进阶策略，让你快速从新手成长为高手</description>
+    </item>
+    <item>
+      <title>常用命令行指令参考</title>
+      <link>https://minjieblog.github.io/doc-intro/command-reference/</link>
+      <pubDate>Wed, 10 Dec 2025 11:28:47 +0800</pubDate>
+      <guid>https://minjieblog.github.io/doc-intro/command-reference/</guid>
+      <description>一份完整的开发者命令行速查表，涵盖 Windows PowerShell、Linux/Unix 终端、Git 版本控制和 GitHub CLI 工具的常用指令、参数说明|和实际使用场景示例</description>
+    </item>
+    <item>
+      <title>MySQL 语句速查笔记</title>
+      <link>https://minjieblog.github.io/database/mysql-cheatsheet/</link>
+      <pubDate>Wed, 10 Dec 2025 08:45:19 +0800</pubDate>
+      <guid>https://minjieblog.github.io/database/mysql-cheatsheet/</guid>
+      <description>MySQL 常用语句全面速查手册，涵盖基础到高级的所有常用操作</description>
+    </item>
+    <item>
+      <title>算法刷题必备：Java集合与算法模板</title>
+      <link>https://minjieblog.github.io/java-notes/algorithm-with-java/</link>
+      <pubDate>Sun, 07 Dec 2025 16:33:25 +0800</pubDate>
+      <guid>https://minjieblog.github.io/java-notes/algorithm-with-java/</guid>
+      <description>Java 集合框架完整使用手册 &#43; 常用算法模板</description>
+    </item>
+    <item>
+      <title>Hugo 常用指令与 Markdown 配置指南</title>
+      <link>https://minjieblog.github.io/doc-intro/hugo-readme/</link>
+      <pubDate>Sat, 06 Dec 2025 17:43:45 +0800</pubDate>
+      <guid>https://minjieblog.github.io/doc-intro/hugo-readme/</guid>
+      <description>一份完整的 Hugo 和 Markdown 使用手册，包含常用命令、配置说明和最佳实践</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://minjieblog.github.io/agent/agent%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://minjieblog.github.io/agent/agent%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/</guid>
+      <description>&lt;h1 id=&#34;ai电商导购与售后客服平台&#34;&gt;AI电商导购与售后客服平台&lt;/h1&gt;
+&lt;p&gt;它不是普通聊天机器人，而是一个能够：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;理解用户需求；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查询商品和活动知识；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;推荐、比较商品；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查询订单和物流；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;判断退换货资格；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;经用户确认后创建售后工单；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在不确定时转人工客服；&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://minjieblog.github.io/agent/agent%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://minjieblog.github.io/agent/agent%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description>&lt;h1 id=&#34;mewcode-项目面试题库&#34;&gt;MewCode 项目面试题库&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;项目基础介绍&#34;&gt;项目基础介绍&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;1. 简单介绍一下这个 MewCode Coding Agent 项目，先用一两句话讲清楚它是什么，能做什么。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定位：MewCode 是我独立开发的一个终端 AI 编程助手。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://minjieblog.github.io/agent/%E7%89%9B%E5%AE%A2agent%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://minjieblog.github.io/agent/%E7%89%9B%E5%AE%A2agent%E9%9D%A2%E8%AF%95/</guid>
+      <description>&lt;p&gt;afj;afja;j; nnmjk &amp;mdash;
+title: 牛客 Agent 面试真题精选
+date: 2026-06-02T00:00:00+08:00
+draft: true
+tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;agent&lt;/li&gt;
+&lt;li&gt;面试&lt;/li&gt;
+&lt;li&gt;牛客&lt;/li&gt;
+&lt;li&gt;langgraph&lt;/li&gt;
+&lt;li&gt;rag&lt;/li&gt;
+&lt;li&gt;mcp
+categories:&lt;/li&gt;
+&lt;li&gt;Agent
+summary: 整理自牛客平台的 Agent 开发方向面试真题，涵盖 Agent 核心组件、工具调用、RAG、记忆机制、多 Agent 协作等高频考点，每题附答题思路。
+description: 牛客 Agent 面试真题汇总，按模块分类整理：Agent 架构与工具调用、RAG 检索增强、大模型基础，每题提供关键答题思路，适合 Agent 开发实习岗位备考。
+comments: true&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1agent--工具调用&#34;&gt;1、Agent / 工具调用&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;介绍一下 Agent 的核心组件&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:LLM(规划+推理) + Memory(短/长期) + Tools(外部能力) + Planner + Executor + Reflection;关键区别是「循环执行」而非一次调用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ReAct 的执行流程是什么&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:Thought → Action(选工具+参数) → Observation(工具结果) → Thought 循环,直到 Final Answer 或达步数上限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Function Calling 和 MCP 的区别&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:FC 是模型↔工具的协议(OpenAI 起源);MCP 是工具/数据源标准协议(Anthropic),目标让工具跨模型/跨 Agent 复用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多 Agent 系统怎么协作?常见架构有哪些&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:中心化(Orchestrator+Worker) / 去中心化(消息总线) / 分层(Manager→Specialist);讲清「分配/避免循环/聚合」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent 的规划能力怎么实现&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:显式规划(先输出 plan 再执行) vs 隐式(边想边做);常用 ReAct/Plan-and-Execute/ToT;复杂任务先 plan 后 reflection。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent 的记忆机制有哪些(短期 / 工作 / 长期)&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:短期=对话上下文;工作=本任务中间状态;长期=向量库存历史/偏好。要会答「各自适合什么场景+数据结构」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent 工具调用失败怎么处理&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:重试(指数退避) + 工具替换/降级 + Reflection 改参数 + 兜底回复;强调「不要无限循环」,设 max_retry。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;怎么评估 Agent 的效果&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:任务完成率 + 步数效率 + 工具调用正确率 + Token 成本 + 人工评分;端到端 + 单步双轨。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LangChain 和 LangGraph 的区别&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:LangChain 链式抽象适简单工作流;LangGraph 显式 DAG/图,适复杂分支+循环+多 Agent。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent 多轮执行出错怎么定位&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:全链路 trace(每步输入/工具/输出) + LangSmith/LangFuse 可观测平台;按步看哪一步偏离预期。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ReAct 比单纯 LLM 强在哪&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:能调外部工具拿事实,多步推理时能校验中间步骤;适合需要现场查/算的任务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent 框架你用过哪些?各自优缺点&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:LangChain/LangGraph/AutoGPT/CrewAI/Coze/Dify 中至少讲 2 个,按「上手成本/扩展性/可观测性/适合场景」对比。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;你做的 Agent demo 用了几个工具&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:不必多,3-5 个就够(搜索+DB+代码执行+计算);重点讲「为什么选这些」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent 怎么决定调哪个工具&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:LLM 根据 prompt 中的 tool 描述 + 当前上下文 + few-shot 例子决策;好的 tool 描述 = 决策关键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reflection 失败 3 次后怎么处理&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:切换工具/降级到固定回复/转人工/给错误说明 + 重新提问引导;设 max retry 防死循环。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Coze / 扣子是 Agent 平台还是工作流平台&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:字节出品的 Agent 工作流平台,本质低代码可视化编排 + LLM 节点;和 Dify 同类,介于纯 Agent 和 BPM 之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;流式返回时，如何插入非文本事件（工具调用标记、思考过程、错误提示、分段标识），且不影响前端渲染？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:用结构化事件流(event: text|tool_call|thinking|error),前端按 event type 分别渲染。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ReAct框架在实际开发中，如何避免“思考与行动脱节”？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:tool 描述要精准 + Few-shot 示范 + 必要时让模型先规划再 act + Reflection 校验上一步是否真做到。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent工具调用的Schema设计核心是什么？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:名字精准(动宾)、描述说清「何时调」、参数 schema 严格、加 example、避免歧义和重叠。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2rag--检索&#34;&gt;2、RAG / 检索&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;介绍一下 RAG 的整体流程&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:Query → 改写(可选) → Embed → 检索(向量+BM25 混合) → Rerank → 组装 context → LLM 生成。强调「检索是为生成服务」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAG 解决了大模型的什么核心问题&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:幻觉、知识过时、私有数据无法访问;本质是把「事实」从模型权重里拆出来变成可更新的外部知识。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文档切片粒度怎么定?切大切小各有什么风险&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:太大→噪声多+context 浪费;太小→语义不全。500-1500 字常用,按语义边界(段/小节)切,加 overlap。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;向量召回和 BM25 关键词召回各自适合什么场景?为什么要混合&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:向量懂语义/同义改写;BM25 对术语/精确匹配强。常做 hybrid + Rerank 取长补短。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embedding 模型怎么选?有哪些主流方案&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:看场景(中英/通用/领域)、维度(算力)、最大输入、benchmark(MTEB);中文常用 BGE/M3E/E5。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rerank 在 RAG 链路里起什么作用?什么时候必须加&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:召回阶段牺牲精度换召回,Rerank 用 cross-encoder 精排 Top N;文档质量参差或召回噪声多时必加。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如何评估 RAG 的检索质量?常用指标有哪些&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:Recall@K / Precision@K / MRR / NDCG;可加 LLM-as-judge 评忠实度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAG 的幻觉怎么治理&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:提高召回质量 + Prompt 约束「基于上下文回答」 + 校验生成是否能在 context 找到依据 + cite 来源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如何处理长文档?切片 / 摘要 / 父子文档怎么选&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:短问题→直接切片;信息分散→摘要+索引;语义连贯重要→父子块。常常组合用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多模态 RAG 怎么做?有什么坑&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:文/图/表分别 embed → 统一/分库召回 → LLM 多模态理解;坑: 模态对齐、混合排序、上下文长度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;知识图谱和 RAG 怎么结合&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:实体识别后查图谱拿关系 + 向量检索拿描述;适合金融/医疗强关系场景,弥补纯文本 RAG 关系缺失。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAG 召回率低怎么排查&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:看 query 改写质量 → 切片粒度 → embedding 模型适配度 → 索引参数 → 数据覆盖度;逐层定位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Top K 怎么定?太大太小各有什么问题&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:太小漏召回;太大噪声+token 浪费。常 K=5-10,配合 Rerank 取 Top 3-5 送 LLM。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAG 上下文压缩有哪些方法&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:LLMLingua 类 token 压缩 + 句子级抽取 + Rerank+截断 + Map-Reduce 归纳。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;与直接对 LLM 进行微调相比，RAG 主要解决了什么问题？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:知识更新成本低 + 可解释(给来源) + 私有数据不入权重 + 动态可控。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一个完整的 RAG 流水线包含哪些关键步骤？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:见 RAG 整体流程;补一句「每步都要单独评估和监控」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;评估一个 Embedding 模型的好坏有哪些指标？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:MTEB 各任务平均 + 目标场景 Recall@K/MRR + 推理速度 + 维度 + 最大输入长度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;除了基础的向量检索，你还知道哪些可以提升 RAG 检索质量的技术？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:Query 改写/扩展、HyDE、混合检索、Rerank、父子块、压缩、自适应 K、查询路由。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在什么场景下，你会选择使用图数据库或知识图谱来增强或替代传统的向量数据库检索？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:强关系/多跳查询(金融关联交易/医疗用药关系/法律案例引用),纯文本召回不出关系时用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如何全面地评估一个 RAG 系统的性能？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:检索 + 生成 + 端到端三层 + 时延 + token 成本 + 用户满意度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3prompt--思维链&#34;&gt;3、Prompt / 思维链&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CoT 的原理和效果来源&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:让模型显式输出中间步骤(「Let&amp;rsquo;s think step by step」)激活推理能力;本质是用更多 token 换更好 reasoning。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Few-shot vs Zero-shot 怎么选&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:任务复杂/格式严格用 Few-shot 给样例;任务清晰、模型能力强用 Zero-shot 省 token。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prompt 注入怎么防范&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:分隔符 + 角色绑定 + 输入过滤 + 输出审计 + 不让用户控指令边界 + 关键操作二次确认。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一个好的 Prompt 模板包含哪些要素&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:角色 + 任务 + 输入 + 输出格式 + 约束 + Few-shot 例子;结构化分段。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;怎么评估 Prompt 的优劣&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:离线评估集 + 业务指标 + A/B 对比 + LLM-as-judge;要有客观标准。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;思维链失败怎么调整&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:更详细的 Few-shot CoT 示例 + 拆任务 + 加 Reflection + 换更强模型 + 降低 Temperature。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多轮对话的 Prompt 怎么设计&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:system prompt 锚定角色 + 历史摘要压缩 + 关键信息槽位提取 + 防 prompt 漂移。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prompt Chaining 是什么&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:把复杂任务拆成多个 prompt 串行(前一步输出当后一步输入),比单个超长 prompt 稳定可调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结构化输出怎么保证&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:JSON schema + Few-shot + Function Call/Tool Schema + 输出后 JSON 解析重试 + 严格模式(structured output)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prompt注入攻击如何防御?&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:见 Prompt 注入怎么防范。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上下文工程和提示词工程有什么区别？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:Prompt 工程偏单次指令优化;上下文工程偏「喂给模型的所有 context」组织(系统 prompt+ 历史+RAG 召回+工具描述)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如何做自动化 Prompt 优化（A/B test / eval）？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:评估集 + 候选 prompt → 跑分对比 → 自动迭代(用 LLM 改 prompt);要防过拟合到评估集。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4项目深挖--简历&#34;&gt;4、项目深挖 / 简历&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;介绍一下你做过的最有挑战的 AI 项目&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:选 1 个有 AI 含量(不是套壳)、有指标、有踩坑的项目；按「业务背景→技术方案→关键难点→指标」4 段讲,控制 2-3 分钟。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;这个项目的核心难点是什么&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:抓「非确定性」难点(评估难/数据难/对齐难/部署难),不要泛泛说「工程量大」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;选型为什么是这个方案?对比过哪些&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:至少列 2 个候选方案 + 比较维度(成本/性能/可维护性/数据需求),证明做过 trade-off。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;项目踩了哪些坑?怎么解决的&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:选 2-3 个具体坑(幻觉/召回低/推理慢/上下文超长),每个讲「现象→根因→方案→效果」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;关键指标有哪些?北极星指标是什么&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:北极星 = 真实业务指标(留存/转化/任务完成率),配代理指标(召回率/CTR);两者要能解释因果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上线后效果怎么衡量&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:A/B 实验 + 离线指标 + 用户反馈三件套;不要只说「反馈好」,要给数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如果重做你会怎么做&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:体现学习能力;选 1-2 个「现在视角看会做不同」的点(技术选型/数据策略)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;你在团队里的角色是什么&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:STAR 法说清「我具体做了什么、对成果有什么影响」,别说「参与」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;和业务方怎么对齐的&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:PRD → 关键指标对齐 → 双周 demo → 灰度;强调「提前对齐预期避免上线后扯皮」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;项目最后真的上线了吗&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:诚实回答;没上线就讲「为什么没上线 + 学到什么」,别硬撑。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在构建数据集的过程中，遇到了哪些挑战？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:数据清洗、标注一致性、长尾覆盖、版权/隐私、合成数据质量评估,挑 2-3 个深入。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;你做过的 AI 项目中最困难的技术挑战是什么，你是如何解决的？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:和「核心难点」同框,加一句「我用了 XX 方法量化解决了 XX 问题」,有数字最好。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在项目中是如何进行 LLM 模型选择的？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:需求(能力/上下文/中英文)→候选(GPT/Claude/Qwen/DeepSeek)→评估(自有评估集)→trade-off(成本/合规/SLA)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;简历上的AI项目，面试官到底想看什么？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:有 AI 含量(不是套壳) + 真问题 + 有指标 + 你做了关键决策。要能讲清「我」做了什么不是「团队」做了什么。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5工程--部署--infra&#34;&gt;5、工程 / 部署 / Infra&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;vLLM 的核心优化是什么&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:PagedAttention(分页 KV cache) + Continuous batching(动态合批) + 量化 + prefix cache;吞吐比 HF 高数倍。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型量化 / 蒸馏的区别&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:量化: 降精度(FP16→INT8/INT4),结构不变;蒸馏: 教师→学生,结构变了;可叠加。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;端侧部署的挑战&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:算力/显存/电耗受限;要小模型(SLM 1-7B) + 量化 + 推理引擎(MLC LLM/llama.cpp/ONNX Runtime)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分布式训练的常见策略&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:DDP(数据并行) + Tensor 并行(切矩阵) + Pipeline 并行(切层) + ZeRO(优化器分片);大模型常组合用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPU 显存怎么优化&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:量化 + KV cache 分页 + 梯度检查点 + 混合精度 + ZeRO + offload 到 CPU/NVMe。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推理服务的限流和兜底&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:令牌桶限流 + 优先级队列 + 排队 + 降级到小模型/缓存/规则回复。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;私有化部署的取舍&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:数据安全 vs 维护成本 + 模型迭代速度;金融/政务/医疗强合规必须,中小企用 API 更经济。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型缓存怎么设计&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:输入归一化 hash → 命中直接返回;语义近似可用 embedding 相似度;可降 30-70% 调用成本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推理框架你用过哪些&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:vLLM/TGI/TensorRT-LLM/SGLang/llama.cpp/MLC LLM;按部署场景(云端/边缘)和模型大小选。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型量化（INT8/INT4/FP8）的原理？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:把权重/激活从 FP16/32 降到 INT/FP8,体积/算力小数倍;精度损失靠校准/QAT 控制。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;量化后的坑如何规避？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:校准集要代表性 + 关键层(attention)保留高精度 + 对比量化前后效果 + 不在长上下文盲量化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;6评估--幻觉--安全&#34;&gt;6、评估 / 幻觉 / 安全&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;幻觉的根本原因&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:模型本质是概率生成,没事实校验机制;预训练数据噪声 + 缺乏知识 + 外推超出能力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;幻觉怎么治理&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:RAG 拿事实 + Prompt 约束 + 自检 reflection + 关键输出人工/规则校验 + cite 来源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;大模型评测有哪些标准&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:MMLU/HumanEval/GSM8K/HellaSwag 等公共基准 + 业务任务自评 + LLM-as-judge + 红队测试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI bias 怎么处理&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:数据均衡 + 对齐阶段加 fairness 约束 + 上线后偏见监控 + 关键决策保留人工。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;越狱攻击怎么防&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:Prompt 加防御指令 + 输入分类器 + 输出审核 + RLHF 对齐安全场景 + 持续红队迭代。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可解释性 AI 在什么场景必须&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:金融信贷/医疗诊断/司法/招聘等高风险高合规场景,决策需可追溯可解释。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AIGC 水印是什么&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:在生成内容中嵌入不可见可检测的标记,用于溯源/反伪造/版权。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI 偏见在招聘 / 信贷场景的风险&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:历史数据偏见放大 → 歧视性决策 → 合规风险(GDPR/反歧视法) + 品牌风险。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;各自的成本、稳定性、安全性对比？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:结合上文方案对比;按「成本/SLA/合规/数据出境」维度展开,给量级数字最好。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如何做输出内容审核、毒性检测？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:关键词 + 分类器(toxic/violent/political) + LLM judge + 灰度策略 + 反馈迭代。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;怎么规避大模型的幻觉？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:见幻觉怎么治理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如何解决幻觉问题？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:见幻觉怎么治理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如何降低模型幻觉？&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:见幻觉怎么治理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;7coding--手撕--算法题&#34;&gt;7、Coding / 手撕 / 算法题&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;手撕 Transformer 简化版&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:实现 Multi-Head Attention + LayerNorm + FFN 一个 block;KV 投影、scale、mask、softmax 关键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实现简易的 self-attention&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:softmax(QK^T/√d)·V,三个线性层 + scaled dot-product;要能讲清 mask、numerical stability。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实现一个 BPE 分词&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:统计 byte-pair 频率 → 迭代合并最高频对 → 构建词表;重点 merge rule + encode/decode。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实现一个简易 RAG 流程&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:load docs → chunk → embed → 存向量库 → query embed → top-K 检索 → 拼 prompt 调 LLM。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实现 ReAct Agent 框架&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路&amp;#x27bf; LLM 生成 thought+action → 解析 → 调 tool → 拿 observation → 喂回 LLM;终止条件 + max steps。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LeetCode 二分 / 滑动窗口 / DP&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:三大基础算法,准 hot 100;二分注意边界,滑窗注意收缩条件,DP 注意状态定义+转移。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;链表 / 二叉树常见题&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:反转/合并/环检测;遍历/层序/最近公共祖先/序列化;递归 + 双指针。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实现一个简单的工具调用&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:定义 tool schema → LLM 输出 JSON 调用 → 解析参数调函数 → 返回结果给 LLM。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;滑动窗口算法是怎么实现的?&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:双指针维护窗口 [l,r],扩 r 加入元素,触发条件后收 l;时间 O(n)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如果使用滑动窗口，结构体中会包含哪些字段?&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;思路:l/r 指针 + 窗口统计(map/sum) + 当前最优解 + 边界判断标志。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>关于我</title>
+      <link>https://minjieblog.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://minjieblog.github.io/about/</guid>
+      <description>about</description>
+    </item>
+  </channel>
+</rss>

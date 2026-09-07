@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>笔记 on Minjie&#39;s Blog</title>
+    <link>https://minjieblog.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 笔记 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Tue, 28 Apr 2026 10:00:19 +0800</lastBuildDate>
+    <atom:link href="https://minjieblog.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent Roadmap</title>
+      <link>https://minjieblog.github.io/agent/agent-roadmap/</link>
+      <pubDate>Tue, 28 Apr 2026 10:00:19 +0800</pubDate>
+      <guid>https://minjieblog.github.io/agent/agent-roadmap/</guid>
+      <description>总结了一些 AI Agent 的完整学习路径，包括核心概念、技术栈（如 LLM、工具调用、记忆机制）、以及实践方向，适合入门到进阶的学习参考</description>
+    </item>
+  </channel>
+</rss>

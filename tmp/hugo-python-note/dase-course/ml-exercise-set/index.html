@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>机器学习习题集 | Minjie&#39;s Blog</title>
+<meta name="keywords" content="机器学习, 数学推导, 算法">
+<meta name="description" content="这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：
+基础理论（梯度下降、交叉熵损失、最大似然估计）、
+判别模型（Logistic回归、GDA、SVM对偶优化）、
+深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
+强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
+大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
+每道题配有完整数学证明和算法原理解析。 
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://minjieblog.github.io/dase-course/ml-exercise-set/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/dase-course/ml-exercise-set/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style><meta property="og:url" content="https://minjieblog.github.io/dase-course/ml-exercise-set/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="机器学习习题集">
+  <meta property="og:description" content="这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：
+基础理论（梯度下降、交叉熵损失、最大似然估计）、
+判别模型（Logistic回归、GDA、SVM对偶优化）、
+深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
+强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
+大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
+每道题配有完整数学证明和算法原理解析。 ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="dase-course">
+    <meta property="article:published_time" content="2025-12-13T20:26:19+08:00">
+    <meta property="article:modified_time" content="2025-12-13T20:26:19+08:00">
+    <meta property="article:tag" content="机器学习">
+    <meta property="article:tag" content="数学推导">
+    <meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习习题集">
+<meta name="twitter:description" content="这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：
+基础理论（梯度下降、交叉熵损失、最大似然估计）、
+判别模型（Logistic回归、GDA、SVM对偶优化）、
+深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
+强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
+大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
+每道题配有完整数学证明和算法原理解析。 
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Dase-Courses",
+      "item": "https://minjieblog.github.io/dase-course/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "机器学习习题集",
+      "item": "https://minjieblog.github.io/dase-course/ml-exercise-set/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "机器学习习题集",
+  "name": "机器学习习题集",
+  "description": "这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：\n基础理论（梯度下降、交叉熵损失、最大似然估计）、\n判别模型（Logistic回归、GDA、SVM对偶优化）、\n深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、\n强化学习（多臂老虎机、MDP Bellman方程、最优策略）、\n大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。\n每道题配有完整数学证明和算法原理解析。 \n",
+  "keywords": [
+    "机器学习", "数学推导", "算法"
+  ],
+  "articleBody": "参考资料：机器学习考题集\n机器学习基础（30%） 第一题：线性回归梯度下降 题目： 对线性模型 $h_\\theta(x) = \\theta^\\top x$，给定训练集 $\\{(x^{(i)}, y^{(i)})\\}$，推导其向量形式的最小二乘损失梯度下降更新公式为：\n$$\\theta := \\theta + \\alpha \\sum_{i=1}^{n} (y^{(i)} - h_\\theta(x^{(i)})) x^{(i)}$$解：\n最小二乘损失函 数为：\n$$J(\\theta) = \\frac{1}{2}\\sum_{i=1}^{n}(h_\\theta(x^{(i)}) - y^{(i)})^2 = \\frac{1}{2}\\sum_{i=1}^{n}(\\theta^\\top x^{(i)} - y^{(i)})^2$$对 $\\theta$ 求梯度：\n$$\\begin{aligned} \\nabla_\\theta J(\\theta) \u0026= \\sum_{i=1}^{n}(\\theta^\\top x^{(i)} - y^{(i)}) \\cdot x^{(i)} \\\\ \u0026= \\sum_{i=1}^{n}(h_\\theta(x^{(i)}) - y^{(i)}) x^{(i)} \\end{aligned}$$梯度下降更新规则为 $\\theta := \\theta - \\alpha \\nabla_\\theta J(\\theta)$，因此：\n$$\\theta := \\theta - \\alpha \\sum_{i=1}^{n}(h_\\theta(x^{(i)}) - y^{(i)}) x^{(i)} = \\theta + \\alpha \\sum_{i=1}^{n}(y^{(i)} - h_\\theta(x^{(i)})) x^{(i)}$$ 第二题：交叉熵损失梯度 题目： Cross Entropy Loss 定义如下：\n$$l_{ce}((t_1,\\ldots,t_k),y) = -\\log\\left(\\frac{\\exp(t_y)}{\\sum_j \\exp(t_j)}\\right)$$令向量 $t = (t_1,t_2,\\ldots,t_k)$，推导 CEL 对任意 $t_i$ 求导为：\n$$\\frac{\\partial l_{ce}(t,y)}{\\partial t_i} = \\phi_i - \\mathbb{1}\\{y=i\\}$$解：\n记 $\\phi_i = \\frac{\\exp(t_i)}{\\sum_j \\exp(t_j)}$ 为 softmax 函数。\n首先简化损失函数：\n$$l_{ce}(t,y) = -\\log(\\phi_y) = -t_y + \\log\\left(\\sum_j \\exp(t_j)\\right)$$对 $t_i$ 求导：\n$$\\begin{aligned} \\frac{\\partial l_{ce}(t,y)}{\\partial t_i} \u0026= -\\frac{\\partial t_y}{\\partial t_i} + \\frac{\\partial}{\\partial t_i}\\log\\left(\\sum_j \\exp(t_j)\\right) \\\\ \u0026= -\\mathbb{1}\\{y=i\\} + \\frac{\\exp(t_i)}{\\sum_j \\exp(t_j)} \\\\ \u0026= \\phi_i - \\mathbb{1}\\{y=i\\} \\end{aligned}$$其中 $\\mathbb{1}\\{y=i\\}$ 是指示函数，当 $y=i$ 时为1，否则为0。\n第三题：高斯假设下的最大似然估计 题目： 证明在高斯差异假定下，对线性模型 $h_\\theta(x) = \\theta^\\top x$，最大化参数似然 $L(\\theta)$ 等价于最小化二乘损失 $\\sum_{i=1}^{n}(y^{(i)} - \\theta^\\top x^{(i)})^2$。\n解：\n假设误差 $\\epsilon^{(i)} = y^{(i)} - \\theta^\\top x^{(i)}$ 服从独立同分布的高斯分布 $\\mathcal{N}(0, \\sigma^2)$，即：\n$$ p(\\epsilon^{(i)}) = \\frac{1}{\\sqrt{2\\pi}\\sigma}\\exp\\left(-\\frac{(\\epsilon^{(i)})^2}{2\\sigma^2}\\right) $$ 因此：\n$$p(y^{(i)} | x^{(i)}; \\theta) = \\frac{1}{\\sqrt{2\\pi}\\sigma}\\exp\\left(-\\frac{(y^{(i)} - \\theta^\\top x^{(i)})^2}{2\\sigma^2}\\right)$$似然函数为：\n$$\\begin{aligned} L(\\theta) \u0026= \\prod_{i=1}^{n} p(y^{(i)} | x^{(i)}; \\theta) \\\\ \u0026= \\prod_{i=1}^{n} \\frac{1}{\\sqrt{2\\pi}\\sigma}\\exp\\left(-\\frac{(y^{(i)} - \\theta^\\top x^{(i)})^2}{2\\sigma^2}\\right) \\end{aligned}$$对数似然为：\n$$\\begin{aligned} \\log L(\\theta) \u0026= \\sum_{i=1}^{n}\\left[\\log\\frac{1}{\\sqrt{2\\pi}\\sigma} - \\frac{(y^{(i)} - \\theta^\\top x^{(i)})^2}{2\\sigma^2}\\right] \\\\ \u0026= n\\log\\frac{1}{\\sqrt{2\\pi}\\sigma} - \\frac{1}{2\\sigma^2}\\sum_{i=1}^{n}(y^{(i)} - \\theta^\\top x^{(i)})^2 \\end{aligned}$$因此最大化 $L(\\theta)$ 等价于最小化 $\\sum_{i=1}^{n}(y^{(i)} - \\theta^\\top x^{(i)})^2$。\n第四题：Logistic回归的NLL损失 题目： 对Logistic回归模型 $h_\\theta(x) = g(\\theta^\\top x) = \\frac{1}{1+e^{-\\theta^\\top x}}$，推导其在单样本 $(x,y)$ 下的NLL（negative log likelihood）损失，以及损失对特定参数 $\\theta_j$ 的导数为 $(h_\\theta(x) - y)x_j$。\n提示：Logistic回归预测概率的统一形式为 $P(y|x;\\theta) = (h_\\theta(x))^y(1-h_\\theta(x))^{1-y}$\n解：\n根据提示，Logistic回归的概率模型为：\n$$P(y|x;\\theta) = (h_\\theta(x))^y(1-h_\\theta(x))^{1-y}$$其中 $y \\in \\{0,1\\}$，$h_\\theta(x) = g(\\theta^\\top x) = \\frac{1}{1+e^{-\\theta^\\top x}}$。\n对数似然为：\n$$\\log P(y|x;\\theta) = y\\log(h_\\theta(x)) + (1-y)\\log(1-h_\\theta(x))$$NLL损失为：\n$$\\text{NLL}(x,y;\\theta) = -\\log P(y|x;\\theta) = -y\\log(h_\\theta(x)) - (1-y)\\log(1-h_\\theta(x))$$对 $\\theta_j$ 求导。首先注意到：\n$$\\frac{\\partial h_\\theta(x)}{\\partial \\theta_j} = h_\\theta(x)(1-h_\\theta(x)) \\cdot x_j$$这是因为 $g'(z) = g(z)(1-g(z))$。\n因此：\n$$\\begin{aligned} \\frac{\\partial \\text{NLL}}{\\partial \\theta_j} \u0026= -y\\frac{1}{h_\\theta(x)}\\frac{\\partial h_\\theta(x)}{\\partial \\theta_j} - (1-y)\\frac{1}{1-h_\\theta(x)}\\left(-\\frac{\\partial h_\\theta(x)}{\\partial \\theta_j}\\right) \\\\ \u0026= -y\\frac{1}{h_\\theta(x)} \\cdot h_\\theta(x)(1-h_\\theta(x))x_j + (1-y)\\frac{1}{1-h_\\theta(x)} \\cdot h_\\theta(x)(1-h_\\theta(x))x_j \\\\ \u0026= -y(1-h_\\theta(x))x_j + (1-y)h_\\theta(x)x_j \\\\ \u0026= (h_\\theta(x) - y)x_j \\end{aligned}$$ 第五题：Poisson分布的指数族形式 题目： 已知指数分布族定义如下：$p(y;\\eta) = b(y)\\exp(\\eta^\\top y - a(\\eta))$。推导Poisson分布的指数分布族形式，并构建Poisson分布对应的广义线性模型。其中，Poisson分布 $\\text{Pois}(\\lambda)$ 的概率密度函数如下：\n$$P(X=k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}$$解：\n将Poisson分布改写为指数族形式：\n$$\\begin{aligned} P(X=k) \u0026= \\frac{\\lambda^k e^{-\\lambda}}{k!} \\\\ \u0026= \\frac{1}{k!}\\exp(k\\log\\lambda - \\lambda) \\\\ \u0026= \\frac{1}{k!}\\exp(\\eta \\cdot k - e^\\eta) \\end{aligned}$$其中 $\\eta = \\log\\lambda$（自然参数），因此 $\\lambda = e^\\eta$。\n对应指数族形式：\n$b(y) = \\frac{1}{y!}$ $\\eta = \\log\\lambda$ $a(\\eta) = e^\\eta = \\lambda$ $y$ 的充分统计量就是 $y$ 本身 构建广义线性模型：\n假设 $y|x;\\theta \\sim \\text{Pois}(\\lambda)$ 自然参数 $\\eta = \\theta^\\top x$ 因为 $\\lambda = e^\\eta$，所以 $\\lambda = e^{\\theta^\\top x}$ 响应函数（期望）为：$h_\\theta(x) = \\mathbb{E}[y|x;\\theta] = \\lambda = e^{\\theta^\\top x}$ 这就是Poisson回归模型。\n第六题：Shapley值计算 题目： 计算以下3人团队的Shapley值 $\\phi_1$、$\\phi_2$、$\\phi_3$。\n给定：\n$C_{123} = 10000$，$C_0 = 0$ $C_{12} = 7500$，$C_{13} = 7500$，$C_{23} = 5000$ $C_1 = 5000$，$C_2 = 5000$，$C_3 = 0$ 解：\nShapley值的公式为：\n$$\\phi_i = \\sum_{S \\subseteq N \\setminus \\{i\\}} \\frac{|S|!(|N|-|S|-1)!}{|N|!}[C(S \\cup \\{i\\}) - C(S)]$$对于3人团队，$|N| = 3$，计算每个玩家的边际贡献：\n玩家1的Shapley值：\n$$\\begin{aligned} \\phi_1 \u0026= \\frac{0!2!}{3!}[C_1 - C_0] + \\frac{1!1!}{3!}[C_{12} - C_2] + \\frac{1!1!}{3!}[C_{13} - C_3] + \\frac{2!0!}{3!}[C_{123} - C_{23}] \\\\ \u0026= \\frac{1}{3}[5000 - 0] + \\frac{1}{6}[7500 - 5000] + \\frac{1}{6}[7500 - 0] + \\frac{1}{3}[10000 - 5000] \\\\ \u0026= \\frac{5000}{3} + \\frac{2500}{6} + \\frac{7500}{6} + \\frac{5000}{3} \\\\ \u0026= \\frac{10000}{3} + \\frac{10000}{6} = \\frac{20000 + 10000}{6} = 5000 \\end{aligned}$$玩家2的Shapley值：\n$$\\begin{aligned} \\phi_2 \u0026= \\frac{0!2!}{3!}[C_2 - C_0] + \\frac{1!1!}{3!}[C_{12} - C_1] + \\frac{1!1!}{3!}[C_{23} - C_3] + \\frac{2!0!}{3!}[C_{123} - C_{13}] \\\\ \u0026= \\frac{1}{3}[5000 - 0] + \\frac{1}{6}[7500 - 5000] + \\frac{1}{6}[5000 - 0] + \\frac{1}{3}[10000 - 7500] \\\\ \u0026= \\frac{5000}{3} + \\frac{2500}{6} + \\frac{5000}{6} + \\frac{2500}{3} \\\\ \u0026= \\frac{10000 + 2500 + 5000 + 5000}{6} = \\frac{22500}{6} =3750 \\end{aligned}$$玩家3的Shapley值：\n由对称性或直接计算：\n$$\\phi_3 = 10000 - \\phi_1 - \\phi_2 = 10000 - 5000 - 4583.33 = 416.67$$或直接计算：\n$$\\begin{aligned} \\phi_3 \u0026= \\frac{1}{3}[0] + \\frac{1}{6}[7500 - 5000] + \\frac{1}{6}[5000 - 5000] + \\frac{1}{3}[10000 - 7500] \\\\ \u0026= 0 + \\frac{2500}{6} + 0 + \\frac{2500}{3} = \\frac{7500}{6} =1250 \\end{aligned}$$答案： $\\phi_1 = 5000$，$\\phi_2 = 3750$，$\\phi_3 $=1250\n第七题：协方差矩阵性质 题目： 基于协方差矩阵定义 $\\Sigma = \\text{Cov}(X)$ 证明：\n$\\Sigma$ 为对称矩阵； $\\Sigma$ 半正定，记 $\\Sigma \\geq 0$，即对任意向量 $z \\in \\mathbb{R}^d$ 有 $z^\\top \\Sigma z \\geq 0$。 解：\n设 $X \\in \\mathbb{R}^d$ 为随机向量，$\\mu = \\mathbb{E}[X]$，则：\n$$\\Sigma = \\text{Cov}(X) = \\mathbb{E}[(X-\\mu)(X-\\mu)^\\top]$$(1) 证明 $\\Sigma$ 为对称矩阵：\n$$\\Sigma^\\top = \\mathbb{E}[(X-\\mu)(X-\\mu)^\\top]^\\top = \\mathbb{E}[((X-\\mu)(X-\\mu)^\\top)^\\top] = \\mathbb{E}[(X-\\mu)(X-\\mu)^\\top] = \\Sigma$$因此 $\\Sigma$ 是对称矩阵。\n(2) 证明 $\\Sigma$ 半正定：\n对任意 $z \\in \\mathbb{R}^d$：\n$$\\begin{aligned} z^\\top \\Sigma z \u0026= z^\\top \\mathbb{E}[(X-\\mu)(X-\\mu)^\\top] z \\\\ \u0026= \\mathbb{E}[z^\\top(X-\\mu)(X-\\mu)^\\top z] \\\\ \u0026= \\mathbb{E}[(z^\\top(X-\\mu))^2] \\\\ \u0026\\geq 0 \\end{aligned}$$最后一步是因为期望中的项是平方项，必然非负。因此 $\\Sigma$ 半正定。\n第八题：高斯判别分析的MLE 题目： 对高斯判别分析，已知各变量概率分布为：\n$$\\begin{aligned} p(y) \u0026= \\phi^y(1-\\phi)^{1-y} \\\\ p(x|y=0) \u0026= \\frac{1}{(2\\pi)^{d/2}|\\Sigma|^{1/2}}\\exp\\left(-\\frac{1}{2}(x-\\mu_0)^\\top\\Sigma^{-1}(x-\\mu_0)\\right) \\\\ p(x|y=1) \u0026= \\frac{1}{(2\\pi)^{d/2}|\\Sigma|^{1/2}}\\exp\\left(-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1)\\right) \\end{aligned}$$证明在极大似然估计下，参数 $\\phi$、$\\mu_0$、$\\mu_1$ 的形式为：\n$$\\begin{aligned} \\phi \u0026= \\frac{1}{n}\\sum_{i=1}^{n}\\mathbb{1}\\{y^{(i)}=1\\} \\\\ \\mu_0 \u0026= \\frac{\\sum_{i=1}^{n}\\mathbb{1}\\{y^{(i)}=0\\}x^{(i)}}{\\sum_{i=1}^{n}\\mathbb{1}\\{y^{(i)}=0\\}} \\\\ \\mu_1 \u0026= \\frac{\\sum_{i=1}^{n}\\mathbb{1}\\{y^{(i)}=1\\}x^{(i)}}{\\sum_{i=1}^{n}\\mathbb{1}\\{y^{(i)}=1\\}} \\end{aligned}$$解：\n对数似然函数为： $$\\log L = \\sum_{i=1}^{n}\\left[\\log p(y^{(i)}) + \\log p(x^{(i)}|y^{(i)})\\right]$$参数估计的分离性：\n对数似然可以分解为两个独立的部分：\n$$\\log L = \\underbrace{\\sum_{i=1}^{n}\\log p(y^{(i)})}_{\\text{第一部分}} + \\underbrace{\\sum_{i=1}^{n}\\log p(x^{(i)}|y^{(i)})}_{\\text{第二部分}}$$ 第一部分 $\\sum_{i=1}^{n}\\log p(y^{(i)})$：只包含参数 $\\phi$，用于估计类先验概率 $\\phi$ 第二部分 $\\sum_{i=1}^{n}\\log p(x^{(i)}|y^{(i)})$：包含参数 $\\mu_0, \\mu_1, \\Sigma$，用于估计类条件均值 $\\mu_0, \\mu_1$ 和协方差矩阵 $\\Sigma$ 由于这两部分不包含共同参数，可以分别独立优化。\n估计 $\\phi$：\n$$\\log L_\\phi = \\sum_{i=1}^{n}\\log p(y^{(i)}) = \\sum_{i=1}^{n}[y^{(i)}\\log\\phi + (1-y^{(i)})\\log(1-\\phi)]$$令 $\\frac{\\partial \\log L_\\phi}{\\partial \\phi} = 0$：\n$$\\sum_{i=1}^{n}\\left[\\frac{y^{(i)}}{\\phi} - \\frac{1-y^{(i)}}{1-\\phi}\\right] = 0$$解得：\n$$\\phi = \\frac{1}{n}\\sum_{i=1}^{n}y^{(i)} = \\frac{1}{n}\\sum_{i=1}^{n}\\mathbb{1}\\{y^{(i)}=1\\}$$估计 $\\mu_0$：\n只考虑 $y=0$ 的样本：\n$$\\log L_{\\mu_0} = \\sum_{i:y^{(i)}=0}\\left[-\\frac{1}{2}(x^{(i)}-\\mu_0)^\\top\\Sigma^{-1}(x^{(i)}-\\mu_0) + \\text{const}\\right]$$令 $\\frac{\\partial \\log L_{\\mu_0}}{\\partial \\mu_0} = 0$：\n$$\\sum_{i:y^{(i)}=0}\\Sigma^{-1}(x^{(i)}-\\mu_0) = 0$$解得：\n$$\\mu_0 = \\frac{\\sum_{i:y^{(i)}=0}x^{(i)}}{\\sum_{i:y^{(i)}=0}1} = \\frac{\\sum_{i=1}^{n}\\mathbb{1}\\{y^{(i)}=0\\}x^{(i)}}{\\sum_{i=1}^{n}\\mathbb{1}\\{y^{(i)}=0\\}}$$同理可得 $\\mu_1$ 的估计。\n第九题：GDA可转化为Logistic回归 题目： 证明GDA可转化为Logistic回归。提示：\n$p(y=1|x) = \\frac{p(x|y=1)p(y=1)}{p(x|y=1)p(y=1) + p(x|y=0)p(y=0)}$ 可记 $r(x) = \\frac{p(x|y=1)p(y=1)}{p(x|y=0)p(y=0)}$ $ p(x|y=0) = \\frac{1}{(2\\pi)^{d/2}|\\Sigma|^{1/2}}\\exp\\left(-\\frac{1}{2}(x-\\mu_0)^\\top\\Sigma^{-1}(x-\\mu_0)\\right)$ $p(x|y=1) = \\frac{1}{(2\\pi)^{d/2}|\\Sigma|^{1/2}}\\exp\\left(-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1)\\right)$ $p(y=1) = \\phi$ 解：\n根据贝叶斯定理：\n$$p(y=1|x) = \\frac{p(x|y=1)p(y=1)}{p(x|y=1)p(y=1) + p(x|y=0)p(y=0)} = \\frac{1}{1 + \\frac{p(x|y=0)p(y=0)}{p(x|y=1)p(y=1)}} = \\frac{1}{1 + \\frac{1}{r(x)}}$$其中：\n$$r(x) = \\frac{p(x|y=1)p(y=1)}{p(x|y=0)p(y=0)}$$计算 $\\log r(x)$：\n$$\\begin{aligned} \\log r(x) \u0026= \\log p(x|y=1) + \\log p(y=1) - \\log p(x|y=0) - \\log p(y=0) \\\\ \u0026= -\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1) + \\frac{1}{2}(x-\\mu_0)^\\top\\Sigma^{-1}(x-\\mu_0) + \\log\\frac{\\phi}{1-\\phi} \\end{aligned}$$展开：\n$$\\begin{aligned} \\log r(x) \u0026= -\\frac{1}{2}x^\\top\\Sigma^{-1}x + x^\\top\\Sigma^{-1}\\mu_1 - \\frac{1}{2}\\mu_1^\\top\\Sigma^{-1}\\mu_1 \\\\ \u0026\\quad + \\frac{1}{2}x^\\top\\Sigma^{-1}x - x^\\top\\Sigma^{-1}\\mu_0 + \\frac{1}{2}\\mu_0^\\top\\Sigma^{-1}\\mu_0 + \\log\\frac{\\phi}{1-\\phi} \\\\ \u0026= x^\\top\\Sigma^{-1}(\\mu_1 - \\mu_0) + \\frac{1}{2}(\\mu_0^\\top\\Sigma^{-1}\\mu_0 - \\mu_1^\\top\\Sigma^{-1}\\mu_1) + \\log\\frac{\\phi}{1-\\phi} \\\\ \u0026= \\theta^\\top x + \\theta_0 \\end{aligned}$$其中：\n$$\\theta = \\Sigma^{-1}(\\mu_1 - \\mu_0), \\quad \\theta_0 = \\frac{1}{2}(\\mu_0^\\top\\Sigma^{-1}\\mu_0 - \\mu_1^\\top\\Sigma^{-1}\\mu_1) + \\log\\frac{\\phi}{1-\\phi}$$因此：\n$$p(y=1|x) = \\frac{1}{1+e^{-\\theta^\\top x - \\theta_0}} = \\frac{1}{1+e^{-\\tilde{\\theta}^\\top \\tilde{x}}}$$这正是Logistic回归的形式（其中 $\\tilde{x}$ 包含截距项）。\n机器学习进阶（20%） 第十题：Kernel Method分析 题目： Kernel method中，若Kernel function $K(x,z) = (x^\\top z + c)^2$，推导对应的feature mapping $\\phi$，并讨论对于 $n$ 个样本一轮SGD，使用Kernel method和在feature map上的计算效率优化比。\n提示：\n基于feature map的参数更新方法为：$\\theta := \\theta + \\alpha\\sum_{i=1}^{n}(y^{(i)} - \\theta^\\top\\phi(x^{(i)}))\\phi(x^{(i)})$ Kernel method的参数更新方法为：$\\theta := \\theta + \\alpha(\\tilde{y} - K\\theta)$，其中 $K_j = K(x^{(i)}, x^{(j)})$ 解：\n推导Feature Mapping：\n对于 $x, z \\in \\mathbb{R}^d$，展开核函数：\n$$\\begin{aligned} K(x,z) \u0026= (x^\\top z + c)^2 \\\\ \u0026= (x^\\top z)^2 + 2c(x^\\top z) + c^2 \\\\ \u0026= \\sum_{i=1}^{d}\\sum_{j=1}^{d} x_i x_j z_i z_j + 2c\\sum_{i=1}^{d} x_i z_i + c^2 \\end{aligned}$$为了使 $K(x,z) = \\phi(x)^\\top \\phi(z)$，构造特征映射：\n$$\\phi(x) = (x_1^2, x_2^2, \\ldots, x_d^2, \\sqrt{2}x_1x_2, \\sqrt{2}x_1x_3, \\ldots, \\sqrt{2}x_{d-1}x_d, \\sqrt{2c}x_1, \\ldots, \\sqrt{2c}x_d, c)$$维度为：$d + \\binom{d}{2} + d + 1 = d + \\frac{d(d-1)}{2} + d + 1 = \\frac{d(d+3)}{2} + 1 = O(d^2)$\n计算效率比较：\nFeature map方法：\n计算 $\\phi(x^{(i)})$：$O(d^2)$ 每个样本 内积 $\\theta^\\top\\phi(x^{(i)})$：$O(d^2)$ 更新 $\\theta$：$O(d^2)$ 总计：$O(nd^2)$ 每轮SGD Kernel method：\n计算核矩阵 $K$（$n \\times n$）：$O(n^2d)$（每个核计算需要 $O(d)$ 的内积） 矩阵向量乘法 $K\\theta$：$O(n^2)$ 参数更新：$O(n)$ 总计：$O(n^2d)$ 每轮 效率比：\n$$\\frac{\\text{Feature map}}{\\text{Kernel method}} = \\frac{O(nd^2)}{O(n^2d)} = \\frac{d}{n}$$ 当 $n \\ll d$ 时（样本少，特征多），Kernel method更高效 当 $n \\gg d$ 时（样本多，特征少），Feature map方法更高效 第十一题：超平面的函数间隔和几何间隔 题目： 对超平面 $w^\\top x + b = 0$，样本 $x^{(i)}$ 到的函数间隔 $\\hat{\\gamma}^{(i)}$ 与几何间隔 $\\gamma^{(i)}$ 满足何关系？直接给出答案即可。\n解：\n函数间隔定义为：\n$$\\hat{\\gamma}^{(i)} = y^{(i)}(w^\\top x^{(i)} + b)$$几何间隔定义为：\n$\\gamma^{(i)} = \\frac{y^{(i)}(w^\\top x^{(i)} + b)}{\\|w\\|} = \\frac{\\hat{\\gamma}^{(i)}}{\\|w\\|}$\n关系：\n$\\gamma^{(i)} = \\frac{\\hat{\\gamma}^{(i)}}{\\|w\\|}$\n几何间隔是函数间隔除以权重向量的范数，表示点到超平面的真实距离。\n第十二题：SVM的Lagrange函数和对偶形式 题目： 已知SVM的优化目标为：\n$$ \\min_{w,b} \\quad \\frac{1}{2}\\|w\\|^2 \\qquad (1) $$$$ \\text{s.t.} \\quad y^{(i)}(w^\\top x^{(i)} + b) \\geq 1, \\quad i=1,\\ldots,n $$请构造其Lagrange函数 $\\mathcal{L}(w,b,\\alpha)$。\n已知 $\\mathcal{L}(w,b,\\alpha)$ 满足Slater条件，因此强对偶成立，问题(1)最终可转化为 $\\max_{\\alpha;\\alpha_i\\geq 0}\\min_w \\mathcal{L}(w,b,\\alpha)$，证明该对偶形式问题可进一步转化为：\n$$ \\max_\\alpha W(\\alpha) = \\max_\\alpha \\left(\\sum_{i=1}^{n}\\alpha_i - \\frac{1}{2}\\sum_{i,j=1}^{n}y^{(i)}y^{(j)}\\alpha_i\\alpha_j\\langle x^{(i)}, x^{(j)}\\rangle\\right) \\qquad (2) $$约束条件：\n$$ \\alpha_i \\geq 0, \\quad i=1,\\ldots,n $$$$ \\sum_{i=1}^{n}\\alpha_i y^{(i)} = 0 $$解：\n步骤1：构造Lagrange函数\n$\\mathcal{L}(w,b,\\alpha) = \\frac{1}{2}\\|w\\|^2 - \\sum_{i=1}^{n}\\alpha_i[y^{(i)}(w^\\top x^{(i)} + b) - 1]$\n其中 $\\alpha_i \\geq 0$ 为Lagrange乘子。\n步骤2：固定 $\\alpha$，对 $w$ 求导\n$\\frac{\\partial \\mathcal{L}}{\\partial w} = w - \\sum_{i=1}^{n}\\alpha_i y^{(i)} x^{(i)} = 0$\n因此：\n$w = \\sum_{i=1}^{n}\\alpha_i y^{(i)} x^{(i)}$\n步骤3：固定 $\\alpha$，对 $b$ 求导\n$\\frac{\\partial \\mathcal{L}}{\\partial b} = -\\sum_{i=1}^{n}\\alpha_i y^{(i)} = 0$\n因此：\n$\\sum_{i=1}^{n}\\alpha_i y^{(i)} = 0$\n步骤4：代入Lagrange函数\n将 $w = \\sum_{i=1}^{n}\\alpha_i y^{(i)} x^{(i)}$ 代入 $\\mathcal{L}$：\n$\\begin{aligned} \\mathcal{L}(w,b,\\alpha) \u0026= \\frac{1}{2}w^\\top w - \\sum_{i=1}^{n}\\alpha_i y^{(i)} w^\\top x^{(i)} - b\\sum_{i=1}^{n}\\alpha_i y^{(i)} + \\sum_{i=1}^{n}\\alpha_i \\\\ \u0026= \\frac{1}{2}\\left(\\sum_{i=1}^{n}\\alpha_i y^{(i)} x^{(i)}\\right)^\\top\\left(\\sum_{j=1}^{n}\\alpha_j y^{(j)} x^{(j)}\\right) - \\sum_{i=1}^{n}\\alpha_i y^{(i)} \\left(\\sum_{j=1}^{n}\\alpha_j y^{(j)} x^{(j)}\\right)^\\top x^{(i)} + \\sum_{i=1}^{n}\\alpha_i \\\\ \u0026= \\frac{1}{2}\\sum_{i,j=1}^{n}\\alpha_i\\alpha_j y^{(i)}y^{(j)}\\langle x^{(i)}, x^{(j)}\\rangle - \\sum_{i,j=1}^{n}\\alpha_i\\alpha_j y^{(i)}y^{(j)}\\langle x^{(i)}, x^{(j)}\\rangle + \\sum_{i=1}^{n}\\alpha_i \\\\ \u0026= \\sum_{i=1}^{n}\\alpha_i - \\frac{1}{2}\\sum_{i,j=1}^{n}\\alpha_i\\alpha_j y^{(i)}y^{(j)}\\langle x^{(i)}, x^{(j)}\\rangle \\end{aligned}$\n其中使用了 $\\sum_{i=1}^{n}\\alpha_i y^{(i)} = 0$，所以 $b$ 项消失。\n因此对偶问题为：\n$\\max_\\alpha W(\\alpha) = \\max_\\alpha \\left(\\sum_{i=1}^{n}\\alpha_i - \\frac{1}{2}\\sum_{i,j=1}^{n}y^{(i)}y^{(j)}\\alpha_i\\alpha_j\\langle x^{(i)}, x^{(j)}\\rangle\\right)$\n约束条件为：\n$\\begin{aligned} \\alpha_i \u0026\\geq 0, \\quad i=1,\\ldots,n \\\\ \\sum_{i=1}^{n}\\alpha_i y^{(i)} \u0026= 0 \\end{aligned}$\n第十三题：线性不可分的SVM与L1正则 题目： 对线性不可分的训练集，SVM对应带L1正则的优化目标是什么？已知对线性可分情况的优化为：\n$$ \\min_{w,b} \\quad \\frac{1}{2}\\|w\\|^2 \\qquad (1) $$ $$ \\text{s.t.} \\quad y^{(i)}(w^\\top x^{(i)} + b) \\geq 1, \\quad i=1,\\ldots,n $$解：\n对于线性不可分的情况，引入松弛变量 $\\xi_i \\geq 0$，允许某些样本违反间隔约束。\n带L1正则的软间隔SVM优化目标为：\n$\\begin{aligned} \\min_{w,b,\\xi} \u0026\\quad \\frac{1}{2}\\|w\\|^2 + C\\sum_{i=1}^{n}\\xi_i \\\\ \\text{s.t.} \u0026\\quad y^{(i)}(w^\\top x^{(i)} + b) \\geq 1 - \\xi_i, \\quad i=1,\\ldots,n \\\\ \u0026\\quad \\xi_i \\geq 0, \\quad i=1,\\ldots,n \\end{aligned}$\n其中：\n$\\xi_i$ 是松弛变量，表示样本 $i$ 违反间隔的程度 $C \u003e 0$ 是惩罚参数，控制间隔最大化与违反程度之间的权衡 $C\\sum_{i=1}^{n}\\xi_i$ 是L1正则项（对松弛变量的惩罚） 这个目标函数平衡了两个目标：\n最大化间隔（通过最小化 $\\|w\\|^2$） 最小化分类错误（通过最小化 $\\sum\\xi_i$） 第十四题：SVM最优化问题分析 题目： 已知SVM的最终优化目标为：\n$W(\\alpha) = \\sum_{i=1}^{n}\\alpha_i - \\frac{1}{2}\\sum_{i,j=1}^{n}y^{(i)}y^{(j)}\\alpha_i\\alpha_j\\langle x^{(i)}, x^{(j)}\\rangle$\n假设此时正在优化 $\\alpha_1$ 与 $\\alpha_2$，并有 $\\alpha_1 = (\\zeta - \\alpha_2y^{(2)})y^{(1)}$。请推导此时 $\\alpha_2$ 应当更新的值。\n解：\n简化目标函数：\n在固定其他 $\\alpha_i$ ($i \\geq 3$) 的情况下，目标函数关于 $\\alpha_1, \\alpha_2$ 可写为：\n$W(\\alpha_1, \\alpha_2) = \\alpha_1 + \\alpha_2 + W_0 - \\frac{1}{2}[K_{11}\\alpha_1^2 + K_{22}\\alpha_2^2 + 2K_{12}\\alpha_1\\alpha_2y^{(1)}y^{(2)}] + \\text{线性项}$\n其中 $K_{ij} = \\langle x^{(i)}, x^{(j)}\\rangle$，$W_0$ 是常数项。\n利用约束 $\\alpha_1 = (\\zeta - \\alpha_2y^{(2)})y^{(1)}$：\n这个约束来自 $\\sum_{i=1}^{n}\\alpha_i y^{(i)} = 0$，可以改写为：\n$\\alpha_1 y^{(1)} + \\alpha_2 y^{(2)} = -\\sum_{i=3}^{n}\\alpha_i y^{(i)} = \\zeta \\quad \\text{（常数）}$\n将 $\\alpha_1 = (\\zeta - \\alpha_2y^{(2)})y^{(1)}$ 代入目标函数，得到关于 $\\alpha_2$ 的单变量优化问题。\n对 $\\alpha_2$ 求导并令其为0，经过复杂推导（涉及预测误差），得到 $\\alpha_2$ 的无约束最优解：\n$\\alpha_2^{\\text{new, unc}} = \\alpha_2^{\\text{old}} + \\frac{y^{(2)}(E_1 - E_2)}{\\eta}$\n其中：\n$E_i = f(x^{(i)}) - y^{(i)}$ 是预测误差 $\\eta = K_{11} + K_{22} - 2K_{12} = \\|x^{(1)} - x^{(2)}\\|^2$（特征空间距离） 考虑约束 $0 \\leq \\alpha_2 \\leq C$：\n根据约束 $\\alpha_1 y^{(1)} + \\alpha_2 y^{(2)} = \\zeta$：\n若 $y^{(1)} \\neq y^{(2)}$： $L = \\max(0, \\alpha_2^{\\text{old}} - \\alpha_1^{\\text{old}}), \\quad H = \\min(C, C + \\alpha_2^{\\text{old}} - \\alpha_1^{\\text{old}})$ 若 $y^{(1)} = y^{(2)}$： $L = \\max(0, \\alpha_1^{\\text{old}} + \\alpha_2^{\\text{old}} - C), \\quad H = \\min(C, \\alpha_1^{\\text{old}} + \\alpha_2^{\\text{old}})$ 最终更新公式：\n$\\alpha_2^{\\text{new}} = \\begin{cases} H \u0026 \\text{if } \\alpha_2^{\\text{new, unc}} \u003e H \\\\ \\alpha_2^{\\text{new, unc}} \u0026 \\text{if } L \\leq \\alpha_2^{\\text{new, unc}} \\leq H \\\\ L \u0026 \\text{if } \\alpha_2^{\\text{new, unc}} \u003c L \\end{cases}$\n第十五题：信息增益比计算 题目： 计算给定数据集中四个特征的信息增益比。可保留log项，统一底数为2。\n数据集的熵 H(D)\n公式： $$H(D) = -\\sum_{k=1}^{K} \\frac{|C_k|}{|D|} \\log_2 \\frac{|C_k|}{|D|}$$ 计算： $$H(D) = -\\frac{6}{15}\\log_2\\frac{6}{15} - \\frac{9}{15}\\log_2\\frac{9}{15} = 0.971$$ 特征1：年龄 数据分布：\n青年(5个)：否=3，是=2 中年(5个)：否=2，是=3 老年(5个)：否=1，是=4 各子集的熵\n青年组熵： $$H(D_1) = -\\frac{3}{5}\\log_2\\frac{3}{5} - \\frac{2}{5}\\log_2\\frac{2}{5} = 0.971$$ 中年组熵： $$H(D_2) = -\\frac{2}{5}\\log_2\\frac{2}{5} - \\frac{3}{5}\\log_2\\frac{3}{5} = 0.971$$ 老年组熵： $$H(D_3) = -\\frac{1}{5}\\log_2\\frac{1}{5} - \\frac{4}{5}\\log_2\\frac{4}{5} = 0.722$$ 条件熵\n公式： $$H(D|\\text{年龄}) = \\sum_{i=1}^{3} \\frac{|D_i|}{|D|} H(D_i)$$ 计算： $$ H(D \\mid \\text{年龄}) = \\frac{5}{15}\\times 0.971 + \\frac{5}{15}\\times 0.971 + \\frac{5}{15}\\times 0.722 = \\frac{1}{3}(0.971 + 0.971 + 0.722) = \\frac{2.664}{3} = 0.888 $$ 信息增益\n公式： $$\\text{Gain}(\\text{年龄}) = H(D) - H(D|\\text{年龄})$$ 计算： $$\\text{Gain}(\\text{年龄}) = 0.971 - 0.888 = 0.083$$ 特征熵（分裂信息）\n公式： $$H_A(\\text{年龄}) = -\\sum_{i=1}^{3} \\frac{|D_i|}{|D|} \\log_2 \\frac{|D_i|}{|D|}$$ 计算： $$H_A(\\text{年龄}) = -3 \\times \\frac{5}{15}\\log_2\\frac{5}{15} = -3 \\times \\frac{1}{3}\\log_2\\frac{1}{3}= -\\log_2\\frac{1}{3} = \\log_2 3 = 1.585$$ 信息增益比\n公式： $$\\text{Gain\\_ratio}(\\text{年龄}) = \\frac{\\text{Gain}(\\text{年龄})}{H_A(\\text{年龄})}$$ 计算： $$\\text{Gain\\_ratio}(\\text{年龄}) = \\frac{0.083}{1.585} = 0.052$$ 特征2：有工作 数据分布：\n否(10个)：否=6，是=4 是(5个)：否=0，是=5 各子集的熵\n无工作组熵： $$H(D_1) = -\\frac{6}{10}\\log_2\\frac{6}{10} - \\frac{4}{10}\\log_2\\frac{4}{10} = 0.971$$ 有工作组熵： $$H(D_2) = -\\frac{0}{5}\\log_2\\frac{0}{5} - \\frac{5}{5}\\log_2\\frac{5}{5} = 0$$ 条件熵\n计算： $$ \\begin{aligned} H(D\\mid\\text{有工作}) \u0026= \\frac{10}{15} \\times 0.971 + \\frac{5}{15} \\times 0 \\\\[4pt] \u0026= 0.647 + 0 \\\\[4pt] \u0026= 0.647 \\end{aligned} $$ 信息增益\n计算： $$\\text{Gain}(\\text{有工作}) = 0.971 - 0.647 = 0.324$$ 特征熵（分裂信息）\n计算： $$H_A(\\text{有工作}) = -\\frac{10}{15}\\log_2\\frac{10}{15} - \\frac{5}{15}\\log_2\\frac{5}{15} = 0.918$$ 信息增益比\n计算： $$\\text{Gain\\_ratio}(\\text{有工作}) = \\frac{0.324}{0.918} = 0.353$$ 特征3：有自己的房子 数据分布：\n否(9个)：否=6，是=3 是(6个)：否=0，是=6 各子集的熵\n无房组熵： $$H(D_1) = -\\frac{6}{9}\\log_2\\frac{6}{9} - \\frac{3}{9}\\log_2\\frac{3}{9} = 0.918$$ 有房组熵： $$H(D_2) = -\\frac{0}{6}\\log_2\\frac{0}{6} - \\frac{6}{6}\\log_2\\frac{6}{6} = 0$$ 条件熵\n计算： $$ \\begin{aligned} H(D\\mid\\text{有房}) \u0026= \\frac{9}{15} \\times 0.918 + \\frac{6}{15} \\times 0 \\\\[4pt] \u0026= 0.551 + 0 \\\\[4pt] \u0026= 0.551 \\end{aligned} $$ 信息增益\n计算： $$\\text{Gain}(\\text{有房}) = 0.971 - 0.551 = 0.420$$ 特征熵（分裂信息）\n计算： $$H_A(\\text{有房}) = -\\frac{9}{15}\\log_2\\frac{9}{15} - \\frac{6}{15}\\log_2\\frac{6}{15} = 0.971$$ 信息增益比\n计算： $$\\text{Gain\\_ratio}(\\text{有房}) = \\frac{0.420}{0.971} = 0.433$$ 特征4：信贷情况 数据分布：\n一般(5个)：否=4，是=1 好(6个)：否=2，是=4 非常好(4个)：否=0，是=4 各子集的熵\n一般组熵： $$H(D_1) = -\\frac{4}{5}\\log_2\\frac{4}{5} - \\frac{1}{5}\\log_2\\frac{1}{5} = 0.722$$ 好组熵： $$H(D_2) = -\\frac{2}{6}\\log_2\\frac{2}{6} - \\frac{4}{6}\\log_2\\frac{4}{6} = 0.918$$ 非常好组熵： $$H(D_3) = -\\frac{0}{4}\\log_2\\frac{0}{4} - \\frac{4}{4}\\log_2\\frac{4}{4} = 0$$ 条件熵\n计算： $$ \\begin{aligned} H(D\\mid\\text{信贷}) \u0026= \\frac{5}{15} \\times 0.722 + \\frac{6}{15} \\times 0.918 + \\frac{4}{15} \\times 0 \\\\[4pt] \u0026= 0.241 + 0.367 + 0 \\\\[4pt] \u0026= 0.608 \\end{aligned} $$ 信息增益\n计算： $$\\text{Gain}(\\text{信贷}) = 0.971 - 0.608 = 0.363$$ 特征熵（分裂信息）\n计算： $$H_A(\\text{信贷}) = -\\frac{5}{15}\\log_2\\frac{5}{15} - \\frac{6}{15}\\log_2\\frac{6}{15} - \\frac{4}{15}\\log_2\\frac{4}{15} = 1.577$$ 信息增益比\n计算： $$\\text{Gain\\_ratio}(\\text{信贷}) = \\frac{0.363}{1.577} = 0.232$$ 结论：有自己的房子的信息增益比最大(0.433)，应优先选择该特征进行分裂。\n第十六题：XGBoost损失函数二阶泰勒展开 题目： 已知XGBoost优化第t棵树时的损失函数为：\n$\\mathcal{L}^{(t)} = \\sum_{i=1}^{n}l(y_i, \\hat{y}*i^{(t-1)} + f_t(x_i)) + \\gamma T + \\frac{1}{2}\\lambda\\sum*{j=1}^{T}w_j^2$\n请推导 $l(y_i, \\hat{y}_i^{(t-1)} + f_t(x_i))$ 在 $l(y_i, \\hat{y}_i^{(t-1)})$ 处对于 $f_t(x_i)$ 的二阶泰勒展开。其中，一阶和二阶导数可使用：\n$g_i = \\frac{\\partial l(y_i, \\hat{y}_i)}{\\partial \\hat{y}*i}\\Big|*{\\hat{y}_i^{(t-1)}}, \\quad h_i = \\frac{\\partial^2 l(y_i, \\hat{y}_i)}{\\partial \\hat{y}*i^2}\\Big|*{\\hat{y}_i^{(t-1)}}$\n在此基础上，推导叶子节点 $j$ 对应的 $w_j^*$ 满足：\n$w_j^* = -\\frac{\\sum_{i \\in \\mathcal{I}*j}g_i}{\\sum*{i \\in \\mathcal{I}_j}h_i + \\lambda}$\n其中，$\\mathcal{I}_j = \\{i \\mid q(x_i) = j\\}$ 表示属于叶子节点 $j$ 的样本集合。\n解：\n二阶泰勒展开\n在 $\\hat{y}_i^{(t-1)}$ 处对 $l(y_i, \\hat{y}_i^{(t-1)} + f_t(x_i))$ 关于 $f_t(x_i)$ 进行二阶泰勒展开：\n$\\begin{aligned} l(y_i, \\hat{y}_i^{(t-1)} + f_t(x_i)) \u0026\\approx l(y_i, \\hat{y}_i^{(t-1)}) + \\frac{\\partial l(y_i, \\hat{y}_i)}{\\partial \\hat{y}*i}\\Big|*{\\hat{y}_i^{(t-1)}} \\cdot f_t(x_i) \\\\ \u0026\\quad + \\frac{1}{2}\\frac{\\partial^2 l(y_i, \\hat{y}_i)}{\\partial \\hat{y}*i^2}\\Big|*{\\hat{y}_i^{(t-1)}} \\cdot f_t(x_i)^2 \\\\ \u0026= l(y_i, \\hat{y}_i^{(t-1)}) + g_i f_t(x_i) + \\frac{1}{2}h_i f_t(x_i)^2 \\end{aligned}$\n因此损失函数变为：\n$\\mathcal{L}^{(t)} \\approx \\sum_{i=1}^{n}[l(y_i, \\hat{y}*i^{(t-1)}) + g_i f_t(x_i) + \\frac{1}{2}h_i f_t(x_i)^2] + \\gamma T + \\frac{1}{2}\\lambda\\sum*{j=1}^{T}w_j^2$\n去掉常数项 $\\sum_{i=1}^{n}l(y_i, \\hat{y}_i^{(t-1)})$：\n$\\tilde{\\mathcal{L}}^{(t)} = \\sum_{i=1}^{n}[g_i f_t(x_i) + \\frac{1}{2}h_i f_t(x_i)^2] + \\gamma T + \\frac{1}{2}\\lambda\\sum_{j=1}^{T}w_j^2$\n推导叶子权重 $w_j^*$\n对于树模型，$f_t(x_i) = w_{q(x_i)}$，其中 $q(x_i)$ 表示样本 $i$ 落在的叶子节点。\n将样本按叶子节点分组：\n$$ \\tilde{\\mathcal{L}}^{(t)} = \\sum_{j=1}^{T}\\left[\\left(\\sum_{i \\in \\mathcal{I}*j}g_i\\right)w_j + \\frac{1}{2}\\left(\\sum*{i \\in \\mathcal{I}_j}h_i + \\lambda\\right)w_j^2\\right] + \\gamma T $$ 记 $G_j = \\sum_{i \\in \\mathcal{I}*j}g_i$，$H_j = \\sum*{i \\in \\mathcal{I}_j}h_i$，则：\n$$ \\tilde{\\mathcal{L}}^{(t)} = \\sum_{j=1}^{T}\\left[G_j w_j + \\frac{1}{2}(H_j + \\lambda)w_j^2\\right] + \\gamma T $$ 对 $w_j$ 求导并令其为0：\n$\\frac{\\partial \\tilde{\\mathcal{L}}^{(t)}}{\\partial w_j} = G_j + (H_j + \\lambda)w_j = 0$\n解得：\n$$ w_j^* = -\\frac{G_j}{H_j + \\lambda} = -\\frac{\\sum_{i \\in \\mathcal{I}*j}g_i}{\\sum*{i \\in \\mathcal{I}_j}h_i + \\lambda} $$语言模型 \u0026 GPUs（40%） 第十七题 KV Cache 计算 题目： 假设我们要在一台服务器上对一个采用多头注意力（MHA）的 Transformer 模型进行推理。模型参数如下：隐藏层维度 $d = 4096$，层数 $L = 32$，注意力头数 $h = 32$，采用 FP16 半精度存储（每个元素占 2 Bytes）。\n请给出生成第 $N$ 个 token 时，KV Cache 新增存储占用的计算公式。 当 Batch Size $B = 1$，序列长度达到 $N = 1024$ 时，请计算该请求在显存中占用的 KV Cache 总量（单位：MB）。 解：\n1. KV Cache 新增存储计算公式\n生成第 $N$ 个 token 时，每一层需要存储该 token 的 Key 和 Value 向量。\n每个 token 的 K 和 V 向量维度均为 $d$ 总层数为 $L$ 注意力头数 $h=32$ 每个元素占 2 Bytes（FP16） 因此，生成第 $N$ 个 token 时，KV Cache 新增存储占用为：\n$$\\text{新增存储} = 2 \\times L \\times d \\times 2 \\text{ Bytes} = 4Ld \\text{ Bytes}=512KB$$其中第一个 2 表示 K 和 V 两部分。\n2. 序列长度 N=1024 时的总 KV Cache\n当序列长度为 $N = 1024$，Batch Size $B = 1$ 时：\n$$\\begin{aligned} \\text{总存储} \u0026= B \\times N \\times 2 \\times L \\times d \\times 2 \\text{ Bytes} \\\\\u0026= 1 \\times 1024 \\times 2 \\times 32 \\times 4096 \\times 2 \\text{ Bytes} \\\\\u0026= 1024 \\times 2 \\times 32 \\times 4096 \\times 2 \\text{ Bytes} \\\\\u0026= 536{,}870{,}912 \\text{ Bytes} \\\\ \u0026= 512 \\text{ MB} \\end{aligned}$$ 第十八题 RoPE 旋转位置编码 题目： 对于位置 $m$ 的查询向量 $q_m$ 和位置 $n$ 的键向量 $k_n$：\n证明旋转位置编码（RoPE）下变换后的向量 $\\tilde{q}_m$ 和 $\\tilde{k}_n$ 的点积仅和 $q_m$、$k_n$ 及相对位置 $m - n$ 相关； 进一步说明 RoPE 会对 q/k/v 向量中的哪几个进行位置信息注入。 提示： RoPE 通过旋转矩阵 $R_{pos}$ 将位置信息注入向量。\n解：\n1. RoPE 点积仅与相对位置相关的证明\nRoPE 通过旋转矩阵将位置信息编码。对于二维情况，旋转矩阵为：\n$$R_\\theta = \\begin{pmatrix} \\cos\\theta \u0026 -\\sin\\theta \\\\ \\sin\\theta \u0026 \\cos\\theta \\end{pmatrix}$$对于位置 $m$ 和 $n$，变换后的向量为：\n$$\\tilde{q}_m = R_{m\\theta} q_m, \\quad \\tilde{k}_n = R_{n\\theta} k_n$$它们的点积为：\n$$ \\begin{aligned} \\tilde{q}_m^\\top \\tilde{k}_n \u0026= (R_{m\\theta} q_m)^\\top (R_{n\\theta} k_n) \\\\ \u0026= q_m^\\top R_{m\\theta}^\\top R_{n\\theta} k_n \\\\ \u0026= q_m^\\top R_{(n-m)\\theta} k_n \\end{aligned} $$因此变换后的向量 $\\tilde{q}_m$ 和 $\\tilde{k}_n$ 的点积仅和 $q_m$、$k_n$ 及相对位置 $m - n$ 相关\n2. RoPE 对哪些向量注入位置信息\nRoPE 仅对 Query (q) 和 Key (k) 向量注入位置信息，不对 Value (v) 向量进行位置编码。\n原因是注意力机制通过 $\\text{softmax}(q^\\top k)$ 计算注意力权重，位置信息需要影响这个权重计算，而 Value 向量仅用于加权求和，不需要位置编码。\n第十九题 Transformer Block 的 Post-norm 和 Pre-norm 题目： 对于 Transformer Block 的 Post-norm 有：\n$$ x_{l+1} = x_l + \\text{Sublayer}(x_l) $$$$ y_{l+1} = \\text{LN}(x_{l+1}) $$ 请相应给出 Pre-norm 的计算公式； 结合梯度分析证明 Post-norm 相比 Pre-norm 更易出现梯度消失或放大，并指出其中的梯度恒等映射通路。 解：\n1. Pre-norm 计算公式\nPre-norm 将 LayerNorm 应用在 Sublayer 之前：\n$$ x_{l+1} = x_l + \\text{Sublayer}(\\text{LN}(x_l)) $$ 2. 梯度分析\nPost-norm 的梯度：\n对于 Post-norm：$x_{l+1} = \\text{LN}(x_l + \\text{Sublayer}(x_l))$\n反向传播时： $$\\frac{\\partial \\mathcal{L}}{\\partial x_l} = \\frac{\\partial \\mathcal{L}}{\\partial x_{l+1}} \\cdot \\frac{\\partial \\text{LN}}{\\partial (x_l + \\text{Sublayer}(x_l))} \\cdot \\left(I + \\frac{\\partial \\text{Sublayer}}{\\partial x_l}\\right)$$多层传播：从第 $L$ 层到第 0 层： $$\\frac{\\partial \\mathcal{L}}{\\partial x_0} = \\frac{\\partial \\mathcal{L}}{\\partial x_L} \\prod_{l=0}^{L-1} \\left[\\frac{\\partial \\text{LN}}{\\partial (\\cdot)} \\cdot \\left(I + \\frac{\\partial \\text{Sublayer}_l}{\\partial x_l}\\right)\\right]$$由于需要经过 $L$ 个 LayerNorm 的导数连乘：\n若 $\\left|\\frac{\\partial \\text{LN}}{\\partial (\\cdot)}\\right| \u003c 1$，梯度指数级衰减（梯度消失） 若 $\\left|\\frac{\\partial \\text{LN}}{\\partial (\\cdot)}\\right| \u003e 1$，梯度指数级放大（梯度爆炸） Pre-norm 的梯度：\n对于 Pre-norm：$ x_{l+1} = x_l + \\text{Sublayer}(\\text{LN}(x_l))$\n反向传播时： $$\\frac{\\partial \\mathcal{L}}{\\partial x_l} = \\frac{\\partial \\mathcal{L}}{\\partial x_{l+1}} \\cdot \\left(I + \\frac{\\partial \\text{Sublayer}(\\text{LN}(x_l))}{\\partial x_l}\\right)$$多层传播：从第 $L$ 层到第 0 层： $$\\frac{\\partial \\mathcal{L}}{\\partial x_0} = \\frac{\\partial \\mathcal{L}}{\\partial x_L} \\prod_{l=0}^{L-1} \\left(I + \\frac{\\partial \\text{Sublayer}_l(\\text{LN}(x_l))}{\\partial x_l}\\right)$$展开后包含恒等路径： $$\\frac{\\partial \\mathcal{L}}{\\partial x_0} = \\frac{\\partial \\mathcal{L}}{\\partial x_L} + \\text{其他梯度项}$$关键：$\\frac{\\partial \\mathcal{L}}{\\partial x_L}$ 可以直接传播到 $x_0$，不受层数 $L$ 影响。\n梯度恒等映射通路：\n$\\frac{\\partial x_{l+1}}{\\partial x_l}$ 包含恒等项 $I$，即： $$\\frac{\\partial x_{l+1}}{\\partial x_l} = I + \\frac{\\partial \\text{Sublayer}(\\text{LN}(x_l))}{\\partial x_l}$$这个恒等项提供了一条直接的梯度传播路径： $$x_0 \\xleftarrow{I} x_1 \\xleftarrow{I} \\cdots \\xleftarrow{I} x_L$$即使 Sublayer 的梯度很小，梯度仍能通过恒等映射传播，避免梯度消失。\n结论：\nPost-norm：梯度需经过 $L$ 个 LayerNorm 导数连乘，容易出现梯度消失或爆炸，且无恒等映射通路 Pre-norm：存在梯度恒等映射通路（残差连接在 LayerNorm 之外），梯度可直接传播，训练更稳定 第二十题 Gated Attention 的 Output 计算 题目： 已知 MHA 中第 $k$ 层第 $i$ 位置 token 的 output 表征计算如下：\n$$o_i^k = \\left(\\sum_{j=0}^{i} S_{ij}^k \\cdot X_j W_V^k\\right)W_O^k = \\sum_{j=0}^{i} S_{ij}^k \\cdot X_j(W_V^k W_O^k)$$请相应给出下图 Gated Attention 中 G1/G2/G3 对应的 output $o_i^k$ 计算方法。\n注意：可用 Non-Linearity-Map 算子表示 element-wise gating 机制，即 $$Y' = Y \\odot \\sigma(XW_\\theta) = \\text{Non-Linearity-Map}(Y)$$解答：\nG1：在聚合后的结果上进行门控（Post-Aggregation Gating）\n首先计算标准的注意力聚合结果： $$ H_i^k = \\sum_{j=0}^{i} S_{ij}^k \\cdot X_j W_V^k $$对聚合结果应用门控后再进行输出投影： $$ o_i^k = \\text{Non-Linearity-Map}(H_i^k) \\cdot W_O^k = \\text{Non-Linearity-Map}\\left(\\sum_{j=0}^{i} S_{ij}^k \\cdot X_j W_V^k\\right) W_O^k $$ G2：在Value上进行门控（Value Gating）\n对每个位置的Value表示先应用门控，再进行注意力聚合： $$ o_i^k = \\left(\\sum_{j=0}^{i} S_{ij}^k \\cdot \\text{Non-Linearity-Map}(X_j W_V^k)\\right) W_O^k $$ G3：在Key上进行门控（Key Gating）\n对Key表示应用门控，影响注意力权重的计算：\n注意力权重为： $$ \\tilde{S}_{ij}^k = \\text{softmax}\\left(\\frac{Q_i^k \\cdot (\\text{Non-Linearity-Map} (X_j W_K^k))^T}{\\sqrt{d_k}}\\right) $$最终输出为： $$ o_i^k = \\left(\\sum_{j=0}^{i} \\tilde{S}_{ij}^k \\cdot X_j W_V^k\\right) W_O^k $$ 第二十一题 GPT-OSS 20B 架构分析 题目： GPT-OSS 20B 架构相比标准 Transformer 有多处改动，请依次文字分析各个改动的具体内容与意义：\nRoPE RMSNorm GQA MoE SwiGLU 解：\n1. RoPE（Rotary Position Embedding，旋转位置编码）\n内容： 旋转位置编码，通过旋转矩阵将位置信息注入 Query 和 Key 向量。\n意义：\n相对位置编码：Query 和 Key 的点积仅依赖于相对位置 $m-n$，而非绝对位置 外推性好：可以处理训练时未见过的序列长度 计算高效：通过旋转操作直接编码位置，无需额外的可学习位置嵌入参数 2. RMSNorm（Root Mean Square Normalization，均方根归一化）\n内容： 简化的 LayerNorm，公式为：\n$$y = \\frac{x}{\\sqrt{\\frac{1}{d}\\sum_{i=1}^{d} x_i^2 + \\epsilon}} \\cdot \\gamma$$不计算均值，只进行缩放归一化。\n意义：\n计算效率高：省去均值计算和中心化操作 参数更少：只需 scale 参数 $\\gamma$，不需要 shift 参数 $\\beta$ 性能相当：在实践中与 LayerNorm 效果相当或更好 3. GQA（Grouped Query Attention，分组查询注意力）\n内容： 将多个 Query head 分组共享同一组 Key 和 Value head。\n对比：\nMHA：$n_h$ 个 Query，$n_h$ 对 KV GQA：$n_h$ 个 Query，$n_g$ 对 KV（$n_g \u003c n_h$） MQA：$n_h$ 个 Query，$1$ 对 KV 意义：\n减少 KV Cache：多个 Query 共享 KV，显著降低显存占用 推理加速：减少 KV 读取的内存带宽需求 性能折中：介于 MHA 和 MQA 之间，平衡质量与效率 4. MoE（Mixture of Experts，混合专家模型）\n内容： 使用路由器（Router/Gate）动态选择激活的专家（Expert FFN），每个 token 只激活 Top-K 个专家。\n意义：\n增加模型容量：总参数量大幅增加（如 Mixtral 8x7B 有 47B 参数） 稀疏激活：每个 token 只激活少量专家（如 Top-2），实际计算量接近小模型 计算效率：在参数量增加的同时保持推理速度 专业化：不同专家学习处理不同类型或领域的输入 5. SwiGLU（Swish-Gated Linear Unit，Swish门控线性单元）\n内容： 激活函数，结合 Swish 激活和门控机制：\n$$\\text{SwiGLU}(x, W_1, W_2, W_3) = (\\text{Swish}(xW_1) \\odot xW_2) W_3$$其中 $\\text{Swish}(x) = x \\cdot \\sigma(x)$\n意义：\n性能提升：比标准 ReLU/GELU 在多数任务上效果更好 门控机制：允许模型动态控制信息流 平滑激活：Swish 的平滑性有助于梯度优化 第二十二题 Roofline Model 分析 题目： 结合下列代码和结果，设 repeat=32 时，f 函数在 GPU 上执行时用于数据移动和计算的时间分别为 $T_{\\text{move}}$ 和 $T_{\\text{comp}}$，并假设此时恰处于 Memory 和计算的平衡点，依次分析：\nrepeat=16 时，用于数据移动和计算的时间各是多少，此时 GPU 处于 Memory-bounded or Compute-bounded? repeat=64 时，用于数据移动和计算的时间各是多少，此时 GPU 处于 Memory-bounded or Compute-bounded? 解：\n分析\n从图中可以看出：\nRuntime 在 repeat=32 之前增长缓慢，之后快速增长 FLOPS 逐渐增加并趋于平稳 Memory Bandwidth 在 repeat=32 之前保持高位，之后急剧下降 这表明在 repeat=32 时达到平衡点，此时： $$T_{\\text{move}} = T_{\\text{comp}}$$1. repeat=16 时\n计算量减半： $T_{\\text{comp}}^{(16)} = \\frac{1}{2} T_{\\text{comp}}$\n数据移动量不变（输入输出大小固定）： $T_{\\text{move}}^{(16)} = T_{\\text{move}}$\n总时间： $T_{\\text{total}}^{(16)} = T_{\\text{move}}^{(16)} + T_{\\text{comp}}^{(16)} = T_{\\text{move}} + \\frac{1}{2}T_{\\text{comp}} = \\frac{3}{2}T_{\\text{move}}$\n由于 $T_{\\text{move}}^{(16)} \u003e T_{\\text{comp}}^{(16)}$，GPU 处于 Memory-bounded。\n2. repeat=64 时\n计算量翻倍： $T_{\\text{comp}}^{(64)} = 2T_{\\text{comp}}$\n数据移动量不变： $T_{\\text{move}}^{(64)} = T_{\\text{move}}$\n总时间： $T_{\\text{total}}^{(64)} = T_{\\text{move}}^{(64)} + T_{\\text{comp}}^{(64)} = T_{\\text{move}} + 2T_{\\text{comp}} = 3T_{\\text{move}}$\n由于 $T_{\\text{comp}}^{(64)} \u003e T_{\\text{move}}^{(64)}$，GPU 处于 Compute-bounded。\n第二十三题 Operation Intensity 计算 题目： GPU 的 Operation Intensity 定义为浮点操作数 FLOPS 与数据移动（Bytes）的比值，请计算并对比 LayerNorm 和 RMSNorm 的 Operation Intensity。\n注意：d=8192，dtype=bf16，所有数据初始存于全局 DRAM，结果需写回全局 DRAM，且 SRAM 足够存放所有中间计算结果。\n解：\nLayerNorm 计算过程：\n计算均值：$\\mu = \\frac{1}{d}\\sum_{i=1}^d x_i$ → $d$ 次加法，1 次除法 ≈ $d$ FLOPs 计算方差：$\\sigma^2 = \\frac{1}{d}\\sum_{i=1}^d (x_i - \\mu)^2$ → $d$ 次减法，$d$ 次乘法，$d$ 次加法，1 次除法 ≈ $3d$ FLOPs 归一化和缩放：$y_i = \\frac{x_i - \\mu}{\\sqrt{\\sigma^2 + \\epsilon}} \\cdot \\gamma_i + \\beta_i$ →$d$ 次除法，$d$ 次乘法，$d$ 次加法 ≈ $3d$ FLOPs 总计算量： $7d$ FLOPs\n数据移动：\n读取 $x$：$d \\times 2$ bytes 读取 $\\gamma, \\beta$：$2d \\times 2$ bytes 写入 $y$：$d \\times 2$ bytes 总计：$8d$ bytes Operation Intensity： $$\\text{OI}_{\\text{LN}} = \\frac{7d}{8d} = 0.875 \\text{ FLOP/Byte}$$RMSNorm 计算过程：\n计算 RMS：$\\text{RMS} = \\sqrt{\\frac{1}{d}\\sum_{i=1}^d x_i^2}$ → $d$ 次乘法，$d$ 次加法，1 次除法，1 次开方 ≈ $2d$ FLOPs 归一化和缩放：$y_i = \\frac{x_i}{\\text{RMS}} \\cdot \\gamma_i$ → $d$ 次除法，$d$ 次乘法 ≈ $2d$ FLOPs 总计算量： $4d$ FLOPs\n数据移动：\n读取 $x$：$d \\times 2$ bytes 读取 $\\gamma$：$d \\times 2$ bytes 写入 $y$：$d \\times 2$ bytes 总计：$6d$ bytes Operation Intensity： $$\\text{OI}_{\\text{RMS}} = \\frac{4d}{6d} = \\frac{2}{3} \\text{ FLOP/Byte}$$对比 LayerNorm 的 OI 为 0.875 FLOP/Byte，RMSNorm 的 OI 为 2/3 FLOP/Byte。两者都很低，属于 Memory-bounded 操作。RMSNorm 虽然计算量更少，但由于数据移动占主导，实际加速效果有限。\n第二十四题 A100 Operation Intensity 分析 题目： 以 A100 为例，分析 FP32 和 BF16（TensorCore，考虑 dense 即左边列的 FLOPS）类型在进入 Compute-bounded 时需要的 Operation Intensity 分别是多少。Bandwidth 统一简化为 2TB/s。\n解：\n从表格中读取：\nFP32：19.5 TFLOPS BF16（TensorCore）：312 TFLOPS Memory Bandwidth：2TB/s = 2000 GB/s Compute-bounded 临界点\n当计算时间等于数据传输时间时，达到平衡点：\n$$\\frac{\\text{FLOPs}}{\\text{Peak FLOPS}} = \\frac{\\text{Bytes}}{\\text{Bandwidth}}$$因此临界 Operation Intensity 为：\n$$\\text{OI}_{\\text{critical}} = \\frac{\\text{Peak FLOPS}}{\\text{Bandwidth}}$$FP32\n$$\\text{OI}_{\\text{FP32}} = \\frac{19.5 \\text{ TFLOPS}}{2 \\text{ TB/s}} = \\frac{19.5}{2} = 9.75 \\text{ FLOP/Byte}$$BF16 TensorCore\n$$\\text{OI}_{\\text{BF16}} = \\frac{312 \\text{ TFLOPS}}{2 \\text{ TB/s}} = \\frac{312}{2} = 156 \\text{ FLOP/Byte}$$结论\n要让 FP32 计算进入 Compute-bounded，Operation Intensity 需要 ≥ 9.75 FLOP/Byte 要让 BF16（TensorCore） 计算进入 Compute-bounded，Operation Intensity 需要 ≥ 156 FLOP/Byte 这解释了为什么使用 TensorCore 进行矩阵乘法（OI 通常为 $O(N)$，其中 $N$ 是矩阵维度）更容易达到计算瓶颈，而 LayerNorm/RMSNorm（OI ≈ 1）始终是 Memory-bounded。\n强化学习 \u0026 Agents（10%+10） 第二十五题 ε-greedy 多臂老虎机问题 题目： 考虑一多臂老虎机问题（K=10），3 个 ε-greedy 策略下每一时刻可以获得的平均 reward 下图所示。已知该问题中随机以及最有策略下可获得 reward 的期望分别为 1 与 1.55，则：\n哪个 ε 在游戏后期（steps → +∞）可以获得更高的 average reward。 在（steps → +∞）时，这 3 个 ε-greedy 策略每次可获得 reward 的期望各是多少。 解：\n1. 后期表现\n当 steps → +∞ 时，算法已经充分探索过各个动作，基本掌握了每个臂的期望奖励。此时较小的 ε 值意味着更多地利用（exploitation）已知的最优动作，而较少地进行无效探索（exploration）。ε = 0.1 由于探索概率过高，会频繁选择次优动作，导致平均奖励被拉低。而ε = 0（greedy策略）获得的平均奖励，则是稳定在约 1.0 左右；\n因此，ε = 0.01 在后期可以获得更高的 average reward，它在探索和利用之间取得了较好的平衡。\n2. 期望分析\nε-greedy 策略的期望 reward 为：\n$$\\mathbb{E}[R] = (1-\\varepsilon) \\cdot R_{\\text{greedy}} + \\varepsilon \\cdot R_{\\text{random}}$$其中：\n$R_{\\text{random}} = 1$（随机策略期望） $R_{\\text{optimal}} = 1.55$（最优策略期望） 对于 $\\varepsilon = 0$（greedy）：\n由于没有探索，可能陷入局部最优。从图中看收敛到 1.0，说明找到的并非最优臂：\n$$\\mathbb{E}[R_{\\varepsilon=0}] \\approx 1.0$$对于 $\\varepsilon = 0.01$：\n假设经过充分探索后，greedy 部分能找到最优臂：\n$$\\mathbb{E}[R_{\\varepsilon=0.01}] = 0.99 \\times 1.55 + 0.01 \\times 1 = 1.5345 + 0.01 = 1.5445$$对于 $\\varepsilon = 0.1$：\n$$\\mathbb{E}[R_{\\varepsilon=0.1}] = 0.9 \\times 1.55 + 0.1 \\times 1 = 1.395 + 0.1 = 1.495$$ 第二十六题 MDP Bellman 方程 题目： 下图左是一个有限 Markov Decision Process (MDP) 的例子。网格中的单元格对应于环境的状态，在每个单元格中，智能体可以采取四种可能动作：上、下、左、右。这些动作确定性地使智能体在网格上沿相应方向移动一个单元格，并获取 0 的奖励。但有 2 类特殊情况：(1) 如果动作会导致智能体移出网格，则其位置保持不变，但会产生 -1 的奖励；(2) 如果智能体在状态 A 或 B 中，不管采取任意动作都会使智能体传送到 A’或 B’，并获得 +10 或 +5 的奖励。取 discount factor $\\gamma = 0.9$。\n随机策略对应的 state value 函数如下右图所示，保留 1 位有效数字。记左下状态坐标为 (1, 1)，右上状态坐标为 (5, 5)，请给出 坐标 (2, 5)、(3, 3)、(4, 5)、(5, 1) 4 个状态对应 value 的 Bellman 迭代公式。\n注：上述 4 状态的 value 分别为 8.8、0.7、5.3、-2.0。\n解：\nBellman 方程的一般形式为：\n$$v(s) = \\sum_a \\pi(a|s) [r + \\gamma v(s')]$$对于随机策略，$\\pi(a|s) = 0.25$ 对所有动作 $a \\in {\\text{上, 下, 左, 右}}$。\n坐标系统\n根据题意，左下为 (1,1)，右上为 (5,5)。状态 A 在 (2,5)，A’ 在 (2,1)；状态 B 在 (4,5)，B’ 在 (4,3)。\n(2, 5) - value = 8.8\n位置 (2,5) 即时A点,因此从 A 出发会传送到 A’ = (2,1) 并获得 +10。故\n$$v(2,5) = 10+0.9v(2,1)$$(3, 3) - value = 0.7\n位置 (3,3) 在网格中心。各方向移动：\n上：到 (3,4) 下：到 (3,2) 左：到 (2,3) 右：到 (4,3) $$ \\begin{aligned} v(3,3) \u0026= 0.25 \\times \\bigl[(0 + 0.9v(3,4)) + (0 + 0.9v(3,2)) + (0 + 0.9v(2,3)) + (0 + 0.9v(4,3))] \\\\ \u0026= 0.25 \\times 0.9 [v(3,4) + v(3,2) + v(2,3) + v(4,3)]. \\end{aligned} $$(4, 5) - value = 5.3\n位置 (4,5) 即时B点,因此从 B 出发会传送到 B’ = (4,3) 并获得 +5。故\n$$v(4,5) = 5+0.9v(4,3)$$(5, 1) - value = -2.0\n位置 (5,1) 在右下角。各方向移动：\n上：到 (5,2) 下：出界 → 保持 (5,1)，奖励 -1 左：到 (4,1) 右：出界 → 保持 (5,1)，奖励 -1 $$ \\begin{aligned} v(5,1) \u0026= 0.25 \\times \\bigl[(0 + 0.9v(5,2)) + (-1 + 0.9v(5,1)) + (0 + 0.9v(4,1)) + (-1 + 0.9v(5,1))] \\\\ \u0026= 0.25 \\times[0.9v(5,2) + 0.9v(4,1) + 1.8v(5,1) -2]. \\end{aligned} $$ 第二十七题 MDP 最优策略 题目： 下图左是一个有限 Markov Decision Process (MDP) 的例子（与上题相同）。已知下图右是最优策略对应的 value function，请对应给出各状态的最佳行动策略。\n解：\n根据给定的Gridworld和最优价值函数 $v_*$，求每个状态的最优行动策略。\n对每个状态，选择使期望回报最大的行动：\n比较相邻状态的价值 选择移向更高价值的方向 状态A和B有特殊转移（分别+10和+5奖励） 最优策略\n$$ \\pi_* = \\begin{bmatrix} \\rightarrow \u0026 A \u0026 \\leftarrow \u0026 B \u0026 \\leftarrow \\\\ \\uparrow/\\rightarrow \u0026 \\uparrow \u0026 \\uparrow/\\leftarrow \u0026 \\leftarrow \u0026 \\leftarrow \\\\ \\uparrow/\\rightarrow \u0026 \\uparrow \u0026 \\uparrow/\\leftarrow \u0026 \\uparrow/\\leftarrow \u0026 \\uparrow/\\leftarrow \\\\ \\uparrow/\\rightarrow \u0026 \\uparrow \u0026 \\uparrow/\\leftarrow \u0026 \\uparrow/\\leftarrow \u0026 \\uparrow/\\leftarrow \\\\ \\uparrow/\\rightarrow \u0026 \\uparrow \u0026 \\uparrow/\\leftarrow \u0026 \\uparrow/\\leftarrow \u0026 \\uparrow/\\leftarrow \\end{bmatrix} $$说明：\n$\\rightarrow, \\downarrow, \\uparrow, \\leftarrow$ 表示最优行动方向 $A$：触发特殊转移到 $A'$（+10奖励） $B$：触发特殊转移到 $B'$（+5奖励） 第二十八题 AI Agent 特性解释 （附加题 10分） 题目： AI Agent 是一类能够感知环境、自主决策并采取行动以实现特定目标的智能系统，并具备自主性、反应性、主动性、社会性以及进化性。请选择其中 3 种性质进行解释，并分别举例一种代表性技术（正式发表于 NeurIPS、ICLR、ICML）介绍其原理。（该题必考）\n解：\n1. 自主性 (Autonomy) 性质解释 AI Agent 能够在没有外部持续干预的情况下独立运行，自主做出决策并执行任务，无需人工指导每一步操作。\n代表性技术：ReAct\n会议：ICLR 2023 论文 ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.) 核心原理 ReAct 框架通过将推理（Reasoning）和行动（Acting）相结合，使语言模型能够以交替方式生成推理轨迹和任务特定的行动序列：\n思维-行动-观察循环\nThought (思考): 模型生成推理步骤，分析当前状态、任务目标和下一步计划 Action (行动): 执行具体操作（如调用搜索API、使用计算器、访问数据库） Observation (观察): 接收环境反馈和执行结果 推理增强的行动选择\n通过显式的推理轨迹，模型能够：\n动态分解复杂任务为子目标 根据中间结果调整策略 处理异常情况和错误 提示工程实现 使用 few-shot prompting，提供示例展示 Thought-Action-Observation 模式，引导模型学习这种交互模式。\n➡️ 体现的自主性：Agent 无需预定义完整的行动序列，能根据环境反馈自主决策每一步，实现端到端的任务自动化。\n2. 反应性 (Reactivity) 性质解释 AI Agent 能够感知环境变化并及时做出响应，从失败中学习，动态调整行为策略以适应变化的情境。\n代表性技术：Reflexion\n会议：NeurIPS 2023 论文 Reflexion: Language Agents with Verbal Reinforcement Learning (Shinn et al.) 核心原理 Reflexion 引入了语言化的自我反思机制，使 Agent 能够从试错中快速学习：\n反思-行动循环 Actor: 基于当前记忆生成行动轨迹 Evaluator: 评估行动结果（成功/失败，输出奖励信号） Self-Reflection: 当失败时，生成具体的反思文本，分析失败原因 语言化的情景记忆 将失败经验和反思以自然语言形式存储在短期记忆中 在后续尝试中，将相关反思加入提示上下文 类似于人类的\"从错误中学习\"机制 迭代改进机制 通过多轮试错-反思循环，Agent 逐步优化策略： Attempt 1 → Fail → Reflect (\"边界条件未处理\") Attempt 2 → 根据反思调整 → Success ➡️ 体现的反应性：Agent 能够快速识别环境反馈（错误信息、失败信号），生成针对性的策略调整，实时适应新情况。\n3. 社会性 (Sociality) 性质解释\nAI Agent 能够与其他 Agent 进行协作、竞争或沟通，在多智能体环境中通过合作完成单个 Agent 无法完成的复杂任务。\n代表性技术：QMIX\n会议： ICML 2018 论文 Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (Rashid et al.) 核心原理\nQMIX 通过单调价值函数分解解决多智能体协作中的信用分配问题：\n1. 集中训练-分散执行 (CTDE) 范式\n训练阶段：可访问全局状态 $s$ 和所有 Agent 的观测 执行阶段：每个 Agent 仅基于局部观测 $o_i$ 独立决策 2. 单调价值函数分解\n将全局 Q 函数分解为各 Agent 局部 Q 函数的单调组合：\n$$ Q_{\\text{tot}}(s, \\mathbf{a}) = f_{\\text{mix}}(Q_1(o_1, a_1), \\ldots, Q_n(o_n, a_n); s) $$约束条件（单调性）：\n$$ \\frac{\\partial Q_{\\text{tot}}}{\\partial Q_i} \\geq 0, \\quad \\forall i $$这保证了：局部贪婪动作（$\\arg\\max Q_i$）的组合等于全局最优动作。\n3. 混合网络 (Mixing Network)\n使用超网络 (hypernetwork) 根据全局状态 $s$ 生成混合网络的权重 权重非负性通过绝对值函数保证单调性 网络结构： $$ \\text{Agent Networks} \\rightarrow \\text{Mixing Network} \\rightarrow Q_{\\text{tot}} $$➡️ 体现的社会性\n多个 Agent 无需显式通信即可通过学习形成隐式协作策略，共同最大化团队奖励，展现涌现的群体智能。\n",
+  "wordCount" : "14071",
+  "inLanguage": "zh",
+  "datePublished": "2025-12-13T20:26:19+08:00",
+  "dateModified": "2025-12-13T20:26:19+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/dase-course/ml-exercise-set/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      机器学习习题集
+    </h1>
+    <div class="post-description">
+      这是胡老师出的考题集，涵盖机器学习课程的28道经典问题详解，包括：
+基础理论（梯度下降、交叉熵损失、最大似然估计）、
+判别模型（Logistic回归、GDA、SVM对偶优化）、
+深度学习（Transformer架构、RoPE、KV Cache、门控注意力）、
+强化学习（多臂老虎机、MDP Bellman方程、最优策略）、
+大模型优化（XGBoost二阶泰勒展开、Roofline模型、AI Agent特性）。
+每道题配有完整数学证明和算法原理解析。 
+
+    </div>
+    <div class="post-meta"><span title='2025-12-13 20:26:19 +0800 CST'>2025年12月13日</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e5%9f%ba%e7%a1%8030" aria-label="机器学习基础（30%）">机器学习基础（30%）</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ac%ac%e4%b8%80%e9%a2%98%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d" aria-label="第一题：线性回归梯度下降">第一题：线性回归梯度下降</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e9%a2%98%e4%ba%a4%e5%8f%89%e7%86%b5%e6%8d%9f%e5%a4%b1%e6%a2%af%e5%ba%a6" aria-label="第二题：交叉熵损失梯度">第二题：交叉熵损失梯度</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%b8%89%e9%a2%98%e9%ab%98%e6%96%af%e5%81%87%e8%ae%be%e4%b8%8b%e7%9a%84%e6%9c%80%e5%a4%a7%e4%bc%bc%e7%84%b6%e4%bc%b0%e8%ae%a1" aria-label="第三题：高斯假设下的最大似然估计">第三题：高斯假设下的最大似然估计</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%9b%9b%e9%a2%98logistic%e5%9b%9e%e5%bd%92%e7%9a%84nll%e6%8d%9f%e5%a4%b1" aria-label="第四题：Logistic回归的NLL损失">第四题：Logistic回归的NLL损失</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%94%e9%a2%98poisson%e5%88%86%e5%b8%83%e7%9a%84%e6%8c%87%e6%95%b0%e6%97%8f%e5%bd%a2%e5%bc%8f" aria-label="第五题：Poisson分布的指数族形式">第五题：Poisson分布的指数族形式</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%85%ad%e9%a2%98shapley%e5%80%bc%e8%ae%a1%e7%ae%97" aria-label="第六题：Shapley值计算">第六题：Shapley值计算</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%b8%83%e9%a2%98%e5%8d%8f%e6%96%b9%e5%b7%ae%e7%9f%a9%e9%98%b5%e6%80%a7%e8%b4%a8" aria-label="第七题：协方差矩阵性质">第七题：协方差矩阵性质</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%85%ab%e9%a2%98%e9%ab%98%e6%96%af%e5%88%a4%e5%88%ab%e5%88%86%e6%9e%90%e7%9a%84mle" aria-label="第八题：高斯判别分析的MLE">第八题：高斯判别分析的MLE</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%b9%9d%e9%a2%98gda%e5%8f%af%e8%bd%ac%e5%8c%96%e4%b8%balogistic%e5%9b%9e%e5%bd%92" aria-label="第九题：GDA可转化为Logistic回归">第九题：GDA可转化为Logistic回归</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e8%bf%9b%e9%98%b620" aria-label="机器学习进阶（20%）">机器学习进阶（20%）</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e9%a2%98kernel-method%e5%88%86%e6%9e%90" aria-label="第十题：Kernel Method分析">第十题：Kernel Method分析</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e4%b8%80%e9%a2%98%e8%b6%85%e5%b9%b3%e9%9d%a2%e7%9a%84%e5%87%bd%e6%95%b0%e9%97%b4%e9%9a%94%e5%92%8c%e5%87%a0%e4%bd%95%e9%97%b4%e9%9a%94" aria-label="第十一题：超平面的函数间隔和几何间隔">第十一题：超平面的函数间隔和几何间隔</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e4%ba%8c%e9%a2%98svm%e7%9a%84lagrange%e5%87%bd%e6%95%b0%e5%92%8c%e5%af%b9%e5%81%b6%e5%bd%a2%e5%bc%8f" aria-label="第十二题：SVM的Lagrange函数和对偶形式">第十二题：SVM的Lagrange函数和对偶形式</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e4%b8%89%e9%a2%98%e7%ba%bf%e6%80%a7%e4%b8%8d%e5%8f%af%e5%88%86%e7%9a%84svm%e4%b8%8el1%e6%ad%a3%e5%88%99" aria-label="第十三题：线性不可分的SVM与L1正则">第十三题：线性不可分的SVM与L1正则</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e5%9b%9b%e9%a2%98svm%e6%9c%80%e4%bc%98%e5%8c%96%e9%97%ae%e9%a2%98%e5%88%86%e6%9e%90" aria-label="第十四题：SVM最优化问题分析">第十四题：SVM最优化问题分析</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e4%ba%94%e9%a2%98%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a%e6%af%94%e8%ae%a1%e7%ae%97" aria-label="第十五题：信息增益比计算">第十五题：信息增益比计算</a><ul>
+                        
+                <li>
+                    <a href="#%e7%89%b9%e5%be%811%e5%b9%b4%e9%be%84" aria-label="特征1：年龄">特征1：年龄</a></li>
+                <li>
+                    <a href="#%e7%89%b9%e5%be%812%e6%9c%89%e5%b7%a5%e4%bd%9c" aria-label="特征2：有工作">特征2：有工作</a></li>
+                <li>
+                    <a href="#%e7%89%b9%e5%be%813%e6%9c%89%e8%87%aa%e5%b7%b1%e7%9a%84%e6%88%bf%e5%ad%90" aria-label="特征3：有自己的房子">特征3：有自己的房子</a></li>
+                <li>
+                    <a href="#%e7%89%b9%e5%be%814%e4%bf%a1%e8%b4%b7%e6%83%85%e5%86%b5" aria-label="特征4：信贷情况">特征4：信贷情况</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e5%85%ad%e9%a2%98xgboost%e6%8d%9f%e5%a4%b1%e5%87%bd%e6%95%b0%e4%ba%8c%e9%98%b6%e6%b3%b0%e5%8b%92%e5%b1%95%e5%bc%80" aria-label="第十六题：XGBoost损失函数二阶泰勒展开">第十六题：XGBoost损失函数二阶泰勒展开</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b--gpus40" aria-label="语言模型 &amp; GPUs（40%）">语言模型 &amp; GPUs（40%）</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e4%b8%83%e9%a2%98-kv-cache-%e8%ae%a1%e7%ae%97" aria-label="第十七题 KV Cache 计算">第十七题 KV Cache 计算</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e5%85%ab%e9%a2%98-rope-%e6%97%8b%e8%bd%ac%e4%bd%8d%e7%bd%ae%e7%bc%96%e7%a0%81" aria-label="第十八题 RoPE 旋转位置编码">第十八题 RoPE 旋转位置编码</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%8d%81%e4%b9%9d%e9%a2%98-transformer-block-%e7%9a%84-post-norm-%e5%92%8c-pre-norm" aria-label="第十九题 Transformer Block 的 Post-norm 和 Pre-norm">第十九题 Transformer Block 的 Post-norm 和 Pre-norm</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e9%a2%98-gated-attention-%e7%9a%84-output-%e8%ae%a1%e7%ae%97" aria-label="第二十题 Gated Attention 的 Output 计算">第二十题 Gated Attention 的 Output 计算</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e4%b8%80%e9%a2%98-gpt-oss-20b-%e6%9e%b6%e6%9e%84%e5%88%86%e6%9e%90" aria-label="第二十一题 GPT-OSS 20B 架构分析">第二十一题 GPT-OSS 20B 架构分析</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e4%ba%8c%e9%a2%98-roofline-model-%e5%88%86%e6%9e%90" aria-label="第二十二题 Roofline Model 分析">第二十二题 Roofline Model 分析</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e4%b8%89%e9%a2%98-operation-intensity-%e8%ae%a1%e7%ae%97" aria-label="第二十三题 Operation Intensity 计算">第二十三题 Operation Intensity 计算</a><ul>
+                        
+                <li>
+                    <a href="#layernorm" aria-label="LayerNorm">LayerNorm</a></li>
+                <li>
+                    <a href="#rmsnorm" aria-label="RMSNorm">RMSNorm</a></li>
+                <li>
+                    <a href="#%e5%af%b9%e6%af%94" aria-label="对比">对比</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e5%9b%9b%e9%a2%98-a100-operation-intensity-%e5%88%86%e6%9e%90" aria-label="第二十四题 A100 Operation Intensity 分析">第二十四题 A100 Operation Intensity 分析</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bc%ba%e5%8c%96%e5%ad%a6%e4%b9%a0--agents1010" aria-label="强化学习 &amp; Agents（10%&#43;10）">强化学习 &amp; Agents（10%+10）</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e4%ba%94%e9%a2%98-%ce%b5-greedy-%e5%a4%9a%e8%87%82%e8%80%81%e8%99%8e%e6%9c%ba%e9%97%ae%e9%a2%98" aria-label="第二十五题 ε-greedy 多臂老虎机问题">第二十五题 ε-greedy 多臂老虎机问题</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e5%85%ad%e9%a2%98-mdp-bellman-%e6%96%b9%e7%a8%8b" aria-label="第二十六题 MDP Bellman 方程">第二十六题 MDP Bellman 方程</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e4%b8%83%e9%a2%98-mdp-%e6%9c%80%e4%bc%98%e7%ad%96%e7%95%a5" aria-label="第二十七题 MDP 最优策略">第二十七题 MDP 最优策略</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e5%85%ab%e9%a2%98-ai-agent-%e7%89%b9%e6%80%a7%e8%a7%a3%e9%87%8a-%e9%99%84%e5%8a%a0%e9%a2%98-10%e5%88%86" aria-label="第二十八题 AI Agent 特性解释 （附加题 10分）">第二十八题 AI Agent 特性解释 （附加题 10分）</a><ul>
+                        
+                <li>
+                    <a href="#1-%e8%87%aa%e4%b8%bb%e6%80%a7-autonomy" aria-label="1. 自主性 (Autonomy)">1. 自主性 (Autonomy)</a></li>
+                <li>
+                    <a href="#2-%e5%8f%8d%e5%ba%94%e6%80%a7-reactivity" aria-label="2. 反应性 (Reactivity)">2. 反应性 (Reactivity)</a></li>
+                <li>
+                    <a href="#3-%e7%a4%be%e4%bc%9a%e6%80%a7-sociality" aria-label="3. 社会性 (Sociality)">3. 社会性 (Sociality)</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>参考资料：<a href="https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025/yhd37fpvriv2kzi6">机器学习考题集</a></p>
+<h1 id="机器学习基础30">机器学习基础（30%）<a hidden class="anchor" aria-hidden="true" href="#机器学习基础30">#</a></h1>
+<h2 id="第一题线性回归梯度下降">第一题：线性回归梯度下降<a hidden class="anchor" aria-hidden="true" href="#第一题线性回归梯度下降">#</a></h2>
+<p><strong>题目：</strong> 对线性模型 $h_\theta(x) = \theta^\top x$，给定训练集 $\{(x^{(i)}, y^{(i)})\}$，推导其向量形式的最小二乘损失梯度下降更新公式为：</p>
+$$\theta := \theta + \alpha \sum_{i=1}^{n} (y^{(i)} - h_\theta(x^{(i)})) x^{(i)}$$<p><strong>解：</strong></p>
+<p>最小二乘损失函 数为：</p>
+$$J(\theta) = \frac{1}{2}\sum_{i=1}^{n}(h_\theta(x^{(i)}) - y^{(i)})^2 = \frac{1}{2}\sum_{i=1}^{n}(\theta^\top x^{(i)} - y^{(i)})^2$$<p>对 $\theta$ 求梯度：</p>
+$$\begin{aligned} \nabla_\theta J(\theta) &= \sum_{i=1}^{n}(\theta^\top x^{(i)} - y^{(i)}) \cdot x^{(i)} \\ &= \sum_{i=1}^{n}(h_\theta(x^{(i)}) - y^{(i)}) x^{(i)} \end{aligned}$$<p>梯度下降更新规则为 $\theta := \theta - \alpha \nabla_\theta J(\theta)$，因此：</p>
+$$\theta := \theta - \alpha \sum_{i=1}^{n}(h_\theta(x^{(i)}) - y^{(i)}) x^{(i)} = \theta + \alpha \sum_{i=1}^{n}(y^{(i)} - h_\theta(x^{(i)})) x^{(i)}$$<hr>
+<h2 id="第二题交叉熵损失梯度">第二题：交叉熵损失梯度<a hidden class="anchor" aria-hidden="true" href="#第二题交叉熵损失梯度">#</a></h2>
+<p><strong>题目：</strong> Cross Entropy Loss 定义如下：</p>
+$$l_{ce}((t_1,\ldots,t_k),y) = -\log\left(\frac{\exp(t_y)}{\sum_j \exp(t_j)}\right)$$<p>令向量 $t = (t_1,t_2,\ldots,t_k)$，推导 CEL 对任意 $t_i$ 求导为：</p>
+$$\frac{\partial l_{ce}(t,y)}{\partial t_i} = \phi_i - \mathbb{1}\{y=i\}$$<p><strong>解：</strong></p>
+<p>记 $\phi_i = \frac{\exp(t_i)}{\sum_j \exp(t_j)}$ 为 softmax 函数。</p>
+<p>首先简化损失函数：</p>
+$$l_{ce}(t,y) = -\log(\phi_y) = -t_y + \log\left(\sum_j \exp(t_j)\right)$$<p>对 $t_i$ 求导：</p>
+$$\begin{aligned} \frac{\partial l_{ce}(t,y)}{\partial t_i} &= -\frac{\partial t_y}{\partial t_i} + \frac{\partial}{\partial t_i}\log\left(\sum_j \exp(t_j)\right) \\ &= -\mathbb{1}\{y=i\} + \frac{\exp(t_i)}{\sum_j \exp(t_j)} \\ &= \phi_i - \mathbb{1}\{y=i\} \end{aligned}$$<p>其中 $\mathbb{1}\{y=i\}$ 是指示函数，当 $y=i$ 时为1，否则为0。</p>
+<hr>
+<h2 id="第三题高斯假设下的最大似然估计">第三题：高斯假设下的最大似然估计<a hidden class="anchor" aria-hidden="true" href="#第三题高斯假设下的最大似然估计">#</a></h2>
+<p><strong>题目：</strong> 证明在高斯差异假定下，对线性模型 $h_\theta(x) = \theta^\top x$，最大化参数似然 $L(\theta)$ 等价于最小化二乘损失 $\sum_{i=1}^{n}(y^{(i)} - \theta^\top x^{(i)})^2$。</p>
+<p><strong>解：</strong></p>
+<p>假设误差 $\epsilon^{(i)} = y^{(i)} - \theta^\top x^{(i)}$ 服从独立同分布的高斯分布 $\mathcal{N}(0, \sigma^2)$，即：</p>
+$$
+p(\epsilon^{(i)}) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(\epsilon^{(i)})^2}{2\sigma^2}\right)
+$$<p>
+因此：</p>
+$$p(y^{(i)} | x^{(i)}; \theta) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y^{(i)} - \theta^\top x^{(i)})^2}{2\sigma^2}\right)$$<p>似然函数为：</p>
+$$\begin{aligned} L(\theta) &= \prod_{i=1}^{n} p(y^{(i)} | x^{(i)}; \theta) \\ &= \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y^{(i)} - \theta^\top x^{(i)})^2}{2\sigma^2}\right) \end{aligned}$$<p>对数似然为：</p>
+$$\begin{aligned} \log L(\theta) &= \sum_{i=1}^{n}\left[\log\frac{1}{\sqrt{2\pi}\sigma} - \frac{(y^{(i)} - \theta^\top x^{(i)})^2}{2\sigma^2}\right] \\ &= n\log\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2}\sum_{i=1}^{n}(y^{(i)} - \theta^\top x^{(i)})^2 \end{aligned}$$<p>因此最大化 $L(\theta)$ 等价于最小化 $\sum_{i=1}^{n}(y^{(i)} - \theta^\top x^{(i)})^2$。</p>
+<hr>
+<h2 id="第四题logistic回归的nll损失">第四题：Logistic回归的NLL损失<a hidden class="anchor" aria-hidden="true" href="#第四题logistic回归的nll损失">#</a></h2>
+<p><strong>题目：</strong> 对Logistic回归模型 $h_\theta(x) = g(\theta^\top x) = \frac{1}{1+e^{-\theta^\top x}}$，推导其在单样本 $(x,y)$ 下的NLL（negative log likelihood）损失，以及损失对特定参数 $\theta_j$ 的导数为 $(h_\theta(x) - y)x_j$。</p>
+<p>提示：Logistic回归预测概率的统一形式为 $P(y|x;\theta) = (h_\theta(x))^y(1-h_\theta(x))^{1-y}$</p>
+<p><strong>解：</strong></p>
+<p>根据提示，Logistic回归的概率模型为：</p>
+$$P(y|x;\theta) = (h_\theta(x))^y(1-h_\theta(x))^{1-y}$$<p>其中 $y \in \{0,1\}$，$h_\theta(x) = g(\theta^\top x) = \frac{1}{1+e^{-\theta^\top x}}$。</p>
+<p>对数似然为：</p>
+$$\log P(y|x;\theta) = y\log(h_\theta(x)) + (1-y)\log(1-h_\theta(x))$$<p>NLL损失为：</p>
+$$\text{NLL}(x,y;\theta) = -\log P(y|x;\theta) = -y\log(h_\theta(x)) - (1-y)\log(1-h_\theta(x))$$<p>对 $\theta_j$ 求导。首先注意到：</p>
+$$\frac{\partial h_\theta(x)}{\partial \theta_j} = h_\theta(x)(1-h_\theta(x)) \cdot x_j$$<p>这是因为 $g'(z) = g(z)(1-g(z))$。</p>
+<p>因此：</p>
+$$\begin{aligned} \frac{\partial \text{NLL}}{\partial \theta_j} &= -y\frac{1}{h_\theta(x)}\frac{\partial h_\theta(x)}{\partial \theta_j} - (1-y)\frac{1}{1-h_\theta(x)}\left(-\frac{\partial h_\theta(x)}{\partial \theta_j}\right) \\ &= -y\frac{1}{h_\theta(x)} \cdot h_\theta(x)(1-h_\theta(x))x_j + (1-y)\frac{1}{1-h_\theta(x)} \cdot h_\theta(x)(1-h_\theta(x))x_j \\ &= -y(1-h_\theta(x))x_j + (1-y)h_\theta(x)x_j \\ &= (h_\theta(x) - y)x_j \end{aligned}$$<hr>
+<h2 id="第五题poisson分布的指数族形式"><del>第五题：Poisson分布的指数族形式</del><a hidden class="anchor" aria-hidden="true" href="#第五题poisson分布的指数族形式">#</a></h2>
+<p><strong>题目：</strong> 已知指数分布族定义如下：$p(y;\eta) = b(y)\exp(\eta^\top y - a(\eta))$。推导Poisson分布的指数分布族形式，并构建Poisson分布对应的广义线性模型。其中，Poisson分布 $\text{Pois}(\lambda)$ 的概率密度函数如下：</p>
+$$P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}$$<p><strong>解：</strong></p>
+<p>将Poisson分布改写为指数族形式：</p>
+$$\begin{aligned} P(X=k) &= \frac{\lambda^k e^{-\lambda}}{k!} \\ &= \frac{1}{k!}\exp(k\log\lambda - \lambda) \\ &= \frac{1}{k!}\exp(\eta \cdot k - e^\eta) \end{aligned}$$<p>其中 $\eta = \log\lambda$（自然参数），因此 $\lambda = e^\eta$。</p>
+<p>对应指数族形式：</p>
+<ul>
+<li>$b(y) = \frac{1}{y!}$</li>
+<li>$\eta = \log\lambda$</li>
+<li>$a(\eta) = e^\eta = \lambda$</li>
+<li>$y$ 的充分统计量就是 $y$ 本身</li>
+</ul>
+<p>构建广义线性模型：</p>
+<ol>
+<li>假设 $y|x;\theta \sim \text{Pois}(\lambda)$</li>
+<li>自然参数 $\eta = \theta^\top x$</li>
+<li>因为 $\lambda = e^\eta$，所以 $\lambda = e^{\theta^\top x}$</li>
+<li>响应函数（期望）为：$h_\theta(x) = \mathbb{E}[y|x;\theta] = \lambda = e^{\theta^\top x}$</li>
+</ol>
+<p>这就是Poisson回归模型。</p>
+<hr>
+<h2 id="第六题shapley值计算">第六题：Shapley值计算<a hidden class="anchor" aria-hidden="true" href="#第六题shapley值计算">#</a></h2>
+<p><strong>题目：</strong> 计算以下3人团队的Shapley值 $\phi_1$、$\phi_2$、$\phi_3$。</p>
+<p>给定：</p>
+<ul>
+<li>$C_{123} = 10000$，$C_0 = 0$</li>
+<li>$C_{12} = 7500$，$C_{13} = 7500$，$C_{23} = 5000$</li>
+<li>$C_1 = 5000$，$C_2 = 5000$，$C_3 = 0$</li>
+</ul>
+<p><strong>解：</strong></p>
+<p>Shapley值的公式为：</p>
+$$\phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(|N|-|S|-1)!}{|N|!}[C(S \cup \{i\}) - C(S)]$$<p>对于3人团队，$|N| = 3$，计算每个玩家的边际贡献：</p>
+<p><strong>玩家1的Shapley值：</strong></p>
+$$\begin{aligned} \phi_1 &= \frac{0!2!}{3!}[C_1 - C_0] + \frac{1!1!}{3!}[C_{12} - C_2] + \frac{1!1!}{3!}[C_{13} - C_3] + \frac{2!0!}{3!}[C_{123} - C_{23}] \\ &= \frac{1}{3}[5000 - 0] + \frac{1}{6}[7500 - 5000] + \frac{1}{6}[7500 - 0] + \frac{1}{3}[10000 - 5000] \\ &= \frac{5000}{3} + \frac{2500}{6} + \frac{7500}{6} + \frac{5000}{3} \\ &= \frac{10000}{3} + \frac{10000}{6} = \frac{20000 + 10000}{6} = 5000 \end{aligned}$$<p><strong>玩家2的Shapley值：</strong></p>
+$$\begin{aligned} \phi_2 &= \frac{0!2!}{3!}[C_2 - C_0] + \frac{1!1!}{3!}[C_{12} - C_1] + \frac{1!1!}{3!}[C_{23} - C_3] + \frac{2!0!}{3!}[C_{123} - C_{13}] \\ &= \frac{1}{3}[5000 - 0] + \frac{1}{6}[7500 - 5000] + \frac{1}{6}[5000 - 0] + \frac{1}{3}[10000 - 7500] \\ &= \frac{5000}{3} + \frac{2500}{6} + \frac{5000}{6} + \frac{2500}{3} \\ &= \frac{10000 + 2500 + 5000 + 5000}{6} = \frac{22500}{6} =3750 \end{aligned}$$<p><strong>玩家3的Shapley值：</strong></p>
+<p>由对称性或直接计算：</p>
+$$\phi_3 = 10000 - \phi_1 - \phi_2 = 10000 - 5000 - 4583.33 = 416.67$$<p>或直接计算：</p>
+$$\begin{aligned} \phi_3 &= \frac{1}{3}[0] + \frac{1}{6}[7500 - 5000] + \frac{1}{6}[5000 - 5000] + \frac{1}{3}[10000 - 7500] \\ &= 0 + \frac{2500}{6} + 0 + \frac{2500}{3} = \frac{7500}{6} =1250 \end{aligned}$$<p><strong>答案：</strong> $\phi_1 = 5000$，$\phi_2 = 3750$，$\phi_3 $=1250</p>
+<hr>
+<h2 id="第七题协方差矩阵性质">第七题：协方差矩阵性质<a hidden class="anchor" aria-hidden="true" href="#第七题协方差矩阵性质">#</a></h2>
+<p><strong>题目：</strong> 基于协方差矩阵定义 $\Sigma = \text{Cov}(X)$ 证明：</p>
+<ol>
+<li>$\Sigma$ 为对称矩阵；</li>
+<li>$\Sigma$ 半正定，记 $\Sigma \geq 0$，即对任意向量 $z \in \mathbb{R}^d$ 有 $z^\top \Sigma z \geq 0$。</li>
+</ol>
+<p><strong>解：</strong></p>
+<p>设 $X \in \mathbb{R}^d$ 为随机向量，$\mu = \mathbb{E}[X]$，则：</p>
+$$\Sigma = \text{Cov}(X) = \mathbb{E}[(X-\mu)(X-\mu)^\top]$$<p><strong>(1) 证明 $\Sigma$ 为对称矩阵：</strong></p>
+$$\Sigma^\top = \mathbb{E}[(X-\mu)(X-\mu)^\top]^\top = \mathbb{E}[((X-\mu)(X-\mu)^\top)^\top] = \mathbb{E}[(X-\mu)(X-\mu)^\top] = \Sigma$$<p>因此 $\Sigma$ 是对称矩阵。</p>
+<p><strong>(2) 证明 $\Sigma$ 半正定：</strong></p>
+<p>对任意 $z \in \mathbb{R}^d$：</p>
+$$\begin{aligned} z^\top \Sigma z &= z^\top \mathbb{E}[(X-\mu)(X-\mu)^\top] z \\ &= \mathbb{E}[z^\top(X-\mu)(X-\mu)^\top z] \\ &= \mathbb{E}[(z^\top(X-\mu))^2] \\ &\geq 0 \end{aligned}$$<p>最后一步是因为期望中的项是平方项，必然非负。因此 $\Sigma$ 半正定。</p>
+<hr>
+<h2 id="第八题高斯判别分析的mle">第八题：高斯判别分析的MLE<a hidden class="anchor" aria-hidden="true" href="#第八题高斯判别分析的mle">#</a></h2>
+<p><strong>题目：</strong> 对高斯判别分析，已知各变量概率分布为：</p>
+$$\begin{aligned} p(y) &= \phi^y(1-\phi)^{1-y} \\ p(x|y=0) &= \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu_0)^\top\Sigma^{-1}(x-\mu_0)\right) \\ p(x|y=1) &= \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu_1)^\top\Sigma^{-1}(x-\mu_1)\right) \end{aligned}$$<p>证明在极大似然估计下，参数 $\phi$、$\mu_0$、$\mu_1$ 的形式为：</p>
+$$\begin{aligned} \phi &= \frac{1}{n}\sum_{i=1}^{n}\mathbb{1}\{y^{(i)}=1\} \\ \mu_0 &= \frac{\sum_{i=1}^{n}\mathbb{1}\{y^{(i)}=0\}x^{(i)}}{\sum_{i=1}^{n}\mathbb{1}\{y^{(i)}=0\}} \\ \mu_1 &= \frac{\sum_{i=1}^{n}\mathbb{1}\{y^{(i)}=1\}x^{(i)}}{\sum_{i=1}^{n}\mathbb{1}\{y^{(i)}=1\}} \end{aligned}$$<p><strong>解：</strong></p>
+<p><strong>对数似然函数为：</strong> </p>
+$$\log L = \sum_{i=1}^{n}\left[\log p(y^{(i)}) + \log p(x^{(i)}|y^{(i)})\right]$$<p><strong>参数估计的分离性：</strong></p>
+<p>对数似然可以分解为两个独立的部分：</p>
+$$\log L = \underbrace{\sum_{i=1}^{n}\log p(y^{(i)})}_{\text{第一部分}} + \underbrace{\sum_{i=1}^{n}\log p(x^{(i)}|y^{(i)})}_{\text{第二部分}}$$<ul>
+<li><strong>第一部分</strong> $\sum_{i=1}^{n}\log p(y^{(i)})$：只包含参数 $\phi$，用于估计<strong>类先验概率</strong> $\phi$</li>
+<li><strong>第二部分</strong> $\sum_{i=1}^{n}\log p(x^{(i)}|y^{(i)})$：包含参数 $\mu_0, \mu_1, \Sigma$，用于估计<strong>类条件均值</strong> $\mu_0, \mu_1$ 和<strong>协方差矩阵</strong> $\Sigma$</li>
+</ul>
+<p>由于这两部分不包含共同参数，可以<strong>分别独立优化</strong>。</p>
+<p><strong>估计 $\phi$：</strong></p>
+$$\log L_\phi = \sum_{i=1}^{n}\log p(y^{(i)}) = \sum_{i=1}^{n}[y^{(i)}\log\phi + (1-y^{(i)})\log(1-\phi)]$$<p>令 $\frac{\partial \log L_\phi}{\partial \phi} = 0$：</p>
+$$\sum_{i=1}^{n}\left[\frac{y^{(i)}}{\phi} - \frac{1-y^{(i)}}{1-\phi}\right] = 0$$<p>解得：</p>
+$$\phi = \frac{1}{n}\sum_{i=1}^{n}y^{(i)} = \frac{1}{n}\sum_{i=1}^{n}\mathbb{1}\{y^{(i)}=1\}$$<p><strong>估计 $\mu_0$：</strong></p>
+<p>只考虑 $y=0$ 的样本：</p>
+$$\log L_{\mu_0} = \sum_{i:y^{(i)}=0}\left[-\frac{1}{2}(x^{(i)}-\mu_0)^\top\Sigma^{-1}(x^{(i)}-\mu_0) + \text{const}\right]$$<p>令 $\frac{\partial \log L_{\mu_0}}{\partial \mu_0} = 0$：</p>
+$$\sum_{i:y^{(i)}=0}\Sigma^{-1}(x^{(i)}-\mu_0) = 0$$<p>解得：</p>
+$$\mu_0 = \frac{\sum_{i:y^{(i)}=0}x^{(i)}}{\sum_{i:y^{(i)}=0}1} = \frac{\sum_{i=1}^{n}\mathbb{1}\{y^{(i)}=0\}x^{(i)}}{\sum_{i=1}^{n}\mathbb{1}\{y^{(i)}=0\}}$$<p>同理可得 $\mu_1$ 的估计。</p>
+<hr>
+<h2 id="第九题gda可转化为logistic回归">第九题：GDA可转化为Logistic回归<a hidden class="anchor" aria-hidden="true" href="#第九题gda可转化为logistic回归">#</a></h2>
+<p><strong>题目：</strong> 证明GDA可转化为Logistic回归。提示：</p>
+<ol>
+<li>$p(y=1|x) = \frac{p(x|y=1)p(y=1)}{p(x|y=1)p(y=1) + p(x|y=0)p(y=0)}$</li>
+<li>可记 $r(x) = \frac{p(x|y=1)p(y=1)}{p(x|y=0)p(y=0)}$</li>
+<li>$ p(x|y=0) = \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu_0)^\top\Sigma^{-1}(x-\mu_0)\right)$</li>
+<li>$p(x|y=1) = \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu_1)^\top\Sigma^{-1}(x-\mu_1)\right)$</li>
+<li>$p(y=1) = \phi$</li>
+</ol>
+<p><strong>解：</strong></p>
+<p>根据贝叶斯定理：</p>
+$$p(y=1|x) = \frac{p(x|y=1)p(y=1)}{p(x|y=1)p(y=1) + p(x|y=0)p(y=0)} = \frac{1}{1 + \frac{p(x|y=0)p(y=0)}{p(x|y=1)p(y=1)}} = \frac{1}{1 + \frac{1}{r(x)}}$$<p>其中：</p>
+$$r(x) = \frac{p(x|y=1)p(y=1)}{p(x|y=0)p(y=0)}$$<p>计算 $\log r(x)$：</p>
+$$\begin{aligned} \log r(x) &= \log p(x|y=1) + \log p(y=1) - \log p(x|y=0) - \log p(y=0) \\ &= -\frac{1}{2}(x-\mu_1)^\top\Sigma^{-1}(x-\mu_1) + \frac{1}{2}(x-\mu_0)^\top\Sigma^{-1}(x-\mu_0) + \log\frac{\phi}{1-\phi} \end{aligned}$$<p>展开：</p>
+$$\begin{aligned} \log r(x) &= -\frac{1}{2}x^\top\Sigma^{-1}x + x^\top\Sigma^{-1}\mu_1 - \frac{1}{2}\mu_1^\top\Sigma^{-1}\mu_1 \\ &\quad + \frac{1}{2}x^\top\Sigma^{-1}x - x^\top\Sigma^{-1}\mu_0 + \frac{1}{2}\mu_0^\top\Sigma^{-1}\mu_0 + \log\frac{\phi}{1-\phi} \\ &= x^\top\Sigma^{-1}(\mu_1 - \mu_0) + \frac{1}{2}(\mu_0^\top\Sigma^{-1}\mu_0 - \mu_1^\top\Sigma^{-1}\mu_1) + \log\frac{\phi}{1-\phi} \\ &= \theta^\top x + \theta_0 \end{aligned}$$<p>其中：</p>
+$$\theta = \Sigma^{-1}(\mu_1 - \mu_0), \quad \theta_0 = \frac{1}{2}(\mu_0^\top\Sigma^{-1}\mu_0 - \mu_1^\top\Sigma^{-1}\mu_1) + \log\frac{\phi}{1-\phi}$$<p>因此：</p>
+$$p(y=1|x) = \frac{1}{1+e^{-\theta^\top x - \theta_0}} = \frac{1}{1+e^{-\tilde{\theta}^\top \tilde{x}}}$$<p>这正是Logistic回归的形式（其中 $\tilde{x}$ 包含截距项）。</p>
+<hr>
+<h1 id="机器学习进阶20">机器学习进阶（20%）<a hidden class="anchor" aria-hidden="true" href="#机器学习进阶20">#</a></h1>
+<h2 id="第十题kernel-method分析">第十题：Kernel Method分析<a hidden class="anchor" aria-hidden="true" href="#第十题kernel-method分析">#</a></h2>
+<p><strong>题目：</strong> Kernel method中，若Kernel function $K(x,z) = (x^\top z + c)^2$，推导对应的feature mapping $\phi$，并讨论对于 $n$ 个样本一轮SGD，使用Kernel method和在feature map上的计算效率优化比。</p>
+<p>提示：</p>
+<ol>
+<li>基于feature map的参数更新方法为：$\theta := \theta + \alpha\sum_{i=1}^{n}(y^{(i)} - \theta^\top\phi(x^{(i)}))\phi(x^{(i)})$</li>
+<li>Kernel method的参数更新方法为：$\theta := \theta + \alpha(\tilde{y} - K\theta)$，其中 $K_j = K(x^{(i)}, x^{(j)})$</li>
+</ol>
+<p><strong>解：</strong></p>
+<p><strong>推导Feature Mapping：</strong></p>
+<p>对于 $x, z \in \mathbb{R}^d$，展开核函数：</p>
+$$\begin{aligned}
+K(x,z) &= (x^\top z + c)^2 \\
+&= (x^\top z)^2 + 2c(x^\top z) + c^2 \\
+&= \sum_{i=1}^{d}\sum_{j=1}^{d} x_i x_j z_i z_j + 2c\sum_{i=1}^{d} x_i z_i + c^2
+\end{aligned}$$<p>为了使 $K(x,z) = \phi(x)^\top \phi(z)$，构造特征映射：</p>
+$$\phi(x) = (x_1^2, x_2^2, \ldots, x_d^2, \sqrt{2}x_1x_2, \sqrt{2}x_1x_3, \ldots, \sqrt{2}x_{d-1}x_d, \sqrt{2c}x_1, \ldots, \sqrt{2c}x_d, c)$$<p>维度为：$d + \binom{d}{2} + d + 1 = d + \frac{d(d-1)}{2} + d + 1 = \frac{d(d+3)}{2} + 1 = O(d^2)$</p>
+<p><strong>计算效率比较：</strong></p>
+<ul>
+<li>
+<p><strong>Feature map方法：</strong></p>
+<ul>
+<li>计算 $\phi(x^{(i)})$：$O(d^2)$ 每个样本</li>
+<li>内积 $\theta^\top\phi(x^{(i)})$：$O(d^2)$</li>
+<li>更新 $\theta$：$O(d^2)$</li>
+<li>总计：$O(nd^2)$ 每轮SGD</li>
+</ul>
+</li>
+<li>
+<p><strong>Kernel method：</strong></p>
+<ul>
+<li>计算核矩阵 $K$（$n \times n$）：$O(n^2d)$（每个核计算需要 $O(d)$ 的内积）</li>
+<li>矩阵向量乘法 $K\theta$：$O(n^2)$</li>
+<li>参数更新：$O(n)$</li>
+<li>总计：$O(n^2d)$ 每轮</li>
+</ul>
+</li>
+</ul>
+<p><strong>效率比：</strong></p>
+$$\frac{\text{Feature map}}{\text{Kernel method}} = \frac{O(nd^2)}{O(n^2d)} = \frac{d}{n}$$<ul>
+<li>当 $n \ll d$ 时（样本少，特征多），Kernel method更高效</li>
+<li>当 $n \gg d$ 时（样本多，特征少），Feature map方法更高效</li>
+</ul>
+<hr>
+<h2 id="第十一题超平面的函数间隔和几何间隔">第十一题：超平面的函数间隔和几何间隔<a hidden class="anchor" aria-hidden="true" href="#第十一题超平面的函数间隔和几何间隔">#</a></h2>
+<p><strong>题目：</strong> 对超平面 $w^\top x + b = 0$，样本 $x^{(i)}$ 到的函数间隔 $\hat{\gamma}^{(i)}$ 与几何间隔 $\gamma^{(i)}$ 满足何关系？直接给出答案即可。</p>
+<p><strong>解：</strong></p>
+<p>函数间隔定义为：</p>
+$$\hat{\gamma}^{(i)} = y^{(i)}(w^\top x^{(i)} + b)$$<p>几何间隔定义为：</p>
+<p>$\gamma^{(i)} = \frac{y^{(i)}(w^\top x^{(i)} + b)}{\|w\|} = \frac{\hat{\gamma}^{(i)}}{\|w\|}$</p>
+<p><strong>关系：</strong></p>
+<p>$\gamma^{(i)} = \frac{\hat{\gamma}^{(i)}}{\|w\|}$</p>
+<p>几何间隔是函数间隔除以权重向量的范数，表示点到超平面的真实距离。</p>
+<h2 id="第十二题svm的lagrange函数和对偶形式">第十二题：SVM的Lagrange函数和对偶形式<a hidden class="anchor" aria-hidden="true" href="#第十二题svm的lagrange函数和对偶形式">#</a></h2>
+<p><strong>题目：</strong> 已知SVM的优化目标为：</p>
+$$
+\min_{w,b} \quad \frac{1}{2}\|w\|^2 \qquad (1)
+$$$$
+\text{s.t.} \quad y^{(i)}(w^\top x^{(i)} + b) \geq 1, \quad i=1,\ldots,n
+$$<p>请构造其Lagrange函数 $\mathcal{L}(w,b,\alpha)$。</p>
+<p>已知 $\mathcal{L}(w,b,\alpha)$ 满足Slater条件，因此强对偶成立，问题(1)最终可转化为 $\max_{\alpha;\alpha_i\geq 0}\min_w \mathcal{L}(w,b,\alpha)$，证明该对偶形式问题可进一步转化为：</p>
+$$
+\max_\alpha W(\alpha) = \max_\alpha \left(\sum_{i=1}^{n}\alpha_i - \frac{1}{2}\sum_{i,j=1}^{n}y^{(i)}y^{(j)}\alpha_i\alpha_j\langle x^{(i)}, x^{(j)}\rangle\right) \qquad (2)
+$$<p>约束条件：</p>
+$$
+\alpha_i \geq 0, \quad i=1,\ldots,n
+$$$$
+\sum_{i=1}^{n}\alpha_i y^{(i)} = 0
+$$<p><strong>解：</strong></p>
+<p><strong>步骤1：构造Lagrange函数</strong></p>
+<p>$\mathcal{L}(w,b,\alpha) = \frac{1}{2}\|w\|^2 - \sum_{i=1}^{n}\alpha_i[y^{(i)}(w^\top x^{(i)} + b) - 1]$</p>
+<p>其中 $\alpha_i \geq 0$ 为Lagrange乘子。</p>
+<p><strong>步骤2：固定 $\alpha$，对 $w$ 求导</strong></p>
+<p>$\frac{\partial \mathcal{L}}{\partial w} = w - \sum_{i=1}^{n}\alpha_i y^{(i)} x^{(i)} = 0$</p>
+<p>因此：</p>
+<p>$w = \sum_{i=1}^{n}\alpha_i y^{(i)} x^{(i)}$</p>
+<p><strong>步骤3：固定 $\alpha$，对 $b$ 求导</strong></p>
+<p>$\frac{\partial \mathcal{L}}{\partial b} = -\sum_{i=1}^{n}\alpha_i y^{(i)} = 0$</p>
+<p>因此：</p>
+<p>$\sum_{i=1}^{n}\alpha_i y^{(i)} = 0$</p>
+<p><strong>步骤4：代入Lagrange函数</strong></p>
+<p>将 $w = \sum_{i=1}^{n}\alpha_i y^{(i)} x^{(i)}$ 代入 $\mathcal{L}$：</p>
+<p>$\begin{aligned} \mathcal{L}(w,b,\alpha) &= \frac{1}{2}w^\top w - \sum_{i=1}^{n}\alpha_i y^{(i)} w^\top x^{(i)} - b\sum_{i=1}^{n}\alpha_i y^{(i)} + \sum_{i=1}^{n}\alpha_i \\ &= \frac{1}{2}\left(\sum_{i=1}^{n}\alpha_i y^{(i)} x^{(i)}\right)^\top\left(\sum_{j=1}^{n}\alpha_j y^{(j)} x^{(j)}\right) - \sum_{i=1}^{n}\alpha_i y^{(i)} \left(\sum_{j=1}^{n}\alpha_j y^{(j)} x^{(j)}\right)^\top x^{(i)} + \sum_{i=1}^{n}\alpha_i \\ &= \frac{1}{2}\sum_{i,j=1}^{n}\alpha_i\alpha_j y^{(i)}y^{(j)}\langle x^{(i)}, x^{(j)}\rangle - \sum_{i,j=1}^{n}\alpha_i\alpha_j y^{(i)}y^{(j)}\langle x^{(i)}, x^{(j)}\rangle + \sum_{i=1}^{n}\alpha_i \\ &= \sum_{i=1}^{n}\alpha_i - \frac{1}{2}\sum_{i,j=1}^{n}\alpha_i\alpha_j y^{(i)}y^{(j)}\langle x^{(i)}, x^{(j)}\rangle \end{aligned}$</p>
+<p>其中使用了 $\sum_{i=1}^{n}\alpha_i y^{(i)} = 0$，所以 $b$ 项消失。</p>
+<p>因此对偶问题为：</p>
+<p>$\max_\alpha W(\alpha) = \max_\alpha \left(\sum_{i=1}^{n}\alpha_i - \frac{1}{2}\sum_{i,j=1}^{n}y^{(i)}y^{(j)}\alpha_i\alpha_j\langle x^{(i)}, x^{(j)}\rangle\right)$</p>
+<p>约束条件为：</p>
+<p>$\begin{aligned} \alpha_i &\geq 0, \quad i=1,\ldots,n \\ \sum_{i=1}^{n}\alpha_i y^{(i)} &= 0 \end{aligned}$</p>
+<hr>
+<h2 id="第十三题线性不可分的svm与l1正则">第十三题：线性不可分的SVM与L1正则<a hidden class="anchor" aria-hidden="true" href="#第十三题线性不可分的svm与l1正则">#</a></h2>
+<p><strong>题目：</strong> 对线性不可分的训练集，SVM对应带L1正则的优化目标是什么？已知对线性可分情况的优化为：</p>
+$$ \min_{w,b} \quad \frac{1}{2}\|w\|^2 \qquad (1) $$<p> </p>
+$$ \text{s.t.} \quad y^{(i)}(w^\top x^{(i)} + b) \geq 1, \quad i=1,\ldots,n $$<p><strong>解：</strong></p>
+<p>对于线性不可分的情况，引入松弛变量 $\xi_i \geq 0$，允许某些样本违反间隔约束。</p>
+<p><strong>带L1正则的软间隔SVM优化目标为：</strong></p>
+<p>$\begin{aligned} \min_{w,b,\xi} &\quad \frac{1}{2}\|w\|^2 + C\sum_{i=1}^{n}\xi_i \\ \text{s.t.} &\quad y^{(i)}(w^\top x^{(i)} + b) \geq 1 - \xi_i, \quad i=1,\ldots,n \\ &\quad \xi_i \geq 0, \quad i=1,\ldots,n \end{aligned}$</p>
+<p>其中：</p>
+<ul>
+<li>$\xi_i$ 是松弛变量，表示样本 $i$ 违反间隔的程度</li>
+<li>$C > 0$ 是惩罚参数，控制间隔最大化与违反程度之间的权衡</li>
+<li>$C\sum_{i=1}^{n}\xi_i$ 是L1正则项（对松弛变量的惩罚）</li>
+</ul>
+<p>这个目标函数平衡了两个目标：</p>
+<ol>
+<li>最大化间隔（通过最小化 $\|w\|^2$）</li>
+<li>最小化分类错误（通过最小化 $\sum\xi_i$）</li>
+</ol>
+<hr>
+<h2 id="第十四题svm最优化问题分析">第十四题：SVM最优化问题分析<a hidden class="anchor" aria-hidden="true" href="#第十四题svm最优化问题分析">#</a></h2>
+<p><strong>题目：</strong> 已知SVM的最终优化目标为：</p>
+<p>$W(\alpha) = \sum_{i=1}^{n}\alpha_i - \frac{1}{2}\sum_{i,j=1}^{n}y^{(i)}y^{(j)}\alpha_i\alpha_j\langle x^{(i)}, x^{(j)}\rangle$</p>
+<p>假设此时正在优化 $\alpha_1$ 与 $\alpha_2$，并有 $\alpha_1 = (\zeta - \alpha_2y^{(2)})y^{(1)}$。请推导此时 $\alpha_2$ 应当更新的值。</p>
+<p><strong>解：</strong></p>
+<p><strong>简化目标函数：</strong></p>
+<p>在固定其他 $\alpha_i$ ($i \geq 3$) 的情况下，目标函数关于 $\alpha_1, \alpha_2$ 可写为：</p>
+<p>$W(\alpha_1, \alpha_2) = \alpha_1 + \alpha_2 + W_0 - \frac{1}{2}[K_{11}\alpha_1^2 + K_{22}\alpha_2^2 + 2K_{12}\alpha_1\alpha_2y^{(1)}y^{(2)}] + \text{线性项}$</p>
+<p>其中 $K_{ij} = \langle x^{(i)}, x^{(j)}\rangle$，$W_0$ 是常数项。</p>
+<p><strong>利用约束 $\alpha_1 = (\zeta - \alpha_2y^{(2)})y^{(1)}$：</strong></p>
+<p>这个约束来自 $\sum_{i=1}^{n}\alpha_i y^{(i)} = 0$，可以改写为：</p>
+<p>$\alpha_1 y^{(1)} + \alpha_2 y^{(2)} = -\sum_{i=3}^{n}\alpha_i y^{(i)} = \zeta \quad \text{（常数）}$</p>
+<p>将 $\alpha_1 = (\zeta - \alpha_2y^{(2)})y^{(1)}$ 代入目标函数，得到关于 $\alpha_2$ 的单变量优化问题。</p>
+<p>对 $\alpha_2$ 求导并令其为0，经过复杂推导（涉及预测误差），得到 $\alpha_2$ 的无约束最优解：</p>
+<p>$\alpha_2^{\text{new, unc}} = \alpha_2^{\text{old}} + \frac{y^{(2)}(E_1 - E_2)}{\eta}$</p>
+<p>其中：</p>
+<ul>
+<li>$E_i = f(x^{(i)}) - y^{(i)}$ 是预测误差</li>
+<li>$\eta = K_{11} + K_{22} - 2K_{12} = \|x^{(1)} - x^{(2)}\|^2$（特征空间距离）</li>
+</ul>
+<p><strong>考虑约束 $0 \leq \alpha_2 \leq C$：</strong></p>
+<p>根据约束 $\alpha_1 y^{(1)} + \alpha_2 y^{(2)} = \zeta$：</p>
+<ul>
+<li>若 $y^{(1)} \neq y^{(2)}$： $L = \max(0, \alpha_2^{\text{old}} - \alpha_1^{\text{old}}), \quad H = \min(C, C + \alpha_2^{\text{old}} - \alpha_1^{\text{old}})$</li>
+<li>若 $y^{(1)} = y^{(2)}$： $L = \max(0, \alpha_1^{\text{old}} + \alpha_2^{\text{old}} - C), \quad H = \min(C, \alpha_1^{\text{old}} + \alpha_2^{\text{old}})$</li>
+</ul>
+<p><strong>最终更新公式：</strong></p>
+<p>$\alpha_2^{\text{new}} = \begin{cases} H & \text{if } \alpha_2^{\text{new, unc}} > H \\ \alpha_2^{\text{new, unc}} & \text{if } L \leq \alpha_2^{\text{new, unc}} \leq H \\ L & \text{if } \alpha_2^{\text{new, unc}} < L \end{cases}$</p>
+<hr>
+<h2 id="第十五题信息增益比计算">第十五题：信息增益比计算<a hidden class="anchor" aria-hidden="true" href="#第十五题信息增益比计算">#</a></h2>
+<p><strong>题目：</strong> 计算给定数据集中四个特征的信息增益比。可保留log项，统一底数为2。</p>
+<p><a href="https://postimg.cc/N9Bhq9Cf"><img alt="image.png" loading="lazy" src="https://i.postimg.cc/Px8dD1mZ/image.png"></a></p>
+<p><strong>数据集的熵 H(D)</strong></p>
+<ul>
+<li>
+<p><strong>公式：</strong>
+</p>
+$$H(D) = -\sum_{k=1}^{K} \frac{|C_k|}{|D|} \log_2 \frac{|C_k|}{|D|}$$</li>
+<li>
+<p><strong>计算：</strong>
+</p>
+$$H(D) = -\frac{6}{15}\log_2\frac{6}{15} - \frac{9}{15}\log_2\frac{9}{15} = 0.971$$</li>
+</ul>
+<h3 id="特征1年龄">特征1：年龄<a hidden class="anchor" aria-hidden="true" href="#特征1年龄">#</a></h3>
+<p><strong>数据分布：</strong></p>
+<ul>
+<li>青年(5个)：否=3，是=2</li>
+<li>中年(5个)：否=2，是=3</li>
+<li>老年(5个)：否=1，是=4</li>
+</ul>
+<p><strong>各子集的熵</strong></p>
+<ul>
+<li><strong>青年组熵：</strong>
+$$H(D_1) = -\frac{3}{5}\log_2\frac{3}{5} - \frac{2}{5}\log_2\frac{2}{5} = 0.971$$</li>
+<li><strong>中年组熵：</strong>
+$$H(D_2) = -\frac{2}{5}\log_2\frac{2}{5} - \frac{3}{5}\log_2\frac{3}{5} = 0.971$$</li>
+<li><strong>老年组熵：</strong>
+$$H(D_3) = -\frac{1}{5}\log_2\frac{1}{5} - \frac{4}{5}\log_2\frac{4}{5} = 0.722$$</li>
+</ul>
+<p><strong>条件熵</strong></p>
+<ul>
+<li>
+<p><strong>公式：</strong>
+</p>
+$$H(D|\text{年龄}) = \sum_{i=1}^{3} \frac{|D_i|}{|D|} H(D_i)$$</li>
+<li>
+<p><strong>计算：</strong>
+</p>
+$$
+  H(D \mid \text{年龄}) = \frac{5}{15}\times 0.971 + \frac{5}{15}\times 0.971 + \frac{5}{15}\times 0.722 = \frac{1}{3}(0.971 + 0.971 + 0.722) = \frac{2.664}{3} = 0.888
+  $$</li>
+</ul>
+<p><strong>信息增益</strong></p>
+<ul>
+<li><strong>公式：</strong>
+$$\text{Gain}(\text{年龄}) = H(D) - H(D|\text{年龄})$$</li>
+<li><strong>计算：</strong>
+$$\text{Gain}(\text{年龄}) = 0.971 - 0.888 = 0.083$$</li>
+</ul>
+<p><strong>特征熵（分裂信息）</strong></p>
+<ul>
+<li><strong>公式：</strong>
+$$H_A(\text{年龄}) = -\sum_{i=1}^{3} \frac{|D_i|}{|D|} \log_2 \frac{|D_i|}{|D|}$$</li>
+<li><strong>计算：</strong>
+$$H_A(\text{年龄}) = -3 \times \frac{5}{15}\log_2\frac{5}{15} = -3 \times \frac{1}{3}\log_2\frac{1}{3}= -\log_2\frac{1}{3} = \log_2 3 = 1.585$$</li>
+</ul>
+<p><strong>信息增益比</strong></p>
+<ul>
+<li><strong>公式：</strong>
+$$\text{Gain\_ratio}(\text{年龄}) = \frac{\text{Gain}(\text{年龄})}{H_A(\text{年龄})}$$</li>
+<li><strong>计算：</strong>
+$$\text{Gain\_ratio}(\text{年龄}) = \frac{0.083}{1.585} = 0.052$$</li>
+</ul>
+<h3 id="特征2有工作">特征2：有工作<a hidden class="anchor" aria-hidden="true" href="#特征2有工作">#</a></h3>
+<p><strong>数据分布：</strong></p>
+<ul>
+<li>否(10个)：否=6，是=4</li>
+<li>是(5个)：否=0，是=5</li>
+</ul>
+<p><strong>各子集的熵</strong></p>
+<ul>
+<li><strong>无工作组熵：</strong>
+$$H(D_1) = -\frac{6}{10}\log_2\frac{6}{10} - \frac{4}{10}\log_2\frac{4}{10} = 0.971$$</li>
+<li><strong>有工作组熵：</strong>
+$$H(D_2) = -\frac{0}{5}\log_2\frac{0}{5} - \frac{5}{5}\log_2\frac{5}{5} = 0$$</li>
+</ul>
+<p><strong>条件熵</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$
+  \begin{aligned}
+  H(D\mid\text{有工作})
+  &= \frac{10}{15} \times 0.971 + \frac{5}{15} \times 0 \\[4pt]
+  &= 0.647 + 0 \\[4pt]
+  &= 0.647
+  \end{aligned}
+  $$</li>
+</ul>
+<p><strong>信息增益</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain}(\text{有工作}) = 0.971 - 0.647 = 0.324$$</li>
+</ul>
+<p><strong>特征熵（分裂信息）</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$H_A(\text{有工作}) = -\frac{10}{15}\log_2\frac{10}{15} - \frac{5}{15}\log_2\frac{5}{15} = 0.918$$</li>
+</ul>
+<p><strong>信息增益比</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain\_ratio}(\text{有工作}) = \frac{0.324}{0.918} = 0.353$$</li>
+</ul>
+<h3 id="特征3有自己的房子">特征3：有自己的房子<a hidden class="anchor" aria-hidden="true" href="#特征3有自己的房子">#</a></h3>
+<p><strong>数据分布：</strong></p>
+<ul>
+<li>否(9个)：否=6，是=3</li>
+<li>是(6个)：否=0，是=6</li>
+</ul>
+<p><strong>各子集的熵</strong></p>
+<ul>
+<li><strong>无房组熵：</strong>
+$$H(D_1) = -\frac{6}{9}\log_2\frac{6}{9} - \frac{3}{9}\log_2\frac{3}{9} = 0.918$$</li>
+<li><strong>有房组熵：</strong>
+$$H(D_2) = -\frac{0}{6}\log_2\frac{0}{6} - \frac{6}{6}\log_2\frac{6}{6} = 0$$</li>
+</ul>
+<p><strong>条件熵</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$
+  \begin{aligned}
+  H(D\mid\text{有房})
+  &= \frac{9}{15} \times 0.918 + \frac{6}{15} \times 0 \\[4pt]
+  &= 0.551 + 0 \\[4pt]
+  &= 0.551
+  \end{aligned}
+  $$</li>
+</ul>
+<p><strong>信息增益</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain}(\text{有房}) = 0.971 - 0.551 = 0.420$$</li>
+</ul>
+<p><strong>特征熵（分裂信息）</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$H_A(\text{有房}) = -\frac{9}{15}\log_2\frac{9}{15} - \frac{6}{15}\log_2\frac{6}{15} = 0.971$$</li>
+</ul>
+<p><strong>信息增益比</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain\_ratio}(\text{有房}) = \frac{0.420}{0.971} = 0.433$$</li>
+</ul>
+<h3 id="特征4信贷情况">特征4：信贷情况<a hidden class="anchor" aria-hidden="true" href="#特征4信贷情况">#</a></h3>
+<p><strong>数据分布：</strong></p>
+<ul>
+<li>一般(5个)：否=4，是=1</li>
+<li>好(6个)：否=2，是=4</li>
+<li>非常好(4个)：否=0，是=4</li>
+</ul>
+<p><strong>各子集的熵</strong></p>
+<ul>
+<li><strong>一般组熵：</strong>
+$$H(D_1) = -\frac{4}{5}\log_2\frac{4}{5} - \frac{1}{5}\log_2\frac{1}{5} = 0.722$$</li>
+<li><strong>好组熵：</strong>
+$$H(D_2) = -\frac{2}{6}\log_2\frac{2}{6} - \frac{4}{6}\log_2\frac{4}{6} = 0.918$$</li>
+<li><strong>非常好组熵：</strong>
+$$H(D_3) = -\frac{0}{4}\log_2\frac{0}{4} - \frac{4}{4}\log_2\frac{4}{4} = 0$$</li>
+</ul>
+<p><strong>条件熵</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$
+  \begin{aligned}
+  H(D\mid\text{信贷})
+  &= \frac{5}{15} \times 0.722 + \frac{6}{15} \times 0.918 + \frac{4}{15} \times 0 \\[4pt]
+  &= 0.241 + 0.367 + 0 \\[4pt]
+  &= 0.608
+  \end{aligned}
+  $$</li>
+</ul>
+<p><strong>信息增益</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain}(\text{信贷}) = 0.971 - 0.608 = 0.363$$</li>
+</ul>
+<p><strong>特征熵（分裂信息）</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$H_A(\text{信贷}) = -\frac{5}{15}\log_2\frac{5}{15} - \frac{6}{15}\log_2\frac{6}{15} - \frac{4}{15}\log_2\frac{4}{15} = 1.577$$</li>
+</ul>
+<p><strong>信息增益比</strong></p>
+<ul>
+<li><strong>计算：</strong>
+$$\text{Gain\_ratio}(\text{信贷}) = \frac{0.363}{1.577} = 0.232$$</li>
+</ul>
+<p><strong>结论：有自己的房子的信息增益比最大(0.433)，应优先选择该特征进行分裂。</strong></p>
+<h2 id="第十六题xgboost损失函数二阶泰勒展开">第十六题：XGBoost损失函数二阶泰勒展开<a hidden class="anchor" aria-hidden="true" href="#第十六题xgboost损失函数二阶泰勒展开">#</a></h2>
+<p><strong>题目：</strong> 已知XGBoost优化第t棵树时的损失函数为：</p>
+<p>$\mathcal{L}^{(t)} = \sum_{i=1}^{n}l(y_i, \hat{y}*i^{(t-1)} + f_t(x_i)) + \gamma T + \frac{1}{2}\lambda\sum*{j=1}^{T}w_j^2$</p>
+<p>请推导 $l(y_i, \hat{y}_i^{(t-1)} + f_t(x_i))$ 在 $l(y_i, \hat{y}_i^{(t-1)})$ 处对于 $f_t(x_i)$ 的二阶泰勒展开。其中，一阶和二阶导数可使用：</p>
+<p>$g_i = \frac{\partial l(y_i, \hat{y}_i)}{\partial \hat{y}*i}\Big|*{\hat{y}_i^{(t-1)}}, \quad h_i = \frac{\partial^2 l(y_i, \hat{y}_i)}{\partial \hat{y}*i^2}\Big|*{\hat{y}_i^{(t-1)}}$</p>
+<p>在此基础上，推导叶子节点 $j$ 对应的 $w_j^*$ 满足：</p>
+<p>$w_j^* = -\frac{\sum_{i \in \mathcal{I}*j}g_i}{\sum*{i \in \mathcal{I}_j}h_i + \lambda}$</p>
+<p>其中，$\mathcal{I}_j = \{i \mid q(x_i) = j\}$ 表示属于叶子节点 $j$ 的样本集合。</p>
+<p><strong>解：</strong></p>
+<p><strong>二阶泰勒展开</strong></p>
+<p>在 $\hat{y}_i^{(t-1)}$ 处对 $l(y_i, \hat{y}_i^{(t-1)} + f_t(x_i))$ 关于 $f_t(x_i)$ 进行二阶泰勒展开：</p>
+<p>$\begin{aligned} l(y_i, \hat{y}_i^{(t-1)} + f_t(x_i)) &\approx l(y_i, \hat{y}_i^{(t-1)}) + \frac{\partial l(y_i, \hat{y}_i)}{\partial \hat{y}*i}\Big|*{\hat{y}_i^{(t-1)}} \cdot f_t(x_i) \\ &\quad + \frac{1}{2}\frac{\partial^2 l(y_i, \hat{y}_i)}{\partial \hat{y}*i^2}\Big|*{\hat{y}_i^{(t-1)}} \cdot f_t(x_i)^2 \\ &= l(y_i, \hat{y}_i^{(t-1)}) + g_i f_t(x_i) + \frac{1}{2}h_i f_t(x_i)^2 \end{aligned}$</p>
+<p>因此损失函数变为：</p>
+<p>$\mathcal{L}^{(t)} \approx \sum_{i=1}^{n}[l(y_i, \hat{y}*i^{(t-1)}) + g_i f_t(x_i) + \frac{1}{2}h_i f_t(x_i)^2] + \gamma T + \frac{1}{2}\lambda\sum*{j=1}^{T}w_j^2$</p>
+<p>去掉常数项 $\sum_{i=1}^{n}l(y_i, \hat{y}_i^{(t-1)})$：</p>
+<p>$\tilde{\mathcal{L}}^{(t)} = \sum_{i=1}^{n}[g_i f_t(x_i) + \frac{1}{2}h_i f_t(x_i)^2] + \gamma T + \frac{1}{2}\lambda\sum_{j=1}^{T}w_j^2$</p>
+<p><strong>推导叶子权重 $w_j^*$</strong></p>
+<p>对于树模型，$f_t(x_i) = w_{q(x_i)}$，其中 $q(x_i)$ 表示样本 $i$ 落在的叶子节点。</p>
+<p>将样本按叶子节点分组：</p>
+$$
+\tilde{\mathcal{L}}^{(t)} = \sum_{j=1}^{T}\left[\left(\sum_{i \in \mathcal{I}*j}g_i\right)w_j + \frac{1}{2}\left(\sum*{i \in \mathcal{I}_j}h_i + \lambda\right)w_j^2\right] + \gamma T
+$$<p>
+记 $G_j = \sum_{i \in \mathcal{I}*j}g_i$，$H_j = \sum*{i \in \mathcal{I}_j}h_i$，则：</p>
+$$
+\tilde{\mathcal{L}}^{(t)} = \sum_{j=1}^{T}\left[G_j w_j + \frac{1}{2}(H_j + \lambda)w_j^2\right] + \gamma T
+$$<p>
+对 $w_j$ 求导并令其为0：</p>
+<p>$\frac{\partial \tilde{\mathcal{L}}^{(t)}}{\partial w_j} = G_j + (H_j + \lambda)w_j = 0$</p>
+<p>解得：</p>
+$$
+w_j^* = -\frac{G_j}{H_j + \lambda} = -\frac{\sum_{i \in \mathcal{I}*j}g_i}{\sum*{i \in \mathcal{I}_j}h_i + \lambda}
+$$<h1 id="语言模型--gpus40">语言模型 &amp; GPUs（40%）<a hidden class="anchor" aria-hidden="true" href="#语言模型--gpus40">#</a></h1>
+<h2 id="第十七题-kv-cache-计算">第十七题 KV Cache 计算<a hidden class="anchor" aria-hidden="true" href="#第十七题-kv-cache-计算">#</a></h2>
+<p><strong>题目：</strong> 假设我们要在一台服务器上对一个采用多头注意力（MHA）的 Transformer 模型进行推理。模型参数如下：隐藏层维度 $d = 4096$，层数 $L = 32$，注意力头数 $h = 32$，采用 FP16 半精度存储（每个元素占 2 Bytes）。</p>
+<ol>
+<li>请给出生成第 $N$ 个 token 时，KV Cache 新增存储占用的计算公式。</li>
+<li>当 Batch Size $B = 1$，序列长度达到 $N = 1024$ 时，请计算该请求在显存中占用的 KV Cache 总量（单位：MB）。</li>
+</ol>
+<p><strong>解：</strong></p>
+<p><strong>1. KV Cache 新增存储计算公式</strong></p>
+<p>生成第 $N$ 个 token 时，每一层需要存储该 token 的 Key 和 Value 向量。</p>
+<ul>
+<li>每个 token 的 K 和 V 向量维度均为 $d$</li>
+<li>总层数为 $L$</li>
+<li>注意力头数 $h=32$</li>
+<li>每个元素占 2 Bytes（FP16）</li>
+</ul>
+<p>因此，生成第 $N$ 个 token 时，KV Cache 新增存储占用为：</p>
+$$\text{新增存储} = 2 \times L \times d \times 2 \text{ Bytes} = 4Ld \text{ Bytes}=512KB$$<p>其中第一个 2 表示 K 和 V 两部分。</p>
+<p><strong>2. 序列长度 N=1024 时的总 KV Cache</strong></p>
+<p>当序列长度为 $N = 1024$，Batch Size $B = 1$ 时：</p>
+$$\begin{aligned} \text{总存储} &= B \times N \times 2 \times L \times d \times 2 \text{ Bytes} \\&= 1 \times 1024 \times 2 \times 32 \times 4096 \times 2 \text{ Bytes} \\&= 1024 \times 2 \times 32 \times 4096 \times 2 \text{ Bytes} \\&= 536{,}870{,}912 \text{ Bytes} \\ &= 512 \text{ MB} \end{aligned}$$<hr>
+<h2 id="第十八题-rope-旋转位置编码">第十八题 RoPE 旋转位置编码<a hidden class="anchor" aria-hidden="true" href="#第十八题-rope-旋转位置编码">#</a></h2>
+<p><strong>题目：</strong> 对于位置 $m$ 的查询向量 $q_m$ 和位置 $n$ 的键向量 $k_n$：</p>
+<ol>
+<li>证明旋转位置编码（RoPE）下变换后的向量 $\tilde{q}_m$ 和 $\tilde{k}_n$ 的点积仅和 $q_m$、$k_n$ 及相对位置 $m - n$ 相关；</li>
+<li>进一步说明 RoPE 会对 q/k/v 向量中的哪几个进行位置信息注入。</li>
+</ol>
+<p><strong>提示：</strong> RoPE 通过旋转矩阵 $R_{pos}$ 将位置信息注入向量。</p>
+<p><strong>解：</strong></p>
+<p><strong>1. RoPE 点积仅与相对位置相关的证明</strong></p>
+<p>RoPE 通过旋转矩阵将位置信息编码。对于二维情况，旋转矩阵为：</p>
+$$R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$$<p>对于位置 $m$ 和 $n$，变换后的向量为：</p>
+$$\tilde{q}_m = R_{m\theta} q_m, \quad \tilde{k}_n = R_{n\theta} k_n$$<p>它们的点积为：</p>
+$$
+\begin{aligned}
+\tilde{q}_m^\top \tilde{k}_n
+&= (R_{m\theta} q_m)^\top (R_{n\theta} k_n) \\
+&= q_m^\top R_{m\theta}^\top R_{n\theta} k_n \\
+&= q_m^\top R_{(n-m)\theta} k_n
+\end{aligned}
+$$<p>因此变换后的向量 $\tilde{q}_m$ 和 $\tilde{k}_n$ 的点积仅和 $q_m$、$k_n$ 及相对位置 $m - n$ 相关</p>
+<p><strong>2. RoPE 对哪些向量注入位置信息</strong></p>
+<p>RoPE 仅对 <strong>Query (q) 和 Key (k)</strong> 向量注入位置信息，<strong>不对 Value (v)</strong> 向量进行位置编码。</p>
+<p>原因是注意力机制通过 $\text{softmax}(q^\top k)$ 计算注意力权重，位置信息需要影响这个权重计算，而 Value 向量仅用于加权求和，不需要位置编码。</p>
+<hr>
+<h2 id="第十九题-transformer-block-的-post-norm-和-pre-norm">第十九题 Transformer Block 的 Post-norm 和 Pre-norm<a hidden class="anchor" aria-hidden="true" href="#第十九题-transformer-block-的-post-norm-和-pre-norm">#</a></h2>
+<p><strong>题目：</strong> 对于 Transformer Block 的 Post-norm 有：</p>
+$$
+x_{l+1} = x_l + \text{Sublayer}(x_l)
+$$$$
+y_{l+1} = \text{LN}(x_{l+1})
+$$<ol>
+<li>请相应给出 Pre-norm 的计算公式；</li>
+<li>结合梯度分析证明 Post-norm 相比 Pre-norm 更易出现梯度消失或放大，并指出其中的梯度恒等映射通路。</li>
+</ol>
+<p><strong>解：</strong></p>
+<p><strong>1. Pre-norm 计算公式</strong></p>
+<p>Pre-norm 将 LayerNorm 应用在 Sublayer 之前：</p>
+$$
+x_{l+1} = x_l + \text{Sublayer}(\text{LN}(x_l))
+$$<p>
+<strong>2. 梯度分析</strong></p>
+<p><strong>Post-norm 的梯度：</strong></p>
+<p>对于 Post-norm：$x_{l+1} = \text{LN}(x_l + \text{Sublayer}(x_l))$</p>
+<p>反向传播时： </p>
+$$\frac{\partial \mathcal{L}}{\partial x_l} = \frac{\partial \mathcal{L}}{\partial x_{l+1}} \cdot \frac{\partial \text{LN}}{\partial (x_l + \text{Sublayer}(x_l))} \cdot \left(I + \frac{\partial \text{Sublayer}}{\partial x_l}\right)$$<p><strong>多层传播</strong>：从第 $L$ 层到第 0 层： </p>
+$$\frac{\partial \mathcal{L}}{\partial x_0} = \frac{\partial \mathcal{L}}{\partial x_L} \prod_{l=0}^{L-1} \left[\frac{\partial \text{LN}}{\partial (\cdot)} \cdot \left(I + \frac{\partial \text{Sublayer}_l}{\partial x_l}\right)\right]$$<p>由于需要经过 $L$ 个 LayerNorm 的导数<strong>连乘</strong>：</p>
+<ul>
+<li>若 $\left|\frac{\partial \text{LN}}{\partial (\cdot)}\right| < 1$，梯度<strong>指数级衰减</strong>（梯度消失）</li>
+<li>若 $\left|\frac{\partial \text{LN}}{\partial (\cdot)}\right| > 1$，梯度<strong>指数级放大</strong>（梯度爆炸）</li>
+</ul>
+<hr>
+<p><strong>Pre-norm 的梯度：</strong></p>
+<p>对于 Pre-norm：$ x_{l+1} = x_l + \text{Sublayer}(\text{LN}(x_l))$</p>
+<p>反向传播时： </p>
+$$\frac{\partial \mathcal{L}}{\partial x_l} = \frac{\partial \mathcal{L}}{\partial x_{l+1}} \cdot \left(I + \frac{\partial \text{Sublayer}(\text{LN}(x_l))}{\partial x_l}\right)$$<p><strong>多层传播</strong>：从第 $L$ 层到第 0 层： </p>
+$$\frac{\partial \mathcal{L}}{\partial x_0} = \frac{\partial \mathcal{L}}{\partial x_L} \prod_{l=0}^{L-1} \left(I + \frac{\partial \text{Sublayer}_l(\text{LN}(x_l))}{\partial x_l}\right)$$<p>展开后包含恒等路径： </p>
+$$\frac{\partial \mathcal{L}}{\partial x_0} = \frac{\partial \mathcal{L}}{\partial x_L} + \text{其他梯度项}$$<p><strong>关键</strong>：$\frac{\partial \mathcal{L}}{\partial x_L}$ 可以<strong>直接传播</strong>到 $x_0$，不受层数 $L$ 影响。</p>
+<hr>
+<p><strong>梯度恒等映射通路：</strong></p>
+<p>$\frac{\partial x_{l+1}}{\partial x_l}$ 包含恒等项 $I$，即： </p>
+$$\frac{\partial x_{l+1}}{\partial x_l} = I + \frac{\partial \text{Sublayer}(\text{LN}(x_l))}{\partial x_l}$$<p>这个恒等项提供了一条<strong>直接的梯度传播路径</strong>： </p>
+$$x_0 \xleftarrow{I} x_1 \xleftarrow{I} \cdots \xleftarrow{I} x_L$$<p>即使 Sublayer 的梯度很小，梯度仍能通过恒等映射传播，<strong>避免梯度消失</strong>。</p>
+<hr>
+<p><strong>结论：</strong></p>
+<ul>
+<li><strong>Post-norm</strong>：梯度需经过 $L$ 个 LayerNorm 导数连乘，容易出现梯度消失或爆炸，且<strong>无恒等映射通路</strong></li>
+<li><strong>Pre-norm</strong>：存在梯度恒等映射通路（残差连接在 LayerNorm 之外），梯度可直接传播，训练更稳定</li>
+</ul>
+<hr>
+<h2 id="第二十题-gated-attention-的-output-计算">第二十题 Gated Attention 的 Output 计算<a hidden class="anchor" aria-hidden="true" href="#第二十题-gated-attention-的-output-计算">#</a></h2>
+<p><strong>题目：</strong> 已知 MHA 中第 $k$ 层第 $i$ 位置 token 的 output 表征计算如下：</p>
+$$o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right)W_O^k = \sum_{j=0}^{i} S_{ij}^k \cdot X_j(W_V^k W_O^k)$$<p>请相应给出下图 Gated Attention 中 G1/G2/G3 对应的 output $o_i^k$ 计算方法。</p>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMaaVkD4vYHHhYG1XV27CSCfUu4qUgAAl4Maxs22shW0DMt85pxMMwBAAMCAAN3AAM4BA.png"></p>
+<p>注意：可用 Non-Linearity-Map 算子表示 element-wise gating 机制，即 </p>
+$$Y' = Y \odot \sigma(XW_\theta) = \text{Non-Linearity-Map}(Y)$$<p><strong>解答：</strong></p>
+<p><strong>G1：在聚合后的结果上进行门控（Post-Aggregation Gating）</strong></p>
+<p>首先计算标准的注意力聚合结果： </p>
+$$ H_i^k = \sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k $$<p>对聚合结果应用门控后再进行输出投影：
+</p>
+$$
+o_i^k = \text{Non-Linearity-Map}(H_i^k) \cdot W_O^k = \text{Non-Linearity-Map}\left(\sum_{j=0}^{i} S_{ij}^k \cdot X_j W_V^k\right) W_O^k
+$$<p>
+<strong>G2：在Value上进行门控（Value Gating）</strong></p>
+<p>对每个位置的Value表示先应用门控，再进行注意力聚合：
+</p>
+$$
+o_i^k = \left(\sum_{j=0}^{i} S_{ij}^k \cdot \text{Non-Linearity-Map}(X_j W_V^k)\right) W_O^k
+$$<p>
+<strong>G3：在Key上进行门控（Key Gating）</strong></p>
+<p>对Key表示应用门控，影响注意力权重的计算：</p>
+<p>注意力权重为： </p>
+$$ \tilde{S}_{ij}^k = \text{softmax}\left(\frac{Q_i^k \cdot (\text{Non-Linearity-Map} (X_j W_K^k))^T}{\sqrt{d_k}}\right) $$<p>最终输出为： </p>
+$$ o_i^k = \left(\sum_{j=0}^{i} \tilde{S}_{ij}^k \cdot X_j W_V^k\right) W_O^k $$<hr>
+<h2 id="第二十一题-gpt-oss-20b-架构分析">第二十一题 GPT-OSS 20B 架构分析<a hidden class="anchor" aria-hidden="true" href="#第二十一题-gpt-oss-20b-架构分析">#</a></h2>
+<p><strong>题目：</strong> GPT-OSS 20B 架构相比标准 Transformer 有多处改动，请依次文字分析各个改动的具体内容与意义：</p>
+<ol>
+<li>RoPE</li>
+<li>RMSNorm</li>
+<li>GQA</li>
+<li>MoE</li>
+<li>SwiGLU</li>
+</ol>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMbaVkEaPxJiLSOOUpltJRujxULRC8AAmUMaxs22shWu9iZ7u-CKO8BAAMCAAN3AAM4BA.png"></p>
+<p><strong>解：</strong></p>
+<p><strong>1. RoPE（Rotary Position Embedding，旋转位置编码）</strong></p>
+<p><strong>内容：</strong> 旋转位置编码，通过旋转矩阵将位置信息注入 Query 和 Key 向量。</p>
+<p><strong>意义：</strong></p>
+<ul>
+<li>相对位置编码：Query 和 Key 的点积仅依赖于相对位置 $m-n$，而非绝对位置</li>
+<li>外推性好：可以处理训练时未见过的序列长度</li>
+<li>计算高效：通过旋转操作直接编码位置，无需额外的可学习位置嵌入参数</li>
+</ul>
+<p><strong>2. RMSNorm（Root Mean Square Normalization，均方根归一化）</strong></p>
+<p><strong>内容：</strong> 简化的 LayerNorm，公式为：</p>
+$$y = \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^{d} x_i^2 + \epsilon}} \cdot \gamma$$<p>不计算均值，只进行缩放归一化。</p>
+<p><strong>意义：</strong></p>
+<ul>
+<li>计算效率高：省去均值计算和中心化操作</li>
+<li>参数更少：只需 scale 参数 $\gamma$，不需要 shift 参数 $\beta$</li>
+<li>性能相当：在实践中与 LayerNorm 效果相当或更好</li>
+</ul>
+<p><strong>3. GQA（Grouped Query Attention，分组查询注意力）</strong></p>
+<p><strong>内容：</strong> 将多个 Query head 分组共享同一组 Key 和 Value head。</p>
+<p><strong>对比</strong>：</p>
+<ul>
+<li>MHA：$n_h$ 个 Query，$n_h$ 对 KV</li>
+<li>GQA：$n_h$ 个 Query，$n_g$ 对 KV（$n_g < n_h$）</li>
+<li>MQA：$n_h$ 个 Query，$1$ 对 KV</li>
+</ul>
+<p><strong>意义：</strong></p>
+<ul>
+<li>减少 KV Cache：多个 Query 共享 KV，显著降低显存占用</li>
+<li>推理加速：减少 KV 读取的内存带宽需求</li>
+<li>性能折中：介于 MHA 和 MQA 之间，平衡质量与效率</li>
+</ul>
+<p><strong>4. MoE（Mixture of Experts，混合专家模型）</strong></p>
+<p><strong>内容：</strong> 使用路由器（Router/Gate）动态选择激活的专家（Expert FFN），每个 token 只激活 Top-K 个专家。</p>
+<p><strong>意义：</strong></p>
+<ul>
+<li>增加模型容量：总参数量大幅增加（如 Mixtral 8x7B 有 47B 参数）</li>
+<li>稀疏激活：每个 token 只激活少量专家（如 Top-2），实际计算量接近小模型</li>
+<li>计算效率：在参数量增加的同时保持推理速度</li>
+<li>专业化：不同专家学习处理不同类型或领域的输入</li>
+</ul>
+<p><strong>5. SwiGLU（Swish-Gated Linear Unit，Swish门控线性单元）</strong></p>
+<p><strong>内容：</strong> 激活函数，结合 Swish 激活和门控机制：</p>
+$$\text{SwiGLU}(x, W_1, W_2, W_3) = (\text{Swish}(xW_1) \odot xW_2) W_3$$<p>其中 $\text{Swish}(x) = x \cdot \sigma(x)$</p>
+<p><strong>意义：</strong></p>
+<ul>
+<li>性能提升：比标准 ReLU/GELU 在多数任务上效果更好</li>
+<li>门控机制：允许模型动态控制信息流</li>
+<li>平滑激活：Swish 的平滑性有助于梯度优化</li>
+</ul>
+<hr>
+<h2 id="第二十二题-roofline-model-分析">第二十二题 Roofline Model 分析<a hidden class="anchor" aria-hidden="true" href="#第二十二题-roofline-model-分析">#</a></h2>
+<p><strong>题目：</strong> 结合下列代码和结果，设 repeat=32 时，f 函数在 GPU 上执行时用于数据移动和计算的时间分别为 $T_{\text{move}}$ 和 $T_{\text{comp}}$，并假设此时恰处于 Memory 和计算的平衡点，依次分析：</p>
+<ol>
+<li>repeat=16 时，用于数据移动和计算的时间各是多少，此时 GPU 处于 Memory-bounded or Compute-bounded?</li>
+<li>repeat=64 时，用于数据移动和计算的时间各是多少，此时 GPU 处于 Memory-bounded or Compute-bounded?</li>
+</ol>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMcaVkEu8uG03Y0kNNKYbEnMFGQ_3gAAmcMaxs22shWv09g4YaTzuoBAAMCAAN3AAM4BA.png"></p>
+<p><strong>解：</strong></p>
+<p><strong>分析</strong></p>
+<p>从图中可以看出：</p>
+<ul>
+<li>Runtime 在 repeat=32 之前增长缓慢，之后快速增长</li>
+<li>FLOPS 逐渐增加并趋于平稳</li>
+<li>Memory Bandwidth 在 repeat=32 之前保持高位，之后急剧下降</li>
+</ul>
+<p>这表明在 repeat=32 时达到平衡点，此时： </p>
+$$T_{\text{move}} = T_{\text{comp}}$$<p><strong>1. repeat=16 时</strong></p>
+<p>计算量减半： $T_{\text{comp}}^{(16)} = \frac{1}{2} T_{\text{comp}}$</p>
+<p>数据移动量不变（输入输出大小固定）： $T_{\text{move}}^{(16)} = T_{\text{move}}$</p>
+<p>总时间： $T_{\text{total}}^{(16)} = T_{\text{move}}^{(16)} + T_{\text{comp}}^{(16)} = T_{\text{move}} + \frac{1}{2}T_{\text{comp}} = \frac{3}{2}T_{\text{move}}$</p>
+<p>由于 $T_{\text{move}}^{(16)} > T_{\text{comp}}^{(16)}$，GPU 处于 <strong>Memory-bounded</strong>。</p>
+<p><strong>2. repeat=64 时</strong></p>
+<p>计算量翻倍： $T_{\text{comp}}^{(64)} = 2T_{\text{comp}}$</p>
+<p>数据移动量不变： $T_{\text{move}}^{(64)} = T_{\text{move}}$</p>
+<p>总时间： $T_{\text{total}}^{(64)} = T_{\text{move}}^{(64)} + T_{\text{comp}}^{(64)} = T_{\text{move}} + 2T_{\text{comp}} = 3T_{\text{move}}$</p>
+<p>由于 $T_{\text{comp}}^{(64)} > T_{\text{move}}^{(64)}$，GPU 处于 <strong>Compute-bounded</strong>。</p>
+<hr>
+<h2 id="第二十三题-operation-intensity-计算">第二十三题 Operation Intensity 计算<a hidden class="anchor" aria-hidden="true" href="#第二十三题-operation-intensity-计算">#</a></h2>
+<p><strong>题目：</strong> GPU 的 Operation Intensity 定义为浮点操作数 FLOPS 与数据移动（Bytes）的比值，请计算并对比 LayerNorm 和 RMSNorm 的 Operation Intensity。</p>
+<p>注意：d=8192，dtype=bf16，所有数据初始存于全局 DRAM，结果需写回全局 DRAM，且 SRAM 足够存放所有中间计算结果。</p>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMdaVkE5ebiNBknuzXWDjhSNOcBaygAAmgMaxs22shWLZLpaHwFwc0BAAMCAAN3AAM4BA.png"></p>
+<p><strong>解：</strong></p>
+<h3 id="layernorm">LayerNorm<a hidden class="anchor" aria-hidden="true" href="#layernorm">#</a></h3>
+<p><strong>计算过程：</strong></p>
+<ol>
+<li>计算均值：$\mu = \frac{1}{d}\sum_{i=1}^d x_i$ → $d$ 次加法，1 次除法 ≈ $d$ FLOPs</li>
+<li>计算方差：$\sigma^2 = \frac{1}{d}\sum_{i=1}^d (x_i - \mu)^2$ → $d$ 次减法，$d$ 次乘法，$d$ 次加法，1 次除法 ≈ $3d$ FLOPs</li>
+<li>归一化和缩放：$y_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma_i + \beta_i$ →$d$ 次除法，$d$ 次乘法，$d$ 次加法 ≈ $3d$ FLOPs</li>
+</ol>
+<p><strong>总计算量：</strong> $7d$ FLOPs</p>
+<p><strong>数据移动：</strong></p>
+<ul>
+<li>读取 $x$：$d \times 2$ bytes</li>
+<li>读取 $\gamma, \beta$：$2d \times 2$ bytes</li>
+<li>写入 $y$：$d \times 2$ bytes</li>
+<li>总计：$8d$ bytes</li>
+</ul>
+<p><strong>Operation Intensity：</strong> </p>
+$$\text{OI}_{\text{LN}} = \frac{7d}{8d} = 0.875 \text{ FLOP/Byte}$$<h3 id="rmsnorm">RMSNorm<a hidden class="anchor" aria-hidden="true" href="#rmsnorm">#</a></h3>
+<p><strong>计算过程：</strong></p>
+<ol>
+<li>计算 RMS：$\text{RMS} = \sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2}$ → $d$ 次乘法，$d$ 次加法，1 次除法，1 次开方 ≈ $2d$ FLOPs</li>
+<li>归一化和缩放：$y_i = \frac{x_i}{\text{RMS}} \cdot \gamma_i$ → $d$ 次除法，$d$ 次乘法 ≈ $2d$ FLOPs</li>
+</ol>
+<p><strong>总计算量：</strong> $4d$ FLOPs</p>
+<p><strong>数据移动：</strong></p>
+<ul>
+<li>读取 $x$：$d \times 2$ bytes</li>
+<li>读取 $\gamma$：$d \times 2$ bytes</li>
+<li>写入 $y$：$d \times 2$ bytes</li>
+<li>总计：$6d$ bytes</li>
+</ul>
+<p><strong>Operation Intensity：</strong> </p>
+$$\text{OI}_{\text{RMS}} = \frac{4d}{6d} = \frac{2}{3} \text{ FLOP/Byte}$$<h3 id="对比">对比<a hidden class="anchor" aria-hidden="true" href="#对比">#</a></h3>
+<p>LayerNorm 的 OI 为 0.875 FLOP/Byte，RMSNorm 的 OI 为 2/3 FLOP/Byte。两者都很低，属于 <strong>Memory-bounded</strong> 操作。RMSNorm 虽然计算量更少，但由于数据移动占主导，实际加速效果有限。</p>
+<hr>
+<h2 id="第二十四题-a100-operation-intensity-分析">第二十四题 A100 Operation Intensity 分析<a hidden class="anchor" aria-hidden="true" href="#第二十四题-a100-operation-intensity-分析">#</a></h2>
+<p><strong>题目：</strong> 以 A100 为例，分析 FP32 和 BF16（TensorCore，考虑 dense 即左边列的 FLOPS）类型在进入 Compute-bounded 时需要的 Operation Intensity 分别是多少。Bandwidth 统一简化为 2TB/s。</p>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMeaVkFA_7YHDJPlNHkgnWBQ0xw0lcAAmkMaxs22shWhC8rkSclW2cBAAMCAAN3AAM4BA.png"></p>
+<p><strong>解：</strong></p>
+<p>从表格中读取：</p>
+<ul>
+<li>FP32：19.5 TFLOPS</li>
+<li>BF16（TensorCore）：312 TFLOPS</li>
+<li>Memory Bandwidth：2TB/s = 2000 GB/s</li>
+</ul>
+<p><strong>Compute-bounded 临界点</strong></p>
+<p>当计算时间等于数据传输时间时，达到平衡点：</p>
+$$\frac{\text{FLOPs}}{\text{Peak FLOPS}} = \frac{\text{Bytes}}{\text{Bandwidth}}$$<p>因此临界 Operation Intensity 为：</p>
+$$\text{OI}_{\text{critical}} = \frac{\text{Peak FLOPS}}{\text{Bandwidth}}$$<p><strong>FP32</strong></p>
+$$\text{OI}_{\text{FP32}} = \frac{19.5 \text{ TFLOPS}}{2 \text{ TB/s}} = \frac{19.5}{2} = 9.75 \text{ FLOP/Byte}$$<p><strong>BF16 TensorCore</strong></p>
+$$\text{OI}_{\text{BF16}} = \frac{312 \text{ TFLOPS}}{2 \text{ TB/s}} = \frac{312}{2} = 156 \text{ FLOP/Byte}$$<p><strong>结论</strong></p>
+<ul>
+<li>要让 <strong>FP32</strong> 计算进入 Compute-bounded，Operation Intensity 需要 <strong>≥ 9.75 FLOP/Byte</strong></li>
+<li>要让 <strong>BF16（TensorCore）</strong> 计算进入 Compute-bounded，Operation Intensity 需要 <strong>≥ 156 FLOP/Byte</strong></li>
+</ul>
+<p>这解释了为什么使用 TensorCore 进行矩阵乘法（OI 通常为 $O(N)$，其中 $N$ 是矩阵维度）更容易达到计算瓶颈，而 LayerNorm/RMSNorm（OI ≈ 1）始终是 Memory-bounded。</p>
+<hr>
+<h1 id="强化学习--agents1010">强化学习 &amp; Agents（10%+10）<a hidden class="anchor" aria-hidden="true" href="#强化学习--agents1010">#</a></h1>
+<h2 id="第二十五题-ε-greedy-多臂老虎机问题">第二十五题 ε-greedy 多臂老虎机问题<a hidden class="anchor" aria-hidden="true" href="#第二十五题-ε-greedy-多臂老虎机问题">#</a></h2>
+<p><strong>题目：</strong> 考虑一多臂老虎机问题（K=10），3 个 ε-greedy 策略下每一时刻可以获得的平均 reward 下图所示。已知该问题中随机以及最有策略下可获得 reward 的期望分别为 1 与 1.55，则：</p>
+<ol>
+<li>哪个 ε 在游戏后期（steps → +∞）可以获得更高的 average reward。</li>
+<li>在（steps → +∞）时，这 3 个 ε-greedy 策略每次可获得 reward 的期望各是多少。</li>
+</ol>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMfaVkFNi6tE04fVhAHIZEjV3wHhLUAAm0Maxs22shWGbqTNn6p2MABAAMCAAN3AAM4BA.png"></p>
+<p><strong>解：</strong></p>
+<p><strong>1. 后期表现</strong></p>
+<p>当 steps → +∞ 时，算法已经充分探索过各个动作，基本掌握了每个臂的期望奖励。此时较小的 ε 值意味着更多地利用（exploitation）已知的最优动作，而较少地进行无效探索（exploration）。ε = 0.1 由于探索概率过高，会频繁选择次优动作，导致平均奖励被拉低。而ε = 0（greedy策略）获得的平均奖励，则是稳定在约 1.0 左右；</p>
+<p>因此，<strong>ε = 0.01 在后期可以获得更高的 average reward</strong>，它在探索和利用之间取得了较好的平衡。</p>
+<p><strong>2. 期望分析</strong></p>
+<p>ε-greedy 策略的期望 reward 为：</p>
+$$\mathbb{E}[R] = (1-\varepsilon) \cdot R_{\text{greedy}} + \varepsilon \cdot R_{\text{random}}$$<p>其中：</p>
+<ul>
+<li>$R_{\text{random}} = 1$（随机策略期望）</li>
+<li>$R_{\text{optimal}} = 1.55$（最优策略期望）</li>
+</ul>
+<p><strong>对于 $\varepsilon = 0$（greedy）：</strong></p>
+<p>由于没有探索，可能陷入局部最优。从图中看收敛到 1.0，说明找到的并非最优臂：</p>
+$$\mathbb{E}[R_{\varepsilon=0}] \approx 1.0$$<p><strong>对于 $\varepsilon = 0.01$：</strong></p>
+<p>假设经过充分探索后，greedy 部分能找到最优臂：</p>
+$$\mathbb{E}[R_{\varepsilon=0.01}] = 0.99 \times 1.55 + 0.01 \times 1 = 1.5345 + 0.01 = 1.5445$$<p><strong>对于 $\varepsilon = 0.1$：</strong></p>
+$$\mathbb{E}[R_{\varepsilon=0.1}] = 0.9 \times 1.55 + 0.1 \times 1 = 1.395 + 0.1 = 1.495$$<hr>
+<h2 id="第二十六题-mdp-bellman-方程">第二十六题 MDP Bellman 方程<a hidden class="anchor" aria-hidden="true" href="#第二十六题-mdp-bellman-方程">#</a></h2>
+<p><strong>题目：</strong> 下图左是一个有限 Markov Decision Process (MDP) 的例子。网格中的单元格对应于环境的状态，在每个单元格中，智能体可以采取四种可能动作：上、下、左、右。这些动作确定性地使智能体在网格上沿相应方向移动一个单元格，并获取 0 的奖励。但有 2 类特殊情况：(1) 如果动作会导致智能体移出网格，则其位置保持不变，但会产生 -1 的奖励；(2) 如果智能体在状态 A 或 B 中，不管采取任意动作都会使智能体传送到 A&rsquo;或 B&rsquo;，并获得 +10 或 +5 的奖励。取 discount factor $\gamma = 0.9$。</p>
+<p>随机策略对应的 state value 函数如下右图所示，保留 1 位有效数字。记左下状态坐标为 (1, 1)，右上状态坐标为 (5, 5)，请给出 坐标 (2, 5)、(3, 3)、(4, 5)、(5, 1) 4 个状态对应 value 的 Bellman 迭代公式。</p>
+<p>注：上述 4 状态的 value 分别为 8.8、0.7、5.3、-2.0。</p>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMhaVkFc_uQWbRETtL1pSJPG-zbvUAAAm4Maxs22shWhVkhqSyfL-gBAAMCAAN3AAM4BA.png"></p>
+<p><strong>解：</strong></p>
+<p>Bellman 方程的一般形式为：</p>
+$$v(s) = \sum_a \pi(a|s) [r + \gamma v(s')]$$<p>对于随机策略，$\pi(a|s) = 0.25$ 对所有动作 $a \in {\text{上, 下, 左, 右}}$。</p>
+<p><strong>坐标系统</strong></p>
+<p>根据题意，左下为 (1,1)，右上为 (5,5)。状态 A 在 (2,5)，A&rsquo; 在 (2,1)；状态 B 在 (4,5)，B&rsquo; 在 (4,3)。</p>
+<p><strong>(2, 5) - value = 8.8</strong></p>
+<p>位置 (2,5) 即时A点,因此从 A 出发会传送到 A&rsquo; = (2,1) 并获得 +10。故</p>
+$$v(2,5) = 10+0.9v(2,1)$$<p><strong>(3, 3) - value = 0.7</strong></p>
+<p>位置 (3,3) 在网格中心。各方向移动：</p>
+<ul>
+<li>上：到 (3,4)</li>
+<li>下：到 (3,2)</li>
+<li>左：到 (2,3)</li>
+<li>右：到 (4,3)</li>
+</ul>
+$$
+\begin{aligned}
+v(3,3)
+&= 0.25 \times \bigl[(0 + 0.9v(3,4)) + (0 + 0.9v(3,2)) + (0 + 0.9v(2,3)) + (0 + 0.9v(4,3))] \\
+&= 0.25 \times 0.9 [v(3,4) + v(3,2) + v(2,3) + v(4,3)].
+\end{aligned}
+$$<p><strong>(4, 5) - value = 5.3</strong></p>
+<p>位置 (4,5) 即时B点,因此从 B 出发会传送到 B&rsquo; = (4,3) 并获得 +5。故</p>
+$$v(4,5) = 5+0.9v(4,3)$$<p><strong>(5, 1) - value = -2.0</strong></p>
+<p>位置 (5,1) 在右下角。各方向移动：</p>
+<ul>
+<li>上：到 (5,2)</li>
+<li>下：出界 → 保持 (5,1)，奖励 -1</li>
+<li>左：到 (4,1)</li>
+<li>右：出界 → 保持 (5,1)，奖励 -1</li>
+</ul>
+$$
+\begin{aligned}
+v(5,1)
+&= 0.25 \times \bigl[(0 + 0.9v(5,2)) + (-1 + 0.9v(5,1)) + (0 + 0.9v(4,1)) + (-1 + 0.9v(5,1))] \\
+&= 0.25 \times[0.9v(5,2) + 0.9v(4,1) + 1.8v(5,1) -2].
+\end{aligned}
+$$<hr>
+<h2 id="第二十七题-mdp-最优策略">第二十七题 MDP 最优策略<a hidden class="anchor" aria-hidden="true" href="#第二十七题-mdp-最优策略">#</a></h2>
+<p><strong>题目：</strong> 下图左是一个有限 Markov Decision Process (MDP) 的例子（与上题相同）。已知下图右是最优策略对应的 value function，请对应给出各状态的最佳行动策略。</p>
+<p><img loading="lazy" src="https://telegraph-image-43w.pages.dev/file/AgACAgUAAyEGAATTNkFKAAMiaVkFib8glS3wQumIayABWn7Y3p4AAm8Maxs22shWBqPDuxKIBWABAAMCAAN3AAM4BA.png"></p>
+<p><strong>解：</strong></p>
+<p>根据给定的Gridworld和最优价值函数 $v_*$，求每个状态的最优行动策略。</p>
+<p>对每个状态，选择使期望回报最大的行动：</p>
+<ul>
+<li>比较相邻状态的价值</li>
+<li>选择移向更高价值的方向</li>
+<li>状态A和B有特殊转移（分别+10和+5奖励）</li>
+</ul>
+<p><strong>最优策略</strong></p>
+$$
+\pi_* = 
+\begin{bmatrix}
+\rightarrow & A & \leftarrow & B & \leftarrow \\
+\uparrow/\rightarrow & \uparrow & \uparrow/\leftarrow & \leftarrow & \leftarrow \\
+\uparrow/\rightarrow & \uparrow & \uparrow/\leftarrow & \uparrow/\leftarrow & \uparrow/\leftarrow \\
+\uparrow/\rightarrow & \uparrow & \uparrow/\leftarrow & \uparrow/\leftarrow & \uparrow/\leftarrow \\
+\uparrow/\rightarrow & \uparrow & \uparrow/\leftarrow & \uparrow/\leftarrow & \uparrow/\leftarrow
+\end{bmatrix}
+$$<p><strong>说明</strong>：</p>
+<ul>
+<li>$\rightarrow, \downarrow, \uparrow, \leftarrow$ 表示最优行动方向</li>
+<li>$A$：触发特殊转移到 $A'$（+10奖励）</li>
+<li>$B$：触发特殊转移到 $B'$（+5奖励）</li>
+</ul>
+<h2 id="第二十八题-ai-agent-特性解释-附加题-10分"><u>第二十八题 AI Agent 特性解释</u> （附加题 10分）<a hidden class="anchor" aria-hidden="true" href="#第二十八题-ai-agent-特性解释-附加题-10分">#</a></h2>
+<p><strong>题目：</strong> AI Agent 是一类能够感知环境、自主决策并采取行动以实现特定目标的智能系统，并具备自主性、反应性、主动性、社会性以及进化性。请选择其中 3 种性质进行解释，并分别举例一种代表性技术（正式发表于 NeurIPS、ICLR、ICML）介绍其原理。（该题必考）</p>
+<p>解：</p>
+<h3 id="1-自主性-autonomy">1. 自主性 (Autonomy)<a hidden class="anchor" aria-hidden="true" href="#1-自主性-autonomy">#</a></h3>
+<p><strong>性质解释</strong>
+AI Agent 能够在没有外部持续干预的情况下独立运行，自主做出决策并执行任务，无需人工指导每一步操作。</p>
+<p><strong>代表性技术：ReAct</strong></p>
+<ul>
+<li><strong>会议：ICLR 2023</strong></li>
+<li><strong>论文</strong>  ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)</li>
+</ul>
+<p><strong>核心原理</strong>
+ReAct 框架通过将推理（Reasoning）和行动（Acting）相结合，使语言模型能够以交替方式生成推理轨迹和任务特定的行动序列：</p>
+<ol>
+<li>
+<p>思维-行动-观察循环</p>
+<ul>
+<li><strong>Thought (思考)</strong>: 模型生成推理步骤，分析当前状态、任务目标和下一步计划</li>
+<li><strong>Action (行动)</strong>: 执行具体操作（如调用搜索API、使用计算器、访问数据库）</li>
+<li><strong>Observation (观察)</strong>: 接收环境反馈和执行结果</li>
+</ul>
+</li>
+<li>
+<p>推理增强的行动选择</p>
+<p>通过显式的推理轨迹，模型能够：</p>
+<ul>
+<li>动态分解复杂任务为子目标</li>
+<li>根据中间结果调整策略</li>
+<li>处理异常情况和错误</li>
+</ul>
+</li>
+<li>
+<p><strong>提示工程实现</strong>
+使用 few-shot prompting，提供示例展示 Thought-Action-Observation 模式，引导模型学习这种交互模式。</p>
+</li>
+</ol>
+<p><strong>➡️ 体现的自主性</strong>：Agent 无需预定义完整的行动序列，能根据环境反馈自主决策每一步，实现端到端的任务自动化。</p>
+<hr>
+<h3 id="2-反应性-reactivity">2. 反应性 (Reactivity)<a hidden class="anchor" aria-hidden="true" href="#2-反应性-reactivity">#</a></h3>
+<p><strong>性质解释</strong>
+AI Agent 能够感知环境变化并及时做出响应，从失败中学习，动态调整行为策略以适应变化的情境。</p>
+<p><strong>代表性技术：Reflexion</strong></p>
+<ul>
+<li><strong>会议：NeurIPS 2023</strong></li>
+<li><strong>论文</strong>  Reflexion: Language Agents with Verbal Reinforcement Learning (Shinn et al.)</li>
+</ul>
+<p><strong>核心原理</strong>
+Reflexion 引入了语言化的自我反思机制，使 Agent 能够从试错中快速学习：</p>
+<ol>
+<li>反思-行动循环
+<ul>
+<li><strong>Actor</strong>: 基于当前记忆生成行动轨迹</li>
+<li><strong>Evaluator</strong>: 评估行动结果（成功/失败，输出奖励信号）</li>
+<li><strong>Self-Reflection</strong>: 当失败时，生成具体的反思文本，分析失败原因</li>
+</ul>
+</li>
+<li>语言化的情景记忆
+<ul>
+<li>将失败经验和反思以自然语言形式存储在短期记忆中</li>
+<li>在后续尝试中，将相关反思加入提示上下文</li>
+<li>类似于人类的&quot;从错误中学习&quot;机制</li>
+</ul>
+</li>
+<li><strong>迭代改进机制</strong>
+通过多轮试错-反思循环，Agent 逐步优化策略：</li>
+</ol>
+<pre tabindex="0"><code>   Attempt 1 → Fail → Reflect (&#34;边界条件未处理&#34;)
+   Attempt 2 → 根据反思调整 → Success
+</code></pre><p><strong>➡️ 体现的反应性</strong>：Agent 能够快速识别环境反馈（错误信息、失败信号），生成针对性的策略调整，实时适应新情况。</p>
+<hr>
+<h3 id="3-社会性-sociality">3. 社会性 (Sociality)<a hidden class="anchor" aria-hidden="true" href="#3-社会性-sociality">#</a></h3>
+<p><strong>性质解释</strong></p>
+<p>AI Agent 能够与其他 Agent 进行协作、竞争或沟通，在多智能体环境中通过合作完成单个 Agent 无法完成的复杂任务。</p>
+<p><strong>代表性技术：QMIX</strong></p>
+<ul>
+<li><strong>会议：</strong> ICML 2018</li>
+<li><strong>论文</strong>  Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (Rashid et al.)</li>
+</ul>
+<p><strong>核心原理</strong></p>
+<p>QMIX 通过单调价值函数分解解决多智能体协作中的信用分配问题：</p>
+<p><strong>1. 集中训练-分散执行 (CTDE) 范式</strong></p>
+<ul>
+<li><strong>训练阶段</strong>：可访问全局状态 $s$ 和所有 Agent 的观测</li>
+<li><strong>执行阶段</strong>：每个 Agent 仅基于局部观测 $o_i$ 独立决策</li>
+</ul>
+<p><strong>2. 单调价值函数分解</strong></p>
+<p>将全局 Q 函数分解为各 Agent 局部 Q 函数的单调组合：</p>
+$$
+Q_{\text{tot}}(s, \mathbf{a}) = f_{\text{mix}}(Q_1(o_1, a_1), \ldots, Q_n(o_n, a_n); s)
+$$<p>约束条件（单调性）：</p>
+$$
+\frac{\partial Q_{\text{tot}}}{\partial Q_i} \geq 0, \quad \forall i
+$$<p>这保证了：局部贪婪动作（$\arg\max Q_i$）的组合等于全局最优动作。</p>
+<p><strong>3. 混合网络 (Mixing Network)</strong></p>
+<ul>
+<li>使用超网络 (hypernetwork) 根据全局状态 $s$ 生成混合网络的权重</li>
+<li>权重非负性通过绝对值函数保证单调性</li>
+<li>网络结构：</li>
+</ul>
+$$
+\text{Agent Networks} \rightarrow \text{Mixing Network} \rightarrow Q_{\text{tot}}
+$$<p><strong>➡️ 体现的社会性</strong></p>
+<p>多个 Agent 无需显式通信即可通过学习形成隐式协作策略，共同最大化团队奖励，展现涌现的群体智能。</p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://minjieblog.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li>
+      <li><a href="https://minjieblog.github.io/tags/%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/">数学推导</a></li>
+      <li><a href="https://minjieblog.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a></li>
+    </ul>
+  </footer><div id="tw-comment"></div>
+<script>
+    
+    const getStoredTheme = () => localStorage.getItem("pref-theme") === "light" ? "nord_light" : "dark_dimmed";
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
+            }
+        }
+        sendMessage({setConfig: {theme: getStoredTheme()}})
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "minjieblog\/minjieblog.github.io",
+            "data-repo-id": "R_kgDOQjMm6A",
+            "data-category": "Announcements",
+            "data-category-id": "DIC_kwDOQjMm6M4Czb4B",
+            "data-mapping": "pathname",
+            "data-strict": "0",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-input-position": "bottom",
+            "data-theme": getStoredTheme(),
+            "data-lang": "zh-CN",
+            "data-loading": "lazy",
+            "crossorigin": "anonymous",
+        };
+
+        
+        const giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(
+                ([key, value]) => giscusScript.setAttribute(key, value));
+        document.querySelector("#tw-comment").appendChild(giscusScript);
+
+        
+        const themeSwitcher = document.querySelector("#theme-toggle");
+        if (themeSwitcher) {
+            themeSwitcher.addEventListener("click", setGiscusTheme);
+        }
+        const themeFloatSwitcher = document.querySelector("#theme-toggle-float");
+        if (themeFloatSwitcher) {
+            themeFloatSwitcher.addEventListener("click", setGiscusTheme);
+        }
+    });
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

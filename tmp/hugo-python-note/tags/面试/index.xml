@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>面试 on Minjie&#39;s Blog</title>
+    <link>https://minjieblog.github.io/tags/%E9%9D%A2%E8%AF%95/</link>
+    <description>Recent content in 面试 on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sun, 06 Sep 2026 23:34:32 +0800</lastBuildDate>
+    <atom:link href="https://minjieblog.github.io/tags/%E9%9D%A2%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 面试算法手册：数据结构、刷题模板与 AI 算法</title>
+      <link>https://minjieblog.github.io/interview-notes/python-algorithm-cheatsheet/</link>
+      <pubDate>Sun, 06 Sep 2026 23:34:32 +0800</pubDate>
+      <guid>https://minjieblog.github.io/interview-notes/python-algorithm-cheatsheet/</guid>
+      <description>系统整理 Python 容器、二分、双指针、树、图、动态规划，以及线性回归、K-Means、PCA、Attention 等面试手写模板，附复杂度、输入约定和易错点。</description>
+    </item>
+  </channel>
+</rss>

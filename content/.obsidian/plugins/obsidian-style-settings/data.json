@@ -1,0 +1,11 @@
+{
+  "blue-topaz-theme@@color-scheme-options": "color-scheme-options-chocolate-topaz",
+  "blue-topaz-theme@@background-settings-workplace-background-image": true,
+  "blue-topaz-theme@@background-settings-workplace-theme-light": "background-settings-workplace-theme-light-in-the-note",
+  "blue-topaz-theme@@background-settings-workplace-theme-dark": "background-settings-workplace-theme-dark-dark-sky",
+  "blue-topaz-theme@@background-image-settings-switch": true,
+  "blue-topaz-theme@@toggle-nonoverlapping-bg": true,
+  "blue-topaz-theme@@toggle-bg-panel-page": false,
+  "blue-topaz-theme@@layout-style-options": "asymmetric-split-left",
+  "obsidian-typewriter@@active-line-highlight": true
+}

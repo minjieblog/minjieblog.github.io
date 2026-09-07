@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.146.7"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Minjie&#39;s Blog</title>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://minjieblog.github.io/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://minjieblog.github.io/index.xml" title="rss">
+<link rel="alternate" type="application/json" href="https://minjieblog.github.io/index.json" title="json">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style><meta property="og:url" content="https://minjieblog.github.io/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Minjie&#39;s Blog">
+<meta name="twitter:description" content="">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Minjie's Blog",
+  "url": "https://minjieblog.github.io/",
+  "description": "",
+  "logo": "https://minjieblog.github.io/code.png",
+  "sameAs": [
+      "https://github.com/Minjie2003", "mailto:zhongnagisa01@gmail.com"
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
+                    <span class="active">首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<article class="first-entry home-info">
+    <header class="entry-header">
+        <h1>嗨，欢迎来到 Minjie 的个人空间 👋</h1>
+    </header>
+    <div class="entry-content">
+        <p>一个喜欢用代码解决问题的研究生，白天写 bug，晚上打游戏，偶尔思考一下人生。</p>
+<p>这里会记录一些技术笔记、项目经验，也会聊聊游戏、音乐和历史。内容可能有点杂，但都是我真实的想法和经历。</p>
+<p>欢迎你的到来，希望我们能在这里有些有趣的交流 ✨</p>
+
+    </div>
+    <footer class="entry-footer">
+        <div class="social-icons" >
+    <a href="https://github.com/Minjie2003" target="_blank" rel="noopener noreferrer me"
+        title="Github">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+    </a>
+    <a href="mailto:zhongnagisa01@gmail.com" target="_blank" rel="noopener noreferrer me"
+        title="Email">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+    <polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+    </a>
+</div>
+
+    </footer>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Codex 完整使用指南：安装、控制、代码管理与自动化
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>系统介绍 Codex 的安装与基本操作、功能模块、控制方式、计划模式、代码管理、记忆系统、插件与自动化，以及 Skills 的创建和使用。</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-09-02 11:12:43 +0800 CST'>2026年9月2日</span>&nbsp;·&nbsp;<span>26 分钟</span>&nbsp;·&nbsp;<span>Minjie</span></footer>
+  <a class="entry-link" aria-label="post link to Codex 完整使用指南：安装、控制、代码管理与自动化" href="https://minjieblog.github.io/doc-intro/codex-ref/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Prevoke：一种保护隐私的可配置可验证凭证撤销方案
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>本文详细介绍了 Prevoke 方案——一种结合布隆过滤器与默克尔树累加器的可验证凭证（VC）撤销技术，旨在满足 SSI 系统中的三大隐私需求，并通过以太坊智能合约实现链上存储与验证。</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-06 12:11:32 +0800 CST'>2026年4月6日</span></footer>
+  <a class="entry-link" aria-label="post link to Prevoke：一种保护隐私的可配置可验证凭证撤销方案" href="https://minjieblog.github.io/blockchain/prevoke-privacy-preserving-vc-revocation/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">SSI 中的VC撤销与 DID 注销
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>IEEE Access 2026 综述解析：SSI 中 VC 撤销与 DID 注销的四大类机制——列表式、密码学累加器、正向确认、治理感知——及其隐私、可扩展性与未来挑战的系统比较。</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-03-30 14:01:58 +0800 CST'>2026年3月30日</span></footer>
+  <a class="entry-link" aria-label="post link to SSI 中的VC撤销与 DID 注销" href="https://minjieblog.github.io/blockchain/ssi-credential-revocation-did-deactivation-survey/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">V&#39;CER: 约束网络中的高效证书验证
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>V’CER 用 Sparse Merkle Tree 解决约束网络中的证书撤销难题，存储不足 3KB，支持节点间协作修复，93% 的节点无需联系 CA。</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-03-28 15:06:30 +0800 CST'>2026年3月28日</span></footer>
+  <a class="entry-link" aria-label="post link to V&#39;CER: 约束网络中的高效证书验证" href="https://minjieblog.github.io/blockchain/vcer-certificate-validation-constrained-networks/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Crset Private Vc Revocation
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>CRSet 是一种基于填充 Bloom 过滤器级联的非交互式可验证凭证撤销机制，通过固定容量填充与定期发布策略，同时保护签发方活动隐私、依赖方隐私与持有者隐私，并在以太坊 Blob 交易上完成去中心化发布</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-03-26 19:25:03 +0800 CST'>2026年3月26日</span></footer>
+  <a class="entry-link" aria-label="post link to Crset Private Vc Revocation" href="https://minjieblog.github.io/blockchain/crset-private-vc-revocation/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">EVOKE：面向物联网的高效可验证凭证吊销机制
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>EVOKE 是首个专为 IoT 网络设计的可验证凭证（VC）高效撤销方案。 基于 ECC 累加器，每台设备仅需约 1.5 KB 存储撤销验证信息（不足现有最优方案的一半）， 验证时延为毫秒级，并原生支持批量撤销（Mass Revocation）与离线撤销（Offline Revocation）， 百万设备规模下即使 50% 设备错过更新，1 小时内仍有约 96% 完成同步。</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-03-26 12:30:54 +0800 CST'>2026年3月26日</span></footer>
+  <a class="entry-link" aria-label="post link to EVOKE：面向物联网的高效可验证凭证吊销机制" href="https://minjieblog.github.io/blockchain/evoke-efficient-revocation-verifiable-credentials-iot/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">去中心化标识符（DID）与可验证凭证（VC）综述
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>基于 IEEE Communications Surveys &amp; Tutorials 2025 综述论文的详细学习笔记，覆盖 DID/VC 从基础原理到全球落地的完整知识体系。</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-03-22 15:00:06 +0800 CST'>2026年3月22日</span></footer>
+  <a class="entry-link" aria-label="post link to 去中心化标识符（DID）与可验证凭证（VC）综述" href="https://minjieblog.github.io/blockchain/did-vc-survey-2025/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Decentralized Identity Systems: Architecture, Challenges, Solutions and Future Directions
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>本综述系统梳理了数字身份管理的三大范式（集中式、联邦式、去中心化），深入剖析基于区块链的自主主权身份（SSI）架构及其核心组件（DID、VC、分布式账本、私人钱包），对 uPort、Sovrin、ShoCard 等十种主流 SSI 解决方案按十项原则进行横向对比，并总结了区块链性能、密钥管理、标准化、监管与用户采纳等多维度挑战，为构建真正去中心化的数字身份系统提供了系统性参考。</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-03-20 14:12:28 +0800 CST'>2026年3月20日</span>&nbsp;·&nbsp;<span>Omar Dib et al.</span></footer>
+  <a class="entry-link" aria-label="post link to Decentralized Identity Systems: Architecture, Challenges, Solutions and Future Directions" href="https://minjieblog.github.io/blockchain/decentralized-identity-systems-2020/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">数学基础——数学篇作业集
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>数学基础课程矩阵理论相关作业完整解答</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-12-29 13:25:26 +0800 CST'>2025年12月29日</span></footer>
+  <a class="entry-link" aria-label="post link to 数学基础——数学篇作业集" href="https://minjieblog.github.io/dase-course/math-homework/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">xRWA: 真实世界资产的跨链互操作性框架
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>xRWA是首个专门针对真实世界资产(RWA)跨链场景设计的完整框架。通过整合去中心化身份标识(DID)、可验证凭证(VC)和简化支付验证(SPV),解决了RWA在多链部署中的冗余认证和低效结算问题。系统采用三层架构:资产识别与代币化、跨链认证协议、跨链交互通道。实验显示SPV验证复杂度为O(log n),跨链通道比HTLC节省超过99%的gas成本。该框架为RWA的万亿美元市场潜力提供了关键的跨链基础设施。</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-12-25 03:52:02 +0800 CST'>2025年12月25日</span>&nbsp;·&nbsp;<span>Yihao Guo et al.</span></footer>
+  <a class="entry-link" aria-label="post link to xRWA: 真实世界资产的跨链互操作性框架" href="https://minjieblog.github.io/blockchain/xrwa-cross-chain-real-world-assets/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://minjieblog.github.io/page/2/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

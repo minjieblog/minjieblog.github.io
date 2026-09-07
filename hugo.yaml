@@ -1,0 +1,175 @@
+#配置基本信息
+baseURL: "https://minjieblog.github.io/" # 主站的 URL
+title: Minjie's Blog # 站点标题
+copyright: "[©2025 Minjie's Blog](https://minjieblog.github.io/)" # 网站的版权声明，通常显示在页脚
+theme: PaperMod # 主题
+languageCode: zh-cn # 语言
+
+enableInlineShortcodes: true # shortcode，类似于模板变量，可以在写 markdown 的时候便捷地插入，官方文档中有一个视频讲的很通俗
+hasCJKLanguage: true # 是否有 CJK 的字符
+enableRobotsTXT: true # 允许生成 robots.txt
+buildDrafts: false # 构建时是否包括草稿
+buildFuture: false # 构建未来发布的内容
+buildExpired: false # 构建过期的内容
+enableEmoji: true # 允许 emoji
+pygmentsUseClasses: true
+defaultContentLanguage: zh # 顶部首先展示的语言界面
+defaultContentLanguageInSubdir: false # 是否要在地址栏加上默认的语言代码
+ignoreFiles:
+  - "content/obsidian/.*"
+  - "content/music/.*"
+  - "content/reading-notes/.*"
+  - "content/java-notes/core-java_volume_1.md"
+  - "content/java-notes/design-patterns.md"
+params:
+
+  #配置数学公式
+  math: true
+  katex: false   # ❗确保关闭
+
+  #配置图标
+  assets:
+      favicon: "code.png"
+      
+      favicon16x16: "code.png"
+      
+      favicon32x32: "code.png"
+      
+      apple_touch_icon: "code.png"
+      
+      safari_pinned_tab: "code.png"
+      
+      disableFingerprinting: true  # 禁用 CSS 指纹，避免缓存问题
+
+      disableHLJS: true
+  # 启用代码复制按钮
+  ShowCodeCopyButtons: true
+  homeInfoParams:
+    enabled: true
+    Title: "嗨，欢迎来到 Minjie 的个人空间 👋"
+    Content: >
+        一个喜欢用代码解决问题的研究生，白天写 bug，晚上打游戏，偶尔思考一下人生。
+        
+        
+        这里会记录一些技术笔记、项目经验，也会聊聊游戏、音乐和历史。内容可能有点杂，但都是我真实的想法和经历。
+        
+        
+        欢迎你的到来，希望我们能在这里有些有趣的交流 ✨
+  
+  # 隐藏首页的文章列表
+  disableHome: false
+  # 显示目录
+  ShowToc: true
+  TocOpen: true  # 默认展开目录
+  TocSide: 'left'  # 或 'right'，但 PaperMod 默认在右侧
+  
+  # 社交链接（可选）
+  socialIcons:
+    - name: github
+      url: "https://github.com/Minjie2003"
+    - name: email
+      url: "mailto:zhongnagisa01@gmail.com"
+ 
+  ShowPostSummary: true  # 显示文章摘要
+  mainSections:
+  - blockchain
+  - dase-course
+  - database
+  - doc-intro
+  - game-guide
+  - java-notes
+  # - music
+  # - reading-notes
+  # - obsidian
+
+  # 评论系统
+  enableGiscus: true
+  giscus:
+    repo: "minjieblog/minjieblog.github.io"
+    repoId: "R_kgDOQjMm6A"
+    category: "Announcements"
+    categoryId: "DIC_kwDOQjMm6M4Czb4B"
+    mapping: "pathname"
+    strict: "0"
+    reactionsEnabled: "1"
+    emitMetadata: "0"
+    inputPosition: "bottom"
+    lightTheme: "nord_light"
+    darkTheme: "dark_dimmed"
+
+    lang: "zh-CN"
+    crossorigin: "anonymous"
+
+  # 搜索
+  fuseOps:
+      isCaseSensitive: false
+      shouldSort: true
+      location: 0
+      distance: 1000
+      threshold: 0.4
+      minMatchCharLength: 0
+      keys: ["title", "permalink", "summary", "content"]
+      includeMatches: true
+
+#配置代码块的阴暗
+markup:
+  goldmark:
+    renderer:
+      unsafe: true # 可以 unsafe，有些 html 标签和样式可能需要
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - ['$$', '$$']
+            - ['\[', '\]']
+          inline:
+            - ['$', '$']
+            - ['\(', '\)']
+  highlight:
+    anchorLineNos: false # 不要给行号设置锚标
+    codeFences: true # 代码围栏
+    noClasses: false # TODO: 不知道干啥的，暂时没必要了解，不影响展示
+    lineNos: false # 代码行
+    lineNumbersInTable: false # 不要设置成 true，否则如果文章开头是代码的话，摘要会由一大堆数字(即代码行号)开头文章
+    # 这里设置 style 没用，得自己加 css
+    style: "monokai"
+    # style: monokai
+
+#配置导航栏
+languages:
+  zh:
+    languageName: "中文" # 展示的语言名
+    weight: 1 # 权重
+    taxonomies: # 分类系统
+      category: categories
+      tag: tags
+    # https://gohugo.io/content-management/menus/#define-in-site-configuration
+    menus:
+      main:
+        - name: 首页
+          pageRef: /
+          weight: 4 # 控制在页面上展示的前后顺序
+        - name: 归档
+          pageRef: archives/
+          weight: 5
+        - name: 分类
+          pageRef: categories/
+          weight: 10
+        - name: 标签
+          pageRef: tags/
+          weight: 10
+        - name: 搜索
+          pageRef: search/
+          weight: 20
+        - name: 关于
+          pageRef: about/
+          weight: 21
+
+#配置搜索
+# https://github.com/adityatelange/hugo-PaperMod/wiki/Features#search-page
+outputs:
+  home:
+    - HTML # 生成的静态页面
+    - RSS # 这个其实无所谓
+    - JSON # necessary for search, 这里的配置修改好之后，一定要重新生成一下

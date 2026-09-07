@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Minjie&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="AI电商导购与售后客服平台
+它不是普通聊天机器人，而是一个能够：
+
+
+理解用户需求；
+
+
+查询商品和活动知识；
+
+
+推荐、比较商品；
+
+
+查询订单和物流；
+
+
+判断退换货资格；
+
+
+经用户确认后创建售后工单；
+
+
+在不确定时转人工客服；">
+<meta name="author" content="">
+<link rel="canonical" href="https://minjieblog.github.io/agent/agent%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minjieblog.github.io/code.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minjieblog.github.io/code.png">
+<link rel="apple-touch-icon" href="https://minjieblog.github.io/code.png">
+<link rel="mask-icon" href="https://minjieblog.github.io/code.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://minjieblog.github.io/agent/agent%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style><meta property="og:url" content="https://minjieblog.github.io/agent/agent%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/">
+  <meta property="og:site_name" content="Minjie&#39;s Blog">
+  <meta property="og:title" content="Minjie&#39;s Blog">
+  <meta property="og:description" content="AI电商导购与售后客服平台 它不是普通聊天机器人，而是一个能够：
+理解用户需求；
+查询商品和活动知识；
+推荐、比较商品；
+查询订单和物流；
+判断退换货资格；
+经用户确认后创建售后工单；
+在不确定时转人工客服；">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="agent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="AI电商导购与售后客服平台
+它不是普通聊天机器人，而是一个能够：
+
+
+理解用户需求；
+
+
+查询商品和活动知识；
+
+
+推荐、比较商品；
+
+
+查询订单和物流；
+
+
+判断退换货资格；
+
+
+经用户确认后创建售后工单；
+
+
+在不确定时转人工客服；">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Agents",
+      "item": "https://minjieblog.github.io/agent/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://minjieblog.github.io/agent/agent%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "AI电商导购与售后客服平台 它不是普通聊天机器人，而是一个能够：\n理解用户需求；\n查询商品和活动知识；\n推荐、比较商品；\n查询订单和物流；\n判断退换货资格；\n经用户确认后创建售后工单；\n在不确定时转人工客服；\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "AI电商导购与售后客服平台 它不是普通聊天机器人，而是一个能够：\n理解用户需求；\n查询商品和活动知识；\n推荐、比较商品；\n查询订单和物流；\n判断退换货资格；\n经用户确认后创建售后工单；\n在不确定时转人工客服；\n的电商 Agent。\n这个项目的优势是业务非常直观，RAG、Agent、MySQL、Redis、消息队列都能自然出现。\n一、用户到底能用它做什么 例如用户打开一个仿电商网站，向客服提问：\n我预算5000元，想买一台适合拍照和打游戏的手机，不要苹果，有什么推荐？\n系统执行：\n识别用户购买需求；\n提取预算、品牌、拍照、游戏等条件；\n从MySQL筛选有库存的手机；\n从RAG知识库检索商品参数、评测和活动规则；\n比较几款商品；\n给出推荐理由和引用来源；\n用户可以直接加入购物车。\n再例如：\n我昨天买的耳机右边没有声音，可以退吗？\n系统执行：\n查询用户订单；\n确认购买时间、商品状态；\n从知识库检索退换货规则；\n判断是否符合售后条件；\n询问用户是否申请退款；\n用户确认后创建售后工单；\n通过消息队列通知售后系统。\n这个场景既能展示RAG，也能展示Agent真正“完成任务”的能力。\n二、RAG和Agent分别解决什么问题 这是面试时最需要讲清楚的地方。\nRAG负责“知道答案” RAG知识库包含：\n商品详细参数\n商品使用说明书\n促销活动规则\n会员权益规则\n物流说明\n退换货政策\n售后维修政策\n常见问题\n用户评测摘要\n例如用户询问：\n这个手机支持无线充电吗？\nRAG从商品说明书中找到对应内容，然后带着来源回答。\nRAG的价值是：\n商品资料更新后不需要重新训练模型；\n回答有依据和引用；\n减少大模型幻觉；\n不同店铺可以使用不同知识库；\n可以对不同用户进行权限隔离。\nAgent负责“完成任务” Agent可以调用工具：\n搜索商品\n查询实时库存\n查询订单\n查询物流\n领取优惠券\n加入购物车\n创建退货申请\n创建客服工单\n转人工客服\n例如：\n帮我找一款500元以内的降噪耳机，有货的话加入购物车。\n这不是单纯问答。Agent需要：\n制定任务计划；\n搜索商品；\n检查库存；\n检索商品知识；\n比较商品；\n等待用户确认；\n调用购物车工具。\n一句话概括：\nRAG让模型“知道公司的知识”，Agent让模型“使用公司的系统完成任务”。\n三、完整业务模块 项目可以分成三个前端入口。\n1. 模拟电商商城 用户可以：\n注册登录\n浏览和搜索商品\n查看商品详情\n加入购物车\n创建模拟订单\n查看物流和订单状态\n与AI客服交流\n申请退换货\n这样项目不再是一个孤零零的聊天框，而是完整电商业务。\n2. AI客服对话页面 聊天界面展示：\n流式回答\n商品卡片\n商品对比表\n引用的知识来源\nAgent执行步骤\n工具调用状态\n操作确认按钮\n转人工按钮\n例如：\n正在理解你的需求…… 正在搜索符合预算的商品…… 找到12款商品…… 正在检查库存和优惠…… 已筛选出3款商品…… 用户能直观看到Agent在工作。\n3. 商家运营后台 运营人员可以：\n管理商品\n上传商品说明书\n上传售后规则\n创建知识库\n查看文档解析状态\n配置Agent工作流\n查看对话记录\n查看用户反馈\n查看RAG命中情况\n查看Token消耗\n查看Agent失败原因\n管理人工客服工单\n这个后台很重要，它可以突出“全栈项目”的完整性。\n四、推荐的Agent设计 不需要一开始就做十几个Agent。可以设计四个：\nAgent 职责 Router Agent 判断是商品咨询、导购、订单还是售后问题 Shopping Agent 提取需求，筛选、比较和推荐商品 After-sales Agent 查询订单、检索售后规则、创建售后申请 Reviewer Agent 检查回答是否有依据、是否存在违规操作 执行流程：\nflowchart TD A[\"用户提问\"] --\u003e B[\"意图识别\"] B --\u003e C{\"业务类型\"} C --\u003e|商品咨询| D[\"RAG商品问答\"] C --\u003e|购买建议| E[\"导购Agent\"] C --\u003e|订单问题| F[\"订单工具\"] C --\u003e|退换货| G[\"售后Agent\"] D --\u003e H[\"答案审核\"] E --\u003e H F --\u003e H G --\u003e I{\"涉及实际操作？\"} I --\u003e|是| J[\"用户确认\"] I --\u003e|否| H J --\u003e H H --\u003e K[\"返回结果\"] 五、RAG链路怎么体现技术含量 不要只实现“上传PDF，然后向量搜索”。\n建议实现下面的完整链路。\n文档处理 用户上传商品说明书或者售后政策后：\nFastAPI接收文件；\n文件保存到MinIO；\nMySQL记录文档状态；\nRabbitMQ发送解析任务；\nWorker解析PDF、Word、Markdown；\n根据标题和段落进行语义切片；\n生成Embedding；\n写入向量数据库；\n更新文档状态。\n前端显示：\n等待处理 → 正在解析 → 正在向量化 → 索引完成 检索优化 可以逐步实现：\n问题改写\n向量检索\nBM25关键词检索\n商品属性过滤\n混合召回\nRRF结果融合\nReranker重排\n上下文压缩\n引用来源\n无答案拒答\n例如用户问：\n我买的手机进水了，可以免费保修吗？\n系统不能只搜索“手机”和“保修”，还需要根据：\n商品型号\n购买时间\n用户订单\n保修政策版本\n人为损坏条款\n进行检索和判断。\n这就比普通知识库问答更有含金量。\n六、MySQL、Redis和消息队列怎么自然加入 MySQL 保存核心业务数据：\n用户\n商品\nSKU\n库存\n购物车\n订单\n物流\n优惠券\n售后工单\n知识库\n文档\n会话\nAgent任务\n工具调用记录\n可以重点实现：\n商品与SKU表设计\n订单状态机\n库存扣减\n优惠券领取\n售后状态流转\n乐观锁防止库存超卖\n唯一索引保证任务幂等\nRedis Redis可以用于：\n商品详情缓存\n热门商品缓存\n购物车缓存\n用户会话\nAgent短期记忆\nRAG检索结果缓存\nEmbedding缓存\n接口限流\n分布式锁\n库存预扣\nToken用量统计\n比较有含金量的一个功能是“秒杀优惠券”：\nRedis判断库存；\nLua脚本完成原子扣减；\n消息发送到RabbitMQ；\n4.消费者异步写入MySQL；\n使用用户ID和优惠券ID保证幂等；\n消费失败进入重试和死信队列。\n这样就能自然展示互联网高并发场景。\nRabbitMQ 处理异步任务：\n文档解析\nEmbedding生成\n知识库重建\n订单创建\n优惠券异步落库\n售后工单通知\nAgent长任务\nRAG自动评测\n对话内容异步统计\n需要实现：\nACK\n消息重试\n死信队列\n延迟队列\n幂等消费\n消息积压监控\n七、可以使用的设计模式 设计模式 项目中的用途 Strategy 切换向量检索、混合检索和不同大模型 Factory 根据意图创建导购、订单、售后Agent Adapter 统一不同模型和向量数据库接口 State 管理订单、售后工单和Agent任务状态 Chain of Responsibility 输入检查、权限检查、注入检测、输出审核 Observer Agent执行状态通过SSE推送前端 Repository 封装MySQL访问 Template Method 统一不同Agent的执行流程 Circuit Breaker 大模型或外部服务异常时熔断 Outbox Pattern 保证数据库操作和消息投递最终一致 其中最值得深入的是：\nStrategy\nState\nChain of Responsibility\nOutbox Pattern\n不用刻意把所有模式都用上。\n八、前后端技术选型 React前端 建议使用：\nReact TypeScript Vite Ant Design React Query Zustand React Router ECharts React Flow SSE 主要页面：\n商城首页 商品详情 购物车 订单中心 AI客服 商家后台 知识库管理 Agent工作流 调用链追踪 数据统计看板 FastAPI后端 FastAPI SQLAlchemy Pydantic Alembic LangGraph Celery或自建RabbitMQ Worker Redis MySQL Qdrant MinIO OpenTelemetry Prometheus 建议采用领域划分：\nbackend/ ├── modules/ │ ├── user/ │ ├── product/ │ ├── order/ │ ├── coupon/ │ ├── after_sales/ │ ├── knowledge/ │ ├── agent/ │ └── evaluation/ ├── infrastructure/ │ ├── mysql/ │ ├── redis/ │ ├── rabbitmq/ │ ├── vector_store/ │ └── llm/ ├── mcp_servers/ └── api/ 九、一个很适合演示的完整案例 面试时可以直接演示：\n我想给女朋友买一个1000元以内的生日礼物，她喜欢拍照，三天后过生日，最好明天能到。\nAgent执行：\n提取预算、用途和时间要求；\n查询适合拍照的商品；\nRAG检索商品卖点和使用说明；\n查询实时库存；\n查询用户收货地址；\n判断配送时间；\n查询当前优惠活动；\n推荐三款商品并解释区别；\n用户选择其中一款；\nAgent领取优惠券并加入购物车；\n用户确认后创建模拟订单。\n这个案例同时展示了：\n自然语言理解\n任务规划\nRAG\n多步工具调用\n个性化推荐\nMySQL业务查询\nRedis缓存\n订单系统\n人机确认\n流式前端交互\n非常容易让面试官理解。\n十、项目开发顺序 第一阶段：电商基础业务 先完成：\n用户登录\n商品管理\n商品搜索\n购物车\n模拟订单\n售后工单\n商家后台\n第二阶段：RAG知识库 完成：\n文档上传\nRabbitMQ异步解析\n文档切片\n向量检索\n混合检索\nReranker\n引用来源\n管理后台\n第三阶段：Agent 完成：\n意图识别\n导购Agent\n订单Agent\n售后Agent\n工具调用\n短期记忆\n任务状态保存\n人工确认\n第四阶段：互联网工程能力 完成：\nRedis多级缓存\n接口限流\n秒杀优惠券\n分布式锁\n幂等消费\n消息重试\n死信队列\n熔断降级\n全链路监控\n并发压测\n十一、项目最合适的名字 可以从这些里面选：\nShopMind：智能电商导购与客服平台\nMallAgent：电商多智能体服务平台\nIntelliShop：智能导购与售后Agent\nCommerceCopilot：电商运营与客服助手\nSmartMall AI：面向电商场景的RAG Agent平台\n我比较推荐：\nMallAgent——基于RAG与多智能体的电商导购及售后服务平台\n它的最大优势是：业务很好懂，同时又能自然体现RAG和Agent的区别——RAG负责基于商品及规则提供可靠知识，Agent负责查询订单、检查库存、推荐商品和创建售后任务。\n",
+  "wordCount" : "3643",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://minjieblog.github.io/agent/agent%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Minjie's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://minjieblog.github.io/code.png"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://minjieblog.github.io/" accesskey="h" title="Minjie&#39;s Blog (Alt + H)">Minjie&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://minjieblog.github.io/" title="Minjie&#39;s Blog">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/categories/" title="Categories">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/tags/" title="Tags">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://minjieblog.github.io/about/" title="关于我">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#ai%e7%94%b5%e5%95%86%e5%af%bc%e8%b4%ad%e4%b8%8e%e5%94%ae%e5%90%8e%e5%ae%a2%e6%9c%8d%e5%b9%b3%e5%8f%b0" aria-label="AI电商导购与售后客服平台">AI电商导购与售后客服平台</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e7%94%a8%e6%88%b7%e5%88%b0%e5%ba%95%e8%83%bd%e7%94%a8%e5%ae%83%e5%81%9a%e4%bb%80%e4%b9%88" aria-label="一、用户到底能用它做什么">一、用户到底能用它做什么</a></li>
+                <li>
+                    <a href="#%e4%ba%8crag%e5%92%8cagent%e5%88%86%e5%88%ab%e8%a7%a3%e5%86%b3%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98" aria-label="二、RAG和Agent分别解决什么问题">二、RAG和Agent分别解决什么问题</a><ul>
+                        
+                <li>
+                    <a href="#rag%e8%b4%9f%e8%b4%a3%e7%9f%a5%e9%81%93%e7%ad%94%e6%a1%88" aria-label="RAG负责“知道答案”">RAG负责“知道答案”</a></li>
+                <li>
+                    <a href="#agent%e8%b4%9f%e8%b4%a3%e5%ae%8c%e6%88%90%e4%bb%bb%e5%8a%a1" aria-label="Agent负责“完成任务”">Agent负责“完成任务”</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%89%e5%ae%8c%e6%95%b4%e4%b8%9a%e5%8a%a1%e6%a8%a1%e5%9d%97" aria-label="三、完整业务模块">三、完整业务模块</a><ul>
+                        
+                <li>
+                    <a href="#1-%e6%a8%a1%e6%8b%9f%e7%94%b5%e5%95%86%e5%95%86%e5%9f%8e" aria-label="1. 模拟电商商城">1. 模拟电商商城</a></li>
+                <li>
+                    <a href="#2-ai%e5%ae%a2%e6%9c%8d%e5%af%b9%e8%af%9d%e9%a1%b5%e9%9d%a2" aria-label="2. AI客服对话页面">2. AI客服对话页面</a></li>
+                <li>
+                    <a href="#3-%e5%95%86%e5%ae%b6%e8%bf%90%e8%90%a5%e5%90%8e%e5%8f%b0" aria-label="3. 商家运营后台">3. 商家运营后台</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%9b%9b%e6%8e%a8%e8%8d%90%e7%9a%84agent%e8%ae%be%e8%ae%a1" aria-label="四、推荐的Agent设计">四、推荐的Agent设计</a></li>
+                <li>
+                    <a href="#%e4%ba%94rag%e9%93%be%e8%b7%af%e6%80%8e%e4%b9%88%e4%bd%93%e7%8e%b0%e6%8a%80%e6%9c%af%e5%90%ab%e9%87%8f" aria-label="五、RAG链路怎么体现技术含量">五、RAG链路怎么体现技术含量</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%87%e6%a1%a3%e5%a4%84%e7%90%86" aria-label="文档处理">文档处理</a></li>
+                <li>
+                    <a href="#%e6%a3%80%e7%b4%a2%e4%bc%98%e5%8c%96" aria-label="检索优化">检索优化</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%admysqlredis%e5%92%8c%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e6%80%8e%e4%b9%88%e8%87%aa%e7%84%b6%e5%8a%a0%e5%85%a5" aria-label="六、MySQL、Redis和消息队列怎么自然加入">六、MySQL、Redis和消息队列怎么自然加入</a><ul>
+                        
+                <li>
+                    <a href="#mysql" aria-label="MySQL">MySQL</a></li>
+                <li>
+                    <a href="#redis" aria-label="Redis">Redis</a></li>
+                <li>
+                    <a href="#rabbitmq" aria-label="RabbitMQ">RabbitMQ</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%83%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e7%9a%84%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" aria-label="七、可以使用的设计模式">七、可以使用的设计模式</a></li>
+                <li>
+                    <a href="#%e5%85%ab%e5%89%8d%e5%90%8e%e7%ab%af%e6%8a%80%e6%9c%af%e9%80%89%e5%9e%8b" aria-label="八、前后端技术选型">八、前后端技术选型</a><ul>
+                        
+                <li>
+                    <a href="#react%e5%89%8d%e7%ab%af" aria-label="React前端">React前端</a></li>
+                <li>
+                    <a href="#fastapi%e5%90%8e%e7%ab%af" aria-label="FastAPI后端">FastAPI后端</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b9%9d%e4%b8%80%e4%b8%aa%e5%be%88%e9%80%82%e5%90%88%e6%bc%94%e7%a4%ba%e7%9a%84%e5%ae%8c%e6%95%b4%e6%a1%88%e4%be%8b" aria-label="九、一个很适合演示的完整案例">九、一个很适合演示的完整案例</a></li>
+                <li>
+                    <a href="#%e5%8d%81%e9%a1%b9%e7%9b%ae%e5%bc%80%e5%8f%91%e9%a1%ba%e5%ba%8f" aria-label="十、项目开发顺序">十、项目开发顺序</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ac%ac%e4%b8%80%e9%98%b6%e6%ae%b5%e7%94%b5%e5%95%86%e5%9f%ba%e7%a1%80%e4%b8%9a%e5%8a%a1" aria-label="第一阶段：电商基础业务">第一阶段：电商基础业务</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%ba%8c%e9%98%b6%e6%ae%b5rag%e7%9f%a5%e8%af%86%e5%ba%93" aria-label="第二阶段：RAG知识库">第二阶段：RAG知识库</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e4%b8%89%e9%98%b6%e6%ae%b5agent" aria-label="第三阶段：Agent">第三阶段：Agent</a></li>
+                <li>
+                    <a href="#%e7%ac%ac%e5%9b%9b%e9%98%b6%e6%ae%b5%e4%ba%92%e8%81%94%e7%bd%91%e5%b7%a5%e7%a8%8b%e8%83%bd%e5%8a%9b" aria-label="第四阶段：互联网工程能力">第四阶段：互联网工程能力</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8d%81%e4%b8%80%e9%a1%b9%e7%9b%ae%e6%9c%80%e5%90%88%e9%80%82%e7%9a%84%e5%90%8d%e5%ad%97" aria-label="十一、项目最合适的名字">十一、项目最合适的名字</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="ai电商导购与售后客服平台">AI电商导购与售后客服平台<a hidden class="anchor" aria-hidden="true" href="#ai电商导购与售后客服平台">#</a></h1>
+<p>它不是普通聊天机器人，而是一个能够：</p>
+<ul>
+<li>
+<p>理解用户需求；</p>
+</li>
+<li>
+<p>查询商品和活动知识；</p>
+</li>
+<li>
+<p>推荐、比较商品；</p>
+</li>
+<li>
+<p>查询订单和物流；</p>
+</li>
+<li>
+<p>判断退换货资格；</p>
+</li>
+<li>
+<p>经用户确认后创建售后工单；</p>
+</li>
+<li>
+<p>在不确定时转人工客服；</p>
+</li>
+</ul>
+<p>的电商 Agent。</p>
+<p>这个项目的优势是业务非常直观，RAG、Agent、MySQL、Redis、消息队列都能自然出现。</p>
+<hr>
+<h1 id="一用户到底能用它做什么">一、用户到底能用它做什么<a hidden class="anchor" aria-hidden="true" href="#一用户到底能用它做什么">#</a></h1>
+<p>例如用户打开一个仿电商网站，向客服提问：</p>
+<blockquote>
+<p>我预算5000元，想买一台适合拍照和打游戏的手机，不要苹果，有什么推荐？</p></blockquote>
+<p>系统执行：</p>
+<ol>
+<li>
+<p>识别用户购买需求；</p>
+</li>
+<li>
+<p>提取预算、品牌、拍照、游戏等条件；</p>
+</li>
+<li>
+<p>从MySQL筛选有库存的手机；</p>
+</li>
+<li>
+<p>从RAG知识库检索商品参数、评测和活动规则；</p>
+</li>
+<li>
+<p>比较几款商品；</p>
+</li>
+<li>
+<p>给出推荐理由和引用来源；</p>
+</li>
+<li>
+<p>用户可以直接加入购物车。</p>
+</li>
+</ol>
+<p>再例如：</p>
+<blockquote>
+<p>我昨天买的耳机右边没有声音，可以退吗？</p></blockquote>
+<p>系统执行：</p>
+<ol>
+<li>
+<p>查询用户订单；</p>
+</li>
+<li>
+<p>确认购买时间、商品状态；</p>
+</li>
+<li>
+<p>从知识库检索退换货规则；</p>
+</li>
+<li>
+<p>判断是否符合售后条件；</p>
+</li>
+<li>
+<p>询问用户是否申请退款；</p>
+</li>
+<li>
+<p>用户确认后创建售后工单；</p>
+</li>
+<li>
+<p>通过消息队列通知售后系统。</p>
+</li>
+</ol>
+<p>这个场景既能展示RAG，也能展示Agent真正“完成任务”的能力。</p>
+<hr>
+<h1 id="二rag和agent分别解决什么问题">二、RAG和Agent分别解决什么问题<a hidden class="anchor" aria-hidden="true" href="#二rag和agent分别解决什么问题">#</a></h1>
+<p>这是面试时最需要讲清楚的地方。</p>
+<h2 id="rag负责知道答案">RAG负责“知道答案”<a hidden class="anchor" aria-hidden="true" href="#rag负责知道答案">#</a></h2>
+<p>RAG知识库包含：</p>
+<ul>
+<li>
+<p>商品详细参数</p>
+</li>
+<li>
+<p>商品使用说明书</p>
+</li>
+<li>
+<p>促销活动规则</p>
+</li>
+<li>
+<p>会员权益规则</p>
+</li>
+<li>
+<p>物流说明</p>
+</li>
+<li>
+<p>退换货政策</p>
+</li>
+<li>
+<p>售后维修政策</p>
+</li>
+<li>
+<p>常见问题</p>
+</li>
+<li>
+<p>用户评测摘要</p>
+</li>
+</ul>
+<p>例如用户询问：</p>
+<blockquote>
+<p>这个手机支持无线充电吗？</p></blockquote>
+<p>RAG从商品说明书中找到对应内容，然后带着来源回答。</p>
+<p>RAG的价值是：</p>
+<ul>
+<li>
+<p>商品资料更新后不需要重新训练模型；</p>
+</li>
+<li>
+<p>回答有依据和引用；</p>
+</li>
+<li>
+<p>减少大模型幻觉；</p>
+</li>
+<li>
+<p>不同店铺可以使用不同知识库；</p>
+</li>
+<li>
+<p>可以对不同用户进行权限隔离。</p>
+</li>
+</ul>
+<h2 id="agent负责完成任务">Agent负责“完成任务”<a hidden class="anchor" aria-hidden="true" href="#agent负责完成任务">#</a></h2>
+<p>Agent可以调用工具：</p>
+<ul>
+<li>
+<p>搜索商品</p>
+</li>
+<li>
+<p>查询实时库存</p>
+</li>
+<li>
+<p>查询订单</p>
+</li>
+<li>
+<p>查询物流</p>
+</li>
+<li>
+<p>领取优惠券</p>
+</li>
+<li>
+<p>加入购物车</p>
+</li>
+<li>
+<p>创建退货申请</p>
+</li>
+<li>
+<p>创建客服工单</p>
+</li>
+<li>
+<p>转人工客服</p>
+</li>
+</ul>
+<p>例如：</p>
+<blockquote>
+<p>帮我找一款500元以内的降噪耳机，有货的话加入购物车。</p></blockquote>
+<p>这不是单纯问答。Agent需要：</p>
+<ol>
+<li>
+<p>制定任务计划；</p>
+</li>
+<li>
+<p>搜索商品；</p>
+</li>
+<li>
+<p>检查库存；</p>
+</li>
+<li>
+<p>检索商品知识；</p>
+</li>
+<li>
+<p>比较商品；</p>
+</li>
+<li>
+<p>等待用户确认；</p>
+</li>
+<li>
+<p>调用购物车工具。</p>
+</li>
+</ol>
+<p>一句话概括：</p>
+<blockquote>
+<p>RAG让模型“知道公司的知识”，Agent让模型“使用公司的系统完成任务”。</p></blockquote>
+<hr>
+<h1 id="三完整业务模块">三、完整业务模块<a hidden class="anchor" aria-hidden="true" href="#三完整业务模块">#</a></h1>
+<p>项目可以分成三个前端入口。</p>
+<h2 id="1-模拟电商商城">1. 模拟电商商城<a hidden class="anchor" aria-hidden="true" href="#1-模拟电商商城">#</a></h2>
+<p>用户可以：</p>
+<ul>
+<li>
+<p>注册登录</p>
+</li>
+<li>
+<p>浏览和搜索商品</p>
+</li>
+<li>
+<p>查看商品详情</p>
+</li>
+<li>
+<p>加入购物车</p>
+</li>
+<li>
+<p>创建模拟订单</p>
+</li>
+<li>
+<p>查看物流和订单状态</p>
+</li>
+<li>
+<p>与AI客服交流</p>
+</li>
+<li>
+<p>申请退换货</p>
+</li>
+</ul>
+<p>这样项目不再是一个孤零零的聊天框，而是完整电商业务。</p>
+<h2 id="2-ai客服对话页面">2. AI客服对话页面<a hidden class="anchor" aria-hidden="true" href="#2-ai客服对话页面">#</a></h2>
+<p>聊天界面展示：</p>
+<ul>
+<li>
+<p>流式回答</p>
+</li>
+<li>
+<p>商品卡片</p>
+</li>
+<li>
+<p>商品对比表</p>
+</li>
+<li>
+<p>引用的知识来源</p>
+</li>
+<li>
+<p>Agent执行步骤</p>
+</li>
+<li>
+<p>工具调用状态</p>
+</li>
+<li>
+<p>操作确认按钮</p>
+</li>
+<li>
+<p>转人工按钮</p>
+</li>
+</ul>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">正在理解你的需求……
+</span></span><span class="line"><span class="cl">正在搜索符合预算的商品……
+</span></span><span class="line"><span class="cl">找到12款商品……
+</span></span><span class="line"><span class="cl">正在检查库存和优惠……
+</span></span><span class="line"><span class="cl">已筛选出3款商品……
+</span></span></code></pre></div><p>用户能直观看到Agent在工作。</p>
+<h2 id="3-商家运营后台">3. 商家运营后台<a hidden class="anchor" aria-hidden="true" href="#3-商家运营后台">#</a></h2>
+<p>运营人员可以：</p>
+<ul>
+<li>
+<p>管理商品</p>
+</li>
+<li>
+<p>上传商品说明书</p>
+</li>
+<li>
+<p>上传售后规则</p>
+</li>
+<li>
+<p>创建知识库</p>
+</li>
+<li>
+<p>查看文档解析状态</p>
+</li>
+<li>
+<p>配置Agent工作流</p>
+</li>
+<li>
+<p>查看对话记录</p>
+</li>
+<li>
+<p>查看用户反馈</p>
+</li>
+<li>
+<p>查看RAG命中情况</p>
+</li>
+<li>
+<p>查看Token消耗</p>
+</li>
+<li>
+<p>查看Agent失败原因</p>
+</li>
+<li>
+<p>管理人工客服工单</p>
+</li>
+</ul>
+<p>这个后台很重要，它可以突出“全栈项目”的完整性。</p>
+<hr>
+<h1 id="四推荐的agent设计">四、推荐的Agent设计<a hidden class="anchor" aria-hidden="true" href="#四推荐的agent设计">#</a></h1>
+<p>不需要一开始就做十几个Agent。可以设计四个：</p>
+<table>
+  <thead>
+      <tr>
+          <th>Agent</th>
+          <th>职责</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Router Agent</td>
+          <td>判断是商品咨询、导购、订单还是售后问题</td>
+      </tr>
+      <tr>
+          <td>Shopping Agent</td>
+          <td>提取需求，筛选、比较和推荐商品</td>
+      </tr>
+      <tr>
+          <td>After-sales Agent</td>
+          <td>查询订单、检索售后规则、创建售后申请</td>
+      </tr>
+      <tr>
+          <td>Reviewer Agent</td>
+          <td>检查回答是否有依据、是否存在违规操作</td>
+      </tr>
+  </tbody>
+</table>
+<p>执行流程：</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">flowchart TD
+    A[&#34;用户提问&#34;] --&gt; B[&#34;意图识别&#34;]
+    B --&gt; C{&#34;业务类型&#34;}
+    C --&gt;|商品咨询| D[&#34;RAG商品问答&#34;]
+    C --&gt;|购买建议| E[&#34;导购Agent&#34;]
+    C --&gt;|订单问题| F[&#34;订单工具&#34;]
+    C --&gt;|退换货| G[&#34;售后Agent&#34;]
+    D --&gt; H[&#34;答案审核&#34;]
+    E --&gt; H
+    F --&gt; H
+    G --&gt; I{&#34;涉及实际操作？&#34;}
+    I --&gt;|是| J[&#34;用户确认&#34;]
+    I --&gt;|否| H
+    J --&gt; H
+    H --&gt; K[&#34;返回结果&#34;]
+</code></pre><hr>
+<h1 id="五rag链路怎么体现技术含量">五、RAG链路怎么体现技术含量<a hidden class="anchor" aria-hidden="true" href="#五rag链路怎么体现技术含量">#</a></h1>
+<p>不要只实现“上传PDF，然后向量搜索”。</p>
+<p>建议实现下面的完整链路。</p>
+<h2 id="文档处理">文档处理<a hidden class="anchor" aria-hidden="true" href="#文档处理">#</a></h2>
+<p>用户上传商品说明书或者售后政策后：</p>
+<ol>
+<li>
+<p>FastAPI接收文件；</p>
+</li>
+<li>
+<p>文件保存到MinIO；</p>
+</li>
+<li>
+<p>MySQL记录文档状态；</p>
+</li>
+<li>
+<p>RabbitMQ发送解析任务；</p>
+</li>
+<li>
+<p>Worker解析PDF、Word、Markdown；</p>
+</li>
+<li>
+<p>根据标题和段落进行语义切片；</p>
+</li>
+<li>
+<p>生成Embedding；</p>
+</li>
+<li>
+<p>写入向量数据库；</p>
+</li>
+<li>
+<p>更新文档状态。</p>
+</li>
+</ol>
+<p>前端显示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">等待处理 → 正在解析 → 正在向量化 → 索引完成
+</span></span></code></pre></div><h2 id="检索优化">检索优化<a hidden class="anchor" aria-hidden="true" href="#检索优化">#</a></h2>
+<p>可以逐步实现：</p>
+<ul>
+<li>
+<p>问题改写</p>
+</li>
+<li>
+<p>向量检索</p>
+</li>
+<li>
+<p>BM25关键词检索</p>
+</li>
+<li>
+<p>商品属性过滤</p>
+</li>
+<li>
+<p>混合召回</p>
+</li>
+<li>
+<p>RRF结果融合</p>
+</li>
+<li>
+<p>Reranker重排</p>
+</li>
+<li>
+<p>上下文压缩</p>
+</li>
+<li>
+<p>引用来源</p>
+</li>
+<li>
+<p>无答案拒答</p>
+</li>
+</ul>
+<p>例如用户问：</p>
+<blockquote>
+<p>我买的手机进水了，可以免费保修吗？</p></blockquote>
+<p>系统不能只搜索“手机”和“保修”，还需要根据：</p>
+<ul>
+<li>
+<p>商品型号</p>
+</li>
+<li>
+<p>购买时间</p>
+</li>
+<li>
+<p>用户订单</p>
+</li>
+<li>
+<p>保修政策版本</p>
+</li>
+<li>
+<p>人为损坏条款</p>
+</li>
+</ul>
+<p>进行检索和判断。</p>
+<p>这就比普通知识库问答更有含金量。</p>
+<hr>
+<h1 id="六mysqlredis和消息队列怎么自然加入">六、MySQL、Redis和消息队列怎么自然加入<a hidden class="anchor" aria-hidden="true" href="#六mysqlredis和消息队列怎么自然加入">#</a></h1>
+<h2 id="mysql">MySQL<a hidden class="anchor" aria-hidden="true" href="#mysql">#</a></h2>
+<p>保存核心业务数据：</p>
+<ul>
+<li>
+<p>用户</p>
+</li>
+<li>
+<p>商品</p>
+</li>
+<li>
+<p>SKU</p>
+</li>
+<li>
+<p>库存</p>
+</li>
+<li>
+<p>购物车</p>
+</li>
+<li>
+<p>订单</p>
+</li>
+<li>
+<p>物流</p>
+</li>
+<li>
+<p>优惠券</p>
+</li>
+<li>
+<p>售后工单</p>
+</li>
+<li>
+<p>知识库</p>
+</li>
+<li>
+<p>文档</p>
+</li>
+<li>
+<p>会话</p>
+</li>
+<li>
+<p>Agent任务</p>
+</li>
+<li>
+<p>工具调用记录</p>
+</li>
+</ul>
+<p>可以重点实现：</p>
+<ul>
+<li>
+<p>商品与SKU表设计</p>
+</li>
+<li>
+<p>订单状态机</p>
+</li>
+<li>
+<p>库存扣减</p>
+</li>
+<li>
+<p>优惠券领取</p>
+</li>
+<li>
+<p>售后状态流转</p>
+</li>
+<li>
+<p>乐观锁防止库存超卖</p>
+</li>
+<li>
+<p>唯一索引保证任务幂等</p>
+</li>
+</ul>
+<h2 id="redis">Redis<a hidden class="anchor" aria-hidden="true" href="#redis">#</a></h2>
+<p>Redis可以用于：</p>
+<ul>
+<li>
+<p>商品详情缓存</p>
+</li>
+<li>
+<p>热门商品缓存</p>
+</li>
+<li>
+<p>购物车缓存</p>
+</li>
+<li>
+<p>用户会话</p>
+</li>
+<li>
+<p>Agent短期记忆</p>
+</li>
+<li>
+<p>RAG检索结果缓存</p>
+</li>
+<li>
+<p>Embedding缓存</p>
+</li>
+<li>
+<p>接口限流</p>
+</li>
+<li>
+<p>分布式锁</p>
+</li>
+<li>
+<p>库存预扣</p>
+</li>
+<li>
+<p>Token用量统计</p>
+</li>
+</ul>
+<p>比较有含金量的一个功能是“秒杀优惠券”：</p>
+<ol>
+<li>
+<p>Redis判断库存；</p>
+</li>
+<li>
+<p>Lua脚本完成原子扣减；</p>
+</li>
+<li>
+<p>消息发送到RabbitMQ；<br>
+4.消费者异步写入MySQL；</p>
+</li>
+<li>
+<p>使用用户ID和优惠券ID保证幂等；</p>
+</li>
+<li>
+<p>消费失败进入重试和死信队列。</p>
+</li>
+</ol>
+<p>这样就能自然展示互联网高并发场景。</p>
+<h2 id="rabbitmq">RabbitMQ<a hidden class="anchor" aria-hidden="true" href="#rabbitmq">#</a></h2>
+<p>处理异步任务：</p>
+<ul>
+<li>
+<p>文档解析</p>
+</li>
+<li>
+<p>Embedding生成</p>
+</li>
+<li>
+<p>知识库重建</p>
+</li>
+<li>
+<p>订单创建</p>
+</li>
+<li>
+<p>优惠券异步落库</p>
+</li>
+<li>
+<p>售后工单通知</p>
+</li>
+<li>
+<p>Agent长任务</p>
+</li>
+<li>
+<p>RAG自动评测</p>
+</li>
+<li>
+<p>对话内容异步统计</p>
+</li>
+</ul>
+<p>需要实现：</p>
+<ul>
+<li>
+<p>ACK</p>
+</li>
+<li>
+<p>消息重试</p>
+</li>
+<li>
+<p>死信队列</p>
+</li>
+<li>
+<p>延迟队列</p>
+</li>
+<li>
+<p>幂等消费</p>
+</li>
+<li>
+<p>消息积压监控</p>
+</li>
+</ul>
+<hr>
+<h1 id="七可以使用的设计模式">七、可以使用的设计模式<a hidden class="anchor" aria-hidden="true" href="#七可以使用的设计模式">#</a></h1>
+<table>
+  <thead>
+      <tr>
+          <th>设计模式</th>
+          <th>项目中的用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Strategy</td>
+          <td>切换向量检索、混合检索和不同大模型</td>
+      </tr>
+      <tr>
+          <td>Factory</td>
+          <td>根据意图创建导购、订单、售后Agent</td>
+      </tr>
+      <tr>
+          <td>Adapter</td>
+          <td>统一不同模型和向量数据库接口</td>
+      </tr>
+      <tr>
+          <td>State</td>
+          <td>管理订单、售后工单和Agent任务状态</td>
+      </tr>
+      <tr>
+          <td>Chain of Responsibility</td>
+          <td>输入检查、权限检查、注入检测、输出审核</td>
+      </tr>
+      <tr>
+          <td>Observer</td>
+          <td>Agent执行状态通过SSE推送前端</td>
+      </tr>
+      <tr>
+          <td>Repository</td>
+          <td>封装MySQL访问</td>
+      </tr>
+      <tr>
+          <td>Template Method</td>
+          <td>统一不同Agent的执行流程</td>
+      </tr>
+      <tr>
+          <td>Circuit Breaker</td>
+          <td>大模型或外部服务异常时熔断</td>
+      </tr>
+      <tr>
+          <td>Outbox Pattern</td>
+          <td>保证数据库操作和消息投递最终一致</td>
+      </tr>
+  </tbody>
+</table>
+<p>其中最值得深入的是：</p>
+<ul>
+<li>
+<p>Strategy</p>
+</li>
+<li>
+<p>State</p>
+</li>
+<li>
+<p>Chain of Responsibility</p>
+</li>
+<li>
+<p>Outbox Pattern</p>
+</li>
+</ul>
+<p>不用刻意把所有模式都用上。</p>
+<hr>
+<h1 id="八前后端技术选型">八、前后端技术选型<a hidden class="anchor" aria-hidden="true" href="#八前后端技术选型">#</a></h1>
+<h2 id="react前端">React前端<a hidden class="anchor" aria-hidden="true" href="#react前端">#</a></h2>
+<p>建议使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">React
+</span></span><span class="line"><span class="cl">TypeScript
+</span></span><span class="line"><span class="cl">Vite
+</span></span><span class="line"><span class="cl">Ant Design
+</span></span><span class="line"><span class="cl">React Query
+</span></span><span class="line"><span class="cl">Zustand
+</span></span><span class="line"><span class="cl">React Router
+</span></span><span class="line"><span class="cl">ECharts
+</span></span><span class="line"><span class="cl">React Flow
+</span></span><span class="line"><span class="cl">SSE
+</span></span></code></pre></div><p>主要页面：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">商城首页
+</span></span><span class="line"><span class="cl">商品详情
+</span></span><span class="line"><span class="cl">购物车
+</span></span><span class="line"><span class="cl">订单中心
+</span></span><span class="line"><span class="cl">AI客服
+</span></span><span class="line"><span class="cl">商家后台
+</span></span><span class="line"><span class="cl">知识库管理
+</span></span><span class="line"><span class="cl">Agent工作流
+</span></span><span class="line"><span class="cl">调用链追踪
+</span></span><span class="line"><span class="cl">数据统计看板
+</span></span></code></pre></div><h2 id="fastapi后端">FastAPI后端<a hidden class="anchor" aria-hidden="true" href="#fastapi后端">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">FastAPI
+</span></span><span class="line"><span class="cl">SQLAlchemy
+</span></span><span class="line"><span class="cl">Pydantic
+</span></span><span class="line"><span class="cl">Alembic
+</span></span><span class="line"><span class="cl">LangGraph
+</span></span><span class="line"><span class="cl">Celery或自建RabbitMQ Worker
+</span></span><span class="line"><span class="cl">Redis
+</span></span><span class="line"><span class="cl">MySQL
+</span></span><span class="line"><span class="cl">Qdrant
+</span></span><span class="line"><span class="cl">MinIO
+</span></span><span class="line"><span class="cl">OpenTelemetry
+</span></span><span class="line"><span class="cl">Prometheus
+</span></span></code></pre></div><p>建议采用领域划分：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">backend/
+</span></span><span class="line"><span class="cl">├── modules/
+</span></span><span class="line"><span class="cl">│   ├── user/
+</span></span><span class="line"><span class="cl">│   ├── product/
+</span></span><span class="line"><span class="cl">│   ├── order/
+</span></span><span class="line"><span class="cl">│   ├── coupon/
+</span></span><span class="line"><span class="cl">│   ├── after_sales/
+</span></span><span class="line"><span class="cl">│   ├── knowledge/
+</span></span><span class="line"><span class="cl">│   ├── agent/
+</span></span><span class="line"><span class="cl">│   └── evaluation/
+</span></span><span class="line"><span class="cl">├── infrastructure/
+</span></span><span class="line"><span class="cl">│   ├── mysql/
+</span></span><span class="line"><span class="cl">│   ├── redis/
+</span></span><span class="line"><span class="cl">│   ├── rabbitmq/
+</span></span><span class="line"><span class="cl">│   ├── vector_store/
+</span></span><span class="line"><span class="cl">│   └── llm/
+</span></span><span class="line"><span class="cl">├── mcp_servers/
+</span></span><span class="line"><span class="cl">└── api/
+</span></span></code></pre></div><hr>
+<h1 id="九一个很适合演示的完整案例">九、一个很适合演示的完整案例<a hidden class="anchor" aria-hidden="true" href="#九一个很适合演示的完整案例">#</a></h1>
+<p>面试时可以直接演示：</p>
+<blockquote>
+<p>我想给女朋友买一个1000元以内的生日礼物，她喜欢拍照，三天后过生日，最好明天能到。</p></blockquote>
+<p>Agent执行：</p>
+<ol>
+<li>
+<p>提取预算、用途和时间要求；</p>
+</li>
+<li>
+<p>查询适合拍照的商品；</p>
+</li>
+<li>
+<p>RAG检索商品卖点和使用说明；</p>
+</li>
+<li>
+<p>查询实时库存；</p>
+</li>
+<li>
+<p>查询用户收货地址；</p>
+</li>
+<li>
+<p>判断配送时间；</p>
+</li>
+<li>
+<p>查询当前优惠活动；</p>
+</li>
+<li>
+<p>推荐三款商品并解释区别；</p>
+</li>
+<li>
+<p>用户选择其中一款；</p>
+</li>
+<li>
+<p>Agent领取优惠券并加入购物车；</p>
+</li>
+<li>
+<p>用户确认后创建模拟订单。</p>
+</li>
+</ol>
+<p>这个案例同时展示了：</p>
+<ul>
+<li>
+<p>自然语言理解</p>
+</li>
+<li>
+<p>任务规划</p>
+</li>
+<li>
+<p>RAG</p>
+</li>
+<li>
+<p>多步工具调用</p>
+</li>
+<li>
+<p>个性化推荐</p>
+</li>
+<li>
+<p>MySQL业务查询</p>
+</li>
+<li>
+<p>Redis缓存</p>
+</li>
+<li>
+<p>订单系统</p>
+</li>
+<li>
+<p>人机确认</p>
+</li>
+<li>
+<p>流式前端交互</p>
+</li>
+</ul>
+<p>非常容易让面试官理解。</p>
+<hr>
+<h1 id="十项目开发顺序">十、项目开发顺序<a hidden class="anchor" aria-hidden="true" href="#十项目开发顺序">#</a></h1>
+<h2 id="第一阶段电商基础业务">第一阶段：电商基础业务<a hidden class="anchor" aria-hidden="true" href="#第一阶段电商基础业务">#</a></h2>
+<p>先完成：</p>
+<ul>
+<li>
+<p>用户登录</p>
+</li>
+<li>
+<p>商品管理</p>
+</li>
+<li>
+<p>商品搜索</p>
+</li>
+<li>
+<p>购物车</p>
+</li>
+<li>
+<p>模拟订单</p>
+</li>
+<li>
+<p>售后工单</p>
+</li>
+<li>
+<p>商家后台</p>
+</li>
+</ul>
+<h2 id="第二阶段rag知识库">第二阶段：RAG知识库<a hidden class="anchor" aria-hidden="true" href="#第二阶段rag知识库">#</a></h2>
+<p>完成：</p>
+<ul>
+<li>
+<p>文档上传</p>
+</li>
+<li>
+<p>RabbitMQ异步解析</p>
+</li>
+<li>
+<p>文档切片</p>
+</li>
+<li>
+<p>向量检索</p>
+</li>
+<li>
+<p>混合检索</p>
+</li>
+<li>
+<p>Reranker</p>
+</li>
+<li>
+<p>引用来源</p>
+</li>
+<li>
+<p>管理后台</p>
+</li>
+</ul>
+<h2 id="第三阶段agent">第三阶段：Agent<a hidden class="anchor" aria-hidden="true" href="#第三阶段agent">#</a></h2>
+<p>完成：</p>
+<ul>
+<li>
+<p>意图识别</p>
+</li>
+<li>
+<p>导购Agent</p>
+</li>
+<li>
+<p>订单Agent</p>
+</li>
+<li>
+<p>售后Agent</p>
+</li>
+<li>
+<p>工具调用</p>
+</li>
+<li>
+<p>短期记忆</p>
+</li>
+<li>
+<p>任务状态保存</p>
+</li>
+<li>
+<p>人工确认</p>
+</li>
+</ul>
+<h2 id="第四阶段互联网工程能力">第四阶段：互联网工程能力<a hidden class="anchor" aria-hidden="true" href="#第四阶段互联网工程能力">#</a></h2>
+<p>完成：</p>
+<ul>
+<li>
+<p>Redis多级缓存</p>
+</li>
+<li>
+<p>接口限流</p>
+</li>
+<li>
+<p>秒杀优惠券</p>
+</li>
+<li>
+<p>分布式锁</p>
+</li>
+<li>
+<p>幂等消费</p>
+</li>
+<li>
+<p>消息重试</p>
+</li>
+<li>
+<p>死信队列</p>
+</li>
+<li>
+<p>熔断降级</p>
+</li>
+<li>
+<p>全链路监控</p>
+</li>
+<li>
+<p>并发压测</p>
+</li>
+</ul>
+<hr>
+<h1 id="十一项目最合适的名字">十一、项目最合适的名字<a hidden class="anchor" aria-hidden="true" href="#十一项目最合适的名字">#</a></h1>
+<p>可以从这些里面选：</p>
+<ul>
+<li>
+<p>ShopMind：智能电商导购与客服平台</p>
+</li>
+<li>
+<p>MallAgent：电商多智能体服务平台</p>
+</li>
+<li>
+<p>IntelliShop：智能导购与售后Agent</p>
+</li>
+<li>
+<p>CommerceCopilot：电商运营与客服助手</p>
+</li>
+<li>
+<p>SmartMall AI：面向电商场景的RAG Agent平台</p>
+</li>
+</ul>
+<p>我比较推荐：</p>
+<blockquote>
+<p><strong>MallAgent——基于RAG与多智能体的电商导购及售后服务平台</strong></p></blockquote>
+<p>它的最大优势是：业务很好懂，同时又能自然体现RAG和Agent的区别——RAG负责基于商品及规则提供可靠知识，Agent负责查询订单、检查库存、推荐商品和创建售后任务。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span><a href="https://minjieblog.github.io/">©2025 Minjie&rsquo;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

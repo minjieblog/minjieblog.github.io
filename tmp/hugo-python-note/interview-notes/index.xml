@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Interview-Notes on Minjie&#39;s Blog</title>
+    <link>https://minjieblog.github.io/interview-notes/</link>
+    <description>Recent content in Interview-Notes on Minjie&#39;s Blog</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>zh</language>
+    <copyright>©2025 Minjie&amp;rsquo;s Blog</copyright>
+    <lastBuildDate>Sun, 06 Sep 2026 23:34:32 +0800</lastBuildDate>
+    <atom:link href="https://minjieblog.github.io/interview-notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 面试算法手册：数据结构、刷题模板与 AI 算法</title>
+      <link>https://minjieblog.github.io/interview-notes/python-algorithm-cheatsheet/</link>
+      <pubDate>Sun, 06 Sep 2026 23:34:32 +0800</pubDate>
+      <guid>https://minjieblog.github.io/interview-notes/python-algorithm-cheatsheet/</guid>
+      <description>系统整理 Python 容器、二分、双指针、树、图、动态规划，以及线性回归、K-Means、PCA、Attention 等面试手写模板，附复杂度、输入约定和易错点。</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; STL 刷题手册</title>
+      <link>https://minjieblog.github.io/interview-notes/cpp-stl-cheatsheet/</link>
+      <pubDate>Sun, 10 May 2026 22:12:18 +0800</pubDate>
+      <guid>https://minjieblog.github.io/interview-notes/cpp-stl-cheatsheet/</guid>
+      <description>C&#43;&#43; STL 容器与刷题算法模板速查手册，涵盖 string、vector、map、priority_queue 等常用容器的核心用法，以及树、图、回溯、动态规划、双指针、单调栈、前缀和等经典算法的代码模板，供 LeetCode 刷题时快速查阅。</description>
+    </item>
+  </channel>
+</rss>
