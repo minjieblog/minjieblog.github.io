@@ -26,3 +26,22 @@ _testmain.go
 .DS_Store
 .hugo_build.lock
 resources/_gen/
+
+# Local previews and database snapshots
+/tmp/
+/dump.rdb
+
+# Local editor state and machine-specific assistant settings
+.obsidian/
+**/.claude/settings.local.json
+.trash/
+Thumbs.db
+Desktop.ini
+
+# Notes excluded from Hugo publishing (see hugo.yaml ignoreFiles)
+# Already tracked files remain tracked until explicitly removed from the index.
+/content/obsidian/
+/content/music/
+/content/reading-notes/
+/content/java-notes/core-java_volume_1.md
+/content/java-notes/design-patterns.md

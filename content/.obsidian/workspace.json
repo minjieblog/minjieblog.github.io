@@ -11,10 +11,14 @@
             "id": "aae9a7aacae22e8b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "interview-notes/python-algorithm-cheatsheet.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "python-algorithm-cheatsheet"
             }
           }
         ]
@@ -92,6 +96,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "interview-notes/python-algorithm-cheatsheet.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -223,7 +228,7 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "1ebc47ebac23f6d9",
+  "active": "aae9a7aacae22e8b",
   "lastOpenFiles": [
     "agent/resume-zh_CN.pdf",
     "doc-intro/codex-ref.md",
