@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "8f1d524c65d47236",
+        "id": "a762e9227a3c653c",
         "type": "tabs",
         "children": [
           {
-            "id": "aae9a7aacae22e8b",
+            "id": "a01a189dd62cedf5",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -228,9 +228,12 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "aae9a7aacae22e8b",
+  "active": "fdda07a422b51bcb",
   "lastOpenFiles": [
     "agent/resume-zh_CN.pdf",
+    "agent/Agent LAB.md",
+    "interview-notes/python-algorithm-cheatsheet.md",
+    "agent/Agent开发面试题.md",
     "doc-intro/codex-ref.md",
     "doc-intro/hugo-readme.md",
     "java-notes/hmdp.md",
@@ -241,10 +244,8 @@
     "agent/Agent面试汇总——解答版.md",
     "agent/Agent面经汇总.md",
     "agent/agent-roadmap.md",
-    "agent/Agent LAB.md",
     "agent/牛客agent面试.md",
     "interview-notes/cpp-stl-cheatsheet.md",
-    "agent/Agent开发面试题.md",
     "blockchain/VCER-certificate-validation-constrained-networks.md",
     "blockchain/ssi-credential-revocation-did-deactivation-survey.md",
     "blockchain/prevoke-privacy-preserving-vc-revocation.md",
@@ -255,7 +256,6 @@
     "blockchain/crset-private-vc-revocation.md",
     "blockchain/zklogin.md",
     "blockchain/Linking-Souls-to-Humans.md",
-    "game-guide/sichuan-mahjong-guide.md",
     "agent/Agent面经汇总.md.tmp.28452.0e7843977268",
     "agent/Agent面经汇总.md.tmp.28452.e0b61247aacb",
     "agent/上海沃橙信息一面.m4a",

@@ -136,6 +136,9 @@ for key, value in d.items():
     pass
 keys = list(d.keys())
 values = list(d.values())
+
+#遍历旧字典，筛选新字典
+dic = {key: value for key, value in dic.items() if value <= 30}
 ```
 
 `dict` 的插入顺序不是键的排序顺序。遍历时不要增删键；可以遍历 `list(d)` 再删除。`dict.fromkeys(keys, [])` 会让所有键共享同一个列表，应改成 `{key: [] for key in keys}`。
@@ -237,16 +240,16 @@ pow(2, 10, 1000)               # 模幂 24
 gcd(12, 18)                    # 6
 ```
 
-| 容易写错的地方 | 记法 |
-| --- | --- |
-| `/` 与 `//` | `/` 得到浮点数；`//` 向下取整，`-3 // 2 == -2` |
-| `is` 与 `==` | `is` 比对象身份；值比较用 `==`，空值用 `is None` |
-| 默认可变参数 | 不写 `def f(path=[])`，用 `None` 后在函数内新建 |
-| 空容器 | `if not a` 判断空；`min([])`、空列表 `pop()` 会报错 |
-| 迭代器 | `map`、`zip` 通常只遍历一次，必要时转 `list` |
-| 递归深度 | 深链、长图优先用显式栈；提高递归上限不保证栈安全 |
-| 拷贝路径 | 回溯存答案用 `path.copy()`，不能直接存同一个 `path` |
-| 整数溢出 | Python 整数可扩展，但大整数运算不是固定 O(1) |
+| 容易写错的地方     | 记法                                       |
+| ----------- | ---------------------------------------- |
+| `/` 与 `//`  | `/` 得到浮点数；`//` 向下取整，`-3 // 2 == -2`      |
+| `is` 与 `==` | `is` 比对象身份；值比较用 `==`，空值用 `is None`       |
+| 默认可变参数      | 不写 `def f(path=[])`，用 `None` 后在函数内新建     |
+| 空容器         | `if not a` 判断空；`min([])`、空列表 `pop()` 会报错 |
+| 迭代器         | `map`、`zip` 通常只遍历一次，必要时转 `list`          |
+| 递归深度        | 深链、长图优先用显式栈；提高递归上限不保证栈安全                 |
+| 拷贝路径        | 回溯存答案用 `path.copy()`，不能直接存同一个 `path`     |
+| 整数溢出        | Python 整数可扩展，但大整数运算不是固定 O(1)             |
 
 ---
 
@@ -272,7 +275,7 @@ gcd(12, 18)                    # 6
 ```python
 def two_sum(nums, target):
     seen = {}
-    for i, x in enumerate(nums):
+    for i, x in enumerate(nums): 
         if target - x in seen:
             return [seen[target - x], i]
         seen[x] = i
